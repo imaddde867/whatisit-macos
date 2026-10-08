@@ -10,7 +10,7 @@ The keyword exclusion for obvious mutation verbs is a routing convenience, not a
 
 ## Local evidence retrieval — implemented
 
-An explicit `tools/build_docs.py` capture reads system manuals from `/usr/share/man` using fixed tool names and sections, and adds the three authored recipe descriptions. It records tool/source paths, macOS version, UTC capture time and a SHA-256 of rendered document text. No documented executable is invoked. Missing manuals/tools are recorded as unavailable; failed rendering aborts the capture. Existing indexes are refused and incomplete new indexes are removed on build failure.
+An explicit `tools/build_docs.py` capture reads system manuals from `/usr/share/man` using fixed tool names and sections, and adds the three authored recipe descriptions. It records tool/source paths, macOS version, UTC capture time and a SHA-256 of rendered document text. Executable provenance is resolved only in Apple system directories, ignoring PATH shadows; unavailable system tools are excluded even if a third-party replacement is on PATH. No documented executable is invoked. Missing manuals/tools are recorded as unavailable; failed rendering aborts the capture. Existing indexes are refused and incomplete new indexes are removed on build failure.
 
 The index uses standard-library SQLite FTS5, with overlapping 35-line windows at 30-line intervals. `--docs-index` opens an existing index read-only, tokenizes the request into literal search terms, removes common filler words, and returns up to three BM25-ranked chunks. It never interpolates SQL or passes user input to a shell. The text windows can split sections, share repeated evidence and match irrelevant text; no paraphrase expansion or semantic ranking is claimed.
 

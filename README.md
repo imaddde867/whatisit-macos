@@ -39,7 +39,7 @@ whatisit-macos --timing 'show assertions preventing sleep'
 
 ## Local documentation
 
-Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
+Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Apple manuals and catalog entries are bound to executables in `/usr/bin`, `/usr/sbin`, `/bin` and `/sbin`, ignoring PATH shadows. This provenance does not certify a PATH-selected executable when you later run a command. Rebuild older indexes using a new filename. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
 
 ```bash
 mkdir -p .cache eval/results

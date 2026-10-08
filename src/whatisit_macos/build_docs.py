@@ -12,6 +12,8 @@ from pathlib import Path
 from whatisit_macos.engine import load_recipes
 from whatisit_macos.retrieval import Manual, build_index
 
+SYSTEM_PATH = '/usr/bin:/usr/sbin:/bin:/sbin'
+
 TOOLS = (('system_profiler', '8'), ('pmset', '1'), ('mdls', '1'), ('fs_usage', '1'),
          ('launchctl', '1'), ('log', '1'), ('codesign', '1'), ('spctl', '8'),
          ('stat', '1'), ('find', '1'), ('sed', '1'), ('du', '1'))
@@ -32,7 +34,7 @@ def main() -> None:
     environment.pop('MANOPT', None)
     manuals, inventory = [], []
     for tool, section in TOOLS:
-        binary = shutil.which(tool)
+        binary = shutil.which(tool, path=SYSTEM_PATH)
         location = subprocess.run(['/usr/bin/man', '-M', '/usr/share/man', '-w', section, tool],
                                   capture_output=True, text=True, timeout=10, env=environment)
         source = location.stdout.strip()
@@ -47,7 +49,7 @@ def main() -> None:
         inventory.append({'tool': tool, 'tool_path': binary, 'source': source, 'status': 'captured'})
     for recipe in load_recipes():
         tool = recipe['argv'][0]
-        binary = shutil.which(tool)
+        binary = shutil.which(tool, path=SYSTEM_PATH)
         if binary:
             text = '\n'.join([recipe['title'], ' '.join(recipe['argv']),
                               ' '.join(word for group in recipe['match_groups'] for word in group),
