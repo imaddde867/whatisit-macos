@@ -39,11 +39,11 @@ whatisit-macos --timing 'show assertions preventing sleep'
 
 ## Local documentation
 
-Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Requires Python's SQLite with FTS5 support. Run from the repository root:
+Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
 
 ```bash
 mkdir -p .cache eval/results
-PYTHONPATH=src python3 tools/build_docs.py .cache/manuals.sqlite3 > eval/results/inventory.json
+whatisit-macos-build-docs .cache/manuals.sqlite3 > eval/results/inventory.json
 PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'show unified logs'
 ```
 
@@ -59,7 +59,7 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 ## Current limits
 
 - No model, model download, background server, network calls, or third-party runtime dependencies.
-- Keyword matching can miss paraphrases and qualifiers. A source-backed template does not prove that the selected template satisfies the whole request.
+- Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
 - Unknown requests return `unsupported`; missing file paths return `needs-input` rather than a runnable placeholder.
 - Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
 - The original tracing, launchd, unified-log, and notarization queries are tracked as unsupported seed cases, not claimed as solved.
@@ -67,7 +67,7 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 ## Development
 
 ```bash
-python -m unittest discover -s tests -v
+PYTHONPATH=src python3 -m unittest discover -s tests -v
 ```
 
 Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behavior, retrieval provenance and failures, evaluation reporting, and the seed cases in `eval/cases.jsonl`. CI runs the same suite on Ubuntu and macOS and checks that the recipe data ships in an installed wheel. These tests do not execute the suggested commands or establish real-world macOS correctness.
@@ -81,3 +81,5 @@ Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behav
 ## License
 
 MIT for this repository. No upstream code, model weights, training datasets, or copied manual pages are included. See [LICENSE](LICENSE). Any future imported material needs its own license and attribution review.
+
+Wheel isolation checks and per-task manual validation commands are recorded in [VALIDATION.md](docs/VALIDATION.md).
