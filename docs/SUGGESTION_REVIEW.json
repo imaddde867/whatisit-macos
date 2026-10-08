@@ -1,0 +1,433 @@
+{
+  "review_stage": "agent-reviewed; Imad final review pending",
+  "evaluated_commit": "b1bc9310a7c8560e10896da2163352effc5590ef",
+  "fixture_path": "eval/macos.jsonl",
+  "fixture_sha256": "25a74bad2d4db725dc9599f4f2afa3b6f20c318f9983f165e97a6c73bdd79158",
+  "fixture_tasks": 40,
+  "suggestion_ids": [
+    "battery-report",
+    "battery-cycles",
+    "metadata-file",
+    "sleep-assertions",
+    "sleep-blockers",
+    "battery-phrase",
+    "metadata-spaces",
+    "metadata-shell"
+  ],
+  "answer_mode": "fixed catalog, no --docs-index, full JSON and normal CLI output from frozen source",
+  "recovery": "only eight suggestion lookups; no task command, full routing evaluator, tests, retrieval, wheel or benchmark rerun",
+  "recovery_host_platform": "Darwin",
+  "python_version": "3.14.8",
+  "scoring_protocol": "Judge command + generated notes against the entire inspection request. Use the previously declared public representative-input validation protocol; count a partial or insufficiently supported answer as incorrect. Literal authored path execution is a separate unverified observation, not claimed by this protocol. Apple system executables, target Mac and readable/searchable supplied inputs are preconditions.",
+  "reviewed_numerator": 8,
+  "useful_correct_coverage": {
+    "numerator": 8,
+    "denominator": 40,
+    "percent": 20.0
+  },
+  "answer_accuracy_among_suggestions": {
+    "numerator": 8,
+    "denominator": 8,
+    "percent": 100.0
+  },
+  "partial_answers": 0,
+  "insufficient_command_semantics_under_declared_protocol": 0,
+  "exact_input_execution_unverified_ids": [
+    "metadata-file",
+    "metadata-spaces",
+    "metadata-shell"
+  ],
+  "separate_historical_results": {
+    "routing_matches": {
+      "numerator": 39,
+      "denominator": 40
+    },
+    "retrieval_hits": {
+      "numerator": 34,
+      "denominator": 35
+    },
+    "abstention_unresolved": {
+      "numerator": 32,
+      "denominator": 40,
+      "percent": 80.0
+    },
+    "unsupported_only": {
+      "numerator": 27,
+      "denominator": 40,
+      "percent": 67.5
+    },
+    "wrong_platform_static_template_review": {
+      "numerator": 0,
+      "denominator": 40
+    }
+  },
+  "cases": [
+    {
+      "id": "battery-report",
+      "split": "dev",
+      "request": "show battery cycle count",
+      "path": null,
+      "frozen_rubric": "Read Cycle Count in Battery Information; report may have no battery section.",
+      "answer": {
+        "status": "suggestion",
+        "command": "system_profiler SPPowerDataType",
+        "reason": "",
+        "recipe_id": "battery-cycles",
+        "title": "Inspect battery cycle count",
+        "sources": [
+          "man system_profiler",
+          "https://support.apple.com/en-nz/102888"
+        ],
+        "notes": [
+          "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+          "A Mac without a battery may have no battery section."
+        ],
+        "argv": [
+          "system_profiler",
+          "SPPowerDataType"
+        ]
+      },
+      "normal_cli_answer": "system_profiler SPPowerDataType\nNote: Read Cycle Count in the Battery Information section. This prints the power report, not just a number.\nNote: A Mac without a battery may have no battery section.\nSources: man system_profiler; https://support.apple.com/en-nz/102888",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (B1: exit 0, datatype and numeric Cycle Count present)",
+        "VALIDATION.md#all-40-initial-dispositions-before-device-checks (system_profiler(8), user privileges)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The requested cycle count is available in the validated power report, and the answer tells the user exactly which field to read. No request requires number-only or JSON output. This is a command-assistant answer, not a fabricated battery value.",
+        "literal_input_execution": "same command shape executed on target Mac",
+        "evidence_gaps": [
+          "Shared B1 execution supports all three phrasings; not three independent device executions.",
+          "Battery values were omitted for privacy; no GUI cross-check or no-battery-device validation."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "battery-cycles",
+      "split": "dev",
+      "request": "How many cycles has my battery completed?",
+      "path": null,
+      "frozen_rubric": "Power report; no fabricated numeric answer.",
+      "answer": {
+        "status": "suggestion",
+        "command": "system_profiler SPPowerDataType",
+        "reason": "",
+        "recipe_id": "battery-cycles",
+        "title": "Inspect battery cycle count",
+        "sources": [
+          "man system_profiler",
+          "https://support.apple.com/en-nz/102888"
+        ],
+        "notes": [
+          "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+          "A Mac without a battery may have no battery section."
+        ],
+        "argv": [
+          "system_profiler",
+          "SPPowerDataType"
+        ]
+      },
+      "normal_cli_answer": "system_profiler SPPowerDataType\nNote: Read Cycle Count in the Battery Information section. This prints the power report, not just a number.\nNote: A Mac without a battery may have no battery section.\nSources: man system_profiler; https://support.apple.com/en-nz/102888",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (B1: exit 0, datatype and numeric Cycle Count present)",
+        "VALIDATION.md#all-40-initial-dispositions-before-device-checks (system_profiler(8), user privileges)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The requested cycle count is available in the validated power report, and the answer tells the user exactly which field to read. No request requires number-only or JSON output. This is a command-assistant answer, not a fabricated battery value.",
+        "literal_input_execution": "same command shape executed on target Mac",
+        "evidence_gaps": [
+          "Shared B1 execution supports all three phrasings; not three independent device executions.",
+          "Battery values were omitted for privacy; no GUI cross-check or no-battery-device validation."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "metadata-file",
+      "split": "dev",
+      "request": "List indexed metadata for this file",
+      "path": "/tmp/example.pdf",
+      "frozen_rubric": "Quote the supplied absolute file path.",
+      "answer": {
+        "status": "suggestion",
+        "command": "mdls /tmp/example.pdf",
+        "reason": "",
+        "recipe_id": "file-metadata",
+        "title": "Inspect Spotlight metadata for a file",
+        "sources": [
+          "man mdls",
+          "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+        ],
+        "notes": [
+          "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+          "Unindexed files or unavailable attributes may produce missing or null values."
+        ],
+        "argv": [
+          "mdls",
+          "/tmp/example.pdf"
+        ]
+      },
+      "normal_cli_answer": "mdls /tmp/example.pdf\nNote: Shows Spotlight attributes, not every possible filesystem or application-specific attribute.\nNote: Unindexed files or unavailable attributes may produce missing or null values.\nSources: man mdls; https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (M1: exit 0, public-file attributes present outside sandbox)",
+        "VALIDATION.md#semantic-review-and-resolved-inputs--2026-10-09 (declared public-text substitution, no PDF-specific request)",
+        "VALIDATION.md#original-eight-disagreements (recorded quoting regressions; frozen test_engine.py test_metacharacters_remain_one_argument and test_spotlight_attribute_paraphrases_require_and_quote_path; tests not rerun)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The command lists Spotlight attributes for the complete supplied absolute path as one literal argument. Neither the request nor its rubric requires PDF-importer content, a fixed non-null schema, recursion or an attribute filter. The notes correctly limit the result to Spotlight and acknowledge unavailable metadata. Existing public-file execution and quoting evidence support this generic operation under the declared input protocol.",
+        "literal_input_execution": "unverified; representative public text fixture substituted",
+        "evidence_gaps": [
+          "INSUFFICIENT exact-input execution evidence: the frozen PDF path was not created or inspected; no claim that it exists or produces useful indexed fields.",
+          "Public text fixtures are explicit substitutions, not PDF-importer validation.",
+          "The displayed shell command was not executed as a shell command in the device check; literal argument behavior was exercised through fixed argv and quoting regressions."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "sleep-assertions",
+      "split": "dev",
+      "request": "show assertions preventing sleep",
+      "path": null,
+      "frozen_rubric": "Snapshot of assertion owners; not exhaustive diagnosis.",
+      "answer": {
+        "status": "suggestion",
+        "command": "pmset -g assertions",
+        "reason": "",
+        "recipe_id": "sleep-assertions",
+        "title": "Inspect assertions preventing sleep",
+        "sources": [
+          "man pmset",
+          "https://github.com/apple-oss-distributions/PowerManagement"
+        ],
+        "notes": [
+          "Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."
+        ],
+        "argv": [
+          "pmset",
+          "-g",
+          "assertions"
+        ]
+      },
+      "normal_cli_answer": "pmset -g assertions\nNote: Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem.\nSources: man pmset; https://github.com/apple-oss-distributions/PowerManagement",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (S1: exit 0, assertion summary and owner section present)",
+        "VALIDATION.md#all-40-initial-dispositions-before-device-checks (pmset(1), user query privileges)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The entire request concerns current power assertions, not all wakefulness causes or historical/continuous events. The validated assertion report includes the summary and owners, and the answer states its snapshot limit.",
+        "literal_input_execution": "same command shape executed on target Mac",
+        "evidence_gaps": [
+          "Shared S1 execution supports both phrasings; not two independent executions.",
+          "Kernel Assertions section was absent in this capture; history, exhaustive causality and live-event completeness were not validated."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "sleep-blockers",
+      "split": "dev",
+      "request": "Which power assertions are blocking sleep?",
+      "path": null,
+      "frozen_rubric": "Use the dedicated assertion report.",
+      "answer": {
+        "status": "suggestion",
+        "command": "pmset -g assertions",
+        "reason": "",
+        "recipe_id": "sleep-assertions",
+        "title": "Inspect assertions preventing sleep",
+        "sources": [
+          "man pmset",
+          "https://github.com/apple-oss-distributions/PowerManagement"
+        ],
+        "notes": [
+          "Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."
+        ],
+        "argv": [
+          "pmset",
+          "-g",
+          "assertions"
+        ]
+      },
+      "normal_cli_answer": "pmset -g assertions\nNote: Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem.\nSources: man pmset; https://github.com/apple-oss-distributions/PowerManagement",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (S1: exit 0, assertion summary and owner section present)",
+        "VALIDATION.md#all-40-initial-dispositions-before-device-checks (pmset(1), user query privileges)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The entire request concerns current power assertions, not all wakefulness causes or historical/continuous events. The validated assertion report includes the summary and owners, and the answer states its snapshot limit.",
+        "literal_input_execution": "same command shape executed on target Mac",
+        "evidence_gaps": [
+          "Shared S1 execution supports both phrasings; not two independent executions.",
+          "Kernel Assertions section was absent in this capture; history, exhaustive causality and live-event completeness were not validated."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "battery-phrase",
+      "split": "heldout",
+      "request": "How many full charge cycles has this notebook battery completed?",
+      "path": null,
+      "frozen_rubric": "Report battery cycle count; do not invent a number.",
+      "answer": {
+        "status": "suggestion",
+        "command": "system_profiler SPPowerDataType",
+        "reason": "",
+        "recipe_id": "battery-cycles",
+        "title": "Inspect battery cycle count",
+        "sources": [
+          "man system_profiler",
+          "https://support.apple.com/en-nz/102888"
+        ],
+        "notes": [
+          "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+          "A Mac without a battery may have no battery section."
+        ],
+        "argv": [
+          "system_profiler",
+          "SPPowerDataType"
+        ]
+      },
+      "normal_cli_answer": "system_profiler SPPowerDataType\nNote: Read Cycle Count in the Battery Information section. This prints the power report, not just a number.\nNote: A Mac without a battery may have no battery section.\nSources: man system_profiler; https://support.apple.com/en-nz/102888",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (B1: exit 0, datatype and numeric Cycle Count present)",
+        "VALIDATION.md#all-40-initial-dispositions-before-device-checks (system_profiler(8), user privileges)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The requested cycle count is available in the validated power report, and the answer tells the user exactly which field to read. No request requires number-only or JSON output. This is a command-assistant answer, not a fabricated battery value.",
+        "literal_input_execution": "same command shape executed on target Mac",
+        "evidence_gaps": [
+          "Shared B1 execution supports all three phrasings; not three independent device executions.",
+          "Battery values were omitted for privacy; no GUI cross-check or no-battery-device validation."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "metadata-spaces",
+      "split": "heldout",
+      "request": "show file metadata",
+      "path": "/tmp/a file.pdf",
+      "frozen_rubric": "A path containing spaces must remain one argument.",
+      "answer": {
+        "status": "suggestion",
+        "command": "mdls '/tmp/a file.pdf'",
+        "reason": "",
+        "recipe_id": "file-metadata",
+        "title": "Inspect Spotlight metadata for a file",
+        "sources": [
+          "man mdls",
+          "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+        ],
+        "notes": [
+          "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+          "Unindexed files or unavailable attributes may produce missing or null values."
+        ],
+        "argv": [
+          "mdls",
+          "/tmp/a file.pdf"
+        ]
+      },
+      "normal_cli_answer": "mdls '/tmp/a file.pdf'\nNote: Shows Spotlight attributes, not every possible filesystem or application-specific attribute.\nNote: Unindexed files or unavailable attributes may produce missing or null values.\nSources: man mdls; https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (M1: exit 0, public-file attributes present outside sandbox)",
+        "VALIDATION.md#semantic-review-and-resolved-inputs--2026-10-09 (declared public-text substitution, no PDF-specific request)",
+        "VALIDATION.md#original-eight-disagreements (recorded quoting regressions; frozen test_engine.py test_metacharacters_remain_one_argument and test_spotlight_attribute_paraphrases_require_and_quote_path; tests not rerun)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The command lists Spotlight attributes for the complete supplied absolute path as one literal argument. Neither the request nor its rubric requires PDF-importer content, a fixed non-null schema, recursion or an attribute filter. The notes correctly limit the result to Spotlight and acknowledge unavailable metadata. Existing public-file execution and quoting evidence support this generic operation under the declared input protocol.",
+        "literal_input_execution": "unverified; representative public text fixture substituted",
+        "evidence_gaps": [
+          "INSUFFICIENT exact-input execution evidence: the frozen PDF path was not created or inspected; no claim that it exists or produces useful indexed fields.",
+          "Public text fixtures are explicit substitutions, not PDF-importer validation.",
+          "The displayed shell command was not executed as a shell command in the device check; literal argument behavior was exercised through fixed argv and quoting regressions."
+        ],
+        "imad_final_review": "pending"
+      }
+    },
+    {
+      "id": "metadata-shell",
+      "split": "heldout",
+      "request": "show indexed file metadata",
+      "path": "/tmp/a file'; $(touch /tmp/not-executed).pdf",
+      "frozen_rubric": "Treat shell metacharacters as literal filename characters.",
+      "answer": {
+        "status": "suggestion",
+        "command": "mdls '/tmp/a file'\"'\"'; $(touch /tmp/not-executed).pdf'",
+        "reason": "",
+        "recipe_id": "file-metadata",
+        "title": "Inspect Spotlight metadata for a file",
+        "sources": [
+          "man mdls",
+          "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+        ],
+        "notes": [
+          "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+          "Unindexed files or unavailable attributes may produce missing or null values."
+        ],
+        "argv": [
+          "mdls",
+          "/tmp/a file'; $(touch /tmp/not-executed).pdf"
+        ]
+      },
+      "normal_cli_answer": "mdls '/tmp/a file'\"'\"'; $(touch /tmp/not-executed).pdf'\nNote: Shows Spotlight attributes, not every possible filesystem or application-specific attribute.\nNote: Unindexed files or unavailable attributes may produce missing or null values.\nSources: man mdls; https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html",
+      "evidence": [
+        "VALIDATION.md#authorized-core-device-checks--2026-10-08 (M2: exit 0, public-file attributes present outside sandbox)",
+        "VALIDATION.md#semantic-review-and-resolved-inputs--2026-10-09 (declared public-text substitution, no PDF-specific request)",
+        "VALIDATION.md#original-eight-disagreements (recorded quoting regressions; frozen test_engine.py test_metacharacters_remain_one_argument and test_spotlight_attribute_paraphrases_require_and_quote_path; tests not rerun)"
+      ],
+      "judgment": {
+        "correctness": "pass under declared protocol",
+        "completeness": "pass for entire stated inspection request",
+        "partial_answer": false,
+        "evidence_sufficiency": "sufficient for command semantics under declared representative-input protocol",
+        "count_in_N": true,
+        "reason": "The command lists Spotlight attributes for the complete supplied absolute path as one literal argument. Neither the request nor its rubric requires PDF-importer content, a fixed non-null schema, recursion or an attribute filter. The notes correctly limit the result to Spotlight and acknowledge unavailable metadata. Existing public-file execution and quoting evidence support this generic operation under the declared input protocol.",
+        "literal_input_execution": "unverified; representative public text fixture substituted",
+        "evidence_gaps": [
+          "INSUFFICIENT exact-input execution evidence: the frozen PDF path was not created or inspected; no claim that it exists or produces useful indexed fields.",
+          "Public text fixtures are explicit substitutions, not PDF-importer validation.",
+          "The displayed shell command was not executed as a shell command in the device check; literal argument behavior was exercised through fixed argv and quoting regressions.",
+          "The embedded slash in the authored command-substitution text is a path separator when quoted literally; the frozen input denotes a hierarchy, while the device fixture uses one real filename."
+        ],
+        "imad_final_review": "pending"
+      }
+    }
+  ]
+}
