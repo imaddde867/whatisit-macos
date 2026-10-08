@@ -55,6 +55,31 @@ class CliTests(unittest.TestCase):
             code, _, _ = self.invoke(["show sleep assertions"])
         self.assertEqual(code, 0)
 
+    def test_missing_docs_index_has_visible_error_and_keeps_suggestion(self):
+        code, stdout, _ = self.invoke(['--json', '--docs-index', '/nonexistent/docs.sqlite3',
+                                      'show sleep assertions'])
+        answer = json.loads(stdout)
+        self.assertEqual(code, 0)
+        self.assertEqual(answer['command'], 'pmset -g assertions')
+        self.assertEqual(answer['documentation'], [])
+        self.assertTrue(answer['documentation_error'])
+
+    def test_docs_do_not_turn_unsupported_request_into_command(self):
+        import tempfile
+        from pathlib import Path
+        from whatisit_macos.retrieval import Manual, build_index
+        with tempfile.TemporaryDirectory() as directory:
+            index = Path(directory) / 'docs.sqlite3'
+            build_index(index, [Manual('log', '/man/log.1', '/usr/bin/log', '27.0.1',
+                                       '2026-10-08', 'Unified logs filter by subsystem.')])
+            with patch('subprocess.run', side_effect=AssertionError('execution')):
+                code, stdout, _ = self.invoke(['--json', '--docs-index', str(index),
+                                              'show unified logs'])
+            answer = json.loads(stdout)
+            self.assertEqual(code, 2)
+            self.assertIsNone(answer['command'])
+            self.assertEqual(answer['documentation'][0]['tool'], 'log')
+
 
 if __name__ == "__main__":
     unittest.main()
