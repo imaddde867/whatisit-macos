@@ -84,7 +84,7 @@ Current suggestion rate: 8/40 (20%); abstention/unresolved rate: 32/40 (80%, inc
 
 ## Manual commands for the user
 
-These commands were initially prepared without execution. The latest battery, metadata and sleep-snapshot outcomes are recorded below; other groups remain unexecuted. Run individual groups after review. Keep raw reports local; record only task ID, command shape, success/failure, whether required fields were present, privileges, limitations, macOS build and date. Do not paste serial numbers, assertion owner details, app paths, process names or log content into Git. Candidates for unsupported tasks do not expand the catalog or establish correctness.
+These commands were initially prepared without execution. The core and remaining-candidate outcomes are recorded below; root tracing/process-context and controlled log-event semantics remain incomplete. Run individual groups after review. Keep raw reports local; record only task ID, command shape, success/failure, whether required fields were present, privileges, limitations, macOS build and date. Do not paste serial numbers, assertion owner details, app paths, process names or log content into Git. Candidates for unsupported tasks do not expand the catalog or establish correctness.
 
 B1 — confirm datatype availability, then inspect the power report. Cross-check Cycle Count in System Information → Hardware → Power ([Apple instructions](https://support.apple.com/en-nz/102888)). The manual documents datatype selection but does not enumerate SPPowerDataType or certify hardware field names.
 
@@ -248,3 +248,68 @@ A new index was built with corrected capture code at ignored `.cache/manuals-sys
 These are successful device checks of the three core recipe command shapes with explicit public test inputs. They do not convert the frozen 39/40 routing contract score into measured answer accuracy. The initial 40-task table and zero-execution counts above are historical, before these checks; metadata success here uses substituted public text fixtures. Independent human semantic review and exact-fixture evaluation are still outstanding. #2 remains open for remaining manual validation (including tracing, launchd, logs, signing/policy/tickets and broader limitations); #4 remains deferred.
 
 Continuous assertions logging, optional battery JSON, and the unsupported task command groups were not run. No code, fixture expectation or routing change was needed, so tests and timing measurements were not rerun for this documentation-only update. The preceding code head has 34 passing tests and both CI runs green.
+
+## Remaining candidate checks and semantic review — 2026-10-08
+
+PR #5 was marked ready and merged at `fbdcb10b289001baf2c0e444bb963e421262a4fd` after verifying both CI runs on `e943287` were green. Follow-up evidence is recorded separately on `docs/remaining-macos-validation`. Same target macOS 27.0.1 (26A434), arm64, Python 3.14.8. These are user-authorized individual checks; no evaluator execution path or new recipe was added. Only public system files and new disposable fixtures were selected. Raw logs, owner details and private files were neither published nor saved.
+
+| Task IDs / check | Device evidence | Semantic disposition |
+| --- | --- | --- |
+| bsd-stat / F1 | BSD `/usr/bin/stat -f '%z %Sp' <public-file>` exits 0 and reports the known 20-byte fixture size and expected mode. | Candidate validated for a regular file. Search permission, symlink handling and arbitrary file access still depend on input. Router remains unsupported; GNU flags were not tested as BSD flags. |
+| bsd-find / F1 | `/usr/bin/find <new-fixture-directory> -type f -mtime -1 -print` exits 0 and identifies the fixture. | Candidate validated for bounded recent-file discovery. “Last day” here means age under 24 hours, not the preceding calendar day; caller must supply root. No deletion flag. |
+| bsd-sed / F1 | `/usr/bin/sed 's/public/example/' <public-file>` exits 0 with expected preview; source bytes unchanged. | Candidate validated for the supplied expression. No `-i`, file rewrite or general expression validation. |
+| bsd-du / F1 | `/usr/bin/du -sk <new-fixture-directory>` exits 0 with numeric allocation summary. | Command/output shape validated, not exact APFS space attribution. Output is allocation in KiB, not apparent file length. |
+| battery-health / B2 | `/usr/sbin/system_profiler -json SPPowerDataType` exits 0; JSON parses; selected datatype, cycle and capacity keys present. | Device availability confirmed. Existing recipe still omits JSON and does not guarantee the requested maximum-capacity schema; original unsupported expectation retained. No numeric extraction added. |
+| sleep-live / S2 | Outside sandbox, `pmset -g assertionslog` remained running for three seconds with output and no stderr/failure markers; its monitoring process was then terminated. No creation/release event markers observed. | Starting monitoring does not establish complete event capture; creation/release semantics and absence of missed events remain conditional on observed events. No retroactive 24-hour history claim. |
+| signature-only / A1 | `/usr/bin/codesign --verify --deep --strict --verbose=2 /System/Applications/Utilities/Terminal.app` exits 0 outside sandbox; valid-on-disk and designated-requirement messages present. Initial sandbox attempt exits 1. | Signature candidate validated for the explicit Apple system bundle only. No app launch or signing operation. Not a notarization result and not a test of every third-party bundle. |
+| gatekeeper-only / A1 | `/usr/sbin/spctl --assess --type execute --verbose=2 /System/Applications/Utilities/Terminal.app` exits 0 outside sandbox; accepted with Apple System source. Initial sandbox attempt exits 1. | Local policy candidate validated for Apple system code. Does not establish Developer ID notarization, offline availability, ticket presence or acceptance on another Mac. |
+| app-audit, notarization-only | Installed CLT stapler(1) reviewed; user-selected iTerm2 stable artifact checks recorded below. | Signature, local policy and ticket validation pass for the exact public artifact. This does not establish general app-audit coverage or future/offline policy outcomes. |
+| unified-filter, logs-missing / G1 | Synthetic process/subsystem/error predicate with explicit one-minute bounds exits 0 outside sandbox; only header output, no matching events. Initial sandbox attempt exits 64. | Syntax/access validated; matching/nonmatching process, subsystem, severity and time behavior **unverified** without controlled events. Empty output is not semantic proof. No log emission/configuration changes. |
+| launchd-label / L1 | `/bin/launchctl print system/com.apple.logd` exits 0; public on-disk plist origin is readable, its Label matches the requested service and program configuration is present. | Validates explicit domain/label inspection. Missing label/domain tasks still abstain. Runtime debug output is not a stable API or complete substitute for original configuration. |
+| launchd-owner / L1 | `sudo -n launchctl procinfo <live-disposable-pid>` exits 1: authentication required. No process diagnostic output obtained. | **Blocked** on human root check; PID→service ownership still unverified and not guaranteed by procinfo even if it succeeds. |
+| filesystem-pid, trace-missing / T1 | `sudo -n fs_usage -w -f filesys -t 5 <live-disposable-pid>` exits 1: authentication required. No trace events obtained. Disposable process only read a new public fixture and was stopped afterward. | **Blocked** on human root check. PID filtering, useful event visibility and protected-process limitations remain unverified. No password requested or collected. |
+
+All candidates above remain outside the three-recipe catalog; successful tool invocations do not change fixture expectations or make unsupported tasks answered. Initial and latest outcomes are separated. Useful correct coverage and full answer accuracy remain unmeasured; #2 stays open and #4 stays deferred.
+
+### Root checks remaining under human control
+
+Run in your terminal after review. Create a fresh public fixture and a live disposable reader; do not use a stale PID from this session. The reader lasts about 20 seconds. Stop only that reader if still alive after the checks. Do not share the raw trace or procinfo output; report exit status, whether the expected PID's file operations were visible, and whether process context sufficed to identify an owner (including when it did not).
+
+```sh
+trace_dir=$(mktemp -d /tmp/whatisit-trace-manual.XXXXXX)
+printf 'public test fixture\n' > "$trace_dir/public.txt"
+python3 -c 'import pathlib,sys,time; p=pathlib.Path(sys.argv[1]); [(p.read_bytes(),time.sleep(.05)) for _ in range(400)]' "$trace_dir/public.txt" &
+test_pid=$!
+sudo fs_usage -w -f filesys -t 5 "$test_pid"
+sudo launchctl procinfo "$test_pid"
+kill "$test_pid" 2>/dev/null
+```
+
+For a chosen public Developer ID bundle, the installed stapler(1) supports the read-only candidate below. The manual says validation may contact the ticket service; distinguish network failure, missing/invalid ticket and successful validation. Missing ticket alone must not be reported as proof that the app was never notarized. No `staple` mutation or notarization submission is proposed.
+
+```sh
+/Library/Developer/CommandLineTools/usr/bin/stapler validate -q "$test_app"
+```
+
+This is documentation-only evidence. No routing, retrieval-query, startup, runtime dependency or packaging change; no performance rerun or new tests are needed. The merged implementation retains its 34-test/CI validation.
+
+
+## Public Developer ID artifact verification — 2026-10-09
+
+The user selected iTerm2's stable release from the [official download page](https://iterm2.com/downloads.html). The page identified version **3.7.4**, built October 8, 2026, and published a SHA-256 checksum for its archive. Downloaded [iTerm2-3_7_4.zip](https://iterm2.com/downloads/stable/iTerm2-3_7_4.zip) into a new disposable directory, checked its hash before extraction, and extracted with Apple's `ditto`. Bundle version/build: 3.7.4; identifier: `com.googlecode.iterm2`. No installation, launch, registration, signing, stapling or notarization submission was performed.
+
+Archive size: **57,903,700 bytes**. Local SHA-256 **matches the publisher's checksum**: `4bf02ae616752600cd195ca504e55392afb21741cda7314199e375ed8a46f90c`. This is an HTTPS-page checksum comparison; the page's PGP signature was not independently verified. Platform code-signature verification below supplies separate integrity/identity evidence.
+
+| Check | Command shape | Observed result | Scope |
+| --- | --- | --- | --- |
+| Developer ID identity | `/usr/bin/codesign --display --verbose=4 <extracted-iTerm.app>` | Exit 0; `Developer ID Application: GEORGE NACHMAN (H7V7XYVQ7D)`; TeamIdentifier `H7V7XYVQ7D`. | Confirms the expected public developer identity on this artifact, not just its filename. |
+| Signature integrity | `/usr/bin/codesign --verify --deep --strict --verbose=2 <extracted-iTerm.app>` | Exit 0; valid on disk; designated requirement satisfied. | Explicit public bundle, no launch. Successful integrity evidence on this target Mac. |
+| Gatekeeper assessment | `/usr/sbin/spctl --assess --type execute --verbose=2 <extracted-iTerm.app>` | Exit 0; accepted; source `Notarized Developer ID`. | Local policy assessment at check time. Not a guarantee for other machines, future revocation/cache state, offline execution or application runtime safety. |
+| Stapled ticket | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -q <extracted-iTerm.app>` | Exit 0; quiet output empty. | Installed manual defines exit 0 as successful validation, including ticket contents/service comparison. Not merely an inference from Gatekeeper acceptance. |
+| Integrity negative control | Same codesign verification on a **separate copy** with a new public marker added to its otherwise valid Info.plist | Exit 1; modified resource/plist rejected. Original Info.plist remained unchanged. | Demonstrates rejection of changed signed content. Does not test Gatekeeper/ticket behavior for the tampered copy. |
+
+Target: macOS 27.0.1 (26A434), arm64; same Apple codesign/spctl paths and manuals as earlier. Stapler executable SHA-256: `bd5c8be8ca488e7a47e7562a16b5a2c6f2bfea5b4bdba62c87a23c76549c2bdc`. Installed manual `/Library/Developer/CommandLineTools/usr/share/man/man1/stapler.1`, raw-file SHA-256: `6a687f46a5131aa51b7eecbfb7fe9ed51476e222fb3e21b5fcba7c991a975712`. Stapler validation may contact Apple's ticket service and was run with network access; this was not an offline test. No extra dependencies or user credential access were needed.
+
+The optional negative-control operation first encountered an automatic approval-review timeout with no command result. Splitting disposable copy preparation from read-only verification allowed the single retry to complete. This was not a detected signature problem with the original download.
+
+This provides a positive public Developer ID example for signature-only, gatekeeper-only, notarization-only and the separate steps of app-audit. It does not change their catalog `unsupported` dispositions: no input-aware audit recipe exists. Missing/invalid/revoked-ticket failure distinctions and a non-notarized Developer ID example remain untested. Filesystem tracing and launchctl procinfo remain blocked on human sudo authentication; matching/nonmatching log-filter semantics remain unverified because the synthetic query had no events. All 40 tasks retain dispositions; **#2 remains open** until these gaps and independent semantic review are addressed, and **#4 remains deferred**. No full answer-accuracy figure is claimed.
