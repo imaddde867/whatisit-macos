@@ -4,6 +4,7 @@ import argparse
 import json
 import platform
 import shutil
+import shlex
 from pathlib import Path
 from typing import Callable
 
@@ -47,8 +48,11 @@ def evaluate(cases: list[dict], index: Path | None = None, *, system: str = 'Dar
         hits = search(index, case['request']) if index else []
         retrieved = {hit['tool'] for hit in hits}
         docs_hit = bool(retrieved.intersection(case['expected_docs'])) if case['expected_docs'] else None
+        command = answer['command']
+        if command and case.get('path') is not None:
+            command = shlex.join([*answer['argv'][:-1], '<path>'])
         row = {'id': case['id'], 'split': case['split'], 'status': answer['status'],
-               'recipe_id': answer.get('recipe_id'), 'command': answer['command'],
+               'recipe_id': answer.get('recipe_id'), 'command': command,
                'expected_status': case['expected_status'], 'contract_match': matches,
                'retrieved_tools': sorted(retrieved), 'docs_hit_at_3': docs_hit if index else None}
         rows.append(row)

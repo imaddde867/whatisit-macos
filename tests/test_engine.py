@@ -66,6 +66,41 @@ class EngineTests(unittest.TestCase):
     def test_irrelevant_path_is_not_silently_ignored(self):
         self.assertEqual(query("battery cycle count", path="/tmp/example")["status"], "needs-input")
 
+    def test_unsupported_qualifiers_do_not_return_partial_answers(self):
+        requests = [
+            "Report my battery cycle count and maximum capacity as JSON",
+            "Print only the battery cycle count number",
+            "Show battery cycles as XML", "Show battery cycles and health",
+            "Show only kMDItemContentType from file metadata",
+            "Show metadata for every file recursively",
+            "Show Spotlight attributes for all documents",
+            "Show file metadata and verify its signature",
+            "Show sleep assertions over the last 24 hours",
+            "Continuously monitor sleep assertions",
+            "Show yesterday's sleep assertions", "Watch sleep assertions live",
+            "Show battery cycle count and unified logs",
+        ]
+        for request in requests:
+            with self.subTest(request=request):
+                answer = query(request, path="/tmp/example" if "metadata" in request else None)
+                self.assertEqual(answer["status"], "unsupported")
+                self.assertIsNone(answer["command"])
+
+    def test_spotlight_attribute_paraphrases_require_and_quote_path(self):
+        for request in ["Which Spotlight attributes belong to this document?",
+                        "List indexed attributes for a file"]:
+            with self.subTest(request=request):
+                answer = query(request)
+                self.assertEqual(answer["status"], "needs-input")
+                self.assertEqual(answer["missing"], ["path"])
+                self.assertEqual(query(request, path="/tmp/a file.pdf")["argv"],
+                                 ["mdls", "/tmp/a file.pdf"])
+
+    def test_broad_wake_diagnosis_is_not_an_assertion_snapshot(self):
+        self.assertEqual(query("What is keeping my computer awake?")["status"], "unsupported")
+        self.assertEqual(query("show current sleep assertions")["argv"],
+                         ["pmset", "-g", "assertions"])
+
     def test_catalog_has_unique_ids_and_sources(self):
         recipes = load_recipes()
         self.assertEqual(len({r["id"] for r in recipes}), len(recipes))

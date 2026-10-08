@@ -35,6 +35,18 @@ def suggest(
     if len(matches) != 1:
         return {**result, "status": "ambiguous", "reason": "Ask for one supported task at a time."}
     recipe = matches[0]
+    unsupported = {
+        "battery-cycles": {"only", "number", "json", "xml", "capacity", "health"},
+        "file-metadata": {"only", "name", "raw", "recursive", "recursively", "every", "directory", "directories"},
+        "sleep-assertions": {"history", "historical", "last", "hours", "yesterday", "today", "since",
+                             "continuous", "continuously", "monitor", "watch", "live", "log"},
+    }
+    # shortcut: lexical qualifiers are conservative; use intent parsing before expanding catalog scope.
+    if (re.search(r"\ball\s+(?:files|documents)\b", request.casefold()) or
+            tokens & unsupported[recipe["id"]] or
+            tokens & {"json", "xml", "signature", "signing", "notarization", "gatekeeper",
+                      "launchd", "logs", "trace", "tracing"}):
+        return {**result, "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."}
     tool = recipe["argv"][0]
     details = {"recipe_id": recipe["id"], "title": recipe["title"],
                "sources": recipe["sources"], "notes": recipe["notes"]}

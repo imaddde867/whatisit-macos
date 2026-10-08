@@ -11,7 +11,7 @@
   {
     "id": "file-metadata",
     "title": "Inspect Spotlight metadata for a file",
-    "match_groups": [["metadata"], ["file", "spotlight", "indexed", "index"]],
+    "match_groups": [["metadata", "attributes"], ["file", "document", "spotlight", "indexed", "index"]],
     "argv": ["mdls", "{path}"],
     "parameters": ["path"],
     "sources": ["man mdls", "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"],
