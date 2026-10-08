@@ -1,5 +1,16 @@
 # Roadmap
 
+## Product direction and immediate work — 2026-10-09
+
+Build a smarter, useful macOS continuation of whatisit that remains fast and lightweight on the M4 with 16 GiB memory. The three-recipe baseline and validation ledger are groundwork, not the finished product.
+
+1. Start [#4: working local intelligence prototype](https://github.com/imaddde867/whatisit-macos/issues/4): one optional local adapter, retrieval-grounded operation selection and clarification, on-demand loading/unloading, and end-to-end resource measurements.
+2. Deliver [#7: useful coverage expansion](https://github.com/imaddde867/whatisit-macos/issues/7), beginning with distinct app signature/Gatekeeper/ticket checks, then log filtering, bounded tracing and known-service inspection. Coordinate the first slice with #4.
+3. Compare the frozen baseline, expanded deterministic catalog, and the same expanded catalog with model assistance. Freeze a fresh comparison set before final evaluation; the original 40 cases are development evidence.
+4. Publish a keep/change/discard decision based on useful correct coverage, errors, clarification quality, latency, peak memory and retained idle memory. Record numerical budgets before final candidate comparison. Preserve a usable no-model path and manual execution.
+
+Issue #2 remains open only for final scoring/protocol acceptance and explicitly retained limitations. It does not block starting #4/#7. Earlier deferral statements in the chronological validation ledger describe the previous plan. Finish the baseline report with existing evidence; no further general validation audit is required.
+
 ## 0. Starter baseline — implemented
 
 - [x] Small installable CLI with zero third-party runtime dependencies.
@@ -31,17 +42,19 @@ The first comparison and eight routing mismatches are recorded in [MEASUREMENTS.
 
 Gate: compare against the keyword baseline on the expanded evaluation, including false matches and abstentions. Keep a held-out set that was not used to tune routing.
 
-## 3. Optional local model experiment
+## 3. Local intelligence experiment — next
 
-- [ ] Compare the original fine-tune with a few small instruct/coder candidates using the same retrieval context and cases.
-- [ ] Start with recipe selection and parameter clarification; do not silently introduce arbitrary command generation.
-- [ ] Measure cold/warm wall time, model memory, and useful correct coverage on the actual MacBook.
-- [ ] Add one backend only if the improvement justifies the resource cost.
+- [ ] Inspect original whatisit code/configuration and locally available models/runtimes; record reuse opportunities and missing artifacts.
+- [ ] Implement one optional adapter and on-demand lifecycle, following #4.
+- [ ] Expand validated operation coverage through #7; keep typed inputs and deterministic command rendering.
+- [ ] Measure frozen baseline versus expanded deterministic versus model-assisted variants on the M4.
+- [ ] Record load time, fresh/warm median and p95 latency, peak total memory, retained idle memory and observed swap/pressure.
+- [ ] Publish reproducible commands, model/configuration identities, semantic scores and a keep/change/discard decision.
 
-Gate: zero wrong-platform suggestions on the release set, no fabricated required inputs, and separately reported errors/abstentions/coverage. Set numerical latency and memory limits after measuring the target machine; do not invent them now.
+Experiment start is unblocked. Default adoption still requires measured benefit within predeclared resource budgets, no fabricated required inputs or wrong-platform outputs on the comparison set, and separately reported errors/abstentions/coverage. A negative result is a valid outcome. Do not tune against the final comparison set.
 
 ## Deferred
 
 Automatic execution, a GUI, cloud fallbacks, model fine-tuning, and Linux/Windows support. Revisit only when the command lookup is useful enough to justify more scope.
 
-Routing and installed-wheel follow-up: [VALIDATION.md](VALIDATION.md). All 40 dispositions and bounded device outcomes are recorded. Final scoring acceptance and independent release evaluation remain pending. Issue #2 stays open; #4 stays deferred. Optional assertion-event check S3 is not required for the existing snapshot recipe.
+Routing and installed-wheel follow-up: [VALIDATION.md](VALIDATION.md). All 40 dispositions and bounded device outcomes are recorded. Final scoring acceptance and independent release evaluation remain pending. Issue #2 stays open for final scoring; #4 is the next implementation experiment and #7 supplies coverage work. Optional assertion-event check S3 is not required for the existing snapshot recipe.
