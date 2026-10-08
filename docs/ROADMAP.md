@@ -24,7 +24,7 @@ Gate: a recipe needs documented flags, explicit parameters, a successful device 
 ## 2. Improve retrieval before choosing a model
 
 - [x] Build an explicit local FTS5 index from curated recipes and selected system manuals, searchable as bounded text chunks.
-- [ ] Improve paraphrase matching; detect requests the catalog only partially answers.
+- [x] Fix the documented Spotlight paraphrase and reject known partial-answer qualifiers; broader intent matching remains limited.
 - [x] Keep source identity, macOS version, capture date and document hash with each entry. Capture date is not a command validation date.
 
 The first comparison and eight routing mismatches are recorded in [MEASUREMENTS.md](MEASUREMENTS.md). Evidence retrieval leaves keyword routing unchanged.
@@ -43,3 +43,5 @@ Gate: zero wrong-platform suggestions on the release set, no fabricated required
 ## Deferred
 
 Automatic execution, a GUI, cloud fallbacks, model fine-tuning, and Linux/Windows support. Revisit only when the command lookup is useful enough to justify more scope.
+
+Routing and installed-wheel follow-up: [VALIDATION.md](VALIDATION.md). All 40 dispositions are recorded; device execution and independent release evaluation remain pending.

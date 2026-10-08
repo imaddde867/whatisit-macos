@@ -191,3 +191,32 @@ SHA-256 of freshly rendered text; no manual text included.
 | spctl | `7e44425dedd5343beeb0735a4457b76d5cc40b9d5ce7c981851551353de6a3e6` |
 | stat | `f90eeb02bb061d8949682b59e8caae7430953002eeb892accc7cab6f1bbaa5e0` |
 | system_profiler | `051509d37a4b6e2b01941a71c8e4583beff3aa0e12ad6f35a166695f66bf155c` |
+
+## Recorded wheel results
+
+Built from implementation commit `27f23692216c2e25f317e9bf99b4e0f356d6a7d8`, before this results-only documentation update. Python 3.14.8 in both disposable environments. Build environment: pip 26.2.1, setuptools 84.0.0, wheel 0.48.0, packaging 26.3. Runtime environment: pip 26.2.1 and whatisit-macos 0.1.0 only. Runtime metadata has no `Requires-Dist` entries.
+
+Wheel: `whatisit_macos-0.1.0-py3-none-any.whl`, 12,151 bytes, SHA-256 `cc9ec5443fcffa285f59579ad9a9310f12cf9ac3d01add51d6928c070aa6dd48`. Contents inspected: all seven package files (including recipes.json, retrieval.py and build_docs.py), license, metadata and two entry points; no captured SQLite index or private output.
+
+Executed commands (temporary paths are public placeholders for these disposable directories):
+
+```sh
+python3 -m venv /tmp/whatisit-build
+/tmp/whatisit-build/bin/python -m pip install --no-cache-dir 'setuptools>=77' wheel
+/tmp/whatisit-build/bin/python -m pip wheel --no-build-isolation --no-deps . -w /tmp/whatisit-wheels
+python3 -m venv /tmp/whatisit-runtime
+/tmp/whatisit-runtime/bin/python -m pip install --no-index --no-deps /tmp/whatisit-wheels/whatisit_macos-0.1.0-py3-none-any.whl
+# From /tmp; substitute your clone location for REPOSITORY:
+env -u PYTHONPATH /tmp/whatisit-runtime/bin/python REPOSITORY/tools/wheel_smoke.py
+```
+
+The initial sandboxed download failed on network resolution; the authorized retry installed build tools only in the disposable build environment. No everyday Python environment was changed. The smoke check passed, including fresh system-manual capture into its own new temporary index (not the developer index). Capture reads manuals; lookup never executes `pmset` or another suggestion. The smoke's temporary index is cleaned by its temporary-directory context.
+
+Final relevant suite: **33 tests passed** with the runtime environment's Python, outside the repository and with PYTHONPATH unset. Tests, evaluation fixtures and source-tree tooling were copied into `/tmp/whatisit-installed-tests`, with **no src package copied**; production imports came from the installed wheel. Invocation from that directory: `env -u PYTHONPATH /tmp/whatisit-runtime/bin/python -m unittest discover -s tests -v`. The same 33 source-tree tests passed before the wheel check. No Python 3.11 or cross-version device execution was performed locally.
+
+## Issue acceptance assessment
+
+- **#1:** acceptance met within deterministic catalog scope: seven fixes and one explicit manual-supported expectation dispute; all eight listed. Frozen comparison 32/40 → 39/40; no required values invented or Linux command introduced; original expectations untouched. The old held-out set is preserved but no longer independent; fresh held-out data remains necessary for #4.
+- **#2:** every task reviewed and disposition recorded, but **not complete**: all eight command suggestions still require human execution; unsupported tracing/launchd/log/signing candidates also have no device execution evidence. Useful correct coverage and answer accuracy remain unmeasured. Concrete manual checks above support follow-up without publishing private output.
+- **#3:** local acceptance met: recorded-commit wheel build, contents/metadata inspection, clean install, outside-repository checks, fresh retrieval setup, missing-index behavior and installed suite pass. CI extension is present; remote CI results remain pending.
+- **#4:** no model integration. Prerequisites are not all complete, so no model comparison or resource-budget claim is made.
