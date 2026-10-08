@@ -2,7 +2,7 @@
 
 A lightweight macOS command assistant focused on accuracy and documented commands.
 
-**Status: initial prototype.** Three fixed inspection recipes work today. Natural-language routing uses simple keywords; general command generation, local-man-page retrieval, and model integration are future work. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+**Status: measured prototype.** Three fixed inspection recipes and optional local documentation retrieval work today. Natural-language routing still uses simple keywords; general command generation and model integration are future work. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
 
 The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
 
@@ -35,14 +35,33 @@ whatisit-macos --json 'show battery cycle count'
 whatisit-macos --timing 'show assertions preventing sleep'
 ```
 
-`--timing` measures lookup work inside Python, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
+`--timing` measures lookup work inside Python, including optional documentation retrieval, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
+
+## Local documentation
+
+Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Requires Python's SQLite with FTS5 support. Run from the repository root:
+
+```bash
+mkdir -p .cache eval/results
+PYTHONPATH=src python3 tools/build_docs.py .cache/manuals.sqlite3 > eval/results/inventory.json
+PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'show unified logs'
+```
+
+The second command returns `unsupported` with documentation evidence and exit code `2`. Evidence includes the source path, tool path, capture time, macOS version, document hash and chunk number. Retrieval does not approve a command or change recipe routing. Missing/unreadable indexes produce a visible documentation error while preserving the original suggestion status. Without `--docs-index`, no index is read. Choose a new filename to rebuild after an OS update; existing captures are never overwritten. Keep indexes in ignored `.cache/`, not in Git.
+
+```bash
+PYTHONPATH=src python3 tools/evaluate.py --docs-index .cache/manuals.sqlite3 > eval/results/evaluation.json
+PYTHONPATH=src python3 -m tools.benchmark --docs-index .cache/manuals.sqlite3 > eval/results/benchmark.json
+```
+
+The evaluation reads 40 authored tasks with a frozen dev/held-out split. The benchmark starts only lookup CLI processes. Neither executes suggested commands. See [target Mac measurements and known gaps](docs/MEASUREMENTS.md) for results and methodology.
 
 ## Current limits
 
 - No model, model download, background server, network calls, or third-party runtime dependencies.
 - Keyword matching can miss paraphrases and qualifiers. A source-backed template does not prove that the selected template satisfies the whole request.
 - Unknown requests return `unsupported`; missing file paths return `needs-input` rather than a runnable placeholder.
-- Only tool availability on PATH is checked. Command behavior has not yet been validated across macOS releases or on the target MacBook.
+- Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
 - The original tracing, launchd, unified-log, and notarization queries are tracked as unsupported seed cases, not claimed as solved.
 
 ## Development
@@ -51,7 +70,7 @@ whatisit-macos --timing 'show assertions preventing sleep'
 python -m unittest discover -s tests -v
 ```
 
-Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behavior, and the seed cases in `eval/cases.jsonl`. CI runs the same suite on Ubuntu and macOS and checks that the recipe data ships in an installed wheel. These tests do not execute the suggested commands or establish real-world macOS correctness.
+Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behavior, retrieval provenance and failures, evaluation reporting, and the seed cases in `eval/cases.jsonl`. CI runs the same suite on Ubuntu and macOS and checks that the recipe data ships in an installed wheel. These tests do not execute the suggested commands or establish real-world macOS correctness.
 
 - [Research and diagnosis](docs/RESEARCH.md): observations, upstream evidence, and hypotheses.
 - [Design](docs/DESIGN.md): implemented flow and proposed retrieval/model flow.
