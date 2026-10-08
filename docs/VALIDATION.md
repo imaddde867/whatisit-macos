@@ -29,7 +29,7 @@ Regression tests exercise real routing, qualifier paraphrases, positive basic re
 
 The original held-out set has now informed development. Keep its bytes and scores for comparison, but obtain a fresh uninspected release set for #4. Do not call the 39/40 result independent accuracy.
 
-## All 40 dispositions
+## All 40 initial dispositions (before device checks)
 
 Review date for every row: 2026-10-08; target version/build as above. Manuals were freshly rendered from the installed `/usr/share/man` tree using `man -M /usr/share/man SECTION TOOL | col -b`. Full tool/source paths are listed in MEASUREMENTS.md; hashes below identify this review. No manual corpus, device logs or private files are committed.
 
@@ -84,7 +84,7 @@ Current suggestion rate: 8/40 (20%); abstention/unresolved rate: 32/40 (80%, inc
 
 ## Manual commands for the user
 
-These commands are prepared, **not run**. Run individual groups after review. Keep raw reports local; record only task ID, command shape, success/failure, whether required fields were present, privileges, limitations, macOS build and date. Do not paste serial numbers, assertion owner details, app paths, process names or log content into Git. Candidates for unsupported tasks do not expand the catalog or establish correctness.
+These commands were initially prepared without execution. The latest battery, metadata and sleep-snapshot outcomes are recorded below; other groups remain unexecuted. Run individual groups after review. Keep raw reports local; record only task ID, command shape, success/failure, whether required fields were present, privileges, limitations, macOS build and date. Do not paste serial numbers, assertion owner details, app paths, process names or log content into Git. Candidates for unsupported tasks do not expand the catalog or establish correctness.
 
 B1 — confirm datatype availability, then inspect the power report. Cross-check Cycle Count in System Information → Hardware → Power ([Apple instructions](https://support.apple.com/en-nz/102888)). The manual documents datatype selection but does not enumerate SPPowerDataType or certify hardware field names.
 
@@ -228,3 +228,23 @@ Review of head `313a27c` found that PATH-selected third-party executables could 
 The regression creates a shadow `stat` on PATH and simulates macOS manual rendering while using the real capture/index/search code. Before the fix it recorded the shadow executable with the Apple BSD manual; after the fix both inventory and manual/catalog retrieval evidence name `/usr/bin/stat`. The test never executes either stat binary. Full source and outside-repository installed-wheel suites: **34 tests passed**. A rebuilt wheel installed into a fresh runtime environment also passed the fresh-manual capture and retrieval smoke check. Original routing fixture, 39/40 fixture-specific score and performance observations are unchanged; lookup/startup and query ranking were not modified, so no latency rerun was needed.
 
 Older local indexes are not rewritten: rebuild to a new filename to obtain corrected provenance. #2 remains open for human command validation; #4 remains deferred. The additional compound, previous-boot and CSV routing examples from review remain documented prototype follow-up work, not covered by the 39/40 fixture score.
+
+
+## Authorized core device checks — 2026-10-08
+
+Checked reviewed implementation `1602dea` on macOS 27.0.1 (26A434), arm64, Python 3.14.8, around 18:43 UTC (21:43 Helsinki). The user explicitly authorized these selected checks after clearing the provenance blocker. Commands were invoked individually through fixed argument lists; the evaluator was not changed and does not execute suggestions. No root privileges were used. Raw battery/owner/metadata output was inspected in memory for the conditions below and was not printed, saved or committed.
+
+| Check | Command shape | Observed outcome | Scope and remaining limitation |
+| --- | --- | --- | --- |
+| B1 datatype | `/usr/sbin/system_profiler -listDataTypes` | Exit 0; SPPowerDataType present. | Confirms the selected datatype on this Mac only. |
+| B1 report | `/usr/sbin/system_profiler SPPowerDataType` | Exit 0; Battery Information section, numeric Cycle Count and capacity field present; no stderr. | Validates basic report availability for battery-report/battery-cycles/battery-phrase. Actual field values and identifying information omitted. GUI cross-check, scalar extraction and JSON/capacity task completeness not validated. |
+| M1 basic metadata | `/usr/bin/mdls <disposable-file-with-spaces>` | Initial sandbox attempt: exit 1, could not find an existing fixture. Outside sandbox: exit 0, metadata attributes present, no stderr. Original /tmp spelling also succeeds outside sandbox. | Confirms successful one-file inspection in an unrestricted user process; sandbox access is a real limitation. Uses a new public text fixture, not the frozen nonexistent PDF input. |
+| M2 literal metacharacters | `/usr/bin/mdls <disposable-file-with-literal-shell-characters>` | Outside sandbox: exit 0, metadata attributes present, no stderr; no unexpected touch file created. | Public fixture with spaces, quote and literal command-substitution characters remains one argument. Frozen fixture quoting is covered by tests; actual PDF fixture was not created or inspected. |
+| M3 named attribute | `/usr/bin/mdls -name kMDItemContentType <disposable-file>` | Outside sandbox: exit 0; requested attribute present and non-null. | Confirms the prepared candidate's flag on the public text fixture; catalog still abstains on attribute-only requests. |
+| S1 snapshot | `/usr/bin/pmset -g assertions` | Exit 0; system-wide assertion summary and owning-process section present; no stderr. No Kernel Assertions section in this capture. | Validates snapshot output availability for sleep-assertions/sleep-blockers. No assertion-owner data committed. Does not prove historical, continuous or exhaustive sleep diagnosis; absence of a kernel section is not an output failure. |
+
+A new index was built with corrected capture code at ignored `.cache/manuals-system-1602dea.sqlite3`, retaining the original measurement index unchanged. It contains 15 documents, is 487,424 bytes, and all recorded executables are in Apple system directories. SHA-256: `ccde0ec0869cb49406041e342f9bbc2b9b9db50cae68f85a60d389dec7bd0a7d`. No older index was overwritten or deleted.
+
+These are successful device checks of the three core recipe command shapes with explicit public test inputs. They do not convert the frozen 39/40 routing contract score into measured answer accuracy. The initial 40-task table and zero-execution counts above are historical, before these checks; metadata success here uses substituted public text fixtures. Independent human semantic review and exact-fixture evaluation are still outstanding. #2 remains open for remaining manual validation (including tracing, launchd, logs, signing/policy/tickets and broader limitations); #4 remains deferred.
+
+Continuous assertions logging, optional battery JSON, and the unsupported task command groups were not run. No code, fixture expectation or routing change was needed, so tests and timing measurements were not rerun for this documentation-only update. The preceding code head has 34 passing tests and both CI runs green.
