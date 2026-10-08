@@ -13,11 +13,11 @@ CI passing does not mean the suggestions have been executed on the target MacBoo
 ## 1. Establish a useful macOS evaluation
 
 - [ ] Capture original model/config/debug evidence without credentials or private history.
-- [x] Expand to 40 authored tasks covering BSD/GNU differences, missing inputs, multi-step checks, and abstention; freeze 20 dev and 20 held-out cases. Independent author review remains pending.
-- [ ] Inspect current local manuals and manually validate each recipe on the target macOS release.
-- [ ] Add filesystem tracing, launchd inspection, unified-log filtering, and separate signing/Gatekeeper/notarization checks only after the required inputs and caveats are documented.
+- [x] Expand to 40 authored tasks covering BSD/GNU differences, missing inputs, multi-step checks, and abstention; freeze 20 dev and 20 held-out cases. The inspected held-out split is now development evidence; a fresh uninspected comparison set is required.
+- [x] Inspect current local manuals and validate the three supported recipe shapes on the target Mac under the disclosed representative-input protocol.
+- [x] Record bounded candidate checks for filesystem tracing, known-service configuration, controlled log filtering, and signing/Gatekeeper/notarization. These remain candidate evidence, not added catalog recipes; general service ownership and protected-process visibility are unverified.
 - [x] Record baseline contracts, lexical retrieval results, fresh-process latency and peak RSS on the target Mac.
-- [ ] Establish command correctness and useful correct coverage through manual device checks.
+- [ ] Finalize the eight suggestion judgments and useful correct coverage in [SUGGESTION_REVIEW.md](SUGGESTION_REVIEW.md). Agent-reviewed N=8 is provisional; Imad's protocol acceptance and broad metadata completeness judgment remain pending.
 
 Gate: a recipe needs documented flags, explicit parameters, a successful device check or a recorded limitation, and positive/negative regression cases.
 
@@ -44,4 +44,4 @@ Gate: zero wrong-platform suggestions on the release set, no fabricated required
 
 Automatic execution, a GUI, cloud fallbacks, model fine-tuning, and Linux/Windows support. Revisit only when the command lookup is useful enough to justify more scope.
 
-Routing and installed-wheel follow-up: [VALIDATION.md](VALIDATION.md). All 40 dispositions are recorded; device execution and independent release evaluation remain pending.
+Routing and installed-wheel follow-up: [VALIDATION.md](VALIDATION.md). All 40 dispositions and bounded device outcomes are recorded. Final scoring acceptance and independent release evaluation remain pending. Issue #2 stays open; #4 stays deferred. Optional assertion-event check S3 is not required for the existing snapshot recipe.
