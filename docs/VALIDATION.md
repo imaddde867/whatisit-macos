@@ -335,7 +335,7 @@ Documentation-only update: source code, evaluation fixtures, performance measure
 
 ## Current #2 reconciliation — 2026-10-09
 
-This ledger supersedes the initial pending counts and acceptance assessment above. It reconciles every ID in the frozen [40-task fixture](../eval/macos.jsonl) and every work item in [issue #2](https://github.com/imaddde867/whatisit-macos/issues/2). The initial reconciliation added no device checks; the subsequent authorized G2 run updates two device-result rows using E7. Target, privileges, input substitutions, manual/tool provenance and observation dates are recorded in the linked evidence; the reconciliation date is not itself a new execution date.
+This ledger supersedes the initial pending counts and acceptance assessment above. It reconciles every ID in the frozen [40-task fixture](../eval/macos.jsonl) and every work item in [issue #2](https://github.com/imaddde867/whatisit-macos/issues/2). The initial reconciliation added no device checks; subsequent authorized G2 and bounded R1 attempts are recorded in E7/E8. G2 updates two device-result rows; R1 retains the tracing block with fresh evidence. Target, privileges, input substitutions, manual/tool provenance and observation dates are recorded in the linked evidence; the reconciliation date is not itself a new execution date.
 
 Three results are separate: **fixture result** tests routing against the original expectation; **device result** assesses the concrete check described in the row, including candidates outside the catalog; **semantic review** assesses whether the final response is supported within its declared scope. The semantic column records the review below, not another command run or an independent benchmark. `passed` means that bounded check succeeded, `failed` means it contradicted its stated expectation, `blocked` means a prerequisite prevented validation, and `untested` means the required observation is absent. A passed abstention is not an answered task. An untested device result may be appropriate where the correct response requires no command. A passed representative-input check is not exact-fixture execution or independent answer accuracy.
 
@@ -348,6 +348,7 @@ Evidence references:
 - [E5: iTerm2 3.7.4 signature/policy/ticket checks and signature negative control](#public-developer-id-artifact-verification--2026-10-09).
 - [E6: separate iTerm2 3.7.3 artifact, identity, architectures and signature/policy/ticket checks](#iterm2-373-observed-artifact-results--2026-10-09). Its ZIP hash is an observed identifier, not independently authenticated provenance.
 - [E7: G2 controlled log-event results](#g2-observed-results--2026-10-09): five public events and independent subsystem/level/PID/time controls.
+- [E8: bounded R1 attempt and cleanup](#bounded-r1-observed-results--2026-10-09): fresh public selected/decoy processes, exact root-authentication failure and no trace execution.
 
 | Task ID | Fixture result / catalog disposition | Device result | Semantic review | Evidence and scope; remaining requirement |
 | --- | --- | --- | --- | --- |
@@ -357,7 +358,7 @@ Evidence references:
 | metadata-file | passed / suggestion | passed | supported report | E1–E3 M1: public text fixture inspected successfully. Frozen PDF path not executed; public-file substitution accepted for this generic metadata task. Missing/null attributes are permitted by recipe notes, not promised populated fields. |
 | sleep-assertions | passed / suggestion | passed | supported report | E1–E3 S1: current summary and owner section present. Snapshot only, not exhaustive causality. |
 | sleep-blockers | passed / suggestion | passed | supported report | E1–E3 S1: shared snapshot evidence, not independent execution or historical coverage. |
-| filesystem-pid | passed / unsupported | blocked | supported abstention | E1/E2/E4 T1: live disposable PID selected, but noninteractive sudo required authentication. Human root check must establish PID filtering and useful file-event visibility. |
+| filesystem-pid | passed / unsupported | blocked | supported abstention | E1/E2/E4/E8: fresh selected/decoy processes live; sudo -n exits 1 because a password is required. fs_usage did not start; PID filtering/read-write visibility unverified. Cleanup completed. |
 | launchd-owner | passed / unsupported | blocked | supported abstention | E1/E2/E4 L1: procinfo denied without authentication. PID-to-service ownership/configuration remains unverified; an arbitrary process need not be a service. |
 | unified-filter | passed / unsupported | passed | supported abstention | E1/E2/E4/E7: G1 was syntax-only; G2 now validates bounded public subsystem/error-versus-default/PID/time controls and their conjunction. Arbitrary process-name matching, info/debug persistence and general log coverage remain unverified. |
 | app-audit | passed / unsupported | passed | supported abstention | E1/E2/E5/E6: separate signature, Gatekeeper and ticket checks succeed on explicit public bundles without launch. No combined audit recipe, general failure taxonomy or full answer coverage established. |
@@ -382,7 +383,7 @@ Evidence references:
 | sleep-paraphrase | failed / unsupported | untested | supported abstention; fixture disputed | E1/E2: sole frozen disagreement; manual-supported expectation dispute, not observed command failure. S1 is only one diagnostic step. Semantic adjudication below supports conservative abstention; frozen expectation remains unchanged. |
 | sleep-history | passed / unsupported | untested | supported abstention | E1/E2/E3: snapshot cannot reconstruct 24 hours; no historical assertion recovery tested or promised. |
 | sleep-live | passed / unsupported | untested | supported abstention | E1/E2/E4 S2: monitor starts, but no creation/release markers observed. Controlled assertion-event capture required to validate candidate semantics; snapshot recipe still abstains. |
-| trace-missing | passed / unsupported | blocked | supported abstention | E1/E2/E4 T1: original request lacks PID; selected disposable input reached authentication block. Clarification/scope review passes; root event visibility remains unverified. |
+| trace-missing | passed / unsupported | blocked | supported abstention | E1/E2/E4/E8: original request still lacks PID; new explicit public input reached the root-authentication block. No trace events, so neither visibility nor decoy exclusion is validated. |
 | launchd-label | passed / unsupported | passed | supported abstention | E1/E2/E4 L1: explicit system/com.apple.logd configuration inspected with matching public plist label. Request omits domain/label; candidate success does not fill them in. |
 | logs-missing | passed / unsupported | passed | supported abstention | E1/E2/E4/E7: request still lacks subsystem/time, so catalog abstention remains appropriate. Explicit G2 public inputs validate candidate filters only, not the incomplete original request. |
 | signature-only | passed / unsupported | passed | supported abstention | E1/E2/E4–E6: system/public Developer ID bundle signatures verify; changed signed plist rejected on separate 3.7.4 copy. No launch; no input-aware catalog recipe. |
@@ -425,9 +426,9 @@ For remaining candidates, bind each missing input explicitly: fresh owned PID an
 
 Apple's [cycle-count instructions](https://support.apple.com/en-nz/102888) support the report-field interpretation. Apple's [Spotlight troubleshooting guide](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html) supports using mdls to inspect stored metadata; it does not guarantee populated fields for every file. Recipe execution must use the reviewed Apple executables: the catalog still renders tool names resolved through PATH, so index provenance alone does not certify the executable a user's shell selects.
 
-### Prepared check batches (G2 executed; R1/S3 not executed)
+### Prepared check batches (G2 executed; bounded R1 blocked; S3 optional)
 
-The prepared commands are retained for reproducibility. G2 has now run successfully; do not repeat it. R1 remains on hold pending the reassessment below; S3 remains optional. For any authorized remaining block, record execution status separately from semantic observations, with date/build, privilege and a batch ID. Publish only exit codes, marker presence/counts and scope decisions; retain raw diagnostics locally. Stop on a missing positive control instead of interpreting an empty result as successful filtering. Commands below target the installed Apple tools on the recorded Mac; do not assume `log emit` or its predicate keys exist on older macOS.
+The prepared commands are retained for reproducibility. G2 has run successfully; do not repeat it. The authorized tracing-only R1 attempt is recorded below and blocked on root authentication; procinfo remains unrun in this follow-up. S3 remains optional. For any authorized remaining block, record execution status separately from semantic observations, with date/build, privilege and a batch ID. Publish only exit codes, marker presence/counts and scope decisions; retain raw diagnostics locally. Stop on a missing positive control instead of interpreting an empty result as successful filtering. Commands below target the installed Apple tools on the recorded Mac; do not assume `log emit` or its predicate keys exist on older macOS.
 
 #### R1 — tracing and PID/service context
 
@@ -576,7 +577,7 @@ User authorized the prepared batch after review at `c30718d`. Run began **2026-1
 
 ### R1 reassessment before privileges
 
-No R1 command was run in this update; the previous authentication blocks remain recorded. G2's success does not justify expanding privileged execution.
+This reassessment preceded the tracing-only R1 attempt below. It did not authorize procinfo or expand privileges; the later user instruction authorized only a bounded trace and preservation of system protections.
 
 | Possible R1 observation | What it would resolve | What it would not resolve / decision |
 | --- | --- | --- |
@@ -588,14 +589,58 @@ The full prepared R1 block is therefore **not the default next action**. First d
 
 S3 remains optional: existing assertion snapshot requests and live/history abstentions are semantically supported. No assertion-event behavior is needed to validate those responses. Run S3 only if explicitly certifying the live-monitoring candidate or defining a comparison task that needs creation/release evidence.
 
+### Bounded R1 observed results — 2026-10-09
+
+The user authorized only the bounded trace at reviewed head `75916e3`. Attempt ran **2026-10-08 22:42:00–22:42:32 UTC / 2026-10-09 01:42 Helsinki**, macOS 27.0.1 (26A434), arm64. Used a fresh private temporary directory containing only public selected/decoy fixtures, an owned selected child repeatedly reading/writing its fixture, and a concurrent owned decoy reading its separate fixture. Both were confirmed live immediately before and after the attempted trace. Raw diagnostics, actual PIDs and local temporary paths are omitted.
+
+Command shape, using the prepared five-second/PID filter and noninteractive authentication:
+
+```sh
+/usr/bin/sudo -n /usr/bin/fs_usage -w -f filesys -t 5 <fresh-owned-selected-pid>
+```
+
+The Python wrapper invokes fixed argv, captures output in memory, and waits for/reaps both approximately 30-second children before removing only its new fixture directory. `sudo -n` replaces the prepared interactive authentication step: no password is requested, collected or supplied. Execution was outside the Codex sandbox to avoid conflating sandbox denial with root access. No procinfo, service query, repeated G2/core check or S3 monitor was run.
+
+| Check | Expected observation | Observed result / exact status | Interpretation |
+| --- | --- | --- | --- |
+| Selected/decoy inputs | Both owned processes live with distinct public fixtures | Both live before and after attempt | Correct inputs; no placeholder or expired PID used |
+| Root trace invocation | Exit 0; fs_usage runs for up to five seconds | **sudo exit 1**, stderr `sudo: a password is required`; returned after 0.089 seconds | **Blocked on root authentication**; fs_usage never started and has no observed exit code |
+| Selected read/write events | At least one read, write and selected-fixture event | 0 events; 0 reads, 0 writes, 0 selected-fixture lines | Unverified due to blocked execution, not a tracing-semantic failure |
+| Decoy exclusion | No decoy calls with a positive selected-process control | 0 decoy-fixture lines, but no positive control | Exclusion **unverified**, not passed merely because output is empty |
+| Selected child completion | Exit 0; no stderr; reaped | Exit **0**, no stderr; reaped | Public read/write fixture workload completed |
+| Decoy child completion | Exit 0; no stderr; reaped | Exit **0**, no stderr; reaped | Public decoy workload completed |
+| Cleanup | Both children finished; fixtures and temporary directory absent | Both reaped; temporary directory verified absent | Completed; no retained process, trace file or public fixture |
+
+**Routing:** not rerun; filesystem-pid and trace-missing retain recorded `unsupported` matches. Historical overall result remains 39/40. **Execution:** blocked at sudo, not a measured fs_usage failure. **Semantics:** read/write visibility, PID filtering and decoy exclusion remain unverified. SIP/tracing restrictions were not reached or diagnosed; SIP state was not queried and no system protections, sudo policy or permissions were changed. No service ownership inference is made.
+
+### #2 reconciliation after bounded R1
+
+All 40 rows still have separate routing, execution and semantic dispositions with evidence references. Counts remain **20 bounded device passes, 3 blocked, 17 untested**; the two tracing rows share E8 and remain blocked, and launchd-owner retains its earlier procinfo block/general mapping limitation. Passing candidate checks do not increase the eight catalog suggestions or establish answer accuracy.
+
+| Issue #2 requirement | Current evidence / remaining condition |
+| --- | --- |
+| Review all 40 expectations and final semantics | Completed scoped agent review; sleep-paraphrase fixture dispute remains explicit, not rescored |
+| Validate supported commands with appropriate inputs | Three recipe shapes have successful device checks under the declared public-input protocol; no exact PDF-importer or scalar/JSON claim |
+| Validate input/ambiguity/unsupported behavior | Reviewed; no fabricated path/PID/domain/filter values or Linux/mutation command required |
+| Record environment/provenance/privileges/results/limits | Complete ledger and E1–E8, including new exact sudo/child statuses and completed cleanup |
+| Prioritize tracing, launchd, logs and signing/policy/tickets | G2 and public app checks complete; tracing attempted but root-blocked; explicit launchd configuration checked, general PID-to-service ownership unsupported and unverified |
+| Make warranted fixes with regressions | Existing evidence-backed fixes retained; this attempt warrants no recipe/expectation change |
+| Report distinct coverage/accuracy/abstention/platform measures | Routing 39/40 and retrieval 34/35 remain separate; abstention/unresolved 32/40 (80%), static wrong-platform suggestions 0/40. Full useful correct coverage and answer accuracy remain unmeasured under an accepted final assessment protocol |
+
+**#2 remains open**: root-blocked tracing is honestly recorded; claiming a tracing success would require a later human-authenticated run, or an explicit limited-scope closure decision accepting the unresolved case. Privileged procinfo is not a substitute for a reviewed PID-to-service mapping method. Complete the final coverage/accuracy assessment with declared inputs, denominators and accepted limitations before closing. No issue checkbox or state was changed by this documentation update.
+
+**S3 stays optional** because assertion-event behavior is not required for the existing snapshot requests or live/history abstentions. **#4 stays deferred** until validation and the final semantic/coverage assessment are sufficient for a meaningful comparison. No model work, completed-check rerun or protection workaround was performed.
+
 ### Remaining closure decision
 
 The evidence review now supports all 40 final dispositions within documented prototype scope; routing remains 39/40, execution is now 20 bounded passes / 3 blocked / 17 untested after G2 (two task rows share this candidate evidence). There are eight semantically suitable report suggestions, four input responses, one ambiguity and 27 appropriate catalog abstentions. These are review classifications, not measured 100% accuracy or successful answers for unsupported tasks.
 
-G2 is complete and must not be rerun. R1 has been reassessed above; only bounded tracing has a clear remaining observation gap, and privileged procinfo is not a demonstrated ownership solution. S3 is conditional on certifying live monitoring. No PDF, battery JSON, signing/ticket or exact APFS rerun is required for current claims. Keep full useful-coverage/answer-accuracy figures unmeasured until the representative-input protocol and answer-completeness assessment are accepted; any eventual score must exclude candidate-only successes from answered tasks and expose blocked/untested scope. Record whether the remaining tracing gap requires a bounded root check or an explicitly accepted limitation before deciding whether #2's priority work is sufficient to close. General launchd ownership remains unsupported; diagnostic success must not be substituted for a validated mapping method. No issue is closed by this review.
+G2 is complete and must not be rerun. R1 has been reassessed above; only bounded tracing has a clear remaining observation gap, and privileged procinfo is not a demonstrated ownership solution. S3 is conditional on certifying live monitoring. No PDF, battery JSON, signing/ticket or exact APFS rerun is required for current claims. Keep full useful-coverage/answer-accuracy figures unmeasured until the representative-input protocol and answer-completeness assessment are accepted; any eventual score must exclude candidate-only successes from answered tasks and expose blocked/untested scope. The tracing-only attempt is now root-authentication-blocked in E8. A later human-authenticated run or an explicitly accepted limitation is required before claiming that gap resolved; do not repeat the same blocked invocation without changed authorization availability. General launchd ownership remains unsupported; diagnostic success must not be substituted for a validated mapping method. No issue is closed by this review.
 
 **#2 stays open; #4 stays deferred until the remaining validation and semantic assessment support a meaningful comparison.** This agent review does not restore the inspected held-out set's independence; #4 still needs a fresh uninspected comparison set.
 
 Preparation checks: all 40 unique IDs, ledger counts and local evidence anchors verified; all five proposed shell blocks pass syntax checking and their embedded Python parses. These checks did not execute the proposed commands. Source tests, wheel builds, completed device checks and performance measurements were not rerun for this documentation-only review.
 
 G2 update validation: ledger IDs/counts and evidence links checked; source, routing, retrieval, startup, packaging and performance are unchanged. No product tests, wheel build or resource measurement was rerun.
+
+R1 update validation: the 40 IDs, separate status counts, expected/observed tables and evidence anchors were checked. Source, fixtures, routing, retrieval, startup and packaging are unchanged; no product tests, wheel builds or performance measurements were rerun.
