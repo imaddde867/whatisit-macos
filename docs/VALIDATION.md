@@ -371,7 +371,7 @@ Evidence references:
 | mutate-sleep | passed / unsupported | untested | supported abstention | E1/E2: mutation outside scope; deliberately no power-setting changes required. |
 | compound | passed / ambiguous | untested | supported boundary | E1/E2: ask for one supported task instead of partial output. No device command needed for clarification. |
 | empty | passed / unsupported | untested | supported abstention | E1/E2: no request, no fabricated command; execution unnecessary. |
-| linux | passed / unsupported | untested | supported abstention | E1/E2: no strace suggestion; retrieval miss retained. macOS tracing candidate remains blocked under filesystem-pid; Linux command deliberately not executed. |
+| linux | passed / unsupported | untested | supported abstention | E1/E2: no strace suggestion; retrieval miss retained. macOS tracing candidate passed bounded public-fixture validation in E9; Linux command deliberately not executed. |
 | unknown | passed / unsupported | untested | supported abstention | E1/E2: outside catalog, no command; execution unnecessary. |
 | battery-health | passed / unsupported | untested | supported abstention | E1/E2/E4 B2: JSON parses with cycle/capacity keys, but requested maximum-capacity schema/completeness unverified. Plain-text catalog recipe still cannot answer the whole request. |
 | battery-number | passed / unsupported | untested | supported abstention | E1/E2/E3 B1: report is not scalar output. No extraction recipe or scalar execution exists; abstention is appropriate. |
@@ -400,9 +400,9 @@ Fixture results: **39 passed, 1 failed** (the retained sleep-paraphrase dispute)
 | #2 work item | Status | Evidence / remaining work |
 | --- | --- | --- |
 | Review all 40 tasks/expectations against installed manuals and relevant official documentation | passed | E1 plus E3–E6, recipe argv/notes and the semantic review below support all final dispositions within declared catalog scope. This agent review is not an independent accuracy study. |
-| Manually validate answerable commands/flags with appropriate inputs, under human control | passed | E3 validates all three supported recipe shapes with declared public-input substitution. Exact authored paths and PDF importers are not certified. Prioritized tracing/ownership candidates remain blocked separately; no evaluator execution added. |
+| Manually validate answerable commands/flags with appropriate inputs, under human control | passed | E3 validates all three supported recipe shapes with declared public-input substitution. Exact authored paths and PDF importers are not certified. Prioritized bounded tracing also passed E9; general service ownership remains unverified separately. No evaluator execution added. |
 | Validate clarification/abstention for missing, ambiguous and unsupported tasks | passed | E1/E2 plus semantic review below support the 32 non-command responses. sleep-paraphrase is a disputed fixture expectation, not a semantic failure of conservative abstention. Historical score stays 39/40. |
-| Record task, environment, provenance, privileges, behavior, completeness, limits and date | passed | All 40 rows link to E1–E6; shared environment/provenance applies explicitly. Blocked, substituted-input and untested observations remain distinguishable. |
+| Record task, environment, provenance, privileges, behavior, completeness, limits and date | passed | All 40 rows link to E1–E9; shared environment/provenance applies explicitly. Blocked, substituted-input and untested observations remain distinguishable. |
 | Separate retrieval candidates from final suggestions; prioritize tracing, launchd, logs, signing/policy/tickets | passed within reviewed scope | E2 distinguishes retrieval; E4–E9 distinguish candidate checks. Signing/policy/ticket, G2 filters, bounded R1 tracing and explicit launchd configuration passed. General PID-to-service ownership remains unsupported/unverified; earlier procinfo attempt blocked and no ownership method certified. |
 | Correct recipes/expectations only with evidence; add meaningful regressions | passed | E1/E2: seven routing fixes, explicit retained dispute, substantive routing/provenance regressions. This reconciliation changes no recipe or expectation. |
 
@@ -684,3 +684,49 @@ Preparation checks: all 40 unique IDs, ledger counts and local evidence anchors 
 G2 update validation: ledger IDs/counts and evidence links checked; source, routing, retrieval, startup, packaging and performance are unchanged. No product tests, wheel build or resource measurement was rerun.
 
 R1 update validation: the 40 IDs, separate status counts, expected/observed tables and evidence anchors were checked. Source, fixtures, routing, retrieval, startup and packaging are unchanged; no product tests, wheel builds or performance measurements were rerun.
+
+
+### Issue #2 acceptance audit — 2026-10-09
+
+Compared the live [issue #2 body](https://github.com/imaddde867/whatisit-macos/issues/2) and its empty comment thread against the final ledger at `30ed3a2`. No additional issue-level acceptance requirements were found. This review does not execute commands, change issue state, expand catalog coverage or silently replace the 40-task scope with only three recipes.
+
+#### Required work items
+
+| Issue work item | Assessment | Evidence / qualification |
+| --- | --- | --- |
+| Review all 40 tasks and expectations against installed manuals/relevant official docs | met | E1 and the all-40 semantic review; E3–E9 supplement observations. sleep-paraphrase remains an explicitly adjudicated expectation dispute with frozen routing failure. |
+| Manually validate answerable commands/flags with appropriate inputs; human-controlled execution | met for existing suggestions | E3 validates the three recipe shapes backing eight suggestions, using the explicitly declared public-input protocol. E7/E9 validate selected candidates separately. The evaluator never executes generated commands. Exact placeholder inputs and PDF-importer behavior are not certified. |
+| Validate clarification/abstention for missing, ambiguous and unsupported tasks | met within recorded scope | All 32 unresolved/non-command responses reviewed. Unsupported requests are not credited as useful answers. No forced mutation/Linux command or invented argument. |
+| Record task/environment/provenance/privileges/behavior/completeness/limits/date; blocked/untested honestly | met | Forty linked rows, E1–E9 and separate routing/execution/semantic columns. Procinfo's old authentication block is historical; ownership remains unverified despite later root authentication for tracing. |
+| Separate retrieval candidates from suggestions; prioritize tracing, launchd ownership/configuration, logs and app checks | addressed with explicit ownership deferral | R1, G2 and app checks pass their bounded scopes; known launchd configuration inspection passes. Ownership was specifically reviewed and remains unsupported/unverified because no PID-to-service mapping method is certified. Do not report the whole ownership/configuration family as empirically validated. |
+| Make warranted recipe/expectation corrections and substantive regressions | met | E1/E2 document seven routing fixes and provenance regression; frozen disputed expectation remains unchanged. Further unsupported capabilities are not required implementations under this validation issue. |
+
+#### Explicit acceptance criteria
+
+| Acceptance requirement | Assessment | Evidence / remaining action |
+| --- | --- | --- |
+| Every task has validated / needs-input / unsupported / unverified-with-reason disposition | met | All 40 unique IDs have catalog disposition, evidence, execution scope and unverified reasons. The issue explicitly permits unsupported and unverified outcomes. |
+| Report useful correct coverage separately | **unmet** | Ledger gives suggestion rate 8/40 but leaves useful correct coverage unmeasured. Finalize fully correct/sufficiently complete suggestion scores under the declared input protocol; report correct suggestions / all 40 tasks. Candidate successes and safe abstentions must not enter the numerator. |
+| Report answer accuracy separately | **unmet** | Finalize the same per-suggestion correctness scores and report correct suggestions / eight returned suggestions. Disclose representative inputs, shared recipe evidence, scoring limits and any unverified suggested answers. Do not equate report availability, 39 routing matches or 22 bounded device passes with correctness. |
+| Report abstention rate separately | met | 32/40 (80%) unresolved/abstained: 27 unsupported + four input responses + one ambiguity. Strict unsupported fraction is separately derivable as 27/40 (67.5%); do not hide those categories. |
+| Report wrong-platform suggestions separately | met with stated review limit | 0/40 in static review of the eight suggested templates, on the declared Apple-tool protocol. This is a template/platform assessment, not general PATH compatibility or future-host assurance. |
+| Passing tests or tool retrieval must not count as manual correctness | met | E2 and ledger distinguish 39/40 routing, 34/35 retrieval, execution outcomes and semantic review. No candidate-only result becomes a catalog answer. |
+| No private logs/personal file contents committed | met for reviewed evidence updates | Published summaries contain controlled public markers/counts/statuses and tool/version provenance; raw trace/log/owner details, credentials, actual PIDs and local temporary paths are omitted. No new secret/privacy scan is claimed. |
+
+#### Ownership, protected targets and optional S3
+
+**Service ownership is required to consider, but a successful ownership lookup is not mandated by the acceptance text.** The work item explicitly names ownership/configuration, so the known-label configuration check alone cannot stand in for ownership validation. The all-40 ledger includes launchd-owner as unsupported, with general PID-to-service ownership unverified and a reason; installed launchctl(1) only promises diagnostic procinfo context, not a mapping oracle. Explicitly defer empirical ownership validation as an unresolved capability in any closure assessment. If a validated owner lookup is later claimed, it needs a reviewed candidate method and known service/non-service ground truth. Successful procinfo output would not satisfy that claim by itself. This deferral is permitted by the issue's unsupported/unverified acceptance outcomes, rather than by narrowing the task list.
+
+**Visibility limitations are required to record; universal protected-process visibility is not an acceptance requirement.** E9 covers only fresh owned public-fixture workloads. Protected targets were not tested, SIP state was not queried, and no SIP restriction was observed. Explicitly retain protected-process visibility as unverified: neither root authentication nor absence of decoy-fixture lines establishes protected-target coverage. It can be deferred under the same unverified-with-reason allowance without changing system protections. An empirical protected-target test becomes necessary only for a future answer/comparison that actually claims such visibility, or an explicitly strengthened issue requirement.
+
+**S3 is optional and separate:** current sleep-live/history requests abstain, while the snapshot is already validated. Assertion-event creation/release evidence is needed only to certify a live-monitoring candidate; it is not a required rerun or a substitute for the missing metrics.
+
+#### Closure recommendation and exact blockers
+
+**Keep #2 open for now.** The remaining mandatory artifact is the final correctness scoring/report: identify the eight suggested case IDs, decide which are fully correct and sufficiently complete under the already declared representative-input protocol, record uncertainty honestly, and publish useful correct coverage and answer accuracy with their separate denominators. Existing evidence can support this assessment; no completed check needs rerunning merely to produce the report. If scoring exposes a specific missing observation, name that observation before proposing a new check.
+
+Carry service ownership and protected-process visibility explicitly as unresolved/deferred cases in the closure assessment. They are not hidden successes and are not additional mandatory device experiments under the current acceptance language. Likewise retain the frozen sleep-paraphrase dispute and other already stated untested limits. A decision to demand empirical ownership/protected-target coverage would expand the completion requirement and must be stated explicitly, not inferred from a bounded trace.
+
+After the two missing metrics and the explicit retained-deferral assessment are published, closure can be recommended against the current acceptance criteria; it would mean the 40-task validation assessment is recorded, not that all 40 tasks are answered or every candidate is validated. Do not close the issue in this review. #4 remains deferred pending sufficient validation/semantic evidence and an independent comparison set; #2 closure alone would not automatically authorize a model comparison.
+
+Audit validation: no task, test, wheel, benchmark or optional S3 was rerun. The 40-task IDs, existing result counts and evidence references were checked; only this documentation assessment and stale textual references were updated.
