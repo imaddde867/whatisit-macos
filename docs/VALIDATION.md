@@ -337,7 +337,7 @@ Documentation-only update: source code, evaluation fixtures, performance measure
 
 This ledger supersedes the initial pending counts and acceptance assessment above. It reconciles every ID in the frozen [40-task fixture](../eval/macos.jsonl) and every work item in [issue #2](https://github.com/imaddde867/whatisit-macos/issues/2). No new device checks were performed for this reconciliation. Target, privileges, input substitutions, manual/tool provenance and observation dates are recorded in the linked evidence; the reconciliation date is not a new execution date.
 
-Two results are necessary: **fixture result** tests routing against the original expectation; **device result** assesses the concrete check described in the row, including candidates outside the catalog. `passed` means that bounded check succeeded, `failed` means it contradicted its stated expectation, `blocked` means a prerequisite prevented validation, and `untested` means the required observation is absent. A passed abstention is not an answered task. An untested device result may be appropriate where the correct response requires no command. A passed representative-input check is not exact-fixture execution or independent answer accuracy.
+Three results are separate: **fixture result** tests routing against the original expectation; **device result** assesses the concrete check described in the row, including candidates outside the catalog; **semantic review** assesses whether the final response is supported within its declared scope. The semantic column records the review below, not another command run or an independent benchmark. `passed` means that bounded check succeeded, `failed` means it contradicted its stated expectation, `blocked` means a prerequisite prevented validation, and `untested` means the required observation is absent. A passed abstention is not an answered task. An untested device result may be appropriate where the correct response requires no command. A passed representative-input check is not exact-fixture execution or independent answer accuracy.
 
 Evidence references:
 
@@ -348,70 +348,216 @@ Evidence references:
 - [E5: iTerm2 3.7.4 signature/policy/ticket checks and signature negative control](#public-developer-id-artifact-verification--2026-10-09).
 - [E6: separate iTerm2 3.7.3 artifact, identity, architectures and signature/policy/ticket checks](#iterm2-373-observed-artifact-results--2026-10-09). Its ZIP hash is an observed identifier, not independently authenticated provenance.
 
-| Task ID | Fixture result / catalog disposition | Device result | Evidence and scope; remaining requirement |
-| --- | --- | --- | --- |
-| battery-report | passed / suggestion | passed | E1–E3 B1: datatype and numeric Cycle Count present in report. GUI cross-check not performed; no scalar answer claimed. |
-| battery-cycles | passed / suggestion | passed | E1–E3 B1: same report check, not a second independent execution or numeric extraction. |
-| metadata-missing | passed / needs-input | untested | E1/E2: explicit file path requested. No runnable command without input; device execution unnecessary for this clarification. |
-| metadata-file | passed / suggestion | passed | E1–E3 M1: public text fixture inspected successfully. Frozen PDF path not executed; absent/null/unindexed metadata behavior remains untested. |
-| sleep-assertions | passed / suggestion | passed | E1–E3 S1: current summary and owner section present. Snapshot only, not exhaustive causality. |
-| sleep-blockers | passed / suggestion | passed | E1–E3 S1: shared snapshot evidence, not independent execution or historical coverage. |
-| filesystem-pid | passed / unsupported | blocked | E1/E2/E4 T1: live disposable PID selected, but noninteractive sudo required authentication. Human root check must establish PID filtering and useful file-event visibility. |
-| launchd-owner | passed / unsupported | blocked | E1/E2/E4 L1: procinfo denied without authentication. PID-to-service ownership/configuration remains unverified; an arbitrary process need not be a service. |
-| unified-filter | passed / unsupported | untested | E1/E2/E4 G1: explicit synthetic predicate/bounds accepted but zero events. Controlled matching/nonmatching process, subsystem, severity and time cases required for semantics. |
-| app-audit | passed / unsupported | passed | E1/E2/E5/E6: separate signature, Gatekeeper and ticket checks succeed on explicit public bundles without launch. No combined audit recipe, general failure taxonomy or full answer coverage established. |
-| bsd-stat | passed / unsupported | passed | E1/E2/E4 F1: known size/mode matched using BSD flags on a public regular file. Input still required; not GNU compatibility or symlink coverage. |
-| bsd-find | passed / unsupported | passed | E1/E2/E4 F1: bounded directory fixture found using age-under-24-hours semantics, without deletion. Caller must supply root; calendar-day interpretation excluded. |
-| bsd-sed | passed / unsupported | passed | E1/E2/E4 F1: expected substitution preview; source unchanged. Explicit expression/file required; no in-place editing tested. |
-| bsd-du | passed / unsupported | passed | E1/E2/E4 F1: allocation-summary command/output shape succeeds. Exact APFS attribution and apparent-size comparison untested; no exact space claim. |
-| mutate-metadata | passed / unsupported | untested | E1/E2: mutation outside inspection scope; deliberately no destructive execution required. |
-| mutate-sleep | passed / unsupported | untested | E1/E2: mutation outside scope; deliberately no power-setting changes required. |
-| compound | passed / ambiguous | untested | E1/E2: ask for one supported task instead of partial output. No device command needed for clarification. |
-| empty | passed / unsupported | untested | E1/E2: no request, no fabricated command; execution unnecessary. |
-| linux | passed / unsupported | untested | E1/E2: no strace suggestion; retrieval miss retained. macOS tracing candidate remains blocked under filesystem-pid; Linux command deliberately not executed. |
-| unknown | passed / unsupported | untested | E1/E2: outside catalog, no command; execution unnecessary. |
-| battery-health | passed / unsupported | untested | E1/E2/E4 B2: JSON parses with cycle/capacity keys, but requested maximum-capacity schema/completeness unverified. Plain-text catalog recipe still cannot answer the whole request. |
-| battery-number | passed / unsupported | untested | E1/E2/E3 B1: report is not scalar output. No extraction recipe or scalar execution exists; abstention is appropriate. |
-| battery-phrase | passed / suggestion | passed | E1–E3 B1: shares basic report evidence; device with no battery and independent paraphrase accuracy untested. |
-| metadata-paraphrase | passed / needs-input | untested | E1/E2: synonym routing corrected; request document path. No device command required until supplied. |
-| metadata-spaces | passed / suggestion | passed | E1–E3 M1: public text path with spaces succeeds; quoting regression covers frozen path. Exact authored PDF input untested. |
-| metadata-shell | passed / suggestion | passed | E1–E3 M2: literal shell characters remain one direct argument; no unexpected touch file. Rendered shell quoting tested, not executed as a shell command; exact PDF input untested. |
-| metadata-attribute | passed / unsupported | passed | E1–E3 M3: named attribute present/non-null on public text fixture. Current all-attribute recipe lacks filtering; frozen PDF and null cases untested. |
-| metadata-recursive | passed / unsupported | untested | E1/E2: one-file recipe lacks traversal/input policy. No recursive candidate tested; implementing traversal is not necessary to validate abstention. |
-| sleep-paraphrase | failed / unsupported | untested | E1/E2: sole frozen disagreement; manual-supported expectation dispute, not observed command failure. S1 is only one diagnostic step. Independent semantic adjudication required; expectation unchanged. |
-| sleep-history | passed / unsupported | untested | E1/E2/E3: snapshot cannot reconstruct 24 hours; no historical assertion recovery tested or promised. |
-| sleep-live | passed / unsupported | untested | E1/E2/E4 S2: monitor starts, but no creation/release markers observed. Controlled assertion-event capture required to validate candidate semantics; snapshot recipe still abstains. |
-| trace-missing | passed / unsupported | blocked | E1/E2/E4 T1: original request lacks PID; selected disposable input reached authentication block. Clarification/scope review passes; root event visibility remains unverified. |
-| launchd-label | passed / unsupported | passed | E1/E2/E4 L1: explicit system/com.apple.logd configuration inspected with matching public plist label. Request omits domain/label; candidate success does not fill them in. |
-| logs-missing | passed / unsupported | untested | E1/E2/E4 G1: request lacks subsystem/time; supplied synthetic query returned no events. Missing-input abstention passes; filter semantics unverified. |
-| signature-only | passed / unsupported | passed | E1/E2/E4–E6: system/public Developer ID bundle signatures verify; changed signed plist rejected on separate 3.7.4 copy. No launch; no input-aware catalog recipe. |
-| gatekeeper-only | passed / unsupported | passed | E1/E2/E4–E6: Apple System and Notarized Developer ID acceptance observed separately. Local policy at check time only; offline/revocation cases untested. |
-| notarization-only | passed / unsupported | passed | E1/E2/E5/E6: stapled tickets validate separately from Gatekeeper. Missing/invalid/revoked-ticket distinctions untested; absent ticket must not imply never notarized. |
-| linux-stat | passed / unsupported | untested | E1/E2/E4: installed BSD synopsis lacks GNU --printf; BSD candidate succeeds separately. Incompatible flag deliberately not presented or executed. |
-| irrelevant-path | passed / needs-input | untested | E1/E2: reject irrelevant path and ask for removal. Boundary check, no device command required. |
-| metadata-newline | passed / needs-input | untested | E1/E2: reject control character before rendering. Boundary check, no device command required. |
-
+| Task ID | Fixture result / catalog disposition | Device result | Semantic review | Evidence and scope; remaining requirement |
+| --- | --- | --- | --- | --- |
+| battery-report | passed / suggestion | passed | supported report | E1–E3 B1: datatype and numeric Cycle Count present in report. GUI cross-check not performed; no scalar answer claimed. |
+| battery-cycles | passed / suggestion | passed | supported report | E1–E3 B1: same report check, not a second independent execution or numeric extraction. |
+| metadata-missing | passed / needs-input | untested | supported boundary | E1/E2: explicit file path requested. No runnable command without input; device execution unnecessary for this clarification. |
+| metadata-file | passed / suggestion | passed | supported report | E1–E3 M1: public text fixture inspected successfully. Frozen PDF path not executed; public-file substitution accepted for this generic metadata task. Missing/null attributes are permitted by recipe notes, not promised populated fields. |
+| sleep-assertions | passed / suggestion | passed | supported report | E1–E3 S1: current summary and owner section present. Snapshot only, not exhaustive causality. |
+| sleep-blockers | passed / suggestion | passed | supported report | E1–E3 S1: shared snapshot evidence, not independent execution or historical coverage. |
+| filesystem-pid | passed / unsupported | blocked | supported abstention | E1/E2/E4 T1: live disposable PID selected, but noninteractive sudo required authentication. Human root check must establish PID filtering and useful file-event visibility. |
+| launchd-owner | passed / unsupported | blocked | supported abstention | E1/E2/E4 L1: procinfo denied without authentication. PID-to-service ownership/configuration remains unverified; an arbitrary process need not be a service. |
+| unified-filter | passed / unsupported | untested | supported abstention | E1/E2/E4 G1: explicit synthetic predicate/bounds accepted but zero events. Controlled matching/nonmatching process, subsystem, severity and time cases required for semantics. |
+| app-audit | passed / unsupported | passed | supported abstention | E1/E2/E5/E6: separate signature, Gatekeeper and ticket checks succeed on explicit public bundles without launch. No combined audit recipe, general failure taxonomy or full answer coverage established. |
+| bsd-stat | passed / unsupported | passed | supported abstention | E1/E2/E4 F1: known size/mode matched using BSD flags on a public regular file. Input still required; not GNU compatibility or symlink coverage. |
+| bsd-find | passed / unsupported | passed | supported abstention | E1/E2/E4 F1: bounded directory fixture found using age-under-24-hours semantics, without deletion. Caller must supply root; calendar-day interpretation excluded. |
+| bsd-sed | passed / unsupported | passed | supported abstention | E1/E2/E4 F1: expected substitution preview; source unchanged. Explicit expression/file required; no in-place editing tested. |
+| bsd-du | passed / unsupported | passed | supported abstention | E1/E2/E4 F1: allocation-summary command/output shape succeeds. Exact APFS attribution and apparent-size comparison untested; no exact space claim. |
+| mutate-metadata | passed / unsupported | untested | supported abstention | E1/E2: mutation outside inspection scope; deliberately no destructive execution required. |
+| mutate-sleep | passed / unsupported | untested | supported abstention | E1/E2: mutation outside scope; deliberately no power-setting changes required. |
+| compound | passed / ambiguous | untested | supported boundary | E1/E2: ask for one supported task instead of partial output. No device command needed for clarification. |
+| empty | passed / unsupported | untested | supported abstention | E1/E2: no request, no fabricated command; execution unnecessary. |
+| linux | passed / unsupported | untested | supported abstention | E1/E2: no strace suggestion; retrieval miss retained. macOS tracing candidate remains blocked under filesystem-pid; Linux command deliberately not executed. |
+| unknown | passed / unsupported | untested | supported abstention | E1/E2: outside catalog, no command; execution unnecessary. |
+| battery-health | passed / unsupported | untested | supported abstention | E1/E2/E4 B2: JSON parses with cycle/capacity keys, but requested maximum-capacity schema/completeness unverified. Plain-text catalog recipe still cannot answer the whole request. |
+| battery-number | passed / unsupported | untested | supported abstention | E1/E2/E3 B1: report is not scalar output. No extraction recipe or scalar execution exists; abstention is appropriate. |
+| battery-phrase | passed / suggestion | passed | supported report | E1–E3 B1: shares basic report evidence; device with no battery and independent paraphrase accuracy untested. |
+| metadata-paraphrase | passed / needs-input | untested | supported boundary | E1/E2: synonym routing corrected; request document path. No device command required until supplied. |
+| metadata-spaces | passed / suggestion | passed | supported report | E1–E3 M1: public text path with spaces succeeds; quoting regression covers frozen path. Exact authored PDF input untested; representative path substitution accepted, not PDF-importer validation. |
+| metadata-shell | passed / suggestion | passed | supported report | E1–E3 M2: literal shell characters remain one direct argument; no unexpected touch file. Rendered shell quoting tested, not executed as a shell command; exact PDF input untested; representative path substitution accepted. |
+| metadata-attribute | passed / unsupported | passed | supported abstention | E1–E3 M3: named attribute present/non-null on public text fixture. Current all-attribute recipe lacks filtering; frozen PDF and null cases untested. |
+| metadata-recursive | passed / unsupported | untested | supported abstention | E1/E2: one-file recipe lacks traversal/input policy. No recursive candidate tested; implementing traversal is not necessary to validate abstention. |
+| sleep-paraphrase | failed / unsupported | untested | supported abstention; fixture disputed | E1/E2: sole frozen disagreement; manual-supported expectation dispute, not observed command failure. S1 is only one diagnostic step. Semantic adjudication below supports conservative abstention; frozen expectation remains unchanged. |
+| sleep-history | passed / unsupported | untested | supported abstention | E1/E2/E3: snapshot cannot reconstruct 24 hours; no historical assertion recovery tested or promised. |
+| sleep-live | passed / unsupported | untested | supported abstention | E1/E2/E4 S2: monitor starts, but no creation/release markers observed. Controlled assertion-event capture required to validate candidate semantics; snapshot recipe still abstains. |
+| trace-missing | passed / unsupported | blocked | supported abstention | E1/E2/E4 T1: original request lacks PID; selected disposable input reached authentication block. Clarification/scope review passes; root event visibility remains unverified. |
+| launchd-label | passed / unsupported | passed | supported abstention | E1/E2/E4 L1: explicit system/com.apple.logd configuration inspected with matching public plist label. Request omits domain/label; candidate success does not fill them in. |
+| logs-missing | passed / unsupported | untested | supported abstention | E1/E2/E4 G1: request lacks subsystem/time; supplied synthetic query returned no events. Missing-input abstention passes; filter semantics unverified. |
+| signature-only | passed / unsupported | passed | supported abstention | E1/E2/E4–E6: system/public Developer ID bundle signatures verify; changed signed plist rejected on separate 3.7.4 copy. No launch; no input-aware catalog recipe. |
+| gatekeeper-only | passed / unsupported | passed | supported abstention | E1/E2/E4–E6: Apple System and Notarized Developer ID acceptance observed separately. Local policy at check time only; offline/revocation cases untested. |
+| notarization-only | passed / unsupported | passed | supported abstention | E1/E2/E5/E6: stapled tickets validate separately from Gatekeeper. Missing/invalid/revoked-ticket distinctions untested; absent ticket must not imply never notarized. |
+| linux-stat | passed / unsupported | untested | supported abstention | E1/E2/E4: installed BSD synopsis lacks GNU --printf; BSD candidate succeeds separately. Incompatible flag deliberately not presented or executed. |
+| irrelevant-path | passed / needs-input | untested | supported boundary | E1/E2: reject irrelevant path and ask for removal. Boundary check, no device command required. |
+| metadata-newline | passed / needs-input | untested | supported boundary | E1/E2: reject control character before rendering. Boundary check, no device command required. |
 Fixture results: **39 passed, 1 failed** (the retained sleep-paraphrase dispute). Device results: **18 passed within the stated scope, 3 blocked, 19 untested**; there is no unresolved observed command failure in the recorded successful scopes. Initial sandbox failures remain recorded in E3/E4, followed by unrestricted checks; authentication failures remain blocked. These counts mix shared recipes, public-input candidates and intentionally unexecuted abstentions and therefore are **not accuracy or coverage denominators**.
 
 ### Issue work and acceptance reconciliation
 
 | #2 work item | Status | Evidence / remaining work |
 | --- | --- | --- |
-| Review all 40 tasks/expectations against installed manuals and relevant official documentation | untested | E1 records the initial complete review and provenance; E3–E6 add device evidence. Independent semantic review of the final answers, scope and sleep-paraphrase dispute remains outstanding. |
-| Manually validate answerable commands/flags with appropriate inputs, under human control | blocked | E3 validates three recipe shapes on public inputs; exact PDF inputs remain untested. E4 root tracing/ownership checks require human authentication. No evaluator execution added. |
-| Validate clarification/abstention for missing, ambiguous and unsupported tasks | failed | E1/E2 support scope/argument decisions, but sleep-paraphrase still disagrees with the frozen expectation. Review must adjudicate that disputed expectation without changing it to raise the score. No destructive commands needed. |
+| Review all 40 tasks/expectations against installed manuals and relevant official documentation | passed | E1 plus E3–E6, recipe argv/notes and the semantic review below support all final dispositions within declared catalog scope. This agent review is not an independent accuracy study. |
+| Manually validate answerable commands/flags with appropriate inputs, under human control | passed | E3 validates all three supported recipe shapes with declared public-input substitution. Exact authored paths and PDF importers are not certified. Prioritized tracing/ownership candidates remain blocked separately; no evaluator execution added. |
+| Validate clarification/abstention for missing, ambiguous and unsupported tasks | passed | E1/E2 plus semantic review below support the 32 non-command responses. sleep-paraphrase is a disputed fixture expectation, not a semantic failure of conservative abstention. Historical score stays 39/40. |
 | Record task, environment, provenance, privileges, behavior, completeness, limits and date | passed | All 40 rows link to E1–E6; shared environment/provenance applies explicitly. Blocked, substituted-input and untested observations remain distinguishable. |
 | Separate retrieval candidates from final suggestions; prioritize tracing, launchd, logs, signing/policy/tickets | blocked | E2 distinguishes retrieval; E4–E6 distinguish candidate checks. Signing/policy/ticket positive evidence exists; root and controlled-event semantics remain incomplete. |
 | Correct recipes/expectations only with evidence; add meaningful regressions | passed | E1/E2: seven routing fixes, explicit retained dispute, substantive routing/provenance regressions. This reconciliation changes no recipe or expectation. |
 
-Acceptance disposition ledger is complete; command validation and independent semantic review are not. Metrics remain separate: routing **32/40 → 39/40**, retrieval **34/35**, suggestion rate **8/40 (20%)**, abstention/unresolved **32/40 (80%)**, static wrong-platform suggestions **0/40**. Useful correct coverage and answer accuracy remain **unmeasured**; neither tool-name matches nor the 18 bounded device passes measure them. Resource measurements in E2 remain historical and unchanged. No personal paths, raw logs, private contents or secrets are added here.
+Disposition and semantic review are complete within declared prototype scope; prioritized candidate execution/semantics and a fully specified answer-accuracy assessment remain incomplete. Metrics remain separate: routing **32/40 → 39/40**, retrieval **34/35**, suggestion rate **8/40 (20%)**, abstention/unresolved **32/40 (80%)**, static wrong-platform suggestions **0/40**. Useful correct coverage and answer accuracy remain **unmeasured**; neither tool-name matches nor the 18 bounded device passes measure them. Resource measurements in E2 remain historical and unchanged. No personal paths, raw logs, private contents or secrets are added here.
 
-### Remaining work before closing #2
+### Semantic review and resolved inputs — 2026-10-09
 
-1. Complete the [human root checks](#root-checks-remaining-under-human-control) with a fresh disposable PID: record filtering/event visibility and whether procinfo actually identifies service ownership. Compare an explicit known service with a process that is not a launchd service; do not infer ownership solely from successful procinfo output.
-2. Validate unified-log filters using controlled matching/nonmatching events for process, subsystem, severity and time; record retention/redaction/access limits. Validate live assertion creation/release visibility if certifying that candidate. Empty log output and a running monitor are insufficient evidence.
-3. Review the eight final suggestions for completeness on declared inputs. Resolve the metadata substitution gap with explicit public PDF fixtures (including spaces/literal characters), or retain it as unverified with a documented scope decision; record missing/null/unindexed metadata limitations. Confirm battery field interpretation, distinguishing basic cycle report from scalar/maximum-capacity JSON requests. Extra recipes are not required to validate existing abstentions.
-4. Obtain independent semantic review of all 40 final dispositions and expected outcomes, particularly sleep-paraphrase and the distinction between missing input and unsupported catalog scope. Record sign-off or remaining reasons. Retain frozen expectations and report any justified adjudication separately. Ticket failure/revocation, offline policy and exact APFS attribution remain untested limitations unless specifically required by the reviewed answer; do not promote positive examples to general claims.
-5. Publish useful correct coverage and answer accuracy with explicit reviewed denominators and input protocol, separately from abstention and wrong-platform results. If some cases remain blocked/untested, record why and whether the reviewer accepts their exclusion/limited claim under #2's acceptance criteria. Preserve raw evidence locally and publish only sanitized outcomes.
+Reviewed all 40 requests, frozen rubrics, current recipe argv/notes and E1–E6 at `b746cb6`. Re-read installed mdls(1), pmset(1), system_profiler(8), fs_usage(1), launchctl(1), log(1) and caffeinate(8); read installed `log help predicates` and `log help emit` outside the sandbox. Help exits 64 by design; the initial sandbox denial is not device-validation evidence. No task command, controlled event, model, test or benchmark was run. This is the same agent's evidence review, not independent human sign-off or a fresh held-out assessment.
 
-**#2 remains open. #4 remains deferred until validation and semantic review are complete enough for a meaningful comparison.** The previously inspected held-out fixture cannot supply independent model-comparison accuracy; a fresh uninspected comparison set is still required for #4.
+Newly reviewed raw manual `/usr/share/man/man8/caffeinate.8` SHA-256: `dcde2d301a6be6151afc331cbb5ab3b855e2e7a2a88c9a7db2e58c8195d33711`. Other manual provenance remains in E1. Installed log help takes precedence for the proposed predicate field names; reading help does not prove their event-filter semantics.
+
+- **Eight suggestions:** three battery requests are satisfied by a report containing Cycle Count, with instructions to read that field; they do not request scalar/JSON output. Two sleep requests ask for assertions, so the observed current summary/owners and explicit snapshot limitation fit. Three metadata requests ask for Spotlight attributes of one file, not PDF-specific content, a fixed non-null schema or filesystem-complete metadata. The observed public text fixtures satisfy that declared input protocol. Report availability and semantic suitability are supported; values, exhaustive causality and application-specific fields are not certified.
+- **Four input responses and one ambiguity:** explicit path is required for the two missing-file requests, irrelevant battery paths and control-character paths are rejected, and the compound request asks for one supported task. No invented input or device execution is required to validate these responses.
+- **Twenty-seven unsupported responses:** mutation, Linux flags/tools, unknown/empty requests, unavailable catalog families and unsupported output/traversal/history/live qualifiers appropriately abstain within this prototype. Missing domain/PID/filter/app arguments are reasons a future recipe would need clarification; they do not require changing today's unsupported status when no such recipe exists. Candidate successes are not final suggestions or useful coverage.
+- **sleep-paraphrase adjudication:** “What is keeping my computer awake?” may reasonably invite an assertion report as a partial diagnostic step, but the rubric expects a final suggestion while the recipe explicitly disclaims complete causality. Conservative abstention is supported; the original expectation is contestable rather than universally wrong. Keep its routing failure, fixture bytes and 39/40 score. This semantic decision does not add a passing fixture case.
+
+Input decisions: retain the exact authored paths/PID in the frozen comparison, but never execute placeholder PID 1234 or create files at those global paths. E3's new public text files are accepted substitutions for generic one-file metadata and path handling; no PDF rerun is needed unless PDF-importer behavior becomes a claim. A null attribute is compatible with the recipe's caveat; it cannot establish why indexing is absent. Battery hardware/field presence is already observed; GUI comparison, scalar extraction and maximum-capacity JSON schema are unnecessary to support existing basic reports or abstentions. `du -sk` reports allocated KiB, not exact APFS physical-space ownership, so allocation attribution is a retained limit, not a new closure gate.
+
+The frozen metadata-shell input also contains an embedded slash in its command-substitution text, so as a literal path it denotes a directory hierarchy rather than one filename. E3 intentionally uses a real single filename with equivalent quoting characters; it does not certify that authored hierarchy exists. Regression evidence covers rendering the original path bytes. Neither input protocol interprets those characters as a shell fragment.
+
+For remaining candidates, bind each missing input explicitly: fresh owned PID and public file for tracing; current domain/label/PID for launchd; unique public subsystem, real emitter PID, chosen level and bounded times for logs. Existing iTerm2 artifacts resolve app-path/developer/ticket inputs. Do not repeat successful battery, metadata, stat/find/sed/du, explicit launchd configuration or app checks. Missing/revoked tickets, offline policy, arbitrary recursive traversal and general wake diagnosis remain outside the certified claims.
+
+Apple's [cycle-count instructions](https://support.apple.com/en-nz/102888) support the report-field interpretation. Apple's [Spotlight troubleshooting guide](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html) supports using mdls to inspect stored metadata; it does not guarantee populated fields for every file. Recipe execution must use the reviewed Apple executables: the catalog still renders tool names resolved through PATH, so index provenance alone does not certify the executable a user's shell selects.
+
+### Small remaining check batches (proposed, not executed)
+
+Run each block independently in a normal terminal, after reviewing it. Record execution status separately from semantic observations, with date/build, privilege and a batch ID. Publish only exit codes, marker presence/counts and scope decisions; retain raw diagnostics locally. Stop on a missing positive control instead of interpreting an empty result as successful filtering. Commands below target the installed Apple tools on the recorded Mac; do not assume `log emit` or its predicate keys exist on older macOS.
+
+#### R1 — tracing and PID/service context
+
+Gap: filesystem-pid, trace-missing and launchd-owner; combines the remaining root checks. Root is used only for fs_usage/procinfo. The existing configuration check is repeated once solely to bind a **current live service PID** to the already reviewed label; no service is loaded, edited or stopped. Start by reading the `pid` in the output, not parsing launchctl's unstable format. If the service has no live PID, record blocked rather than starting it.
+
+```sh
+/bin/launchctl print system/com.apple.logd
+```
+
+Then run this block, entering that displayed PID. The terminal prompts for sudo authentication before starting the bounded readers; no password is recorded.
+
+```sh
+/bin/zsh <<'ZSH'
+read 'service_pid?Current PID shown for system/com.apple.logd: ' </dev/tty
+[[ "$service_pid" == <-> ]] || exit 1
+/usr/bin/sudo -v || exit 1
+trace_dir=$(/usr/bin/mktemp -d /tmp/whatisit-R1.XXXXXX) || exit 1
+printf 'public selected fixture\n' > "$trace_dir/selected.txt"
+printf 'public decoy fixture\n' > "$trace_dir/decoy.txt"
+python3 -c 'import pathlib,sys,time; p=pathlib.Path(sys.argv[1]); [(p.read_bytes(),p.write_bytes(b"public selected fixture\n"),time.sleep(.05)) for _ in range(600)]' "$trace_dir/selected.txt" &
+trace_pid=$!
+python3 -c 'import pathlib,sys,time; p=pathlib.Path(sys.argv[1]); [(p.read_bytes(),time.sleep(.05)) for _ in range(600)]' "$trace_dir/decoy.txt" &
+decoy_pid=$!
+printf 'R1 selected PID=%s; decoy PID=%s\n' "$trace_pid" "$decoy_pid"
+cleanup() {
+    # Both owned readers expire after about 30 seconds; reap before removing inputs.
+    wait "$trace_pid" "$decoy_pid"
+    /bin/rm "$trace_dir/selected.txt" "$trace_dir/decoy.txt"
+    /bin/rmdir "$trace_dir"
+}
+trap cleanup EXIT
+/usr/bin/sudo /usr/bin/fs_usage -w -f filesys -t 5 "$trace_pid"
+printf 'R1 trace exit=%s\n' "$?"
+/usr/bin/sudo /bin/launchctl procinfo "$trace_pid"
+printf 'R1 ordinary-child procinfo exit=%s\n' "$?"
+/usr/bin/sudo /bin/launchctl procinfo "$service_pid"
+printf 'R1 known-service procinfo exit=%s\n' "$?"
+ZSH
+```
+
+Expected execution: successful bounded trace and both procinfo invocations while PIDs are live. Expected semantics: selected child's read/write filesystem calls/fixture visible, no decoy-reader calls; distinguish PID selection from thread identifiers appended to process names. Record zero visible events as unverified visibility, even with exit 0. The terminal child is not itself a registered launchd service; sharing its parent's bootstrap domain does not assign it a service label. Compare procinfo with the known service PID, but record “ownership not supplied” if it only reports ports/audit context. That is a candidate limitation, not permission to invent PID-to-label mapping. No protected-process or physical-disk-I/O coverage is claimed; cached reads can still produce filesystem calls.
+
+Cleanup: the block waits for its two readers to expire and removes only its two public files and empty directory. If interrupted before completion, let the readers expire, then remove those exact files and empty directory; never signal the system service or use killall. Authentication denial or PID expiration is blocked, not a filter/ownership failure.
+
+#### G2 — five public log events, independent filter controls
+
+Gap: unified-filter and logs-missing. Normal-user event emission/query; if log-store access is denied, record blocked before considering an authorized root read. No log configuration changes, archive collection, compiler or third-party dependency. The installed help documents `processIdentifier`, `logType` and `composedMessage`; use those names instead of assuming legacy manual aliases. A unique subsystem bounds queries to these public fixtures. Verify all five positive-control markers interactively before the filter queries; record each query exit status separately. Events are separated from time-window edges by two seconds; boundary inclusivity is not tested.
+
+```sh
+/bin/zsh <<'ZSH'
+run="com.example.whatisit.$(/usr/bin/uuidgen)"
+base="subsystem BEGINSWITH \"$run.\""
+all_start=$(/bin/date '+%Y-%m-%d %H:%M:%S%z')
+/usr/bin/log emit --public --type error --subsystem "$run.main" BEFORE || exit 1
+/bin/sleep 2
+window_start=$(/bin/date '+%Y-%m-%d %H:%M:%S%z')
+/bin/sleep 2
+/usr/bin/log emit --public --type error --subsystem "$run.main" TARGET &
+target_pid=$!
+wait "$target_pid" || exit 1
+/usr/bin/log emit --public --type default --subsystem "$run.main" LEVEL || exit 1
+/usr/bin/log emit --public --type error --subsystem "$run.other" SUBSYSTEM || exit 1
+/bin/sleep 2
+window_end=$(/bin/date '+%Y-%m-%d %H:%M:%S%z')
+/bin/sleep 2
+/usr/bin/log emit --public --type error --subsystem "$run.main" AFTER || exit 1
+/bin/sleep 2
+all_end=$(/bin/date '+%Y-%m-%d %H:%M:%S%z')
+# Positive control first; do not run filter queries without all five markers.
+/usr/bin/log show --style compact --start "$all_start" --end "$all_end" --predicate "$base"
+printf 'G2 baseline exit=%s\n' "$?"
+read 'control_ok?Are all five fixture markers present (yes/no)? ' </dev/tty
+[[ "$control_ok" == yes ]] || exit 1
+/usr/bin/log show --style compact --start "$all_start" --end "$all_end" --predicate "$base AND subsystem == \"$run.main\""
+printf 'G2 subsystem exit=%s\n' "$?"
+/usr/bin/log show --style compact --start "$all_start" --end "$all_end" --predicate "$base AND logType == \"error\""
+printf 'G2 level exit=%s\n' "$?"
+/usr/bin/log show --style compact --start "$all_start" --end "$all_end" --predicate "$base AND processIdentifier == $target_pid"
+printf 'G2 PID exit=%s\n' "$?"
+/usr/bin/log show --style compact --start "$window_start" --end "$window_end" --predicate "$base"
+printf 'G2 time exit=%s\n' "$?"
+/usr/bin/log show --style compact --start "$window_start" --end "$window_end" --predicate "$base AND subsystem == \"$run.main\" AND logType == \"error\" AND processIdentifier == $target_pid"
+printf 'G2 combined exit=%s\n' "$?"
+ZSH
+```
+
+Expected marker sets, ignoring headers/status lines and unrelated internal diagnostics:
+
+| Query in block order | Required fixture markers |
+| --- | --- |
+| Broad positive control | BEFORE, TARGET, LEVEL, SUBSYSTEM, AFTER |
+| Main subsystem only | BEFORE, TARGET, LEVEL, AFTER |
+| Error level only | BEFORE, TARGET, SUBSYSTEM, AFTER |
+| Actual TARGET emitter PID only | TARGET; other emitter PIDs excluded |
+| Middle time window only | TARGET, LEVEL, SUBSYSTEM |
+| Combined subsystem/level/PID/time | TARGET |
+
+Read the broad control's actual process/PID and event types before judging filters. Any unexpected PID attribution, emission error, missing control or unavailable persistence leaves that dimension unverified; a query exiting 0 is insufficient. If the bounded baseline lacks events, a later bounded read of the same interval may address a flush delay; do not re-emit completed controls or change global retention settings. This tests error-versus-default selection and bounded historical reads, not info/debug persistence, arbitrary process-name matching or retention across reboot.
+
+Cleanup: no child process remains after wait and no files are created. The five public synthetic events remain subject to normal system retention; there is no selective safe cleanup command proposed. Do not run `log erase`, which would delete unrelated logs. No private message content is emitted.
+
+#### S3 — optional assertion creation/release control
+
+Only needed to certify the sleep-live **candidate**, not to validate the catalog's supported snapshot or its live/history abstentions. Normal user; temporarily prevents idle sleep for five seconds, with no persistent power setting change. Installed caffeinate(8) documents `-i -t`; pmset(1) documents creation/release logging. This specific missing-event gap justifies repeating monitoring, not the completed snapshot check.
+
+Terminal A:
+
+```sh
+/usr/bin/pmset -g assertionslog
+```
+
+After A is visibly listening, terminal B:
+
+```sh
+/usr/bin/caffeinate -i -t 5 &
+assertion_pid=$!
+printf 'S3 owned assertion PID=%s\n' "$assertion_pid"
+wait "$assertion_pid"
+printf 'S3 emitter exit=%s\n' "$?"
+```
+
+Expected execution: caffeinate exits 0 after its timeout, while A receives events. Expected semantics: creation and release of the same assertion attributed to this PID, with idle-system-sleep prevention type; ambient assertions are not the control. Record both event markers, their correlation and elapsed time without owner details. Missing markers leave event visibility unverified, not proof of no assertion. No claim of exhaustive wake diagnosis, retroactive history or absence of dropped events.
+
+Cleanup: B naturally releases its assertion after five seconds. Stop A with Ctrl-C; if B is interrupted, allow the five-second timeout to expire. Do not stop unrelated caffeinate processes or change pmset settings. Raw A output stays local.
+
+### Remaining closure decision
+
+The evidence review now supports all 40 final dispositions within documented prototype scope; routing remains 39/40, execution remains 18 bounded passes / 3 blocked / 19 untested. There are eight semantically suitable report suggestions, four input responses, one ambiguity and 27 appropriate catalog abstentions. These are review classifications, not measured 100% accuracy or successful answers for unsupported tasks.
+
+R1 and G2 are the smallest remaining prioritized candidate checks; S3 is conditional on certifying live monitoring. No PDF, battery JSON, signing/ticket or exact APFS rerun is required for current claims. Keep full useful-coverage/answer-accuracy figures unmeasured until the representative-input protocol and answer-completeness assessment are accepted; any eventual score must exclude candidate-only successes from answered tasks and expose blocked/untested scope. Record R1/G2 outcomes or justified unresolved limitations before deciding whether #2's priority work is sufficient to close. No issue is closed by this review.
+
+**#2 stays open; #4 stays deferred until the remaining validation and semantic assessment support a meaningful comparison.** This agent review does not restore the inspected held-out set's independence; #4 still needs a fresh uninspected comparison set.
+
+Preparation checks: all 40 unique IDs, ledger counts and local evidence anchors verified; all five proposed shell blocks pass syntax checking and their embedded Python parses. These checks did not execute the proposed commands. Source tests, wheel builds, completed device checks and performance measurements were not rerun for this documentation-only review.
