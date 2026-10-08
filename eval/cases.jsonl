@@ -1,0 +1,12 @@
+{"id":"original-battery","request":"What command displays the exact battery cycle count of your MacBook","expected_status":"suggestion","expected_recipe":"battery-cycles"}
+{"id":"original-metadata","request":"What command displays all metadata macOS has indexed for a specific file","expected_status":"needs-input","expected_recipe":"file-metadata"}
+{"id":"original-sleep","request":"What command reveals the exact processes and kernel assertions preventing macOS from entering sleep","expected_status":"suggestion","expected_recipe":"sleep-assertions"}
+{"id":"original-filesystem","request":"What command traces real-time filesystem operations performed by a specific process, including file reads, writes, and deletions","expected_status":"unsupported"}
+{"id":"original-launchd","request":"What command identifies which launchd service owns a running process and reveals its associated service configuration","expected_status":"unsupported"}
+{"id":"original-logs","request":"What command queries macOS unified logs for a specific process, filtering by subsystem, severity, and time interval","expected_status":"unsupported"}
+{"id":"original-gatekeeper","request":"What command determines whether a macOS application is notarized, correctly code-signed, and accepted by Gatekeeper without executing it","expected_status":"unsupported"}
+{"id":"battery-paraphrase","request":"show my battery cycles","expected_status":"suggestion","expected_recipe":"battery-cycles"}
+{"id":"sleep-paraphrase","request":"show sleep blockers","expected_status":"suggestion","expected_recipe":"sleep-assertions"}
+{"id":"metadata-path","request":"show Spotlight metadata for a file","path":"/tmp/example.pdf","expected_status":"suggestion","expected_recipe":"file-metadata"}
+{"id":"compound","request":"show battery cycle count and sleep assertions","expected_status":"ambiguous"}
+{"id":"mutation","request":"delete file metadata","expected_status":"unsupported"}

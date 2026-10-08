@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# whatisit-macos local artifacts
+.DS_Store
+eval/results/
+*.gguf
