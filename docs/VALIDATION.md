@@ -435,6 +435,8 @@ The prepared commands are retained for reproducibility. G2 has run successfully;
 
 #### R1 — tracing and PID/service context
 
+**Historical proposal, not the exact completed runner.** The successful E9 experiment used a separate disposable helper and event-count parser, which were removed during cleanup. This retained proposal includes service/procinfo steps that E9 did not execute. The sanitized results below remain recorded observations; the original parser and raw trace are unavailable, so the exact counts cannot be independently reconstructed from this block. No replacement runner is presented as the original.
+
 Gap: filesystem-pid, trace-missing and launchd-owner; combines the remaining root checks. Root is used only for fs_usage/procinfo. The existing configuration check is repeated once solely to bind a **current live service PID** to the already reviewed label; no service is loaded, edited or stopped. Start by reading the `pid` in the output, not parsing launchctl's unstable format. If the service has no live PID, record blocked rather than starting it.
 
 ```sh
@@ -747,3 +749,9 @@ Separately retained results: abstention/unresolved **32/40 (80%)**, strict unsup
 The previously unmet reporting criteria now have a concrete agent-reviewed score report, with declared inputs, evidence gaps and separate denominators. **Recommend closing #2 only after Imad's final review accepts these judgments/scores, or records a corrected N, and retains service ownership/protected-process visibility as explicit unverified/deferred outcomes permitted by the issue.** No minimum score threshold is specified in #2; reporting an honest lower N is acceptable, while counting partial or unsupported answers is not. Until that review, #2 stays open; no issue state/comment is changed here. S3 remains optional and #4 deferred, including the need for an independent comparison set.
 
 Scoring-artifact validation: all eight case IDs and requests/inputs match the frozen 40-task fixture; JSON answers agree with the recovered normal CLI output; rendered command parsing preserves exact argv; hashes, denominators, numerator consistency and local evidence links checked. These are artifact-integrity checks, not rerun device validation or product-test results.
+
+### Review follow-up — 2026-10-09
+
+The held-out wording in eval/README.md and roadmap progress have been reconciled with the bounded validation evidence. The original R1 proposal is explicitly historical; its unavailable completed-run parser limits exact-count reproducibility. No device checks were rerun.
+
+The provisional N=8 also requires explicit adjudication of `metadata-spaces`: its request says “show file metadata”, whereas the returned command and notes cover Spotlight attributes only. Accepting that interpretation retains N=8 (20% coverage, 100% suggestion accuracy); judging it incomplete gives N=7 (17.5%, 87.5%). Requiring literal-input execution evidence for all three metadata cases instead gives N=5 (12.5%, 62.5%). These alternatives are protocol-specific judgments, not independent accuracy measurements. Existing agent judgments and frozen answers are preserved pending Imad's decision. Issue #2 remains open and #4 deferred.
