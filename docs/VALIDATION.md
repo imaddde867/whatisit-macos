@@ -313,3 +313,22 @@ Target: macOS 27.0.1 (26A434), arm64; same Apple codesign/spctl paths and manual
 The optional negative-control operation first encountered an automatic approval-review timeout with no command result. Splitting disposable copy preparation from read-only verification allowed the single retry to complete. This was not a detected signature problem with the original download.
 
 This provides a positive public Developer ID example for signature-only, gatekeeper-only, notarization-only and the separate steps of app-audit. It does not change their catalog `unsupported` dispositions: no input-aware audit recipe exists. Missing/invalid/revoked-ticket failure distinctions and a non-notarized Developer ID example remain untested. Filesystem tracing and launchctl procinfo remain blocked on human sudo authentication; matching/nonmatching log-filter semantics remain unverified because the synthetic query had no events. All 40 tasks retain dispositions; **#2 remains open** until these gaps and independent semantic review are addressed, and **#4 remains deferred**. No full answer-accuracy figure is claimed.
+
+## iTerm2 3.7.3 observed artifact results — 2026-10-09
+
+Separately inspected version **3.7.3** from the [official download URL](https://iterm2.com/downloads/stable/iTerm2-3_7_3.zip), linked by the [official downloads page](https://iterm2.com/downloads.html). This is a separate artifact from the 3.7.4 check above. The ZIP was downloaded and extracted into a new disposable directory with Apple's `ditto`; **the app was inspected without launching or installing it**. No signing, stapling, registration or notarization submission was performed. Temporary paths and raw diagnostic output are omitted.
+
+Observed ZIP size: **57,887,250 bytes**. Observed ZIP SHA-256: `eb7a166061e58602e3d4bdf69d92f2c8cf6a63feed002f6adc07128a71c8dc39`. **This hash is an observed artifact identifier, not independently authenticated provenance.** No independently verified publisher PGP signature or trusted digest channel is claimed. The code-signature, local policy and ticket results below are separate observations.
+
+| Check | Sanitized observed result |
+| --- | --- |
+| Bundle | Version 3.7.3; bundle ID `com.googlecode.iterm2`; executable `Contents/MacOS/iTerm2`. |
+| Universal architectures | `/usr/bin/lipo -archs <main-executable>` exits 0: `x86_64 arm64`. Architectures refer to the main executable, not every nested component. |
+| Developer ID / team | `/usr/bin/codesign --display --verbose=4 <bundle>` exits 0: `Developer ID Application: GEORGE NACHMAN (H7V7XYVQ7D)`; TeamIdentifier `H7V7XYVQ7D`. |
+| Code-signature verification | `/usr/bin/codesign --verify --deep --strict --verbose=2 <bundle>` exits 0: valid on disk; designated requirement satisfied. |
+| Gatekeeper | `/usr/sbin/spctl --assess --type execute --verbose=2 <bundle>` exits 0: accepted; `source=Notarized Developer ID`. |
+| Stapled ticket / validation | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -v <bundle>` exits 0 and reports successful validation. This confirms a valid stapled ticket for the inspected bundle, separately from Gatekeeper's source classification. |
+
+Target: macOS 27.0.1 (26A434), arm64; Python 3.14.8 used only to invoke the fixed inspection commands and sanitize output. The system codesign/spctl and CLT stapler provenance is recorded above. No root privileges or user credentials were required. Stapler validation ran with network access and may consult Apple's ticket service; no offline guarantee is established. Successful checks apply to this exact artifact on this Mac at check time, not other apps, future policy/revocation state, runtime behavior or full answer accuracy.
+
+Documentation-only update: source code, evaluation fixtures, performance measurements and model deferral are unchanged. #2 remains open and #4 remains deferred.
