@@ -16,6 +16,37 @@ def query(request, **kwargs):
 
 
 class EngineTests(unittest.TestCase):
+    def test_separate_app_checks_quote_explicit_path(self):
+        path = "/tmp/a'; $(touch nope).app"
+        for request, argv in [
+            ('Verify the code signature of an app without launching it',
+             ['codesign', '--verify', '--deep', '--strict', '--verbose=2', path]),
+            ('Assess Gatekeeper policy for an app bundle',
+             ['spctl', '--assess', '--type', 'execute', '--verbose=2', path]),
+            ('Check whether an app has a stapled notarization ticket',
+             ['/Library/Developer/CommandLineTools/usr/bin/stapler', 'validate', '-q', path]),
+        ]:
+            with self.subTest(request=request):
+                answer = query(request, path=path)
+                self.assertEqual(answer['status'], 'suggestion')
+                self.assertEqual(shlex.split(answer['command']), argv)
+                self.assertEqual(query(request)['missing'], ['path'])
+
+    def test_app_checks_do_not_claim_combined_or_extra_scope(self):
+        for request in [
+            'Check signing, notarization and Gatekeeper acceptance of an application',
+            'Check whether an app was ever notarized',
+            'Verify app signature and show unified logs',
+            'Assess Gatekeeper for an app on another Mac',
+            'Verify app signature and print battery cycles',
+            'Verify signature for every app recursively',
+            'Show app signature developer identity',
+        ]:
+            with self.subTest(request=request):
+                answer = query(request, path='/tmp/example.app')
+                self.assertEqual(answer['status'], 'unsupported')
+                self.assertIsNone(answer['command'])
+
     def test_seed_cases(self):
         fixture = Path(__file__).resolve().parents[1] / "eval" / "cases.jsonl"
         for line in fixture.read_text().splitlines():

@@ -30,7 +30,29 @@ class CliTests(unittest.TestCase):
     def test_catalog_can_be_listed_on_linux(self):
         code, stdout, _ = self.invoke(["--json", "--list"], system="Linux")
         self.assertEqual(code, 0)
-        self.assertEqual(len(json.loads(stdout)), 3)
+        self.assertEqual(len(json.loads(stdout)), 6)
+
+    def test_app_signature_cli_and_missing_path(self):
+        code, stdout, _ = self.invoke(['--json', '--path', '/tmp/example.app', 'verify app signature'])
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(stdout)['argv'],
+                         ['codesign', '--verify', '--deep', '--strict', '--verbose=2', '/tmp/example.app'])
+        code, stdout, _ = self.invoke(['--json', 'verify app signature'])
+        self.assertEqual(code, 2)
+        self.assertEqual(json.loads(stdout)['missing'], ['path'])
+
+    def test_model_requires_explicit_documentation_index(self):
+        code, stdout, _ = self.invoke(['--json', '--model', '/not/a/model', 'verify app signature'])
+        self.assertEqual(code, 2)
+        self.assertIn('documentation', json.loads(stdout)['reason'])
+
+    def test_model_is_not_loaded_on_non_macos(self):
+        code, stdout, _ = self.invoke(['--json', '--model', '/not/a/model', '--docs-index',
+                                      '/not/an/index', 'verify app signature'], system='Linux')
+        self.assertEqual(code, 2)
+        answer = json.loads(stdout)
+        self.assertIsNone(answer['command'])
+        self.assertNotIn('model_error', answer)
 
     def test_unsupported_human_output_goes_to_stderr(self):
         code, stdout, stderr = self.invoke(["show unified logs"])

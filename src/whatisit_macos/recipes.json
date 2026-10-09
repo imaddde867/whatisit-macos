@@ -25,5 +25,146 @@
     "parameters": [],
     "sources": ["man pmset", "https://github.com/apple-oss-distributions/PowerManagement"],
     "notes": ["Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."]
+  },
+  {
+    "id": "app-signature",
+    "title": "Verify an app code signature",
+    "match_groups": [
+      [
+        "app",
+        "application",
+        "bundle"
+      ],
+      [
+        "signature",
+        "signing"
+      ],
+      [
+        "verify",
+        "check",
+        "validate"
+      ]
+    ],
+    "argv": [
+      "codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "--verbose=2",
+      "{path}"
+    ],
+    "parameters": [
+      "path"
+    ],
+    "input_schema": {
+      "path": {
+        "type": "string",
+        "required": true,
+        "description": "Explicit app bundle path; never inferred from request text."
+      }
+    },
+    "output_scope": "Signature integrity of one explicit app bundle, including nested code.",
+    "privileges": "No sudo; read access to the supplied bundle.",
+    "sources": [
+      "man codesign",
+      "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+    ],
+    "notes": [
+      "Checks signature integrity and designated requirements without launching the app.",
+      "Does not establish developer identity, notarization or Gatekeeper acceptance."
+    ]
+  },
+  {
+    "id": "app-gatekeeper",
+    "title": "Assess local Gatekeeper policy for an app",
+    "match_groups": [
+      [
+        "app",
+        "application",
+        "bundle"
+      ],
+      [
+        "gatekeeper"
+      ],
+      [
+        "assess",
+        "check",
+        "policy",
+        "acceptance"
+      ]
+    ],
+    "argv": [
+      "spctl",
+      "--assess",
+      "--type",
+      "execute",
+      "--verbose=2",
+      "{path}"
+    ],
+    "parameters": [
+      "path"
+    ],
+    "input_schema": {
+      "path": {
+        "type": "string",
+        "required": true,
+        "description": "Explicit app bundle path; never inferred from request text."
+      }
+    },
+    "output_scope": "Local execute-policy assessment for one explicit app bundle at check time.",
+    "privileges": "No sudo; read access to the supplied bundle.",
+    "sources": [
+      "man spctl",
+      "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+    ],
+    "notes": [
+      "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+      "Does not independently validate the code signature or a stapled ticket."
+    ]
+  },
+  {
+    "id": "app-ticket",
+    "title": "Validate an app stapled notarization ticket",
+    "match_groups": [
+      [
+        "app",
+        "application",
+        "bundle"
+      ],
+      [
+        "stapled",
+        "stapler"
+      ],
+      [
+        "ticket"
+      ]
+    ],
+    "argv": [
+      "/Library/Developer/CommandLineTools/usr/bin/stapler",
+      "validate",
+      "-q",
+      "{path}"
+    ],
+    "parameters": [
+      "path"
+    ],
+    "input_schema": {
+      "path": {
+        "type": "string",
+        "required": true,
+        "description": "Explicit app bundle path; never inferred from request text."
+      }
+    },
+    "output_scope": "Validate the stapled ticket for one explicit app bundle.",
+    "privileges": "No sudo; read access to the supplied bundle.",
+    "sources": [
+      "man stapler (Apple Command Line Tools)",
+      "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+    ],
+    "notes": [
+      "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+      "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+      "Does not establish signature integrity or local Gatekeeper acceptance."
+    ]
   }
 ]

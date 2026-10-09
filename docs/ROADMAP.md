@@ -42,14 +42,18 @@ The first comparison and eight routing mismatches are recorded in [MEASUREMENTS.
 
 Gate: compare against the keyword baseline on the expanded evaluation, including false matches and abstentions. Keep a held-out set that was not used to tune routing.
 
-## 3. Local intelligence experiment — next
+## 3. Local intelligence experiment — first slice implemented
 
-- [ ] Inspect original whatisit code/configuration and locally available models/runtimes; record reuse opportunities and missing artifacts.
-- [ ] Implement one optional adapter and on-demand lifecycle, following #4.
+- [x] Inspect original source/configuration and locally available models/runtimes; record hashes and reuse opportunities in [EXPERIMENT.md](EXPERIMENT.md). Original installed version/debug output remains uncaptured.
+- [x] Implement one optional MLX selector, shared validated rendering and on-demand lifecycle, following #4.
+- [x] Add separate signature, local Gatekeeper policy and stapled-ticket operations with explicit app paths, following #7.
+- [x] Add an A/B/C measurement harness and record an 11-case development pilot, including retained RSS after unload. Keep the model optional; no added benefit on this slice.
 - [ ] Expand validated operation coverage through #7; keep typed inputs and deterministic command rendering.
 - [ ] Measure frozen baseline versus expanded deterministic versus model-assisted variants on the M4.
 - [ ] Record load time, fresh/warm median and p95 latency, peak total memory, retained idle memory and observed swap/pressure.
 - [ ] Publish reproducible commands, model/configuration identities, semantic scores and a keep/change/discard decision.
+
+Pilot commands, artifact identities and a provisional keep-deterministic/no-default-model decision are in [EXPERIMENT.md](EXPERIMENT.md). The remaining boxes refer to the fresh final comparison and later catalog slices, not a prerequisite for using the implemented app checks.
 
 Experiment start is unblocked. Default adoption still requires measured benefit within predeclared resource budgets, no fabricated required inputs or wrong-platform outputs on the comparison set, and separately reported errors/abstentions/coverage. A negative result is a valid outcome. Do not tune against the final comparison set.
 
