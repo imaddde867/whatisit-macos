@@ -30,7 +30,7 @@ class CliTests(unittest.TestCase):
     def test_catalog_can_be_listed_on_linux(self):
         code, stdout, _ = self.invoke(["--json", "--list"], system="Linux")
         self.assertEqual(code, 0)
-        self.assertEqual(len(json.loads(stdout)), 7)
+        self.assertEqual(len(json.loads(stdout)), 8)
 
     def test_app_signature_cli_and_missing_path(self):
         code, stdout, _ = self.invoke(['--json', '--path', '/tmp/example.app', 'verify app signature'])

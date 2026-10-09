@@ -17,7 +17,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from whatisit_macos.engine import LogFilter, suggest
+from whatisit_macos.engine import LogFilter, ServiceTarget, suggest
 from whatisit_macos.local_model import LocalModel, suggest_with_model
 from whatisit_macos.retrieval import search
 from tools.benchmark import summarize
@@ -75,6 +75,8 @@ def worker(mode: str, cases: list[dict], index: Path, model_path: Path | None, p
                 kwargs = dict(system=platform.system(), which=shutil.which, path=case.get('path'))
                 if mode != 'A' and 'log_filter' in case:
                     kwargs['log_filter'] = LogFilter(**case['log_filter'])
+                if mode != 'A' and 'service_target' in case:
+                    kwargs['service_target'] = ServiceTarget(**case['service_target'])
                 if model:
                     answer = suggest_with_model(case['request'], index=index, select=select, **kwargs)
                 else:

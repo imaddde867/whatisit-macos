@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from typing import Callable
 
-from .engine import LogFilter, load_recipes, render
+from .engine import LogFilter, ServiceTarget, load_recipes, render
 from .retrieval import search
 
 
@@ -40,7 +40,8 @@ def messages(request: str, evidence: list[dict], *, path_supplied: bool) -> list
 
 def suggest_with_model(request: str, *, index: Path, select: Callable[[list[dict]], str],
                        system: str, which: Callable[[str], str | None],
-                       path: str | None = None, log_filter: LogFilter | None = None) -> dict:
+                       path: str | None = None, log_filter: LogFilter | None = None,
+                       service_target: ServiceTarget | None = None) -> dict:
     answer = {'status': 'unsupported', 'command': None, 'reason': ''}
     if system != 'Darwin':
         return {**answer, 'reason': 'This prototype only suggests commands on macOS.'}
@@ -63,7 +64,7 @@ def suggest_with_model(request: str, *, index: Path, select: Callable[[list[dict
             raise ValueError('Model selected an unknown operation.')
         else:
             answer = render(operation, request=request, system=system, which=which, path=path,
-                            log_filter=log_filter)
+                            log_filter=log_filter, service_target=service_target)
         answer['model_selection'] = decision
     except (ImportError, OSError, RuntimeError, ValueError, TypeError) as error:
         answer['reason'] = 'Local model selection failed; no command was generated.'

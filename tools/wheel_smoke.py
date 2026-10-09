@@ -22,12 +22,12 @@ def main():
     assert not Path.cwd().is_relative_to(repository), 'Run outside repository'
     assert not os.environ.get('PYTHONPATH'), 'Unset PYTHONPATH'
     assert not distribution('whatisit-macos').requires, 'Unexpected runtime dependencies'
-    assert len(load_recipes()) == 7
+    assert len(load_recipes()) == 8
     cli = str(Path(sys.executable).with_name('whatisit-macos'))
     capture = str(Path(sys.executable).with_name('whatisit-macos-build-docs'))
     assert subprocess.run([cli, '--version'], capture_output=True, check=True).stdout.strip() == b'0.1.0'
     catalog = subprocess.run([cli, '--json', '--list'], capture_output=True, text=True, check=True)
-    assert len(json.loads(catalog.stdout)) == 7
+    assert len(json.loads(catalog.stdout)) == 8
     filtered = subprocess.run([cli, '--json', '--subsystem', 'com.example.whatisit', '--pid', '123',
                                '--level', 'error', '--start', '2026-10-09 10:00:00+0300',
                                '--end', '2026-10-09 10:01:00+0300', 'Filter unified logs'],

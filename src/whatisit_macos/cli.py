@@ -10,7 +10,7 @@ import sqlite3
 from pathlib import Path
 
 from . import __version__
-from .engine import LogFilter, load_recipes, suggest
+from .engine import LogFilter, ServiceTarget, load_recipes, suggest
 from .retrieval import search
 
 
@@ -23,6 +23,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--level', help='exact log severity: error or default')
     parser.add_argument('--start', help='log interval start: YYYY-MM-DD HH:MM:SS+HHMM')
     parser.add_argument('--end', help='log interval end: YYYY-MM-DD HH:MM:SS+HHMM')
+    parser.add_argument('--domain', help='explicit launchd service domain: system, user/<uid> or gui/<uid>')
+    parser.add_argument('--label', help='explicit launchd service label')
     parser.add_argument("--docs-index", type=Path, help="search an explicitly captured local manual index")
     parser.add_argument('--model', type=Path, help='optional local MLX model directory; requires --docs-index')
     parser.add_argument("--json", action="store_true", help="print structured output")
@@ -46,6 +48,8 @@ def main(argv: list[str] | None = None) -> int:
     log_filter = (LogFilter(args.subsystem, args.pid, args.level, args.start, args.end)
                   if any(value is not None for value in (args.subsystem, args.pid, args.level, args.start, args.end))
                   else None)
+    service_target = (ServiceTarget(args.domain, args.label)
+                      if args.domain is not None or args.label is not None else None)
     if args.model:
         from .local_model import LocalModel, suggest_with_model
         if not args.docs_index:
@@ -56,13 +60,13 @@ def main(argv: list[str] | None = None) -> int:
             try:
                 answer = suggest_with_model(request, index=args.docs_index, select=model.select,
                                             system=platform.system(), which=shutil.which, path=args.path,
-                                            log_filter=log_filter)
+                                            log_filter=log_filter, service_target=service_target)
                 answer['model_load_ms'] = model.load_ms
             finally:
                 model.close()
     else:
         answer = suggest(request, system=platform.system(), which=shutil.which, path=args.path,
-                         log_filter=log_filter)
+                         log_filter=log_filter, service_target=service_target)
     if args.docs_index and not args.model:
         try:
             answer["documentation"] = search(args.docs_index, " ".join(args.words))
