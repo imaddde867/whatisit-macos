@@ -4,8 +4,19 @@ import json
 import os
 import re
 import shlex
+from dataclasses import asdict, dataclass
+from datetime import datetime
 from importlib.resources import files
 from typing import Callable
+
+
+@dataclass(frozen=True)
+class LogFilter:
+    subsystem: str | None = None
+    pid: int | None = None
+    level: str | None = None
+    start: str | None = None
+    end: str | None = None
 
 
 def load_recipes() -> list[dict]:
@@ -18,6 +29,7 @@ def suggest(
     system: str,
     which: Callable[[str], str | None],
     path: str | None = None,
+    log_filter: LogFilter | None = None,
 ) -> dict:
     """Keyword routing is deliberately a baseline, not an intent classifier."""
     result = {"status": "unsupported", "command": None, "reason": ""}
@@ -33,14 +45,17 @@ def suggest(
     if not matches:
         return {**result, "reason": "No documented recipe matches this request yet."}
     if len(matches) != 1:
-        status = 'unsupported' if any(r['id'].startswith('app-') for r in matches) else 'ambiguous'
+        status = 'unsupported' if any(r['id'].startswith('app-') or r['id'] == 'unified-log-filter'
+                                      for r in matches) else 'ambiguous'
         return {**result, 'status': status, "reason": "Ask for one supported task at a time."}
     recipe = matches[0]
-    return render(recipe['id'], request=request, system=system, which=which, path=path)
+    return render(recipe['id'], request=request, system=system, which=which, path=path,
+                  log_filter=log_filter)
 
 
 def render(recipe_id: str, *, request: str, system: str,
-           which: Callable[[str], str | None], path: str | None = None) -> dict:
+           which: Callable[[str], str | None], path: str | None = None,
+           log_filter: LogFilter | None = None) -> dict:
     """Validate one catalog selection and render only explicitly supplied inputs."""
     result = {"status": "unsupported", "command": None, "reason": ""}
     if system != 'Darwin':
@@ -57,13 +72,19 @@ def render(recipe_id: str, *, request: str, system: str,
         'app-signature': {'identity', 'developer', 'notarization', 'notarized', 'ticket', 'gatekeeper', 'policy'},
         'app-gatekeeper': {'signature', 'signing', 'ticket', 'offline', 'another', 'other', 'future', 'guarantee'},
         'app-ticket': {'signature', 'signing', 'gatekeeper', 'policy', 'ever', 'revoked', 'offline'},
+        'unified-log-filter': {'live', 'stream', 'streaming', 'monitor', 'watch', 'continuous',
+                               'debug', 'info', 'fault', 'name', 'archive', 'archives', 'collect',
+                               'message', 'messages', 'containing', 'contains', 'category',
+                               'count', 'counts', 'statistics', 'all', 'every', 'or',
+                               'last', 'since', 'boot', 'today', 'yesterday'},
     }
     # shortcut: lexical qualifiers are conservative; use intent parsing before expanding catalog scope.
     if (re.search(r"\ball\s+(?:files|documents)\b", request.casefold()) or
             any(r['id'] != recipe_id and all(tokens.intersection(g) for g in r['match_groups'])
                 for r in load_recipes()) or
             tokens & unsupported[recipe["id"]] or
-            tokens & {'then', 'json', 'xml', 'launchd', 'logs', 'trace', 'tracing',
+            (recipe_id != 'unified-log-filter' and tokens & {'log', 'logs'}) or
+            tokens & {'then', 'json', 'xml', 'launchd', 'trace', 'tracing',
                       'delete', 'remove', 'erase', 'disable', 'enable', 'install', 'set', 'change', 'write'} or
             (recipe['id'].startswith('app-') and tokens & {'and', 'every', 'all', 'recursive', 'recursively'}) or
             (not recipe['id'].startswith('app-') and
@@ -74,16 +95,39 @@ def render(recipe_id: str, *, request: str, system: str,
                "sources": recipe["sources"], "notes": recipe["notes"]}
     if which(tool) is None:
         return {**result, **details, "status": "unavailable", "reason": f"{tool} is not available on PATH."}
-    missing = [name for name in recipe["parameters"] if name == "path" and not path]
-    if missing:
-        return {**result, **details, "status": "needs-input", "missing": missing,
-                "reason": "Supply the path with --path. No path is guessed."}
-    # Absolute paths cannot accidentally become option flags. shlex.join quotes
-    # shell metacharacters; no user-supplied shell fragment is interpolated.
+    if log_filter is not None and recipe_id != 'unified-log-filter':
+        return {**result, **details, 'status': 'needs-input', 'reason': 'This operation does not use log-filter flags.'}
     if path is not None and "path" not in recipe["parameters"]:
         return {**result, **details, "status": "needs-input", "reason": "This operation does not use --path."}
-    value = os.path.abspath(os.path.expanduser(path)) if path else ""
-    argv = [value if arg == "{path}" else arg for arg in recipe["argv"]]
+    values = asdict(log_filter or LogFilter()) if recipe_id == 'unified-log-filter' else {'path': path}
+    missing = [name for name in recipe['parameters'] if values[name] is None or values[name] == '']
+    if missing:
+        return {**result, **details, "status": "needs-input", "missing": missing,
+                "reason": 'Supply ' + ', '.join('--' + name for name in missing) + '. No input is guessed.'}
+    if recipe_id == 'unified-log-filter':
+        if (not isinstance(values['subsystem'], str) or
+                not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,254}', values['subsystem']) or
+                type(values['pid']) is not int or values['pid'] <= 0 or
+                values['level'] not in ('error', 'default')):
+            return {**result, **details, 'status': 'needs-input',
+                    'reason': 'Use a subsystem of 1–255 ASCII letters/digits/dots/underscores/hyphens, a positive integer PID, and level error or default.'}
+        try:
+            bounds = []
+            for name in ('start', 'end'):
+                value = values[name]
+                if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{4}', value):
+                    raise ValueError('Invalid timestamp format')
+                bounds.append(datetime.strptime(value, '%Y-%m-%d %H:%M:%S%z'))
+            if bounds[0] >= bounds[1]:
+                raise ValueError('End must follow start')
+        except ValueError:
+            return {**result, **details, 'status': 'needs-input',
+                    'reason': 'Use --start and --end as YYYY-MM-DD HH:MM:SS+HHMM, with end after start.'}
+    # Absolute paths cannot accidentally become option flags. shlex.join quotes
+    # shell metacharacters; no user-supplied shell fragment is interpolated.
+    if path:
+        values['path'] = os.path.abspath(os.path.expanduser(path))
+    argv = [arg.format_map(values) for arg in recipe['argv']]
     if any("\x00" in arg or "\n" in arg or "\r" in arg for arg in argv):
         return {**result, **details, "status": "needs-input", "reason": "Use a path without NUL or newline characters."}
     return {**result, **details, "status": "suggestion", "reason": "",

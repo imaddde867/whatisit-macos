@@ -10,6 +10,26 @@ except ImportError:
 
 
 class ExperimentTests(unittest.TestCase):
+    def test_comparison_forwards_log_inputs_only_to_expanded_router(self):
+        with tempfile.TemporaryDirectory() as directory:
+            from whatisit_macos.retrieval import Manual, build_index
+            index = Path(directory) / 'docs.sqlite3'
+            build_index(index, [Manual('log', 'test:log', '/usr/bin/log', '27.0.1',
+                                       '2026-10-09', 'Filter unified logs.')])
+            case = {'id': 'logs', 'request': 'Filter unified logs',
+                    'log_filter': {'subsystem': 'com.example.whatisit', 'pid': 123, 'level': 'error',
+                                   'start': '2026-10-09 10:00:00+0300', 'end': '2026-10-09 10:01:00+0300'},
+                    'expected_status': 'suggestion', 'expected_recipe': 'unified-log-filter'}
+            with patch.object(experiment, 'rss_bytes', return_value=1024), \
+                    patch('tools.experiment.platform.system', return_value='Darwin'), \
+                    patch('tools.experiment.shutil.which', side_effect=lambda tool: tool):
+                baseline = experiment.worker('A', [case], index, None, 1)
+                expanded = experiment.worker('B', [case], index, None, 1)
+            self.assertEqual(baseline['rows'][0]['answer']['status'], 'unsupported')
+            self.assertEqual(expanded['contract_matches'], 1)
+            self.assertEqual(expanded['rows'][0]['answer']['argv'][-1],
+                             'subsystem == "com.example.whatisit" AND logType == "error" AND processIdentifier == 123')
+
     def setUp(self):
         self.assertIsNotNone(experiment, 'Comparison measurement harness is not implemented')
 

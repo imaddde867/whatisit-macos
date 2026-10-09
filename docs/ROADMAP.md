@@ -48,7 +48,8 @@ Gate: compare against the keyword baseline on the expanded evaluation, including
 - [x] Implement one optional MLX selector, shared validated rendering and on-demand lifecycle, following #4.
 - [x] Add separate signature, local Gatekeeper policy and stapled-ticket operations with explicit app paths, following #7.
 - [x] Add an A/B/C measurement harness and record an 11-case development pilot, including retained RSS after unload. Keep the model optional; no added benefit on this slice.
-- [ ] Expand validated operation coverage through #7; keep typed inputs and deterministic command rendering.
+- [x] Add bounded unified-log filtering from the existing G2 evidence; require typed inputs and deterministic rendering. See [LOG_FILTER.md](LOG_FILTER.md).
+- [ ] Continue #7 with bounded tracing and known-service inspection.
 - [ ] Measure frozen baseline versus expanded deterministic versus model-assisted variants on the M4.
 - [ ] Record load time, fresh/warm median and p95 latency, peak total memory, retained idle memory and observed swap/pressure.
 - [ ] Publish reproducible commands, model/configuration identities, semantic scores and a keep/change/discard decision.
