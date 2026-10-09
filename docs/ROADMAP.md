@@ -52,6 +52,7 @@ Gate: compare against the keyword baseline on the expanded evaluation, including
 - [ ] Continue #7 with bounded tracing and known-service inspection.
 - [ ] Measure frozen baseline versus expanded deterministic versus model-assisted variants on the M4.
 - [ ] Record load time, fresh/warm median and p95 latency, peak total memory, retained idle memory and observed swap/pressure.
+- [x] Freeze and measure a 24-case post-implementation A/B/C comparison; publish semantic judgments and negative model results in [LOG_FILTER.md](LOG_FILTER.md). This implementer-authored set is now development evidence; independent release comparison remains pending.
 - [ ] Publish reproducible commands, model/configuration identities, semantic scores and a keep/change/discard decision.
 
 Pilot commands, artifact identities and a provisional keep-deterministic/no-default-model decision are in [EXPERIMENT.md](EXPERIMENT.md). The remaining boxes refer to the fresh final comparison and later catalog slices, not a prerequisite for using the implemented app checks.

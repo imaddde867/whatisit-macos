@@ -1,0 +1,3547 @@
+{
+  "measured_at": "2026-10-09T14:44:49.323923+00:00",
+  "macos": "27.0.1",
+  "architecture": "arm64",
+  "python": "3.14.8",
+  "runtime": {
+    "mlx-lm": "0.31.3",
+    "mlx": "0.32.0",
+    "transformers": "5.5.0"
+  },
+  "artifacts_sha256": {
+    "eval/log-comparison.jsonl": "845dc356d3b31ceb6f2e7c2dadc203011ddf79b392e7238c500202329c9b4ae9",
+    ".cache/manuals-log-comparison.sqlite3": "1246d26af7206d65ba9bef70ed0c34b07065e8e6583ec34a9b740852c70dd20b",
+    "eval/baseline/engine.py": "44d8f9e2e6d81e73fa0a3b4ea49f6b5e02bb093be9289cb4a2a5e94aee4d40be",
+    "eval/baseline/recipes.json": "2f9ecfbe431557130e2c8440f506cff5b4e5e0c5df0870afd5f2627015ef377f",
+    "src/whatisit_macos/recipes.json": "c9bc2ad807afb14bdf327d165d019b5b340372f543f5f98c357727fb93af66cc",
+    "src/whatisit_macos/local_model.py": "6bfc953b420bc52624c35b5fa7437722666cd0e46b307bd3294daf26f3eb8820",
+    "src/whatisit_macos/engine.py": "0c122714b72e8fb6587a68574d1cdbf0c5c763bac2569f489b0091e5b5b728f0",
+    "tools/experiment.py": "914de1e54a0ae4583a34c55332be0fc19c76eb9f7395401e1c8ee3ba40468fd9"
+  },
+  "model_files_sha256": {
+    "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+    "config.json": "ceb97c46fe17f523ac42c0f0254fd18d9589f8725f0bbbe0bef541f8ef84547a",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model.safetensors": "f212cf6fb9923281a09c135e05d43a052ee5ef7121f5b1dc0b0fb2de80f97cfd",
+    "model.safetensors.index.json": "7edb73f1af3c860b1344ece4abe04b258246afdfeba4cb39d3b84a0459890bee",
+    "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+    "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+    "tokenizer_config.json": "f7c61e32b7a17d19bf8e7037dcb74079a833e53ea9801f24008cac68458f03b7",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "swap_before": "total = 2048.00M  used = 1047.88M  free = 1000.12M  (encrypted)",
+  "swap_after": "total = 2048.00M  used = 1047.88M  free = 1000.12M  (encrypted)",
+  "method": "A frozen three-recipe router; B expanded router + retrieval; C same catalog/inputs + model. Fresh worker wall includes Python/import/retrieval/load/answer/unload/exit. Warm includes retrieval and rendering, excludes first response and model loading. Fresh KV cache per request. Filesystem caches not flushed. Process-tree RSS sampled every 50ms plus ps overhead; may miss short peaks. ru_maxrss is separate exact self RSS high-water; MLX peak allocations are separate, not added to RSS because unified-memory overlap is unknown. Idle sampled immediately after explicit unload, before worker exit. No server or suggested command started. Swap is system-wide; pressure not measured. Contract matches are not semantic accuracy; all cases are development evidence.",
+  "raw_report_sha256": "9c83a5f42709d2d574667776245ea10a7e348ec4fb3d80f40c00967614f3c541",
+  "raw_report_location": ".cache/log-comparison.json (ignored, local)",
+  "frozen_manifest": "eval/log-comparison-manifest.json",
+  "semantic_review": "Agent-reviewed whole-request template semantics under public representative-input protocol. Synthetic fixture paths/PIDs not executed. Human acceptance and independent release evaluation pending. Scores are specific to these authored cases; contract matches are separate.",
+  "variants": {
+    "A": {
+      "fresh_wall_ms": {
+        "samples": 3,
+        "median": 58.063541997398715,
+        "p95": 58.33579200407257,
+        "max": 58.33579200407257
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 3,
+        "median": 1228800,
+        "p95": 4194304,
+        "max": 4194304
+      },
+      "fresh_runs": [
+        {
+          "first_response_ms": 0.11512499622767791,
+          "warm_ms": null,
+          "contract_matches": 0,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 27475968,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27475968,
+          "idle_after_unload_bytes": 27475968,
+          "idle_delta_bytes": 0,
+          "model_released": null,
+          "wall_ms": 58.33579200407257,
+          "sampled_tree_peak_rss_bytes": 1228800,
+          "peak_rss_lower_bound_bytes": 27475968,
+          "rss_samples": 1,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "unsupported"
+        },
+        {
+          "first_response_ms": 0.0719579984433949,
+          "warm_ms": null,
+          "contract_matches": 0,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 27525120,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27525120,
+          "idle_after_unload_bytes": 27525120,
+          "idle_delta_bytes": 0,
+          "model_released": null,
+          "wall_ms": 58.063541997398715,
+          "sampled_tree_peak_rss_bytes": 4194304,
+          "peak_rss_lower_bound_bytes": 27525120,
+          "rss_samples": 1,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "unsupported"
+        },
+        {
+          "first_response_ms": 0.07095799810485914,
+          "warm_ms": null,
+          "contract_matches": 0,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 27426816,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27426816,
+          "idle_after_unload_bytes": 27426816,
+          "idle_delta_bytes": 0,
+          "model_released": null,
+          "wall_ms": 54.03912500332808,
+          "sampled_tree_peak_rss_bytes": 704512,
+          "peak_rss_lower_bound_bytes": 27426816,
+          "rss_samples": 1,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "unsupported"
+        }
+      ],
+      "warm": {
+        "first_response_ms": 0.0747500016586855,
+        "warm_ms": {
+          "samples": 23,
+          "median": 0.002749999111983925,
+          "p95": 0.05591600347543135,
+          "max": 1.5934999973978847
+        },
+        "contract_matches": 14,
+        "model_load_ms": null,
+        "self_peak_rss_bytes": 27525120,
+        "mlx_peak_allocated_bytes": null,
+        "mlx_after_unload": null,
+        "idle_before_bytes": 27525120,
+        "idle_after_unload_bytes": 27525120,
+        "idle_delta_bytes": 0,
+        "model_released": null,
+        "wall_ms": 59.36579199624248,
+        "sampled_tree_peak_rss_bytes": 3031040,
+        "peak_rss_lower_bound_bytes": 27525120,
+        "rss_samples": 1,
+        "sampling_errors": [],
+        "runtime_stderr": ""
+      },
+      "cases": [
+        {
+          "id": "logs-direct",
+          "elapsed_ms": 0.0747500016586855,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-reworded",
+          "elapsed_ms": 0.005832996976096183,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-semantic",
+          "elapsed_ms": 0.0038750004023313522,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-default",
+          "elapsed_ms": 0.002583001332823187,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-no-inputs",
+          "elapsed_ms": 0.002583001332823187,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-no-pid",
+          "elapsed_ms": 0.0030000010156072676,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-live",
+          "elapsed_ms": 0.0021660016500391066,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-debug",
+          "elapsed_ms": 0.001958003849722445,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-direct",
+          "elapsed_ms": 1.5934999973978847,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "system_profiler SPPowerDataType",
+            "reason": "",
+            "recipe_id": "battery-cycles",
+            "title": "Inspect battery cycle count",
+            "sources": [
+              "man system_profiler",
+              "https://support.apple.com/en-nz/102888"
+            ],
+            "notes": [
+              "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+              "A Mac without a battery may have no battery section."
+            ],
+            "argv": [
+              "system_profiler",
+              "SPPowerDataType"
+            ]
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-worded",
+          "elapsed_ms": 0.053499999921768904,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "system_profiler SPPowerDataType",
+            "reason": "",
+            "recipe_id": "battery-cycles",
+            "title": "Inspect battery cycle count",
+            "sources": [
+              "man system_profiler",
+              "https://support.apple.com/en-nz/102888"
+            ],
+            "notes": [
+              "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+              "A Mac without a battery may have no battery section."
+            ],
+            "argv": [
+              "system_profiler",
+              "SPPowerDataType"
+            ]
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-number",
+          "elapsed_ms": 0.005166002665646374,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-direct",
+          "elapsed_ms": 0.05591600347543135,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "mdls '/tmp/whatisit public example.pdf'",
+            "reason": "",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "argv": [
+              "mdls",
+              "/tmp/whatisit public example.pdf"
+            ]
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-no-path",
+          "elapsed_ms": 0.03399999695830047,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply the file path with --path. No path is guessed.",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "missing": [
+              "path"
+            ]
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-recursive",
+          "elapsed_ms": 0.004333000106271356,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-direct",
+          "elapsed_ms": 0.047124995035119355,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "pmset -g assertions",
+            "reason": "",
+            "recipe_id": "sleep-assertions",
+            "title": "Inspect assertions preventing sleep",
+            "sources": [
+              "man pmset",
+              "https://github.com/apple-oss-distributions/PowerManagement"
+            ],
+            "notes": [
+              "Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."
+            ],
+            "argv": [
+              "pmset",
+              "-g",
+              "assertions"
+            ]
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-broad",
+          "elapsed_ms": 0.002625005436129868,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-history",
+          "elapsed_ms": 0.003291999746579677,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-signature",
+          "elapsed_ms": 0.0023750035325065255,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-policy",
+          "elapsed_ms": 0.002540997229516506,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-ticket",
+          "elapsed_ms": 0.00224999530473724,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-no-path",
+          "elapsed_ms": 0.0018330028979107738,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-compound",
+          "elapsed_ms": 0.0022079984773881733,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "launchd-owner",
+          "elapsed_ms": 0.0024999972083605826,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        },
+        {
+          "id": "ambiguous-baseline",
+          "elapsed_ms": 0.002749999111983925,
+          "contract_match": true,
+          "semantic_judgment": "necessary ambiguity clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "ambiguous",
+            "command": null,
+            "reason": "Ask for one supported task at a time."
+          },
+          "documentation_identity": [],
+          "prompt_sha256": null
+        }
+      ],
+      "semantic_scores": {
+        "cases": 24,
+        "counts": {
+          "unsupported": 18,
+          "misses": 10,
+          "appropriate_abstentions": 8,
+          "suggestion": 4,
+          "correct_suggestions": 4,
+          "needs-input": 1,
+          "necessary_input_clarifications": 1,
+          "ambiguous": 1,
+          "ambiguity_clarifications": 1
+        },
+        "useful_correct_coverage": {
+          "numerator": 4,
+          "denominator": 24
+        },
+        "suggestion_accuracy": {
+          "numerator": 4,
+          "denominator": 4
+        },
+        "incorrect_or_partial_suggestions": 0,
+        "fabricated_inputs": 0,
+        "wrong_platform_suggestions": 0
+      }
+    },
+    "B": {
+      "fresh_wall_ms": {
+        "samples": 3,
+        "median": 80.77987500291783,
+        "p95": 81.76091699715471,
+        "max": 81.76091699715471
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 3,
+        "median": 32227328,
+        "p95": 32260096,
+        "max": 32260096
+      },
+      "fresh_runs": [
+        {
+          "first_response_ms": 18.755584002065007,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 32194560,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27492352,
+          "idle_after_unload_bytes": 32194560,
+          "idle_delta_bytes": 4702208,
+          "model_released": null,
+          "wall_ms": 80.77987500291783,
+          "sampled_tree_peak_rss_bytes": 32227328,
+          "peak_rss_lower_bound_bytes": 32227328,
+          "rss_samples": 2,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        },
+        {
+          "first_response_ms": 13.12783300090814,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 32227328,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27508736,
+          "idle_after_unload_bytes": 32227328,
+          "idle_delta_bytes": 4718592,
+          "model_released": null,
+          "wall_ms": 80.39379099500366,
+          "sampled_tree_peak_rss_bytes": 31195136,
+          "peak_rss_lower_bound_bytes": 32227328,
+          "rss_samples": 2,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        },
+        {
+          "first_response_ms": 12.46299999911571,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 32227328,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27541504,
+          "idle_after_unload_bytes": 32161792,
+          "idle_delta_bytes": 4620288,
+          "model_released": null,
+          "wall_ms": 81.76091699715471,
+          "sampled_tree_peak_rss_bytes": 32260096,
+          "peak_rss_lower_bound_bytes": 32260096,
+          "rss_samples": 2,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        }
+      ],
+      "warm": {
+        "first_response_ms": 15.326749999076128,
+        "warm_ms": {
+          "samples": 23,
+          "median": 0.69449999864446,
+          "p95": 2.4577080039307475,
+          "max": 2.552041994931642
+        },
+        "contract_matches": 23,
+        "model_load_ms": null,
+        "self_peak_rss_bytes": 32456704,
+        "mlx_peak_allocated_bytes": null,
+        "mlx_after_unload": null,
+        "idle_before_bytes": 27394048,
+        "idle_after_unload_bytes": 32456704,
+        "idle_delta_bytes": 5062656,
+        "model_released": null,
+        "wall_ms": 109.85387500113575,
+        "sampled_tree_peak_rss_bytes": 32194560,
+        "peak_rss_lower_bound_bytes": 32456704,
+        "rss_samples": 2,
+        "sampling_errors": [],
+        "runtime_stderr": ""
+      },
+      "cases": [
+        {
+          "id": "logs-direct",
+          "elapsed_ms": 15.326749999076128,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 17,
+              "chunk_text_sha256": "1f0d192ac93f20050514b572529dc6fcc5df11fc6f230a1224deff3ba9491fcc"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-reworded",
+          "elapsed_ms": 1.5612499992130324,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 25,
+              "chunk_text_sha256": "9ba7b67771db3fbe7a50b5cfb807d4abc99973debda2d9671538255cbae665d2"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 3,
+              "chunk_text_sha256": "ef4176fdbc787e9dcd797837aabdd0ea15e978727259d40f9c4c627f45b6ca92"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-semantic",
+          "elapsed_ms": 0.7786670030327514,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 6,
+              "chunk_text_sha256": "1ceb8bd2068804aa635c473cca05cd193e2a36a8b8718ca1caaebc59808d50e8"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 9,
+              "chunk_text_sha256": "cff374e64330271f3df1ef106069e730197bc3e28a67e57480b4ca14f3a10bfa"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-default",
+          "elapsed_ms": 0.716875001671724,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"default\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"default\" AND processIdentifier == 123"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 3,
+              "chunk_text_sha256": "ef4176fdbc787e9dcd797837aabdd0ea15e978727259d40f9c4c627f45b6ca92"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-no-inputs",
+          "elapsed_ms": 0.681416000588797,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --subsystem, --pid, --level, --start, --end. No input is guessed.",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "missing": [
+              "subsystem",
+              "pid",
+              "level",
+              "start",
+              "end"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 25,
+              "chunk_text_sha256": "9ba7b67771db3fbe7a50b5cfb807d4abc99973debda2d9671538255cbae665d2"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 7,
+              "chunk_text_sha256": "b17f86fe237d0eab345bfe62beefb99b7b11d782a4710e7022d228f8ea78d005"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-no-pid",
+          "elapsed_ms": 0.7468750045518391,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --pid. No input is guessed.",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "missing": [
+              "pid"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "stat",
+              "source": "/usr/share/man/man1/stat.1",
+              "tool_path": "/usr/bin/stat",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f90eeb02bb061d8949682b59e8caae7430953002eeb892accc7cab6f1bbaa5e0",
+              "chunk": 3,
+              "chunk_text_sha256": "b3eaaf20b559a6b3fe6866ac3504d52787dbb29ebbfbbaf677eb2073674918af"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-live",
+          "elapsed_ms": 0.5992499936837703,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 14,
+              "chunk_text_sha256": "0eb4a1fa7bebbbb1039fe3ba613d1b5f66cfe1e61fd85688d0a5dc117c485ddf"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 16,
+              "chunk_text_sha256": "3781d47013b2858bbffcfe48cff4d385d71f08b7a457cb8c6e1b2043600ba970"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "logs-debug",
+          "elapsed_ms": 0.7137499997043051,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 4,
+              "chunk_text_sha256": "e7391c0b8ecd23ff058f4c847ca31f1255ad69747e9df2bf5d8f7c91baabaeae"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 12,
+              "chunk_text_sha256": "6f8878cd7bb041c41c0f3c638412c7dad1c0be8408191b0ef6567e802ec9356d"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-direct",
+          "elapsed_ms": 0.6586660019820556,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "system_profiler SPPowerDataType",
+            "reason": "",
+            "recipe_id": "battery-cycles",
+            "title": "Inspect battery cycle count",
+            "sources": [
+              "man system_profiler",
+              "https://support.apple.com/en-nz/102888"
+            ],
+            "notes": [
+              "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+              "A Mac without a battery may have no battery section."
+            ],
+            "argv": [
+              "system_profiler",
+              "SPPowerDataType"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-worded",
+          "elapsed_ms": 0.5648330043186434,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "system_profiler SPPowerDataType",
+            "reason": "",
+            "recipe_id": "battery-cycles",
+            "title": "Inspect battery cycle count",
+            "sources": [
+              "man system_profiler",
+              "https://support.apple.com/en-nz/102888"
+            ],
+            "notes": [
+              "Read Cycle Count in the Battery Information section. This prints the power report, not just a number.",
+              "A Mac without a battery may have no battery section."
+            ],
+            "argv": [
+              "system_profiler",
+              "SPPowerDataType"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 8,
+              "chunk_text_sha256": "bbc5d9b2cfbe8474c3db74df2a6c8d3b52dcec59291672fcb87a61301f378eb2"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 5,
+              "chunk_text_sha256": "5e7cc177067f5da2191dc4438bf779026073ebf1a3bf3cbdf4afca8d9e19d8a7"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "battery-number",
+          "elapsed_ms": 0.4876249950029887,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 12,
+              "chunk_text_sha256": "6f8878cd7bb041c41c0f3c638412c7dad1c0be8408191b0ef6567e802ec9356d"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-direct",
+          "elapsed_ms": 0.5255419964669272,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "mdls '/tmp/whatisit public example.pdf'",
+            "reason": "",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "argv": [
+              "mdls",
+              "/tmp/whatisit public example.pdf"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-no-path",
+          "elapsed_ms": 0.4339580045780167,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --path. No input is guessed.",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "missing": [
+              "path"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "metadata-recursive",
+          "elapsed_ms": 0.44579200039152056,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 3,
+              "chunk_text_sha256": "c731498db873788070ffcbf31dc6a6b8f0da4050a2b10557da20151fbd947642"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-direct",
+          "elapsed_ms": 0.6970000031287782,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "pmset -g assertions",
+            "reason": "",
+            "recipe_id": "sleep-assertions",
+            "title": "Inspect assertions preventing sleep",
+            "sources": [
+              "man pmset",
+              "https://github.com/apple-oss-distributions/PowerManagement"
+            ],
+            "notes": [
+              "Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."
+            ],
+            "argv": [
+              "pmset",
+              "-g",
+              "assertions"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 0,
+              "chunk_text_sha256": "36e129991ac4ebccb831c8c71c6329fe40b580b2f9a84c923a390110b481c4d3"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-broad",
+          "elapsed_ms": 0.46629200369352475,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 5,
+              "chunk_text_sha256": "ccfb27f83e9ba8751641a6d1eede4b94eb3d6db96039a69191aae3d731a7ca0c"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 11,
+              "chunk_text_sha256": "5c2ac8dcfdb88cf39a3661273324773562f4ba36aa1cf0707fa301898a1e14a2"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "sleep-history",
+          "elapsed_ms": 0.8664999986649491,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 0,
+              "chunk_text_sha256": "36e129991ac4ebccb831c8c71c6329fe40b580b2f9a84c923a390110b481c4d3"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-signature",
+          "elapsed_ms": 2.4577080039307475,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "codesign --verify --deep --strict --verbose=2 /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-signature",
+            "title": "Verify an app code signature",
+            "sources": [
+              "man codesign",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Checks signature integrity and designated requirements without launching the app.",
+              "Does not establish developer identity, notarization or Gatekeeper acceptance."
+            ],
+            "argv": [
+              "codesign",
+              "--verify",
+              "--deep",
+              "--strict",
+              "--verbose=2",
+              "/tmp/whatisit-public-example.app"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-policy",
+          "elapsed_ms": 2.552041994931642,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "spctl --assess --type execute --verbose=2 /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-gatekeeper",
+            "title": "Assess local Gatekeeper policy for an app",
+            "sources": [
+              "man spctl",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+              "Does not independently validate the code signature or a stapled ticket."
+            ],
+            "argv": [
+              "spctl",
+              "--assess",
+              "--type",
+              "execute",
+              "--verbose=2",
+              "/tmp/whatisit-public-example.app"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-ticket",
+          "elapsed_ms": 2.435542002785951,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "/Library/Developer/CommandLineTools/usr/bin/stapler validate -q /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-ticket",
+            "title": "Validate an app stapled notarization ticket",
+            "sources": [
+              "man stapler (Apple Command Line Tools)",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+              "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+              "Does not establish signature integrity or local Gatekeeper acceptance."
+            ],
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "validate",
+              "-q",
+              "/tmp/whatisit-public-example.app"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            },
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 20,
+              "chunk_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-no-path",
+          "elapsed_ms": 1.7341659986414015,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --path. No input is guessed.",
+            "recipe_id": "app-signature",
+            "title": "Verify an app code signature",
+            "sources": [
+              "man codesign",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Checks signature integrity and designated requirements without launching the app.",
+              "Does not establish developer identity, notarization or Gatekeeper acceptance."
+            ],
+            "missing": [
+              "path"
+            ]
+          },
+          "documentation_identity": [
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 19,
+              "chunk_text_sha256": "5e655d4f3f2f9bcf895b0f4da6ba487dcc5ca3e3a0866ce8e06f4962238e818b"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 20,
+              "chunk_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "app-compound",
+          "elapsed_ms": 0.6891250013723038,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Ask for one supported task at a time."
+          },
+          "documentation_identity": [
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "spctl",
+              "source": "/usr/share/man/man8/spctl.8",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "7e44425dedd5343beeb0735a4457b76d5cc40b9d5ce7c981851551353de6a3e6",
+              "chunk": 4,
+              "chunk_text_sha256": "7cd509834fec4b711616647e7cbd8aacbaeb1259b390e78235109236fbe1555d"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "launchd-owner",
+          "elapsed_ms": 0.5568330016103573,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "No documented recipe matches this request yet."
+          },
+          "documentation_identity": [
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 3,
+              "chunk_text_sha256": "0a01862a678393bc0ea81499bf91e9ae1d90adfb1ecf528c6fdb1b44a0ef4e92"
+            },
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 2,
+              "chunk_text_sha256": "b66e3622f460925773eab4a97c7224814df597ff2e58c62d7a1aa5d8671ab812"
+            },
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 5,
+              "chunk_text_sha256": "ccfb27f83e9ba8751641a6d1eede4b94eb3d6db96039a69191aae3d731a7ca0c"
+            }
+          ],
+          "prompt_sha256": null
+        },
+        {
+          "id": "ambiguous-baseline",
+          "elapsed_ms": 0.69449999864446,
+          "contract_match": true,
+          "semantic_judgment": "necessary ambiguity clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "ambiguous",
+            "command": null,
+            "reason": "Ask for one supported task at a time."
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            }
+          ],
+          "prompt_sha256": null
+        }
+      ],
+      "semantic_scores": {
+        "cases": 24,
+        "counts": {
+          "suggestion": 10,
+          "correct_suggestions": 10,
+          "unsupported": 9,
+          "misses": 1,
+          "needs-input": 4,
+          "necessary_input_clarifications": 4,
+          "appropriate_abstentions": 8,
+          "ambiguous": 1,
+          "ambiguity_clarifications": 1
+        },
+        "useful_correct_coverage": {
+          "numerator": 10,
+          "denominator": 24
+        },
+        "suggestion_accuracy": {
+          "numerator": 10,
+          "denominator": 10
+        },
+        "incorrect_or_partial_suggestions": 0,
+        "fabricated_inputs": 0,
+        "wrong_platform_suggestions": 0
+      }
+    },
+    "C": {
+      "fresh_wall_ms": {
+        "samples": 3,
+        "median": 6635.647625000274,
+        "p95": 7518.2554999992135,
+        "max": 7518.2554999992135
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 3,
+        "median": 2006204416,
+        "p95": 2017067008,
+        "max": 2017067008
+      },
+      "fresh_runs": [
+        {
+          "first_response_ms": 7305.396875002771,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": 1963.2022499936284,
+          "self_peak_rss_bytes": 1351516160,
+          "mlx_peak_allocated_bytes": 2451671888,
+          "mlx_after_unload": {
+            "active_bytes": 8,
+            "cache_bytes": 0
+          },
+          "idle_before_bytes": 27787264,
+          "idle_after_unload_bytes": 788660224,
+          "idle_delta_bytes": 760872960,
+          "model_released": true,
+          "wall_ms": 7518.2554999992135,
+          "sampled_tree_peak_rss_bytes": 1058979840,
+          "peak_rss_lower_bound_bytes": 1351516160,
+          "rss_samples": 99,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        },
+        {
+          "first_response_ms": 6453.980333004438,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": 1341.7310830045608,
+          "self_peak_rss_bytes": 2017558528,
+          "mlx_peak_allocated_bytes": 2451671888,
+          "mlx_after_unload": {
+            "active_bytes": 8,
+            "cache_bytes": 0
+          },
+          "idle_before_bytes": 27459584,
+          "idle_after_unload_bytes": 1698086912,
+          "idle_delta_bytes": 1670627328,
+          "model_released": true,
+          "wall_ms": 6635.647625000274,
+          "sampled_tree_peak_rss_bytes": 2017067008,
+          "peak_rss_lower_bound_bytes": 2017558528,
+          "rss_samples": 93,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        },
+        {
+          "first_response_ms": 6096.57700000389,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": 910.8892500007642,
+          "self_peak_rss_bytes": 2019803136,
+          "mlx_peak_allocated_bytes": 2451671888,
+          "mlx_after_unload": {
+            "active_bytes": 8,
+            "cache_bytes": 0
+          },
+          "idle_before_bytes": 27443200,
+          "idle_after_unload_bytes": 1690664960,
+          "idle_delta_bytes": 1663221760,
+          "model_released": true,
+          "wall_ms": 6263.2587919943035,
+          "sampled_tree_peak_rss_bytes": 2006204416,
+          "peak_rss_lower_bound_bytes": 2019803136,
+          "rss_samples": 86,
+          "sampling_errors": [],
+          "runtime_stderr": "",
+          "first_status": "suggestion"
+        }
+      ],
+      "warm": {
+        "first_response_ms": 6297.32683399925,
+        "warm_ms": {
+          "samples": 23,
+          "median": 5021.4833749996615,
+          "p95": 5675.056250001944,
+          "max": 5721.086500001547
+        },
+        "contract_matches": 19,
+        "model_load_ms": 1228.332375001628,
+        "self_peak_rss_bytes": 2019835904,
+        "mlx_peak_allocated_bytes": 2503429572,
+        "mlx_after_unload": {
+          "active_bytes": 8,
+          "cache_bytes": 0
+        },
+        "idle_before_bytes": 27475968,
+        "idle_after_unload_bytes": 1717518336,
+        "idle_delta_bytes": 1690042368,
+        "model_released": true,
+        "wall_ms": 119032.0158329996,
+        "sampled_tree_peak_rss_bytes": 2008072192,
+        "peak_rss_lower_bound_bytes": 2019835904,
+        "rss_samples": 1630,
+        "sampling_errors": [],
+        "runtime_stderr": ""
+      },
+      "cases": [
+        {
+          "id": "logs-direct",
+          "elapsed_ms": 6297.32683399925,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123"
+            ],
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 17,
+              "chunk_text_sha256": "1f0d192ac93f20050514b572529dc6fcc5df11fc6f230a1224deff3ba9491fcc"
+            }
+          ],
+          "prompt_sha256": "f81350b5b112f88f074cbe8a52efb061cc84b17977279eecbbe9974a12bb20a6"
+        },
+        {
+          "id": "logs-reworded",
+          "elapsed_ms": 4970.253583000158,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"error\" AND processIdentifier == 123"
+            ],
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 25,
+              "chunk_text_sha256": "9ba7b67771db3fbe7a50b5cfb807d4abc99973debda2d9671538255cbae665d2"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 3,
+              "chunk_text_sha256": "ef4176fdbc787e9dcd797837aabdd0ea15e978727259d40f9c4c627f45b6ca92"
+            }
+          ],
+          "prompt_sha256": "12e8e7ab3ae3d3cbaafd56852869b992c805862fef0c76bcc5ceb6cdb1efe551"
+        },
+        {
+          "id": "logs-semantic",
+          "elapsed_ms": 5216.650125003071,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 6,
+              "chunk_text_sha256": "1ceb8bd2068804aa635c473cca05cd193e2a36a8b8718ca1caaebc59808d50e8"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 9,
+              "chunk_text_sha256": "cff374e64330271f3df1ef106069e730197bc3e28a67e57480b4ca14f3a10bfa"
+            }
+          ],
+          "prompt_sha256": "ea338aea2e5258a18ae6205a3330990a1501a756fb09b31514a146dbfa6c8fa7"
+        },
+        {
+          "id": "logs-default",
+          "elapsed_ms": 5721.086500001547,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "log show --style compact --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300' --predicate 'subsystem == \"com.example.whatisit\" AND logType == \"default\" AND processIdentifier == 123'",
+            "reason": "",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "argv": [
+              "log",
+              "show",
+              "--style",
+              "compact",
+              "--start",
+              "2026-10-09 10:00:00+0300",
+              "--end",
+              "2026-10-09 10:01:00+0300",
+              "--predicate",
+              "subsystem == \"com.example.whatisit\" AND logType == \"default\" AND processIdentifier == 123"
+            ],
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 3,
+              "chunk_text_sha256": "ef4176fdbc787e9dcd797837aabdd0ea15e978727259d40f9c4c627f45b6ca92"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            }
+          ],
+          "prompt_sha256": "e440a4969b4026ea20bc4339921eff1b975ef1d8a579c9b530486f8e8a55ecd1"
+        },
+        {
+          "id": "logs-no-inputs",
+          "elapsed_ms": 5294.354500001646,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --subsystem, --pid, --level, --start, --end. No input is guessed.",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "missing": [
+              "subsystem",
+              "pid",
+              "level",
+              "start",
+              "end"
+            ],
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 25,
+              "chunk_text_sha256": "9ba7b67771db3fbe7a50b5cfb807d4abc99973debda2d9671538255cbae665d2"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 7,
+              "chunk_text_sha256": "b17f86fe237d0eab345bfe62beefb99b7b11d782a4710e7022d228f8ea78d005"
+            }
+          ],
+          "prompt_sha256": "f2c44d4ff0e5b6d0c08aec9e6f5d6abfacddaab4bb60a6b8a6e2ffc683eaac76"
+        },
+        {
+          "id": "logs-no-pid",
+          "elapsed_ms": 5675.056250001944,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --pid. No input is guessed.",
+            "recipe_id": "unified-log-filter",
+            "title": "Filter stored unified logs by subsystem, PID, level and time",
+            "sources": [
+              "man log",
+              "log help show",
+              "log help predicates",
+              "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+            ],
+            "notes": [
+              "All filters are required and combined with AND. Only exact error or default severity is supported.",
+              "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+              "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+              "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+            ],
+            "missing": [
+              "pid"
+            ],
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "stat",
+              "source": "/usr/share/man/man1/stat.1",
+              "tool_path": "/usr/bin/stat",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f90eeb02bb061d8949682b59e8caae7430953002eeb892accc7cab6f1bbaa5e0",
+              "chunk": 3,
+              "chunk_text_sha256": "b3eaaf20b559a6b3fe6866ac3504d52787dbb29ebbfbbaf677eb2073674918af"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 18,
+              "chunk_text_sha256": "debf3a979a6dd9cd3d1801c9f3799dbd3470e613bc372aea224aa74a6a7d8052"
+            }
+          ],
+          "prompt_sha256": "78f96586fee14d3107ad282baf1bcfa89b3e86997dfb77ddb0063141c5fbdc41"
+        },
+        {
+          "id": "logs-live",
+          "elapsed_ms": 5282.281040999806,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 14,
+              "chunk_text_sha256": "0eb4a1fa7bebbbb1039fe3ba613d1b5f66cfe1e61fd85688d0a5dc117c485ddf"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 16,
+              "chunk_text_sha256": "3781d47013b2858bbffcfe48cff4d385d71f08b7a457cb8c6e1b2043600ba970"
+            }
+          ],
+          "prompt_sha256": "ebdeffbf20bab10efb368fce56271e26e7ee7b55c2e3a39ed51b0d14a897fb22"
+        },
+        {
+          "id": "logs-debug",
+          "elapsed_ms": 5469.881999997597,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+            "model_selection": {
+              "operation": "unified-log-filter"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "log",
+              "source": "catalog:unified-log-filter",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17",
+              "chunk": 0,
+              "chunk_text_sha256": "f86e7dc240fd5891722d528edb2ae2d4c140fa7cef2c73d7356e335afc3ecb17"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 4,
+              "chunk_text_sha256": "e7391c0b8ecd23ff058f4c847ca31f1255ad69747e9df2bf5d8f7c91baabaeae"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 12,
+              "chunk_text_sha256": "6f8878cd7bb041c41c0f3c638412c7dad1c0be8408191b0ef6567e802ec9356d"
+            }
+          ],
+          "prompt_sha256": "0c65baeeb4e29842bf5567fefafc49c79f840ee0c932c880d0864d7e707138cb"
+        },
+        {
+          "id": "battery-direct",
+          "elapsed_ms": 4317.5773750044755,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            }
+          ],
+          "prompt_sha256": "1f753921d2543cc275133535191d664b3b7cc42d4ef6eccdc09544cb8f64a854"
+        },
+        {
+          "id": "battery-worded",
+          "elapsed_ms": 4838.255457994819,
+          "contract_match": false,
+          "semantic_judgment": "missed supported operation or required clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 8,
+              "chunk_text_sha256": "bbc5d9b2cfbe8474c3db74df2a6c8d3b52dcec59291672fcb87a61301f378eb2"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 5,
+              "chunk_text_sha256": "5e7cc177067f5da2191dc4438bf779026073ebf1a3bf3cbdf4afca8d9e19d8a7"
+            }
+          ],
+          "prompt_sha256": "4d610a82d874a0e46dcb8a33df3bec11a3f420b00700bf672b6fea952d1a8164"
+        },
+        {
+          "id": "battery-number",
+          "elapsed_ms": 5170.422832998156,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "log",
+              "source": "/usr/share/man/man1/log.1",
+              "tool_path": "/usr/bin/log",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "dbfc3cbbe895aa4233b6a7d9c561e715d78476eeb5bac8fc98d87333590950a2",
+              "chunk": 12,
+              "chunk_text_sha256": "6f8878cd7bb041c41c0f3c638412c7dad1c0be8408191b0ef6567e802ec9356d"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            }
+          ],
+          "prompt_sha256": "01f1739dffa5981e2cb6861d4139a2a325364a04c3e5b7f16e81b8b73e61ebfe"
+        },
+        {
+          "id": "metadata-direct",
+          "elapsed_ms": 3764.083667003433,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "mdls '/tmp/whatisit public example.pdf'",
+            "reason": "",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "argv": [
+              "mdls",
+              "/tmp/whatisit public example.pdf"
+            ],
+            "model_selection": {
+              "operation": "file-metadata"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            }
+          ],
+          "prompt_sha256": "7d7771df24b90bb90d5b8996b097ac45f198cce488dd2be039b86e1ca69d0012"
+        },
+        {
+          "id": "metadata-no-path",
+          "elapsed_ms": 4606.358625002031,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --path. No input is guessed.",
+            "recipe_id": "file-metadata",
+            "title": "Inspect Spotlight metadata for a file",
+            "sources": [
+              "man mdls",
+              "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"
+            ],
+            "notes": [
+              "Shows Spotlight attributes, not every possible filesystem or application-specific attribute.",
+              "Unindexed files or unavailable attributes may produce missing or null values."
+            ],
+            "missing": [
+              "path"
+            ],
+            "model_selection": {
+              "operation": "file-metadata"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            }
+          ],
+          "prompt_sha256": "1144d9204f00931cae62e2b90934ab481b767de536b2e9a73df002fb51431732"
+        },
+        {
+          "id": "metadata-recursive",
+          "elapsed_ms": 4536.215957996319,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+            "model_selection": {
+              "operation": "file-metadata"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "mdls",
+              "source": "catalog:file-metadata",
+              "tool_path": "/usr/bin/mdls",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145",
+              "chunk": 0,
+              "chunk_text_sha256": "8e0f59af9eaa17418bef3cb92625db0e0a0a6e2aa2f0f79cefc7005b746b4145"
+            },
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 3,
+              "chunk_text_sha256": "c731498db873788070ffcbf31dc6a6b8f0da4050a2b10557da20151fbd947642"
+            }
+          ],
+          "prompt_sha256": "606549550841f804db2b4de2010062c4ae497a689145ac5dfb23849687656a7e"
+        },
+        {
+          "id": "sleep-direct",
+          "elapsed_ms": 5051.400333002675,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "pmset -g assertions",
+            "reason": "",
+            "recipe_id": "sleep-assertions",
+            "title": "Inspect assertions preventing sleep",
+            "sources": [
+              "man pmset",
+              "https://github.com/apple-oss-distributions/PowerManagement"
+            ],
+            "notes": [
+              "Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."
+            ],
+            "argv": [
+              "pmset",
+              "-g",
+              "assertions"
+            ],
+            "model_selection": {
+              "operation": "sleep-assertions"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 0,
+              "chunk_text_sha256": "36e129991ac4ebccb831c8c71c6329fe40b580b2f9a84c923a390110b481c4d3"
+            }
+          ],
+          "prompt_sha256": "5791f3a2e1fefb27256e6d7360c5f426dfe7698b98e6155229a49f35489f2eaa"
+        },
+        {
+          "id": "sleep-broad",
+          "elapsed_ms": 5086.188583001785,
+          "contract_match": false,
+          "semantic_judgment": "unnecessary/wrong-operation clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --path. No input is guessed.",
+            "recipe_id": "app-ticket",
+            "title": "Validate an app stapled notarization ticket",
+            "sources": [
+              "man stapler (Apple Command Line Tools)",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+              "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+              "Does not establish signature integrity or local Gatekeeper acceptance."
+            ],
+            "missing": [
+              "path"
+            ],
+            "model_selection": {
+              "operation": "app-ticket"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 5,
+              "chunk_text_sha256": "ccfb27f83e9ba8751641a6d1eede4b94eb3d6db96039a69191aae3d731a7ca0c"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 11,
+              "chunk_text_sha256": "5c2ac8dcfdb88cf39a3661273324773562f4ba36aa1cf0707fa301898a1e14a2"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": "a0efaeae1b11004aed472a5f63fe9e267ef805e1dcf2881169e24346e81fcfe4"
+        },
+        {
+          "id": "sleep-history",
+          "elapsed_ms": 5157.677916999091,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+            "model_selection": {
+              "operation": "sleep-assertions"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 0,
+              "chunk_text_sha256": "36e129991ac4ebccb831c8c71c6329fe40b580b2f9a84c923a390110b481c4d3"
+            }
+          ],
+          "prompt_sha256": "e0a0c30382b4154a5a37679a56dc3b909c4988047dc4a378ffce28b6d28ce90b"
+        },
+        {
+          "id": "app-signature",
+          "elapsed_ms": 4270.337290996395,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "codesign --verify --deep --strict --verbose=2 /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-signature",
+            "title": "Verify an app code signature",
+            "sources": [
+              "man codesign",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Checks signature integrity and designated requirements without launching the app.",
+              "Does not establish developer identity, notarization or Gatekeeper acceptance."
+            ],
+            "argv": [
+              "codesign",
+              "--verify",
+              "--deep",
+              "--strict",
+              "--verbose=2",
+              "/tmp/whatisit-public-example.app"
+            ],
+            "model_selection": {
+              "operation": "app-signature"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": "90ecbcca8b6edf0cf213f8c10c00be57b85c78504a03be7421cd2855dc3767d4"
+        },
+        {
+          "id": "app-policy",
+          "elapsed_ms": 4057.4954159965273,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "spctl --assess --type execute --verbose=2 /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-gatekeeper",
+            "title": "Assess local Gatekeeper policy for an app",
+            "sources": [
+              "man spctl",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+              "Does not independently validate the code signature or a stapled ticket."
+            ],
+            "argv": [
+              "spctl",
+              "--assess",
+              "--type",
+              "execute",
+              "--verbose=2",
+              "/tmp/whatisit-public-example.app"
+            ],
+            "model_selection": {
+              "operation": "app-gatekeeper"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            }
+          ],
+          "prompt_sha256": "1c3476bed3521942c2a82242312ebd1e31620c619ebf53fc204fec8ca0ac6f89"
+        },
+        {
+          "id": "app-ticket",
+          "elapsed_ms": 4627.206167002441,
+          "contract_match": true,
+          "semantic_judgment": "correct suggestion",
+          "useful_correct": true,
+          "answer": {
+            "status": "suggestion",
+            "command": "/Library/Developer/CommandLineTools/usr/bin/stapler validate -q /tmp/whatisit-public-example.app",
+            "reason": "",
+            "recipe_id": "app-ticket",
+            "title": "Validate an app stapled notarization ticket",
+            "sources": [
+              "man stapler (Apple Command Line Tools)",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+              "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+              "Does not establish signature integrity or local Gatekeeper acceptance."
+            ],
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "validate",
+              "-q",
+              "/tmp/whatisit-public-example.app"
+            ],
+            "model_selection": {
+              "operation": "app-ticket"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "source": "catalog:app-ticket",
+              "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+              "chunk": 0,
+              "chunk_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+            },
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 20,
+              "chunk_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+            }
+          ],
+          "prompt_sha256": "f4b2bf6a6587ed66ab01d0090584a53d4fb5c706ece2d228c7ac410e760e6cba"
+        },
+        {
+          "id": "app-no-path",
+          "elapsed_ms": 5021.4833749996615,
+          "contract_match": true,
+          "semantic_judgment": "necessary input clarification",
+          "useful_correct": false,
+          "answer": {
+            "status": "needs-input",
+            "command": null,
+            "reason": "Supply --path. No input is guessed.",
+            "recipe_id": "app-signature",
+            "title": "Verify an app code signature",
+            "sources": [
+              "man codesign",
+              "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+            ],
+            "notes": [
+              "Checks signature integrity and designated requirements without launching the app.",
+              "Does not establish developer identity, notarization or Gatekeeper acceptance."
+            ],
+            "missing": [
+              "path"
+            ],
+            "model_selection": {
+              "operation": "app-signature"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 19,
+              "chunk_text_sha256": "5e655d4f3f2f9bcf895b0f4da6ba487dcc5ca3e3a0866ce8e06f4962238e818b"
+            },
+            {
+              "tool": "codesign",
+              "source": "/usr/share/man/man1/codesign.1",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+              "chunk": 20,
+              "chunk_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+            }
+          ],
+          "prompt_sha256": "ee7ca00b9950ead57e4520116be1eaef3485339291a3459a4d03a6bfabd819d6"
+        },
+        {
+          "id": "app-compound",
+          "elapsed_ms": 4471.58904200478,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "spctl",
+              "source": "catalog:app-gatekeeper",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+              "chunk": 0,
+              "chunk_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+            },
+            {
+              "tool": "codesign",
+              "source": "catalog:app-signature",
+              "tool_path": "/usr/bin/codesign",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+              "chunk": 0,
+              "chunk_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+            },
+            {
+              "tool": "spctl",
+              "source": "/usr/share/man/man8/spctl.8",
+              "tool_path": "/usr/sbin/spctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "7e44425dedd5343beeb0735a4457b76d5cc40b9d5ce7c981851551353de6a3e6",
+              "chunk": 4,
+              "chunk_text_sha256": "7cd509834fec4b711616647e7cbd8aacbaeb1259b390e78235109236fbe1555d"
+            }
+          ],
+          "prompt_sha256": "e93e5a48f2f9fcc37350c905993134fc499695a82e44f924d24a49c668e28680"
+        },
+        {
+          "id": "launchd-owner",
+          "elapsed_ms": 5572.223042006954,
+          "contract_match": true,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "Local model selection failed; no command was generated.",
+            "model_error": "Model selected an unknown operation."
+          },
+          "documentation_identity": [
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 3,
+              "chunk_text_sha256": "0a01862a678393bc0ea81499bf91e9ae1d90adfb1ecf528c6fdb1b44a0ef4e92"
+            },
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 2,
+              "chunk_text_sha256": "b66e3622f460925773eab4a97c7224814df597ff2e58c62d7a1aa5d8671ab812"
+            },
+            {
+              "tool": "launchctl",
+              "source": "/usr/share/man/man1/launchctl.1",
+              "tool_path": "/bin/launchctl",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+              "chunk": 5,
+              "chunk_text_sha256": "ccfb27f83e9ba8751641a6d1eede4b94eb3d6db96039a69191aae3d731a7ca0c"
+            }
+          ],
+          "prompt_sha256": "97396fa9313bda0651762fd31584e330074324163179450d3fef97e3f057b8df"
+        },
+        {
+          "id": "ambiguous-baseline",
+          "elapsed_ms": 4367.311125002743,
+          "contract_match": false,
+          "semantic_judgment": "appropriate abstention",
+          "useful_correct": false,
+          "answer": {
+            "status": "unsupported",
+            "command": null,
+            "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+            "model_selection": {
+              "operation": "sleep-assertions"
+            }
+          },
+          "documentation_identity": [
+            {
+              "tool": "pmset",
+              "source": "catalog:sleep-assertions",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be",
+              "chunk": 0,
+              "chunk_text_sha256": "70f2634b812930c5feda229fe64f48ef1635f038834cfb020c1887384722e7be"
+            },
+            {
+              "tool": "system_profiler",
+              "source": "catalog:battery-cycles",
+              "tool_path": "/usr/sbin/system_profiler",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f",
+              "chunk": 0,
+              "chunk_text_sha256": "e93c6e535cc3a7261b7593fee5054d4db02ed62a3ccfd9e5fb3c0cfdeb88a33f"
+            },
+            {
+              "tool": "pmset",
+              "source": "/usr/share/man/man1/pmset.1",
+              "tool_path": "/usr/bin/pmset",
+              "macos_version": "27.0.1",
+              "captured_at": "2026-10-09T14:42:07.782465+00:00",
+              "sha256": "8a3db2a25270f5f25dd5b03bb2968f674aff78eb38a6047020636b3589caff87",
+              "chunk": 2,
+              "chunk_text_sha256": "07036339aa633bd580ba918b7e0717a04d426361d96f98a03823cdb8173207e4"
+            }
+          ],
+          "prompt_sha256": "22b6296d2057d75a535b54a9bfeaf29840cd18cb9c1439c315214f8fad29abce"
+        }
+      ],
+      "semantic_scores": {
+        "cases": 24,
+        "counts": {
+          "suggestion": 8,
+          "correct_suggestions": 8,
+          "unsupported": 11,
+          "misses": 3,
+          "model_errors": 6,
+          "needs-input": 5,
+          "necessary_input_clarifications": 4,
+          "appropriate_abstentions": 8,
+          "unnecessary_clarifications": 1
+        },
+        "useful_correct_coverage": {
+          "numerator": 8,
+          "denominator": 24
+        },
+        "suggestion_accuracy": {
+          "numerator": 8,
+          "denominator": 8
+        },
+        "incorrect_or_partial_suggestions": 0,
+        "fabricated_inputs": 0,
+        "wrong_platform_suggestions": 0
+      }
+    }
+  }
+}

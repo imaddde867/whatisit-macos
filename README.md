@@ -37,6 +37,7 @@ Use an actual file path for the metadata example. For log filtering, supply the 
 | App signature | `codesign --verify --deep --strict --verbose=2 PATH` | Signature integrity; requires an explicit app path. |
 | App Gatekeeper policy | `spctl --assess --type execute --verbose=2 PATH` | Local policy at check time; separate from signature and ticket validation. |
 | App stapled ticket | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -q PATH` | Requires Command Line Tools; may contact Apple. Missing ticket does not prove never notarized. |
+| Bounded unified logs | `log show --style compact --start START --end END --predicate FILTER` | Requires explicit subsystem, PID, error/default level and offset time bounds. |
 
 ```bash
 whatisit-macos --json 'show battery cycle count'

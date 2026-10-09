@@ -46,3 +46,5 @@ Reports replace supplied file paths with `<path>` and log-filter values with cat
 ## Bounded log slice
 
 `log_filter` is an optional object containing only `subsystem` (string), `pid` (integer), `level` (string), `start` (string) and `end` (string). Fields may be omitted/null for clarification cases. The loader validates types; the renderer validates values. The frozen A router receives only its original inputs; B/C share identical explicit filters. The seed log request now expects `needs-input`. The original 40-case fixture remains unchanged. See [LOG_FILTER.md](../docs/LOG_FILTER.md) for the new slice and comparison protocol.
+
+`log-comparison.jsonl` freezes 24 post-implementation requests, inputs and semantic rubrics at implementation commit `869309d`, with identities and budgets in `log-comparison-manifest.json`. The `heldout` split means reserved from tuning for this run; the author is the implementer, so it is not independently blind. After inspecting outputs it becomes development evidence. Preserve the bytes and report misses rather than tuning on them under a held-out label. An independent release comparison remains pending.
