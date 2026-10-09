@@ -2,7 +2,7 @@
 
 A lightweight macOS command assistant focused on accuracy and documented commands.
 
-**Status: measured prototype.** Three fixed inspection recipes and optional local documentation retrieval work today. Natural-language routing still uses simple keywords; general command generation and model integration are future work. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+**Status: experimental prototype.** Six fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
 
 The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
 
@@ -19,6 +19,9 @@ python -m pip install -e .
 whatisit-macos 'show battery cycle count'
 whatisit-macos 'show assertions preventing sleep'
 whatisit-macos 'show Spotlight metadata for a file' --path "$HOME/Downloads/example.pdf"
+whatisit-macos 'verify app signature' --path /Applications/Example.app
+whatisit-macos 'assess Gatekeeper policy for an app' --path /Applications/Example.app
+whatisit-macos 'validate an app stapled ticket' --path /Applications/Example.app
 whatisit-macos --list
 ```
 
@@ -29,6 +32,9 @@ Use an actual file path for the metadata example. Output includes the command, b
 | Battery cycle count | `system_profiler SPPowerDataType` | Prints the power report; read Cycle Count in Battery Information. |
 | Spotlight file metadata | `mdls PATH` | Requires explicit `--path`; quotes the absolute path. |
 | Sleep assertions | `pmset -g assertions` | Shows current assertions and owners; not every possible cause of a sleep problem. |
+| App signature | `codesign --verify --deep --strict --verbose=2 PATH` | Signature integrity; requires an explicit app path. |
+| App Gatekeeper policy | `spctl --assess --type execute --verbose=2 PATH` | Local policy at check time; separate from signature and ticket validation. |
+| App stapled ticket | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -q PATH` | Requires Command Line Tools; may contact Apple. Missing ticket does not prove never notarized. |
 
 ```bash
 whatisit-macos --json 'show battery cycle count'
@@ -58,11 +64,11 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 
 ## Current limits
 
-- No model, model download, background server, network calls, or third-party runtime dependencies.
+- Default lookup has no model or third-party runtime dependencies. Optional MLX loading uses an existing local directory, runs on demand, unloads explicitly and exits with the CLI; no background server is started. See [the experiment and pilot measurements](docs/EXPERIMENT.md) for setup, commands and limits.
 - Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
-- Unknown requests return `unsupported`; missing file paths return `needs-input` rather than a runnable placeholder.
+- Unknown and combined app-audit requests return `unsupported`; missing file/app paths return `needs-input` rather than a runnable placeholder.
 - Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
-- The original tracing, launchd, unified-log, and notarization queries are tracked as unsupported seed cases, not claimed as solved.
+- The original tracing, launchd, unified-log, and combined app-audit queries remain unsupported. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
 
 ## Development
 

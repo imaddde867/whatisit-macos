@@ -1,0 +1,1237 @@
+{
+  "measured_at": "2026-10-08T23:29:46.819503+00:00",
+  "macos": "27.0.1",
+  "architecture": "arm64",
+  "python": "3.14.8",
+  "runtime": {
+    "mlx-lm": "0.31.3",
+    "mlx": "0.32.0",
+    "transformers": "5.5.0"
+  },
+  "artifacts_sha256": {
+    "eval/app-checks.jsonl": "d28e65ead362996cada0d0326da4ad95e9c4909e2de778902187589303274202",
+    ".cache/manuals-app-checks.sqlite3": "9ad1def012fca18c734281e3b7979f63e3df60ed94debf4f7440b9aaa8ef512d",
+    "eval/baseline/engine.py": "44d8f9e2e6d81e73fa0a3b4ea49f6b5e02bb093be9289cb4a2a5e94aee4d40be",
+    "eval/baseline/recipes.json": "2f9ecfbe431557130e2c8440f506cff5b4e5e0c5df0870afd5f2627015ef377f",
+    "src/whatisit_macos/recipes.json": "ad525d10d1fc2cd3729dde49ce3d2b59ad3a75f2678f58667ba50002da49adfc",
+    "src/whatisit_macos/local_model.py": "c346c69eacfb61277c53e3c494e7ba3a3f17df76a9cb80a6e8b5f830b2ec0f53",
+    "src/whatisit_macos/engine.py": "569900c876bf25b2e0450160969404995b00a0db4a7563afe729c4ecf801f2e0",
+    "tools/experiment.py": "e9f5a49baf184dbc58a9c7b2a9050a810220107ab543954abb2a1836b2630079"
+  },
+  "model_files_sha256": {
+    "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+    "config.json": "ceb97c46fe17f523ac42c0f0254fd18d9589f8725f0bbbe0bef541f8ef84547a",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model.safetensors": "f212cf6fb9923281a09c135e05d43a052ee5ef7121f5b1dc0b0fb2de80f97cfd",
+    "model.safetensors.index.json": "7edb73f1af3c860b1344ece4abe04b258246afdfeba4cb39d3b84a0459890bee",
+    "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+    "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+    "tokenizer_config.json": "f7c61e32b7a17d19bf8e7037dcb74079a833e53ea9801f24008cac68458f03b7",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "swap_before": "total = 1024.00M  used = 167.31M  free = 856.69M  (encrypted)",
+  "swap_after": "total = 1024.00M  used = 167.31M  free = 856.69M  (encrypted)",
+  "method": "A frozen three-recipe router; B expanded router + retrieval; C same catalog/inputs + model. Fresh worker wall includes Python/import/retrieval/load/answer/unload/exit. Warm includes retrieval and rendering, excludes first response and model loading. Fresh KV cache per request. Filesystem caches not flushed. Process-tree RSS sampled every 50ms plus ps overhead; may miss short peaks. ru_maxrss is separate exact self RSS high-water; MLX peak allocations are separate, not added to RSS because unified-memory overlap is unknown. Idle sampled immediately after explicit unload, before worker exit. No server or suggested command started. Swap is system-wide; pressure not measured. Contract matches are not semantic accuracy; all cases are development evidence.",
+  "raw_report_sha256": "afdf79feec0912ce75317415fbe019c2352fe4fc69f6898370910fd073fa1d83",
+  "raw_report_location": ".cache/app-check-pilot-final.json (local, ignored)",
+  "pressure_snapshots": {
+    "before_final_pilot": {
+      "kernel_raw_level": 2,
+      "free_percent": 51
+    },
+    "after_workers_exited": {
+      "kernel_raw_level": 2,
+      "free_percent": 51
+    },
+    "scope": "System-wide snapshots, not sampled during inference; no causal attribution."
+  },
+  "variants": {
+    "A": {
+      "fresh_wall_ms": {
+        "samples": 1,
+        "median": 51.50112500268733,
+        "p95": 51.50112500268733,
+        "max": 51.50112500268733
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 1,
+        "median": 1130496,
+        "p95": 1130496,
+        "max": 1130496
+      },
+      "fresh_resource_samples": [
+        {
+          "first_response_ms": 0.07954199827509001,
+          "warm_ms": null,
+          "contract_matches": 0,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 27475968,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27475968,
+          "idle_after_unload_bytes": 27475968,
+          "idle_delta_bytes": 0,
+          "model_released": null,
+          "wall_ms": 51.50112500268733,
+          "sampled_tree_peak_rss_bytes": 1130496,
+          "peak_rss_lower_bound_bytes": 27475968,
+          "rss_samples": 1,
+          "sampling_errors": [],
+          "runtime_stderr": ""
+        }
+      ],
+      "warm": {
+        "first_response_ms": 0.08270800026366487,
+        "warm_ms": {
+          "samples": 10,
+          "median": 0.0023954999051056802,
+          "p95": 0.00508299854118377,
+          "max": 0.00508299854118377
+        },
+        "contract_matches": 5,
+        "model_load_ms": null,
+        "self_peak_rss_bytes": 27492352,
+        "mlx_peak_allocated_bytes": null,
+        "mlx_after_unload": null,
+        "idle_before_bytes": 27492352,
+        "idle_after_unload_bytes": 27492352,
+        "idle_delta_bytes": 0,
+        "model_released": null,
+        "wall_ms": 52.13379199994961,
+        "sampled_tree_peak_rss_bytes": 688128,
+        "peak_rss_lower_bound_bytes": 27492352,
+        "rss_samples": 1,
+        "sampling_errors": [],
+        "runtime_stderr": "",
+        "rows": [
+          {
+            "id": "signature-path",
+            "pass": 0,
+            "elapsed_ms": 0.08270800026366487,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "signature-missing",
+            "pass": 0,
+            "elapsed_ms": 0.00508299854118377,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "policy-path",
+            "pass": 0,
+            "elapsed_ms": 0.004374996933620423,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "policy-missing",
+            "pass": 0,
+            "elapsed_ms": 0.003291999746579677,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ticket-path",
+            "pass": 0,
+            "elapsed_ms": 0.0028750000637955964,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ticket-missing",
+            "pass": 0,
+            "elapsed_ms": 0.0023329994291998446,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": false,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "audit",
+            "pass": 0,
+            "elapsed_ms": 0.002458000381011516,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ever",
+            "pass": 0,
+            "elapsed_ms": 0.0021669984562322497,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "compound",
+            "pass": 0,
+            "elapsed_ms": 0.0020000006770715117,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "foreign",
+            "pass": 0,
+            "elapsed_ms": 0.00224999530473724,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "unsupported",
+            "pass": 0,
+            "elapsed_ms": 0.0020840016077272594,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        ]
+      }
+    },
+    "B": {
+      "fresh_wall_ms": {
+        "samples": 1,
+        "median": 63.281415998062585,
+        "p95": 63.281415998062585,
+        "max": 63.281415998062585
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 1,
+        "median": 458752,
+        "p95": 458752,
+        "max": 458752
+      },
+      "fresh_resource_samples": [
+        {
+          "first_response_ms": 9.887957996397745,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": null,
+          "self_peak_rss_bytes": 31604736,
+          "mlx_peak_allocated_bytes": null,
+          "mlx_after_unload": null,
+          "idle_before_bytes": 27459584,
+          "idle_after_unload_bytes": 31604736,
+          "idle_delta_bytes": 4145152,
+          "model_released": null,
+          "wall_ms": 63.281415998062585,
+          "sampled_tree_peak_rss_bytes": 458752,
+          "peak_rss_lower_bound_bytes": 31604736,
+          "rss_samples": 1,
+          "sampling_errors": [],
+          "runtime_stderr": ""
+        }
+      ],
+      "warm": {
+        "first_response_ms": 9.669665996625554,
+        "warm_ms": {
+          "samples": 10,
+          "median": 0.31562450021738186,
+          "p95": 0.46541700430680066,
+          "max": 0.46541700430680066
+        },
+        "contract_matches": 11,
+        "model_load_ms": null,
+        "self_peak_rss_bytes": 32112640,
+        "mlx_peak_allocated_bytes": null,
+        "mlx_after_unload": null,
+        "idle_before_bytes": 27426816,
+        "idle_after_unload_bytes": 32112640,
+        "idle_delta_bytes": 4685824,
+        "model_released": null,
+        "wall_ms": 66.36237500060815,
+        "sampled_tree_peak_rss_bytes": 409600,
+        "peak_rss_lower_bound_bytes": 32112640,
+        "rss_samples": 1,
+        "sampling_errors": [],
+        "runtime_stderr": "",
+        "rows": [
+          {
+            "id": "signature-path",
+            "pass": 0,
+            "elapsed_ms": 9.669665996625554,
+            "answer": {
+              "status": "suggestion",
+              "command": "codesign --verify --deep --strict --verbose=2 '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-signature",
+              "title": "Verify an app code signature",
+              "sources": [
+                "man codesign",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Checks signature integrity and designated requirements without launching the app.",
+                "Does not establish developer identity, notarization or Gatekeeper acceptance."
+              ],
+              "argv": [
+                "codesign",
+                "--verify",
+                "--deep",
+                "--strict",
+                "--verbose=2",
+                "/tmp/public example.app"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "signature-missing",
+            "pass": 0,
+            "elapsed_ms": 0.46541700430680066,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-signature",
+              "title": "Verify an app code signature",
+              "sources": [
+                "man codesign",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Checks signature integrity and designated requirements without launching the app.",
+                "Does not establish developer identity, notarization or Gatekeeper acceptance."
+              ],
+              "missing": [
+                "path"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "policy-path",
+            "pass": 0,
+            "elapsed_ms": 0.40366699977312237,
+            "answer": {
+              "status": "suggestion",
+              "command": "spctl --assess --type execute --verbose=2 '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-gatekeeper",
+              "title": "Assess local Gatekeeper policy for an app",
+              "sources": [
+                "man spctl",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+                "Does not independently validate the code signature or a stapled ticket."
+              ],
+              "argv": [
+                "spctl",
+                "--assess",
+                "--type",
+                "execute",
+                "--verbose=2",
+                "/tmp/public example.app"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "policy-missing",
+            "pass": 0,
+            "elapsed_ms": 0.3555410003173165,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-gatekeeper",
+              "title": "Assess local Gatekeeper policy for an app",
+              "sources": [
+                "man spctl",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+                "Does not independently validate the code signature or a stapled ticket."
+              ],
+              "missing": [
+                "path"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ticket-path",
+            "pass": 0,
+            "elapsed_ms": 0.3562920028343797,
+            "answer": {
+              "status": "suggestion",
+              "command": "/Library/Developer/CommandLineTools/usr/bin/stapler validate -q '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-ticket",
+              "title": "Validate an app stapled notarization ticket",
+              "sources": [
+                "man stapler (Apple Command Line Tools)",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+                "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+                "Does not establish signature integrity or local Gatekeeper acceptance."
+              ],
+              "argv": [
+                "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "validate",
+                "-q",
+                "/tmp/public example.app"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ticket-missing",
+            "pass": 0,
+            "elapsed_ms": 0.3290410022600554,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-ticket",
+              "title": "Validate an app stapled notarization ticket",
+              "sources": [
+                "man stapler (Apple Command Line Tools)",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+                "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+                "Does not establish signature integrity or local Gatekeeper acceptance."
+              ],
+              "missing": [
+                "path"
+              ]
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "audit",
+            "pass": 0,
+            "elapsed_ms": 0.22708300093654543,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "Ask for one supported task at a time."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "ever",
+            "pass": 0,
+            "elapsed_ms": 0.23341699852608144,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "compound",
+            "pass": 0,
+            "elapsed_ms": 0.30220799817470834,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "foreign",
+            "pass": 0,
+            "elapsed_ms": 0.2770409992081113,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "id": "unsupported",
+            "pass": 0,
+            "elapsed_ms": 0.26900000375462696,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "No documented recipe matches this request yet."
+            },
+            "contract_match": true,
+            "prompt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        ]
+      }
+    },
+    "C": {
+      "fresh_wall_ms": {
+        "samples": 1,
+        "median": 5428.843292000238,
+        "p95": 5428.843292000238,
+        "max": 5428.843292000238
+      },
+      "fresh_peak_tree_rss_bytes": {
+        "samples": 1,
+        "median": 2000699392,
+        "p95": 2000699392,
+        "max": 2000699392
+      },
+      "fresh_resource_samples": [
+        {
+          "first_response_ms": 5270.991624995077,
+          "warm_ms": null,
+          "contract_matches": 1,
+          "model_load_ms": 1247.963666995929,
+          "self_peak_rss_bytes": 2017492992,
+          "mlx_peak_allocated_bytes": 2417787540,
+          "mlx_after_unload": {
+            "active_bytes": 8,
+            "cache_bytes": 0
+          },
+          "idle_before_bytes": 27459584,
+          "idle_after_unload_bytes": 1763721216,
+          "idle_delta_bytes": 1736261632,
+          "model_released": true,
+          "wall_ms": 5428.843292000238,
+          "sampled_tree_peak_rss_bytes": 2000699392,
+          "peak_rss_lower_bound_bytes": 2017492992,
+          "rss_samples": 70,
+          "sampling_errors": [],
+          "runtime_stderr": ""
+        }
+      ],
+      "warm": {
+        "first_response_ms": 5227.123417003895,
+        "warm_ms": {
+          "samples": 10,
+          "median": 3273.2005625002785,
+          "p95": 4715.661334004835,
+          "max": 4715.661334004835
+        },
+        "contract_matches": 11,
+        "model_load_ms": 1235.99379100051,
+        "self_peak_rss_bytes": 2019753984,
+        "mlx_peak_allocated_bytes": 2417788632,
+        "mlx_after_unload": {
+          "active_bytes": 8,
+          "cache_bytes": 0
+        },
+        "idle_before_bytes": 27443200,
+        "idle_after_unload_bytes": 1774567424,
+        "idle_delta_bytes": 1747124224,
+        "model_released": true,
+        "wall_ms": 41250.57262500195,
+        "sampled_tree_peak_rss_bytes": 2005336064,
+        "peak_rss_lower_bound_bytes": 2019753984,
+        "rss_samples": 597,
+        "sampling_errors": [],
+        "runtime_stderr": "",
+        "rows": [
+          {
+            "id": "signature-path",
+            "pass": 0,
+            "elapsed_ms": 5227.123417003895,
+            "answer": {
+              "status": "suggestion",
+              "command": "codesign --verify --deep --strict --verbose=2 '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-signature",
+              "title": "Verify an app code signature",
+              "sources": [
+                "man codesign",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Checks signature integrity and designated requirements without launching the app.",
+                "Does not establish developer identity, notarization or Gatekeeper acceptance."
+              ],
+              "argv": [
+                "codesign",
+                "--verify",
+                "--deep",
+                "--strict",
+                "--verbose=2",
+                "/tmp/public example.app"
+              ],
+              "model_selection": {
+                "operation": "app-signature"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "50ef47e41ffb521db6500279a7f3b0be6e09a1f52b383d13092afd93031f4c9d",
+            "retrieved_context": [
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 19,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "927b7e98ae6cfb5256f03b9474bcffedeb34e7e647ed4a3651e74e2b831e5d71"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 20,
+                "supplied_chars": 1560,
+                "supplied_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+              }
+            ]
+          },
+          {
+            "id": "signature-missing",
+            "pass": 0,
+            "elapsed_ms": 3929.201249993639,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-signature",
+              "title": "Verify an app code signature",
+              "sources": [
+                "man codesign",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Checks signature integrity and designated requirements without launching the app.",
+                "Does not establish developer identity, notarization or Gatekeeper acceptance."
+              ],
+              "missing": [
+                "path"
+              ],
+              "model_selection": {
+                "operation": "app-signature"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "35e9994d91a846932f344ca6e2c4c356a32cb9e5a3a530c17d90bc65b5a00856",
+            "retrieved_context": [
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 19,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "927b7e98ae6cfb5256f03b9474bcffedeb34e7e647ed4a3651e74e2b831e5d71"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 20,
+                "supplied_chars": 1560,
+                "supplied_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+              }
+            ]
+          },
+          {
+            "id": "policy-path",
+            "pass": 0,
+            "elapsed_ms": 3115.524540997285,
+            "answer": {
+              "status": "suggestion",
+              "command": "spctl --assess --type execute --verbose=2 '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-gatekeeper",
+              "title": "Assess local Gatekeeper policy for an app",
+              "sources": [
+                "man spctl",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+                "Does not independently validate the code signature or a stapled ticket."
+              ],
+              "argv": [
+                "spctl",
+                "--assess",
+                "--type",
+                "execute",
+                "--verbose=2",
+                "/tmp/public example.app"
+              ],
+              "model_selection": {
+                "operation": "app-gatekeeper"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "2a16d01dc54e808a9986c4888a3de550b538c28268965943c19da7c77c63ee15",
+            "retrieved_context": [
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              }
+            ]
+          },
+          {
+            "id": "policy-missing",
+            "pass": 0,
+            "elapsed_ms": 3132.1244580030907,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-gatekeeper",
+              "title": "Assess local Gatekeeper policy for an app",
+              "sources": [
+                "man spctl",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Local policy acceptance is not a guarantee for another Mac, future revocation, offline launch or runtime safety.",
+                "Does not independently validate the code signature or a stapled ticket."
+              ],
+              "missing": [
+                "path"
+              ],
+              "model_selection": {
+                "operation": "app-gatekeeper"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "f28dcf66fa20e34598f1493422bb0d9662e711beedd8313a6211d2d4d5703646",
+            "retrieved_context": [
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              }
+            ]
+          },
+          {
+            "id": "ticket-path",
+            "pass": 0,
+            "elapsed_ms": 3159.947457999806,
+            "answer": {
+              "status": "suggestion",
+              "command": "/Library/Developer/CommandLineTools/usr/bin/stapler validate -q '/tmp/public example.app'",
+              "reason": "",
+              "recipe_id": "app-ticket",
+              "title": "Validate an app stapled notarization ticket",
+              "sources": [
+                "man stapler (Apple Command Line Tools)",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+                "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+                "Does not establish signature integrity or local Gatekeeper acceptance."
+              ],
+              "argv": [
+                "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "validate",
+                "-q",
+                "/tmp/public example.app"
+              ],
+              "model_selection": {
+                "operation": "app-ticket"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "7013da663f386bc50990753d2d81b1d31136d1bd3c2f859987526b804cb88045",
+            "retrieved_context": [
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              },
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              }
+            ]
+          },
+          {
+            "id": "ticket-missing",
+            "pass": 0,
+            "elapsed_ms": 3208.356499999354,
+            "answer": {
+              "status": "needs-input",
+              "command": null,
+              "reason": "Supply the path with --path. No path is guessed.",
+              "recipe_id": "app-ticket",
+              "title": "Validate an app stapled notarization ticket",
+              "sources": [
+                "man stapler (Apple Command Line Tools)",
+                "docs/VALIDATION.md#public-developer-id-artifact-verification--2026-10-09"
+              ],
+              "notes": [
+                "Requires Apple Command Line Tools at the documented path; validation may contact Apple ticket services.",
+                "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
+                "Does not establish signature integrity or local Gatekeeper acceptance."
+              ],
+              "missing": [
+                "path"
+              ],
+              "model_selection": {
+                "operation": "app-ticket"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "0e54c11a0e2e30f3b1fa586d9374785545d982375395d690874a93a947a76a96",
+            "retrieved_context": [
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              },
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              }
+            ]
+          },
+          {
+            "id": "audit",
+            "pass": 0,
+            "elapsed_ms": 3240.5001249935594,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+              "model_selection": {
+                "operation": "app-ticket"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "5a832ec21d7da33fbf9fee08a0dd4d245a6c8a5f7826576596ff86c86de43d7d",
+            "retrieved_context": [
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              }
+            ]
+          },
+          {
+            "id": "ever",
+            "pass": 0,
+            "elapsed_ms": 3850.400165996689,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+              "model_selection": {
+                "operation": "app-ticket"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "8569ce29ed8fa2256788f8ef80f40239f90ed7376f506204dba45f7998949bad",
+            "retrieved_context": [
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              },
+              {
+                "tool": "spctl",
+                "source": "/usr/share/man/man8/spctl.8",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "7e44425dedd5343beeb0735a4457b76d5cc40b9d5ce7c981851551353de6a3e6",
+                "chunk": 4,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "dc70c1e091741507ee147a94e981cb0086a6524037d3f803d7ee1482c5fd4697"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              }
+            ]
+          },
+          {
+            "id": "compound",
+            "pass": 0,
+            "elapsed_ms": 4187.052250003035,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+              "model_selection": {
+                "operation": "app-signature"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "a44e9dfd8250925309747c70b659c87f7015f9163884c359ae8a7564ba01b464",
+            "retrieved_context": [
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 19,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "927b7e98ae6cfb5256f03b9474bcffedeb34e7e647ed4a3651e74e2b831e5d71"
+              },
+              {
+                "tool": "codesign",
+                "source": "/usr/share/man/man1/codesign.1",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "a36aa5ded2fef195fc3fea42e43e58407145ab29d24db839a3f9f351cf983318",
+                "chunk": 20,
+                "supplied_chars": 1560,
+                "supplied_text_sha256": "c661422c64fe666d419e533361f282708cc89960ec2f03a2fe6c4f74b945b8d3"
+              }
+            ]
+          },
+          {
+            "id": "foreign",
+            "pass": 0,
+            "elapsed_ms": 3305.9010000069975,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "This recipe cannot satisfy the requested scope or output. Ask for its basic inspection report.",
+              "model_selection": {
+                "operation": "app-gatekeeper"
+              }
+            },
+            "contract_match": true,
+            "prompt_sha256": "383e68bafad95d4cc837ecd1391df961c420da538f5a7272f7d69c43e2463739",
+            "retrieved_context": [
+              {
+                "tool": "spctl",
+                "source": "catalog:app-gatekeeper",
+                "tool_path": "/usr/sbin/spctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a",
+                "chunk": 0,
+                "supplied_chars": 423,
+                "supplied_text_sha256": "d68dd3153023ddd9d4a092c0aebbe867cbeceaced24a10c3480a12243856769a"
+              },
+              {
+                "tool": "codesign",
+                "source": "catalog:app-signature",
+                "tool_path": "/usr/bin/codesign",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc",
+                "chunk": 0,
+                "supplied_chars": 390,
+                "supplied_text_sha256": "e08afa11037f0ac6871da94bf69e61d599be31db5ccbebb7f70d15441e8600fc"
+              },
+              {
+                "tool": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "source": "catalog:app-ticket",
+                "tool_path": "/Library/Developer/CommandLineTools/usr/bin/stapler",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454",
+                "chunk": 0,
+                "supplied_chars": 554,
+                "supplied_text_sha256": "44df2a5e26d3c1ac6eac8447dbca75613f385e9d77255e305bae12ec02244454"
+              }
+            ]
+          },
+          {
+            "id": "unsupported",
+            "pass": 0,
+            "elapsed_ms": 4715.661334004835,
+            "answer": {
+              "status": "unsupported",
+              "command": null,
+              "reason": "Local model selection failed; no command was generated.",
+              "model_error": "Model selected an unknown operation."
+            },
+            "contract_match": true,
+            "prompt_sha256": "1275dac763d07a24a3e8c829d95bf3c133bc52d1442eec9a7c7f9e40af084d10",
+            "retrieved_context": [
+              {
+                "tool": "launchctl",
+                "source": "/usr/share/man/man1/launchctl.1",
+                "tool_path": "/bin/launchctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+                "chunk": 6,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "8465fccb75f406d4ff4c4d112b569f2f0dfc41dc246849d0bb403ba4d3a96046"
+              },
+              {
+                "tool": "launchctl",
+                "source": "/usr/share/man/man1/launchctl.1",
+                "tool_path": "/bin/launchctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+                "chunk": 2,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "f7b2ee6b559ff559f77f81573ca9fb36f32ca460f58c07504aab925a8f1c0c9d"
+              },
+              {
+                "tool": "launchctl",
+                "source": "/usr/share/man/man1/launchctl.1",
+                "tool_path": "/bin/launchctl",
+                "macos_version": "27.0.1",
+                "captured_at": "2026-10-08T23:27:53.294937+00:00",
+                "sha256": "ed4285cc042c7985e5fd4d5a001e8613d66fdb5ea14dfb652a1549fd2c2d8e2a",
+                "chunk": 3,
+                "supplied_chars": 1600,
+                "supplied_text_sha256": "d3e826cf016d2e1f85440caa7bbd12459ca21b765630187edcd5a0eef2653011"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
