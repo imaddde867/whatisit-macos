@@ -1,5 +1,27 @@
 [
   {
+    "id": "launchd-service",
+    "title": "Inspect a known launchd service",
+    "match_groups": [
+      ["launchd"],
+      ["service"],
+      ["configuration", "config", "inspect", "information", "details"]
+    ],
+    "argv": ["launchctl", "print", "{domain}/{label}"],
+    "parameters": ["domain", "label"],
+    "input_schema": {
+      "domain": {"type": "string", "required": true, "description": "Explicit system, user/<nonnegative-uid> or gui/<nonnegative-uid> domain."},
+      "label": {"type": "string", "required": true, "description": "Explicit ASCII service label."}
+    },
+    "output_scope": "Diagnostic output for one service explicitly named by its domain and label.",
+    "privileges": "No sudo; querying the system domain is permitted for any user.",
+    "sources": ["man launchctl", "docs/VALIDATION.md#remaining-candidate-checks-and-semantic-review--2026-10-08"],
+    "notes": [
+      "Inspect the service's on-disk origin and current diagnostic state; output is unstable across macOS releases and is not a stable API.",
+      "This does not return the original complete plist or identify which service owns a PID. No configuration changes are made."
+    ]
+  },
+  {
     "id": "battery-cycles",
     "title": "Inspect battery cycle count",
     "match_groups": [["battery"], ["cycle", "cycles"]],

@@ -2,7 +2,7 @@
 
 A lightweight macOS command assistant focused on accuracy and documented commands.
 
-**Status: experimental prototype.** Seven fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+**Status: experimental prototype.** Eight fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
 
 The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
 
@@ -24,6 +24,8 @@ whatisit-macos 'assess Gatekeeper policy for an app' --path /Applications/Exampl
 whatisit-macos 'validate an app stapled ticket' --path /Applications/Example.app
 whatisit-macos 'filter unified logs' --subsystem com.example.whatisit --pid 123 \
   --level error --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300'
+whatisit-macos 'inspect known launchd service configuration' \
+  --domain system --label com.apple.logd
 whatisit-macos --list
 ```
 
@@ -38,6 +40,7 @@ Use an actual file path for the metadata example. For log filtering, supply the 
 | App Gatekeeper policy | `spctl --assess --type execute --verbose=2 PATH` | Local policy at check time; separate from signature and ticket validation. |
 | App stapled ticket | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -q PATH` | Requires Command Line Tools; may contact Apple. Missing ticket does not prove never notarized. |
 | Bounded unified logs | `log show --style compact --start START --end END --predicate FILTER` | Requires explicit subsystem, PID, error/default level and offset time bounds. |
+| Known launchd service | `launchctl print DOMAIN/LABEL` | Requires explicit `--domain` (`system`, `user/<uid>` or `gui/<uid>`, with a decimal UID) and `--label`; output is unstable diagnostic data, not the original complete plist. |
 
 ```bash
 whatisit-macos --json 'show battery cycle count'
@@ -47,6 +50,8 @@ whatisit-macos --timing 'show assertions preventing sleep'
 `--timing` measures lookup work inside Python, including optional documentation retrieval, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
 
 Log filtering prints stored events matching subsystem, PID, severity and time together, using compact text. Empty output does not establish absence of events. PID reuse, retention, redaction and access limit what a bounded query can establish. Live monitoring, process-name selection, archives, message filters and info/debug persistence remain unsupported. Existing device evidence covers controlled public events; see [the log-filter slice](docs/LOG_FILTER.md).
+
+Known-service inspection needs an explicit launchd domain and label. User/GUI domains require a decimal UID, including 0. Labels must contain 1–255 ASCII letters, digits, dots, underscores or hyphens and start with a letter or digit; it does not discover a service from a PID. `launchctl print` is diagnostic output that may change across releases and does not reproduce the original complete plist. Existing evidence validates `system/com.apple.logd`; see [the validation record](docs/VALIDATION.md#remaining-candidate-checks-and-semantic-review--2026-10-08).
 
 ## Local documentation
 
@@ -73,7 +78,7 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 - Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
 - Unknown and combined app-audit requests return `unsupported`; missing file/app paths return `needs-input` rather than a runnable placeholder.
 - Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
-- The original tracing, launchd and combined app-audit queries remain unsupported. Bounded unified-log requests now ask for explicit filters; broader log requests abstain. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
+- PID-to-launchd-service ownership, tracing and combined app-audit requests remain unsupported. Known-service inspection requires an explicit domain and label. Bounded unified-log requests ask for explicit filters; broader log requests abstain. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
 
 ## Development
 
