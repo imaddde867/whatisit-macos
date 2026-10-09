@@ -7,6 +7,56 @@ from tools.evaluate import load_cases, evaluate
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_log_inputs_reach_router_without_leaking_into_report(self):
+        filters = dict(subsystem='com.private.workload', pid=876543, level='error',
+                       start='2026-09-14 10:00:00+0300', end='2026-09-14 10:01:00+0300')
+        case = {'id': 'log-filters', 'split': 'dev', 'request': 'Filter unified logs',
+                'log_filter': filters, 'expected_status': 'suggestion',
+                'expected_recipe': 'unified-log-filter', 'expected_docs': ['log']}
+        report = evaluate([case])
+        self.assertTrue(report['cases'][0]['contract_match'])
+        for value in ['com.private.workload', '876543', '2026-09-14']:
+            self.assertNotIn(value, json.dumps(report))
+
+    def test_service_target_reaches_router_without_leaking_into_report(self):
+        case = {'id': 'known-service', 'split': 'dev',
+                'request': 'Inspect a known launchd service configuration',
+                'service_target': {'domain': 'user/501', 'label': 'com.private.agent'},
+                'expected_status': 'suggestion', 'expected_recipe': 'launchd-service',
+                'expected_docs': ['launchctl']}
+        report = evaluate([case])
+        self.assertTrue(report['cases'][0]['contract_match'])
+        self.assertEqual(report['cases'][0]['command'], "launchctl print '{domain}/{label}'")
+        self.assertNotIn('com.private.agent', json.dumps(report))
+
+    def test_service_target_fixture_rejects_unknown_or_untyped_fields(self):
+        case = {'id': 'service', 'split': 'dev', 'request': 'Inspect a known launchd service configuration',
+                'service_target': {'domain': 'system', 'label': 'com.apple.logd'},
+                'expected_status': 'needs-input', 'expected_recipe': 'launchd-service',
+                'expected_docs': ['launchctl'], 'rubric': 'Explicit target required.',
+                'manual_validation': 'pending'}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'cases.jsonl'
+            for inputs in [{'domain': 501}, {'label': True}, {'domain': 'system', 'label': 'x', 'pid': 123},
+                           [], None]:
+                with self.subTest(inputs=inputs):
+                    path.write_text(json.dumps(case | {'service_target': inputs}) + '\n')
+                    with self.assertRaises(ValueError):
+                        load_cases(path)
+
+    def test_log_fixture_schema_rejects_unknown_or_wrongly_typed_inputs(self):
+        case = {'id': 'log', 'split': 'dev', 'request': 'Filter unified logs',
+                'expected_status': 'needs-input', 'expected_recipe': 'unified-log-filter',
+                'expected_docs': ['log'], 'rubric': 'Never invent inputs.', 'manual_validation': 'pending'}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'cases.jsonl'
+            for inputs in [{'pid': '123'}, {'pid': True}, {'predicate': 'TRUEPREDICATE'},
+                           {'start': 123}, [], None]:
+                with self.subTest(inputs=inputs):
+                    path.write_text(json.dumps(case | {'log_filter': inputs}) + '\n')
+                    with self.assertRaises(ValueError):
+                        load_cases(path)
+
     def test_incomplete_suggestion_is_reported_as_mismatch(self):
         cases = [{'id': 'snapshot-is-not-history', 'split': 'heldout',
                   'request': 'show sleep assertions',

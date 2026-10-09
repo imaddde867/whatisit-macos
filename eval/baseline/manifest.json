@@ -1,0 +1,40 @@
+{
+  "source_commit": "049fd60",
+  "artifacts": {
+    "eval/baseline/engine.py": {
+      "sha256": "44d8f9e2e6d81e73fa0a3b4ea49f6b5e02bb093be9289cb4a2a5e94aee4d40be",
+      "bytes": 3678
+    },
+    "eval/baseline/recipes.json": {
+      "sha256": "2f9ecfbe431557130e2c8440f506cff5b4e5e0c5df0870afd5f2627015ef377f",
+      "bytes": 1557
+    },
+    "eval/macos.jsonl": {
+      "sha256": "25a74bad2d4db725dc9599f4f2afa3b6f20c318f9983f165e97a6c73bdd79158",
+      "bytes": 11000
+    },
+    ".cache/manuals-system-1602dea.sqlite3": {
+      "sha256": "ccde0ec0869cb49406041e342f9bbc2b9b9db50cae68f85a60d389dec7bd0a7d",
+      "bytes": 487424
+    }
+  },
+  "scoring": {
+    "status": "provisional; human adjudication pending",
+    "N7": {
+      "coverage": "7/40",
+      "accuracy": "7/8"
+    },
+    "N8": {
+      "coverage": "8/40",
+      "accuracy": "8/8"
+    },
+    "partial_answers": "incorrect",
+    "broad_metadata": "retain both interpretations for all variants"
+  },
+  "historical_scopes": {
+    "fresh_cli_ms": 57,
+    "fresh_cli_peak_mib": 28.7,
+    "repeated_lookup_ms": 0.22
+  },
+  "fixture_use": "40 authored cases are development evidence; no independent benchmark claim"
+}

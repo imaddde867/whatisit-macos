@@ -1,0 +1,21 @@
+{
+  "frozen_at": "2026-10-09T14:42:07.732102+00:00",
+  "implementation_commit": "869309d",
+  "cases": 24,
+  "cases_sha256": "845dc356d3b31ceb6f2e7c2dadc203011ddf79b392e7238c500202329c9b4ae9",
+  "authorship": "Same implementer, after code/tests were complete; fresh authored, not independently blind.",
+  "tuning": "No source/catalog/prompt changes after freeze for this comparison. Once inspected, results become development evidence.",
+  "inputs": "Public synthetic placeholders; no suggested commands executed. Existing representative-input device evidence only.",
+  "budgets": {
+    "warm_p95_ms": 2000,
+    "fresh_wall_ms": 5000,
+    "total_rss_mib": 2048,
+    "retained_idle_growth_mib": 128
+  },
+  "source_sha256": {
+    "src/whatisit_macos/engine.py": "0c122714b72e8fb6587a68574d1cdbf0c5c763bac2569f489b0091e5b5b728f0",
+    "src/whatisit_macos/recipes.json": "c9bc2ad807afb14bdf327d165d019b5b340372f543f5f98c357727fb93af66cc",
+    "src/whatisit_macos/local_model.py": "6bfc953b420bc52624c35b5fa7437722666cd0e46b307bd3294daf26f3eb8820",
+    "tools/experiment.py": "914de1e54a0ae4583a34c55332be0fc19c76eb9f7395401e1c8ee3ba40468fd9"
+  }
+}

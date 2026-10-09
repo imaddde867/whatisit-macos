@@ -16,7 +16,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from whatisit_macos.engine import suggest
+from whatisit_macos.engine import LogFilter, ServiceTarget, suggest
 from whatisit_macos.retrieval import search
 from tools.evaluate import load_cases
 
@@ -43,7 +43,9 @@ def main() -> None:
             for name in warm:
                 start = time.perf_counter()
                 if name != 'retrieval':
-                    suggest(case['request'], system='Darwin', which=shutil.which, path=case.get('path'))
+                    suggest(case['request'], system='Darwin', which=shutil.which, path=case.get('path'),
+                            log_filter=LogFilter(**case['log_filter']) if 'log_filter' in case else None,
+                            service_target=ServiceTarget(**case['service_target']) if 'service_target' in case else None)
                 if name != 'baseline':
                     search(args.docs_index, case['request'])
                 warm[name].append((time.perf_counter() - start) * 1000)

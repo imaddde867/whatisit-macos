@@ -1,0 +1,29 @@
+[
+  {
+    "id": "battery-cycles",
+    "title": "Inspect battery cycle count",
+    "match_groups": [["battery"], ["cycle", "cycles"]],
+    "argv": ["system_profiler", "SPPowerDataType"],
+    "parameters": [],
+    "sources": ["man system_profiler", "https://support.apple.com/en-nz/102888"],
+    "notes": ["Read Cycle Count in the Battery Information section. This prints the power report, not just a number.", "A Mac without a battery may have no battery section."]
+  },
+  {
+    "id": "file-metadata",
+    "title": "Inspect Spotlight metadata for a file",
+    "match_groups": [["metadata", "attributes"], ["file", "document", "spotlight", "indexed", "index"]],
+    "argv": ["mdls", "{path}"],
+    "parameters": ["path"],
+    "sources": ["man mdls", "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MDImporters/Concepts/Troubleshooting.html"],
+    "notes": ["Shows Spotlight attributes, not every possible filesystem or application-specific attribute.", "Unindexed files or unavailable attributes may produce missing or null values."]
+  },
+  {
+    "id": "sleep-assertions",
+    "title": "Inspect assertions preventing sleep",
+    "match_groups": [["sleep", "power"], ["assertions", "assertion", "preventing", "blocking", "blockers"]],
+    "argv": ["pmset", "-g", "assertions"],
+    "parameters": [],
+    "sources": ["man pmset", "https://github.com/apple-oss-distributions/PowerManagement"],
+    "notes": ["Shows current power assertions and their owners. It is a snapshot, not a complete diagnosis of every sleep problem."]
+  }
+]

@@ -22,12 +22,23 @@ def main():
     assert not Path.cwd().is_relative_to(repository), 'Run outside repository'
     assert not os.environ.get('PYTHONPATH'), 'Unset PYTHONPATH'
     assert not distribution('whatisit-macos').requires, 'Unexpected runtime dependencies'
-    assert len(load_recipes()) == 3
+    assert len(load_recipes()) == 8
     cli = str(Path(sys.executable).with_name('whatisit-macos'))
     capture = str(Path(sys.executable).with_name('whatisit-macos-build-docs'))
     assert subprocess.run([cli, '--version'], capture_output=True, check=True).stdout.strip() == b'0.1.0'
     catalog = subprocess.run([cli, '--json', '--list'], capture_output=True, text=True, check=True)
-    assert len(json.loads(catalog.stdout)) == 3
+    assert len(json.loads(catalog.stdout)) == 8
+    filtered = subprocess.run([cli, '--json', '--subsystem', 'com.example.whatisit', '--pid', '123',
+                               '--level', 'error', '--start', '2026-10-09 10:00:00+0300',
+                               '--end', '2026-10-09 10:01:00+0300', 'Filter unified logs'],
+                              capture_output=True, text=True)
+    filtered_answer = json.loads(filtered.stdout)
+    if platform.system() == 'Darwin' and shutil.which('log'):
+        assert filtered.returncode == 0
+        assert filtered_answer['argv'][-1] == ('subsystem == "com.example.whatisit" '
+                                               'AND logType == "error" AND processIdentifier == 123')
+    else:
+        assert filtered.returncode == 2 and filtered_answer['command'] is None
     subprocess.run([capture, '--help'], capture_output=True, check=True)
     with tempfile.TemporaryDirectory() as directory:
         index = Path(directory) / 'manuals.sqlite3'
