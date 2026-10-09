@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import shlex
 import unittest
 from pathlib import Path
@@ -138,7 +139,8 @@ class EngineTests(unittest.TestCase):
         for recipe in recipes:
             self.assertTrue(recipe["sources"])
             self.assertTrue(recipe["notes"])
-            self.assertEqual(set(recipe["parameters"]), {arg[1:-1] for arg in recipe["argv"] if arg.startswith("{")})
+            self.assertEqual(set(recipe['parameters']),
+                             set(re.findall(r'\{(\w+)\}', ' '.join(recipe['argv']))))
 
 
 if __name__ == "__main__":

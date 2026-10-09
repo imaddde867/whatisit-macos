@@ -166,5 +166,81 @@
       "An absent ticket does not prove the app was never notarized. Quiet exit 0 indicates successful validation.",
       "Does not establish signature integrity or local Gatekeeper acceptance."
     ]
+  },
+  {
+    "id": "unified-log-filter",
+    "title": "Filter stored unified logs by subsystem, PID, level and time",
+    "match_groups": [
+      [
+        "unified"
+      ],
+      [
+        "log",
+        "logs"
+      ]
+    ],
+    "argv": [
+      "log",
+      "show",
+      "--style",
+      "compact",
+      "--start",
+      "{start}",
+      "--end",
+      "{end}",
+      "--predicate",
+      "subsystem == \"{subsystem}\" AND logType == \"{level}\" AND processIdentifier == {pid}"
+    ],
+    "parameters": [
+      "subsystem",
+      "pid",
+      "level",
+      "start",
+      "end"
+    ],
+    "input_schema": {
+      "subsystem": {
+        "type": "string",
+        "required": true,
+        "description": "Exact ASCII subsystem: 1\u2013255 letters, digits, dots, underscores or hyphens; starts with a letter or digit."
+      },
+      "pid": {
+        "type": "integer",
+        "required": true,
+        "description": "Explicit positive process ID; not a process name."
+      },
+      "level": {
+        "type": "string",
+        "required": true,
+        "enum": [
+          "error",
+          "default"
+        ]
+      },
+      "start": {
+        "type": "string",
+        "required": true,
+        "description": "YYYY-MM-DD HH:MM:SS+HHMM with explicit UTC offset."
+      },
+      "end": {
+        "type": "string",
+        "required": true,
+        "description": "Same timestamp format, strictly later than start."
+      }
+    },
+    "output_scope": "Stored unified-log events matching all five explicit filters; compact text only.",
+    "privileges": "Normal user with access to the log store; lookup never requests sudo.",
+    "sources": [
+      "man log",
+      "log help show",
+      "log help predicates",
+      "docs/VALIDATION.md#g2-observed-results--2026-10-09"
+    ],
+    "notes": [
+      "All filters are required and combined with AND. Only exact error or default severity is supported.",
+      "Uses an explicit PID, not process-name matching. PIDs can be reused; confirm the intended process and interval.",
+      "Empty output does not prove that no event occurred: retention, redaction and store access limit visibility.",
+      "No live monitoring, archives, message filters, info/debug persistence or complete diagnostic coverage. Time-boundary inclusivity is unverified."
+    ]
   }
 ]

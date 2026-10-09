@@ -2,7 +2,7 @@
 
 `cases.jsonl` preserves the original seven task types and adds paraphrases, ambiguity, and mutation requests. It is an authored seed set, not a held-out benchmark. `expected_status` describes today's prototype behavior; `expected_recipe` is present only for a supported task.
 
-The tests use a simulated Darwin platform and tool availability. They check output contracts, not whether the command works on a Mac. The four unsupported original tasks are planned coverage, not correct answers earned by abstaining.
+The tests use a simulated Darwin platform and tool availability. They check output contracts, not whether the command works on a Mac. The remaining unsupported original tasks are planned coverage, not correct answers earned by abstaining.
 
 Before adding an LLM, expand the set and report:
 
@@ -38,7 +38,11 @@ Raw local reports are ignored under `eval/results/`; a shareable summary is in [
 
 Keep `macos.jsonl` unchanged for the historical before/after comparison. Seven original disagreements are fixed; `sleep-paraphrase` remains a justified disagreement because an assertion snapshot cannot diagnose every cause of wakefulness. Its original expectation is retained, not counted as a new passing case. The inspected held-out split is now development evidence; reserve a fresh, uninspected set before model comparison.
 
-Reports replace supplied file paths with `<path>` and omit request text and retrieved manual passages. Use only authored, sanitized case IDs and tool names. The report contains no device logs or command execution results; it must not be used as a script to execute commands. Original artifacts in ignored `.cache/` and `eval/results/` remain local.
+Reports replace supplied file paths with `<path>` and log-filter values with catalog placeholders and omit request text and retrieved manual passages. Use only authored, sanitized case IDs and tool names. The report contains no device logs or command execution results; it must not be used as a script to execute commands. Original artifacts in ignored `.cache/` and `eval/results/` remain local.
 # App-check and model development pilot
 
 `app-checks.jsonl` adds 11 development contracts for distinct signature/policy/ticket checks, missing paths and abstention. It does not replace or rewrite the original 40-case fixture. `baseline/` retains the original engine/catalog and their provenance, including both N=7/N=8 provisional scoring interpretations. `pilot/app-checks.json` records the initial A/B/C resource comparison, prompt hashes and retrieved-context identities. Exact prompts remain in the local ignored report. See [the experiment protocol](../docs/EXPERIMENT.md) for commands, measurement scopes and limits; contract matches do not establish semantic accuracy. A fresh set is still required before final comparison.
+
+## Bounded log slice
+
+`log_filter` is an optional object containing only `subsystem` (string), `pid` (integer), `level` (string), `start` (string) and `end` (string). Fields may be omitted/null for clarification cases. The loader validates types; the renderer validates values. The frozen A router receives only its original inputs; B/C share identical explicit filters. The seed log request now expects `needs-input`. The original 40-case fixture remains unchanged. See [LOG_FILTER.md](../docs/LOG_FILTER.md) for the new slice and comparison protocol.

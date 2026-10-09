@@ -30,7 +30,7 @@ class CliTests(unittest.TestCase):
     def test_catalog_can_be_listed_on_linux(self):
         code, stdout, _ = self.invoke(["--json", "--list"], system="Linux")
         self.assertEqual(code, 0)
-        self.assertEqual(len(json.loads(stdout)), 6)
+        self.assertEqual(len(json.loads(stdout)), 7)
 
     def test_app_signature_cli_and_missing_path(self):
         code, stdout, _ = self.invoke(['--json', '--path', '/tmp/example.app', 'verify app signature'])
@@ -55,7 +55,7 @@ class CliTests(unittest.TestCase):
         self.assertNotIn('model_error', answer)
 
     def test_unsupported_human_output_goes_to_stderr(self):
-        code, stdout, stderr = self.invoke(["show unified logs"])
+        code, stdout, stderr = self.invoke(["stream unified logs live"])
         self.assertEqual(code, 2)
         self.assertEqual(stdout, "")
         self.assertIn("unsupported", stderr)

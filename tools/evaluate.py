@@ -8,7 +8,7 @@ import shlex
 from pathlib import Path
 from typing import Callable
 
-from whatisit_macos.engine import suggest
+from whatisit_macos.engine import LogFilter, load_recipes, suggest
 from whatisit_macos.retrieval import search
 
 
@@ -33,6 +33,12 @@ def load_cases(path: Path) -> list[dict]:
             raise ValueError('path must be a string.')
         if 'expected_recipe' in case and not isinstance(case['expected_recipe'], str):
             raise ValueError('expected_recipe must be a string.')
+        if 'log_filter' in case:
+            inputs = case['log_filter']
+            types = {'subsystem': str, 'pid': int, 'level': str, 'start': str, 'end': str}
+            if (not isinstance(inputs, dict) or set(inputs) - types.keys() or
+                    any(value is not None and type(value) is not types[name] for name, value in inputs.items())):
+                raise ValueError('log_filter needs only typed subsystem, pid, level, start and end fields.')
     if not cases:
         raise ValueError('Evaluation needs at least one case.')
     return cases
@@ -42,7 +48,8 @@ def evaluate(cases: list[dict], index: Path | None = None, *, system: str = 'Dar
              which: Callable[[str], str | None] = lambda tool: '/usr/bin/' + tool) -> dict:
     rows, splits = [], {}
     for case in cases:
-        answer = suggest(case['request'], system=system, which=which, path=case.get('path'))
+        answer = suggest(case['request'], system=system, which=which, path=case.get('path'),
+                         log_filter=LogFilter(**case['log_filter']) if 'log_filter' in case else None)
         matches = (answer['status'] == case['expected_status'] and
                    answer.get('recipe_id') == case.get('expected_recipe'))
         hits = search(index, case['request']) if index else []
@@ -51,6 +58,8 @@ def evaluate(cases: list[dict], index: Path | None = None, *, system: str = 'Dar
         command = answer['command']
         if command and case.get('path') is not None:
             command = shlex.join([*answer['argv'][:-1], '<path>'])
+        if command and answer.get('recipe_id') == 'unified-log-filter':
+            command = shlex.join(next(r['argv'] for r in load_recipes() if r['id'] == 'unified-log-filter'))
         row = {'id': case['id'], 'split': case['split'], 'status': answer['status'],
                'recipe_id': answer.get('recipe_id'), 'command': command,
                'expected_status': case['expected_status'], 'contract_match': matches,

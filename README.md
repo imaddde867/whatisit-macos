@@ -2,7 +2,7 @@
 
 A lightweight macOS command assistant focused on accuracy and documented commands.
 
-**Status: experimental prototype.** Six fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+**Status: experimental prototype.** Seven fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
 
 The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
 
@@ -22,12 +22,14 @@ whatisit-macos 'show Spotlight metadata for a file' --path "$HOME/Downloads/exam
 whatisit-macos 'verify app signature' --path /Applications/Example.app
 whatisit-macos 'assess Gatekeeper policy for an app' --path /Applications/Example.app
 whatisit-macos 'validate an app stapled ticket' --path /Applications/Example.app
+whatisit-macos 'filter unified logs' --subsystem com.example.whatisit --pid 123 \
+  --level error --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300'
 whatisit-macos --list
 ```
 
-Use an actual file path for the metadata example. Output includes the command, brief caveats, and sources. Nothing is executed; copy and review the command before running it yourself.
+Use an actual file path for the metadata example. For log filtering, supply the intended subsystem, PID and interval; the example uses synthetic values. All five log inputs are required. Severity is exactly `error` or `default`; timestamps require a UTC offset and end must follow start. Subsystems are limited to 1–255 ASCII letters, digits, dots, underscores and hyphens, beginning with a letter or digit. No values are inferred from request text. Output includes the command, brief caveats, and sources. Nothing is executed; copy and review the command before running it yourself.
 
-| Starter task | Command template | Behavior |
+| Inspection task | Command template | Behavior |
 | --- | --- | --- |
 | Battery cycle count | `system_profiler SPPowerDataType` | Prints the power report; read Cycle Count in Battery Information. |
 | Spotlight file metadata | `mdls PATH` | Requires explicit `--path`; quotes the absolute path. |
@@ -43,6 +45,8 @@ whatisit-macos --timing 'show assertions preventing sleep'
 
 `--timing` measures lookup work inside Python, including optional documentation retrieval, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
 
+Log filtering prints stored events matching subsystem, PID, severity and time together, using compact text. Empty output does not establish absence of events. PID reuse, retention, redaction and access limit what a bounded query can establish. Live monitoring, process-name selection, archives, message filters and info/debug persistence remain unsupported. Existing device evidence covers controlled public events; see [the log-filter slice](docs/LOG_FILTER.md).
+
 ## Local documentation
 
 Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Apple manuals and catalog entries are bound to executables in `/usr/bin`, `/usr/sbin`, `/bin` and `/sbin`, ignoring PATH shadows. This provenance does not certify a PATH-selected executable when you later run a command. Rebuild older indexes using a new filename. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
@@ -50,7 +54,7 @@ Build an index explicitly on the Mac; this reads 12 selected system manuals and 
 ```bash
 mkdir -p .cache eval/results
 whatisit-macos-build-docs .cache/manuals.sqlite3 > eval/results/inventory.json
-PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'show unified logs'
+PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'stream unified logs live'
 ```
 
 The second command returns `unsupported` with documentation evidence and exit code `2`. Evidence includes the source path, tool path, capture time, macOS version, document hash and chunk number. Retrieval does not approve a command or change recipe routing. Missing/unreadable indexes produce a visible documentation error while preserving the original suggestion status. Without `--docs-index`, no index is read. Choose a new filename to rebuild after an OS update; existing captures are never overwritten. Keep indexes in ignored `.cache/`, not in Git.
@@ -68,7 +72,7 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 - Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
 - Unknown and combined app-audit requests return `unsupported`; missing file/app paths return `needs-input` rather than a runnable placeholder.
 - Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
-- The original tracing, launchd, unified-log, and combined app-audit queries remain unsupported. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
+- The original tracing, launchd and combined app-audit queries remain unsupported. Bounded unified-log requests now ask for explicit filters; broader log requests abstain. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
 
 ## Development
 
