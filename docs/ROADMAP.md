@@ -1,13 +1,10 @@
 # Roadmap
 
-## Product direction and immediate work — 2026-10-09
+## Active direction
 
-Build a smarter, useful macOS continuation of whatisit that remains fast and lightweight on the M4 with 16 GiB memory. The three-recipe baseline and validation ledger are groundwork, not the finished product.
+Keep the documented recipe catalog as the fast path. For unsupported or ambiguous requests, offer an optional local general-command fallback through the pinned upstream `whatisit` package; `--catalog-only` keeps a catalog-only invocation. The historical `--model` MLX selector remains available for catalog selection. The fallback uses upstream's shared server lifecycle with a 60-second idle timeout and adds no automatic download or execution path.
 
-1. Start [#4: working local intelligence prototype](https://github.com/imaddde867/whatisit-macos/issues/4): one optional local adapter, retrieval-grounded operation selection and clarification, on-demand loading/unloading, and end-to-end resource measurements.
-2. Deliver [#7: useful coverage expansion](https://github.com/imaddde867/whatisit-macos/issues/7), beginning with distinct app signature/Gatekeeper/ticket checks, then log filtering, bounded tracing and known-service inspection. Coordinate the first slice with #4.
-3. Compare the frozen baseline, expanded deterministic catalog, and the same expanded catalog with model assistance. Freeze a fresh comparison set before final evaluation; the original 40 cases are development evidence.
-4. Publish a keep/change/discard decision based on useful correct coverage, errors, clarification quality, latency, peak memory and retained idle memory. Record numerical budgets before final candidate comparison. Preserve a usable no-model path and manual execution.
+The next work is to measure useful correct coverage, abstentions and errors, latency, peak memory and idle unload behavior on a fresh comparison set. Keep generated commands reviewable, local by default, and explicitly uncertain about semantic correctness. Do not treat adding recipes as the sole path to useful coverage.
 
 Issue #2 remains open only for final scoring/protocol acceptance and explicitly retained limitations. It does not block starting #4/#7. Earlier deferral statements in the chronological validation ledger describe the previous plan. Finish the baseline report with existing evidence; no further general validation audit is required.
 
@@ -42,7 +39,7 @@ The first comparison and eight routing mismatches are recorded in [MEASUREMENTS.
 
 Gate: compare against the keyword baseline on the expanded evaluation, including false matches and abstentions. Keep a held-out set that was not used to tune routing.
 
-## 3. Local intelligence experiment — first slice implemented
+## 3. Historical local MLX experiment — first slice implemented
 
 - [x] Inspect original source/configuration and locally available models/runtimes; record hashes and reuse opportunities in [EXPERIMENT.md](EXPERIMENT.md). Original installed version/debug output remains uncaptured.
 - [x] Implement one optional MLX selector, shared validated rendering and on-demand lifecycle, following #4.
@@ -56,7 +53,7 @@ Gate: compare against the keyword baseline on the expanded evaluation, including
 - [x] Freeze and measure a 24-case post-implementation A/B/C comparison; publish semantic judgments and negative model results in [LOG_FILTER.md](LOG_FILTER.md). This implementer-authored set is now development evidence; independent release comparison remains pending.
 - [ ] Publish reproducible commands, model/configuration identities, semantic scores and a keep/change/discard decision.
 
-Pilot commands, artifact identities and a provisional keep-deterministic/no-default-model decision are in [EXPERIMENT.md](EXPERIMENT.md). The remaining boxes refer to the fresh final comparison and later catalog slices, not a prerequisite for using the implemented app checks.
+Pilot commands, artifact identities and the provisional keep-deterministic/no-default-model decision are historical results in [EXPERIMENT.md](EXPERIMENT.md). They describe the MLX catalog-selector experiment and do not evaluate the general fallback.
 
 Experiment start is unblocked. Default adoption still requires measured benefit within predeclared resource budgets, no fabricated required inputs or wrong-platform outputs on the comparison set, and separately reported errors/abstentions/coverage. A negative result is a valid outcome. Do not tune against the final comparison set.
 

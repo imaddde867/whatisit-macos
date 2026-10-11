@@ -22,6 +22,30 @@ class CliTests(unittest.TestCase):
         self.assertEqual(json.loads(stdout)["command"], "pmset -g assertions")
         self.assertEqual(stderr, "")
 
+    def test_unsupported_request_uses_local_fallback_with_explicit_inputs(self):
+        generated = {'status': 'suggestion', 'command': 'find /tmp -type f',
+                     'reason': '', 'notes': ['Generated locally; review before running.'],
+                     'sources': ['local model']}
+        with patch('whatisit_macos.local_recovery.suggest_local', return_value=generated) as suggest_local:
+            code, stdout, _ = self.invoke(['--json', '--path', '/tmp/example', 'find temporary files'])
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(stdout), generated)
+        self.assertEqual(suggest_local.call_args.args, ('find temporary files',))
+        self.assertEqual(suggest_local.call_args.kwargs['path'], '/tmp/example')
+
+    def test_catalog_only_keeps_unsupported_without_loading_local_runtime(self):
+        with patch('whatisit_macos.local_recovery.suggest_local', side_effect=AssertionError('fallback called')):
+            code, stdout, _ = self.invoke(['--catalog-only', '--json', 'show arbitrary thing'])
+        answer = json.loads(stdout)
+        self.assertEqual(code, 2)
+        self.assertEqual(answer['status'], 'unsupported')
+
+    def test_local_fallback_does_not_override_needs_input(self):
+        with patch('whatisit_macos.local_recovery.suggest_local', side_effect=AssertionError('fallback called')):
+            code, stdout, _ = self.invoke(['--json', 'show file metadata'])
+        self.assertEqual(code, 2)
+        self.assertEqual(json.loads(stdout)['status'], 'needs-input')
+
     def test_missing_input_json_contract(self):
         code, stdout, _ = self.invoke(["--json", "show file metadata"])
         self.assertEqual(code, 2)

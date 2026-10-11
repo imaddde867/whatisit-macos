@@ -2,9 +2,9 @@
 
 A lightweight macOS command assistant focused on accuracy and documented commands.
 
-**Status: experimental prototype.** Eight fixed inspection recipes, local documentation retrieval, and an optional local MLX selector work today. Default routing uses keywords. Model output selects an operation; validated templates render commands from explicit inputs. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+**Status: experimental prototype.** The CLI tries its documented macOS recipe catalog first, then can use an optional local `whatisit` model for requests the catalog cannot handle. Install the `local` extra to enable that fallback; otherwise catalog behavior stays lightweight and works without an inference runtime. `--catalog-only` disables generation. The historical `--model` option still selects the MLX catalog selector described in [EXPERIMENT.md](docs/EXPERIMENT.md). This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
 
-The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
+The goal is to recover useful macOS commands with a catalog fast path and a local general fallback, while keeping requests on the machine by default. Generated commands can be wrong; review them before running. The CLI never executes suggestions.
 
 ## Try it
 
@@ -14,9 +14,11 @@ Requires macOS and Python 3.11+. From your existing clone:
 git pull --ff-only
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e .
+python -m pip install -e '.[local]'
 
 whatisit-macos 'show battery cycle count'
+whatisit-macos 'find files larger than 100 MB in this folder'
+whatisit-macos --catalog-only 'find files larger than 100 MB in this folder'
 whatisit-macos 'show assertions preventing sleep'
 whatisit-macos 'show Spotlight metadata for a file' --path "$HOME/Downloads/example.pdf"
 whatisit-macos 'verify app signature' --path /Applications/Example.app
@@ -28,6 +30,8 @@ whatisit-macos 'inspect known launchd service configuration' \
   --domain system --label com.apple.logd
 whatisit-macos --list
 ```
+
+The fallback extra installs Python integration only. To fetch upstream's local model and runtime explicitly, run `whatisit setup`; `whatisit-macos` never downloads them automatically. Skip setup to use the catalog without inference.
 
 Use an actual file path for the metadata example. For log filtering, supply the intended subsystem, PID and interval; the example uses synthetic values. All five log inputs are required. Severity is exactly `error` or `default`; timestamps require a UTC offset and end must follow start. Subsystems are limited to 1–255 ASCII letters, digits, dots, underscores and hyphens, beginning with a letter or digit. No values are inferred from request text. Output includes the command, brief caveats, and sources. Nothing is executed; copy and review the command before running it yourself.
 
@@ -74,7 +78,8 @@ The evaluation reads 40 authored tasks with a frozen dev/held-out split. The ben
 
 ## Current limits
 
-- Default lookup has no model or third-party runtime dependencies. Optional MLX loading uses an existing local directory, runs on demand, unloads explicitly and exits with the CLI; no background server is started. See [the experiment and pilot measurements](docs/EXPERIMENT.md) for setup, commands and limits.
+- The catalog works without an inference runtime. The optional `local` extra pins upstream `whatisit` and uses its installed local model/runtime; no model or runtime is downloaded automatically. The fallback uses upstream's shared server lifecycle with a 60-second idle timeout. See [Design](docs/DESIGN.md) for behavior and [the historical MLX experiment](docs/EXPERIMENT.md) for its measurements.
+- Model-generated shell commands are extracted and checked with upstream's safety scanner; DANGER findings are rejected and CAUTION findings appear as notes. This does not establish semantic correctness. Review every suggestion manually before running it. Optional `--docs-index` output is evidence for review; it does not validate or authorize a generated command. The CLI does not execute suggestions.
 - Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
 - Unknown and combined app-audit requests return `unsupported`; missing file/app paths return `needs-input` rather than a runnable placeholder.
 - Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
