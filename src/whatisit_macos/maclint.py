@@ -98,15 +98,21 @@ def problems(command: str) -> list[str]:
                 if re.fullmatch(r'[a-z][\w.]*[a-z0-9]', arg) and subprocess.run(
                         ['sysctl', '-N', arg], capture_output=True).returncode:
                     found.append(f'sysctl {arg}: unknown key')
-        man = _man_text(cmd)
-        if not man or cmd in NO_FLAG_CHECK:
-            continue
         args = segment[1:]
         for index, arg in enumerate(args):
             if arg in EXEC_FLAGS:
+                target = args[index + 1] if index + 1 < len(args) else ''
+                if target and target not in BUILTINS and not shutil.which(target):
+                    found.append(f'{target}: not installed on macOS')
                 args = args[:index]
                 break
-        documented = _documented(cmd)
+        page = cmd
+        if args and re.fullmatch(r'[a-z][a-z0-9-]*', args[0]) and _man_text(f'{cmd}-{args[0]}'):
+            page, args = f'{cmd}-{args[0]}', args[1:]  # git log -> man git-log
+        man = _man_text(page)
+        if not man or cmd in NO_FLAG_CHECK:
+            continue
+        documented = _documented(page)
         for arg in args:
             if len(arg) > 2 and arg[0] == '-' and re.search(
                     r'(?<![\w-])' + re.escape(arg.split('=')[0]) + r'(?![\w-])', man):
