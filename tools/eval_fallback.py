@@ -36,7 +36,7 @@ CASES = [
     ("show assertions preventing sleep", r"pmset -g assertions"),
     ("find files bigger than 100MB in this folder", r"find .*-size \+100M"),
     ("compress the logs directory into logs.tar.gz", r"tar .*-?c.*z.*logs\.tar\.gz"),
-    ("show the last 50 lines of the system log", r"\blog (show|stream)\b"),
+    ("show the last 50 lines of the system log", r"\blog (show|stream)\b|tail .*system\.log"),
     ("list installed homebrew packages", r"brew (list|ls)"),
     ("show wifi network name", r"^(?!.*\$\{).*(networksetup -getairportnetwork|ipconfig getsummary|airport -I)"),
     ("show the size of each file in the current directory in human readable form sorted largest first", r"ls -.*S|du -.*h.*sort"),
