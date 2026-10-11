@@ -29,7 +29,7 @@ The fallback needs upstream's model and `llama-server` already installed (`whati
 PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py
 ```
 
-Scores 44 fixed requests (24 development, 20 held-out) as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Last run: 28/44 pass, 6 rejected, 10 wrong, p50 0.5 s warm.
+Scores 44 fixed requests (24 development, 20 held-out) through the CLI routing (catalog, then fallback) as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Last run: 27/44 pass, 5 rejected, 12 wrong, p50 0.8 s (warm server; the first call after idle loads the model).
 
 ## Known limits
 
