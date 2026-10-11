@@ -113,16 +113,3 @@ def problems(command: str) -> list[str]:
                 found.append(f'{cmd} {arg[:2]}: not in man page')
     return found
 
-
-def repair_hint(command: str, issues: list[str]) -> str:
-    """Man-page usage lines for tools whose flags were rejected, to ground one repair attempt."""
-    lines = []
-    for cmd in dict.fromkeys(issue.split()[0].rstrip(':') for issue in issues):
-        if not shutil.which(cmd):
-            continue
-        text = _man_text(cmd)
-        synopsis = text.split('SYNOPSIS', 1)[-1].split('DESCRIPTION')[0] if 'SYNOPSIS' in text else ''
-        usage = ' '.join(synopsis.split())[:300]
-        if usage:
-            lines.append(f'macOS usage of {cmd}: {usage}')
-    return '\n'.join(lines)

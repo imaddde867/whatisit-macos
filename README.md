@@ -5,8 +5,7 @@ Suggest a macOS shell command from plain English. Inspired by [whatisit-nl2sh](h
 ## How it works
 
 1. **Local model.** Requests go to upstream [`whatisit`](https://github.com/ThorOdinson246/whatisit-nl2sh) (`nl2sh-1.5b`, llama-server, 60 s idle unload) in an isolated subprocess with remote config stripped. There is no catalog of hardcoded commands.
-2. **macOS lint gate.** The generated command is checked against *this* Mac: every tool must be on `PATH`, every flag must appear in its man page, `sysctl` keys must exist, system paths must exist, and BSD `sed -i` needs a suffix. Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones.
-3. **One grounded repair.** If lint rejects the command, the model gets one more attempt with the error and the tool's man-page SYNOPSIS. Still failing means `unsupported: <reason>`, exit code 2.
+2. **macOS lint gate.** The generated command is checked against *this* Mac: every tool must be on `PATH`, every flag must appear in its man page, `sysctl` keys must exist, system paths must exist, and BSD `sed -i` needs a suffix. Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones. A finding yields `unsupported: <reason>` (exit code 2), never a guess.
 
 ## Use
 
