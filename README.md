@@ -4,24 +4,20 @@ Suggest a macOS shell command from plain English. Inspired by [whatisit-nl2sh](h
 
 ## How it works
 
-1. **Catalog (instant, no model).** Six fixed-argv recipes for things small models get wrong on macOS: battery cycles, Spotlight metadata, sleep assertions, and app signature / Gatekeeper / notarization-ticket checks.
-2. **Local model fallback (optional).** Anything else goes to upstream [`whatisit`](https://github.com/ThorOdinson246/whatisit-nl2sh) (`nl2sh-1.5b`, llama-server, 60 s idle unload) in an isolated subprocess with remote config stripped.
-3. **macOS lint gate.** Generated commands are rejected if a tool isn't installed or a flag isn't in the local man page (`free`, `nproc`, `du --max-depth`, `stat -c`, `sed -i` without a suffix, …). Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones.
-
-A rejected or failed generation prints `unsupported: <reason>`, exit code 2.
+1. **Local model.** Requests go to upstream [`whatisit`](https://github.com/ThorOdinson246/whatisit-nl2sh) (`nl2sh-1.5b`, llama-server, 60 s idle unload) in an isolated subprocess with remote config stripped. There is no catalog of hardcoded commands.
+2. **macOS lint gate.** The generated command is checked against *this* Mac: every tool must be on `PATH`, every flag must appear in its man page, `sysctl` keys must exist, system paths must exist, and BSD `sed -i` needs a suffix. Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones.
+3. **One grounded repair.** If lint rejects the command, the model gets one more attempt with the error and the tool's man-page SYNOPSIS. Still failing means `unsupported: <reason>`, exit code 2.
 
 ## Use
 
 ```sh
-pip install -e '.[local]'         # or plain `pip install -e .` for catalog only
-whatisit-macos show sleep assertions
-whatisit-macos --path /Applications/Foo.app verify app signature
-whatisit-macos find files larger than 100MB in my home folder   # fallback
-whatisit-macos --catalog-only --json show battery cycles
-whatisit-macos --list
+pip install -e .                  # needs upstream whatisit installed with its model + llama-server
+whatisit-macos find files larger than 100MB in my home folder
+whatisit-macos --path ~/Downloads show the 5 largest files
+whatisit-macos --json -t show listening tcp ports
 ```
 
-The fallback needs upstream's model and `llama-server` already installed (`whatisit` setup); nothing is downloaded automatically.
+Nothing is downloaded automatically; set up upstream `whatisit` first. Set `WHATISIT_MODEL` to try another GGUF.
 
 ## Measure
 
@@ -29,7 +25,7 @@ The fallback needs upstream's model and `llama-server` already installed (`whati
 PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py
 ```
 
-Scores 44 fixed requests (24 development, 20 held-out) through the CLI routing (catalog, then fallback) as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Last run: 27/44 pass, 5 rejected, 12 wrong, p50 0.8 s (warm server; the first call after idle loads the model).
+Scores fixed request→command-pattern cases as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Run it twice; output is deterministic (greedy decoding).
 
 ## Known limits
 

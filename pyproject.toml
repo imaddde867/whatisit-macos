@@ -19,6 +19,3 @@ whatisit-macos = "whatisit_macos.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.package-data]
-whatisit_macos = ["recipes.json"]
