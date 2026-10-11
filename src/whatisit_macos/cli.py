@@ -1,48 +1,32 @@
-"""Command-line entry point. Output only; no execution or network calls."""
+"""Suggest a macOS shell command with a local model; suggestions are never executed."""
 
 import argparse
 import json
 import platform
-import shutil
 import sys
 import time
-import sqlite3
-from pathlib import Path
 
 from . import __version__
-from .engine import load_recipes, suggest
-from .retrieval import search
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Look up a documented macOS command. Prototype; never executes suggestions.")
-    parser.add_argument("words", nargs="*", help="inspection request in plain English")
-    parser.add_argument("--path", help="file path for metadata lookup")
-    parser.add_argument("--docs-index", type=Path, help="search an explicitly captured local manual index")
+    parser = argparse.ArgumentParser(description="Suggest a macOS shell command; never executes suggestions.")
+    parser.add_argument("words", nargs="*", help="what you want to do, in plain English")
+    parser.add_argument("--path", help="explicit file or directory the request refers to")
     parser.add_argument("--json", action="store_true", help="print structured output")
-    parser.add_argument("--list", action="store_true", help="list the starter catalog")
-    parser.add_argument("-t", "--timing", action="store_true", help="report lookup latency")
+    parser.add_argument("-t", "--timing", action="store_true", help="report latency")
     parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args(argv)
-    if args.list:
-        recipes = load_recipes()
-        if args.json:
-            print(json.dumps(recipes, indent=2))
-        else:
-            for recipe in recipes:
-                print(f"{recipe['id']}: {recipe['title']}")
-        return 0
     if not args.words:
         parser.print_help()
         return 2
     start = time.perf_counter()
-    answer = suggest(" ".join(args.words), system=platform.system(), which=shutil.which, path=args.path)
-    if args.docs_index:
-        try:
-            answer["documentation"] = search(args.docs_index, " ".join(args.words))
-        except (OSError, sqlite3.Error, ValueError) as error:
-            answer["documentation"] = []
-            answer["documentation_error"] = str(error)
+    if platform.system() != 'Darwin':
+        answer = {'status': 'unsupported', 'command': None, 'reason': 'This tool only suggests commands on macOS.',
+                  'notes': [], 'sources': []}
+    else:
+        from .local_recovery import suggest_local
+        answer = suggest_local(' '.join(args.words), path=args.path)
     elapsed_ms = (time.perf_counter() - start) * 1000
     if args.json:
         print(json.dumps(answer, indent=2))
@@ -50,16 +34,8 @@ def main(argv: list[str] | None = None) -> int:
         print(answer["command"])
         for note in answer["notes"]:
             print(f"Note: {note}")
-        print("Sources: " + "; ".join(answer["sources"]))
     else:
         print(f"{answer['status']}: {answer['reason']}", file=sys.stderr)
-    if not args.json and args.docs_index:
-        print("Documentation evidence only; review relevance, capture date and macOS version.")
-        for hit in answer["documentation"]:
-            print(f"{hit['tool']}: {hit['source']} (macOS {hit['macos_version']}, {hit['captured_at']})")
-            print(hit["text"])
-        if answer.get("documentation_error"):
-            print("Documentation error: " + answer["documentation_error"], file=sys.stderr)
     if args.timing:
-        print(f"Lookup: {elapsed_ms:.2f} ms", file=sys.stderr)
+        print(f"Latency: {elapsed_ms:.0f} ms", file=sys.stderr)
     return 0 if answer["status"] == "suggestion" else 2

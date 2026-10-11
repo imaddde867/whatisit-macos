@@ -1,85 +1,52 @@
 # whatisit-macos
 
-A lightweight macOS command assistant focused on accuracy and documented commands.
+Suggest a macOS shell command from plain English. Inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh); a fresh implementation, not a fork. **Experimental.** Suggestions are never executed — review them before running.
 
-**Status: measured prototype.** Three fixed inspection recipes and optional local documentation retrieval work today. Natural-language routing still uses simple keywords; general command generation and model integration are future work. This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+## How it works
 
-The goal is to make forgotten terminal commands easy to recover without guessing Linux commands on macOS or inventing flags. Start with a small documented catalog, measure its limits, then decide whether a small local model improves coverage enough to justify its memory and latency.
+1. **Local model.** Requests go to upstream [`whatisit`](https://github.com/ThorOdinson246/whatisit-nl2sh) (`nl2sh-1.5b`, llama-server, 60 s idle unload) in an isolated subprocess with remote config stripped. There is no catalog of hardcoded commands.
+2. **macOS lint gate.** The generated command is checked against *this* Mac: every tool must be on `PATH`, every flag must appear in its man page, `sysctl` keys must exist, system paths must exist, and BSD `sed -i` needs a suffix. Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones. A finding yields `unsupported: <reason>` (exit code 2), never a guess.
 
-## Try it
+## Use
 
-Requires macOS and Python 3.11+. From your existing clone:
-
-```bash
-git pull --ff-only
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e .
-
-whatisit-macos 'show battery cycle count'
-whatisit-macos 'show assertions preventing sleep'
-whatisit-macos 'show Spotlight metadata for a file' --path "$HOME/Downloads/example.pdf"
-whatisit-macos --list
+```sh
+pip install -e .                  # needs upstream whatisit installed with its model + llama-server
+whatisit-macos find files larger than 100MB in my home folder
+whatisit-macos --path ~/Downloads show the 5 largest files
+whatisit-macos --json -t show listening tcp ports
 ```
 
-Use an actual file path for the metadata example. Output includes the command, brief caveats, and sources. Nothing is executed; copy and review the command before running it yourself.
+Nothing is downloaded automatically; set up upstream `whatisit` first. Set `WHATISIT_MODEL` to try another GGUF.
 
-| Starter task | Command template | Behavior |
-| --- | --- | --- |
-| Battery cycle count | `system_profiler SPPowerDataType` | Prints the power report; read Cycle Count in Battery Information. |
-| Spotlight file metadata | `mdls PATH` | Requires explicit `--path`; quotes the absolute path. |
-| Sleep assertions | `pmset -g assertions` | Shows current assertions and owners; not every possible cause of a sleep problem. |
+## Measure
 
-```bash
-whatisit-macos --json 'show battery cycle count'
-whatisit-macos --timing 'show assertions preventing sleep'
+```sh
+PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py dev|frozen [model|lint]
 ```
 
-`--timing` measures lookup work inside Python, including optional documentation retrieval, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
+`eval/dev.jsonl` (61 cases) was used to tune the harness; `eval/frozen.jsonl` (59 cases) was run once at the end. Cases are ChatGPT-authored request → reference pairs with regex accept patterns (frozen patterns also ChatGPT-widened, without seeing model output). Output is deterministic (greedy decoding).
 
-## Local documentation
+Frozen results (`model` = no checks, `lint` = macOS lint + deletion guard):
 
-Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Apple manuals and catalog entries are bound to executables in `/usr/bin`, `/usr/sbin`, `/bin` and `/sbin`, ignoring PATH shadows. This provenance does not certify a PATH-selected executable when you later run a command. Rebuild older indexes using a new filename. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
+| model | harness | correct | wrong | rejected | p50 |
+|---|---|---|---|---|---|
+| nl2sh-1.5b | model | 6/59 | 45 | 1 | 0.18 s |
+| nl2sh-1.5b | lint | 8/59 | 34 | 12 | 0.23 s |
+| nl2sh-3b | model | 11/59 | 40 | 1 | 0.33 s |
+| nl2sh-3b | lint | 13/59 | 26 | 15 | 0.39 s |
 
-```bash
-mkdir -p .cache eval/results
-whatisit-macos-build-docs .cache/manuals.sqlite3 > eval/results/inventory.json
-PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'show unified logs'
+Treat these as a low-power regression signal, not a benchmark: 59 cases, implementer-built harness, strict regexes. 3B beat 1.5B on frozen but lost on dev (15/61 vs 26/61, where 1.5B was tuned), so the model choice is unsettled; 1.5B stays the default. The lint gate never turned a correct answer into a wrong one on either split.
+
+## Known limits
+
+- The 1.5B model does not know many macOS-only commands and sometimes invents flags or paths; only about 1 in 7 independent requests is answered correctly. The lint gate catches missing tools/flags, not wrong semantics (e.g. `pmset cycles`).
+- The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages). It can false-positive on real flags the man page omits (`scutil --nwi`, `qlmanage -o`).
+- The deletion guard requires every delete target to appear literally in the request; upstream's scanner alone let `rm -rf ~/Library/Caches` and `… | xargs rm -f` through.
+- Tried and rejected on dev: prompt rewrites, static few-shot, man-page retrieval, one lint-guided repair re-prompt, top-2 tldr-pages example retrieval (12/61 vs 26/61 without it: the 1.5B model copies the examples), a 4B model, and the `qcoder-nl2sh` GGUF (same score as default).
+- Next lever, not started: a macOS-specific fine-tune.
+
+## Tests
+
+```sh
+PYTHONPATH=src python3 -m unittest discover -s tests
 ```
-
-The second command returns `unsupported` with documentation evidence and exit code `2`. Evidence includes the source path, tool path, capture time, macOS version, document hash and chunk number. Retrieval does not approve a command or change recipe routing. Missing/unreadable indexes produce a visible documentation error while preserving the original suggestion status. Without `--docs-index`, no index is read. Choose a new filename to rebuild after an OS update; existing captures are never overwritten. Keep indexes in ignored `.cache/`, not in Git.
-
-```bash
-PYTHONPATH=src python3 tools/evaluate.py --docs-index .cache/manuals.sqlite3 > eval/results/evaluation.json
-PYTHONPATH=src python3 -m tools.benchmark --docs-index .cache/manuals.sqlite3 > eval/results/benchmark.json
-```
-
-The evaluation reads 40 authored tasks with a frozen dev/held-out split. The benchmark starts only lookup CLI processes. Neither executes suggested commands. See [target Mac measurements and known gaps](docs/MEASUREMENTS.md) for results and methodology.
-
-## Current limits
-
-- No model, model download, background server, network calls, or third-party runtime dependencies.
-- Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
-- Unknown requests return `unsupported`; missing file paths return `needs-input` rather than a runnable placeholder.
-- Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
-- The original tracing, launchd, unified-log, and notarization queries are tracked as unsupported seed cases, not claimed as solved.
-
-## Development
-
-```bash
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-```
-
-Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behavior, retrieval provenance and failures, evaluation reporting, and the seed cases in `eval/cases.jsonl`. CI runs the same suite on Ubuntu and macOS and checks that the recipe data ships in an installed wheel. These tests do not execute the suggested commands or establish real-world macOS correctness.
-
-- [Research and diagnosis](docs/RESEARCH.md): observations, upstream evidence, and hypotheses.
-- [Design](docs/DESIGN.md): implemented flow and proposed retrieval/model flow.
-- [Roadmap](docs/ROADMAP.md): concrete next steps and evaluation gates.
-- [Evaluation](eval/README.md): separate command correctness from useful coverage and resource cost.
-- [Contributing](CONTRIBUTING.md): adding a recipe or a regression case.
-
-## License
-
-MIT for this repository. No upstream code, model weights, training datasets, or copied manual pages are included. See [LICENSE](LICENSE). Any future imported material needs its own license and attribution review.
-
-Wheel isolation checks and per-task manual validation commands are recorded in [VALIDATION.md](docs/VALIDATION.md).
