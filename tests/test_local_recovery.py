@@ -31,8 +31,7 @@ class LocalRecoveryTests(unittest.TestCase):
         invocation = run.call_args.kwargs
         self.assertEqual(run.call_args.args[0], [sys.executable, '-m', 'whatisit_macos.local_recovery_worker'])
         self.assertEqual(json.loads(invocation['input']),
-                         {'request': 'find files', 'path': '/tmp/example',
-                          'log_filter': None, 'service_target': None})
+                         {'request': 'find files', 'path': '/tmp/example'})
         self.assertEqual(invocation['env']['WHATISIT_MODEL'], '/tmp/model.gguf')
         self.assertNotIn('WHATISIT_OPENAI_BASE_URL', invocation['env'])
         self.assertNotIn('NL2SH_OPENAI_API_KEY', invocation['env'])
@@ -100,8 +99,7 @@ class LocalRecoveryTests(unittest.TestCase):
                                           'whatisit.engine': engine, 'whatisit.safety': safety}), \
                     patch.dict(os.environ, {'WHATISIT_LLAMA_SERVER': server}, clear=True):
                 answer = local_recovery_worker.suggest(
-                    {'request': 'list files', 'path': '/tmp/example',
-                     'log_filter': None, 'service_target': None})
+                    {'request': 'list files', 'path': '/tmp/example'})
         return answer, calls
 
     def test_worker_reuses_upstream_server_and_reports_cautions(self):

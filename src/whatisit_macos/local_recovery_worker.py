@@ -6,26 +6,14 @@ from pathlib import Path
 
 
 def suggest(payload: object) -> dict:
-    if not isinstance(payload, dict) or set(payload) != {
-            'request', 'path', 'log_filter', 'service_target'}:
+    if not isinstance(payload, dict) or set(payload) != {'request', 'path'}:
         return _unsupported('Invalid local generation request.')
     request = payload['request']
     if (not isinstance(request, str) or not request.strip() or len(request) > 2000 or
             any(char in request for char in '\x00\r\n')):
         return _unsupported('Request must contain 1–2000 characters.')
     path = payload['path']
-    log_filter = payload['log_filter']
-    service_target = payload['service_target']
-    if (path is not None and (not isinstance(path, str) or len(path) > 8192) or
-            log_filter is not None and (not isinstance(log_filter, dict) or
-                                        set(log_filter) != {'subsystem', 'pid', 'level', 'start', 'end'}) or
-            service_target is not None and (not isinstance(service_target, dict) or
-                                            set(service_target) != {'domain', 'label'})):
-        return _unsupported('Invalid explicit inputs.')
-    if (log_filter is not None and any(value is not None and type(value) not in (str, int)
-                                        for value in log_filter.values()) or
-            service_target is not None and any(value is not None and not isinstance(value, str)
-                                               for value in service_target.values())):
+    if path is not None and (not isinstance(path, str) or len(path) > 8192):
         return _unsupported('Invalid explicit inputs.')
     try:
         from whatisit import config, engine, safety
@@ -61,13 +49,11 @@ def suggest(payload: object) -> dict:
     if server is None:
         return _unsupported('No local llama-server is configured; run `whatisit setup` in the local environment.')
 
-    explicit = {'path': path, 'log_filter': log_filter, 'service_target': service_target}
-    explicit = {key: value for key, value in explicit.items() if value is not None}
     prompt = ('Target system: macOS, using zsh and the built-in BSD command-line tools. '
               'Use macOS commands and flags, not Linux/GNU-only ones. If required inputs are missing or '
               'the request is ambiguous, output no command.\n' + request)
-    if explicit:
-        prompt += '\nExplicit inputs: ' + json.dumps(explicit, ensure_ascii=False)
+    if path is not None:
+        prompt += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)
     cfg.update(openai_base_url='', max_tokens=256, ctx_size=4096,
                host_context=False, idle_timeout=60)
     try:

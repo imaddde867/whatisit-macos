@@ -1,106 +1,44 @@
 # whatisit-macos
 
-A lightweight macOS command assistant focused on accuracy and documented commands.
+Suggest a macOS shell command from plain English. Inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh); a fresh implementation, not a fork. **Experimental.** Suggestions are never executed — review them before running.
 
-**Status: experimental prototype.** The CLI tries its documented macOS recipe catalog first, then can use an optional local `whatisit` model for requests the catalog cannot handle. Install the `local` extra to enable that fallback; otherwise catalog behavior stays lightweight and works without an inference runtime. `--catalog-only` disables generation. The historical `--model` option still selects the MLX catalog selector described in [EXPERIMENT.md](docs/EXPERIMENT.md). This is a fresh implementation inspired by [whatisit-nl2sh](https://github.com/ThorOdinson246/whatisit-nl2sh), not a fork or a drop-in replacement.
+## How it works
 
-The goal is to recover useful macOS commands with a catalog fast path and a local general fallback, while keeping requests on the machine by default. Generated commands can be wrong; review them before running. The CLI never executes suggestions.
+1. **Catalog (instant, no model).** Six fixed-argv recipes for things small models get wrong on macOS: battery cycles, Spotlight metadata, sleep assertions, and app signature / Gatekeeper / notarization-ticket checks.
+2. **Local model fallback (optional).** Anything else goes to upstream [`whatisit`](https://github.com/ThorOdinson246/whatisit-nl2sh) (`nl2sh-1.5b`, llama-server, 60 s idle unload) in an isolated subprocess with remote config stripped.
+3. **macOS lint gate.** Generated commands are rejected if a tool isn't installed or a flag isn't in the local man page (`free`, `nproc`, `du --max-depth`, `stat -c`, `sed -i` without a suffix, …). Upstream's safety scanner also rejects DANGER findings and notes CAUTION ones.
 
-## Try it
+A rejected or failed generation prints `unsupported: <reason>`, exit code 2.
 
-Requires macOS and Python 3.11+. From your existing clone:
+## Use
 
-```bash
-git pull --ff-only
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[local]'
-
-whatisit-macos 'show battery cycle count'
-whatisit-macos 'find files larger than 100 MB in this folder'
-whatisit-macos --catalog-only 'find files larger than 100 MB in this folder'
-whatisit-macos 'show assertions preventing sleep'
-whatisit-macos 'show Spotlight metadata for a file' --path "$HOME/Downloads/example.pdf"
-whatisit-macos 'verify app signature' --path /Applications/Example.app
-whatisit-macos 'assess Gatekeeper policy for an app' --path /Applications/Example.app
-whatisit-macos 'validate an app stapled ticket' --path /Applications/Example.app
-whatisit-macos 'filter unified logs' --subsystem com.example.whatisit --pid 123 \
-  --level error --start '2026-10-09 10:00:00+0300' --end '2026-10-09 10:01:00+0300'
-whatisit-macos 'inspect known launchd service configuration' \
-  --domain system --label com.apple.logd
+```sh
+pip install -e '.[local]'         # or plain `pip install -e .` for catalog only
+whatisit-macos show sleep assertions
+whatisit-macos --path /Applications/Foo.app verify app signature
+whatisit-macos find files larger than 100MB in my home folder   # fallback
+whatisit-macos --catalog-only --json show battery cycles
 whatisit-macos --list
 ```
 
-The fallback extra installs Python integration only. To fetch upstream's local model and runtime explicitly, run `whatisit setup`; `whatisit-macos` never downloads them automatically. Skip setup to use the catalog without inference.
+The fallback needs upstream's model and `llama-server` already installed (`whatisit` setup); nothing is downloaded automatically.
 
-Use an actual file path for the metadata example. For log filtering, supply the intended subsystem, PID and interval; the example uses synthetic values. All five log inputs are required. Severity is exactly `error` or `default`; timestamps require a UTC offset and end must follow start. Subsystems are limited to 1–255 ASCII letters, digits, dots, underscores and hyphens, beginning with a letter or digit. No values are inferred from request text. Output includes the command, brief caveats, and sources. Nothing is executed; copy and review the command before running it yourself.
+## Measure
 
-| Inspection task | Command template | Behavior |
-| --- | --- | --- |
-| Battery cycle count | `system_profiler SPPowerDataType` | Prints the power report; read Cycle Count in Battery Information. |
-| Spotlight file metadata | `mdls PATH` | Requires explicit `--path`; quotes the absolute path. |
-| Sleep assertions | `pmset -g assertions` | Shows current assertions and owners; not every possible cause of a sleep problem. |
-| App signature | `codesign --verify --deep --strict --verbose=2 PATH` | Signature integrity; requires an explicit app path. |
-| App Gatekeeper policy | `spctl --assess --type execute --verbose=2 PATH` | Local policy at check time; separate from signature and ticket validation. |
-| App stapled ticket | `/Library/Developer/CommandLineTools/usr/bin/stapler validate -q PATH` | Requires Command Line Tools; may contact Apple. Missing ticket does not prove never notarized. |
-| Bounded unified logs | `log show --style compact --start START --end END --predicate FILTER` | Requires explicit subsystem, PID, error/default level and offset time bounds. |
-| Known launchd service | `launchctl print DOMAIN/LABEL` | Requires explicit `--domain` (`system`, `user/<uid>` or `gui/<uid>`, with a decimal UID) and `--label`; output is unstable diagnostic data, not the original complete plist. |
-
-```bash
-whatisit-macos --json 'show battery cycle count'
-whatisit-macos --timing 'show assertions preventing sleep'
+```sh
+PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py
 ```
 
-`--timing` measures lookup work inside Python, including optional documentation retrieval, excluding interpreter startup and the suggested command's runtime. Exit code `0` means a suggestion was returned (or a listing/help flag succeeded); `2` means input is missing, ambiguous, unsupported, or a required tool is unavailable. Non-macOS hosts can inspect the catalog and run tests, but do not receive command suggestions.
+Scores 44 fixed requests (24 development, 20 held-out) as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Last run: 28/44 pass, 6 rejected, 10 wrong, p50 0.5 s warm.
 
-Log filtering prints stored events matching subsystem, PID, severity and time together, using compact text. Empty output does not establish absence of events. PID reuse, retention, redaction and access limit what a bounded query can establish. Live monitoring, process-name selection, archives, message filters and info/debug persistence remain unsupported. Existing device evidence covers controlled public events; see [the log-filter slice](docs/LOG_FILTER.md).
+## Known limits
 
-Known-service inspection needs an explicit launchd domain and label. User/GUI domains require a decimal UID, including 0. Labels must contain 1–255 ASCII letters, digits, dots, underscores or hyphens and start with a letter or digit; it does not discover a service from a PID. `launchctl print` is diagnostic output that may change across releases and does not reproduce the original complete plist. Existing evidence validates `system/com.apple.logd`; see [the validation record](docs/VALIDATION.md#remaining-candidate-checks-and-semantic-review--2026-10-08).
+- The 1.5B model does not know many macOS-only commands and sometimes invents flags or paths. The lint gate catches missing tools/flags, not wrong semantics (e.g. `pmset cycles`, `diskutil eject /dev/disk4`).
+- The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages) and can false-positive on unusual flag syntax.
+- Prompt tuning, few-shot examples, manual-page retrieval and a 4B model were tried and did not beat the current prompt plus lint.
 
-## Local documentation
+## Tests
 
-Build an index explicitly on the Mac; this reads 12 selected system manuals and the curated recipe catalog. It runs only `sw_vers`, `man` and `col`, never the commands being documented. Apple manuals and catalog entries are bound to executables in `/usr/bin`, `/usr/sbin`, `/bin` and `/sbin`, ignoring PATH shadows. This provenance does not certify a PATH-selected executable when you later run a command. Rebuild older indexes using a new filename. Requires Python's SQLite with FTS5 support. The installed wheel includes `whatisit-macos-build-docs`; it works outside the clone. Choose a writable local index directory:
-
-```bash
-mkdir -p .cache eval/results
-whatisit-macos-build-docs .cache/manuals.sqlite3 > eval/results/inventory.json
-PYTHONPATH=src python3 -m whatisit_macos --docs-index .cache/manuals.sqlite3 --json 'stream unified logs live'
+```sh
+PYTHONPATH=src python3 -m unittest discover -s tests
 ```
-
-The second command returns `unsupported` with documentation evidence and exit code `2`. Evidence includes the source path, tool path, capture time, macOS version, document hash and chunk number. Retrieval does not approve a command or change recipe routing. Missing/unreadable indexes produce a visible documentation error while preserving the original suggestion status. Without `--docs-index`, no index is read. Choose a new filename to rebuild after an OS update; existing captures are never overwritten. Keep indexes in ignored `.cache/`, not in Git.
-
-```bash
-PYTHONPATH=src python3 tools/evaluate.py --docs-index .cache/manuals.sqlite3 > eval/results/evaluation.json
-PYTHONPATH=src python3 -m tools.benchmark --docs-index .cache/manuals.sqlite3 > eval/results/benchmark.json
-```
-
-The evaluation reads 40 authored tasks with a frozen dev/held-out split. The benchmark starts only lookup CLI processes. Neither executes suggested commands. See [target Mac measurements and known gaps](docs/MEASUREMENTS.md) for results and methodology.
-
-## Current limits
-
-- The catalog works without an inference runtime. The optional `local` extra pins upstream `whatisit` and uses its installed local model/runtime; no model or runtime is downloaded automatically. The fallback uses upstream's shared server lifecycle with a 60-second idle timeout. See [Design](docs/DESIGN.md) for behavior and [the historical MLX experiment](docs/EXPERIMENT.md) for its measurements.
-- Model-generated shell commands are extracted and checked with upstream's safety scanner; DANGER findings are rejected and CAUTION findings appear as notes. This does not establish semantic correctness. Review every suggestion manually before running it. Optional `--docs-index` output is evidence for review; it does not validate or authorize a generated command. The CLI does not execute suggestions.
-- Keyword matching can miss paraphrases and qualifiers. Known unsupported output, traversal and monitoring qualifiers now abstain. A source-backed template does not prove that the selected template satisfies the whole request.
-- Unknown and combined app-audit requests return `unsupported`; missing file/app paths return `needs-input` rather than a runnable placeholder.
-- Only tool availability on PATH is checked. Manuals and lookup resource cost have been inspected on the target Mac; suggested commands still require manual device validation. Lexical retrieval can return irrelevant or partial passages, including mutation documentation. Capture provenance does not prove compatibility with the current OS.
-- PID-to-launchd-service ownership, tracing and combined app-audit requests remain unsupported. Known-service inspection requires an explicit domain and label. Bounded unified-log requests ask for explicit filters; broader log requests abstain. Signature, local policy and stapled ticket checks are separate supported operations; they do not establish a complete app safety diagnosis.
-
-## Development
-
-```bash
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-```
-
-Tests cover routing, platform/tool checks, quoting, incomplete inputs, CLI behavior, retrieval provenance and failures, evaluation reporting, and the seed cases in `eval/cases.jsonl`. CI runs the same suite on Ubuntu and macOS and checks that the recipe data ships in an installed wheel. These tests do not execute the suggested commands or establish real-world macOS correctness.
-
-- [Research and diagnosis](docs/RESEARCH.md): observations, upstream evidence, and hypotheses.
-- [Design](docs/DESIGN.md): implemented flow and proposed retrieval/model flow.
-- [Roadmap](docs/ROADMAP.md): concrete next steps and evaluation gates.
-- [Evaluation](eval/README.md): separate command correctness from useful coverage and resource cost.
-- [Contributing](CONTRIBUTING.md): adding a recipe or a regression case.
-
-## License
-
-MIT for this repository. No upstream code, model weights, training datasets, or copied manual pages are included. See [LICENSE](LICENSE). Any future imported material needs its own license and attribution review.
-
-Wheel isolation checks and per-task manual validation commands are recorded in [VALIDATION.md](docs/VALIDATION.md).
