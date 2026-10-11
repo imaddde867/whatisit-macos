@@ -30,7 +30,8 @@ Scores fixed request→command-pattern cases as pass / rejected / wrong with p50
 
 - The 1.5B model does not know many macOS-only commands and sometimes invents flags or paths. The lint gate catches missing tools/flags, not wrong semantics (e.g. `pmset cycles`, `diskutil eject /dev/disk4`).
 - The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages) and can false-positive on unusual flag syntax.
-- Prompt tuning, few-shot examples, manual-page retrieval and a 4B model were tried and did not beat the current prompt plus lint.
+- Tried and rejected on dev: prompt rewrites, static few-shot, man-page retrieval, a 4B model, one lint-guided repair re-prompt, and top-2 tldr-pages example retrieval (12/61 vs 26/61 without it: the 1.5B model copies or mimics the examples). The `qcoder-nl2sh` GGUF scored the same as the default model.
+- Dev (61 cases, `eval/dev.jsonl`): model only 23 correct / 32 wrong; model + lint + deletion guard 26 correct / 23 wrong, 10 rejected. Most remaining failures are model knowledge gaps (invented flags, wrong tool), not harness gaps.
 
 ## Tests
 
