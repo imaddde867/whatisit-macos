@@ -125,6 +125,7 @@ class LocalRecoveryTests(unittest.TestCase):
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
 
+    @unittest.skipUnless(sys.platform == 'darwin', 'lint reads this Mac\'s man pages')
     def test_worker_rejects_gnu_only_output(self):
         answer, _ = self.run_worker(command='du -x --max-depth=1 | sort -n')
         self.assertEqual(answer['status'], 'unsupported')

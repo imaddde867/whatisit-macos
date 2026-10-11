@@ -21,17 +21,29 @@ Nothing is downloaded automatically; set up upstream `whatisit` first. Set `WHAT
 ## Measure
 
 ```sh
-PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py
+PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py dev|frozen [model|lint]
 ```
 
-Scores fixed request→command-pattern cases as pass / rejected / wrong with p50 latency. The accepted-answer regexes are loose and written by the implementer; treat the result as a regression signal, not a benchmark. Run it twice; output is deterministic (greedy decoding).
+`eval/dev.jsonl` (61 cases) was used to tune the harness; `eval/frozen.jsonl` (59 cases) was run once at the end. Cases are ChatGPT-authored request → reference pairs with regex accept patterns (frozen patterns also ChatGPT-widened, without seeing model output). Output is deterministic (greedy decoding).
+
+Frozen results (`model` = no checks, `lint` = macOS lint + deletion guard):
+
+| model | harness | correct | wrong | rejected | p50 |
+|---|---|---|---|---|---|
+| nl2sh-1.5b | model | 6/59 | 45 | 1 | 0.18 s |
+| nl2sh-1.5b | lint | 8/59 | 34 | 12 | 0.23 s |
+| nl2sh-3b | model | 11/59 | 40 | 1 | 0.33 s |
+| nl2sh-3b | lint | 13/59 | 26 | 15 | 0.39 s |
+
+Treat these as a low-power regression signal, not a benchmark: 59 cases, implementer-built harness, strict regexes. 3B beat 1.5B on frozen but lost on dev (15/61 vs 26/61, where 1.5B was tuned), so the model choice is unsettled; 1.5B stays the default. The lint gate never turned a correct answer into a wrong one on either split.
 
 ## Known limits
 
-- The 1.5B model does not know many macOS-only commands and sometimes invents flags or paths. The lint gate catches missing tools/flags, not wrong semantics (e.g. `pmset cycles`, `diskutil eject /dev/disk4`).
-- The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages) and can false-positive on unusual flag syntax.
-- Tried and rejected on dev: prompt rewrites, static few-shot, man-page retrieval, a 4B model, one lint-guided repair re-prompt, and top-2 tldr-pages example retrieval (12/61 vs 26/61 without it: the 1.5B model copies or mimics the examples). The `qcoder-nl2sh` GGUF scored the same as the default model.
-- Dev (61 cases, `eval/dev.jsonl`): model only 23 correct / 32 wrong; model + lint + deletion guard 26 correct / 23 wrong, 10 rejected. Most remaining failures are model knowledge gaps (invented flags, wrong tool), not harness gaps.
+- The 1.5B model does not know many macOS-only commands and sometimes invents flags or paths; only about 1 in 7 independent requests is answered correctly. The lint gate catches missing tools/flags, not wrong semantics (e.g. `pmset cycles`).
+- The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages). It can false-positive on real flags the man page omits (`scutil --nwi`, `qlmanage -o`).
+- The deletion guard requires every delete target to appear literally in the request; upstream's scanner alone let `rm -rf ~/Library/Caches` and `… | xargs rm -f` through.
+- Tried and rejected on dev: prompt rewrites, static few-shot, man-page retrieval, one lint-guided repair re-prompt, top-2 tldr-pages example retrieval (12/61 vs 26/61 without it: the 1.5B model copies the examples), a 4B model, and the `qcoder-nl2sh` GGUF (same score as default).
+- Next lever, not started: a macOS-specific fine-tune.
 
 ## Tests
 
