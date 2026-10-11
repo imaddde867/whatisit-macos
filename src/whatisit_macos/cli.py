@@ -15,7 +15,7 @@ from .retrieval import search
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Look up a documented macOS command. Prototype; never executes suggestions.")
+    parser = argparse.ArgumentParser(description="Suggest a macOS shell command; never executes suggestions.")
     parser.add_argument("words", nargs="*", help="inspection request in plain English")
     parser.add_argument("--path", help="explicit file or app bundle path")
     parser.add_argument('--subsystem', help='exact unified-log subsystem (ASCII identifier)')
@@ -27,6 +27,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--label', help='explicit launchd service label')
     parser.add_argument("--docs-index", type=Path, help="search an explicitly captured local manual index")
     parser.add_argument('--model', type=Path, help='optional local MLX model directory; requires --docs-index')
+    parser.add_argument('--catalog-only', action='store_true', help='disable local generated fallback')
     parser.add_argument("--json", action="store_true", help="print structured output")
     parser.add_argument("--list", action="store_true", help="list the starter catalog")
     parser.add_argument("-t", "--timing", action="store_true", help="report lookup latency")
@@ -67,6 +68,11 @@ def main(argv: list[str] | None = None) -> int:
     else:
         answer = suggest(request, system=platform.system(), which=shutil.which, path=args.path,
                          log_filter=log_filter, service_target=service_target)
+        if (not args.catalog_only and platform.system() == 'Darwin' and
+                answer['status'] in ('unsupported', 'ambiguous')):
+            from .local_recovery import suggest_local
+            answer = suggest_local(request, path=args.path, log_filter=log_filter,
+                                   service_target=service_target)
     if args.docs_index and not args.model:
         try:
             answer["documentation"] = search(args.docs_index, " ".join(args.words))
