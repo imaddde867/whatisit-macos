@@ -1,44 +1,32 @@
-"""Catalog lookup with a local generated-command fallback; suggestions are never executed."""
+"""Suggest a macOS shell command with a local model; suggestions are never executed."""
 
 import argparse
 import json
 import platform
-import shutil
 import sys
 import time
 
 from . import __version__
-from .engine import load_recipes, suggest
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Suggest a macOS shell command; never executes suggestions.")
-    parser.add_argument("words", nargs="*", help="inspection request in plain English")
-    parser.add_argument("--path", help="explicit file or app bundle path")
-    parser.add_argument('--catalog-only', action='store_true', help='disable local generated fallback')
+    parser.add_argument("words", nargs="*", help="what you want to do, in plain English")
+    parser.add_argument("--path", help="explicit file or directory the request refers to")
     parser.add_argument("--json", action="store_true", help="print structured output")
-    parser.add_argument("--list", action="store_true", help="list the starter catalog")
-    parser.add_argument("-t", "--timing", action="store_true", help="report lookup latency")
+    parser.add_argument("-t", "--timing", action="store_true", help="report latency")
     parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args(argv)
-    if args.list:
-        recipes = load_recipes()
-        if args.json:
-            print(json.dumps(recipes, indent=2))
-        else:
-            for recipe in recipes:
-                print(f"{recipe['id']}: {recipe['title']}")
-        return 0
     if not args.words:
         parser.print_help()
         return 2
     start = time.perf_counter()
-    request = ' '.join(args.words)
-    answer = suggest(request, system=platform.system(), which=shutil.which, path=args.path)
-    if (not args.catalog_only and platform.system() == 'Darwin' and
-            answer['status'] in ('unsupported', 'ambiguous')):
+    if platform.system() != 'Darwin':
+        answer = {'status': 'unsupported', 'command': None, 'reason': 'This tool only suggests commands on macOS.',
+                  'notes': [], 'sources': []}
+    else:
         from .local_recovery import suggest_local
-        answer = suggest_local(request, path=args.path)
+        answer = suggest_local(' '.join(args.words), path=args.path)
     elapsed_ms = (time.perf_counter() - start) * 1000
     if args.json:
         print(json.dumps(answer, indent=2))
@@ -46,9 +34,8 @@ def main(argv: list[str] | None = None) -> int:
         print(answer["command"])
         for note in answer["notes"]:
             print(f"Note: {note}")
-        print("Sources: " + "; ".join(answer["sources"]))
     else:
         print(f"{answer['status']}: {answer['reason']}", file=sys.stderr)
     if args.timing:
-        print(f"Lookup: {elapsed_ms:.2f} ms", file=sys.stderr)
+        print(f"Latency: {elapsed_ms:.0f} ms", file=sys.stderr)
     return 0 if answer["status"] == "suggestion" else 2

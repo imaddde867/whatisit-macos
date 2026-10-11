@@ -1,18 +1,15 @@
-"""Score catalog + local fallback (the CLI path) on fixed requests: pass / rejected (lint or no answer) / wrong, plus p50 latency.
+"""Score the local model + lint harness on fixed requests: pass / rejected (lint or no answer) / wrong, plus p50 latency.
 
 Run with the upstream venv python so `whatisit` imports:
     PYTHONPATH=src ~/.local/pipx/venvs/whatisit/bin/python tools/eval_fallback.py
 Accepted-answer regexes are deliberately loose: they check the right tool/flags, not exact text.
 """
 
-import platform
 import re
-import shutil
 import statistics
 import sys
 import time
 
-from whatisit_macos.engine import suggest
 from whatisit_macos.local_recovery import suggest_local
 
 # (request, regex the command must match)
@@ -69,9 +66,7 @@ def main() -> int:
     times = []
     for request, accept in CASES:
         start = time.perf_counter()
-        answer = suggest(request, system=platform.system(), which=shutil.which)
-        if answer['status'] in ('unsupported', 'ambiguous'):  # same routing as the CLI
-            answer = suggest_local(request)
+        answer = suggest_local(request)
         times.append(time.perf_counter() - start)
         command = answer['command']
         if command is None:
