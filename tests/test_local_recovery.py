@@ -70,7 +70,7 @@ class LocalRecoveryTests(unittest.TestCase):
                 self.assertEqual(answer['status'], 'unsupported')
                 self.assertIsNone(answer['command'])
 
-    def run_worker(self, *, mode='server', findings=None):
+    def run_worker(self, *, mode='server', findings=None, command='find . -type f'):
         with tempfile.TemporaryDirectory() as directory:
             model = os.path.join(directory, 'model.gguf')
             server = os.path.join(directory, 'llama-server')
@@ -89,7 +89,7 @@ class LocalRecoveryTests(unittest.TestCase):
 
             def generate(prompt, cfg, **kwargs):
                 calls.append((prompt, cfg, kwargs))
-                return ['find . -type f'], 0.2, mode
+                return [command], 0.2, mode
 
             engine.generate = generate
             safety = types.ModuleType('whatisit.safety')
@@ -126,6 +126,12 @@ class LocalRecoveryTests(unittest.TestCase):
         answer, _ = self.run_worker(findings=[('DANGER', 'deletes data')])
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
+
+    def test_worker_rejects_gnu_only_output(self):
+        answer, _ = self.run_worker(command='du -x --max-depth=1 | sort -n')
+        self.assertEqual(answer['status'], 'unsupported')
+        self.assertIsNone(answer['command'])
+        self.assertIn('--max-depth', answer['reason'])
 
 
 if __name__ == '__main__':
