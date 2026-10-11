@@ -16,7 +16,6 @@ local = ["whatisit==0.4.0"]
 
 [project.scripts]
 whatisit-macos = "whatisit_macos.cli:main"
-whatisit-macos-build-docs = "whatisit_macos.build_docs:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
