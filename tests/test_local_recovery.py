@@ -1,4 +1,5 @@
 import json
+import re
 import os
 import sys
 import tempfile
@@ -69,7 +70,7 @@ class LocalRecoveryTests(unittest.TestCase):
                 self.assertEqual(answer['status'], 'unsupported')
                 self.assertIsNone(answer['command'])
 
-    def run_worker(self, *, mode='server', findings=None, command='find . -type f'):
+    def run_worker(self, *, mode='server', findings=None, command='find . -type f', request='list files'):
         with tempfile.TemporaryDirectory() as directory:
             model = os.path.join(directory, 'model.gguf')
             server = os.path.join(directory, 'llama-server')
@@ -93,13 +94,15 @@ class LocalRecoveryTests(unittest.TestCase):
             engine.generate = generate
             safety = types.ModuleType('whatisit.safety')
             safety.check = lambda command: findings or []
+            safety.PLACEHOLDER_RE = re.compile(r'<[^<>\s][^<>]*>')
+            safety.PLACEHOLDER_HINT = re.compile(r'/path/to/|\bmy[-_]')
             package = types.ModuleType('whatisit')
             package.config, package.engine, package.safety = config, engine, safety
             with patch.dict(sys.modules, {'whatisit': package, 'whatisit.config': config,
                                           'whatisit.engine': engine, 'whatisit.safety': safety}), \
                     patch.dict(os.environ, {'WHATISIT_LLAMA_SERVER': server}, clear=True):
                 answer = local_recovery_worker.suggest(
-                    {'request': 'list files', 'path': '/tmp/example'})
+                    {'request': request, 'path': '/tmp/example'})
         return answer, calls
 
     def test_worker_reuses_upstream_server_and_reports_cautions(self):
@@ -131,6 +134,14 @@ class LocalRecoveryTests(unittest.TestCase):
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
         self.assertIn('--max-depth', answer['reason'])
+
+    @unittest.skipUnless(sys.platform == 'darwin', 'lint reads this Mac\'s man pages')
+    def test_worker_rejects_placeholders_the_user_did_not_name(self):
+        answer, _ = self.run_worker(command='du -h /path/to/folder', request='how much free disk space')
+        self.assertEqual(answer['status'], 'unsupported')
+        self.assertIn('/path/to/', answer['reason'])
+        answer, _ = self.run_worker(command='cat my_notes.txt', request='show my_notes.txt')
+        self.assertEqual(answer['status'], 'suggestion')
 
 
 if __name__ == '__main__':

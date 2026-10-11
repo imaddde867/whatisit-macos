@@ -74,6 +74,9 @@ def suggest(payload: object, harness: str = 'lint') -> dict:
     if harness != 'model':
         from whatisit_macos.maclint import problems, unrequested_deletion
         issues = problems(command) + unrequested_deletion(command, request)
+        issues += [f'{m.group(0)!r} is a placeholder, not something you named'
+                   for pattern in (safety.PLACEHOLDER_RE, safety.PLACEHOLDER_HINT)
+                   for m in pattern.finditer(command) if m.group(0).casefold() not in request.casefold()]
         if issues:
             return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
     notes = ['Generated locally; review before running.']
