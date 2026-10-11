@@ -94,7 +94,6 @@ class LocalRecoveryTests(unittest.TestCase):
             engine.generate = generate
             safety = types.ModuleType('whatisit.safety')
             safety.check = lambda command: findings or []
-            safety.PLACEHOLDER_RE = re.compile(r'<[^<>\s][^<>]*>')
             safety.PLACEHOLDER_HINT = re.compile(r'/path/to/|\bmy[-_]')
             package = types.ModuleType('whatisit')
             package.config, package.engine, package.safety = config, engine, safety
@@ -140,8 +139,10 @@ class LocalRecoveryTests(unittest.TestCase):
         answer, _ = self.run_worker(command='du -h /path/to/folder', request='how much free disk space')
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIn('/path/to/', answer['reason'])
-        answer, _ = self.run_worker(command='cat my_notes.txt', request='show my_notes.txt')
-        self.assertEqual(answer['status'], 'suggestion')
+        for command, request in [('cat my_notes.txt', 'show my_notes.txt'),
+                                 ('sort <names.txt >sorted.txt', 'sort names.txt into sorted.txt')]:
+            answer, _ = self.run_worker(command=command, request=request)
+            self.assertEqual(answer['status'], 'suggestion', command)
 
 
 if __name__ == '__main__':
