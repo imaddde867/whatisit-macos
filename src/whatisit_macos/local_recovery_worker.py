@@ -56,24 +56,32 @@ def suggest(payload: object) -> dict:
         prompt += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)
     cfg.update(openai_base_url='', max_tokens=256, ctx_size=4096,
                host_context=False, idle_timeout=60)
-    try:
-        commands, _, mode = engine.generate(prompt, cfg, force_oneshot=False, quiet=True)
-    except (OSError, RuntimeError, ValueError, TypeError) as error:
-        return _unsupported(f'Local generation failed: {str(error)[:500]}')
-    if mode != 'server':
-        return _unsupported('Local generation did not use the finish-aware server.')
-    if not commands:
-        return _unsupported('Local generation returned no complete command.')
-    command = commands[0]
-    if len(command) > 4096 or any(char in command for char in '\x00\r\n'):
-        return _unsupported('Local generation returned an invalid command.')
-    findings = safety.check(command)
-    if any(severity == 'DANGER' for severity, _ in findings):
-        return _unsupported('Local generation returned a command flagged as dangerous.')
-    from whatisit_macos.maclint import problems
-    issues = problems(command)
-    if issues:
-        return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
+    from whatisit_macos.maclint import problems, repair_hint
+    request_prompt, hint = prompt, ''
+    for attempt in range(2):
+        try:
+            commands, _, mode = engine.generate(request_prompt, cfg, force_oneshot=False, quiet=True)
+        except (OSError, RuntimeError, ValueError, TypeError) as error:
+            return _unsupported(f'Local generation failed: {str(error)[:500]}')
+        if mode != 'server':
+            return _unsupported('Local generation did not use the finish-aware server.')
+        if not commands:
+            return _unsupported('Local generation returned no complete command.')
+        command = commands[0]
+        if len(command) > 4096 or any(char in command for char in '\x00\r\n'):
+            return _unsupported('Local generation returned an invalid command.')
+        findings = safety.check(command)
+        if any(severity == 'DANGER' for severity, _ in findings):
+            return _unsupported('Local generation returned a command flagged as dangerous.')
+        issues = problems(command)
+        if not issues:
+            break
+        if attempt:
+            return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
+        hint = repair_hint(command, issues)
+        request_prompt = (prompt + f'\nYour previous answer `{command}` does not work on macOS: '
+                          + '; '.join(issues[:3]) + '.\n' + (hint + '\n' if hint else '')
+                          + 'Answer again with one corrected macOS command.')
     notes = ['Generated locally; review before running.']
     notes.extend(f'Review: {reason}' for severity, reason in findings if severity == 'CAUTION')
     return {'status': 'suggestion', 'command': command, 'reason': '', 'notes': notes,

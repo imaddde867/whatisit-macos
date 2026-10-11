@@ -1,6 +1,7 @@
 """Reject generated commands that use tools or flags this Mac's man pages do not define."""
 
 import functools
+import os
 import re
 import shlex
 import shutil
@@ -11,6 +12,7 @@ BUILTINS = {'cd', 'killall', 'echo', 'for', 'do', 'done', 'if', 'then', 'fi', 'w
 WRAPPERS = {'sudo', 'xargs', 'time', 'nohup', 'env', 'command', 'exec'}
 SEPARATORS = {'|', '&&', '||', ';', '|&'}
 EXEC_FLAGS = {'-exec', '-execdir', '-ok', '-okdir'}
+SYSTEM_PATHS = ('/proc/', '/sys/', '/etc/', '/var/log/', '/usr/', '/dev/')
 
 
 @functools.lru_cache(maxsize=None)
@@ -78,6 +80,14 @@ def problems(command: str) -> list[str]:
         if not shutil.which(cmd):
             found.append(f'{cmd}: not installed on macOS')
             continue
+        for arg in segment[1:]:
+            if arg.startswith(SYSTEM_PATHS) and not re.search(r'[*?\[{$]', arg) and not os.path.exists(arg):
+                found.append(f'{arg}: path does not exist on macOS')
+        if cmd == 'sysctl':
+            for arg in segment[1:]:
+                if re.fullmatch(r'[a-z][\w.]*[a-z0-9]', arg) and subprocess.run(
+                        ['sysctl', '-N', arg], capture_output=True).returncode:
+                    found.append(f'sysctl {arg}: unknown key')
         man = _man_text(cmd)
         if not man:
             continue
@@ -102,3 +112,17 @@ def problems(command: str) -> list[str]:
             elif re.match(r'-[a-zA-Z]', arg) and arg[:2] not in documented and arg not in documented:
                 found.append(f'{cmd} {arg[:2]}: not in man page')
     return found
+
+
+def repair_hint(command: str, issues: list[str]) -> str:
+    """Man-page usage lines for tools whose flags were rejected, to ground one repair attempt."""
+    lines = []
+    for cmd in dict.fromkeys(issue.split()[0].rstrip(':') for issue in issues):
+        if not shutil.which(cmd):
+            continue
+        text = _man_text(cmd)
+        synopsis = text.split('SYNOPSIS', 1)[-1].split('DESCRIPTION')[0] if 'SYNOPSIS' in text else ''
+        usage = ' '.join(synopsis.split())[:300]
+        if usage:
+            lines.append(f'macOS usage of {cmd}: {usage}')
+    return '\n'.join(lines)
