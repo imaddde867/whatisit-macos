@@ -72,8 +72,8 @@ def suggest(payload: object, harness: str = 'lint') -> dict:
     if any(severity == 'DANGER' for severity, _ in findings):
         return _unsupported('Local generation returned a command flagged as dangerous.')
     if harness != 'model':
-        from whatisit_macos.maclint import problems
-        issues = problems(command)
+        from whatisit_macos.maclint import problems, unrequested_deletion
+        issues = problems(command) + unrequested_deletion(command, request)
         if issues:
             return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
     notes = ['Generated locally; review before running.']
