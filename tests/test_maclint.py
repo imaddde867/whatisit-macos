@@ -1,3 +1,4 @@
+import sys
 import unittest
 
 from whatisit_macos.maclint import problems, unrequested_deletion
@@ -11,6 +12,7 @@ BAD = ["touch -d @{{1}} {{f}}", "sysctl -n vm.mem_free_bytes", "tail -n 50 /var/
        "grep -P 'a+' f"]
 
 
+@unittest.skipUnless(sys.platform == 'darwin', 'lint reads this Mac\'s PATH and man pages')
 class MacLintTests(unittest.TestCase):
     def test_accepts_macos_commands(self):
         for command in GOOD:
