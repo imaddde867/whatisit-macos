@@ -84,6 +84,10 @@ def suggest(payload: object) -> dict:
     findings = safety.check(command)
     if any(severity == 'DANGER' for severity, _ in findings):
         return _unsupported('Local generation returned a command flagged as dangerous.')
+    from whatisit_macos.maclint import problems
+    issues = problems(command)
+    if issues:
+        return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
     notes = ['Generated locally; review before running.']
     notes.extend(f'Review: {reason}' for severity, reason in findings if severity == 'CAUTION')
     return {'status': 'suggestion', 'command': command, 'reason': '', 'notes': notes,
