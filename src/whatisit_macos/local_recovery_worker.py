@@ -4,6 +4,10 @@ import json
 import sys
 from pathlib import Path
 
+MACOS_PREFIX = ('Target system: macOS, using zsh and the built-in BSD command-line tools. '
+                'Use macOS commands and flags, not Linux/GNU-only ones. If required inputs are missing or '
+                'the request is ambiguous, output no command.\n')
+
 
 def suggest(payload: object, harness: str = 'lint') -> dict:
     """harness 'model' skips the macOS lint; it exists only so tools/eval_fallback.py can ablate it."""
@@ -50,9 +54,7 @@ def suggest(payload: object, harness: str = 'lint') -> dict:
     if server is None:
         return _unsupported('No local llama-server is configured; run `whatisit setup` in the local environment.')
 
-    prompt = ('Target system: macOS, using zsh and the built-in BSD command-line tools. '
-              'Use macOS commands and flags, not Linux/GNU-only ones. If required inputs are missing or '
-              'the request is ambiguous, output no command.\n' + request)
+    prompt = MACOS_PREFIX + request
     if path is not None:
         prompt += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)
     cfg.update(openai_base_url='', max_tokens=256, ctx_size=4096,

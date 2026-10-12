@@ -34,6 +34,33 @@ def tensor_names(parameters, source_names, num_layers):
     return names
 
 
+def write_gguf(reader, parameters, output, num_layers):
+    """Keep source metadata and exact tensor coverage when exporting merged weights."""
+    import numpy as np
+    from gguf import GGUFWriter, GGUFValueType
+
+    names = tensor_names(parameters, [t.name for t in reader.tensors], num_layers)
+    source = {t.name: t for t in reader.tensors}
+    for name, value in parameters.items():
+        if value.shape != tuple(int(d) for d in source[names[name]].shape[::-1]):
+            raise ValueError(f'Shape mismatch for {name}')
+        if not np.isfinite(value).all():
+            raise ValueError(f'Non-finite exported tensor {name}')
+    writer = GGUFWriter(output, 'qwen2', use_temp_file=True)
+    for key, field in reader.fields.items():
+        if key.startswith('GGUF.') or key in ('general.architecture', 'general.file_type'):
+            continue
+        writer.add_key_value(key, field.contents(), field.types[0],
+                             field.types[1] if field.types[0] == GGUFValueType.ARRAY else None)
+    writer.add_file_type(1)
+    for name, value in parameters.items():
+        writer.add_tensor(names[name], value)
+    writer.write_header_to_file()
+    writer.write_kv_data_to_file()
+    writer.write_tensors_to_file(progress=True)
+    writer.close()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('roundtrip', 'probe', 'prompt'))
@@ -61,9 +88,7 @@ def main():
         tokenizer = AutoTokenizer.from_pretrained(str(args.source), local_files_only=True)
         reader = GGUFReader(str(config.find_model()))
         assert tokenizer.chat_template == reader.fields['tokenizer.chat_template'].contents()
-        prefix = ('Target system: macOS, using zsh and the built-in BSD command-line tools. '
-                  'Use macOS commands and flags, not Linux/GNU-only ones. If required inputs are missing or '
-                  'the request is ambiguous, output no command.\n')
+        prefix = local_recovery_worker.MACOS_PREFIX
         cases = [json.loads(line) for line in
                  (Path(__file__).resolve().parents[1] / 'eval/dev.jsonl').read_text().splitlines()]
         cases.append({'id': 'explicit-unicode-input', 'request': 'inspect this folder',
@@ -91,8 +116,13 @@ def main():
             item = {'messages': training + [{'role': 'assistant', 'content': 'pwd'}]}
             tokens, offset = ChatDataset([item], tokenizer, mask_prompt=True).process(item)
             assert tokens[:offset] == token_ids, case['id']
+            empty = {'messages': training + [{'role': 'assistant', 'content': ''}]}
+            empty_tokens, empty_offset = ChatDataset([empty], tokenizer, mask_prompt=True).process(empty)
+            assert empty_tokens[:empty_offset] == token_ids, case['id']
+            assert tokenizer.convert_tokens_to_ids('<|im_end|>') in empty_tokens[empty_offset:], case['id']
             audited[case['id']] = hashlib.sha256(actual.encode()).hexdigest()
         report = {'cases': len(audited), 'bytes_and_tokens_equal': True,
+                  'empty_target_includes_end_of_turn': True,
                   'system_prompt': config.SYSTEM_PROMPT, 'user_prefix': prefix,
                   'prompt_hashes': audited,
                   'server': subprocess.check_output(['pgrep', '-fl', 'llama-server'], text=True).strip()}
@@ -133,7 +163,7 @@ def main():
 
     if args.metadata is None or args.output is None:
         parser.error('roundtrip requires SOURCE METADATA OUTPUT')
-    from gguf import GGUFReader, GGUFWriter, GGUFValueType, GGMLQuantizationType, dequantize
+    from gguf import GGUFReader, GGMLQuantizationType, dequantize
     from mlx_lm.models.qwen2 import Model, ModelArgs
 
     reader = GGUFReader(str(args.source))
@@ -190,20 +220,9 @@ def main():
     shutil.copy2(notice, fused_path / 'NOTICE')
     mx.save_safetensors(str(fused_path / 'model.safetensors'), dict(tree_flatten(model.parameters())))
 
-    writer = GGUFWriter(args.output / 'roundtrip-f16.gguf', 'qwen2', use_temp_file=True)
-    for k, field in reader.fields.items():
-        if k.startswith('GGUF.') or k in ('general.architecture', 'general.file_type'):
-            continue
-        writer.add_key_value(k, field.contents(), field.types[0],
-                             field.types[1] if field.types[0] == GGUFValueType.ARRAY else None)
-    writer.add_file_type(1)
     parameters = dict(tree_flatten(model.parameters()))
-    for p, n in names.items():
-        writer.add_tensor(n, np.asarray(parameters[p]))
-    writer.write_header_to_file()
-    writer.write_kv_data_to_file()
-    writer.write_tensors_to_file(progress=True)
-    writer.close()
+    write_gguf(reader, {p: np.asarray(v) for p, v in parameters.items()},
+               args.output / 'roundtrip-f16.gguf', config['num_hidden_layers'])
     (args.output / 'roundtrip.json').write_text(json.dumps(
         {'source': str(args.source.resolve()), 'tensors': len(names),
          'no_op_weights_equal_except_zero_sign': True,
