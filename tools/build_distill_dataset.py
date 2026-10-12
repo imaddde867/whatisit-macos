@@ -63,9 +63,15 @@ def _flags(tool, args):
     return tuple(sorted(flags))
 
 
+PROGRAM_TOOLS = {'sed', 'awk', 'gawk', 'grep', 'egrep', 'fgrep', 'perl', 'mdfind', 'tr', 'jq'}
+
+
 def _path_like(arg):
-    return ('/' in arg or arg.startswith(('~', '.')) or '*' in arg or 
-            arg.rsplit('.', 1)[-1].lower() in PATH_EXTENSIONS and '.' in arg)
+    """A filesystem operand: a single word of path characters (or a glob or known extension)."""
+    if re.search(r'\s', arg) or re.search(r'[=(){}"\']', arg):
+        return False  # programs, predicates and queries carry knowledge
+    return bool(re.fullmatch(r'[~./$][\w.*?\[\]~$/+-]*|[\w.*?\[\]+-]+(/[\w.*?\[\]+-]*)+/?', arg) or
+                '*' in arg or '.' in arg and arg.rsplit('.', 1)[-1].lower() in PATH_EXTENSIONS)
 
 
 def _parts(command):
@@ -79,7 +85,9 @@ def _parts(command):
         args = segment[1:]
         if tool in SUBCOMMANDS and args and not args[0].startswith('-'):
             tool += ' ' + args.pop(0)
-        operands = frozenset(a for a in args if not a.startswith('-') and not _path_like(a))
+        words_ = [a for a in args if not a.startswith('-')]
+        keep_first = {words_[0]} if tool in PROGRAM_TOOLS and words_ else set()  # sed/grep pattern, not a path
+        operands = frozenset(a for a in words_ if a in keep_first or not _path_like(a))
         yield tool, _flags(tool, args), operands
 
 
