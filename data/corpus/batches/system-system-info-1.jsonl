@@ -1,0 +1,100 @@
+{"request": "Show the complete macOS version report.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the macOS build number only.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the marketing name of the operating system.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the Darwin kernel version with build details.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show whether this Mac is running an ARM kernel.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the hardware model identifier.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the CPU brand string on an Intel Mac.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show physical CPU cores separately from logical CPUs.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report maximum logical CPU count supported by this Mac.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read total user-accessible memory in bytes.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the macOS virtual-memory statistics once.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show current swap allocation and usage.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report memory-pressure status without generating memory load.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display counts of free, active, and inactive memory pages.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show compressed-memory page counts.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report virtual-memory page-in and page-out counters.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Watch macOS virtual-memory counters every two seconds.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show kernel load averages without process details.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the maximum permitted process count.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the system-wide limit on open files.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the kernel's maximum per-process file limit.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the kernel argument-length limit.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the hardware cache-line size.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the L1 instruction-cache size.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the L1 data-cache size.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the L2 cache size.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the L3 cache size if the hardware exposes one.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the configured maximum vnode count.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the kernel clock-rate parameters.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the number of efficiency cores exposed by Apple Silicon.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the number of performance cores exposed by Apple Silicon.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List the names of available Apple Silicon performance levels.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report whether the CPU supports hardware virtualization.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Check whether this process is translated by Rosetta.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the kernel machine class and processor type.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List System Information report categories.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Produce a basic hardware report without serial numbers.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the software overview from System Information.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List installed configuration profiles visible to the current user.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display system-extension status without altering extensions.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the locale used by the current shell.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List locale names available on this Mac.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the active locale's character encoding.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the decimal separator for the current locale.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the shell's effective user ID numerically.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List the current user's primary and supplementary group IDs.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the login name for this session.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the current terminal device path.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Check whether standard output is connected to a terminal.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show terminal rows and columns.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display terminal control-character assignments.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the current shell's soft open-file limit.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show this shell's hard open-file limit.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print this shell's stack-size limit.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show this shell's current file-creation mask symbolically.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the current working directory from the shell variable.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the current PATH one directory per line.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List environment-variable names without their values.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the value of LANG only.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show whether LC_ALL is set in this session.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display my current zsh version.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List the enabled options of this zsh session.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show command-search locations for the executable date.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the current Unix timestamp in seconds.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the current time in UTC as an ISO 8601 timestamp.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the current local UTC offset.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the current ISO week number.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display a calendar for the current month.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the number of days in the current month.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show how long the system has been running in a readable sentence.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Can you give me the full macOS release and build on one line for a bug report?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the hardware model identifier and the installed memory capacity together.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the kernel architecture separately from the architecture of this running shell?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "How many physical CPU packages does the hardware report?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the current and maximum physical core counts exposed by macOS?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like a list of CPU feature flags on this Intel Mac.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you check whether this Intel CPU supports the AVX2 instruction set?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to know whether this Mac advertises a 64-bit CPU.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the CPU family identifier that the kernel reports?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please report the hardware byte order as the kernel represents it.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show memory usage in the built-in Mac process monitor without the process list?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you sample the virtual-memory statistics three times, five seconds apart, then stop?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the number of wired memory pages from the macOS virtual-memory statistics.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show how much virtual memory has been compressed and decompressed so far?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the current swap-ins and swap-outs from the virtual-memory report.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to know whether macOS reports any memory pressure at the moment.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you calculate the free-memory byte count from the reported page count and actual page size?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to see the system's one-, five-, and fifteen-minute load averages only.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show uptime in seconds using the kernel boot timestamp?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see the number of users currently logged in.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show my current login session entry, including its terminal.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list login sessions with their idle times?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see the most recent reboot entries from the system login history.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the last five logins for the current user?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you list shutdown entries in the local login history?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the macOS software report as a property list, saved to software-info.plist.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you produce JSON system information for hardware and software only, excluding other report types?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show me all system-profile categories whose names relate to memory.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the basic system-profile report with a thirty-second collection timeout.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the boot volume name from the macOS software overview?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}

@@ -1,0 +1,140 @@
+{"request": "Print every other line of measurements.txt, starting with the first.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count nonblank lines in paragraphs.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract text between BEGIN and END markers from capture.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print all lines longer than 120 characters in prose.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Reverse the line order in steps.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Reverse characters within each line of codes.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Join wrapped lines in message.txt into one paragraph.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove repeated adjacent blank lines from article.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Number only nonempty lines in chapter.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the middle field from each three-field pipe-delimited row in pairs.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Sort version strings in releases.txt by version number.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Sort labels.txt case-insensitively while retaining original capitalization.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Deduplicate events.txt while preserving the first occurrence order.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print lines occurring exactly once in sorted-events.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Calculate the average of the numbers in temperatures.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Sum the final whitespace-delimited field in totals.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the minimum and maximum from numbers.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the domain part of addresses.txt, one address per line.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Turn a comma-separated single line in values.txt into one value per line.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Replace tabs with four spaces in layout.txt to stdout.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove the UTF-8 byte-order mark from export.txt into clean-export.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count distinct values of the status column in results.tsv.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Compare old.txt and new.txt while ignoring whitespace changes.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print common lines shared by sorted-a.txt and sorted-b.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract CFBundleName from MyApp.app/Contents/Info.plist as plain text.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Convert ~/Library/Preferences/com.example.MyApp.plist to JSON on stdout.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print only the values of RecentFiles from ~/Library/Preferences/com.example.MyApp.plist.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract timestamp and senderImagePath columns from mac-unified.ndjson.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count events per process in unified-log.ndjson.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove ANSI colors from ~/Library/Logs/MyApp/session.log.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the first line of each file directly in ~/Library/Logs/MyApp.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the message after the final colon in mac-console.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Turn a macOS XML plist array in paths.plist into one string per line.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Sort the dictionary keys in preferences-export.json and pretty-print it.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the CFBundleDocumentTypes names from MyApp.app/Contents/Info.plist.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count occurrences of each subsystem in unified-log.ndjson.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract eventMessage values from mac-logs.json, a macOS unified-log JSON array.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print rows with severity greater than 2 from unified-log.ndjson.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Replace the first literal draft with final on each line of ~/Library/Logs/MyApp/test.log, printing only.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove trailing spaces from ~/Library/Logs/MyApp/debug.log into cleaned.log.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print ~/Library/Logs/MyApp/build.log with line numbers and tabs visible.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the timestamp before 'kernel:' in mac-console.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count the unique bundle identifiers in mac-apps.tsv.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Unescape JSON strings in unified-log-messages.json into readable lines.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Convert an XML property list settings.plist to binary format in settings.binary.plist.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show duplicate preference keys in the text file preferences-keys.txt.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the names from the LaunchAgents plist array in jobs.plist.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Convert dates.txt from Jun 01 2025 14:30:00-style dates to ISO 8601 using macOS date parsing.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Split ~/Library/Logs/MyApp/trace.log into chunks of 500 lines.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Can you print just the odd-numbered records in table.tsv, keeping its header?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to trim spaces at both ends of every line in list.txt and save trimmed.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please pick out the second-to-last word of every line in sentences.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to skip the first two header lines of readings.txt and print the rest.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you put ten sequential numbers on each output line from sequence.txt?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to remove duplicate rows from data.tsv based on its first field only.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please sort entries.txt by line length, shortest first.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to put commas between the lines of pieces.txt without a trailing comma.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show which lines of before.txt disappeared from after.txt?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please list the twenty most frequent words in essay.txt, ignoring case and punctuation.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to count how many records in values.tsv have a blank third field.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you extract all text inside double quotation marks in phrases.txt?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to insert a blank line after each line of headings.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please append summary.txt to the end of report.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to compare left.csv and right.csv row by row and show only changed rows.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you split data.csv into separate files for each value of the category column?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please join products.tsv and prices.tsv on their first tab-separated field.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the median of the numbers in samples.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you check whether every line in values.txt is an integer?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please pad the lines in codes.txt to eight characters with leading zeros.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to extract the CFBundleURLSchemes array from MyApp.app's Info.plist.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you turn ~/Library/Preferences/com.example.MyApp.plist into readable XML without altering it?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the date values in backup-info.plist printed as UTC timestamps.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please print the first five eventMessage fields from unified-log.ndjson.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you group the exported macOS log entries in events.json by subsystem and count them?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to strip leading [YYYY-MM-DD HH:MM:SS] timestamps from ~/Library/Logs/MyApp/worker.log.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please merge the JSON arrays in log-part-a.json and log-part-b.json from my Mac's unified-log export.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you keep only lines starting with YYYY-MM-DDTHH:MM:SSZ timestamps in ~/Library/Logs/MyApp/trace.log?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to extract all bundle paths from the XML plist app-list.plist.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please print the nested Logging dictionary in ~/Library/Preferences/com.example.MyApp.plist as JSON.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you count entries per day in ~/Library/Logs/MyApp/access.log, where lines begin YYYY-MM-DD HH:MM:SS?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to replace all literal backslashes with forward slashes in mac-paths.txt for display only.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please split macOS encoding labels in encodings.txt, each id:name, into tab-separated id and name columns.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you print the unique processImagePath values in mac-unified.ndjson?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to remove complete DEBUG records from ~/Library/Logs/MyApp/sample.ndjson into filtered.ndjson.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please print eventMessage fields from mac-unified.ndjson as JSON strings, preserving escaped tabs and newlines.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like just the NSHumanReadableCopyright text from MyApp.app's Info.plist.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list the counts for each Finder tag in the exported metadata file tags.json?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to compare old-settings.plist and new-settings.plist by decoded values, ignoring XML layout.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please extract the integer LabelColor values from Finder-metadata.plist.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you turn binary-metadata.plist into indented JSON in metadata.json?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need every UTF-16 line in ~/Library/Logs/MyApp/export.txt converted to UTF-8 in export-utf8.txt.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Print records in data.tsv for which the numeric fourth field exceeds 12.5.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Output the first occurrence of each case-insensitive line in labels.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Convert semicolon-separated input in rows.txt into tab-separated output.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Transpose the three columns of matrix.tsv into three rows.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the longest line length in source.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print records appearing in either sorted-a.txt or sorted-b.txt but not both.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Sort numeric values in values.txt and discard duplicates.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Calculate the sum of column two grouped by column one in ledger.tsv.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Output lines in letters.txt containing exactly eight characters.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print lines in ranges.txt between the first START marker and the next STOP marker, excluding the markers.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the integer array values in data.json as newline-separated text.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Format data.json with two-space indentation and a final newline.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Produce a unified diff between original.conf and revised.conf with five lines of context.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Remove the first character of every nonempty line in prefixes.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Decode the data field in payload.plist and write its bytes to payload.bin on macOS.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the dictionary key names from ~/Library/Preferences/com.example.MyApp.plist in sorted order.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Extract CFBundleDevelopmentRegion from MyApp.app/Contents/Info.plist as text.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Convert ~/Library/Logs/MyApp/table.txt from MacRoman to UTF-8 into converted.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Filter mac-unified.ndjson for records whose subsystem is exactly com.example.MyApp.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Calculate maximum duration per activity identifier in unified-activities.json.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the timezone offsets from ISO timestamps in mac-log-times.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Output unique launch-agent labels from mac-agents.json, an array of exported macOS plist dictionaries.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Normalize line endings in classic-mac.txt from CR to LF into unix-text.txt.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Read the LSMinimumSystemVersion value from MyApp.app's Info.plist.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print eventType frequencies from mac-unified.ndjson.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Merge ~/Library/Logs/MyApp/stdout.log and stderr.log by their leading YYYY-MM-DDTHH:MM:SSZ timestamps.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Extract the ordered strings from the ProgramArguments array in agent.plist on macOS.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the byte count of the CFBundleIconFile string from MyApp.app's Info.plist.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "strip digits from each line in labels.txt and just diplay", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "print lines of values.txt that are valid decimals plz", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "sort list.txt alphabetic but keep blank lines at the end", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "split paragraph.txt at empty lines into numbered files plese", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "count the commas in data.txt inclduing repeated ones", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "add header line name,score to scores.csv in scores-with-header.csv plz", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "extract text before the first equals in vars.txt pls", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "how many distinct rows in records.tsv ignorng case", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show lines present in both a.txt and b.txt even if unsroted", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "lowercase just the first col of users.tsv into users-clean.tsv", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "print CFBundlePackageType from MyApp.app Info.plist plz", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "get string array from ~/Library/Preferences/com.example.MyApp.plist key SearchPaths", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "sort mac-logs.json by timestamp oldest frist", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "count warning level messages in unified-log.ndjson plese", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "strip bracketed pid from ~/Library/Logs/MyApp/run.log", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "count dictionary keys directly under root of mac accounts.plist plz", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "print the LogLevel value in agent.plist as plain txt", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "dedup subsystem names from mac-log-subsystems.txt keep ordder", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "extract all errorCode numbers from ~/Library/Logs/MyApp/errors.json", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "replace nonbreaking spaces in mac-export.txt with normal spces", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "merge plist-a.plist and plist-b.plist dicts into merged.plist b wins duplicate keys plz", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}

@@ -1,0 +1,100 @@
+{"request": "Disk usage of each direct child of project/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show allocated space versus logical size for sparse.img.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Total disk usage of project/ excluding its .git directory.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report allocated bytes for report.pdf.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Compare disk usage of src/ and assets/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Summarize project/ usage in whole megabytes.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Count filesystem blocks occupied by archive.tar.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show free inode counts for mounted filesystems.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report capacity and usage of the filesystem containing project/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display filesystem usage in 512-byte blocks.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List mounted filesystem device names only.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show filesystem types for all mounted devices.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List read-only filesystem mounts.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List writable local filesystem mounts.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show mount options for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report inode usage on /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show filesystem block size for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display disk usage without crossing filesystems under project/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Include hidden entries in project/'s disk-usage summary.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Measure project/ excluding files named .DS_Store.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Sort immediate subfolders of assets/ by allocated size.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show cumulative usage of all .log files under logs/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display logical byte totals for files under assets/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report storage used by symbolic links themselves in project/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Count hard-linked files once in a project/ usage total.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Measure project/ while following symbolic links.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Find directories in project/ occupying over 1 GiB.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show usage two directory levels below project/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Compare allocated size of original.bin and sparse-copy.bin.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show total capacity across currently mounted local filesystems.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report percentages used on each mounted filesystem.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List filesystems whose usage exceeds 90 percent.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display available space in whole GiB on /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the device containing the current working directory.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect disk4's partition map without changing it.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Get detailed information about volume /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the UUID of /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the filesystem format of /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Check whether /Volumes/WORK is encrypted.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show whether disk4 is removable media.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the physical size of disk4.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the connection protocol for disk4.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List only external physical disks on macOS.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List only internal physical disks on macOS.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect disk4s1's mount point.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the BSD device identifier for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List APFS containers in property-list form.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show APFS snapshots belonging to /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List volume groups inside APFS container disk3.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the APFS role of disk3s1.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show APFS capacity quotas and reserves for disk3.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect encryption users on APFS volume disk3s1.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the physical stores backing APFS container disk3.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the sealed status of the system APFS volume.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List mounted disk images and their backing files.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect backup.dmg's embedded software license agreement.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Verify checksums stored in backup.dmg.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the partitions inside backup.dmg without mounting it.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Calculate backup.dmg's checksum with the macOS disk-image tool.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display disk-image attach information as a property list.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the format limits for resizing workspace.sparseimage without changing it.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report whether workspace.sparseimage is encrypted.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the active Time Machine backup status.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List Time Machine local snapshot dates.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Check whether project/ is excluded from Time Machine.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the latest completed Time Machine backup path.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List available completed Time Machine backups.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read disk-I/O counters once using the built-in Mac utility.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Watch disk4 I/O once per second for five samples.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show all mounted SMB shares and their connection details.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "I want to compare the disk space taken by ~/Library/Logs and ~/Library/Application Support.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you total up just the immediate files inside project/, leaving subdirectories out?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the disk usage of every folder directly inside ~/Library, sorted from smallest to largest.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the allocated disk space for every item in /Volumes/WORK, including hidden items?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want a total for assets/ that excludes its thumbnails/ subdirectory.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you measure project/ without counting anything in directories named node_modules?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show disk usage for each directory two levels down inside /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "How much storage do regular files ending in .mov consume under media/ altogether?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show both the total and available bytes on the filesystem holding report.pdf?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to see free space on /Volumes/WORK rounded to human-readable units.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show just the used percentage for the filesystem containing the current directory?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to know whether /Volumes/WORK is mounted read-only or read-write.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please list filesystems backed by network mounts and their mount locations.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show only APFS filesystems in the mounted-filesystem usage table?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Which currently mounted filesystems report zero available space?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show how many free inodes the filesystem containing project/ reports?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the device name and mount options associated with /Volumes/ARCHIVE.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell me whether /Volumes/WORK is currently a mount point?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to see how much space sparse.img appears to contain compared with the blocks it actually uses.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the total size of files directly in ~/Library/Logs without descending into folders?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to inspect the disk usage of my Trash folder without deleting anything.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the largest ten immediate subdirectories in ~/Library/Application Support?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "How much allocated space do folders named Cache use anywhere inside project/?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like separate disk usage totals for project/src, project/tests, and project/docs.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show how much disk space project/ uses if hard links are counted separately?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need allocated size totals for every top-level directory of /Volumes/ARCHIVE, staying on that volume.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you display /Volumes/WORK's full disk information as XML instead of a human table?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see which APFS container /Volumes/WORK belongs to.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell whether disk4 uses GPT or an older partition scheme?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the physical sector size of disk4.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
