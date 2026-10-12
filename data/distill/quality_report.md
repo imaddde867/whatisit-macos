@@ -10,7 +10,7 @@ Request SHA-256: 5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d78
 Teacher prompt SHA-256: 082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e
 Sampling: n=5, temperature=0.7, top-p=0.95, max tokens=16384, seed base=1000.
 
-Requests: 100; kept commands: 30; abstain: 9; dropped: 57 (4 no valid command, 53 no majority).
+Requests: 100; kept commands: 26; abstain: 9; dropped: 57 (4 no valid command, 53 no majority).
 Agreement histogram (maximum identical verified commands): {0: 12, 1: 35, 2: 19, 3: 9, 4: 11, 5: 14}.
 Teacher command candidates: 444; rejected candidates: 42 (9.5%). Rejection findings (categories can overlap): {'interactive': 4, 'macos_lint': 38, 'unparsed_or_incomplete': 14}.
 Abstain reasons: {'teacher_null_majority': 9}.
@@ -79,13 +79,17 @@ Recorded completion tokens: 993617 total, 739.0 median per sample.
 Manifest wall time: 6018.8 s for this invocation (100 requests written); throughput: 165.1 tokens/s; per-request latency was not recorded by the sampler.
 Manifest metadata: finished=2026-10-12T16:57:17+0300, top-k=0, note='Owner approved JSONDecoder parser fix overriding issue17 no-local-edit rule; teacher prompt unchanged. Default thinking/xhigh on; 4x32768 context; Q8 KV. max_tokens16384 after measured 8k truncation; concurrency4 after 8x32k VRAM OOM. Final-corpus smoke6/6 parsed and stop. Partial-corpus smoke length anomalies retained.'.
 
-Evaluation leakage gate: 20 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
-Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 6 rows; tool+flags vs everyday: 7 rows; tool+flags vs frozen: 7 rows (25 row/split pairs; ids are in the review-hit list below).
+Evaluation leakage gate: 24 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
+Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 6 rows; tool+flags vs everyday: 7 rows; tool+flags vs frozen: 7 rows; tool+flags vs heldout: 11 rows (36 row/split pairs; ids are in the review-hit list below).
 - quarantined r00005: author quarantine list: df -t <fstype> is deprecated usage; documented form is -T (one reviewer) frozen/dev
 - quarantined r00006: author quarantine list: mdls -all is not an option (both reviewers) frozen/dev
+- quarantined r00016: normalized command heldout
 - quarantined r00026: normalized command frozen
+- quarantined r00028: normalized command heldout
+- quarantined r00033: normalized command heldout
 - quarantined r00057: author quarantine list: ps keyword thcount does not exist on macOS (both reviewers) frozen/dev
 - quarantined r00081: normalized command everyday
+- quarantined r00088: normalized command heldout
 - quarantined r00177: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00487: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00617: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
@@ -109,4 +113,4 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 
 No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The Mac prompt audit (`docs/distill-prompt-audit.json`) confirmed that an empty target trains its end-of-turn token. A live-model abstention probe remains pending.
 
-Human precision review: **pending**. 30 rows were saved to `/private/tmp/claude-501/-Users-imadeddine-Documents-GitHub-experiments-whatisit-macos/6b4d529c-5987-4b44-94da-36341bc82963/scratchpad/new_sample.jsonl` with blank human verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
+Human precision review: **pending**. 26 rows were saved to `/private/tmp/claude-501/-Users-imadeddine-Documents-GitHub-experiments-whatisit-macos/6b4d529c-5987-4b44-94da-36341bc82963/scratchpad/new_sample2.jsonl` with blank human verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
