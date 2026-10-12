@@ -131,20 +131,31 @@ class DistillDatasetTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'invalid sample schema'):
             self.run_builder()
 
-    def test_eval_request_or_command_signature_overlap_fails_without_output(self):
+    def test_eval_request_or_normalized_command_overlap_is_quarantined(self):
         (self.evals / 'frozen.jsonl').write_text(json.dumps({
             'request': self.rows[0]['request'], 'reference': 'alpha -q another.txt'}) + '\n')
-        with self.assertRaisesRegex(ValueError, 'evaluation leakage'):
-            self.run_builder()
-        self.assertFalse(self.out.exists())
-        self.assertIn('r00001: request overlaps frozen', self.report.read_text())
-        self.assertIn('r00001: command signature overlaps frozen', self.report.read_text())
-        self.report.unlink()
+        self.run_builder()
+        self.assertEqual([json.loads(l)['id'] for l in self.out.read_text().splitlines()], ['r00002'])
+        text = self.report.read_text()
+        self.assertIn('quarantined r00001: request frozen', text)
+        self.assertIn('quarantined r00001: normalized command frozen', text)
+        self.assertIn('1 rows quarantined', text)
+
+    def test_tool_and_flag_overlap_in_a_pipeline_is_reported_not_gated(self):
+        self.samples[0][:3] = [{'command': 'alpha -q notes.txt | sort -r', 'parsed': True,
+                                'finish_reason': 'stop', 'completion_tokens': 10}] * 3
+        self.write_inputs()
         (self.evals / 'frozen.jsonl').write_text(json.dumps({
-            'request': 'unrelated frozen task', 'reference': 'alpha -q another.txt'}) + '\n')
-        with self.assertRaisesRegex(ValueError, 'evaluation leakage'):
-            self.run_builder()
-        self.assertFalse(self.out.exists())
+            'request': 'unrelated frozen task', 'reference': 'alpha -q other.txt | sort -r'}) + '\n')
+        self.run_builder()
+        self.assertTrue(self.out.exists())
+        self.assertIn('tool+flags vs frozen: 1 rows', self.report.read_text())
+
+    def test_operand_overlap_is_gated_and_shell_glue_is_ignored(self):
+        self.assertEqual(builder.normalized('sysctl -n hw.pagesize'), (('sysctl', ('-n',), frozenset({'hw.pagesize'})),))
+        self.assertNotEqual(builder.normalized('sysctl -n hw.pagesize'), builder.normalized('sysctl -n hw.ncpu'))
+        self.assertEqual(builder.signature('[ -t 1 ] && echo yes || echo no'), ())
+        self.assertEqual(builder.normalized('du -sh . | sort -h'), ())
 
     def test_signature_handles_shell_punctuation_and_refuses_broken_quotes(self):
         self.assertEqual(builder.signature('git status&&ls -al;ls -a -l'),
