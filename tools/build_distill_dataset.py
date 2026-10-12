@@ -160,7 +160,7 @@ def check_inputs(requests_path, raw_path, manifest_path):
 def eval_leakage(requests, labels, eval_dir):
     """Return (hard, review): hard hits are quarantined; review hits are only reported."""
     eval_requests, eval_signatures, eval_normalized = [], {}, {}
-    for split in ('dev', 'everyday', 'frozen'):
+    for split in ('dev', 'everyday', 'frozen', 'heldout'):
         for case in read_jsonl(eval_dir / f'{split}.jsonl'):
             eval_requests.append((split, words(case['request'])))
             for command in [case.get('reference'), *(case.get('also_correct') or [])]:
