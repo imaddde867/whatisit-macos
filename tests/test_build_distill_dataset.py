@@ -157,6 +157,15 @@ class DistillDatasetTests(unittest.TestCase):
         self.assertEqual(builder.signature('[ -t 1 ] && echo yes || echo no'), ())
         self.assertEqual(builder.normalized('du -sh . | sort -h'), ())
 
+    def test_programs_and_queries_are_operands_but_paths_are_not(self):
+        awk = builder.normalized("diskutil info /Volumes/WORK | awk '/BSD Name/ {print $NF}'")
+        self.assertEqual([p[0] for p in awk], ['awk'])
+        self.assertEqual(builder.normalized("sed 's/a/b/' notes.txt")[0][2], frozenset({'s/a/b/'}))
+        self.assertEqual(builder.normalized("mdfind 'kMDItemFSName == \"*x*\"c'")[0][2],
+                         frozenset({'kMDItemFSName == "*x*"c'}))
+        self.assertEqual(builder.normalized('cat ~/Documents/a.txt src/main.py'), (('cat', (), frozenset()),))
+        self.assertEqual(builder.normalized('sysctl -n hw.ncpu')[0][2], frozenset({'hw.ncpu'}))
+
     def test_signature_handles_shell_punctuation_and_refuses_broken_quotes(self):
         self.assertEqual(builder.signature('git status&&ls -al;ls -a -l'),
                          (('git status', ()), ('ls', ('-a', '-l')), ('ls', ('-a', '-l'))))
