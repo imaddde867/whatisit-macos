@@ -9,6 +9,7 @@ request: lint, model failure or abstention), abstain-ok / abstain-missed (for nu
 """
 
 import json
+import os
 import re
 import statistics
 import sys
@@ -23,6 +24,9 @@ def main() -> int:
     harness = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] in ('model', 'lint') else 'lint'
     cases = [json.loads(line) for line in
              (Path(__file__).resolve().parents[1] / 'eval' / f'{split}.jsonl').read_text().splitlines()]
+    if os.environ.get('EVAL_SYSTEM_PROMPT_FILE'):  # experiment: replace upstream's system prompt in-process
+        from whatisit import config
+        config.SYSTEM_PROMPT = Path(os.environ['EVAL_SYSTEM_PROMPT_FILE']).read_text().strip()
     counts = {'pass': 0, 'wrong': 0, 'rejected': 0, 'abstain-ok': 0, 'abstain-missed': 0}
     times, outcomes = [], {}
     for case in cases:
