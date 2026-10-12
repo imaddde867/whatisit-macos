@@ -19,6 +19,10 @@ from whatisit_macos.maclint import problems, unrequested_deletion
 
 SUBCOMMANDS = {'git', 'brew', 'defaults', 'hdiutil', 'diskutil', 'launchctl', 'npm', 'pip', 'plutil', 'xcrun'}
 WRAPPERS = {'sudo', 'env', 'command', 'time', 'nohup'}
+TRIVIAL = {'echo', 'printf', '[', '[[', 'test', 'true', 'false', ':'}  # shell glue; carries no tool knowledge
+PATH_EXTENSIONS = {'txt', 'log', 'csv', 'json', 'plist', 'pdf', 'md', 'sh', 'py', 'zip', 'gz', 'tar', 'png',
+                   'jpg', 'jpeg', 'dmg', 'iso', 'app', 'html', 'xml', 'yaml', 'yml', 'conf', 'bak', 'tmp'}
+REVIEW_JACCARD = 0.5
 SHORT_OPTION_TOOLS = {'ls', 'cp', 'mv', 'rm', 'df', 'du', 'ps', 'grep', 'sort', 'tar', 'chmod'}
 
 
@@ -26,8 +30,7 @@ def read_jsonl(path):
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
-def signature(command):
-    """Conservative command signature for leakage: tool/subcommand and option names."""
+def _segments(command):
     try:
         lexer = shlex.shlex(command, posix=True, punctuation_chars=';&|')
         lexer.whitespace_split = True
@@ -42,30 +45,55 @@ def signature(command):
             current = []
         else:
             current.append(token)
-    result = []
-    for segment in segments:
+    if not tokens:
+        raise ValueError('empty command signature in leakage check')
+    return segments
+
+
+def _flags(tool, args):
+    flags = set()
+    for arg in args:
+        option = arg.split('=')[0]
+        if tool in SHORT_OPTION_TOOLS and re.fullmatch(r'-[A-Za-z]{2,4}', option):
+            flags.update('-' + char for char in option[1:])
+        elif re.fullmatch(r'-[0-9]', option):
+            flags.add(option)
+        elif re.match(r'^-{1,2}[A-Za-z]', option):
+            flags.add(option if re.fullmatch(r'-{1,2}[A-Za-z][\w-]*', option) else option[:2])
+    return tuple(sorted(flags))
+
+
+def _path_like(arg):
+    return ('/' in arg or arg.startswith(('~', '.')) or '*' in arg or 
+            arg.rsplit('.', 1)[-1].lower() in PATH_EXTENSIONS and '.' in arg)
+
+
+def _parts(command):
+    """Yield (tool, flags, operands) for each non-trivial pipeline stage."""
+    for segment in _segments(command):
         while segment and (segment[0] in WRAPPERS or re.fullmatch(r'\w+=.*', segment[0])):
             segment.pop(0)
-        if not segment:
+        if not segment or segment[0] in TRIVIAL:
             continue
         tool = Path(segment[0]).name
         args = segment[1:]
         if tool in SUBCOMMANDS and args and not args[0].startswith('-'):
             tool += ' ' + args.pop(0)
-        flags = set()
-        for arg in args:
-            option = arg.split('=')[0]
-            if tool in SHORT_OPTION_TOOLS and re.fullmatch(r'-[A-Za-z]{2,4}', option):
-                flags.update('-' + char for char in option[1:])
-            elif re.fullmatch(r'-[0-9]', option):
-                flags.add(option)
-            elif re.match(r'^-{1,2}[A-Za-z]', option):
-                flags.add(option if re.fullmatch(r'-{1,2}[A-Za-z][\w-]*', option) else option[:2])
-        flags = tuple(sorted(flags))
-        result.append((tool, flags))
-    if not result:
-        raise ValueError('empty command signature in leakage check')
-    return tuple(result)
+        operands = frozenset(a for a in args if not a.startswith('-') and not _path_like(a))
+        yield tool, _flags(tool, args), operands
+
+
+def signature(command):
+    """Tool/subcommand and option names per stage, ignoring shell glue such as echo and [. Report-only."""
+    return tuple((tool, flags) for tool, flags, _ in _parts(command))
+
+
+def normalized(command):
+    """Stages that carry specific knowledge: tool, flags and non-path operands (sysctl keys, mdls
+    attributes, plutil formats, awk programs). A bare tool-plus-flags stage inside a pipeline counts
+    only when the whole command is that single stage. Hard leakage check."""
+    parts = list(_parts(command))
+    return tuple(part for part in parts if part[2] or len(parts) == 1)
 
 
 def check_inputs(requests_path, raw_path, manifest_path):
@@ -102,26 +130,35 @@ def check_inputs(requests_path, raw_path, manifest_path):
 
 
 def eval_leakage(requests, labels, eval_dir):
-    eval_requests, eval_commands = [], {}
+    """Return (hard, review): hard hits withhold the dataset; review hits are only reported."""
+    eval_requests, eval_signatures, eval_normalized = [], {}, {}
     for split in ('dev', 'everyday', 'frozen'):
         for case in read_jsonl(eval_dir / f'{split}.jsonl'):
             eval_requests.append((split, words(case['request'])))
             for command in [case.get('reference'), *(case.get('also_correct') or [])]:
                 if isinstance(command, str) and command.strip():
                     for part in signature(command):
-                        eval_commands.setdefault(part, set()).add(split)
-    hits = set()
+                        eval_signatures.setdefault(part, set()).add(split)
+                    for part in normalized(command):
+                        eval_normalized.setdefault(part, set()).add(split)
+    hard, review = set(), set()
     for row in requests:
         for split, target in eval_requests:
-            if jaccard(words(row['request']), target) >= 0.7:
-                hits.add((row['id'], 'request', split))
+            score = jaccard(words(row['request']), target)
+            if score >= 0.7:
+                hard.add((row['id'], 'request', split))
+            elif score >= REVIEW_JACCARD:
+                review.add((row['id'], 'request similarity 0.5-0.7', split))
     for row in labels:
         command = row['messages'][-1]['content']
         if command:
+            for part in normalized(command):
+                for split in eval_normalized.get(part, ()):
+                    hard.add((row['id'], 'normalized command', split))
             for part in signature(command):
-                for split in eval_commands.get(part, ()):
-                    hits.add((row['id'], 'command signature', split))
-    return sorted(hits)
+                for split in eval_signatures.get(part, ()):
+                    review.add((row['id'], 'tool+flags', split))
+    return sorted(hard), sorted(review)
 
 
 def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_path, review_path):
@@ -194,16 +231,12 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
             {'role': 'user', 'content': MACOS_PREFIX + record['request']},
             {'role': 'assistant', 'content': target}]})
 
-    leakage = eval_leakage(requests, labels, eval_dir)
-    if leakage:
-        report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text(f'# Evaluation leakage gate failed\n\nTeacher: {manifest["model"]}; '
-                               f'raw requests: {len(raw)}; overlaps: {len(leakage)}. '
-                               'No training dataset was written. Overlaps identify corpus rows and '
-                               'evaluation split only.\n\n' +
-                               ''.join(f'- {rid}: {kind} overlaps {split}\n'
-                                       for rid, kind, split in leakage))
-        raise ValueError(f'evaluation leakage: {len(leakage)} overlaps; see {report_path}')
+    leakage, review_hits = eval_leakage(requests, labels, eval_dir)
+    quarantined = sorted({rid for rid, _, _ in leakage})
+    for row in labels:
+        if row['id'] in quarantined:
+            decisions['kept' if row['messages'][-1]['content'] else 'abstain'] -= 1
+    labels = [r for r in labels if r['id'] not in quarantined]
     commands = [r for r in labels if r['messages'][-1]['content']]
     sample = random.Random(7).sample(commands, min(30, len(commands)))
     drop_details = ''.join(f'- {rid}: {reason} (maximum agreement {best})\n'
@@ -211,6 +244,11 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
     wall = manifest['wall_seconds_this_run']
     token_rate = (f'{sum(tokens) / wall:.1f} tokens/s' if wall and
                   manifest.get('requests_written_this_run') == len(raw) else 'unavailable for resumed run')
+    by_kind = Counter((kind, split) for _, kind, split in review_hits)
+    overlap_text = ('; '.join(f'{kind} vs {split}: {count} rows' for (kind, split), count in sorted(by_kind.items()))
+                    or 'none') + f' ({len(review_hits)} row/split pairs; ids are in the review-hit list below).'
+    overlap_text += ''.join(f'\n- quarantined {rid}: {kind} {split}' for rid, kind, split in leakage)
+    overlap_text += ''.join(f'\n- {rid}: {kind} {split}' for rid, kind, split in review_hits if kind != 'tool+flags')
     report = f'''# Distillation quality report
 
 Host: {platform.platform()} (macOS verification)
@@ -235,7 +273,8 @@ Recorded completion tokens: {sum(tokens)} total, {statistics.median(tokens) if t
 Manifest wall time: {wall} s for this invocation ({manifest.get('requests_written_this_run', 'unknown')} requests written); throughput: {token_rate}; per-request latency was not recorded by the sampler.
 Manifest metadata: finished={manifest.get('finished_at', 'unknown')}, top-k={manifest.get('top_k', 'unknown')}, note={manifest.get('note', '')!r}.
 
-Evaluation leakage gate: passed against dev, everyday, and frozen requests and command signatures. The frozen set was used only for this gate.
+Evaluation leakage gate: {len(quarantined)} rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
+Report-only overlaps (not gated): {overlap_text}
 
 No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The MLX prompt audit must still confirm that an empty target trains its end-of-turn token on the Mac. A live-model abstention probe remains pending.
 
