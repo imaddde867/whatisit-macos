@@ -1,0 +1,100 @@
+{"request": "Find .txt files with names at least forty characters long under corpus/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find regular files with no permissions at all inside permission-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find symlinks pointing to directories under shortcuts/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find immediate folders in build/ containing a file named Makefile.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files under data/ with change times in the last fifteen minutes.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files under exports/ with access times after their modification times.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files whose owner lacks read permission under mode-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find paths containing non-ASCII characters inside names/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files ending in .log except debug.log under sessions/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find .cpp files under src/ but prune generated/ and third_party/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Search docs/ for lines containing literal brackets [TODO].", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find .json files under fixtures/ whose content is invalid JSON.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find UTF-8 text files containing replacement characters under imported/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find case-colliding filenames anywhere under case-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files containing an empty line followed by a comment under snippets/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Search for repeated consecutive words in prose/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find .csv files missing the required header name,value in tables/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find files under assets/ whose extensions disagree with their detected file type.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-find files carrying the Finder tag Archived in ~/Desktop/test-set.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-search JPEG images taken with camera model Sample Camera in image-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed audio files shorter than five seconds in sound-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-find video clips with codec H.264 under ~/Movies/test-set.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed files last opened before 2024-01-01 under review/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Read the indexed screen-capture flag of sample-shot.png.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Read the indexed downloaded-from URLs of sample-download.zip.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed files whose where-from URL contains example.com in download-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-find images with ISO speed at least 800 in photo-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Read the indexed Finder comment of test-folder/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show raw Spotlight values for pixel height and width of sample.png.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed audio with a sample rate of 48000 Hz in audio-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-find images whose orientation metadata is portrait in photo-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed documents whose keywords include testing in document-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Read the indexed musical genre of demo.mp3 on macOS.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed files with a blank title under metadata-tests/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Spotlight-find items added yesterday to ~/Downloads/test-set.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Can you find all files under reference/ with exactly the same contents as template.txt?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to locate files in filenames/ with a trailing dot in the name.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please find symbolic links in examples/ whose stored targets begin with a slash.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you search only the first line of every .txt file under headers/ for SAMPLE?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the files in incoming/ that contain a UTF-8 byte-order mark.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please locate files inside metrics/ with more than a million lines.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you find .md files under docs/ with no level-one heading?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want files under config-tests/ with duplicate key definitions in key=value syntax, ignoring # comment lines.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please find immediate files in chunks/ whose sizes are not multiples of 4096 bytes.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you search tree/ for directories with a sticky bit, avoiding other mounted filesystems?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need files in fixtures/ whose creation time is later than their modification time on this Mac.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please look for filenames matching sample- followed by exactly four digits in imports/.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you find files in records/ with CRLF line endings and show their paths only?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want .json files under results/ where the top-level status value is failed.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please find files under snapshots/ with set-user-ID or set-group-ID bits without changing them.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you ask Spotlight for animated GIFs under ~/Pictures/test-set?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to find indexed audio files where the album field is exactly Sample Album in music-tests/.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please show the indexed recording year of demo.mp3 on macOS.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you find items Spotlight indexes as download packages under ~/Downloads/test-set?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need images in photo-tests/ whose indexed exposure time is longer than one second.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please locate indexed files tagged Review but not Done under ~/Documents/test-set.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you read the indexed original-document URL stored for guide.pdf?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want indexed video files under clip-tests/ whose frame rate is above 30.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please find Spotlight results in project/ whose indexed filename is exactly README, with no extension.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show the indexed altitude and GPS date of the generic test image location-fixture.jpg?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the indexed recording date of interview-sample.m4a.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please search Spotlight for indexed text containing a literal email-shaped test string sample@example.com in fixtures/.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you get the Spotlight attributes of every immediate file in metadata-tests/ as one record per path?", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want indexed HTML files in web-tests/ whose title contains Sample Site.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please find files Spotlight considers to be packages under ~/Desktop/bundle-tests.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Find immediate entries in fixtures/ whose filenames contain a newline character.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Locate files in inputs/ with at least one line longer than 1000 characters.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find directories under source/ whose immediate file count is greater than one hundred.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Search text files in strings/ for a literal backslash followed by the letter n.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find files under blocks/ containing the same line three times consecutively.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Locate regular files beneath test-tree/ while following directory symlinks and preventing loops.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find files under timestamps/ with a modification time equal to reference.dat at the filesystem's precision.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Search source/ for Python definitions of function calculate_total, reporting line numbers.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find .csv files under tables/ whose records have inconsistent field counts.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Identify direct files in binary-tests/ beginning with the PNG signature regardless of extension.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Query Spotlight for indexed image files in photo-tests/ with both pixel dimensions below 128.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Locate indexed documents whose language metadata is French inside language-tests/.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the indexed focal length of camera-test.jpg.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed audio items whose channel count is two inside audio-tests/.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Retrieve the indexed producer and director metadata for sample-film.mov.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Query Spotlight for indexed items in date-tests/ with creation dates later than their content modification dates.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "List indexed files under ~/Desktop/test-set with an explicit Finder label value of zero.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the Spotlight content-type metadata of the folder project/.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Find indexed items inside metadata-tests/ whose kMDItemKeywords array contains both alpha and beta.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print Spotlight's indexed filesystem name and display name of sample.txt as separate fields.", "category": "search", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "find files with two hardlinks exactly under link-tests/ pls", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "search configs/ for lines startng with whitespace then server", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find .txt files under texts/ that contain tabs but no spces", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find filenames starting dash in test-names/ without option confussion", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "which .gz files under archive-tests/ fail the integrity chek", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find directories named cache only at depth three in fixtures/", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "search .xml in xml-tests/ for malformed syntax plese", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "spotlight find PDFs with author Sample Editor under paper-tests/", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "get indexed aperture for camera-test.jpg plz", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find indexed stereo audio above 192 kbps in audio-tests/", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show indexed filesystem creation date of sample-video.mov in UTC plz", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "spotlight find files with the blue finder label in ~/Desktop/test-labels", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find raw camera images indexed in photo-tests/ not just by extention", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "read spotlight number of video tracks in fixture.mov", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "find indexed files in metadata-tests/ with no contenttype value plz", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}

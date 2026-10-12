@@ -1,0 +1,110 @@
+{"request": "List directory names in project/ that begin with a dot.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy only newer source files from assets/ into assets-copy/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy selected files listed in manifest.txt into collected/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Move the exact files named in move-list.txt into archive/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Rename only the filename suffix .bak to .old in snapshots/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Rename immediate images in scans/ to 1, 2, 3 in alphabetical order, preserving extensions.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Add the prefix reviewed- to the regular files in drafts/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Strip the prefix temp- from immediate filenames in exports/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Replace spaces with underscores in direct filenames under upload/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create an empty file named sample*.txt with the asterisk treated literally.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the umask of this shell as permission symbols.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Give deploy.sh mode 0750 while leaving its directory alone.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove executable bits from every .txt file in docs/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create output-dir/ with the same mode as template-dir/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show whether config.txt is owned by my current account.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List unreadable regular files inside input/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Compare source/ and destination/ by filename only.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Report the total logical bytes of regular files recursively in data/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the byte length of the link text stored in current.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List paths in tree/ without crossing onto another mounted filesystem.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the BSD nodump flag on backup-test/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Set the user nodump flag on temporary-data/ on macOS.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Clear the user nodump flag on temporary-data/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Display stat metadata for ~/Library/Fonts as JSON on macOS.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Set report.pdf's Finder comment to 'Approved'.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Find Finder aliases directly inside ~/Desktop/shortcuts.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the folder identifier Finder uses for ~/Downloads.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List all direct file names in ~/Library/Automator.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show filesystem flags recursively in ~/Library/Application Support/MyApp.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Report the creation date of /System/Applications/TextEdit.app in UTC.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print extended attribute values of the symlink latest without following it.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy symlink metadata from link-source to link-copy on macOS.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List the names of files in ~/Library/Caches/MyApp with no extended attributes.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the file type and subtype stored in FinderInfo for old-document.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create a Finder alias to the folder project/ named Project.alias.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the POSIX path Finder uses for its desktop folder.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy MyApp.app to app-export/ excluding its resource forks.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List Finder-invisible entries directly in project/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show whether report.pdf's FinderInfo marks it as a stationery pad.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to copy only the directory structure of template/ into empty-project/, with no files.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you copy the files in incoming/ whose names also occur in approved-list.txt into release/ ?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please rename this exact file report[1].pdf to report-final.pdf, treating the brackets literally.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need an empty test file whose name is line, a literal newline, then break.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list each unique file extension directly in uploads/ with the number of entries?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to count regular files and folders separately in the immediate contents of work/.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please move files from ready/ to sent/ and print the names of successful moves.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to remove zero-byte .tmp files only within scratch/.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you create a 256-byte binary file named zeros.bin filled entirely with zero bytes?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the longest filename length among the immediate entries in test-names/.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please check whether docs/guide.txt can be reached through a searchable directory path.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to make a new directory secure/ that nobody except its owner can enter.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list sticky-bit directories inside sandbox/ without changing their modes?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please print the access permission symbols of every direct file in materials/.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need a report of inode numbers shared by files under link-tests/.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you copy source.bin to destination.bin without truncating destination.bin's trailing bytes?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to list the direct files in ~/Library/LaunchAgents with their creation dates.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please show the creation dates and Finder labels of the direct children of ~/Library/Services.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you add the tag Review to report.pdf while keeping its existing Finder tags?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to remove only the Review Finder tag from report.pdf.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please set the Finder tags of sample.pdf to just Work and Draft.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list the color suffixes stored in report.pdf's Finder tag metadata?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the resource fork of old-document copied to old-document-copy while keeping the copy's data fork.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please tell me whether the compressed-data extended attribute exists on packed.dat on macOS.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like a list of direct entries under ~/Library/Printers, including file flags.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show the ACL entry count attached to shared-docs/ on this Mac?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to remove only ACL entry zero from the named folder acl-test/ on macOS.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please show which direct entries in ~/Library/Application Support/MyApp have the hidden BSD flag.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to know whether project/ is a package according to Finder.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you ask Finder for the displayed name and displayed extension of document.rtf?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please copy Fonts/ into ~/Library/Fonts without overwriting existing files.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to show the filesystem block allocation unit used by report.pdf on macOS.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list the resource-fork sizes of the immediate files in old-documents/ on this Mac?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "List regular files under records/ sorted by their inode change time.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Copy incoming/ to stored/ excluding hidden entries at every depth.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Rename directories ending in .old directly inside snapshots/ to end in .archived.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Remove group and other read permission from all regular .key files in test-keys/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the length in bytes of each filename directly inside names/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the symlink traversal chain for link-start, one step per line.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Show whether output/ and output-link/ identify the same directory.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Compare source-tree/ and mirror-tree/ and list paths existing only in source-tree/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Create hard links for the immediate regular files in source/ inside linked-copy/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the modification date of each immediate directory in project/ using UTC.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Copy the directory tree tree/ to tree-copy/, retaining empty directories.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the BSD opaque flag state of bundle-test/ without changing it.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "List Finder alias files under ~/Library/Application Support/MyApp without resolving their targets.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the extension-hidden status of each immediate regular file in review/ using Finder.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Set the stationery-pad property of template.txt to true in Finder.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Show all macOS file flags on the symbolic link latest itself.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Read the text-encoding metadata for every .txt file directly inside ~/Library/Logs/MyApp.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the Finder comment and Finder label of project/ in one record.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Compare the extended attribute names on source.dat and target.dat on macOS.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "List the ACL entries on link-test itself instead of following the symlink.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report how many files in ~/Library/ColorSync/Profiles have nonempty resource forks.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report whether the user immutable flag is set anywhere inside drafts/ on macOS.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "create sibling folders input/ output/ and logs/ with mode 750 plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "move .hidden-sample into archive/ keep it hiden by name", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "rename .tiff endings to .tif in scans/ no subfoldrs", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "list paths from names/ with shell quoting so spaces arnt ambiguous", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show last access times of folders in tmp-work/ newest frist", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "can i write inside staging/ check without creatng files", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "hardlink guide.pdf into handouts/ without copying its bytes plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "unlink shortcut.pdf even if its target doesnt exist", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show finder tags on folder project/ not its childrn", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show checksums of both data and resorce forks of legacy.dat on macos", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "list invisible finder items in ~/Library/Logs/MyApp plese", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show display name for ~/Library/ColorSync/Profiles in finder", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "does ~/Library/Services/MyService.workflow look like a package to finder", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "read com.example.version attr on MyApp.app no value chnage", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show acl and bsd flags on ~/Library/Containers/com.example.MyApp", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "clear all finder tags on sample-copy.pdf plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}

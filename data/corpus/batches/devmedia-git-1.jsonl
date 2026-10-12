@@ -1,0 +1,120 @@
+{"request": "show the working tree changes in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list untracked files in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show only staged changes in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show only unstaged changes in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether HEAD in project/ is detached", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "list local branches in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list remote branches known to project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the last commit in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the newest merge commit on the current branch in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show commits from the past week in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show commits by the author named Alex in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show commits that changed README.md in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the files touched by the last commit in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the patch from the last commit in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the subject lines of the last ten commits in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the full message of commit HEAD in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the commit history as one line per commit in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show a graph of recent branches in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the first commit in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the date of the newest commit in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the author of the newest commit in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the hash of the current commit in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "give me an abbreviated revision identifier for HEAD in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show unstaged changes in notes.txt while ignoring changes in whitespace", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the diff between main and the current branch in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show files changed between main and the current branch in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the diff between the two newest commits in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show word level differences for notes.txt in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show whitespace errors in the current diff in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show how many lines were added and removed in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show who last changed each line of README.md in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the history of a renamed file named notes.txt in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the branch that contains commit abc123 in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show tags containing commit abc123 in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please list tags in project/ newest first.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show what commit tag v1.0 points to in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the annotation on tag v1.0 in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "pls show the remote URL for origin in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "pls list configured remotes in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "pls show whether origin has a fetch URL and a push URL in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the upstream branch for the current branch in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show branches with commits not yet merged into main in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show commits on the current branch absent from main in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show commits reachable from origin/main but absent from HEAD in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show how far the current branch is ahead of origin/main in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show which files are ignored in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "explain why build.log is ignored in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you list tracked files under src/ in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you check whether notes.txt is tracked in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you list files staged for the next commit in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show names of files with merge conflicts in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show conflict markers remaining in notes.txt in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show whether a rebase is in progress in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show whether a merge is in progress in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the current stash list in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the patch stored in the newest stash in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show files stored in the newest stash in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the reflog for HEAD in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show where HEAD pointed before the last checkout in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show which commit deleted notes.txt in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the contents of README.md from the previous commit in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the version of README.md on main in project/ without switching branches", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "check the repository for corrupted objects in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show which submodules project/ declares", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the recorded submodule revisions in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show sparse checkout patterns active in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the size of git objects in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show which hooks are configured in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the root directory of the repository containing project/src/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the absolute path of project/'s git directory?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the commit message template configured for project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the user name configured only for project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the user email configured only for project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show whether project/ has a shallow history.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the shallow boundary commits in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the latest release tag reachable from HEAD in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show commit subjects since tag v1.0 in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show files changed since tag v1.0 in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show when notes.txt was first added to project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the commit that introduced the word TODO in README.md in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show a summary of changes by author in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the last three commits on branch feature/search in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show commits on feature/search that touched src/app.py in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show whether feature/search is fully merged into main in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "create a new local branch named feature/search in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "switch project/ to its existing feature/search branch", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "rename the local branch draft to feature/search in project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you delete the merged local branch draft in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you stage only README.md in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you unstage README.md in project/ while keeping its edits?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you commit the staged files in project/ with message Update docs?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you save the current edits in a stash named notes in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you apply the newest stash to project/ without dropping it?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please restore notes.txt in project/ from the previous commit.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please make an empty commit with message Start work in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please create annotated tag v1.0 at HEAD in project/ with message Release 1.0.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please add notes.txt to the ignore list only in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show README.md changes between branches main and feature/search in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "plz show all commits reachable from tag v1.0 but not main in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the object type behind revision HEAD in project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the installed Xcode version on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the active Xcode developer directory", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the installed Command Line Tools version on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show where the current macOS SDK is installed", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list SDKs available to Xcode on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the default macOS SDK version", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list installed Xcode simulators on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the runtime versions available to Simulator?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the device types available for Simulator?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you list build destinations for scheme MyApp in MyApp.xcodeproj?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the schemes in MyApp.xcodeproj?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you list the targets in MyApp.xcodeproj?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show build settings for scheme MyApp in MyApp.xcodeproj?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show PRODUCT_BUNDLE_IDENTIFIER for the MyApp target in MyApp.xcodeproj.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show MACOSX_DEPLOYMENT_TARGET for the MyApp target in MyApp.xcodeproj.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the architectures in a built MyApp.app.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the signing options flags recorded in MyApp.app's signature.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "pls inspect whether MyApp.app has the com.apple.security.cs.disable-library-validation entitlement", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls show the macOS SDK platform path selected by Xcode", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls show the path to clang selected by Xcode", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

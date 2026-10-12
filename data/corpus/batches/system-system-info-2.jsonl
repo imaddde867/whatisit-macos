@@ -1,0 +1,100 @@
+{"request": "What kernel version does System Information report in its software summary?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the enabled status of secure virtual memory if macOS reports it?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the firmware version from the hardware overview, without printing the hardware serial number.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the system's model name without including the serial number or hardware UUID?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to inspect the SystemVersion.plist file as readable property-list data.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you print the ProductBuildVersion value from the system version property list?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show the friendly computer name registered with macOS, without changing it.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list operating-system update history recorded by the Mac's built-in update utility?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see whether a macOS update installation is currently recorded in the software-update history.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the kernel's configured maximum number of processes per user.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show which shell resource limits are currently unlimited?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like this zsh session's soft and hard CPU-time limits side by side.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you print the maximum command-line length supported by the current system?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the number of CPUs currently online as reported by the POSIX configuration interface.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the maximum hostname length supported by the system?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see the configured POSIX thread limits without launching any threads.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you list the calendar and date formatting settings for the current locale?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the currency symbol and thousands separator from the active locale?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to know whether the shell's locale considers the character é alphabetic.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please print the names of the weekdays according to the current locale.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you convert Unix timestamp 1700000000 to a UTC date and time using Mac's built-in date tool?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the Unix timestamp for 2025-06-01 12:00:00 UTC.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell me the last calendar date of February 2028?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the date exactly seven days before 2025-03-01 using the macOS date utility.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "What calendar date is ninety days after 2025-01-15?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you print the current timestamp including the local timezone offset, with no spaces?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the next Monday's date according to the Mac's local timezone.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show yesterday's date in day/month/year format?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please print tomorrow's local date followed by the weekday name.", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show a three-month calendar centered on the current month?", "category": "system-info", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Report the operating-system product name, release, and build as separate labeled fields.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Extract the Darwin kernel build date from the complete kernel version string.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the model identifier and machine architecture without unique device identifiers.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the kernel's physical-memory size and usable-memory size separately.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display logical and physical CPU counts for each Apple Silicon performance level.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report supported instruction-set feature flags using the available kernel information keys.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Check whether the ARM CPU advertises support for the AES instruction extension.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the maximum socket-buffer size reported by the macOS kernel.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the kernel's current number of allocated vnodes.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the configured kernel hostname-length limit through the POSIX configuration interface.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the current number of open kernel files if the corresponding read-only kernel key is available.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display kernel shared-memory size limits without modifying them.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List read-only kernel information keys beneath hw.perflevel0.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the machine's memory-controller information from System Information.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display memory-slot configuration as JSON using the built-in system profiler.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report macOS software details at the mini detail level.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Save the hardware overview to hardware.plist as XML, excluding other report categories.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the installation date and version recorded for system software in installation history.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Read the product version from /System/Library/CoreServices/SystemVersion.plist.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the current user's numeric real and effective IDs separately.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the primary group name of the current process.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the current shell's maximum address-space limit.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the current soft limit for the number of child processes.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the current core-dump size limit without changing it.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List current terminal settings in a form that can be restored later, without applying changes.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report whether the TERM environment variable is unset, empty, or populated.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display only environment-variable names beginning with LC_.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Resolve the full path of the executable used for the system profiler utility.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the active shell's executable pathname as recorded in the process table.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the terminal's supported color count according to its capability database.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Convert 2025-10-26 12:00:00 UTC to Europe/Helsinki time without changing the system timezone.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the current time in America/New_York, including its UTC offset.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Compute the number of elapsed seconds between 2025-01-01 00:00:00 UTC and 2025-02-01 00:00:00 UTC.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Determine the ordinal day of year for 2028-12-31.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the ISO week-year and week number corresponding to 2025-12-31.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Convert 2025-06-15T14:30:00+0300 to a UTC timestamp using the BSD date utility.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the first date of the next calendar month in ISO date format.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the final date of the previous month relative to today.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the calendar for the full year 2027, with Monday as the first weekday.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Convert Unix timestamp -1 to a UTC calendar timestamp.", "category": "system-info", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "show my mac build and kernel release together pls", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need os release name from the system version plist", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "print cpu subtype as mac reports it", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many active logical cpus vs max logical cpus", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show hw model only no serial number plz", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which cpu feature sets does this intel mac expose", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "get perf core physical count on apple silicon", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show compressor page count from mac vm stats", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many speculative memory pages rn", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need page fault total from mac virtual memory stats", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show purgeable page count without purging memory", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "whats the total count of copy on write faults", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show kernel load average every 3 secs until i stop it", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "print uptime and the current local clock on one line", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "who is logged into the console right now on mac", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the previous ten console login sessions from local history", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list available system profiler types alphabetically", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show software report in json no hardware details", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "read macOS product name out of SystemVersion.plist", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show local computer name from mac config", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which locale variables have values in this shell", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what codeset is used by locale en_US.UTF-8", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show current umask in octal no change", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what terminal emulation type am i using", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show soft limit for file sizes in this shell", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "current seconds since epoch in hex pls", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "convert 2025-07-10 to weekday and day of year on mac", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "date 48 hours from now in utc please", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what date was 60 days ago on this mac", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "print a calendar for febuary 2028", "category": "system-info", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

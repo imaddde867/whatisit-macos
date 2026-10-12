@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "issue": "https://github.com/imaddde867/whatisit-macos/issues/10",
+  "prompt_version": "issue10-current-2026-10-12",
+  "authoring_models": {
+    "gpt-6-astra/high": 1034,
+    "gpt-6.1-sol/high": 810,
+    "gpt-6/main; reasoning inherited": 340,
+    "gpt-6-sol/xhigh": 336
+  },
+  "builder_seed": 7,
+  "request_sha256": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+  "rows": 2520,
+  "categories": {
+    "system-info": 200,
+    "search": 200,
+    "disk-and-storage": 200,
+    "text-processing": 280,
+    "abstain": 240,
+    "files-and-folders": 330,
+    "git-and-dev": 180,
+    "network": 200,
+    "processes-and-ports": 200,
+    "power-and-hardware": 100,
+    "archives-and-media": 140,
+    "macos-tools": 150,
+    "security-and-apps": 100
+  },
+  "styles": {
+    "terse": 886,
+    "chatty": 756,
+    "formal": 502,
+    "typo": 376
+  },
+  "pilot_count": 100,
+  "pilot_abstain": 9,
+  "human_review_seed": 20261012,
+  "human_review_status": "accepted",
+  "semantic_review": "Authors and a separate gpt-6-astra/high reviewer revised missing inputs, evaluation paraphrases, and repeated intents. Similarity gate is separate from semantic review.",
+  "macos_specific_balance": "Qualitatively about half; no exact percentage measured.",
+  "commands_authored": false,
+  "model_under_training_used": false,
+  "human_review_evidence": "Owner confirmed in this session: Reviewed all 50; accepted."
+}

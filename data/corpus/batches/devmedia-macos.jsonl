@@ -1,0 +1,150 @@
+{"request": "read the Finder preference for keeping folders first when sorting by name", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the Finder preference for showing hidden files", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the Dock preference for automatic hiding", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "read the Dock preference for showing recent applications", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the Dock preference for magnification", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the current screenshot save location on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the screenshot image format preference on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the text edit app's default document format?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the Terminal app's default profile name?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you read the system-wide preference for reduced animation?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the global preference for preferred languages?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the global preference for the measurement system?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the global preference for 24-hour time?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the current keyboard repeat interval preference.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the current key repeat delay preference.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the trackpad tap-to-click preference.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the scroll direction preference on this Mac.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show whether Finder displays path bars", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show whether Finder displays status bars", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the Finder preference for new window target", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "list preference keys in the Finder domain", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list preference keys in the com.apple.screencapture domain", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the type of the Dock icon size preference", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether Finder preference ShowPathbar is explicitly set for this user", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the global preference domain as a property list", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the current print panel preference domain", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the dictionary of preferences for the Calculator app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show where user preference files are stored on this Mac?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the domain names matching com.apple.TextEdit?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the value of the theme key in project/Config.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you check whether project/Config.plist is valid?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the XML form of project/Config.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you write a binary-format copy of project/Config.plist to project/Config-binary.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the top-level keys in project/Config.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the type of key CFBundleIdentifier in MyApp.app/Contents/Info.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please read the CFBundleInfoDictionaryVersion key from MyApp.app/Contents/Info.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the display name in MyApp.app/Contents/Info.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "pls read LSRequiresNativeExecution from MyApp.app/Contents/Info.plist", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls show the executable name in MyApp.app/Contents/Info.plist", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "pls show the app icon filename in MyApp.app/Contents/Info.plist", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "read the number of CFBundleURLTypes entries declared by MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show filename extensions in each document-type declaration of MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "read the boolean NSSupportsAutomaticGraphicsSwitching from MyApp.app metadata", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "read NSPrefersDisplaySafeAreaCompatibilityMode from MyApp.app/Contents/Info.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the keys under the settings dictionary in project/Config.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the second item of the servers array in project/Config.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the length of the servers array in project/Config.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show whether key debug exists in project/Config.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the value type of key debug in project/Config.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you set the local project/Config.plist key debug to false?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you set the local project/Config.plist key appName to MyApp?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you add a local project/Config.plist key timeout with value 30?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you remove the debug key from project/Config.plist?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please append the string beta to the tags array in project/Config.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please write a pretty-printed XML copy of project/Config.plist to formatted-config.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please compare the property lists project/Config.plist and project/Other.plist.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show loaded user launch agents whose labels begin with com.example.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "can u show the running status of user launch agent com.example.MyApp", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the process ID of user launch agent com.example.MyApp", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the last exit status of user launch agent com.example.MyApp", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the launch agent definition at ~/Library/LaunchAgents/com.example.MyApp.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "check whether ~/Library/LaunchAgents/com.example.MyApp.plist is a valid plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list launch agents stored in ~/Library/LaunchAgents", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether user launch agent com.example.MyApp is disabled", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the environment variables of my launchd user session", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the numeric user ID associated with this launchd GUI bootstrap domain", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the loaded job matching com.example.MyApp", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the resource limits recorded for my launchd GUI domain?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the executable path for user launch agent com.example.MyApp?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the working directory for user launch agent com.example.MyApp?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the scheduled interval for user launch agent com.example.MyApp?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show whether user launch agent com.example.MyApp keeps alive?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show stdout path for user launch agent com.example.MyApp?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show stderr path for user launch agent com.example.MyApp.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show how many launch agents are loaded in my user session.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the service type for user launch agent com.example.MyApp.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the active application name on this Mac.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the name of the frontmost Finder window", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the folder shown in the frontmost Finder window", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the names of currently open Finder windows", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the title of the frontmost Safari window", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the URL of the active Safari tab", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the count of open Safari tabs in the front window", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the name of the current song in Music", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether Music is running on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the names of running applications on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "bring MyApp.app to the front", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you open a new Finder window at ~/Downloads?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you ask Finder to show the size of its current selection?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list names and POSIX paths of the disks Finder currently exposes?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you read the Finder window bounds for its frontmost window?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the current view mode of the frontmost Finder window?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the desktop picture file path on this Mac?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the title of the active Terminal window.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the current working directory of the front Terminal tab.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the number of open Terminal windows.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the current selection in Finder.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the name of the first file selected in Finder", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show whether the Finder trash contains items", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the count of items in the Finder trash", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the clipboard as plain text", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "copy the text Hello there to the clipboard", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "copy the first ten lines of notes.txt to the macOS clipboard", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "save clipboard text as UTF-16 to clipboard-utf16.txt", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show how many characters of text are on the clipboard", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether the clipboard contains a PNG image", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "save the clipboard image to ~/Downloads/clipboard.png", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you copy the file URL for report.pdf into the clipboard?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you copy the absolute path of report.pdf into the clipboard?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the available data types on the clipboard?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you clear the clipboard text on this Mac?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the first line of clipboard text?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you open report.pdf with its default app?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please open report.pdf with Preview.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please open MyApp.app on this Mac.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please open ~/Downloads in Finder without activating Finder.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please open project/ in a new Finder window with Finder already running.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "pls open a web address https://example.com in the default browser", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "pls open https://example.com in Safari", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "reveal both report.pdf and notes.txt together in Finder", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "open image.png in Preview without changing defaults", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the default app registered for PDF files on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the file URL for report.pdf on this Mac", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "open a new Terminal window with project/ as its working directory", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "open MyApp.app with report.pdf as its document", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether MyApp.app is currently open", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "close MyApp.app gracefully from the shell", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you keep my Mac awake until the already-running process 4200 exits?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you keep the display awake for five minutes?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you keep this Mac awake while project/build.sh runs?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you prevent idle sleep while copying recording.mov to backup/recording.mov?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you prevent disk idle sleep while project/export.sh runs?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the assertion count for network-client activity on this Mac?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show active external-media power assertions without releasing them.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show whether a display-sleep prevention assertion is active, printing yes or no.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show whether this Mac has a user activity sleep assertion.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please keep the Mac awake for exactly 15 seconds and report when that interval ends.", "category": "macos-tools", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "can u show whether ~/Library/Preferences/com.example.MyApp.plist exists", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u read recentFiles from preference domain com.example.MyApp", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "can u check whether preference domain com.example.MyApp has a debug key", "category": "macos-tools", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the file format of ~/Library/Preferences/com.example.MyApp.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the modification time of ~/Library/Preferences/com.example.MyApp.plist as UTC", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "read the NSSupportsSuddenTermination value from MyApp.app/Contents/Info.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the package type declared by MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the CFBundleSignature creator code declared by MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the CFBundleAllowMixedLocalizations flag declared by MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the supported interface orientations in MyApp.app", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the main storyboard name in MyApp.app?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the path of the file selected in Finder?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the names of the tabs in the front Terminal window?", "category": "macos-tools", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}

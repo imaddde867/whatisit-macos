@@ -1,0 +1,60 @@
+{"request": "show whether the Command Line Tools are installed", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show installed Xcode components for command line builds", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the newest crash report for MyApp.app in ~/Library/Logs", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list recent Xcode archives in ~/Library/Developer/Xcode/Archives", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the size of Xcode's DerivedData folder", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list project names under ~/Library/Developer/Xcode/DerivedData", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show which simulator devices are booted on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the currently selected Xcode toolchain?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the version of the installed Swift compiler?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the Swift package dependencies of project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the products defined by the Swift package in project/?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you read the resolved version of dependency ExampleKit from project/Package.resolved?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the installed Homebrew version on this Mac?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show Homebrew's prefix on this Mac.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show whether Homebrew is installed on this Mac.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please list Homebrew packages installed on this Mac.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please list outdated Homebrew packages on this Mac.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the installed version of the Homebrew package jq", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show why Homebrew installed the package jq", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the files installed by Homebrew package jq", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show whether package jq is installed by Homebrew", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list casks installed by Homebrew on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the version of python3 selected in this shell", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show whether python3 is a shell function, alias, or external executable", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show whether Python can import package requests", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list Python packages installed in the explicitly located virtual environment project/.venv", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show requests package version inside project/.venv", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Can you show which Python package owns module yaml?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the import search path for project/.venv/bin/python?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show Python's platform tag on this Mac?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the version of Node.js in this shell?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the path to Node.js in this shell?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the installed npm version?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please list npm dependencies declared by project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please list top level npm packages installed in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show whether npm package vite is installed in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the version of npm package vite in project/.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the scripts defined in project/package.json", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the current npm registry configured for project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the version of Ruby on this Mac", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the path to the installed Ruby executable", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show installed Ruby gems containing cocoapods", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the version of the installed CocoaPods gem", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list the pods declared by project/Podfile", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the version of the installed Java runtime", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "list Java runtimes installed on this Mac", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the path to the active Java home", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the architecture of the Python interpreter on this Mac?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the architectures embedded in the Node.js executable selected by this shell?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the Mach-O file type of MyApp.app/Contents/MacOS/MyApp?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the UUID associated with each architecture slice in MyApp.app/Contents/MacOS/MyApp?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the default target triple reported by the selected clang compiler?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show whether Rosetta translation is active for this shell?", "category": "git-and-dev", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the version of Xcode's installed notarization tool.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please list provisioning profiles installed on this Mac.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show when the newest provisioning profile expires.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the build number of the installed Xcode.", "category": "git-and-dev", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the SDK version encoded in MyApp.app/Contents/MacOS/MyApp", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "plz show whether project/ has an Xcode workspace", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "plz show the names of schemes shared by project/", "category": "git-and-dev", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
