@@ -10,9 +10,9 @@ Request SHA-256: 5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d78
 Teacher prompt SHA-256: 082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e
 Sampling: n=5, temperature=0.7, top-p=0.95, max tokens=16384, seed base=1000.
 
-Requests: 100; kept commands: 35; abstain: 9; dropped: 55 (4 no valid command, 51 no majority).
-Agreement histogram (maximum identical verified commands): {0: 12, 1: 33, 2: 19, 3: 9, 4: 13, 5: 14}.
-Teacher command candidates: 444; rejected candidates: 32 (7.2%). Rejection findings (categories can overlap): {'macos_lint': 32, 'unparsed_or_incomplete': 14}.
+Requests: 100; kept commands: 33; abstain: 9; dropped: 56 (4 no valid command, 52 no majority).
+Agreement histogram (maximum identical verified commands): {0: 12, 1: 34, 2: 19, 3: 9, 4: 12, 5: 14}.
+Teacher command candidates: 444; rejected candidates: 36 (8.1%). Rejection findings (categories can overlap): {'interactive': 4, 'macos_lint': 32, 'unparsed_or_incomplete': 14}.
 Abstain reasons: {'teacher_null_majority': 9}.
 
 Dropped rows:
@@ -56,6 +56,7 @@ Dropped rows:
 - r00066: no_majority (maximum agreement 2)
 - r00067: no_majority (maximum agreement 2)
 - r00068: no_majority (maximum agreement 1)
+- r00070: no_majority (maximum agreement 1)
 - r00072: no_majority (maximum agreement 1)
 - r00075: no_majority (maximum agreement 1)
 - r00076: no_majority (maximum agreement 1)
@@ -77,15 +78,31 @@ Recorded completion tokens: 993617 total, 739.0 median per sample.
 Manifest wall time: 6018.8 s for this invocation (100 requests written); throughput: 165.1 tokens/s; per-request latency was not recorded by the sampler.
 Manifest metadata: finished=2026-10-12T16:57:17+0300, top-k=0, note='Owner approved JSONDecoder parser fix overriding issue17 no-local-edit rule; teacher prompt unchanged. Default thinking/xhigh on; 4x32768 context; Q8 KV. max_tokens16384 after measured 8k truncation; concurrency4 after 8x32k VRAM OOM. Final-corpus smoke6/6 parsed and stop. Partial-corpus smoke length anomalies retained.'.
 
-Evaluation leakage gate: 1 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
+Evaluation leakage gate: 17 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
 Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 6 rows; tool+flags vs everyday: 7 rows; tool+flags vs frozen: 8 rows (26 row/split pairs; ids are in the review-hit list below).
+- quarantined r00026: normalized command frozen
 - quarantined r00081: normalized command everyday
+- quarantined r00177: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r00487: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r00617: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r00849: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r00910: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01014: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01179: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01220: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01311: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01402: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01465: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01473: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r01979: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r02051: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r02203: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - r00754: request similarity 0.5-0.7 dev
 - r00950: request similarity 0.5-0.7 dev
 - r02012: request similarity 0.5-0.7 everyday
 - r02222: request similarity 0.5-0.7 dev
 - r02426: request similarity 0.5-0.7 everyday
 
-No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The MLX prompt audit must still confirm that an empty target trains its end-of-turn token on the Mac. A live-model abstention probe remains pending.
+No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The Mac prompt audit (`docs/distill-prompt-audit.json`) confirmed that an empty target trains its end-of-turn token. A live-model abstention probe remains pending.
 
 Human precision review: **pending**. 30 rows were saved to `data/distill/pilot_review_sample.jsonl` with blank human verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
