@@ -48,9 +48,10 @@ def parse_answer(text):
     """Return (command_or_None, reason, ok). Strips <think> blocks and fences, takes the last JSON object."""
     text = re.sub(r'<think>.*?</think>', '', text or '', flags=re.S).strip()
     text = re.sub(r'^```(?:json)?|```$', '', text.strip(), flags=re.M).strip()
-    for match in reversed(re.findall(r'\{.*?\}', text, flags=re.S)):
+    decoder = json.JSONDecoder()
+    for start in reversed([m.start() for m in re.finditer(r'\{', text)]):
         try:
-            obj = json.loads(match)
+            obj, _ = decoder.raw_decode(text, start)
         except json.JSONDecodeError:
             continue
         if isinstance(obj, dict) and 'command' in obj:

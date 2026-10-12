@@ -1,0 +1,27 @@
+{
+  "steps": 0,
+  "seed": 42,
+  "batch_size": 1,
+  "sequence_limit": 512,
+  "learning_rate": 1e-05,
+  "optimizer": "AdamW",
+  "lora_rank": 8,
+  "lora_alpha": 160,
+  "lora_scale": 20,
+  "lora_layers": 16,
+  "trainable_parameters": 5275648,
+  "data_sha256": "c190e370465266ea57219f7bff582943f2af9146b2908437ebe246db663662fb",
+  "source_sha256": "6f8a17a11129a31074c944f4c2602453fafd9de43bdaeb1630a8f511ec820f71",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "cuda": "13.0",
+  "training_peak_allocated_bytes": 3109739520,
+  "losses": [],
+  "zero_update_weights_equal": true,
+  "packages": {
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "peft": "0.21.0",
+    "gguf": "0.19.0"
+  },
+  "zero_update_note": "Synthetic tokenization input, zero optimizer updates. Tensor digests match all source tensors, ignoring signed zero. Wall time originally recorded only the empty training loop; excluded conversion/merge/export and is not an overall runtime measurement."
+}
