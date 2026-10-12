@@ -52,7 +52,7 @@ class DistillDatasetTests(unittest.TestCase):
                     'requests_file_sha256': hashlib.sha256(self.requests.read_bytes()).hexdigest(),
                     'system_prompt_sha256': hashlib.sha256(builder.TEACHER_SYSTEM_PROMPT.encode()).hexdigest()}
         self.manifest.write_text(json.dumps(manifest))
-        for split in ('dev', 'everyday', 'frozen'):
+        for split in ('dev', 'everyday', 'frozen', 'heldout'):
             (self.evals / f'{split}.jsonl').write_text(json.dumps({
                 'request': f'unrelated {split} task', 'reference': 'unrelated -z'}) + '\n')
 
