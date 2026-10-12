@@ -44,6 +44,26 @@ def _documented(cmd: str) -> frozenset[str]:
     return frozenset(flags)
 
 
+@functools.lru_cache(maxsize=None)
+def _ps_known() -> frozenset[str]:
+    """Keywords this Mac's `ps -L` lists; `ps -o` accepts only these."""
+    try:
+        out = subprocess.run(['ps', '-L'], capture_output=True, text=True, timeout=5).stdout
+    except (OSError, subprocess.TimeoutExpired):
+        return frozenset()
+    return frozenset(out.split())
+
+
+def _ps_keywords(args: list[str]) -> list[str]:
+    """Keywords named after -o/-O, e.g. `-o pid,comm=NAME` -> pid, comm."""
+    found = []
+    for index, arg in enumerate(args):
+        value = args[index + 1] if arg in ('-o', '-O') and index + 1 < len(args) else (
+            arg[2:] if re.match(r'-\w*[oO]\S', arg) and not arg.startswith('--') else '')
+        found += [k.split('=')[0] for k in value.split(',') if k.split('=')[0]]
+    return found
+
+
 def _segments(tokens: list[str]) -> list[list[str]]:
     segments, current = [], []
     for token in tokens:
@@ -95,6 +115,11 @@ def problems(command: str) -> list[str]:
         for arg in segment[1:]:
             if arg.startswith(SYSTEM_PATHS) and not re.search(r'[*?\[{$]', arg) and not os.path.exists(arg):
                 found.append(f'{arg}: path does not exist on macOS')
+        if cmd == 'ps':
+            known = _ps_known()
+            for keyword in _ps_keywords(segment[1:]):
+                if known and keyword not in known:
+                    found.append(f'ps {keyword}: not a ps keyword on macOS')
         if cmd == 'sysctl':
             for arg in segment[1:]:
                 if re.fullmatch(r'[a-z][\w.]*[a-z0-9]', arg) and subprocess.run(
