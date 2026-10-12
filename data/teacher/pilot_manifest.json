@@ -1,0 +1,22 @@
+{
+  "script": "tools/teacher_sample.py",
+  "finished_at": "2026-10-12T16:57:17+0300",
+  "model": "Qwen3.8-27B",
+  "quant": "Qwen3.8-27B-UD-Q6_K.gguf revision4ca720788d1e01f1bff70c033e0d0028fd02e502",
+  "server": "llama.cpp b11565 CUDA12.8",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "samples_per_request": 5,
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "top_k": 0,
+  "max_tokens": 16384,
+  "seed_base": 1000,
+  "system_prompt_sha256": "082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e",
+  "requests_file_sha256": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+  "requests_total": 100,
+  "requests_written_this_run": 100,
+  "wall_seconds_this_run": 6018.8,
+  "host": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "note": "Owner approved JSONDecoder parser fix overriding issue17 no-local-edit rule; teacher prompt unchanged. Default thinking/xhigh on; 4x32768 context; Q8 KV. max_tokens16384 after measured 8k truncation; concurrency4 after 8x32k VRAM OOM. Final-corpus smoke6/6 parsed and stop. Partial-corpus smoke length anomalies retained.",
+  "wall_seconds": 6018.8
+}
