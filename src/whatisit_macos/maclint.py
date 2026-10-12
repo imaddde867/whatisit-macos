@@ -7,12 +7,12 @@ import shlex
 import shutil
 import subprocess
 
-BUILTINS = {'cd', 'killall', 'echo', 'for', 'do', 'done', 'if', 'then', 'fi', 'while', 'export',
+BUILTINS = {':', 'cd', 'killall', 'echo', 'for', 'do', 'done', 'if', 'then', 'fi', 'while', 'export',
             'read', 'test', '[', 'printf', 'true', 'false', 'set', 'unset', 'alias', 'source', '.'}
 WRAPPERS = {'sudo', 'xargs', 'time', 'nohup', 'env', 'command', 'exec'}
 SEPARATORS = {'|', '&&', '||', ';', '|&'}
 EXEC_FLAGS = {'-exec', '-execdir', '-ok', '-okdir'}
-NO_FLAG_CHECK = {'zsh', 'bash', 'sh', 'dash', 'ksh'}  # option sets live in other man pages
+NO_FLAG_CHECK = {'zsh', 'bash', 'sh', 'dash', 'ksh', 'perl', 'python', 'python3', 'ruby', 'node'}  # option sets live in other man pages
 SYSTEM_PATHS = ('/proc/', '/sys/', '/etc/', '/var/log/', '/usr/', '/dev/')
 
 
@@ -34,10 +34,12 @@ def _documented(cmd: str) -> frozenset[str]:
     flags = set()
     for group in re.findall(r'\[-([A-Za-z0-9]+)', syn):
         flags.update('-' + c for c in group)
-    for m in re.finditer(r'^\s{3,16}(-{1,2}[A-Za-z][\w-]*)', text, re.M):
-        flags.add(m.group(1))
-        if not m.group(1).startswith('--'):
-            flags.add('-' + m.group(1)[1:2])
+    for m in re.finditer(r'^\s{3,16}(-.*)$', text, re.M):
+        spec = re.split(r'\s{2,}', m.group(1))[0]  # "-R, -r, --recursive" and "-n <number>" lines
+        for flag in re.findall(r'(?<![\w-])-{1,2}[A-Za-z][\w-]*', spec):
+            flags.add(flag)
+            if not flag.startswith('--'):
+                flags.add('-' + flag[1:2])
     flags.update(re.findall(r'(?<![\w-])(-{1,2}[A-Za-z][\w-]*)', syn))
     return frozenset(flags)
 
@@ -85,8 +87,8 @@ def problems(command: str) -> list[str]:
         if not segment:
             continue
         cmd = segment[0]
-        if cmd in BUILTINS or '/' in cmd and shutil.which(cmd):
-            continue
+        if cmd in BUILTINS or '/' in cmd and (shutil.which(cmd) or cmd.startswith(('./', '~/'))):
+            continue  # a script path the user may have; its existence is not ours to judge
         if not shutil.which(cmd):
             found.append(f'{cmd}: not installed on macOS')
             continue
@@ -114,6 +116,10 @@ def problems(command: str) -> list[str]:
             continue
         documented = _documented(page)
         for arg in args:
+            if cmd == 'chmod' and re.fullmatch(r'[ugoa]*[-+=][rwxXst]+(,[ugoa]*[-+=][rwxXst]+)*', arg):
+                continue  # a symbolic mode such as -w, not an option
+            if arg == '-r' and cmd in ('cp', 'rm') and '-R' in documented:
+                continue  # traditional alias of -R
             if len(arg) > 2 and arg[0] == '-' and re.search(
                     r'(?<![\w-])' + re.escape(arg.split('=')[0]) + r'(?![\w-])', man):
                 continue  # the whole option, e.g. -nobrowse or --nwi, is documented
@@ -156,12 +162,17 @@ def unrequested_deletion(command: str, request: str) -> list[str]:
         return bool(target) and target not in BROAD_TARGETS and (
             target in wanted or os.path.basename(target) in wanted)
 
+    fed_by_named_find = False
     for segment in _segments(tokens):
+        if segment[:1] == ['find']:
+            names = [segment[i + 1].replace('*', '').replace('?', '') for i in range(len(segment) - 1)
+                     if segment[i] in ('-name', '-iname', '-path')]
+            fed_by_named_find = any(named(n) for n in names)
         while segment and (segment[0] in WRAPPERS or re.match(r'^\w+=', segment[0])):
             wrapper = segment.pop(0)
             while wrapper in ('sudo', 'xargs') and segment and segment[0].startswith('-'):
                 segment.pop(0)
-            if wrapper == 'xargs' and segment and segment[0] in DELETERS:
+            if wrapper == 'xargs' and segment and segment[0] in DELETERS and not fed_by_named_find:
                 found.append('deletes items piped from another command, not a target you named')
         if not segment:
             continue
