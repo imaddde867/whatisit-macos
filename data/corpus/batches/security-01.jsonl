@@ -1,0 +1,100 @@
+{"request": "verify every nested signature in /System/Applications/Preview.app wihtout changing it", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list the certificate expiry dates in certificates/developer.pem", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please determine whether certs/server.pem is self-signed.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "can you help me calculate the SHA-256 digest of release.dmg for comparison", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to check archive.pkg for a valid installer signature", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show the code directory hash of /System/Applications/Calculator.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please determine whether Tool.app uses the hardened runtime.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "inspect the designated signing requirement of Utility.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "hey, please display the team identifier associated with Viewer.app", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "verify the detached macOS code signature document.sig for document.dat", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please list the architectures covered by the signature on bin/helper.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you find out whether /System/Applications/Notes.app has an ad-hoc signature", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show crtificate subject and issuer from certs/leaf.pem", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please read the serial number of certs/client.crt.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please inspect the public key algorithm of certs/service.pem.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please print the SHA-256 fingerprint of certs/root.pem.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to inspect the validity period of certs/intermediate.pem", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "display Subject Alternative Names from certs/web.pem", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please check whether certs/web.pem expires within seven days.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "convrt certs/leaf.der into a PEM copy named leaf.pem", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "export teh public key from certs/web.pem to web-public.pem", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "compare the public keys in certs/first.pem and certs/second.pem", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "decode teh contents of request.csr without submitting it", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please verify the self-signature of request.csr.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please list the distinguished name in request.csr.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to identify the encryption cipher recorded in encrypted-key.pem without decrypting it", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "inspect the metadata of identity.p12 without importing it or exposing private keys", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "can you help me find the trust settings configured specifically in my user domain", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please list the names of my user keychains.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please show the path of my default user keychain.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please check which certificates qualify as code-signing identities without exposing keys.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list certificates named Example Test CA in teh system keychain without exporting keys", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "display the security assessment status without changing it", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "dtermine whether sample.dmg is acceptable for opening under Gatekeeper", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check install.pkg for installation policy approval wihtout installing it", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "validate the stapled notarization ticket attached to Utility.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether install.pkg has a valid stapled notarization ticket", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show the launch-services application category declared by Viewer.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "read teh minimum supported macOS version from Helper.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "can you help me inspect the transport-security dictionary in Client.app's Info.plist", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to list URL schemes registered in Browser.app's bundle metadata", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "read the supported document types declared by Editor.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "determine whether OldTool.app declares an Intel-only executable", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to show the executable filename declared inside Helper.app", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please read the development-region language from Viewer.app.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "display teh copyright string recorded in Utility.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please list bundled plug-ins inside Studio.app without running them.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you find embedded frameworks inside Player.app", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "display the app sandbox flag in the signature of /System/Applications/Preview.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether Client.app's entitlements allow outgoing network access", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please determine whether Recorder.app requests microphone access in its bundle metadata.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "read the camera usage description declared by Camera.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to inspect the automation permission description in ScriptTool.app", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you determine whether Viewer.app declares a location usage description", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list privacy manifst files inside Utility.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to display the contents of Utility.app/Contents/Resources/PrivacyInfo.xcprivacy", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "validate the property-list syntax of Client.app's privacy manifest", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please check whether Tool.app has the get-task-allow entitlement.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "inspect the associated-domains entitlement in Client.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "read teh application groups entitlement in NotesDemo.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "inspect teh keychain access groups of LoginDemo.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please display the code-signing runtime version recorded on bin/helper.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "find unsigned Mach-O files under the explicitly named bundle TestApp.app", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please compare the signing team identifiers of Client.app and Client.app/Contents/Frameworks/Core.framework.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to inspect the certificate chain embedded in Viewer.app without verifying online", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you extract the signing certificates from Viewer.app into certificates/signing", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list scurity-related extended attributes attached to downloads/setup.pkg", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to check whether downloads/manual.pdf has quarantine metadata without deleting it", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "hey, please inspect the provenance attribute on Utility.app if present", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show the Finder where-from URLs attached to downloads/guide.pdf", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to read the download timestamp metadata for downloads/setup.dmg", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you determine whether script.sh is executable by its owner", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "could you display ACL entries for secrets/test-fixture.txt without reading its contents", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether config/demo-token.txt is writable by other users", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list group-writable regular files directly inside fixtures/", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "find world-readable files under test-secrets/ using permission metadata only", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether keys/demo.pem is a symbolic link", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you display the owner and permission bits of keys/demo.pem", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show filesystem flags on fixtures/locked.txt", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to find files carrying ACLs under fixtures/ without changing permissions", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether FileVault reports encryption enabled", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please show System Integrity Protection status without altering it.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to inspect whether the system authenticated-root protection is enabled", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you show application firewall global enabled status without changing it", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list apps registered with the application firewall", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I need you to read whether the application firewall's stealth mode is enabled", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "inspect teh application firewall policy for /System/Applications/Preview.app", "category": "security-and-apps", "kind": "answer", "style": "typo", "source": "gpt-6/main; reasoning inherited"}
+{"request": "determine whether Safari.app is registered with Launch Services", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "I want to find the bundle identifier of the default application for PDF documents", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list the shared libraries referenced by bin/demo without executing it", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "display Mach-O load commands for bin/demo", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "check whether bin/demo contains arm64 and x86_64 slices", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "Please inspect the linked runtime search paths in bin/demo.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"request": "show the minimum operating-system version encoded in bin/demo", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "list executable dependencies of Tool.app/Contents/MacOS/Tool", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "would you search for embedded provisioning profiles in Demo.app", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "decode Demo.app/Contents/embedded.provisionprofile to stdout without installing it", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "read the expiration date from Demo.app's embedded provisioning profile", "category": "security-and-apps", "kind": "answer", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"request": "hey, please show certificate purposes permitted by certs/test.pem", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"request": "can you help me verify certs/leaf.pem using the explicitly supplied CA file certs/root.pem", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}

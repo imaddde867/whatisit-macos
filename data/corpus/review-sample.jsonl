@@ -1,0 +1,50 @@
+{"id": "r01666", "request": "show the file format of ~/Library/Preferences/com.example.MyApp.plist", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r00033", "request": "Display system-extension status without altering extensions.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r00207", "request": "I want to list URL schemes registered in Browser.app's bundle metadata", "category": "security-and-apps", "kind": "answer", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r00006", "request": "I need Spotlight's complete attribute dump for manual.pdf, including attributes with null values.", "category": "search", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r00177", "request": "show the type of the Dock icon size preference", "category": "macos-tools", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"id": "r02302", "request": "Can you extract the CFBundleLocalizations strings from MyApp.app's Info.plist?", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r02176", "request": "Processes sorted by accumulated CPU time.", "category": "processes-and-ports", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r00282", "request": "which procs have report.pdf open for writing", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"id": "r00912", "request": "Inspect backup.dmg's embedded software license agreement.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r01614", "request": "Read the L2 cache size.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r00206", "request": "list remote branches known to project/", "category": "git-and-dev", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"id": "r00700", "request": "I need to convert a hexadecimal dump in bytes.txt back into binary data in bytes.bin.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r00942", "request": "Show me the number of Mach ports held by PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"id": "r02279", "request": "Please center each line of title.txt in a width of 60 characters.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r02293", "request": "Show cumulative usage of all .log files under logs/.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r00955", "request": "Create assets/icons/ and assets/fonts/ together.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"id": "r00306", "request": "Report file-system capacity in POSIX-style 1024-byte units for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"id": "r02488", "request": "I want to undo a credit-card charge without involving the payment provider", "category": "abstain", "kind": "abstain", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r02240", "request": "I want to choose a sensible new name for this unnamed file", "category": "abstain", "kind": "abstain", "style": "chatty", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r01294", "request": "Remove ANSI colors from ~/Library/Logs/MyApp/session.log.", "category": "text-processing", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"id": "r01792", "request": "Report the Finder comment and Finder label of project/ in one record.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"id": "r00470", "request": "I'd like a diff of old-prefs.plist and new-prefs.plist after converting them to consistently ordered JSON.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r02211", "request": "show ~/Library/Containers sizes one level deep", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"id": "r00524", "request": "Add the Finder comment 'review copy' to draft.pdf.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"id": "r00341", "request": "Inspect standard output's destination for PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r01405", "request": "Show whether LC_ALL is set in this session.", "category": "system-info", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r01132", "request": "show me the connection that looks suspicious", "category": "abstain", "kind": "abstain", "style": "terse", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r02437", "request": "Can you display the data volume associated with the current system APFS volume group?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"id": "r02356", "request": "Please show the original filename stored in notes.txt.gz.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"id": "r01848", "request": "Find indexed files last opened before 2024-01-01 under review/.", "category": "search", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"id": "r00257", "request": "Print lines in ranges.txt between the first START marker and the next STOP marker, excluding the markers.", "category": "text-processing", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"id": "r01193", "request": "look up example.org ptr query for 8.2.0.192.in-addr.arpa", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"id": "r00389", "request": "Please show whether image.png has transparency.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"id": "r00361", "request": "what filesystem block size does project live on", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"id": "r01602", "request": "count the mach ports for all my proceses", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"id": "r01875", "request": "write mac log eventMessage strings to messages.txt with empty ones skiped", "category": "text-processing", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"id": "r02249", "request": "Please revoke all certificates I no longer need without naming them.", "category": "abstain", "kind": "abstain", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r01380", "request": "Report the inode change time of ~/Library/Logs/MyApp in Unix seconds using macOS stat.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"id": "r00295", "request": "List macOS network hardware ports with their device names.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r01198", "request": "I want to display a ruler above text.txt so I can see column positions.", "category": "text-processing", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r02510", "request": "Can you read the Bluetooth controller's current powered state without switching it?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"id": "r00139", "request": "Report the CPU percentage, resident memory, and elapsed time for PID 4200, without headings.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"id": "r00024", "request": "spotlight find PDFs with author Sample Editor under paper-tests/", "category": "search", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"id": "r00519", "request": "Please access a neighbour's wireless router administration account.", "category": "abstain", "kind": "abstain", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r01661", "request": "Show me which files in output/ are executable by my current account.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"id": "r01316", "request": "Count filesystem blocks occupied by archive.tar.", "category": "disk-and-storage", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"id": "r02332", "request": "I need the reverse DNS name for IPv6 address 2001:db8::1.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"id": "r02165", "request": "Show the commands and users associated with TCP listeners on ports 8000 through 8010.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"id": "r00630", "request": "Please inspect the public key algorithm of certs/service.pem.", "category": "security-and-apps", "kind": "answer", "style": "formal", "source": "gpt-6/main; reasoning inherited"}
+{"id": "r01682", "request": "Show me the idle system-sleep timeout while on the charger, without modifying it.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}

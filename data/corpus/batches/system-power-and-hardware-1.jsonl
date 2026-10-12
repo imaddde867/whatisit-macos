@@ -1,0 +1,100 @@
+{"request": "Show the battery cycle count.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the battery condition reported by System Information.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Compare battery maximum capacity with its design capacity.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the battery's current voltage.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the battery's instantaneous current reading.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read battery temperature from the power registry.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report whether an AC adapter is connected.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the connected charger's reported wattage.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the battery's estimated minutes until full charge.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the estimated battery runtime remaining.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the battery's raw current and maximum charge values.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show power-management assertions grouped by process.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List active assertions preventing display sleep.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List active assertions preventing idle system sleep.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show power-management sleep and wake counters.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the power-management log for the most recent sleep transition.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report the reason recorded for the latest system wake.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show current live power settings.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show power-management settings overridden by active assertions.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show scheduled maintenance wake events only.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List USB devices and their bus topology.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show Thunderbolt devices and link speeds.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display Bluetooth controller firmware information.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List paired Bluetooth devices reported by System Information.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show currently connected Bluetooth devices.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report available audio input devices.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report available audio output devices.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the default audio output device.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the default audio input device.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read each display's current resolution.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show display refresh rates reported by macOS.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List connected display vendor and product IDs.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the USB power requirements of attached devices.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report PCI expansion devices visible to macOS.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List camera devices detected by the system.", "category": "power-and-hardware", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Can you show whether my Mac's lid is currently closed from the I/O registry?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the battery's cycle count and health condition in the same report.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you watch power-source changes live until I interrupt the command?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want a live log of applications acquiring and releasing power assertions.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the processes currently preventing the screen from sleeping?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell which active power assertions carry a timeout?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to see the current assertion level for background tasks.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you display only dark-wake events from the power-management history?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the reason the Mac last went to sleep from its power log.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show when the last five system sleep events happened?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see power-source changes recorded in the power-management log.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the battery-charge level recorded at the latest sleep event.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you display the configured idle display-sleep timeout for battery power without changing it?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show me the idle system-sleep timeout while on the charger, without modifying it.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you check the configured standby delay values from the current power preferences?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to read the current hibernation mode without changing it.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show whether automatic restart after a power failure is currently configured?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to inspect the recorded wake-on-network setting without toggling it.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the USB device tree as XML so I can save it for troubleshooting?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you list USB devices with their manufacturers and product names, excluding serial numbers?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to identify whether my external drive is attached over USB 2 or USB 3 from the hardware report.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show power available versus power required for each USB bus?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like a JSON report containing Thunderbolt and USB device information.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you read the Bluetooth controller's current powered state without switching it?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show Bluetooth device services and major device classes from the Mac hardware report.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show input and output channel counts for every audio device?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the audio-device sample rates reported by System Information.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell whether any connected display is marked as the main display?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the supported GPU Metal feature set from the graphics report.", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you list attached cameras with their model identifiers, excluding unique IDs?", "category": "power-and-hardware", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Display the power-source hardware report as a property list.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve battery telemetry from the AppleSmartBattery I/O registry class without modifying properties.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report battery installed, external power connected, and fully charged flags as separate fields.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the AC adapter's voltage and current ratings when the hardware reports them.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Calculate reported maximum battery capacity as a percentage of design capacity, handling missing values.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the current low-power-mode preference for each power source without altering it.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report active prevent-idle-sleep assertions with the owning process IDs.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the assertion history for the next ten seconds, then terminate the observer.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Extract sleep and wake timestamps from the last hour of power-management logging.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report configured disk-sleep timeouts for AC and battery power.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the configured hibernation image path without reading the image.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the power-management configuration for connected UPS devices.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the USB vendor and product identifiers of attached devices in hexadecimal.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display USB host-controller information from the I/O registry.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List Thunderbolt buses and their negotiated link widths.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Generate a JSON report of Bluetooth controller and device information.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report audio devices marked as the default system-effects output.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the transport type of each detected audio device.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report display pixel dimensions separately from the logical user-interface resolution.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display graphics processors and their reported memory capacities without collecting unrelated hardware details.", "category": "power-and-hardware", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "show battery amperage and voltage together pls", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "is the battery fully charged flag set on this mac", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show charger details as reported by system profiler", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need battery time remaining updates until ctrl c", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the timeout remaining on active user activity assertions", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the last wake reason from mac power logs", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "read powernap setting for charger and battery no changes", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "is tcp keep alive during sleep enabled in power prefs", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show current autopoweroff delay no modifying it", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need usb tree in json pls", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what speed is each thunderbolt link running at", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show bluetooth controller chipset name", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list audio devices with maker names", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "is display mirroring active on any screen", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show connected displays that are marked built in", "category": "power-and-hardware", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

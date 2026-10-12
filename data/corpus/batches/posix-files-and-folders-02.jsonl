@@ -1,0 +1,110 @@
+{"request": "List regular files directly in dataset/ by increasing size.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the total size of each immediate folder in assets/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create a named pipe called event.pipe.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Check whether event.pipe is a named pipe.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Append nothing to session.log but update its timestamps.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Set sample.txt's modification date to 2025-06-01 12:30 local time.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Give copy.txt the same access and modification times as source.txt.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List files in incoming/ in reverse alphabetical order.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List entries in images/ grouped with directories first.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Count all directory entries in cache/, including hidden entries.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy big.bin to big-copy.bin in 1 MiB blocks and display progress.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create a 4 MiB zero-filled test file named blank.bin.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Create a sparse file named sparse-test.bin with a 2 GiB logical length.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show where link-one ultimately points when links chain together.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show each path component's permissions for docs/guide.txt.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Print the device number for the filesystem holding project/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the free inode count on the filesystem containing work/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the Finder alias target of Manual.alias.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Make a Finder alias to docs/guide.pdf in shortcuts/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Distinguish Finder aliases from symbolic links in shortcuts/.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy legacy.dat to data-only.dat without its Mac resource fork.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List the files in ~/Library/Saved Application State by modification date.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List folder names in ~/Library/Application Scripts.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show file modes for /System/Applications/Utilities/*.app.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List immediate child files of ~/Library/Fonts, sorted by extension.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show Finder's displayed size for report.pdf.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the localized name Finder uses for ~/Desktop.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show the Finder extension-hidden property of report.pdf.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Make Finder display the extension of sample.txt.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Hide sample.txt's extension in Finder.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Report the BSD compressed flag on dataset.bin.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show report.pdf's file ID using BSD stat.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Copy MyApp.app into staging/ without preserving extended attributes.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "List direct entries of ~/Library/Services with their kinds.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Read the com.apple.TextEncoding attribute of saved.txt.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Remove all extended attributes from the named test copy sample-copy.bin.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show ACL inheritance entries on ~/Library/Application Support/MyApp.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Show Finder's locked property for final.pdf.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Set the Finder locked property of final.pdf to false.", "category": "files-and-folders", "kind": "answer", "style": "terse", "source": "gpt-6.1-sol/high"}
+{"request": "Please make a folder named project drafts, with the space in the name.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to copy a file named -draft.txt to draft-copy.txt safely.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you rename the hidden file .sample-config to sample-config.txt?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to move all immediate subfolders of incoming/ into sorted/ without moving loose files.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to swap the filenames left.txt and right.txt without losing either file.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show both the bytes and block count of packed.bin?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please print the modification date of every direct child in results/ as Unix seconds.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to set the access time of archived.txt to match reference.txt, preserving its modification time.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you copy incoming/'s contents into existing/ without adding another directory level?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want a symbolic link named notes-link to notes.md that uses an absolute target path.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please replace the symlink named active with a link to releases/v3, leaving both release folders alone.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like the shortest relative path from docs/ to images/logo.png.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show which files in copies/ have more than one hard link?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please remove the link named latest without touching the folder it points to.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to know whether Sample.txt and sample.txt identify one file on this filesystem.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list names in weird-names/ separated by a zero byte so newlines in names aren't confusing?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want to check whether ~/Library/Application Support/MyApp exists as a directory.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please duplicate the Finder alias Manual.alias as Manual-copy.alias without resolving it.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show the modification date of the Finder alias Manual.alias itself?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to unlock draft.pdf in Finder so I can edit it later.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please mark final-copy.pdf as locked in Finder.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like to see both the Finder label and extension-hidden status for design.svg.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you list the visible direct contents of ~/Library/QuickLook?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want the file creation dates of all font files in ~/Library/Fonts shown alongside their names.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please preserve the creation dates when copying mockups/ to mockups-backup/ on macOS.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need to move MyApp.app into ~/Applications, creating that folder if needed.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you copy only the extended attributes from source.txt onto target.txt on this Mac?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please show the readable text of the com.example.caption attribute on illustration.png.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I want a list of filenames in ~/Library/Logs/MyApp with their numeric permission modes.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Can you show the compressed size recorded by the filesystem for compressed.dat on macOS?", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I'd like the modification time of the symlink current itself, without following it.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "I need the Finder comment on the folder project/, not on its contents.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "Please list the direct children of /System/Applications/Utilities with full absolute paths.", "category": "files-and-folders", "kind": "answer", "style": "chatty", "source": "gpt-6.1-sol/high"}
+{"request": "List the directories in public/ that are writable by the current account.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Remove all permissions for other users from private-notes.txt.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Grant group read permission to the regular files in team-docs/, leaving directory permissions intact.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the UID and GID of output.dat as numeric values only.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Create directories a/ and b/ with identical 0750 permissions.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Copy sample.bin to verified.bin, then verify that their byte contents match.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the parent directory of the relative path project/docs/guide.md.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "List the basename of each non-hidden entry in downloads/ sorted by bytewise order.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Remove the empty directories scratch/one and scratch/two, retaining scratch/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Set a 0077 creation mask for new files in the current shell session only.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Create guide-link as a symlink pointing to docs/User Guide.pdf.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report the macOS birth time of the symlink current itself.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Display the BSD append-only flag state of journal.log.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Set the user append-only flag on journal.log using macOS file flags.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Clear the user append-only flag from journal.log.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Print the Finder label names and color indices available on this Mac.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Read the raw FinderInfo bytes from the directory project/.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Copy resource-fork.bin into the resource fork of the explicitly named file legacy-copy.dat.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "List the entries directly in ~/Library/ColorPickers with ACL details.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Show the macOS file metadata of sample.bin as tab-separated fields: mode, owner, bytes, name.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Copy source-tree/ to backup/ preserving macOS file flags.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "Report whether project/ resides on a case-sensitive filesystem.", "category": "files-and-folders", "kind": "answer", "style": "formal", "source": "gpt-6.1-sol/high"}
+{"request": "make folder café in this dir with the accent intact plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "copy data.bin to data-copy.bin without changing owner permisssions", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "rename folder phase-one to phase-two only if phase-two dosnt exist", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show subfolders under samples/ two levels deep plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "remove empty log-old/ and its empty parent archive-old/ if possble", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "count reglar files in build/ recursively ignoring links", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show file timestamp of .config-example including secconds", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "is sample.txt readable and writable by me right now", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "resolve guide.alias to its original file on macos plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "list ~/Library/Keyboard Layouts files include hiden names", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show finder creation date for alias Project.alias itself plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show birth time and mtime for ~/Library/Logs/MyApp plese", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "finder thinks template.txt has hidden extention can you show that value", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "remove just com.example.note attr from folder drafts/ pls", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "show bsd nodump flag on scratch.bin", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}
+{"request": "make mac finder lock on final-copy.pdf true plz", "category": "files-and-folders", "kind": "answer", "style": "typo", "source": "gpt-6.1-sol/high"}

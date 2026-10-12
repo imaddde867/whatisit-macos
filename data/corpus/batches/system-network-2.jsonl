@@ -1,0 +1,100 @@
+{"request": "Can you show me the lease duration offered by DHCP on en0?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the DNS server option from the DHCP packet on en0, separate from the Mac's active resolvers.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you inspect whether Ethernet is configured with DHCP or a manual address?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the IPv6 router configured for the Ethernet service on this Mac.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the current Wi-Fi channel and supported wireless standards from System Information?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like the configured web proxy for Ethernet and whether it is enabled.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list every network service that uses device en0?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show me the hardware-port name associated with interface en1.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you print the MAC addresses for all hardware network ports on this Mac?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see the maximum supported Ethernet media modes without changing the selected one.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you display the system's per-domain DNS resolver configuration?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'm debugging a VPN; show which interface macOS would use to reach 192.0.2.20.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you read the status of the macOS VPN service named Lab VPN and then exit?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show the detailed network configuration for the macOS location named Automatic without switching locations.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to see the macOS network state for the global IPv6 service.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list dynamic-store keys that relate to the Wi-Fi interface en0?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you inspect the currently active network service IDs in the macOS dynamic store?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the Bonjour hostname as macOS reports it, including whether it has been set.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the DNS answers for example.org without query timing and server details?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to query the SRV record _https._tcp.example.org.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please check the CAA records published for example.org.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you ask the resolver at 1.1.1.1 for example.org's MX records?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the reverse DNS name for IPv6 address 2001:db8::1.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you query example.org with a two-second DNS timeout and just one attempt?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you ask for the full DNS response for example.org, including the authority section?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to test whether UDP packets can be sent to my own test listener at 127.0.0.1:9999 using the text hello.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please connect interactively to my test TCP service at 127.0.0.1:9000.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you listen once on localhost TCP port 9000 and print whatever the local client sends?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to send the contents of message.txt to my own TCP listener at 127.0.0.1:9000 and close afterward.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you report whether the loopback network interface is marked up?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Display all configured IPv4 broadcast addresses without modifying interfaces.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report MTUs for every active network interface.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List link-layer addresses for bridge interfaces only.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Show the IPv6 scope identifiers assigned to interface en0.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report transmitted and received byte counters for interface en0.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display multicast routing statistics available to the current user.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print network-interface names and their input error counters.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Determine the route to IPv6 destination 2001:db8::8.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display IPv4 route entries flagged as gateways.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report all routes whose destination is a local network.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Show the ARP entry for 192.0.2.8 without attempting to alter it.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the neighbor-discovery entry for 2001:db8::8.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List membership of IPv4 multicast groups on this Mac.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report TCP retransmission statistics from the kernel.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display IP fragmentation and reassembly counters.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report ICMPv6 statistics using the built-in BSD networking tools.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Query example.org using an explicitly nonrecursive DNS request.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve the DNS response for example.org with DNSSEC validation flags displayed.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Query example.org through 8.8.8.8 and include the answering server in the output.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List only IPv4 addresses from the answer section for example.org.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the MX hostnames and priorities for example.org, excluding other response sections.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve the authoritative zone serial number for example.org.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Resolve example.org through the macOS system resolver and display only returned IPv4 addresses.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Test reachability of IPv4 loopback using exactly one ICMP probe.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Send three ICMP probes to 192.0.2.1 with a one-second interval.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Perform a numeric traceroute to 192.0.2.1 with a maximum of eight hops.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Check TCP port 443 on example.org with a five-second connection timeout.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve https://example.org/ and output only the negotiated HTTP protocol version.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve https://example.org/ and report the remote server address used by the connection.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Download https://example.org/file.zip to file.zip without replacing an existing local file of that name.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Fetch https://example.org/ using HTTP/1.1 and retain normal certificate validation.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the HTTP response headers from https://example.org/ after following at most five redirects.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the supported MTU range for the Ethernet service without applying a new MTU.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the auto-proxy discovery setting for the Ethernet service.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the proxy exception list configured for Ethernet.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Read the network service name associated with the current primary IPv4 service identifier.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect DHCP option 15, the domain-name option, for interface en0.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Read DHCP option 119, the domain-search option, for interface en0.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the network-related hardware report as JSON using the macOS system profiler.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report whether any utun interfaces currently have assigned IPv4 addresses.", "category": "network", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "show ipv4 addrs on lo0 plz", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need link status for en0 on this mac", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "is en1 marked active in its interface details", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show packets dropped on en0 no changing anything", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which interfaces have ipv6 link local addreses", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the route to 198.51.100.7 without resolving names", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need arp cache for en0 only", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show ethernet service dns addreses on mac", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what search domans are set for Ethernet", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "whats the current mtu configured for Ethernet service", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "does Wi-Fi have a manual ipv4 address or dhcp", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show packet recieved errors for all interfaces", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "lookup txt records for _dmarc.example.org pls", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "dns answer for example.org in short form using resolver 8.8.8.8", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how long did the dns lookup for example.org take", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "look up example.org ptr query for 8.2.0.192.in-addr.arpa", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "ping 127.0.0.1 twice then stop pls", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "test localhost tcp 6543 with no payload", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "trace hops to example.org stop after 12 hops", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "get https://example.org/ and print only its content length header", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "download https://example.org/data.csv into data.csv quietly", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "check https://example.org/ with max 5 seconds total plz", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show ssl cert verification result from a request to https://example.org/", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "get http://localhost:4000/ with a User-Agent of LocalTest", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "fetch https://example.org/ with Cache-Control no-cache for this request", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many redirects did https://example.org/ follow", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the resolver timeout configured for each mac DNS resolver scope", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list mac vpn services with their curent status", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show Wi-Fi hardware info as xml pls", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "print ipv6 default routes numerically", "category": "network", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

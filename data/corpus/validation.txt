@@ -1,0 +1,6 @@
+requests: 2520   abstain: 240 (9.5%)
+by category: {'abstain': 240, 'archives-and-media': 140, 'disk-and-storage': 200, 'files-and-folders': 330, 'git-and-dev': 180, 'macos-tools': 150, 'network': 200, 'power-and-hardware': 100, 'processes-and-ports': 200, 'search': 200, 'security-and-apps': 100, 'system-info': 200, 'text-processing': 280}
+by style:    {'chatty': 756, 'formal': 502, 'terse': 886, 'typo': 376}
+near-duplicate pairs within corpus (jaccard >= 0.85): 0
+overlap with eval sets (exact or jaccard >= 0.7): 0
+OK
