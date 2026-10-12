@@ -21,7 +21,14 @@ SUBCOMMANDS = {'git', 'brew', 'defaults', 'hdiutil', 'diskutil', 'launchctl', 'n
 WRAPPERS = {'sudo', 'env', 'command', 'time', 'nohup'}
 TRIVIAL = {'echo', 'printf', '[', '[[', 'test', 'true', 'false', ':'}  # shell glue; carries no tool knowledge
 PATH_EXTENSIONS = {'txt', 'log', 'csv', 'json', 'plist', 'pdf', 'md', 'sh', 'py', 'zip', 'gz', 'tar', 'png',
-                   'jpg', 'jpeg', 'dmg', 'iso', 'app', 'html', 'xml', 'yaml', 'yml', 'conf', 'bak', 'tmp'}
+                   'jpg', 'jpeg', 'dmg', 'iso', 'app', 'html', 'xml', 'yaml', 'yml', 'conf', 'bak', 'tmp', 'tsv', 'mov',
+                   'm4a', 'wav', 'aiff', 'aif', 'mp3', 'mp4', 'zsh', 'bash', 'pkg', 'ips', 'heic', 'db', 'sqlite',
+                   'rtf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'key', 'pages', 'numbers', 'swift', 'c',
+                   'h', 'js', 'ts', 'rb', 'pl', 'sql', 'ini', 'cfg', 'toml', 'lock', 'out', 'dat', 'bin', 'img',
+                   'cer', 'crt', 'pem', 'csr', 'p12', 'gif', 'tiff', 'bmp', 'webp', 'svg', 'epub', 'tgz', 'bz2',
+                   'xz', '7z', 'rar', 'sparseimage', 'sparsebundle', 'webloc', 'strings', 'entitlements'}
+INTERACTIVE = re.compile(r'\s*(?:sudo\s+)?(?:man|less|more|vi|vim|nano|emacs|top)\b[^|]*$')  # needs a terminal, not an answer
+REDIRECT = re.compile(r'^(?:\d*|&)(?:>>|>|<)(?:&\d+)?$')
 REVIEW_JACCARD = 0.5
 SHORT_OPTION_TOOLS = {'ls', 'cp', 'mv', 'rm', 'df', 'du', 'ps', 'grep', 'sort', 'tar', 'chmod'}
 
@@ -66,10 +73,14 @@ def _flags(tool, args):
 PROGRAM_TOOLS = {'sed', 'awk', 'gawk', 'grep', 'egrep', 'fgrep', 'perl', 'mdfind', 'tr', 'jq'}
 
 
-def _path_like(arg):
+def _path_like(arg, tool=''):
     """A filesystem operand: a single word of path characters (or a glob or known extension)."""
     if re.search(r'\s', arg) or re.search(r'[=(){}"\']', arg):
         return False  # programs, predicates and queries carry knowledge
+    if re.fullmatch(r'\d+(?:\.\d+)?[A-Za-z]{0,2}', arg):
+        return tool != 'chmod'  # PIDs, counts and durations are user literals; chmod modes are not
+    if tool == 'sysctl':
+        return False  # keys such as hw.ncpu look like file.ext
     return bool(re.fullmatch(r'[~./$][\w.*?\[\]~$/+-]*|[\w.*?\[\]+-]+(/[\w.*?\[\]+-]*)+/?', arg) or
                 '*' in arg or '.' in arg and arg.rsplit('.', 1)[-1].lower() in PATH_EXTENSIONS)
 
@@ -85,9 +96,18 @@ def _parts(command):
         args = segment[1:]
         if tool in SUBCOMMANDS and args and not args[0].startswith('-'):
             tool += ' ' + args.pop(0)
-        words_ = [a for a in args if not a.startswith('-')]
+        cleaned, skip = [], False
+        for a in args:  # redirections are plumbing, not operands
+            if skip:
+                skip = False
+            elif REDIRECT.fullmatch(a):
+                skip = not re.search(r'&\d+$', a)
+            elif not re.match(r'^(?:\d*|&)(?:>>|>|<)\S', a):
+                cleaned.append(a)
+        args = cleaned
+        words_ = [a for a in args if a and not a.startswith('-')]
         keep_first = {words_[0]} if tool in PROGRAM_TOOLS and words_ else set()  # sed/grep pattern, not a path
-        operands = frozenset(a for a in words_ if a in keep_first or not _path_like(a))
+        operands = frozenset(a for a in words_ if a in keep_first or not _path_like(a, tool))
         yield tool, _flags(tool, args), operands
 
 
@@ -138,7 +158,7 @@ def check_inputs(requests_path, raw_path, manifest_path):
 
 
 def eval_leakage(requests, labels, eval_dir):
-    """Return (hard, review): hard hits withhold the dataset; review hits are only reported."""
+    """Return (hard, review): hard hits are quarantined; review hits are only reported."""
     eval_requests, eval_signatures, eval_normalized = [], {}, {}
     for split in ('dev', 'everyday', 'frozen'):
         for case in read_jsonl(eval_dir / f'{split}.jsonl'):
@@ -169,7 +189,20 @@ def eval_leakage(requests, labels, eval_dir):
     return sorted(hard), sorted(review)
 
 
-def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_path, review_path):
+def read_quarantine(path, known):
+    ids = {}
+    for line in path.read_text().splitlines() if path.exists() else []:
+        line = line.strip()
+        if line and not line.startswith('#'):
+            rid, _, why = line.partition('#')
+            ids[rid.strip()] = why.strip()
+    if set(ids) - known:
+        raise ValueError(f'quarantine list names unknown ids: {sorted(set(ids) - known)}')
+    return ids
+
+
+def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_path, review_path,
+          quarantine_path=Path('data/distill/quarantine_ids.txt')):
     if platform.system() != 'Darwin':
         raise RuntimeError('host-grounded verification must run on macOS')
     from whatisit import config, safety
@@ -200,6 +233,10 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
             candidates += 1
             if not command.strip() or len(command) > 4096 or any(c in command for c in '\x00\r\n'):
                 rejects['invalid_command'] += 1
+                rejected_candidates += 1
+                continue
+            if INTERACTIVE.fullmatch(command):
+                rejects['interactive'] += 1
                 rejected_candidates += 1
                 continue
             findings = safety.check(command)
@@ -240,6 +277,8 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
             {'role': 'assistant', 'content': target}]})
 
     leakage, review_hits = eval_leakage(requests, labels, eval_dir)
+    listed = read_quarantine(quarantine_path, set(request_by_id))
+    leakage = sorted(set(leakage) | {(rid, 'author quarantine list: ' + why, 'frozen/dev') for rid, why in listed.items()})
     quarantined = sorted({rid for rid, _, _ in leakage})
     for row in labels:
         if row['id'] in quarantined:
@@ -284,7 +323,7 @@ Manifest metadata: finished={manifest.get('finished_at', 'unknown')}, top-k={man
 Evaluation leakage gate: {len(quarantined)} rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
 Report-only overlaps (not gated): {overlap_text}
 
-No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The MLX prompt audit must still confirm that an empty target trains its end-of-turn token on the Mac. A live-model abstention probe remains pending.
+No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The Mac prompt audit (`docs/distill-prompt-audit.json`) confirmed that an empty target trains its end-of-turn token. A live-model abstention probe remains pending.
 
 Human precision review: **pending**. {len(sample)} rows were saved to `{review_path}` with blank human verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
 '''
@@ -308,9 +347,10 @@ def main():
                 'review-sample': 'data/distill/pilot_review_sample.jsonl'}
     for flag, default in defaults.items():
         parser.add_argument('--' + flag, default=Path(default), type=Path)
+    parser.add_argument('--quarantine', default=Path('data/distill/quarantine_ids.txt'), type=Path)
     args = parser.parse_args()
     print(build(args.requests, args.raw, args.manifest, args.eval_dir,
-                args.out, args.report, args.review_sample))
+                args.out, args.report, args.review_sample, args.quarantine))
 
 
 if __name__ == '__main__':

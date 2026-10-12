@@ -56,7 +56,7 @@ class DistillDatasetTests(unittest.TestCase):
             (self.evals / f'{split}.jsonl').write_text(json.dumps({
                 'request': f'unrelated {split} task', 'reference': 'unrelated -z'}) + '\n')
 
-    def run_builder(self, *, problems=None, safety_findings=None, deletion_issues=None):
+    def run_builder(self, *, problems=None, safety_findings=None, deletion_issues=None, quarantine=None):
         package = types.ModuleType('whatisit')
         config = types.ModuleType('whatisit.config')
         config.SYSTEM_PROMPT = 'Real upstream prompt'
@@ -71,7 +71,8 @@ class DistillDatasetTests(unittest.TestCase):
                 patch.object(builder, 'unrequested_deletion',
                              side_effect=deletion_issues or (lambda command, request: [])):
             return builder.build(self.requests, self.raw, self.manifest, self.evals,
-                                 self.out, self.report, self.review)
+                                 self.out, self.report, self.review,
+                                 quarantine or Path(self.tmp.name) / 'no-quarantine.txt')
 
     def test_majority_abstention_prompt_and_pending_review(self):
         counts = self.run_builder()
@@ -165,6 +166,25 @@ class DistillDatasetTests(unittest.TestCase):
                          frozenset({'kMDItemFSName == "*x*"c'}))
         self.assertEqual(builder.normalized('cat ~/Documents/a.txt src/main.py'), (('cat', (), frozenset()),))
         self.assertEqual(builder.normalized('sysctl -n hw.ncpu')[0][2], frozenset({'hw.ncpu'}))
+
+    def test_gate_regressions_from_review(self):
+        n = builder.normalized
+        self.assertEqual(n("sed -i '' 's/foo/bar/g' readme.txt")[0][2], frozenset({'s/foo/bar/g'}))
+        self.assertEqual(n('sort -t, -k2 scores.tsv'), n('sort -t, -k2 other.tsv'))
+        self.assertEqual(n('mdls -name kMDItemDurationSeconds a.m4a'), n('mdls -name kMDItemDurationSeconds b.mov'))
+        self.assertEqual(n('ps -p 1234 -o comm='), n('ps -p 99 -o comm='))
+        self.assertEqual(n("defaults read -g AppleInterfaceStyle 2>/dev/null"), n('defaults read -g AppleInterfaceStyle'))
+        self.assertEqual(n("tr -d '\\r' < notes.txt"), n("tr -d '\\r' < other.txt"))
+        self.assertNotEqual(n('chmod 0750 a.sh'), n('chmod 444 a.sh'))
+
+    def test_author_quarantine_list_and_interactive_pagers(self):
+        quarantine = Path(self.tmp.name) / 'quarantine.txt'
+        quarantine.write_text('r00001 # reviewed paraphrase\n')
+        self.run_builder(quarantine=quarantine)
+        self.assertEqual([json.loads(l)['id'] for l in self.out.read_text().splitlines()], ['r00002'])
+        self.assertIn('quarantined r00001: author quarantine list', self.report.read_text())
+        self.assertTrue(builder.INTERACTIVE.fullmatch('man sips'))
+        self.assertFalse(builder.INTERACTIVE.fullmatch('man sips | col -b'))
 
     def test_signature_handles_shell_punctuation_and_refuses_broken_quotes(self):
         self.assertEqual(builder.signature('git status&&ls -al;ls -a -l'),
