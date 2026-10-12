@@ -1,0 +1,100 @@
+{"request": "List every network interface name.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show IPv4 configuration for en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show IPv6 addresses assigned to en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the MTU currently set on en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show en0's supported link-media modes without choosing a new one.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display packet counters for en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Watch en0 traffic counters once per second.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show interface statistics including dropped packets.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the IPv6 routing table.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Look up the route to 192.0.2.8.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Find the outbound interface used for example.com.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the local ARP cache numerically.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the IPv6 neighbor cache.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List multicast group memberships for en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display TCP protocol statistics.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show UDP datagram error counts.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display ICMP traffic statistics.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List IPv4 routing entries without hostname lookups.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show routing entries associated with en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the local resolver configuration file.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Query example.org for IPv4 DNS records.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Get example.org's IPv6 DNS records.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Query example.org's TXT records.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Find authoritative name servers for example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Look up the SOA record for example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Reverse-resolve 192.0.2.8 through DNS.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Query CNAME records for www.example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Ask 1.1.1.1 to resolve example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Use TCP for an example.org DNS lookup.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show only the TTLs of example.org's A records.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Retrieve DNSSEC records for example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Trace DNS delegation for example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Compare example.org A responses from two public resolvers, 1.1.1.1 and 8.8.8.8.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Test TCP reachability to example.org port 443.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Test localhost ports 5400 through 5405 without sending application data.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Measure five ICMP round trips to 192.0.2.1.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Trace the route to example.org with numeric hops.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Send three IPv6 ping probes to ::1.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the DHCP lease information for en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read en0's DHCP server identifier.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the DHCP subnet mask offered on en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the DHCP router option for en0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List macOS network hardware ports with their device names.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List enabled and disabled macOS network service names.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect all current settings for the Ethernet network service.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show the manually configured search domains for Wi-Fi.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the HTTP proxy settings of Wi-Fi.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect Wi-Fi's HTTPS proxy settings.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the SOCKS proxy settings for Wi-Fi.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List Wi-Fi proxy bypass domains.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show Wi-Fi's automatic proxy configuration URL.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Check whether proxy autodiscovery is enabled for Wi-Fi.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display the configured IPv6 mode for Wi-Fi.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show Wi-Fi's configured MTU range.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the Ethernet network service's media options.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List network locations saved on this Mac.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Print the currently selected network location.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect the system's DNS resolver search ordering.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List configured VPN connection services.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read connection status for the VPN service Work VPN.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show macOS reachability flags for example.org.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the computer's Bonjour local hostname.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show current global IPv4 state from macOS network configuration.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Inspect per-interface DNS state for en0 in macOS.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "List dynamic network state keys for IPv6.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show Wi-Fi hardware capabilities using System Information.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Display Ethernet adapter details using System Information.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Report Thunderbolt network interfaces using System Information.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Show configured network services as XML system-profile output.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Read the packet count received on loopback lo0.", "category": "network", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "Could you fetch https://example.org/status and print just the numeric HTTP status?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the response body from https://example.org/ without the download progress meter.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you download https://example.org/report.pdf to report.pdf and treat HTTP errors as failures?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please follow redirects for https://example.org/ and tell me the final URL only.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to know how long DNS, connection setup, and the total request to https://example.org/ took.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you check https://example.org/ with a ten-second overall timeout?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you request https://example.org/data.json and explicitly ask for a JSON response?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the headers and body from https://example.org/status together on standard output.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please save the body of https://example.org/status in body.txt and the response headers in headers.txt.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you resume a partial download from https://example.org/archive.zip into archive.zip?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need a remote file only if it is newer than my existing report.pdf at https://example.org/report.pdf.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you download bytes 0 through 1023 from https://example.org/sample.bin into first-kib.bin?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to fetch https://example.org/ using IPv4 only.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you make a request to https://example.org/ using only IPv6?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please check https://example.org/ without using any configured HTTP proxy for that request.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you request https://example.org/ through my local HTTP proxy at 127.0.0.1:8888?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the redirect chain returned by https://example.org/ without downloading the response body?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to see the Content-Type header returned for https://example.org/image.png.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "How big is the response body downloaded from https://example.org/ in bytes?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you fetch https://example.org/ while limiting transfer speed to 100 KiB per second?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please retrieve https://example.org/ with a connection timeout of three seconds.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you retry the download at https://example.org/file.zip up to three times for transient failures?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to see whether https://example.org/ supports HTTP/2 using the Mac's installed client.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show the TLS connection details for https://example.org/ using the built-in HTTP client.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you request https://example.org/ with an Accept-Language header of en?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to check a local development server at http://127.0.0.1:5000/health and print its body.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you send an HTTP HEAD request to http://localhost:9000/ready?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you fetch https://example.org/robots.txt and save it using that remote filename?", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the download progress shown as a simple bar for https://example.org/file.zip, saved as file.zip.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please retrieve https://example.org/ with automatic decompression if the server offers compressed content.", "category": "network", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}

@@ -1,0 +1,100 @@
+{"request": "I want to see which processes have TCP port 8443 open, without resolving names.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you check both TCP and UDP uses of local port 9001?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "My app listens on IPv6; list just its listening sockets for PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I have a local database on port 5432. Show established connections to it, without stopping anything.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Which of my processes currently have a connection to remote TCP port 443?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the IPv4 listening sockets of my TextEdit process, if there are any?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to know whether TCP port 9229 is listening only on localhost or on every interface.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show the commands and users associated with TCP listeners on ports 8000 through 8010.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list the file descriptor numbers for PID 4200's open sockets?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to see open files under project/ belonging to my user, including its subfolders.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Which processes have the exact file app.log open right now?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'm checking a log rotation issue; which of my deleted open files still have allocated space?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show PID 4200's open files without resolving user IDs or hostnames?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need just the path of the working directory for my PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Which of my processes still has /Volumes/WORK/report.pdf open?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list memory-mapped files for my process 4200?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need to count open regular files for PID 4200, excluding sockets and pipes.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show me where standard input of my process 4200 comes from.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you tell me which of my processes have Unix sockets under /tmp open?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to inspect only TCP sockets owned by the exact process name MyApp.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show a list of supported output fields for the BSD process-listing tool on my Mac?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please launch project/check.sh at a lower scheduling priority just for that run.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you run project/check.sh and show how long it took along with its peak memory usage on macOS?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to time project/check.sh and keep its normal output on the terminal.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "After background job 1 completes, print finished; wait for that job specifically.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show each background job's process group ID in this shell?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to remove job 1 from this zsh session's job table without stopping the process.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you send USR1 to my worker PID 4200, as its documentation requires?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "My stopped job 1 needs to finish in the background; continue that job.", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list the numeric signal values on this Mac, including the name for each one?", "category": "processes-and-ports", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Report the effective group ID associated with process 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the real and effective user IDs of process 4200 as separate columns.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the CPU percentage, resident memory, and elapsed time for PID 4200, without headings.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Sort processes by resident memory ascending and display the first twenty entries.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List processes owned by the current user whose executable name begins with com.apple.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report how many visible processes have parent PID 1.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the process group and session ID for the current shell.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Identify processes in an uninterruptible sleep state without sending signals.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List processes with no terminal, sorted by their elapsed running time.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Provide a snapshot of macOS process counts together with overall CPU utilization.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Sample total macOS process memory statistics twice, with a ten-second interval.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display PID, command, and page-fault count using the macOS process monitor.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report context-switch counts for PID 4200 using the built-in macOS monitoring utility.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Capture a two-second stack sample of the current user's process 4200 to standard output.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the memory footprint of the current user's PID 4200 using macOS diagnostic tools.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display file descriptors held by process 4200 in machine-readable field output.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Find open files with zero remaining hard links, restricted to the current user's processes.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report Unix-domain socket paths used by PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List TCP listeners using numeric ports and include their file descriptor numbers.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report established IPv6 TCP connections belonging to the current user.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Identify processes holding TCP port 6379 open for listening; do not signal them.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Show socket state and remote endpoint for every TCP connection held by PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List only writable regular-file descriptors opened by PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Identify the current user's processes with files open on device /dev/disk4s1.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the open-file size and offset fields for PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the pathname of the executable text file held by PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List open network descriptors for PID 4200 in machine-readable form, preserving numeric addresses.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Compare resident-memory totals for the exact process names Safari and TextEdit.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print one executable name per line for processes owned by the current user, removing duplicates.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Run project/check.sh with detailed BSD resource accounting and save timing output to timing.txt.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Start project/worker.sh in the background and record its PID in worker.pid.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Send SIGTERM to the current user's processes 4200 and 4201 only.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Send SIGCONT to process group 4200, which belongs entirely to my paused test job.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Send SIGTERM to process group 4200, which belongs entirely to my disposable test job.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Wait for both child processes 4200 and 4201 in the current shell.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the exit status produced by waiting for child PID 4200.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display zsh jobs marked as stopped together with their process IDs.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Identify the current shell's process ID and its parent process ID.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Count TCP listening file descriptors owned by the current user.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List each process using /Volumes/WORK and include its open path on that volume.", "category": "processes-and-ports", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "show real user id for pid 4200 plz", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many child proceses does pid 4200 have", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need rss and virtual mem for my process 4200", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which proceses have a nonzero cpu percent", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list my proceses sorted by executable name", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the pid for this terminal shell no other info", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "get the parent pid of this shell only pls", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "sort my proceses by nice value", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show start date of pid 4200 in full pls", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need running processes with their group names on mac", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many threads total in my visble processes", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show resident mem in megabytes for pid 4200", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which of my tasks are in zombie state rn", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need one top snapshot on mac with no more than 15 proceses", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show mac process io stats for pid 4200 once", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "count the mach ports for all my proceses", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need mac memory map totals for pid 4200 in a file memory.txt", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show my pid 4200s open directories only", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list deleted open files for pid 4200 pls", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "find which process has tcp port 4567 bound on ipv4", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "any listening udp socket on port 6000 show its owner", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show all sockets for pid 4200 but no dns lookup pls", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which procs have report.pdf open for writing", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need open pipes for my user not sockets", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show only filenames opened by pid 4200 no headings", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "send QUIT to my debug process 4200 it handles that signal", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "force stop my stuck test pid 4200 with KILL", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show just the pids of background jobs in this zsh", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how long did my last foreground command take if i run project/check.sh again", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "run project/check.sh with niceness 10 this time", "category": "processes-and-ports", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

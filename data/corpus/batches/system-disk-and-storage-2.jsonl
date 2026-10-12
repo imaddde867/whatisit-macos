@@ -1,0 +1,100 @@
+{"request": "Please show the media name and protocol for disk4 in one report.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you identify whether disk4 is solid-state using its macOS disk information?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to inspect the volume name assigned to disk4s1.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you report whether ownership is enabled for /Volumes/WORK without changing it?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Show whether the macOS disk utility considers disk4 writable.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list disk4's partitions as a machine-readable property list?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I need the free capacity reported by APFS container disk3.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you display the data volume associated with the current system APFS volume group?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want the UUIDs and names of snapshots on APFS volume disk3s1.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show which APFS volumes in disk3 have a Recovery role?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to know whether /Volumes/WORK is marked case-sensitive.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show whether the volume /Volumes/WORK is journaled.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you verify the filesystem on /Volumes/WORK without repairing it?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please verify the partition map on disk4 without attempting repairs.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you inspect backup.dmg's checksum metadata and print it without attaching the image?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to know which mounted device was created from backup.dmg.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you attach backup.dmg read-only at the existing empty directory mountpoint/ without opening Finder?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please attach backup.dmg without mounting any of its filesystems so I can inspect its device nodes.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you detach the disk-image device /dev/disk5 normally, without forcing it?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to mount the existing unmounted volume disk4s1 read-only.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you unmount the volume at /Volumes/WORK without ejecting the whole disk?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please unmount all volumes of external disk4 normally, without forcing them.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I'd like to check whether the macOS disk report marks disk4 as ejectable.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you list the image formats supported for conversion by the built-in macOS disk-image tool?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to convert backup.dmg to a compressed image named backup-compressed.dmg while keeping the original.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you create an uncompressed read-only copy of backup.dmg named backup-readonly.dmg?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show whether /Volumes/WORK is excluded from Time Machine backups.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you compare the last Time Machine backup with the current filesystem without making a backup?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "I want to show the most recent Time Machine backup date, without listing its files.", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show disk throughput for disk0 and disk4 together at two-second intervals, ending after four reports?", "category": "disk-and-storage", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Report file-system capacity in POSIX-style 1024-byte units for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List mounted NFS filesystems and their source exports.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List mounted SMB filesystems and their local mount paths.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report filesystem utilization for /, /Volumes/WORK, and /Volumes/ARCHIVE in one invocation.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display mount flags of the filesystem containing project/.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the total allocated blocks for all regular files directly inside assets/.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Measure the physical storage allocated to project/ while excluding files matching *.tmp.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List directories under project/ whose allocated size is at least 100 MiB, with paths preserved.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the sum of logical file lengths under project/ without following symbolic links.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display each top-level entry in /Volumes/WORK with its usage measured in KiB.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the total storage allocated to regular files modified in the past seven days under logs/.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List open deleted files on /Volumes/WORK that may account for disk-space discrepancies.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the filesystem identifier and optimal transfer block size for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the number of hard links and allocated blocks for data.bin.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Identify the mount point for the filesystem containing ~/Library/Logs.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the read-only volume and read-only media flags for disk4s1 separately.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the APFS container reference for disk3s1.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display volume groups and associated system/data volume UUIDs as a property list.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve APFS snapshot information for disk3s1 in machine-readable property-list output.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the APFS container's capacity ceiling and amount consumed for disk3.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List disks known to Disk Arbitration as property-list data.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display physical-disk topology while excluding synthesized APFS disks.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report the current mount status of disk4s1 without trying to mount it.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Retrieve the file-system personality string for /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report whether disk4 is reported as internal or external.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the bus path reported for physical disk4.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display the APFS cryptographic user identifiers for disk3s1 without requesting credentials.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report image-format and checksum information for backup.dmg as a property list.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the encryption metadata of protected.dmg without providing a password or mounting it.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List mounted disk-image devices without opening their contents.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Verify backup.dmg's stored checksums and save the verification output to image-check.txt.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Convert backup.dmg to a read-only CD/DVD master named backup-master.cdr, retaining the source image.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Attach backup.dmg with read-only and no-browse mount behavior.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Inspect the supported virtual-size range of workspace.sparsebundle without resizing it.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "List Time Machine local snapshots associated with /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Determine exclusion status for notes.txt, project/, and /Volumes/WORK in one report.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Print the currently active Time Machine backup phase and progress details.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display Time Machine backup history in chronological order using the available backup paths.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Report per-disk transactions per second over three one-second intervals on macOS.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Display detailed SMB properties for the share mounted at /Volumes/WORK.", "category": "disk-and-storage", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "disk use for each file directly inside logs pls", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "total allocated space of all pdfs under reports/", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show usage of assets in gigabytes rounded up", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which mounted filesystems use hfs on this mac", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show mountpoint of disk4s2 pls", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "does disk4s1 have a volume uuid show it", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need disk4 capacity in bytes not human units", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what filesystem block size does project live on", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how many free blocks on /Volumes/WORK", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show mounted volumes sorted by used percent", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how big is ~/Library/Developer in allocated space", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "compare sizes of ~/Library/Logs and ~/Library/Caches as two rows", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show ~/Library/Containers sizes one level deep", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list sizes of all .app bundles directly in /Applications", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "how much space does project/.git/objects take up", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "need total size for the files listed one path per line in paths.txt spaces must work", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show filesystem use for mounts backed by /dev/disk4", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list disk images currently attached in json if mac supports it otherwise plist", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "does /Volumes/WORK have an apfs volume role", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show apfs volumes with their capacity consumed", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "which physical disk backs /Volumes/WORK", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show disk4s1s partition offset pls", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "what is the max image size for data.sparseimage without changing it", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the compression ratio recorded in installer.dmg metadata", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "mount disk4s1 at existing empty folder mountpoint read only", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "unmount /Volumes/ARCHIVE normally dont force it", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list the unmounted partitions on disk6 without mounting them", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "is ~/Library/Logs included in time machine backups", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show disk i/o every 5 seconds for 3 reports on mac", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "list mounted nfs server stats without altering mounts", "category": "disk-and-storage", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}

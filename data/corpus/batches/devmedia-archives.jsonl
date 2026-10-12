@@ -1,0 +1,140 @@
+{"request": "list only directory entries stored in backup.tar", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the file sizes stored in backup.tar", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "extract backup.tar into unpacked/ while skipping entries that already exist", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "create backup.tar from project/", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "append notes.txt to backup.tar", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "report whether backup.tar contains absolute paths or parent-directory traversal entries without extracting it", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "extract only notes.txt from backup.tar", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the modification times recorded in backup.tar?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you create project-backup.tar.gz from project/ while preserving relative paths?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you extract project.tar.gz into ~/Downloads/unpacked?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you list the owner and group names recorded in project.tar.gz?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you check that project.tar.gz is not corrupt?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you write an uncompressed copy of notes.txt.gz to restored-notes.txt, leaving the compressed file intact?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please restore notes.txt from notes.txt.gz.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the original filename stored in notes.txt.gz.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please report the compression ratio recorded for notes.txt.gz.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please create project-backup.tar.bz2 from project/.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "pls extract project.tar.bz2 into ~/Downloads/unpacked", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "pls create project-backup.tar.xz from project/", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls extract project.tar.xz into ~/Downloads/unpacked", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the compression format of backup.bin", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the file type of report.pdf", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "create project.zip from project/ and exclude hidden entries", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "zip only immediate .txt files inside project/ into text-files.zip", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "list encrypted entries inside project.zip without extracting them", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "extract project.zip into ~/Downloads/unpacked", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "extract only report.pdf from project.zip", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you check the integrity of project.zip?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the uncompressed size of project.zip?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you add notes.txt to existing project.zip?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you remove notes.txt from project.zip?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you make a zip of project/ that excludes build/?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you extract project.zip without overwriting existing files?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show archive entries under docs/ in project.zip.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please create flat-project.zip containing immediate files from project/ without their directory prefix.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show whether backup.tar contains symbolic links.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please create project.tar from project/ while preserving numeric owner and group IDs in its headers.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "can u create project.tar from project/ while excluding .git/", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "can u extract notes.txt and docs/guide.pdf from backup.tar into restored/", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "can u compare filenames recorded in backup.tar with regular-file paths under project/", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "show the largest entry in project.zip", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show how many files are in project.zip", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the total expanded size of backup.tar", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show filenames present in first.zip but absent from second.zip", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "create documents.zip containing only report.pdf and notes.txt", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "create a tar of project/ named project-YYYYMMDD.tar using today's local date", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "find archives larger than 1 GB under ~/Downloads", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you list zip files in ~/Downloads by modification date?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show how much space archives use in ~/Downloads?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you extract every tar archive in ~/Downloads into its own folder?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show whether image.png has embedded color profile data?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you crop the central 400 by 300 pixels of image.png into cropped.png, preserving the original?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the image metadata field names supported by the built-in Mac image utility?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show whether image.png has transparency.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the pixel width of each immediate PNG in ~/Downloads in a filename-and-width table.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the aspect ratio of image.png.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the number of pages in report.pdf.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the metadata fields in report.pdf", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the duration of recording.wav", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the sample rate of recording.wav", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "show the number of audio channels in recording.wav", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the audio format of recording.wav", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the bitrate of recording.mp3", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the Spotlight-indexed video bitrate of movie.mp4", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the dimensions of movie.mp4", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the codec of movie.mp4", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the frame rate of movie.mp4", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the metadata tags on recording.mp3?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show which media files under ~/Downloads are over 100 MB?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show the SHA-256 digest of project.zip?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the number of image segments recorded in backup.dmg without mounting it?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show the partitions inside backup.dmg?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the checksum algorithm recorded in backup.dmg's image metadata?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please display the segment file names of multipart.dmg from its disk-image metadata.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please mount backup.dmg without opening Finder.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please print the software license text recorded in backup.dmg if the image contains one.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please unmount the volume mounted from backup.dmg.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "plz convert backup.dmg to compressed-backup.dmg while retaining the original image", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "plz list the total count of ZIP entries whose names end with a slash in project.zip", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "plz show the volume name recorded inside backup.dmg", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "copy MyApp.app to staged-app/ while excluding its Contents/Resources/Docs folder", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "copy project/ to backup/ with metadata preserved and print each path as it is copied", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "compare project/ and ~/Downloads/backup including macOS metadata", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "create MyApp.zip from MyApp.app while excluding its Contents/Resources/Examples directory", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "extract MyApp.zip into restored-app/ while preserving app bundle metadata", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "copy a package bundle MyApp.app without following symlinks", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the image dimensions of photo.heic on this Mac", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you convert photo.heic to photo.jpg without changing the original image?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you convert image.png to image.jpg at 80 percent JPEG quality, preserving image.png?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you convert image.tiff to image.png without replacing an existing image.png?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you resize image.png to 800 pixels wide into resized.png, preserving the aspect ratio and original?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you pad image.png to a 1200 by 900 pixel canvas with white borders and save padded.png?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you rotate image.png counterclockwise by 180 degrees into upside-down.png, leaving the original?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please flip image.png horizontally into flipped.png without modifying image.png.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the bits-per-sample value recorded in image.png.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the camera metadata in photo.heic.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please show the orientation recorded in photo.heic.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "pls remove the embedded ICC profile from image.png into untagged.png keeping image.png", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls embed profile.icc in image.png and save tagged.png without changing image.png", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "pls resample photo.heic to a JPEG copy called thumbnail.jpg with width 200 and matching aspect ratio", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "convert all HEIC images in ~/Downloads to JPEG copies", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the pixel height of every HEIC image in ~/Downloads", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "resize image.png to half its original width and height and write half-size.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show whether photo.heic has an embedded image thumbnail according to macOS image metadata", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "convert image.png to image.tiff while retaining image.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "show the image DPI recorded in image.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "show the ICC profile name attached to image.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you show whether image.png is indexed color?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you convert recording.wav to AAC in recording.m4a without changing the original?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you convert recording.aiff to Apple Lossless in lossless.m4a with the built-in macOS converter?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you convert recording.m4a to 24-bit PCM in recording.wav, retaining the original?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Can you show audio formats supported by this Mac's converter?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you show the bit depth of recording.wav on this Mac?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Please resample recording.wav to 44.1 kHz in resampled.wav while keeping recording.wav.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please make a mono PCM copy of recording.wav named mono.wav.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please make a 128 kbps AAC copy of recording.wav named compact.m4a.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the channel layout of recording.aiff.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "can u show the packet count recorded in recording.m4a with the mac audio inspection tool", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "can u capture the whole screen to screenshot.pdf in PDF format", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "can u interactively select a window to capture into window.png without its shadow", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-astra/high"}
+{"request": "capture a selected rectangle to ~/Downloads/selection.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "capture the screen after a five-second delay to ~/Downloads/delayed.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "capture the mouse cursor in a full-screen screenshot saved to cursor.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "save a screenshot to the clipboard on this Mac", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "capture a screenshot of display two to ~/Downloads/display2.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "capture an open menu after a three-second delay and save menu.png", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-astra/high"}
+{"request": "read notes.txt aloud using the default Mac voice", "category": "archives-and-media", "kind": "answer", "style": "terse", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you say Hello there using the Mac's text-to-speech voice?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Could you list voices available for text to speech on this Mac?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you save spoken Hello there in greeting.aiff using the Mac's default voice?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you show the default voice for Mac text to speech?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-sol/xhigh"}
+{"request": "Can you read report.txt aloud at 120 words per minute?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Could you convert speech.txt to speech.aiff using the voice Samantha?", "category": "archives-and-media", "kind": "answer", "style": "chatty", "source": "gpt-6-astra/high"}
+{"request": "Please show the installed voices for English on this Mac.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "Please create image.pdf from image.png using built-in macOS tools.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the Spotlight-indexed page width and height of report.pdf.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-astra/high"}
+{"request": "Please show the Finder kind of project.zip.", "category": "archives-and-media", "kind": "answer", "style": "formal", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show when photo.heic was added to this Mac", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the Spotlight content type of movie.mp4", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
+{"request": "could u show the creation date embedded in photo.heic on this Mac", "category": "archives-and-media", "kind": "answer", "style": "typo", "source": "gpt-6-sol/xhigh"}
