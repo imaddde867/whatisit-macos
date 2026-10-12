@@ -16,3 +16,7 @@ r01220 # paraphrase of a held-out evaluation case
 r00617 # paraphrase of a held-out evaluation case
 r01402 # paraphrase of a held-out evaluation case
 r01979 # paraphrase of a held-out evaluation case
+# Removed after model review of the pilot's 30-row sample (see pilot_review_result.md)
+r00057 # ps keyword thcount does not exist on macOS (both reviewers)
+r00006 # mdls -all is not an option (both reviewers)
+r00005 # df -t <fstype> is deprecated usage; documented form is -T (one reviewer)
