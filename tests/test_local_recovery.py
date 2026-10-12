@@ -89,7 +89,7 @@ class LocalRecoveryTests(unittest.TestCase):
 
             def generate(prompt, cfg, **kwargs):
                 calls.append((prompt, cfg, kwargs))
-                return [command], 0.2, mode
+                return ([] if command is None else [command]), 0.2, mode
 
             engine.generate = generate
             safety = types.ModuleType('whatisit.safety')
@@ -124,6 +124,11 @@ class LocalRecoveryTests(unittest.TestCase):
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
         answer, _ = self.run_worker(findings=[('DANGER', 'deletes data')])
+        self.assertEqual(answer['status'], 'unsupported')
+        self.assertIsNone(answer['command'])
+
+    def test_empty_model_answer_is_unsupported(self):
+        answer, _ = self.run_worker(command=None)
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
 
