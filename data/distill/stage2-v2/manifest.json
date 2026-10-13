@@ -1,0 +1,64 @@
+{
+  "abstains": 248,
+  "actions": {
+    "clarified_request": 12,
+    "corrected_target": 10,
+    "exclude": 20,
+    "explicit_path": 24,
+    "keep": 940,
+    "model_authored_addition": 27,
+    "natural_abstain": 78
+  },
+  "commands": 843,
+  "corrected_target_rows": 10,
+  "cue_abstains_after": 28,
+  "cue_abstains_before": 101,
+  "eval_gate_sha256": {
+    "dev": "82cfd23597ddbec788b2e5f8b5ce8d2293659a28e6a0156f2234f9f9372d8c74",
+    "everyday": "0421cd79108532e54a34bc6c48e9415c72dae4668ebd5cabd2e5d6760c8aa364",
+    "frozen": "d31547cc9c098da92a1b2ba8f243842cc34cc9505f0abc0e53d726a83f821042",
+    "heldout": "e62750fbf9ab4bf7799395992c57c798aacdfe217abdc8a05b7e25e2dfa52a8a"
+  },
+  "hard_leakage_hits": 6,
+  "hard_leakage_rows": 9,
+  "inputs_sha256": {
+    "additions": "956cf67ca1d20c11b2a5d53f644cbadd9cb9df21a394e1ca24226a82c0159591",
+    "amendments": "4e9c3d317c681d6b048e087f8e2f8ba0bc18ac6c7e68af9e54f425ef26c168de",
+    "builder": "01b300ffc46cbcaf958bda017630fe29d5a317dda3d06f16d3acb1bcbd6542ad",
+    "historical_quarantine": "b8ea12675e7d8b1e8fca058ee27886219d55a61af4baace4967241a66cd7ba2f",
+    "raw": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd",
+    "repair_script": "fa10fbe56c4eaa1e82f6852c16f81128b147a9ddaf894d44b4a9a9a9c5fa132f",
+    "requests": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+    "stage1": "903e60634fbbdc388641b1c55222e82b219c612cb68e0fa198d4aad20bb9fbbb",
+    "teacher_manifest": "362f4ccaf5bec7770821fc652bac1260522e5c54d2f386371194ab7773bb728c"
+  },
+  "model_authored_additions": 27,
+  "outputs_sha256": {
+    "audit.jsonl": "fb6c8c39892d00870ac9c7ff6663ff4239df73ffac9689fbbf932d3d3ccfda6a",
+    "requests.jsonl": "8bb83f68ea1d250f0b83b63828e09ece04e0bb21c386e4344e9789e88146d91a",
+    "train.jsonl": "91431de67f15232d3ec83361bd8fe6b176e10d21617b4611089de8db238081aa"
+  },
+  "repeated_exact_command_rows": 11,
+  "report_only_overlap_pairs": 916,
+  "review": "reviewed amendments and targeted samples; not human-certified",
+  "rewritten_request_rows": 114,
+  "rows": 1091,
+  "rows_by_category": {
+    "abstain": 248,
+    "archives-and-media": 64,
+    "disk-and-storage": 61,
+    "files-and-folders": 138,
+    "git-and-dev": 64,
+    "macos-tools": 67,
+    "network": 97,
+    "power-and-hardware": 11,
+    "processes-and-ports": 45,
+    "search": 77,
+    "security-and-apps": 35,
+    "system-info": 104,
+    "text-processing": 80
+  },
+  "source_rows": 1075,
+  "unchanged_teacher_rows": 940,
+  "version": "stage2-v2"
+}
