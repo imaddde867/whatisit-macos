@@ -19,7 +19,7 @@ report = {'rows': len(rows), 'max_tokens': max(lengths), 'all_prefix_end_of_turn
           'train_sha256': hashlib.sha256((root / 'train.jsonl').read_bytes()).hexdigest(),
           'tokenizer_files_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(snapshot.iterdir()) if p.is_file()},
           'chat_tokens_script_sha256': hashlib.sha256(Path('tools/train_distill_cuda.py').read_bytes()).hexdigest()}
-assert report['rows'] == 1153
+assert report['rows'] == json.loads((root / 'manifest.json').read_text())['rows']
 assert report['transformers'] == '4.57.1'
 (root / 'tokenizer-preflight.json').write_text(json.dumps(report, sort_keys=True, indent=2) + '\n')
 print(json.dumps(report, sort_keys=True))

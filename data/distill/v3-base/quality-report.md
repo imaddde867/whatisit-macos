@@ -10,8 +10,8 @@ Request SHA-256: 5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d78
 Teacher prompt SHA-256: 082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e
 Sampling: n=5, temperature=0.7, top-p=0.95, max tokens=16384, seed base=1000.
 
-Requests: 2520; kept commands: 896; abstain: 242; dropped: 1252 (115 no valid command, 1137 no majority).
-Agreement histogram (maximum identical verified commands): {0: 331, 1: 750, 2: 413, 3: 372, 4: 256, 5: 398}.
+Requests: 2520; kept commands: 892; abstain: 242; dropped: 1258 (115 no valid command, 1143 no majority).
+Agreement histogram (maximum identical verified commands): {0: 331, 1: 751, 2: 418, 3: 374, 4: 253, 5: 393}.
 Teacher command candidates: 11128; rejected candidates: 1094 (9.8%). Rejection findings (categories can overlap): {'danger': 27, 'deletion_guard': 24, 'interactive': 34, 'macos_lint': 1032, 'unparsed_or_incomplete': 321}.
 Abstain reasons: {'author_abstain_no_majority': 11, 'teacher_null_majority': 231}.
 
@@ -164,6 +164,7 @@ Dropped rows:
 - r00299: no_majority (maximum agreement 1)
 - r00303: no_majority (maximum agreement 1)
 - r00304: no_majority (maximum agreement 2)
+- r00314: no_majority (maximum agreement 2)
 - r00315: no_majority (maximum agreement 1)
 - r00318: no_majority (maximum agreement 2)
 - r00321: no_majority (maximum agreement 1)
@@ -450,12 +451,14 @@ Dropped rows:
 - r00828: no_majority (maximum agreement 1)
 - r00832: no_majority (maximum agreement 1)
 - r00835: no_majority (maximum agreement 1)
+- r00836: no_majority (maximum agreement 2)
 - r00839: no_majority (maximum agreement 1)
 - r00841: no_majority (maximum agreement 1)
-- r00843: no_majority (maximum agreement 2)
+- r00843: no_majority (maximum agreement 1)
 - r00846: no_majority (maximum agreement 2)
 - r00849: no_valid_command (maximum agreement 0)
 - r00852: no_majority (maximum agreement 1)
+- r00853: no_majority (maximum agreement 2)
 - r00854: no_majority (maximum agreement 2)
 - r00860: no_majority (maximum agreement 2)
 - r00864: no_majority (maximum agreement 1)
@@ -588,6 +591,7 @@ Dropped rows:
 - r01125: no_majority (maximum agreement 2)
 - r01127: no_valid_command (maximum agreement 0)
 - r01129: no_valid_command (maximum agreement 0)
+- r01134: no_majority (maximum agreement 2)
 - r01136: no_valid_command (maximum agreement 0)
 - r01138: no_majority (maximum agreement 1)
 - r01141: no_majority (maximum agreement 1)
@@ -605,6 +609,7 @@ Dropped rows:
 - r01161: no_majority (maximum agreement 2)
 - r01163: no_majority (maximum agreement 2)
 - r01166: no_majority (maximum agreement 1)
+- r01168: no_majority (maximum agreement 2)
 - r01170: no_majority (maximum agreement 1)
 - r01171: no_majority (maximum agreement 1)
 - r01172: no_majority (maximum agreement 1)
@@ -1254,6 +1259,7 @@ Dropped rows:
 - r02476: no_valid_command (maximum agreement 0)
 - r02478: no_majority (maximum agreement 1)
 - r02481: no_majority (maximum agreement 2)
+- r02485: no_majority (maximum agreement 2)
 - r02487: no_majority (maximum agreement 1)
 - r02493: no_majority (maximum agreement 2)
 - r02498: no_majority (maximum agreement 1)
@@ -1275,8 +1281,8 @@ Recorded completion tokens: 26950301 total, 628.0 median per sample.
 Manifest wall time: 15586.4 s for this invocation (2520 requests written); throughput: 1729.1 tokens/s; per-request latency was not recorded by the sampler.
 Manifest metadata: finished=2026-10-13T07:56:42+0300, top-k=0, note='Roihu pilot, Qwen/Qwen3.8-Flash-Next-FP8, job 2257376'.
 
-Evaluation leakage gate: 137 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
-Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 235 rows; tool+flags vs everyday: 368 rows; tool+flags vs frozen: 186 rows; tool+flags vs heldout: 379 rows (1173 row/split pairs; ids are in the review-hit list below).
+Evaluation leakage gate: 135 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
+Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 235 rows; tool+flags vs everyday: 363 rows; tool+flags vs frozen: 185 rows; tool+flags vs heldout: 373 rows (1161 row/split pairs; ids are in the review-hit list below).
 - quarantined r00006: author quarantine list: mdls -null is ambiguous on macOS frozen/dev
 - quarantined r00016: normalized command heldout
 - quarantined r00026: normalized command frozen
@@ -1331,9 +1337,7 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00816: normalized command heldout
 - quarantined r00818: normalized command dev
 - quarantined r00829: normalized command dev
-- quarantined r00836: normalized command everyday
 - quarantined r00849: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
-- quarantined r00853: normalized command everyday
 - quarantined r00910: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00910: normalized command heldout
 - quarantined r00926: normalized command dev
@@ -1456,4 +1460,4 @@ No-command target: empty assistant content. The serving worker returns `unsuppor
 
 Model review: **pending**. 30 rows were saved to `review.jsonl` with blank model verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
 
-Vote mode: equivalence; recovered command rows after quarantine: 64.
+Vote mode: equivalence; recovered command rows after quarantine: 60.

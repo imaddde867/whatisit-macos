@@ -97,3 +97,18 @@ Deviations after the first diagnostic rebuild (no development scores inspected):
   the finite value/no-value tables permit only documented option reordering.
   Bracket/brace/glob expansion, repeated value options and incompatible modes
   are guarded. These are parser correctness fixes, not score-based rule selection.
+- Independent **model code review** found quote-sensitive redirections, path-root
+  normalization and additional last-wins flags not covered by the first guards.
+  Quoted redirection tokens are now exact, `./` becomes `.` (never empty), `.//x`
+  remains relative, and documented ls/find/du/date/cp order-sensitive combinations
+  remain exact. Unbound operands retain trailing slashes because the key cannot
+  prove directory type or symlink resolution without accessing real user data.
+  Only directory-typed `-onlyin` and git `-C` values retain slash canonicalization.
+  The model code review also required pinning the full sampled targets and input
+  hashes before accepting verdicts. All fixes have negative regression tests.
+  The initial 64-row release commit is diagnostic/superseded and was never uploaded
+  or trained. New fresh-directory results and the same seeded 60-row review replace it.
+- Expansion profiles retain character positions and embedded shell operators.
+  Mixed quoted/unquoted variable names use singleton keys because quote boundaries
+  can change the expanded variable name. HOME aliases assume stock zsh defaults
+  (SH_WORD_SPLIT and GLOB_SUBST disabled), as required by the product contract.

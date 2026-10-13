@@ -1,12 +1,12 @@
 {
   "changed_retained_stage1_rows": 0,
-  "data_generator_commit": "655de8a",
+  "data_generator_commit": "91e1e2f",
   "exact_stage1_byte_identical": true,
   "exact_stage1_sha256": "903e60634fbbdc388641b1c55222e82b219c612cb68e0fa198d4aad20bb9fbbb",
   "fresh_base_byte_identical": true,
   "fresh_repair_byte_identical": true,
   "historical_stage1_sha256": "903e60634fbbdc388641b1c55222e82b219c612cb68e0fa198d4aad20bb9fbbb",
   "manifests_protected_eval_hashes": "historical values copied; never re-read for hashing",
-  "recovered_merge_clusters_read": 64,
+  "recovered_merge_clusters_read": 60,
   "unchanged_retained_stage1_rows": 1074
 }
