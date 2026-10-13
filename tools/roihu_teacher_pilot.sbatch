@@ -42,11 +42,13 @@ export TORCHINDUCTOR_CACHE_DIR=$TMPDIR/torch-cache
 
 # --generation-config vllm: ignore the model's generation_config.json so unset top_k stays off, matching the 27B pilot.
 # Verified on 0.29.0: --max-num-seqs must stay <= the Mamba cache blocks (411 here); triton GDN prefill avoids the
-# flashinfer cutlass.cute import that is missing in the container. No --reasoning-parser: thinking arrives in content.
+# flashinfer cutlass.cute import that is missing in the container; autotune off because one run spent 31 min in
+# trtllm fused_moe tuning and hit gloo's 30 min barrier timeout. No --reasoning-parser: thinking arrives in content.
 srun apptainer exec "$SIF" \
   vllm serve "$MODEL" --served-model-name teacher \
   --tensor-parallel-size 4 --enable-expert-parallel \
   --generation-config vllm --max-model-len 32768 --max-num-seqs 32 --gdn-prefill-backend triton \
+  --kernel-config '{"enable_flashinfer_autotune": false}' \
   --host 127.0.0.1 --port $PORT > "$OUT/vllm.log" 2>&1 &
 SERVER=$!
 trap 'kill $SERVER 2>/dev/null || true' EXIT
@@ -58,6 +60,9 @@ for _ in $(seq 270); do
   sleep 10
 done
 curl -sf "http://127.0.0.1:$PORT/v1/models" > /dev/null || { echo "vllm not ready in 45 min"; exit 1; }
+
+# thinking/content shape of this server, for the manifest review
+python3 "$P/roihu_probe.py" > "$OUT/probe.log" 2>&1 || true
 
 python3 "$P/teacher_sample.py" \
   --requests "$P/requests.jsonl" --out "$OUT/raw_samples.jsonl" --manifest "$OUT/manifest.json" \
