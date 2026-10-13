@@ -9,5 +9,5 @@ Sampler: `tools/teacher_sample.py` parses only text after the last `</think>` (P
 `roihu_full_raw_samples.jsonl` SHA-256: `f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd`
 `roihu_full_manifest.json` SHA-256: `362f4ccaf5bec7770821fc652bac1260522e5c54d2f386371194ab7773bb728c`
 
-Builder result and review: `data/distill/roihu_full_quality_report.md`, `data/distill/roihu_full_review_result.md`. Training rows: `data/distill/roihu_full_train.jsonl` (1,086).
+Builder result and review: `data/distill/roihu_full_quality_report.md`, `data/distill/roihu_full_review_result.md`. Training rows: `data/distill/roihu_full_train.jsonl` (1,080).
 This run supersedes the stopped 5090 stage-1 run; the pilot comparison and the switch decision are recorded in `data/teacher/README.md` (PR #23).
