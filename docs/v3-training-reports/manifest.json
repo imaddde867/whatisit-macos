@@ -1,0 +1,38 @@
+{
+  "data_sha256": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+  "outputs_sha256": {
+    "adapter-zero-step-test.log": "c3ff8039b0fe59453b4359d0f9c6b61a6d028230d8004c9db72909159622c36f",
+    "analyze.py": "6876c60926dfda07085f6412b27724669b732bcc371df619f94481f5eb4f6174",
+    "coverage.json": "158df95d91e3ead71f93dbc79fd2a18558495c894b525fad0c2ea97c43b95cd9",
+    "coverage.py": "1f488318d9c0f3feef6819c02c8544b85c1e7547f10a575d69848cded7927e69",
+    "host-assets-sha256.txt": "bbaba03acfae5ecc81c390c4d5dfdfb5b8c5410eb1859e695b9c5a8b9fb36c9e",
+    "host-preflight.json": "dc16292547ebd80fadf35facf1c453e3ac98307e24b32a3c413c2e66602890d2",
+    "post-freeze-vote-validation.json": "ec31d07d69e342e57b70abf74ec148f644c552395d5cd7729dd482ad73c2ee54",
+    "run-arm.py": "930b02bedac5566ce8d1bc18a83e24480d98b563e80cbf4a9cc67a03ff23bffc",
+    "screen-batch.py": "a35a88fe5f0f2a57c226edb35bbe40bf4addb5f01645c5eed2a86e52ec0efe4c",
+    "seed42-artifacts-sha256.txt": "489ef605b5c6bc181072323ce7aa2a0c34b3182d8f1542d8018e513f828b1add",
+    "seed42.json": "6b881d524cd781b4a2cd63707407c9ea750900aa39cf3dbc6f9eaf52aa1304b7",
+    "seed43-artifacts-sha256.txt": "2e0fee4c14cf9d20e1ef074c877e8a88a20cc0f7342c12be2573f21933eaeb6b",
+    "seed43.json": "a23afaa202ceefce8208c83de307021ae6eb6784d9e4b95e7eab4f1a0a6aac4c"
+  },
+  "remote_artifacts_sha256": {
+    "seed42/adapter/README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7",
+    "seed42/adapter/adapter_config.json": "3ce9eac310e2647acffa03250de43faff0c3c6055288daeb75a005f955d0ef95",
+    "seed42/adapter/adapter_model.safetensors": "7a717e58f6c9478a131725b6402f75677464ae892549cc24cfefeb50fdbc9dad",
+    "seed42/merged-Q4_K_M.gguf": "0075cc8eef253e78d73e8147151cf21db62053fbe0058f07483cfb41dae44002",
+    "seed42/merged-Q6_K.gguf": "ecc6004199fa8fbcd7907107d4f698e35aa5f74479f1afe8c3c6c650f8c0fafe",
+    "seed42/merged-Q8_0.gguf": "6cc58dab48df4c9772072c39e108307c04a66b8401de99f6306ec2137280e5d1",
+    "seed42/merged-f16.gguf": "271d0e7773e583d230140e921957c314bbb096e956c481027759d8574c866709",
+    "seed42/training-report.json": "6b881d524cd781b4a2cd63707407c9ea750900aa39cf3dbc6f9eaf52aa1304b7",
+    "seed43/adapter/README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7",
+    "seed43/adapter/adapter_config.json": "5a1f3876e5a9e420597aef4094ac1f505924434194f2b07d4892b70a52f8366c",
+    "seed43/adapter/adapter_model.safetensors": "412fb400005c7b33f1f691bcd1ab3affeb9fdd4035bb719672922a714b611dac",
+    "seed43/merged-Q4_K_M.gguf": "e2e331be42a3d48c100a329585f05e0aa8d89aa4a2d82c55dd90f482f3c37c7f",
+    "seed43/merged-Q6_K.gguf": "470eeef67c0e870e80cfa70b8ea957d445e926b5f1b7f47de7a0629ede8ceaf4",
+    "seed43/merged-Q8_0.gguf": "f229c14fa7540016355c58532316fce314ac7c7efb69282a7f40aab75be9f31c",
+    "seed43/merged-f16.gguf": "4d3f715a9566eb31a6e80de1f506a6125ac635c95874a918828cf0c1c4f0576e",
+    "seed43/training-report.json": "a23afaa202ceefce8208c83de307021ae6eb6784d9e4b95e7eab4f1a0a6aac4c"
+  },
+  "source_sha256": "6f8a17a11129a31074c944f4c2602453fafd9de43bdaeb1630a8f511ec820f71",
+  "trainer_sha256": "af58e8a460fd0d01d5b3a7afbb08a8c6d08ab8513c1c7cfce9309d00d74b8623"
+}
