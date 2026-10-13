@@ -1,0 +1,137 @@
+{
+  "manuals": {
+    "PlistBuddy": {
+      "available": true,
+      "rendered_sha256": "16a8faa02cd1b9bda31a5c58e6a64b156d487d9443adeb40ef1b0fc1ce1d3933"
+    },
+    "afinfo": {
+      "available": true,
+      "rendered_sha256": "599feb82b9a41d138283de4a2ed19a282ab7dd1a299a1625689c6d51cd8d9f60"
+    },
+    "cp": {
+      "available": true,
+      "rendered_sha256": "98904cd33b231a79265d7fc07d827484e5e91decb49c8de8cc6f3d4014779535"
+    },
+    "date": {
+      "available": true,
+      "rendered_sha256": "3fe5ad8e6fb0c4a051671e01903c892d6f1d6634e78fe8c0476809d1a8640d5c"
+    },
+    "defaults": {
+      "available": true,
+      "rendered_sha256": "3817409fe9bae5a4eb7f99350b8f28504a81530089a6f40356db2d5705207f5c"
+    },
+    "diskutil": {
+      "available": true,
+      "rendered_sha256": "a3e8f0ee909a5541575327fb56046250921eb69472ea338c528334b00004c255"
+    },
+    "ditto": {
+      "available": true,
+      "rendered_sha256": "7a60f7e6a89331a88075e8554d86ee623bbaf043f59bee2be0dd0495e21a8898"
+    },
+    "du": {
+      "available": true,
+      "rendered_sha256": "c803439175181376adf413b89052d817c619031cb06fbc346b6a5ba22ea55d6a"
+    },
+    "fdesetup": {
+      "available": true,
+      "rendered_sha256": "dd96b2bfea526bdc30da86d6d0a0de88edc60d1c6b2fe1929f3518d3dfc3e5a3"
+    },
+    "find": {
+      "available": true,
+      "rendered_sha256": "f66f37cd0757d6718ce479234f0c79e074b8eddb7de0b009ad7d8d6850c0dc6f"
+    },
+    "git": {
+      "available": true,
+      "rendered_sha256": "62fae2541b576dcfafb77f61acbe5bee79fe767766ff39ef2464b344cfc0b3d0"
+    },
+    "grep": {
+      "available": true,
+      "rendered_sha256": "a0bfcd3cd6f5cbd2fe42ceafeadd31fc2e203624d3047ceee012f99d2bc6752e"
+    },
+    "hdiutil": {
+      "available": true,
+      "rendered_sha256": "9bc34f1d0e7925a2279742440dfbeb9e497f05a5f2fc696fcfc17e14b38994c2"
+    },
+    "iostat": {
+      "available": true,
+      "rendered_sha256": "0bc74cc6d4c17a75354b276ff3ed2d598c0cf0c06775a13955b589a0ffe2a2e1"
+    },
+    "mdfind": {
+      "available": true,
+      "rendered_sha256": "c02b6d627bb25e490e438bd26fc02f7988cdab4f0a734a61f949f5bb53bec861"
+    },
+    "mdls": {
+      "available": true,
+      "rendered_sha256": "093408338be7258680d399fd47c45a6c6da99f6cb93633d7491bcb5bfc642495"
+    },
+    "nc": {
+      "available": true,
+      "rendered_sha256": "b318927f61b8eb5a55b716f871f4e2d635e74d1e4ab768082225a9d9d2ca9339"
+    },
+    "networksetup": {
+      "available": true,
+      "rendered_sha256": "29d2a82c270050e661e7fce3ccfbea5bbd7ddbaf23efdc9af40cb0ed6f8bce00"
+    },
+    "openssl": {
+      "available": false,
+      "rendered_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "osascript": {
+      "available": true,
+      "rendered_sha256": "ccb913b0e34ac06deeecd00561fddd27d176e0d028fbfd72b8eccb02a606bb57"
+    },
+    "plutil": {
+      "available": true,
+      "rendered_sha256": "68742266a7a253d5ebe8bbc1d21a4221eb3a7debca43f7f02309dd2b93d7d6b5"
+    },
+    "printf": {
+      "available": true,
+      "rendered_sha256": "37468e1be1ba352a491c23129e2b346cd3e54fff42d72d5ff72b7e1e5fc11f71"
+    },
+    "ps": {
+      "available": true,
+      "rendered_sha256": "aadf6920c24020d58c4f7cfba13b66f2d3938b0f5c281ca446f97caadd592d45"
+    },
+    "socketfilterfw": {
+      "available": true,
+      "rendered_sha256": "aa79072d4222139c359831e7c79c2dc87c2dfd8ca5fb6bfd7f37d07d174cd630"
+    },
+    "stat": {
+      "available": true,
+      "rendered_sha256": "e5b28fe40a721f8cae6eb54b7ab69b10c226fe0e30c48af7e2699069782ed29f"
+    },
+    "system_profiler": {
+      "available": true,
+      "rendered_sha256": "b04e2617837755d996659394fb2711ca222e76add1e98696f9fb53692347605b"
+    },
+    "test": {
+      "available": true,
+      "rendered_sha256": "2d3eb57267351e2e47a5c983552c39c436d2ac996a8c2fde085c90d78e787891"
+    },
+    "time": {
+      "available": true,
+      "rendered_sha256": "458caffae7cbe518705aba6a23d3ba07a33d436d29c34eff663b7d473ffc8900"
+    },
+    "xcodebuild": {
+      "available": false,
+      "rendered_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    }
+  },
+  "metadata_attributes": {
+    "kMDItemAudioChannelCount": true,
+    "kMDItemAudioNumberOfChannels": false,
+    "kMDItemAuthors": true,
+    "kMDItemFinderComment": true,
+    "kMDItemISOSpeed": true,
+    "kMDItemLastUsedDate": true,
+    "kMDItemUserTags": true,
+    "kMDItemVideoFrameRate": false,
+    "kMDItemWhereFroms": true
+  },
+  "metadata_registry_sha256": "cabe802dfab1ca33ff722bc106e9425ce8488f6cd0c0e316a7f621023ea7c656",
+  "primary_sources": {
+    "audio_attributes": "https://developer.apple.com/documentation/coreservices/file_metadata/mditem/audio_metadata_attribute_keys",
+    "query_syntax": "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html",
+    "video_attributes": "https://developer.apple.com/documentation/coreservices/file_metadata/mditem/video_metadata_attribute_keys"
+  }
+}

@@ -1,0 +1,60 @@
+{"category": "search", "id": "r00024", "request": "spotlight find PDFs with author Sample Editor under paper-tests/", "target": "mdfind -onlyin paper-tests/ 'kMDItemAuthors == \"Sample Editor\" && kMDItemContentType == \"com.adobe.pdf\"'"}
+{"category": "system-info", "id": "r00030", "request": "Can you print the current timestamp including the local timezone offset, with no spaces?", "target": "date +%Y-%m-%dT%H:%M:%S%z"}
+{"category": "power-and-hardware", "id": "r00046", "request": "Display the power-source hardware report as a property list.", "target": "system_profiler -xml SPPowerDataType"}
+{"category": "macos-tools", "id": "r00127", "request": "show whether the clipboard contains a PNG image", "target": "osascript -e 'clipboard info' | grep -q 'PNGf' && echo yes || echo no"}
+{"category": "security-and-apps", "id": "r00159", "request": "check whether FileVault reports encryption enabled", "target": "fdesetup status | grep -q 'FileVault is On' && echo enabled || echo disabled"}
+{"category": "network", "id": "r00167", "request": "show ethernet service dns addreses on mac", "target": "networksetup -getdnsservers \"Ethernet\""}
+{"category": "network", "id": "r00172", "request": "I'd like to test whether UDP packets can be sent to my own test listener at 127.0.0.1:9999 using the text hello.", "target": "printf 'hello' | nc -u -w 1 127.0.0.1 9999"}
+{"category": "archives-and-media", "id": "r00203", "request": "copy project/ to backup/ with metadata preserved and print each path as it is copied", "target": "cp -Rp -v project/ backup/"}
+{"category": "network", "id": "r00307", "request": "List Wi-Fi proxy bypass domains.", "target": "networksetup -getproxybypassdomains Wi-Fi"}
+{"category": "files-and-folders", "id": "r00314", "request": "List only folders directly inside project/.", "target": "find project -mindepth 1 -maxdepth 1 -type d"}
+{"category": "files-and-folders", "id": "r00320", "request": "Copy symlink metadata from link-source to link-copy on macOS.", "target": "cp -pP link-source link-copy"}
+{"category": "disk-and-storage", "id": "r00326", "request": "Can you identify whether disk4 is solid-state using its macOS disk information?", "target": "diskutil info disk4 | grep -i \"Solid State\""}
+{"category": "system-info", "id": "r00336", "request": "Convert 2025-06-15T14:30:00+0300 to a UTC timestamp using the BSD date utility.", "target": "date -j -u -f \"%Y-%m-%dT%H:%M:%S%z\" \"2025-06-15T14:30:00+0300\" \"+%Y-%m-%dT%H:%M:%SZ\""}
+{"category": "processes-and-ports", "id": "r00342", "request": "Display the real and effective user IDs of process 4200 as separate columns.", "target": "ps -p 4200 -o ruid,uid"}
+{"category": "macos-tools", "id": "r00364", "request": "show the launch agent definition at ~/Library/LaunchAgents/com.example.MyApp.plist", "target": "plutil -p ~/Library/LaunchAgents/com.example.MyApp.plist"}
+{"category": "security-and-apps", "id": "r00396", "request": "decode teh contents of request.csr without submitting it", "target": "openssl req -in request.csr -noout -text"}
+{"category": "git-and-dev", "id": "r00475", "request": "Could you show the schemes in MyApp.xcodeproj?", "target": "xcodebuild -list -project MyApp.xcodeproj"}
+{"category": "text-processing", "id": "r00553", "request": "Extract the timezone offsets from ISO timestamps in mac-log-times.txt.", "target": "grep -Eo '([+-][0-9]{2}:?[0-9]{2}|Z)' mac-log-times.txt"}
+{"category": "search", "id": "r00724", "request": "Ask Spotlight for items with the Finder tag Draft under ~/Documents.", "target": "mdfind -onlyin ~/Documents 'kMDItemUserTags == \"Draft\"'"}
+{"category": "git-and-dev", "id": "r00740", "request": "can u show where HEAD pointed before the last checkout in project/", "target": "git -C project/ rev-parse 'HEAD@{1}'"}
+{"category": "files-and-folders", "id": "r00896", "request": "show permissions on .env.example numercially", "target": "stat -f '%A' .env.example"}
+{"category": "files-and-folders", "id": "r00980", "request": "Show notes.md's Finder comment.", "target": "mdls -name kMDItemFinderComment -raw notes.md"}
+{"category": "system-info", "id": "r00984", "request": "Can you tell me the last calendar date of February 2028?", "target": "date -j -v-1d -f \"%Y-%m-%d\" \"2028-03-01\" +%Y-%m-%d"}
+{"category": "disk-and-storage", "id": "r01082", "request": "Measure project/ excluding files named .DS_Store.", "target": "du -sh -I .DS_Store project/"}
+{"category": "disk-and-storage", "id": "r01088", "request": "Watch disk4 I/O once per second for five samples.", "target": "iostat -d -w 1 -c 5 disk4"}
+{"category": "search", "id": "r01095", "request": "Please search prose/ for whole-word draft matches while ignoring capitalization.", "target": "grep -riw \"draft\" prose/"}
+{"category": "files-and-folders", "id": "r01134", "request": "I want a copy of original/ in clone/ that preserves macOS ACLs too.", "target": "ditto original clone"}
+{"category": "files-and-folders", "id": "r01168", "request": "I want the folders in workspace/ sorted alphabetically, with no files mixed in.", "target": "find workspace -mindepth 1 -maxdepth 1 -type d | sort"}
+{"category": "text-processing", "id": "r01209", "request": "Extract all IPv4-looking addresses from access.log.", "target": "grep -Eo '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log"}
+{"category": "archives-and-media", "id": "r01219", "request": "could u show the duration of recording.wav", "target": "afinfo recording.wav | grep -i duration"}
+{"category": "disk-and-storage", "id": "r01235", "request": "Can you measure project/ without counting anything in directories named node_modules?", "target": "du -sh -I node_modules project/"}
+{"category": "security-and-apps", "id": "r01263", "request": "inspect teh application firewall policy for /System/Applications/Preview.app", "target": "/usr/libexec/ApplicationFirewall/socketfilterfw --getappblocked /System/Applications/Preview.app"}
+{"category": "system-info", "id": "r01310", "request": "Save the hardware overview to hardware.plist as XML, excluding other report categories.", "target": "system_profiler -xml SPHardwareDataType > hardware.plist"}
+{"category": "archives-and-media", "id": "r01334", "request": "Please mount backup.dmg without opening Finder.", "target": "hdiutil attach -nobrowse backup.dmg"}
+{"category": "system-info", "id": "r01476", "request": "Print the current time in UTC as an ISO 8601 timestamp.", "target": "date -u '+%Y-%m-%dT%H:%M:%SZ'"}
+{"category": "power-and-hardware", "id": "r01502", "request": "I'd like a JSON report containing Thunderbolt and USB device information.", "target": "system_profiler SPUSBDataType SPThunderboltDataType -json"}
+{"category": "network", "id": "r01563", "request": "get http://localhost:4000/ with a User-Agent of LocalTest", "target": "curl -H 'User-Agent: LocalTest' http://localhost:4000/"}
+{"category": "search", "id": "r01564", "request": "find directories named cache only at depth three in fixtures/", "target": "find fixtures -mindepth 3 -maxdepth 3 -type d -name cache"}
+{"category": "macos-tools", "id": "r01642", "request": "Could you show the Terminal app's default profile name?", "target": "defaults read com.apple.Terminal \"Default Window Settings\" 2>/dev/null || echo Basic"}
+{"category": "search", "id": "r01658", "request": "Spotlight-find images with ISO speed at least 800 in photo-tests/.", "target": "mdfind -onlyin photo-tests/ 'kMDItemContentTypeTree == \"public.image\" && kMDItemISOSpeed >= 800'"}
+{"category": "files-and-folders", "id": "r01674", "request": "is sample.txt readable and writable by me right now", "target": "test -r sample.txt && test -w sample.txt && echo yes || echo no"}
+{"category": "text-processing", "id": "r01690", "request": "print CFBundlePackageType from MyApp.app Info.plist plz", "target": "/usr/libexec/PlistBuddy -c \"Print :CFBundlePackageType\" MyApp.app/Contents/Info.plist"}
+{"category": "git-and-dev", "id": "r01811", "request": "Can you show conflict markers remaining in notes.txt in project/?", "target": "grep -nE '^(<<<<<<<|=======|>>>>>>>)' project/notes.txt"}
+{"category": "processes-and-ports", "id": "r01824", "request": "Can you run project/check.sh and show how long it took along with its peak memory usage on macOS?", "target": "/usr/bin/time -l ./project/check.sh"}
+{"category": "search", "id": "r01848", "request": "Find indexed files last opened before 2024-01-01 under review/.", "target": "mdfind -onlyin review 'kMDItemLastUsedDate < 2024-01-01'"}
+{"category": "network", "id": "r01851", "request": "Can you inspect whether Ethernet is configured with DHCP or a manual address?", "target": "networksetup -getinfo Ethernet"}
+{"category": "files-and-folders", "id": "r01911", "request": "show finder creation date for alias Project.alias itself plz", "target": "stat -f \"%SB\" Project.alias"}
+{"category": "archives-and-media", "id": "r01958", "request": "show the frame rate of movie.mp4", "target": "mdls -name kMDItemVideoFrameRate -raw movie.mp4"}
+{"category": "network", "id": "r02031", "request": "Display the network-related hardware report as JSON using the macOS system profiler.", "target": "system_profiler SPNetworkDataType -json"}
+{"category": "system-info", "id": "r02059", "request": "Please print tomorrow's local date followed by the weekday name.", "target": "date -v+1d \"+%Y-%m-%d %A\""}
+{"category": "search", "id": "r02102", "request": "Please find indexed documents whose author field is missing inside document-tests/.", "target": "mdfind -onlyin document-tests/ 'kMDItemAuthors == nil'"}
+{"category": "text-processing", "id": "r02271", "request": "Print records containing literal FAILURE with two surrounding lines from errors.txt.", "target": "grep -F -C 2 FAILURE errors.txt"}
+{"category": "files-and-folders", "id": "r02276", "request": "Report the macOS birth time of the symlink current itself.", "target": "stat -l -f \"%SB\" current"}
+{"category": "network", "id": "r02284", "request": "I'd like to see the macOS network state for the global IPv6 service.", "target": "networksetup -getinfo \"Global IPv6\""}
+{"category": "files-and-folders", "id": "r02338", "request": "Show report.pdf's file ID using BSD stat.", "target": "stat -f \"%i\" report.pdf"}
+{"category": "disk-and-storage", "id": "r02393", "request": "Report the number of hard links and allocated blocks for data.bin.", "target": "stat -f \"%l %b\" data.bin"}
+{"category": "disk-and-storage", "id": "r02397", "request": "Measure project/ while following symbolic links.", "target": "du -sh -L project/"}
+{"category": "search", "id": "r02417", "request": "Find indexed files whose where-from URL contains example.com in download-tests/.", "target": "mdfind -onlyin download-tests/ 'kMDItemWhereFroms == \"*example.com*\"'"}
+{"category": "system-info", "id": "r02442", "request": "who is logged into the console right now on mac", "target": "stat -f '%Su' /dev/console"}
+{"category": "search", "id": "r02485", "request": "Please look for filenames matching sample- followed by exactly four digits in imports/.", "target": "find imports/ -type f -name 'sample-[0-9][0-9][0-9][0-9]'"}
