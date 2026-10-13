@@ -1,0 +1,21 @@
+{
+  "script": "tools/teacher_sample.py",
+  "finished_at": "2026-10-14T00:24:29+0300",
+  "model": "teacher",
+  "quant": "FP8 checkpoint, revision 236dfdf285828023ca3bcd3f37366c58a3469b13",
+  "server": "vLLM 0.29.0 via python-vllm/0.29.0, TP4 EP, 4xGH200",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "samples_per_request": 5,
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "top_k": 0,
+  "max_tokens": 16384,
+  "seed_base": 1000,
+  "system_prompt_sha256": "082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e",
+  "requests_file_sha256": "d346627efe6f7e786f372b37927b4c1d33437ad193d4485afdcaf14aa81c6573",
+  "requests_total": 141,
+  "requests_written_this_run": 141,
+  "wall_seconds_this_run": 549.7,
+  "host": "Linux-5.14.0-687.54.1.el9_8.aarch64+64k-aarch64-with-glibc2.34",
+  "note": "Roihu teacher-ceiling eval, Qwen/Qwen3.8-Flash-Next-FP8, job 2282039"
+}
