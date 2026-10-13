@@ -1,0 +1,17 @@
+{
+  "active_builder_commit": "655f7d2",
+  "changed_rows": 0,
+  "frozen_data_unchanged": true,
+  "frozen_generator_commit": "91e1e2f",
+  "manifest_difference": "builder source hash only; frozen artifact snapshots and their original manifest remain pinned",
+  "matching_core_artifacts_sha256": {
+    "audit.jsonl": "bde010f5eaec7ed883b661b81f952db1c105d4ee6da50bf115b70307229a9a4e",
+    "cluster-provenance.jsonl": "729390f8db1f810ee1742aff89fcf184f8d07d7052f98681f535def3a02e0a08",
+    "leakage-hits.jsonl": "c985c830ff7d5e424ed3b3f33796fa4650a47ad3a66bc8aace631f431fb5dd3d",
+    "requests.jsonl": "b537b7550fc988924ecd86bf7e31f8cb27f7895e94b4de883674e0c86c0e8932",
+    "train.jsonl": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550"
+  },
+  "recovered_rows": 60,
+  "synthetic_edge_case": "stock zsh EQUALS expansion",
+  "training_runs_remain_valid": true
+}
