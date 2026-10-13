@@ -30,7 +30,7 @@ LIMIT=${LIMIT:-100}
 N=${N:-5}
 TAG=${TAG:-pilot}
 PORT=8000
-OUT=$P/out/$TAG-$SLURM_JOB_ID
+OUT=$P/out/$TAG-${RUN:-$SLURM_JOB_ID}   # fixed RUN=<name> makes a re-submit resume the same raw file
 mkdir -p "$OUT"
 
 module purge
@@ -68,7 +68,7 @@ python3 "$P/teacher_sample.py" \
   --requests "$P/requests.jsonl" --out "$OUT/raw_samples.jsonl" --manifest "$OUT/manifest.json" \
   --base-url "http://127.0.0.1:$PORT/v1" --model teacher \
   --n "$N" --limit "$LIMIT" --temperature 0.7 --top-p 0.95 --top-k 0 --max-tokens 16384 \
-  --concurrency 8 --seed 1000 \
+  --concurrency "${CONC:-8}" --seed 1000 \
   --quant "FP8 checkpoint, revision ${MODEL_REV:-unset}" \
   --server "vLLM $(python3 -c 'import vllm;print(vllm.__version__)' 2>/dev/null || echo unknown) via ${VLLM_MODULE:-python-vllm/0.29.0}, TP4 EP, 4xGH200" \
   --note "Roihu pilot, ${MODEL}, job $SLURM_JOB_ID"

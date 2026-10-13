@@ -45,8 +45,9 @@ def post(base_url, payload, timeout):
 
 
 def parse_answer(text):
-    """Return (command_or_None, reason, ok). Strips <think> blocks and fences, takes the last JSON object."""
-    text = re.sub(r'<think>.*?</think>', '', text or '', flags=re.S).strip()
+    """Return (command_or_None, reason, ok). Keeps only text after the last </think>, strips fences, takes the last JSON object."""
+    text = re.sub(r'<think>.*?</think>', '', text or '', flags=re.S)
+    text = text.rsplit('</think>', 1)[-1].strip()  # templates that pre-open <think> emit only the closing tag
     text = re.sub(r'^```(?:json)?|```$', '', text.strip(), flags=re.M).strip()
     decoder = json.JSONDecoder()
     for start in reversed([m.start() for m in re.finditer(r'\{', text)]):
