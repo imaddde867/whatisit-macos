@@ -189,6 +189,8 @@ def voting_key(command):
         for value, raw in zip(tokens, raw_tokens):
             if shlex.split(raw) != [value]:
                 return singleton
+            if raw.startswith('='):
+                return singleton  # stock zsh expands leading =command to its executable path
             if ('$' in raw and any(q in raw for q in ('"', "'")) and not any(
                     raw.startswith(q) and raw.endswith(q) and raw.count(q) == 2 for q in ('"', "'"))):
                 return singleton  # mixed quoting can change where a variable name ends

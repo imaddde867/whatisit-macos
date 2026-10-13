@@ -112,3 +112,8 @@ Deviations after the first diagnostic rebuild (no development scores inspected):
   Mixed quoted/unquoted variable names use singleton keys because quote boundaries
   can change the expanded variable name. HOME aliases assume stock zsh defaults
   (SH_WORD_SPLIT and GLOB_SUBST disabled), as required by the product contract.
+- Final model code review identified stock-zsh EQUALS expansion: unquoted `=ls`
+  resolves an executable, while quoted `'=ls'` is a literal filename. Leading
+  unquoted `=` now uses exact keys. A failing negative test preceded the fix.
+  The full corpus is rebuilt to verify whether this affects any frozen label;
+  any label change requires repeating the data review and training.
