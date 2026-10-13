@@ -10,11 +10,11 @@ import build_distill_dataset as builder
 class VotingKeyTests(unittest.TestCase):
     def test_surface_forms_merge(self):
         for a, b in [
-            ('ls -la ./folder/', 'ls -a -l folder'),
+            ('ls -la ./folder/', 'ls -a -l folder/'),
             ("cat 'a.txt'", 'cat "a.txt"'),
-            ('du -sh ~/Documents/', 'du -h -s "$HOME/Documents"'),
+            ('du -sh ~/Documents/', 'du -h -s "$HOME/Documents/"'),
             ('ls --color=always a', 'ls --color always a'),
-            ('git status --short ./folder/', 'git status --short folder'),
+            ('git status --short ./folder/', 'git status --short folder/'),
             ('cat ./a | sort -r | head -n 5', 'cat a | sort -r | head -n 5'),
             ("df -Pk a | awk '{print $4}'", "df -k -P ./a | awk '{print $4}'"),
             ("grep '*.txt' a", 'grep "*.txt" a'),
@@ -24,7 +24,7 @@ class VotingKeyTests(unittest.TestCase):
             ('cp -Rpv a b', 'cp -p -R -v ./a b'),
             ('ps -o ruid,uid -p 4200', 'ps -p 4200 -o ruid,uid'),
             ('find workspace -mindepth 1 -maxdepth 2 -type d',
-             'find workspace/ -maxdepth 2 -mindepth 1 -type d'),
+             'find workspace -maxdepth 2 -mindepth 1 -type d'),
             ('mdfind -onlyin paper-tests/ "author == 2"', 'mdfind "author == 2" -onlyin paper-tests'),
             ('mdls -raw -name kMDItemFinderComment a', 'mdls -name kMDItemFinderComment -raw ./a'),
             ('git -C project log --pretty=format:%s v1.0..HEAD',
@@ -34,6 +34,7 @@ class VotingKeyTests(unittest.TestCase):
             ('openssl req -in request.csr -noout -text', 'openssl req -in request.csr -text -noout'),
             ('xcodebuild -project MyApp.xcodeproj -list', 'xcodebuild -list -project MyApp.xcodeproj'),
             ('hdiutil attach backup.dmg -nobrowse', 'hdiutil attach -nobrowse backup.dmg'),
+            ('cat ~/a*', 'cat $HOME/a*'),
         ]:
             with self.subTest(a=a, b=b):
                 self.assertEqual(builder.voting_key(a), builder.voting_key(b))
@@ -81,6 +82,18 @@ class VotingKeyTests(unittest.TestCase):
             ('ls "[ab]"', 'ls [ab]'), ('ls "{a,b}"', 'ls {a,b}'),
             ('du -h -k a', 'du -k -h a'),
             ('python3 -c "./foo"', 'python3 -c "foo"'),
+            ('cat < input', "cat '<' input"), ('cat > output', "cat '>' output"),
+            ('cat ./', "cat ''"), ('cat .//a', 'cat /a'),
+            ('cat file', 'cat file/'), ('ls -l link', 'ls -l link/'),
+            ('ls -t -S a', 'ls -S -t a'), ('ls -l -c -u a', 'ls -l -u -c a'),
+            ('find -H -L .', 'find -L -H .'),
+            ('cat input>output', "cat 'input>output'"),
+            ('cat input<other', "cat 'input<other'"),
+            ('grep -C ./5 x input', 'grep -C 5 x input'),
+            ('cat ~/a*', 'cat "$HOME/a*"'),
+            ("echo '$x'$y", "echo $x'$y'"),
+            ("cat a'>'b>c", "cat a>'b>c'"),
+            ("cat $USER'x'", 'cat $USERx'), ('cat $USER"x"', 'cat $USERx'),
         ]:
             with self.subTest(a=a, b=b):
                 self.assertNotEqual(builder.voting_key(a), builder.voting_key(b))
@@ -91,12 +104,12 @@ class VotingKeyTests(unittest.TestCase):
         self.assertNotEqual(builder.voting_key("cat 'bad"), builder.voting_key("cat 'bad2"))
 
     def test_label_preserves_exact_majority_and_tiebreaks_cluster(self):
-        self.assertEqual(builder.command_vote(Counter({'ls -la a': 3, 'ls -a -l ./a/': 2}),
+        self.assertEqual(builder.command_vote(Counter({'ls -la a': 3, 'ls -a -l ./a': 2}),
                                              'equivalence')[0], 'ls -la a')
         target, size, strings = builder.command_vote(
-            Counter({'ls -la a': 2, 'ls -al ./a/': 2, 'cat b': 1}), 'equivalence')
-        self.assertEqual((target, size, strings), ('ls -la a', 4, ['ls -al ./a/', 'ls -la a']))
-        self.assertIsNone(builder.command_vote(Counter({'ls -la a': 2, 'ls -al ./a/': 2}), 'exact')[0])
+            Counter({'ls -la a': 2, 'ls -al ./a': 2, 'cat b': 1}), 'equivalence')
+        self.assertEqual((target, size, strings), ('ls -la a', 4, ['ls -al ./a', 'ls -la a']))
+        self.assertIsNone(builder.command_vote(Counter({'ls -la a': 2, 'ls -al ./a': 2}), 'exact')[0])
 
 
 if __name__ == '__main__':

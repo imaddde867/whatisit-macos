@@ -50,6 +50,7 @@ def main():
                   'request': requests[p['id']]['request'], 'target': rows[p['id']]['messages'][-1]['content']}
                  for p in provenance if p['id'] in rows and rows[p['id']]['messages'][-1]['content']]
     sample = stratified_sample(recovered)
+    manifest = json.loads((root / 'manifest.json').read_text())
     if args.verdicts is None:
         if any((root / name).exists() for name in ('merge-audit.md', 'review-sample.jsonl')):
             raise FileExistsError('model review artifacts already exist')
@@ -63,9 +64,18 @@ def main():
         (root / 'merge-audit.md').write_text('\n'.join(audit))
         (root / 'review-sample.jsonl').write_text(''.join(json.dumps(r, sort_keys=True, ensure_ascii=False) + '\n'
                                                        for r in sample))
+        manifest['registered_review_inputs_sha256'] = {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in ('train.jsonl', 'requests.jsonl', 'cluster-provenance.jsonl', 'review-sample.jsonl')}
+        (root / 'manifest.json').write_text(json.dumps(manifest, sort_keys=True, indent=2) + '\n')
         print(json.dumps({'population': len(recovered), 'sample': len(sample), 'seed': SEED}))
         return
     verdicts = read_jsonl(args.verdicts)
+    registered = manifest.get('registered_review_inputs_sha256')
+    if (not registered or any(hashlib.sha256((root / name).read_bytes()).hexdigest() != digest
+                              for name, digest in registered.items()) or
+            read_jsonl(root / 'review-sample.jsonl') != sample):
+        raise ValueError('registered model review inputs or sample changed')
     if (len(verdicts) != 60 or {v['id'] for v in verdicts} != {s['id'] for s in sample} or
             any(v.get('verdict') not in ('OK', 'debatable', 'wrong') or not v.get('notes') for v in verdicts)):
         raise ValueError('verdicts do not match the registered sample')
@@ -98,7 +108,6 @@ No evaluation scores were used to select these labels.
         notes = v['notes'].replace('|', '\\|').replace('\n', ' ')
         result += f"| {v['id']} | {by_id[v['id']]['category']} | {v['verdict']} | {notes} |\n"
     (root / 'review-result.md').write_text(result)
-    manifest = json.loads((root / 'manifest.json').read_text())
     manifest['model_review'] = {'seed': SEED, 'sample_rows': 60, 'population': len(recovered),
                                'verdicts': dict(sorted(counts.items())), 'precision': counts['OK']/60,
                                'wilson_95': [low, high], 'gate_passed': passed}
