@@ -189,24 +189,32 @@ def voting_key(command):
         for value, raw in zip(tokens, raw_tokens):
             if shlex.split(raw) != [value]:
                 return singleton
+            if ('$' in raw and any(q in raw for q in ('"', "'")) and not any(
+                    raw.startswith(q) and raw.endswith(q) and raw.count(q) == 2 for q in ('"', "'"))):
+                return singleton  # mixed quoting can change where a variable name ends
+            if re.match(r'^(?:\d*|&)(?:>>|>|<)', value) and raw != value:
+                return singleton
             if value in ('|', '|&', '&&', '||', ';', '&'):
                 if raw != value:
                     return singleton
                 profiles.append(current)
                 current = []
                 continue
-            quote, expanded = '', []
+            quote, expanded, position = '', [], 0
             for char in raw:
                 if char in ('"', "'") and (not quote or quote == char):
                     quote = char if not quote else ''
+                    continue
                 elif char == '\\' and quote != "'":
                     return singleton  # escaped shell syntax requires more than shlex's word values
-                elif quote != "'" and (char == '$' or not quote and char in '*?~[{}()^#!'):
-                    expanded.append(char + quote)
+                elif quote != "'" and (char == '$' or not quote and char in '*?~[{}()^#!<>'):
+                    expanded.append((position, char + quote))
+                position += 1
             profile = tuple(expanded)
-            if (value.startswith('~/') and raw.startswith('~/') or
-                    value.startswith('$HOME/') and profile in (('$',), ('$"',))):
-                profile = ('home',)
+            if value.startswith('~/') and raw.startswith('~/'):
+                profile = ((0, 'home'),) + profile[1:]
+            elif value.startswith('$HOME/') and profile and profile[0] in ((0, '$'), (0, '$"')):
+                profile = ((0, 'home'),) + tuple((pos - 4, char) for pos, char in profile[1:])
             current.append(profile)
         profiles.append(current)
     except ValueError:
@@ -261,10 +269,11 @@ def voting_key(command):
                         return singleton
                     i += 1
                     value = args[i]
-                    if arg in ('-onlyin', '-C'):
-                        if value.startswith('$HOME/') and profile[i] == ('home',):
+                    if (tool, arg) in (('mdfind', '-onlyin'), ('git', '-C')):
+                        if value.startswith('$HOME/') and profile[i] and profile[i][0] == (0, 'home'):
                             value = '~/' + value[6:]
-                        value = value.removeprefix('./')
+                        if value.startswith('./') and not value.startswith('.//'):
+                            value = value[2:] or '.'
                         if len(value) > 1 and value.endswith('/'):
                             value = value[:-1]
                     bindings.append((next(iter(valued)), value))
@@ -280,12 +289,10 @@ def voting_key(command):
             else:
                 value = arg
                 if tool in PATH_TOOLS or tool == '/usr/bin/time' and not positional:
-                    if value.startswith('$HOME/') and profile[i] == ('home',):
+                    if value.startswith('$HOME/') and profile[i] and profile[i][0] == (0, 'home'):
                         value = '~/' + value[6:]
-                    value = value.removeprefix('./')
-                    if (tool not in ('cp', 'rsync', 'stat') and len(value) > 1 and
-                            value.endswith('/') and '://' not in value):
-                        value = value[:-1]
+                    if value.startswith('./') and not value.startswith('.//'):
+                        value = value[2:] or '.'
                 operands.append(value)
                 positional.append(value)
                 if profile[i]:
@@ -304,6 +311,14 @@ def voting_key(command):
             return singleton
         if tool == 'du' and (len(set(canonical_flags) & {'-g', '-h', '-k', '-m'}) > 1 or
                              len(set(canonical_flags) & {'-H', '-L', '-P'}) > 1):
+            return singleton
+        ordered_modes = {'ls': ({'-S', '-t', '-f'}, {'-c', '-u', '-U'}, {'-B', '-b', '-w', '-q'},
+                                {'-H', '-L', '-P'}, {'-a', '-A'}, {'-F', '-p'}),
+                         'find': ({'-H', '-L', '-P'},), 'du': ({'-a', '-s', '-d'},),
+                         'date': ({'-f', '-r'},)}
+        if any(len(set(canonical_flags) & group) > 1 for group in ordered_modes.get(tool, ())):
+            return singleton
+        if tool == 'cp' and '-a' in canonical_flags and set(canonical_flags) & {'-H', '-L'}:
             return singleton
         if tool == 'find' and any(a in args for a in
                 ('-o', '-or', '-a', '-and', '!', '-not', '(', ')', '-exec', '-execdir',

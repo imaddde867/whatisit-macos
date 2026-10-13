@@ -79,7 +79,7 @@ class DistillDatasetTests(unittest.TestCase):
 
     def test_equivalence_recovery_and_author_abstain_exclusion(self):
         self.samples[2] = [{'command': c, 'parsed': True, 'finish_reason': 'stop'}
-                           for c in ('ls -la a', 'ls -al ./a/', 'ls -l -a a', 'cat b', None)]
+                           for c in ('ls -la a', 'ls -al ./a', 'ls -l -a a', 'cat b', None)]
         self.samples[1] = self.samples[2]
         self.write_inputs()
         counts = self.run_builder(vote='equivalence')
@@ -97,9 +97,9 @@ class DistillDatasetTests(unittest.TestCase):
 
     def test_equivalence_cannot_count_rejected_samples(self):
         self.samples[2] = [{'command': c, 'parsed': True, 'finish_reason': 'stop'}
-                           for c in ('ls -la a', 'ls -al ./a/', 'ls -l -a a', 'cat b', None)]
+                           for c in ('ls -la a', 'ls -al ./a', 'ls -l -a a', 'cat b', None)]
         self.write_inputs()
-        counts = self.run_builder(vote='equivalence', problems=lambda c: ['bad'] if c == 'ls -al ./a/' else [])
+        counts = self.run_builder(vote='equivalence', problems=lambda c: ['bad'] if c == 'ls -al ./a' else [])
         self.assertEqual(counts['recovered'], 0)
 
     def test_equivalence_refuses_existing_output_directory(self):

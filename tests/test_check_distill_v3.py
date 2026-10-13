@@ -47,6 +47,15 @@ class V3ReviewTests(unittest.TestCase):
             self.assertEqual(len(check.read_jsonl(root / 'review-sample.jsonl')), 60)
             self.assertIn('## 63 (3 votes)', (root / 'merge-audit.md').read_text())
             sample = check.read_jsonl(root / 'review-sample.jsonl')
+            changed = [{'id': r['id'], 'messages': [{'content': 'changed'}]} for r in rows]
+            (root / 'train.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in changed))
+            early = root / 'early.jsonl'
+            early.write_text(''.join(json.dumps({'id': r['id'], 'verdict': 'OK', 'notes': 'Old verdict.'}) + '\n'
+                                      for r in sample))
+            with patch.object(sys, 'argv', ['check', str(root), '--verdicts', str(early)]):
+                with self.assertRaisesRegex(ValueError, 'changed'):
+                    check.main()
+            (root / 'train.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
             verdicts = [{'id': r['id'], 'verdict': 'wrong' if i < 10 else 'OK', 'notes': 'Fixture verdict.'}
                         for i, r in enumerate(sample)]
             path = root / 'review-verdicts.jsonl'
