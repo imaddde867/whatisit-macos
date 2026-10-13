@@ -56,7 +56,10 @@ class DistillDatasetTests(unittest.TestCase):
             (self.evals / f'{split}.jsonl').write_text(json.dumps({
                 'request': f'unrelated {split} task', 'reference': 'unrelated -z'}) + '\n')
 
-    def run_builder(self, *, problems=None, safety_findings=None, deletion_issues=None, quarantine=None):
+    def run_builder(self, *, problems=None, safety_findings=None, deletion_issues=None, quarantine=None, vote='exact'):
+        if vote == 'equivalence':
+            root = Path(self.tmp.name) / 'equivalence'
+            self.out, self.report, self.review = root / 'train.jsonl', root / 'quality.md', root / 'review.jsonl'
         package = types.ModuleType('whatisit')
         config = types.ModuleType('whatisit.config')
         config.SYSTEM_PROMPT = 'Real upstream prompt'
@@ -72,7 +75,37 @@ class DistillDatasetTests(unittest.TestCase):
                              side_effect=deletion_issues or (lambda command, request: [])):
             return builder.build(self.requests, self.raw, self.manifest, self.evals,
                                  self.out, self.report, self.review,
-                                 quarantine or Path(self.tmp.name) / 'no-quarantine.txt')
+                                 quarantine or Path(self.tmp.name) / 'no-quarantine.txt', vote=vote)
+
+    def test_equivalence_recovery_and_author_abstain_exclusion(self):
+        self.samples[2] = [{'command': c, 'parsed': True, 'finish_reason': 'stop'}
+                           for c in ('ls -la a', 'ls -al ./a/', 'ls -l -a a', 'cat b', None)]
+        self.samples[1] = self.samples[2]
+        self.write_inputs()
+        counts = self.run_builder(vote='equivalence')
+        self.assertEqual(counts['recovered'], 1)
+        rows = builder.read_jsonl(self.out)
+        self.assertEqual([r['id'] for r in rows], ['r00001', 'r00003'])
+        self.assertEqual(rows[0]['messages'][-1]['content'], 'alpha -q notes.txt')
+        self.assertEqual(rows[1]['messages'][-1]['content'], 'ls -la a')
+        provenance = builder.read_jsonl(self.out.with_suffix('.votes.jsonl'))
+        self.assertEqual(provenance[0]['cluster_votes'], 3)
+        self.assertEqual(len(provenance[0]['strings']), 3)
+        self.assertIn('r00002: author_abstain_command_majority', self.report.read_text())
+        manifest = json.loads(self.out.with_suffix('.manifest.json').read_text())
+        self.assertEqual(manifest['outputs_sha256']['train.jsonl'], hashlib.sha256(self.out.read_bytes()).hexdigest())
+
+    def test_equivalence_cannot_count_rejected_samples(self):
+        self.samples[2] = [{'command': c, 'parsed': True, 'finish_reason': 'stop'}
+                           for c in ('ls -la a', 'ls -al ./a/', 'ls -l -a a', 'cat b', None)]
+        self.write_inputs()
+        counts = self.run_builder(vote='equivalence', problems=lambda c: ['bad'] if c == 'ls -al ./a/' else [])
+        self.assertEqual(counts['recovered'], 0)
+
+    def test_equivalence_refuses_existing_output_directory(self):
+        (Path(self.tmp.name) / 'equivalence').mkdir()
+        with self.assertRaises(FileExistsError):
+            self.run_builder(vote='equivalence')
 
     def test_majority_abstention_prompt_and_pending_review(self):
         counts = self.run_builder()

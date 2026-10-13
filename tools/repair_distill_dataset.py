@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 import re
 
-from build_distill_dataset import check_inputs, eval_leakage, read_jsonl
+from build_distill_dataset import check_inputs, command_vote, eval_leakage, read_jsonl, read_quarantine, signature
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +31,7 @@ def validate_command(rid, command, request):
         raise ValueError(f'{rid}: command fails serving validation')
 
 
-def repair(requests, labels, raw, amendments):
+def repair(requests, labels, raw, amendments, provenance=None):
     def unique(records, name):
         ids = [r.get('id') for r in records if isinstance(r, dict)]
         if len(ids) != len(records) or any(not isinstance(i, str) or not i for i in ids) or len(set(ids)) != len(ids):
@@ -84,13 +84,31 @@ def repair(requests, labels, raw, amendments):
             raise ValueError(f'{rid}: source prompt mismatch')
         votes = sum(s.get('parsed') is True and s.get('finish_reason') == 'stop' and
                     s.get('command') == (target or None) for s in teacher[rid]['samples'])
-        if target and votes < 3:
+        cluster = (provenance or {}).get(rid)
+        if cluster:
+            valid = Counter()
+            for sample in teacher[rid]['samples']:
+                command = sample.get('command')
+                if sample.get('parsed') is True and sample.get('finish_reason') == 'stop' and command:
+                    try:
+                        validate_command(rid, command, request['request'])
+                    except ValueError:
+                        continue
+                    valid[command] += 1
+            winner, size, strings = command_vote(valid, 'equivalence')
+            if (cluster.get('vote_mode') != 'equivalence' or winner != target or size < 3 or
+                    size != cluster.get('cluster_votes') or strings != cluster.get('strings')):
+                raise ValueError(f'{rid}: invalid cluster provenance')
+        if target and votes < 3 and not cluster:
             raise ValueError(f'{rid}: target lacks teacher majority')
         if not target and votes < 3 and request['kind'] != 'abstain':
             raise ValueError(f'{rid}: abstention lacks provenance')
         edit = edits.get(rid)
         item = {'id': rid, 'source_id': rid, 'teacher_votes': votes,
                 'action': 'keep', 'reason': 'unchanged teacher target'}
+        if provenance is not None:
+            item.update(vote_mode='equivalence' if cluster else 'exact',
+                        cluster_votes=cluster['cluster_votes'] if cluster else votes)
         if edit:
             if edit['original_request'] != request['request'] or edit['original_target'] != target:
                 raise ValueError(f'{rid}: stale amendment')
@@ -195,10 +213,37 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def v3_summary(rows, requests, provenance, baseline):
+    """Coverage and recovery counts after all repair/family exclusions."""
+    kept = {r['id'] for r in rows}
+    recovered = {rid: p for rid, p in provenance.items() if rid in kept}
+    categories = {r['id']: r['category'] for r in requests}
+    commands = Counter(r['messages'][-1]['content'] for r in rows if r['messages'][-1]['content'])
+    old = Counter(r['messages'][-1]['content'] for r in baseline if r['messages'][-1]['content'])
+    new_signatures = {s for c in commands for s in signature(c)}
+    old_signatures = {s for c in old for s in signature(c)}
+    return {'recovered_rows': len(recovered),
+            'recovered_base_rows': len(provenance),
+            'recovered_excluded_by_repair': len(provenance) - len(recovered),
+            'recovered_by_category': dict(sorted(Counter(categories[rid] for rid in recovered).items())),
+            'recovered_by_agreement': dict(sorted(Counter(str(p['cluster_votes']) for p in recovered.values()).items())),
+            'recovered_multistring_rows': sum(len(p['strings']) > 1 for p in recovered.values()),
+            'abstention_share_before': (len(baseline) - sum(old.values())) / len(baseline) if baseline else 0,
+            'abstention_share_after': (len(rows) - sum(commands.values())) / len(rows) if rows else 0,
+            'new_repeated_exact_command_rows': sum(max(0, n - max(1, old[c])) for c, n in commands.items()),
+            'tool_flag_signatures': len(new_signatures), 'v2_tool_flag_signatures': len(old_signatures),
+            'overlapping_tool_flag_signatures': len(new_signatures & old_signatures),
+            'new_tool_flag_signatures': len(new_signatures - old_signatures)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out-dir', type=Path, default=ROOT / 'data/distill/stage2-v2')
+    parser.add_argument('--out-dir', type=Path, default=ROOT / 'data/distill/stage2-v3')
+    parser.add_argument('--base-labels', type=Path, default=ROOT / 'data/distill/v3-base/train.jsonl')
+    parser.add_argument('--votes', type=Path)
     args = parser.parse_args()
+    if args.votes is None and args.base_labels != ROOT / 'data/distill/roihu_full_train.jsonl':
+        args.votes = args.base_labels.with_suffix('.votes.jsonl')
     out = args.out_dir
     if out.exists():
         raise FileExistsError('choose a fresh output directory')
@@ -213,14 +258,27 @@ def main():
         'builder': 'tools/build_distill_dataset.py',
         'repair_script': 'tools/repair_distill_dataset.py',
     }.items()}
+    paths['stage1'] = args.base_labels
+    if args.votes:
+        paths['votes'] = args.votes
+        paths['corpus_quarantine'] = ROOT / 'data/distill/quarantine_ids.txt'
+        paths['v2_baseline'] = ROOT / 'data/distill/stage2-v2/train.jsonl'
     requests, raw, _ = check_inputs(paths['requests'], paths['raw'], paths['teacher_manifest'])
     source = read_jsonl(paths['stage1'])
-    rows, revised, audit = repair(requests, source, raw, read_jsonl(paths['amendments']))
+    provenance = {r['id']: r for r in read_jsonl(args.votes)} if args.votes else None
+    rows, revised, audit = repair(requests, source, raw, read_jsonl(paths['amendments']), provenance)
     rows, revised, additions_audit = add_additions(
         rows, revised, read_jsonl(paths['additions']), source[0]['messages'][0]['content'])
     audit.extend(additions_audit)
     # Frozen and heldout contents are consumed only by the existing leakage gate.
     hard, review = eval_leakage(revised, rows, ROOT / 'eval')
+    if args.votes:
+        known = {r['id'] for r in requests}
+        listed = read_quarantine(paths['historical_quarantine'], known)
+        listed.update(read_quarantine(ROOT / 'data/distill/quarantine_ids.txt', known))
+        # Include historical hits only when the row or a derivative is present.
+        hard = sorted(set(hard) | {(r['id'], 'historical quarantine (source family)', 'historical')
+                                  for r in rows if r['id'] in listed or r.get('source_id') in listed})
     blocked = leakage_blocked(hard, rows)
     for item in audit:
         if item['id'] in blocked:
@@ -236,9 +294,9 @@ def main():
     out.mkdir(parents=True)
     for filename, records in [('train.jsonl', rows), ('requests.jsonl', revised), ('audit.jsonl', audit)]:
         (out / filename).write_text(''.join(json.dumps(r, ensure_ascii=False, sort_keys=True) + '\n' for r in records))
-    manifest = {'version': 'stage2-v2', 'review': 'reviewed amendments and targeted samples; not human-certified',
+    manifest = {'version': 'stage2-v3' if args.votes else 'stage2-v2', 'review': 'model review; not human-certified',
                 'inputs_sha256': {k: digest(v) for k, v in paths.items()},
-                'eval_gate_sha256': {s: digest(ROOT / f'eval/{s}.jsonl') for s in ('dev', 'everyday', 'frozen', 'heldout')},
+                'eval_gate_sha256': json.loads((ROOT / 'data/distill/stage2-v2/manifest.json').read_text())['eval_gate_sha256'],
                 'outputs_sha256': {s: digest(out / s) for s in ('train.jsonl', 'requests.jsonl', 'audit.jsonl')},
                 'source_rows': len(source), 'rows': len(rows),
                 'unchanged_teacher_rows': sum(a['action'] == 'keep' for a in audit),
@@ -251,6 +309,20 @@ def main():
                 'actions': actions, 'hard_leakage_hits': len({rid for rid, _, _ in hard}), 'hard_leakage_rows': len(blocked),
                 'report_only_overlap_pairs': len(review), 'cue_abstains_before': old_cues,
                 'cue_abstains_after': new_cues, 'repeated_exact_command_rows': sum(n-1 for n in command_counts.values())}
+    if args.votes:
+        from train_distill_cuda import split_validation
+        manifest.update(v3_summary(rows, revised, provenance, read_jsonl(paths['v2_baseline'])))
+        train, val = split_validation(rows, 0.05)
+        train_commands = {rows[i]['messages'][-1]['content'] for i in train} - {''}
+        manifest['grouped_split'] = {'fraction': 0.05, 'train_rows': len(train), 'val_rows': len(val),
+                                    'val_ids': [rows[i]['id'] for i in val],
+                                    'validation_commands_in_training': sum(rows[i]['messages'][-1]['content']
+                                                                         in train_commands for i in val)}
+        (out / 'cluster-provenance.jsonl').write_bytes(args.votes.read_bytes())
+        manifest['outputs_sha256']['cluster-provenance.jsonl'] = digest(out / 'cluster-provenance.jsonl')
+        (out / 'leakage-hits.jsonl').write_text(''.join(json.dumps({'id': rid, 'reason': reason, 'split': split},
+                                                  sort_keys=True) + '\n' for rid, reason, split in hard))
+        manifest['outputs_sha256']['leakage-hits.jsonl'] = digest(out / 'leakage-hits.jsonl')
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     (out / 'quality-report.md').write_text(f'''# Stage-2 dataset repair v2
 
@@ -281,6 +353,45 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests
 
 Compare `train.jsonl`, `requests.jsonl`, `audit.jsonl`, and `manifest.json` byte-for-byte. No network, teacher sampling or GPU is required.
 ''')
+    if args.votes:
+        (out / 'quality-report.md').write_text(f'''# Stage-2 data v3 equivalence re-label
+
+Model review; not human-certified. Uses the registered voting rule, unchanged
+serving filters, pinned v2 amendments, 36 authored additions and source families.
+Original exact-majority strings are preserved; recovered labels record exact
+`teacher_votes`, `vote_mode` and `cluster_votes` in the audit.
+
+Retained: {len(rows)} rows ({commands} commands, {len(rows)-commands} abstentions).
+Recovery/coverage counts and grouped split:
+
+```json
+{json.dumps({**v3_summary(rows, revised, provenance, read_jsonl(paths['v2_baseline'])), 'grouped_split': manifest['grouped_split']}, indent=2, sort_keys=True)}
+```
+
+Leakage: {manifest['hard_leakage_hits']} hard-hit ids, {len(blocked)} whole-family
+rows excluded. Historical quarantine lists apply to all families. Hard-hit details
+are in `leakage-hits.jsonl`; {len(review)} report-only overlap pairs remain.
+Frozen/heldout contents are read only by the existing leakage gate. Their hashes
+are the historical v2 manifest values, not fresh reads. Development scores are
+not consulted. Repeated commands remain grouped in validation.
+
+Actions: `{json.dumps(actions, sort_keys=True)}`. Model-authored additions retained:
+{len([a for a in audit if a['action'] == 'model_authored_addition'])} after exclusions.
+Model review and pinned-tokenizer preflight must pass before publication/training.
+No generated command was executed against user data. No teacher sampling.
+
+Reproduce with the same PATH as historical builders into a fresh directory:
+
+```sh
+PYTHONPATH=src .venv/bin/python tools/repair_distill_dataset.py --base-labels data/distill/v3-base/train.jsonl --out-dir /tmp/whatisit-v3-repro
+```
+
+Training SHA-256: `{digest(out / 'train.jsonl')}`. Every artifact is hashed in the
+manifest; the manifest itself has an external checksum. A fresh build must match
+byte-for-byte. Model review is recorded separately and has no human certification.
+''')
+    manifest['outputs_sha256']['quality-report.md'] = digest(out / 'quality-report.md')
+    (out / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     print(json.dumps(manifest, indent=2, sort_keys=True))
 
 

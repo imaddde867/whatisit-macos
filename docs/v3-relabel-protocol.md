@@ -60,4 +60,40 @@ seeds at least v2 seed42 +3 pooled and paired wins exceeding losses. Report cove
 teacher-right/student-wrong fixes, latency and Q6 RSS against default +64 MiB.
 No shipped-model or serving changes. Draft PR only; never merge.
 
-Deviations: none at registration.
+Deviations after the first diagnostic rebuild (no development scores inspected):
+
+- The initial guard recovered only 36 rows with a stock PATH. Investigation found
+  that rejecting every quoted dollar/backslash also rejected literal awk/sed
+  programs. The corrected lexer aligns shlex word values with quote-preserving
+  tokens and retains expansion profiles, control separators and redirection
+  operands. It merges literal quoting safely while distinguishing quoted/unquoted
+  variables and globs. Unknown escaped shell syntax still uses exact keys.
+- A multiset-only diagnostic found just 136 candidates even before serving filters.
+  The large-recovery hypothesis was overoptimistic for these samples; programs,
+  tools, flags and output formats often differ rather than just quoting. We do not
+  weaken semantic guards to reach 150. Investigation resolves the low-count alarm;
+  proceeding still requires at least 60 recovered commands and the review gate.
+- Stock PATH belongs to final screening, not historical data reproduction. The
+  stock-path rebuild omitted four pre-existing Homebrew/npm labels. Exact-mode
+  rebuilding uses the original ambient PATH; no filters or lint code change.
+- "Now get a command majority" means newly recovered author-abstain conflicts.
+  Historical exact-majority targets remain unchanged so the pinned amendments
+  (including reviewed corrections to abstention) remain valid. New author-abstain
+  command clusters are excluded and listed for model review.
+- Local `man cp` confirms that a trailing source-directory slash changes recursive
+  copying semantics, so cp/rsync operands retain it. Executable paths are retained
+  in full (their quoting may vary, their identity may not). Known short-option
+  value bindings, from local man pages, allow bundled flags and option reordering
+  without moving values between flags. Ordered find expressions/actions and repeated
+  ps output-column options remain exact; repeated ps `-w` counts remain significant.
+- Merge inspection found a real key bug in r01802: zip exclusion patterns ending
+  in `/` were treated as filesystem directory operands. Zip operands now retain
+  their exact token values, so `project/build` and `project/build/` cannot merge.
+  A focused negative regression test covers it. Fresh artifacts replace the
+  diagnostic build; no training or development scoring has occurred.
+- Further negative tests restrict path normalization to known filesystem operand
+  positions. Service names, sysctl keys, zip patterns, inline programs and format
+  strings remain literal. Unknown flags retain their original positions, while
+  the finite value/no-value tables permit only documented option reordering.
+  Bracket/brace/glob expansion, repeated value options and incompatible modes
+  are guarded. These are parser correctness fixes, not score-based rule selection.
