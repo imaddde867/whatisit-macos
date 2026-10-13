@@ -14,6 +14,7 @@ import random
 import shutil
 import time
 
+from check_corpus import jaccard, words
 from finetune_roundtrip import tensor_names, weight_digest, write_gguf
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
@@ -42,8 +43,49 @@ def chat_tokens(row, tokenizer, system_prompt):
 
 
 def split_validation(rows, fraction):
-    """Fixed, seed-independent split stratified by command vs empty target; returns (train_idx, val_idx)."""
+    """Fixed split by command/empty kind, grouping source families, shared commands and near-duplicate requests."""
     rng = random.Random(0)
+    if any(isinstance(row.get('source_id'), str) and row['source_id'] for row in rows):
+        parent = list(range(len(rows)))
+
+        def find(i):
+            while parent[i] != i:
+                parent[i] = parent[parent[i]]
+                i = parent[i]
+            return i
+
+        first = {}
+        for i, row in enumerate(rows):
+            source_id = row.get('source_id')
+            command = row['messages'][2]['content']
+            for link in (('source', source_id) if isinstance(source_id, str) and source_id else None,
+                         ('command', command) if command else None):
+                if link:
+                    parent[find(i)] = find(first.setdefault(link, i))
+        requests = [words(row['messages'][1]['content'].removeprefix(MACOS_PREFIX)) for row in rows]
+        for i in range(len(rows)):  # ponytail: O(n^2) Jaccard, fine for a few thousand rows
+            for j in range(i):
+                if jaccard(requests[i], requests[j]) >= 0.7:
+                    parent[find(i)] = find(j)
+        groups = {}
+        for i in range(len(rows)):
+            groups.setdefault(rows[find(i)]['id'], []).append(i)
+        strata = {}
+        for key, indices in groups.items():
+            empty = sum(rows[i]['messages'][2]['content'] == '' for i in indices)
+            signature = (empty, len(indices) - empty)
+            strata.setdefault(signature, []).append(key)
+        val_groups = set()
+        quotas = {signature: len(keys) * fraction for signature, keys in strata.items()}
+        cuts = {signature: int(quota) for signature, quota in quotas.items()}
+        remainder = round(len(groups) * fraction) - sum(cuts.values())
+        for signature in sorted(strata, key=lambda s: quotas[s] - cuts[s], reverse=True)[:remainder]:
+            cuts[signature] += 1
+        for signature, keys in strata.items():
+            rng.shuffle(keys)
+            val_groups.update(keys[:cuts[signature]])
+        val = [i for key in val_groups for i in groups[key]]
+        return sorted(set(range(len(rows))) - set(val)), sorted(val)
     train, val = [], []
     for empty in (False, True):
         group = [i for i, r in enumerate(rows) if (r['messages'][2]['content'] == '') == empty]
@@ -65,7 +107,7 @@ def main():
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--val-fraction', type=float, default=0.0,
-                        help='share of rows (per kind) held out for validation loss; 0 trains on all rows')
+                        help='share of rows (per kind) or, with source_id, of grouped families held out for validation loss; 0 trains on all rows')
     args = parser.parse_args()
     if args.steps < 0 or args.output.exists():
         parser.error('steps must be nonnegative and output must be a new directory')
@@ -90,6 +132,8 @@ def main():
         raise ValueError('dataset must contain nonempty, unique records')
     encoded_all = [chat_tokens(row, tokenizer, config.SYSTEM_PROMPT) for row in rows]
     train_idx, val_idx = split_validation(rows, args.val_fraction)
+    train_source_ids = sorted({rows[i].get('source_id') or rows[i]['id'] for i in train_idx})
+    val_source_ids = sorted({rows[i].get('source_id') or rows[i]['id'] for i in val_idx})
     encoded = [encoded_all[i] for i in train_idx]
     validation = [encoded_all[i] for i in val_idx]
     reader = GGUFReader(str(args.source))
@@ -186,6 +230,8 @@ def main():
               'learning_rate': args.lr, 'optimizer': 'AdamW', 'autocast': 'bfloat16', 'lora_rank': 8,
               'lora_alpha': 160, 'lora_scale': 20, 'lora_layers': 16,
               'val_fraction': args.val_fraction, 'train_rows': len(train_idx), 'val_ids': [rows[i]['id'] for i in val_idx],
+              'val_source_ids': val_source_ids,
+              'source_group_counts': {'train': len(train_source_ids), 'validation': len(val_source_ids)},
               'validation_losses': val_losses, 'trainable_parameters': count, 'data_sha256': hashlib.sha256(args.data.read_bytes()).hexdigest(),
               'source_sha256': hashlib.sha256(args.source.read_bytes()).hexdigest(),
               'gpu': torch.cuda.get_device_name(), 'cuda': torch.version.cuda,
