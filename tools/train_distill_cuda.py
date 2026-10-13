@@ -41,6 +41,19 @@ def chat_tokens(row, tokenizer, system_prompt):
     return tokens, [-100] * len(prefix) + tokens[len(prefix):]
 
 
+def split_validation(rows, fraction):
+    """Fixed, seed-independent split stratified by command vs empty target; returns (train_idx, val_idx)."""
+    rng = random.Random(0)
+    train, val = [], []
+    for empty in (False, True):
+        group = [i for i, r in enumerate(rows) if (r['messages'][2]['content'] == '') == empty]
+        rng.shuffle(group)
+        cut = round(len(group) * fraction)
+        val += group[:cut]
+        train += group[cut:]
+    return sorted(train), sorted(val)
+
+
 def main():
     run_started = time.monotonic()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -49,9 +62,15 @@ def main():
     parser.add_argument('data', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--steps', type=int, default=1000)
+    parser.add_argument('--lr', type=float, default=1e-5)
+    parser.add_argument('--seed', type=int, default=42)
+    parser.add_argument('--val-fraction', type=float, default=0.0,
+                        help='share of rows (per kind) held out for validation loss; 0 trains on all rows')
     args = parser.parse_args()
     if args.steps < 0 or args.output.exists():
         parser.error('steps must be nonnegative and output must be a new directory')
+    if not 0 <= args.val_fraction < 0.5 or args.lr <= 0:
+        parser.error('val-fraction must be in [0, 0.5) and lr positive')
 
     import numpy as np
     import torch
@@ -62,14 +81,17 @@ def main():
 
     if not torch.cuda.is_available():
         raise RuntimeError('CUDA GPU required')
-    torch.manual_seed(42)
-    torch.cuda.manual_seed_all(42)
-    rng = random.Random(42)
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    rng = random.Random(args.seed)
     tokenizer = AutoTokenizer.from_pretrained(str(args.metadata), local_files_only=True)
     rows = [json.loads(line) for line in args.data.read_text().splitlines() if line.strip()]
     if not rows or len({row['id'] for row in rows}) != len(rows):
         raise ValueError('dataset must contain nonempty, unique records')
-    encoded = [chat_tokens(row, tokenizer, config.SYSTEM_PROMPT) for row in rows]
+    encoded_all = [chat_tokens(row, tokenizer, config.SYSTEM_PROMPT) for row in rows]
+    train_idx, val_idx = split_validation(rows, args.val_fraction)
+    encoded = [encoded_all[i] for i in train_idx]
+    validation = [encoded_all[i] for i in val_idx]
     reader = GGUFReader(str(args.source))
     if (reader.fields['general.architecture'].contents() != 'qwen2' or
             reader.fields['tokenizer.chat_template'].contents() != tokenizer.chat_template):
@@ -108,10 +130,23 @@ def main():
     model.to('cuda')
     model.train()
     model.config.use_cache = False
-    optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad), lr=1e-5)
+    optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad), lr=args.lr)
     torch.cuda.reset_peak_memory_stats()
     started = time.monotonic()
-    losses, order = [], []
+    losses, order, val_losses = [], [], []
+
+    def validate(step):
+        if not validation:
+            return
+        model.eval()
+        with torch.no_grad(), torch.autocast('cuda', dtype=torch.bfloat16):
+            total = sum(float(model(input_ids=torch.tensor([t], device='cuda'),
+                                    labels=torch.tensor([l], device='cuda')).loss) for t, l in validation)
+        model.train()
+        val_losses.append([step, total / len(validation)])
+        print(f'step {step}: validation loss={val_losses[-1][1]:.4f} ({len(validation)} rows)', flush=True)
+
+    validate(0)
     for step in range(args.steps):
         if not order:
             order = list(range(len(encoded)))
@@ -129,6 +164,10 @@ def main():
         losses.append(float(loss.detach()))
         if (step + 1) % 50 == 0:
             print(f'step {step + 1}/{args.steps}: loss={losses[-1]:.4f}, grad={float(grad_norm):.4f}', flush=True)
+        if (step + 1) % 100 == 0:
+            validate(step + 1)
+    if args.steps % 100:
+        validate(args.steps)
     torch.cuda.synchronize()
     wall = time.monotonic() - started
     peak = torch.cuda.max_memory_allocated()
@@ -143,10 +182,11 @@ def main():
         shutil.copy2(args.metadata / filename, args.output / filename)
     shutil.copy2(Path(__file__).resolve().parents[1] / 'docs/finetune-NOTICE.txt', args.output / 'NOTICE')
     write_gguf(reader, parameters, args.output / 'merged-f16.gguf', model_config.num_hidden_layers)
-    report = {'steps': args.steps, 'seed': 42, 'batch_size': 1, 'sequence_limit': 512,
-              'learning_rate': 1e-5, 'optimizer': 'AdamW', 'autocast': 'bfloat16', 'lora_rank': 8,
+    report = {'steps': args.steps, 'seed': args.seed, 'batch_size': 1, 'sequence_limit': 512,
+              'learning_rate': args.lr, 'optimizer': 'AdamW', 'autocast': 'bfloat16', 'lora_rank': 8,
               'lora_alpha': 160, 'lora_scale': 20, 'lora_layers': 16,
-              'trainable_parameters': count, 'data_sha256': hashlib.sha256(args.data.read_bytes()).hexdigest(),
+              'val_fraction': args.val_fraction, 'train_rows': len(train_idx), 'val_ids': [rows[i]['id'] for i in val_idx],
+              'validation_losses': val_losses, 'trainable_parameters': count, 'data_sha256': hashlib.sha256(args.data.read_bytes()).hexdigest(),
               'source_sha256': hashlib.sha256(args.source.read_bytes()).hexdigest(),
               'gpu': torch.cuda.get_device_name(), 'cuda': torch.version.cuda,
               'wall_seconds': time.monotonic() - run_started, 'training_wall_seconds': wall,
