@@ -1,8 +1,8 @@
 {
  "lint": {
   "counts": {
-   "no-command": 252,
-   "different": 510,
+   "no-command": 251,
+   "different": 506,
    "abstain-missed": 135,
    "abstain-ok": 108,
    "normalized": 14,
@@ -13,7 +13,6 @@
    "r00002": "different",
    "r00003": "different",
    "r00005": "no-command",
-   "r00006": "different",
    "r00008": "abstain-missed",
    "r00011": "different",
    "r00012": "different",
@@ -87,7 +86,6 @@
    "r00169": "no-command",
    "r00170": "no-command",
    "r00171": "exact",
-   "r00177": "different",
    "r00178": "abstain-ok",
    "r00181": "different",
    "r00182": "no-command",
@@ -508,7 +506,6 @@
    "r01169": "no-command",
    "r01176": "different",
    "r01177": "different",
-   "r01179": "different",
    "r01180": "no-command",
    "r01182": "abstain-ok",
    "r01187": "no-command",
@@ -528,7 +525,6 @@
    "r01215": "no-command",
    "r01217": "different",
    "r01218": "exact",
-   "r01220": "no-command",
    "r01221": "different",
    "r01223": "no-command",
    "r01224": "abstain-missed",
@@ -950,7 +946,6 @@
    "r02193": "abstain-missed",
    "r02197": "abstain-missed",
    "r02198": "different",
-   "r02203": "different",
    "r02204": "different",
    "r02205": "different",
    "r02207": "different",
@@ -1093,7 +1088,7 @@
  },
  "model": {
   "counts": {
-   "different": 756,
+   "different": 751,
    "abstain-missed": 230,
    "normalized": 15,
    "abstain-ok": 13,
@@ -1105,7 +1100,6 @@
    "r00002": "different",
    "r00003": "different",
    "r00005": "different",
-   "r00006": "different",
    "r00008": "abstain-missed",
    "r00011": "different",
    "r00012": "different",
@@ -1179,7 +1173,6 @@
    "r00169": "different",
    "r00170": "different",
    "r00171": "exact",
-   "r00177": "different",
    "r00178": "abstain-missed",
    "r00181": "different",
    "r00182": "different",
@@ -1600,7 +1593,6 @@
    "r01169": "different",
    "r01176": "different",
    "r01177": "different",
-   "r01179": "different",
    "r01180": "different",
    "r01182": "abstain-missed",
    "r01187": "different",
@@ -1620,7 +1612,6 @@
    "r01215": "different",
    "r01217": "different",
    "r01218": "exact",
-   "r01220": "different",
    "r01221": "different",
    "r01223": "different",
    "r01224": "abstain-missed",
@@ -2042,7 +2033,6 @@
    "r02193": "abstain-missed",
    "r02197": "abstain-missed",
    "r02198": "different",
-   "r02203": "different",
    "r02204": "different",
    "r02205": "different",
    "r02207": "different",
@@ -2183,5 +2173,5 @@
    "r02517": "abstain-missed"
   }
  },
- "note": "Default 1.5B (harness lint|model) on the 1,080 training requests. exact/normalized = same command as the teacher label (whitespace-normalized / same tool+flags+non-path operands); 'different' may still be correct; no-command = rejected or abstained on an answerable row."
+ "note": "Default 1.5B (harness lint|model) on the 1,075 training requests. exact/normalized = same command as the teacher label (whitespace-normalized / same tool+flags+non-path operands); 'different' may still be correct; no-command = rejected or abstained on an answerable row."
 }

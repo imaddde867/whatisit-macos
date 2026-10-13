@@ -1,4 +1,21 @@
 # One id per line; reason after #.
+# Request-level held-out paraphrase exclusions from data/distill/quarantine_ids.txt.
+r00910 # paraphrase of a held-out evaluation case
+r01014 # paraphrase of a held-out evaluation case
+r02051 # paraphrase of a held-out evaluation case
+r00177 # paraphrase of a held-out evaluation case
+r01465 # paraphrase of a held-out evaluation case
+r01179 # paraphrase of a held-out evaluation case
+r02203 # paraphrase of a held-out evaluation case
+r00487 # paraphrase of a held-out evaluation case
+r01311 # paraphrase of a held-out evaluation case
+r01473 # paraphrase of a held-out evaluation case
+r00849 # paraphrase of a held-out evaluation case
+r01220 # paraphrase of a held-out evaluation case
+r00617 # paraphrase of a held-out evaluation case
+r01402 # paraphrase of a held-out evaluation case
+r01979 # paraphrase of a held-out evaluation case
+r00006 # mdls -null is ambiguous on macOS
 r01612  # ps -o pgid: shell pgid is not the foreground group; tpgid is (both model reviewers, Opus 5.5 and Sonnet 5.5)
 r01798  # zero-byte regular files in a directory: same intent as held-out zero-length-files case (target swapped)
 r02351  # clipboard character count: twin of the held-out clipboard word count (wc -m vs wc -w)

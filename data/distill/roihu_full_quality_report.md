@@ -1,6 +1,6 @@
 # Distillation quality report
 
-Host: macOS-27.0.1-arm64-arm-64bit-Mach-O (macOS verification)
+Host: macOS-27.0.1-arm64-arm-64bit (macOS verification)
 
 Teacher: teacher
 Quant: FP8 checkpoint, revision 236dfdf285828023ca3bcd3f37366c58a3469b13
@@ -10,7 +10,7 @@ Request SHA-256: 5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d78
 Teacher prompt SHA-256: 082762b95298f9fc1e54f2260ca77aaaa922f380cc708aa1c605a49fe39cbd1e
 Sampling: n=5, temperature=0.7, top-p=0.95, max tokens=16384, seed base=1000.
 
-Requests: 2520; kept commands: 837; abstain: 243; dropped: 1322 (115 no valid command, 1207 no majority).
+Requests: 2520; kept commands: 832; abstain: 243; dropped: 1322 (115 no valid command, 1207 no majority).
 Agreement histogram (maximum identical verified commands): {0: 331, 1: 799, 2: 435, 3: 372, 4: 252, 5: 331}.
 Teacher command candidates: 11128; rejected candidates: 1094 (9.8%). Rejection findings (categories can overlap): {'danger': 27, 'deletion_guard': 24, 'interactive': 34, 'macos_lint': 1032, 'unparsed_or_incomplete': 321}.
 Abstain reasons: {'author_abstain_no_majority': 12, 'teacher_null_majority': 231}.
@@ -1344,8 +1344,9 @@ Recorded completion tokens: 26950301 total, 628.0 median per sample.
 Manifest wall time: 15586.4 s for this invocation (2520 requests written); throughput: 1729.1 tokens/s; per-request latency was not recorded by the sampler.
 Manifest metadata: finished=2026-10-13T07:56:42+0300, top-k=0, note='Roihu pilot, Qwen/Qwen3.8-Flash-Next-FP8, job 2257376'.
 
-Evaluation leakage gate: 118 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
+Evaluation leakage gate: 131 rows quarantined (excluded from the dataset, never trained on). Hard checks: request word-Jaccard >= 0.7 and normalized command (tool, flags and non-path operands) against dev, everyday and frozen references. The frozen set was used only for this gate.
 Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; request similarity 0.5-0.7 vs everyday: 2 rows; tool+flags vs dev: 220 rows; tool+flags vs everyday: 343 rows; tool+flags vs frozen: 179 rows; tool+flags vs heldout: 355 rows (1102 row/split pairs; ids are in the review-hit list below).
+- quarantined r00006: author quarantine list: mdls -null is ambiguous on macOS frozen/dev
 - quarantined r00016: normalized command heldout
 - quarantined r00026: normalized command frozen
 - quarantined r00028: normalized command heldout
@@ -1354,6 +1355,7 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00088: normalized command heldout
 - quarantined r00146: normalized command frozen
 - quarantined r00152: normalized command dev
+- quarantined r00177: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00199: normalized command everyday
 - quarantined r00274: normalized command everyday
 - quarantined r00274: normalized command frozen
@@ -1368,6 +1370,7 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00448: normalized command heldout
 - quarantined r00476: normalized command heldout
 - quarantined r00480: normalized command heldout
+- quarantined r00487: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00506: normalized command heldout
 - quarantined r00540: normalized command dev
 - quarantined r00540: normalized command everyday
@@ -1375,6 +1378,7 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00565: normalized command heldout
 - quarantined r00614: normalized command everyday
 - quarantined r00614: normalized command heldout
+- quarantined r00617: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00652: author quarantine list: iconv legacy encoding to UTF-8 into a new file: same intent as the held-out Latin-1 case frozen/dev
 - quarantined r00659: normalized command dev
 - quarantined r00664: normalized command heldout
@@ -1393,6 +1397,8 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00816: normalized command heldout
 - quarantined r00818: normalized command dev
 - quarantined r00829: normalized command dev
+- quarantined r00849: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
+- quarantined r00910: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r00910: normalized command heldout
 - quarantined r00926: normalized command dev
 - quarantined r00928: normalized command dev
@@ -1400,6 +1406,7 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r00955: normalized command heldout
 - quarantined r00987: normalized command dev
 - quarantined r01006: normalized command everyday
+- quarantined r01014: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01014: normalized command frozen
 - quarantined r01030: normalized command everyday
 - quarantined r01069: normalized command heldout
@@ -1410,19 +1417,25 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r01144: normalized command heldout
 - quarantined r01148: normalized command everyday
 - quarantined r01164: normalized command heldout
+- quarantined r01179: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01191: normalized command heldout
+- quarantined r01220: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01236: normalized command dev
 - quarantined r01244: normalized command heldout
 - quarantined r01280: normalized command everyday
 - quarantined r01280: normalized command heldout
 - quarantined r01290: normalized command heldout
+- quarantined r01311: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01356: normalized command heldout
 - quarantined r01358: normalized command everyday
 - quarantined r01379: normalized command heldout
 - quarantined r01382: normalized command heldout
+- quarantined r01402: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01436: normalized command everyday
 - quarantined r01436: normalized command heldout
+- quarantined r01465: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01465: normalized command frozen
+- quarantined r01473: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r01475: normalized command everyday
 - quarantined r01515: normalized command everyday
 - quarantined r01525: normalized command everyday
@@ -1452,16 +1465,19 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 - quarantined r01950: normalized command frozen
 - quarantined r01965: normalized command everyday
 - quarantined r01965: normalized command frozen
+- quarantined r01979: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r02034: normalized command dev
 - quarantined r02043: normalized command everyday
 - quarantined r02043: normalized command frozen
 - quarantined r02048: normalized command everyday
+- quarantined r02051: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r02108: author quarantine list: say -f file: same intent as the held-out read-file-aloud case (voice flag differs) frozen/dev
 - quarantined r02116: normalized command everyday
 - quarantined r02187: normalized command everyday
 - quarantined r02187: normalized command heldout
 - quarantined r02199: normalized command everyday
 - quarantined r02200: normalized command everyday
+- quarantined r02203: author quarantine list: paraphrase of a held-out evaluation case frozen/dev
 - quarantined r02215: normalized command frozen
 - quarantined r02224: normalized command heldout
 - quarantined r02233: normalized command everyday
@@ -1501,4 +1517,4 @@ Report-only overlaps (not gated): request similarity 0.5-0.7 vs dev: 3 rows; req
 
 No-command target: empty assistant content. The serving worker returns `unsupported` with no command when upstream generation produces no complete command; the worker-path test covers this behavior. The Mac prompt audit (`docs/distill-prompt-audit.json`) confirmed that an empty target trains its end-of-turn token. A live-model abstention probe remains pending.
 
-Human precision review: **pending**. 30 rows were saved to `.distill-roihu-full/review_sheet.md` with blank human verdicts; no precision estimate is claimed. At least 30 reviewed rows are required for acceptance.
+Human precision review: **pending**. The unchanged historical 30-command model-review sample is `roihu_full_review_sheet.jsonl`; it predates the final exclusions and includes `r00177` and `r01612`, both absent from training. See `roihu_full_review_result.md` for model-review findings. No human precision estimate is claimed.
