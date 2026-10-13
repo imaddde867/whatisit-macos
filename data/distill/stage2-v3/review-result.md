@@ -1,10 +1,10 @@
 # Data v3 model review
 
-Model review, not human review. Seed 314159; 60 of 64 recovered
+Model review, not human review. Seed 314159; 60 of 60 recovered
 command rows, proportional category strata with largest-remainder allocation.
-Only OK counts as correct. OK: 52; debatable: 1;
-wrong: 7. Precision: 86.7%; Wilson 95% interval:
-[75.8%, 93.1%]. This estimates synthetic recovered-label precision,
+Only OK counts as correct. OK: 51; debatable: 1;
+wrong: 8. Precision: 85.0%; Wilson 95% interval:
+[73.9%, 91.9%]. This estimates synthetic recovered-label precision,
 not deployment accuracy. Stratification is nearly proportional; Wilson is a
 descriptive binomial interval, not a design-weighted survey interval.
 
@@ -25,7 +25,6 @@ No evaluation scores were used to select these labels.
 | r00172 | network | OK | man printf/nc: sends hello to the explicitly owned loopback UDP listener with a timeout. It tests sending, not receipt. Not executed. |
 | r00203 | archives-and-media | OK | man cp: -R recursive, -p preserves metadata/ACLs, -v prints copied paths; source trailing slash preserves the requested contents semantics. Requested destination write; not executed. |
 | r00307 | network | OK | man networksetup: -getproxybypassdomains for Wi-Fi is the documented read query. No network change; not executed. |
-| r00314 | files-and-folders | OK | man find plus scratch fixtures: mindepth/maxdepth 1 with type d lists only direct subdirectories. Read-only. |
 | r00320 | files-and-folders | wrong | man cp explicitly says -H/-L/-P are ignored without -R and symlinks are followed. -pP copies the target, not symlink metadata. No generated copy executed. |
 | r00326 | disk-and-storage | OK | man diskutil/grep: info for the named disk includes Solid State; case-insensitive line filtering displays it. Read-only; actual disk not queried. |
 | r00336 | system-info | OK | man date plus scratch execution returned 2025-06-15T11:30:00Z. -j prevents setting the clock; -u renders UTC. |
@@ -42,8 +41,6 @@ No evaluation scores were used to select these labels.
 | r01082 | disk-and-storage | OK | man du: -s/-h summary with -I mask ignores .DS_Store names; read-only fixture check completed. |
 | r01088 | disk-and-storage | OK | man iostat: -d selects disks, -w 1 and -c 5 sample the named disk once per second for five displays. Read-only; actual device not sampled. |
 | r01095 | search | OK | man grep plus scratch fixture: -r/-i/-w restricts matches to whole-word draft regardless of case. Read-only. |
-| r01134 | files-and-folders | OK | man ditto: copies directory contents while preserving ACLs and extended attributes by default. Requested destination write; not executed. |
-| r01168 | files-and-folders | OK | man find/sort plus scratch fixture: direct directory paths only, lexically sorted. Read-only. |
 | r01209 | text-processing | OK | man grep plus scratch fixture: extracts IPv4-looking dotted quads, intentionally not a numeric-validity validator. Read-only. |
 | r01219 | archives-and-media | OK | afinfo usage and grep man: audio information includes estimated duration; filter retains the duration line. Read-only; no real audio opened. |
 | r01235 | disk-and-storage | OK | man du: -I node_modules skips matching directories, -s/-h summarizes. Read-only fixture check completed. |
@@ -51,7 +48,9 @@ No evaluation scores were used to select these labels.
 | r01310 | system-info | OK | man system_profiler: -xml SPHardwareDataType selects only hardware overview; redirection writes the explicitly requested hardware.plist. Generated write not executed. |
 | r01334 | archives-and-media | OK | man hdiutil: attach with -nobrowse suppresses Finder browsing; default is noautoopen. Requested mount, not destructive; not executed. |
 | r01476 | system-info | OK | man date: -u and explicit UTC Z suffix produce an ISO timestamp. Read-only. |
+| r01495 | search | wrong | Stock mdimport -A and Apple audio metadata keys list kMDItemAudioChannelCount, not the invented kMDItemAudioNumberOfChannels. Query cannot test channel count as requested. No real index queried. |
 | r01502 | power-and-hardware | OK | man system_profiler: -json and the two named report types produce USB/Thunderbolt JSON only. Read-only. |
+| r01517 | network | OK | man ifconfig/grep: en1 status active is the documented interface status line; command reads it and prints yes/no. No network change and not executed against real interfaces. |
 | r01563 | network | OK | man curl: -H sets User-Agent: LocalTest and the URL is the explicitly requested loopback HTTP endpoint. No request was executed. |
 | r01564 | search | OK | man find plus scratch fixture: mindepth/maxdepth 3 and type/name select only third-level cache directories. Read-only. |
 | r01642 | macos-tools | OK | man defaults: reads Terminal Default Window Settings; Basic is the built-in fallback when that preference is absent. Read-only; real preferences not queried. |
@@ -67,6 +66,7 @@ No evaluation scores were used to select these labels.
 | r02031 | network | OK | man system_profiler: SPNetworkDataType with -json reads the network hardware report. No network change; not executed. |
 | r02059 | system-info | OK | man date: -v+1d adjusts the displayed local calendar date; %A prints weekday. No clock setting option. |
 | r02102 | search | debatable | Nil comparison for missing Spotlight authors is not established by Apple query syntax documentation; an empty scratch index gives no semantic evidence. Also no document-type predicate. Read-only and safe, but not counted correct. |
+| r02163 | system-info | OK | man date and scratch execution: -j prevents setting time; -v+90d yields 2025-04-15 from 2025-01-15. Read-only. |
 | r02271 | text-processing | OK | man grep plus scratch fixture: -F literal FAILURE with -C 2 emits the matching record and two surrounding lines. Read-only. |
 | r02276 | files-and-folders | wrong | Stock BSD stat rejects the mutually exclusive -l and -f output modes; scratch command exits 1 before reporting symlink birth time. Both cluster forms fail the same way. |
 | r02284 | network | wrong | networksetup -getinfo takes a named network service; Global IPv6 is SystemConfiguration global state, not a stock service name. This does not query global IPv6 state. No network change. |
@@ -75,4 +75,4 @@ No evaluation scores were used to select these labels.
 | r02397 | disk-and-storage | OK | man du: -L follows symlinks and -s/-h summarizes the named directory. Read-only fixture check completed. |
 | r02417 | search | OK | Apple Spotlight wildcard syntax and mdimport schema: kMDItemWhereFroms equals *example.com* matches a containing URL in the named scope. Read-only; no real index queried. |
 | r02442 | system-info | OK | man stat: %Su prints the owner of /dev/console, the usual current console-login account. Loginwindow/root state is a normal boundary case. Read-only; actual owner not queried. |
-| r02485 | search | OK | man find and scratch fixture: four explicit [0-9] classes match exactly four digits and no trailing suffix. Read-only. |
+| r02473 | files-and-folders | OK | man stat/sort and scratch execution: %B gives birth epoch, %N gives filename; numeric sort compares original.txt and copy.txt creation times. Read-only. |

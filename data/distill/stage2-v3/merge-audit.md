@@ -102,17 +102,6 @@ List Wi-Fi proxy bypass domains.
 ]
 ```
 
-## r00314 (3 votes)
-
-List only folders directly inside project/.
-
-```json
-[
-  "find project -mindepth 1 -maxdepth 1 -type d",
-  "find project/ -mindepth 1 -maxdepth 1 -type d"
-]
-```
-
 ## r00320 (4 votes)
 
 Copy symlink metadata from link-source to link-copy on macOS.
@@ -292,29 +281,6 @@ Please search prose/ for whole-word draft matches while ignoring capitalization.
 ]
 ```
 
-## r01134 (4 votes)
-
-I want a copy of original/ in clone/ that preserves macOS ACLs too.
-
-```json
-[
-  "ditto original clone",
-  "ditto original/ clone/"
-]
-```
-
-## r01168 (3 votes)
-
-I want the folders in workspace/ sorted alphabetically, with no files mixed in.
-
-```json
-[
-  "find workspace -mindepth 1 -maxdepth 1 -type d | sort",
-  "find workspace/ -maxdepth 1 -mindepth 1 -type d | sort",
-  "find workspace/ -mindepth 1 -maxdepth 1 -type d | sort"
-]
-```
-
 ## r01209 (3 votes)
 
 Extract all IPv4-looking addresses from access.log.
@@ -438,15 +404,14 @@ get http://localhost:4000/ with a User-Agent of LocalTest
 ]
 ```
 
-## r01564 (5 votes)
+## r01564 (3 votes)
 
 find directories named cache only at depth three in fixtures/
 
 ```json
 [
   "find fixtures -mindepth 3 -maxdepth 3 -type d -name 'cache'",
-  "find fixtures -mindepth 3 -maxdepth 3 -type d -name cache",
-  "find fixtures/ -mindepth 3 -maxdepth 3 -type d -name cache"
+  "find fixtures -mindepth 3 -maxdepth 3 -type d -name cache"
 ]
 ```
 
@@ -708,15 +673,4 @@ I want to compare the creation dates of original.txt and copy.txt on macOS.
 ]
 ```
 
-## r02485 (3 votes)
-
-Please look for filenames matching sample- followed by exactly four digits in imports/.
-
-```json
-[
-  "find imports -type f -name 'sample-[0-9][0-9][0-9][0-9]'",
-  "find imports/ -type f -name 'sample-[0-9][0-9][0-9][0-9]'"
-]
-```
-
-Model review finding: all 64 multi-string clusters (141 distinct strings) were read. The final clusters differ only in token quoting, safe flag bundling/order, known path aliases or directory scope slashes. No remaining meaning-changing pair was found. A diagnostic zip-pattern slash bug was fixed and documented in the protocol before this build; r01802 is not recovered by the corrected key. Wrong request/command semantics are counted separately in the fixed 60-row model review.
+Model merge review: read all 60 clusters and 131 distinct strings. No remaining meaning-changing pair found. Prior parser defects and their conservative fixes are documented in protocol.md; this conclusion concerns merge equivalence, not request correctness.
