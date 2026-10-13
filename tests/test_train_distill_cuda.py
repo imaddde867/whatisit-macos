@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from train_distill_cuda import chat_tokens, MACOS_PREFIX
+from train_distill_cuda import chat_tokens, split_validation, MACOS_PREFIX
 
 
 class TokenizerProbe:
@@ -37,3 +37,14 @@ class CudaChatTests(unittest.TestCase):
         for row in rows + [{'messages': [None, None, None]}]:
             with self.subTest(row=row), self.assertRaises(ValueError):
                 chat_tokens(row, TokenizerProbe(), 'system')
+
+class SplitTests(unittest.TestCase):
+    def test_stratified_deterministic_and_disjoint(self):
+        rows = [{'messages': [None, None, {'content': '' if i % 4 == 0 else f'cmd{i}'}]} for i in range(200)]
+        train, val = split_validation(rows, 0.1)
+        self.assertEqual((train, val), split_validation(rows, 0.1))
+        self.assertEqual(sorted(train + val), list(range(200)))
+        empty = [i for i in val if rows[i]['messages'][2]['content'] == '']
+        self.assertEqual((len(val), len(empty)), (20, 5))
+        self.assertEqual(split_validation(rows, 0.0), (list(range(200)), []))
+
