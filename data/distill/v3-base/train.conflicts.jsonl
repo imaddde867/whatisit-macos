@@ -1,0 +1,1 @@
+{"cluster_votes": 4, "id": "r00053", "request": "find the account that should own this unnamed folder", "strings": ["stat -f \"%Su\" .", "stat -f '%Su' ."]}

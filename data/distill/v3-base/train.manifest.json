@@ -1,0 +1,25 @@
+{
+  "decisions": {
+    "abstain": 242,
+    "dropped_author_abstain_command_majority": 1,
+    "dropped_no_majority": 1137,
+    "dropped_no_valid_command": 115,
+    "kept": 896,
+    "recovered": 64
+  },
+  "inputs_sha256": {
+    "builder": "e45e5a780879044ead7fbf24c492342a76c9f208fdba8d8c3716050df2287c3a",
+    "quarantine": "b8ea12675e7d8b1e8fca058ee27886219d55a61af4baace4967241a66cd7ba2f",
+    "raw": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd",
+    "requests": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+    "teacher_manifest": "362f4ccaf5bec7770821fc652bac1260522e5c54d2f386371194ab7773bb728c"
+  },
+  "outputs_sha256": {
+    "quality-report.md": "a03a5a664728630ff5dec5e82ae792fc714534b547fa10d95c2823f2798c0e34",
+    "review.jsonl": "ef696ae00d2cb33e79d16c101c8a5f7ff809dab9e6d1f7d5dc930a709773eda4",
+    "train.conflicts.jsonl": "d627511ee8ed1e2f747e263d1172257706cad78f18c36b20e29d24b9bb16bb06",
+    "train.jsonl": "23934962c7e7fac0ae7f6d0b57e7b2114323b43d0c287f72e8b9c4a62f4e8c5b",
+    "train.votes.jsonl": "6e06e56cf208393dd0dd5f479df35eca7eecba5a336216818c3961ff0a112f57"
+  },
+  "vote_mode": "equivalence"
+}
