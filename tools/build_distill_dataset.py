@@ -126,36 +126,105 @@ def normalized(command):
 
 VALUE_FLAGS = {'head': {'-n', '-c'}, 'tail': {'-n', '-c'},
                'grep': {'-e', '-f', '-m', '-A', '-B', '-C'},
-               'sort': {'-k', '-t', '-o', '-T'}, 'du': {'-d'},
-               'ls': set(), 'cat': set(), 'wc': set(), 'df': set()}
-LONG_VALUES = {'--color', '--max-count', '--regexp', '--file', '--output', '--format'}
+               'sort': {'-k', '-t', '-o', '-T', '-S'}, 'du': {'-d', '-I', '-B', '-t'},
+               'ls': set(), 'cat': set(), 'wc': set(), 'df': set(),
+               'system_profiler': {'-detailLevel', '-timeout'},
+               'cp': set(), 'mv': set(), 'rm': set(), 'chmod': set(),
+               'ps': {'-o', '-O', '-p', '-G', '-g', '-u', '-U', '-t'},
+               'mdfind': {'-onlyin', '-name'}, 'mdls': {'-name', '-nullMarker'},
+               'stat': {'-f', '-t'},
+               'git': {'-C', '-c'}, 'date': {'-f', '-r', '-v', '-z'},
+               'iostat': {'-c', '-n', '-w'},
+               'openssl': {'-in', '-out', '-inform', '-outform', '-key', '-keyform',
+                           '-passin', '-passout', '-subj', '-days', '-config', '-extensions',
+                           '-reqexts', '-nameopt', '-newkey'},
+               'xcodebuild': {'-project', '-workspace', '-scheme', '-configuration', '-sdk',
+                             '-destination', '-arch', '-xcconfig', '-jobs', '-derivedDataPath',
+                             '-resultBundlePath'},
+               'find': {'-maxdepth', '-mindepth', '-type', '-name', '-iname', '-path', '-ipath',
+                        '-size', '-user', '-group', '-perm', '-mtime', '-mmin', '-newer'}}
+LONG_VALUES = {'--color', '--max-count', '--regexp', '--file', '--output', '--format',
+               '--pretty', '--since', '--until', '--date', '--author', '--exclude'}
+NO_VALUE_FLAGS = {
+    'head': set(), 'tail': {'-F', '-f', '-q', '-r'},
+    'grep': {'-' + c for c in 'a b c E F G H h I i l L n o q R r s v w x'.split()},
+    'sort': {'-' + c for c in 'b c C d f g h i M m n R r s u V'.split()},
+    'du': {'-' + c for c in 'A a c H h k L l m n P r s x'.split()},
+    'ls': {'-' + c for c in 'ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1'.strip()},
+    'cat': {'-' + c for c in 'benstuv'}, 'wc': {'-' + c for c in 'clmw'},
+    'df': {'-' + c for c in 'abcgHhiklmnP'},
+    'system_profiler': {'-xml', '-json', '-listDataTypes'},
+    'cp': {'-' + c for c in 'RHLPaficlNnpSsvXx'},
+    'mv': {'-' + c for c in 'finv'}, 'rm': {'-' + c for c in 'dfiPRrvW'},
+    'chmod': {'-' + c for c in 'fhRv'},
+    'ps': {'-' + c for c in 'AaCcEefhjlLMmrSTvwXx'},
+    'mdfind': {'-0', '-live', '-count', '-literal', '-interpret'}, 'mdls': {'-raw'},
+    'stat': {'-' + c for c in 'FLnqlrsx'}, 'git': set(), 'date': {'-j', '-n', '-R', '-u'},
+    'iostat': {'-' + c for c in 'CUdKIoT?'},
+    'openssl': {'-text', '-noout', '-pubkey', '-subject', '-modulus', '-verify', '-new', '-nodes', '-x509'},
+    'xcodebuild': {'-list', '-showBuildSettings', '-showdestinations', '-version', '-quiet', '-verbose', '-help'},
+    'find': {'-H', '-L', '-P', '-E', '-X', '-d', '-s', '-x', '-empty'},
+}
+PATH_TOOLS = {'ls', 'cat', 'wc', 'head', 'tail', 'cp', 'mv', 'rm', 'du', 'df', 'find', 'stat',
+              'mdls', 'plutil', 'ditto', 'afinfo', 'git status'}
 
 
 def voting_key(command):
     """Conservative surface key; retain positional order and option/value bindings."""
     singleton = ('exact', command)
-    # shlex removes quotes: refuse syntax whose expansion depends on them, and shell plumbing.
-    if (re.search(r"'[^']*[$`*?~][^']*'|\"[^\"]*[*?~][^\"]*\"", command) or
-            any(c in command for c in '`<>\\\n') or '$(' in command):
+    if '\n' in command or '$(' in command or '`' in command:
         return singleton
     try:
         segments = _segments(command)
         lexer = shlex.shlex(command, posix=True, punctuation_chars=';&|')
         lexer.whitespace_split = True
         tokens = list(lexer)
-        if (any(token and set(token) <= set(';&|') and token != '|' for token in tokens) or
-                tokens.count('|') != len(segments) - 1):
+        raw_lexer = shlex.shlex(command, posix=False, punctuation_chars=';&|')
+        raw_lexer.whitespace_split = True
+        raw_tokens = list(raw_lexer)
+        separators = tuple(t for t in tokens if t in ('|', '|&', '&&', '||', ';', '&'))
+        if len(tokens) != len(raw_tokens) or len(separators) != len(segments) - 1:
             return singleton
+        profiles, current = [], []
+        for value, raw in zip(tokens, raw_tokens):
+            if shlex.split(raw) != [value]:
+                return singleton
+            if value in ('|', '|&', '&&', '||', ';', '&'):
+                if raw != value:
+                    return singleton
+                profiles.append(current)
+                current = []
+                continue
+            quote, expanded = '', []
+            for char in raw:
+                if char in ('"', "'") and (not quote or quote == char):
+                    quote = char if not quote else ''
+                elif char == '\\' and quote != "'":
+                    return singleton  # escaped shell syntax requires more than shlex's word values
+                elif quote != "'" and (char == '$' or not quote and char in '*?~[{}()^#!'):
+                    expanded.append(char + quote)
+            profile = tuple(expanded)
+            if (value.startswith('~/') and raw.startswith('~/') or
+                    value.startswith('$HOME/') and profile in (('$',), ('$"',))):
+                profile = ('home',)
+            current.append(profile)
+        profiles.append(current)
     except ValueError:
         return singleton
     stages = []
-    for segment in segments:
+    for segment, profile in zip(segments, profiles):
         tool, *args = segment
-        if tool in WRAPPERS or '/' in tool or '=' in tool:
+        if tool in WRAPPERS | {'for', 'do', 'done', 'if', 'then', 'else', 'fi', 'case', 'esac',
+                               'while', 'until', 'select', 'function'} or '=' in tool:
             return singleton
         if tool in SUBCOMMANDS and args and not args[0].startswith('-'):
             tool += ' ' + args.pop(0)
-        flags, operands, bindings = [], [], []
+            profile.pop(1)
+        if profile[0]:
+            return singleton
+        profile = profile[1:]
+        flags, operands, positional, bindings, expansions = [], [], [], [], []
+        ps_width = 0
         i = 0
         while i < len(args):
             arg = args[i]
@@ -175,38 +244,78 @@ def voting_key(command):
                 elif eq:
                     bindings.append((option, value))
                     operands.append(value)
+                else:
+                    bindings.append((str(i), option))
+                if profile[i]:
+                    expansions.append((arg, profile[i]))
             elif arg.startswith('-') and arg != '-':
+                if not _flags(tool, [arg]):
+                    return singleton
                 flags.append(arg)
-                if arg in VALUE_FLAGS.get(tool, set()):
+                valued = set(_flags(tool, [arg])) & VALUE_FLAGS.get(tool, set())
+                if tool == 'ps':
+                    ps_width += arg[1:].count('w')
+                if arg in VALUE_FLAGS.get(tool, set()) or (len(valued) == 1 and
+                        tool in SHORT_OPTION_TOOLS and arg.endswith(next(iter(valued))[1:])):
                     if i + 1 == len(args):
                         return singleton
                     i += 1
-                    bindings.append((arg, args[i]))
-                    operands.append(args[i])
-                elif tool not in VALUE_FLAGS:
+                    value = args[i]
+                    if arg in ('-onlyin', '-C'):
+                        if value.startswith('$HOME/') and profile[i] == ('home',):
+                            value = '~/' + value[6:]
+                        value = value.removeprefix('./')
+                        if len(value) > 1 and value.endswith('/'):
+                            value = value[:-1]
+                    bindings.append((next(iter(valued)), value))
+                    operands.append(value)
+                    if profile[i]:
+                        expansions.append((value, profile[i]))
+                elif (not set(_flags(tool, [arg])) <= NO_VALUE_FLAGS.get(tool, set()) and
+                      not (tool == 'hdiutil attach' and arg in ('-nobrowse', '-noautoopen'))):
                     # Unknown option arity/order: keep its exact position rather than guess.
                     bindings.append((str(i), arg))
-                elif len(arg) > 2 and any('-' + c in VALUE_FLAGS[tool] for c in arg[1:]):
+                elif len(arg) > 2 and any('-' + c in VALUE_FLAGS.get(tool, set()) for c in arg[1:]):
                     return singleton
             else:
                 value = arg
-                if tool not in PROGRAM_TOOLS | TRIVIAL:
-                    if value.startswith('$HOME/'):
+                if tool in PATH_TOOLS or tool == '/usr/bin/time' and not positional:
+                    if value.startswith('$HOME/') and profile[i] == ('home',):
                         value = '~/' + value[6:]
                     value = value.removeprefix('./')
-                    if len(value) > 1 and value.endswith('/') and '://' not in value:
+                    if (tool not in ('cp', 'rsync', 'stat') and len(value) > 1 and
+                            value.endswith('/') and '://' not in value):
                         value = value[:-1]
                 operands.append(value)
+                positional.append(value)
+                if profile[i]:
+                    expansions.append((value, profile[i]))
             i += 1
         # Retain order too: a multiset alone would merge cp a b with cp b a.
         canonical_flags = _flags(tool, flags)
         conflicts = {'sort': {'-n', '-g', '-h', '-M', '-R', '-V'},
-                     'ls': {'-l', '-1', '-C', '-x', '-m'}, 'df': {'-h', '-H', '-k', '-m'}}
+                     'ls': {'-l', '-1', '-C', '-x', '-m'}, 'df': {'-h', '-H', '-k', '-m'},
+                     'cp': {'-f', '-i', '-n'}, 'mv': {'-f', '-i', '-n'},
+                     'ps': {'-m', '-r', '-v', '-f', '-j', '-l'},
+                     'head': {'-n', '-c'}, 'tail': {'-n', '-c'}}
         if len(set(canonical_flags) & conflicts.get(tool, set())) > 1:
             return singleton
+        if tool == 'cp' and len(set(canonical_flags) & {'-H', '-L', '-P'}) > 1:
+            return singleton
+        if tool == 'du' and (len(set(canonical_flags) & {'-g', '-h', '-k', '-m'}) > 1 or
+                             len(set(canonical_flags) & {'-H', '-L', '-P'}) > 1):
+            return singleton
+        if tool == 'find' and any(a in args for a in
+                ('-o', '-or', '-a', '-and', '!', '-not', '(', ')', '-exec', '-execdir',
+                 '-print', '-print0', '-prune', '-delete', '-ls', '-ok', '-okdir')):
+            return singleton
+        if len({option for option, _ in bindings}) != len(bindings):
+            return singleton  # repeated value options can be ordered or last-wins
+        if tool == 'iostat' and '-d' in canonical_flags and set(canonical_flags) & {'-C', '-U', '-T'}:
+            return singleton
         stages.append((tool, canonical_flags, tuple(sorted(operands)),
-                       tuple(operands), tuple(sorted(bindings))))
-    return ('stages', tuple(stages)) if stages else singleton
+                       tuple(positional), tuple(sorted(bindings)), tuple(sorted(expansions)), ps_width))
+    return ('stages', tuple(stages), separators) if stages else singleton
 
 
 def command_vote(valid, mode):
@@ -302,16 +411,22 @@ def read_quarantine(path, known):
 
 
 def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_path, review_path,
-          quarantine_path=Path('data/distill/quarantine_ids.txt')):
+          quarantine_path=Path('data/distill/quarantine_ids.txt'), vote='exact'):
     if platform.system() != 'Darwin':
         raise RuntimeError('host-grounded verification must run on macOS')
     from whatisit import config, safety
 
-    paths = (output_path, report_path, review_path)
-    if any(path.exists() for path in paths):
+    if vote not in ('exact', 'equivalence'):
+        raise ValueError('unknown vote mode')
+    provenance_path = output_path.with_suffix('.votes.jsonl')
+    conflicts_path = output_path.with_suffix('.conflicts.jsonl')
+    base_manifest_path = output_path.with_suffix('.manifest.json')
+    paths = (output_path, report_path, review_path) + ((provenance_path, conflicts_path, base_manifest_path) if vote == 'equivalence' else ())
+    if any(path.exists() for path in paths) or vote == 'equivalence' and output_path.parent.exists():
         raise FileExistsError('output already exists; choose fresh paths')
     requests, raw, manifest = check_inputs(requests_path, raw_path, manifest_path)
     labels, decisions, abstain_reasons, dropped = [], Counter(), Counter(), []
+    provenance, conflicts = [], []
     request_by_id = {r['id']: r for r in requests}
     agreement, rejects = Counter(), Counter()
     candidates = rejected_candidates = 0
@@ -356,11 +471,20 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
                 rejected_candidates += 1
                 continue
             valid[command] += 1
-        best = max(valid.values(), default=0)
+        target, best, strings = command_vote(valid, vote)
         agreement[best] += 1
         if best >= 3:
-            target = min((cmd for cmd, n in valid.items() if n == best), key=lambda cmd: (len(cmd), cmd))
+            if (vote == 'equivalence' and max(valid.values()) < 3 and
+                    request_by_id[record['id']]['kind'] == 'abstain'):
+                decisions['dropped_author_abstain_command_majority'] += 1
+                dropped.append((record['id'], 'author_abstain_command_majority', best))
+                conflicts.append({'id': record['id'], 'request': record['request'],
+                                  'cluster_votes': best, 'strings': strings})
+                continue
             decision = 'kept'
+            if vote == 'equivalence' and max(valid.values()) < 3:
+                provenance.append({'id': record['id'], 'vote_mode': vote,
+                                   'cluster_votes': best, 'strings': strings})
         elif nulls >= 3 or request_by_id[record['id']]['kind'] == 'abstain':
             target = ''
             decision = 'abstain'
@@ -384,6 +508,9 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
         if row['id'] in quarantined:
             decisions['kept' if row['messages'][-1]['content'] else 'abstain'] -= 1
     labels = [r for r in labels if r['id'] not in quarantined]
+    provenance = [r for r in provenance if r['id'] not in quarantined]
+    if vote == 'equivalence':
+        decisions['recovered'] = len(provenance)
     commands = [r for r in labels if r['messages'][-1]['content']]
     sample = random.Random(7).sample(commands, min(30, len(commands)))
     drop_details = ''.join(f'- {rid}: {reason} (maximum agreement {best})\n'
@@ -430,9 +557,27 @@ Human precision review: **pending**. {len(sample)} rows were saved to `{review_p
     for path in paths:
         path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(''.join(json.dumps(row, ensure_ascii=False) + '\n' for row in labels))
-    review_path.write_text(''.join(json.dumps({**row, 'human_correct': None, 'review_notes': ''},
+    review_path.write_text(''.join(json.dumps({**row, 'model_correct' if vote == 'equivalence' else 'human_correct': None, 'review_notes': ''},
                                                ensure_ascii=False) + '\n' for row in sample))
     report_path.write_text(report)
+    if vote == 'equivalence':
+        provenance_path.write_text(''.join(json.dumps(r, ensure_ascii=False, sort_keys=True) + '\n'
+                                          for r in provenance))
+        conflicts_path.write_text(''.join(json.dumps(r, ensure_ascii=False, sort_keys=True) + '\n'
+                                         for r in conflicts))
+        report_path.write_text(report.replace('Human precision review:', 'Model review:')
+                               .replace('blank human verdicts', 'blank model verdicts')
+                               .replace(str(review_path), review_path.name) +
+                               f'\nVote mode: {vote}; recovered command rows after quarantine: {len(provenance)}.\n')
+        base_manifest = {'vote_mode': vote, 'decisions': dict(sorted(decisions.items())),
+                         'inputs_sha256': {name: hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+                                           for name, path in [('requests', requests_path), ('raw', raw_path),
+                                                              ('teacher_manifest', manifest_path),
+                                                              ('quarantine', quarantine_path),
+                                                              ('builder', Path(__file__))]},
+                         'outputs_sha256': {path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+                                            for path in paths if path != base_manifest_path}}
+        base_manifest_path.write_text(json.dumps(base_manifest, sort_keys=True, indent=2) + '\n')
     return decisions
 
 
@@ -448,9 +593,10 @@ def main():
     for flag, default in defaults.items():
         parser.add_argument('--' + flag, default=Path(default), type=Path)
     parser.add_argument('--quarantine', default=Path('data/distill/quarantine_ids.txt'), type=Path)
+    parser.add_argument('--vote', choices=('exact', 'equivalence'), default='exact')
     args = parser.parse_args()
     print(build(args.requests, args.raw, args.manifest, args.eval_dir,
-                args.out, args.report, args.review_sample, args.quarantine))
+                args.out, args.report, args.review_sample, args.quarantine, args.vote))
 
 
 if __name__ == '__main__':
