@@ -124,6 +124,106 @@ def normalized(command):
     return tuple(part for part in parts if part[2] or len(parts) == 1)
 
 
+VALUE_FLAGS = {'head': {'-n', '-c'}, 'tail': {'-n', '-c'},
+               'grep': {'-e', '-f', '-m', '-A', '-B', '-C'},
+               'sort': {'-k', '-t', '-o', '-T'}, 'du': {'-d'},
+               'ls': set(), 'cat': set(), 'wc': set(), 'df': set()}
+LONG_VALUES = {'--color', '--max-count', '--regexp', '--file', '--output', '--format'}
+
+
+def voting_key(command):
+    """Conservative surface key; retain positional order and option/value bindings."""
+    singleton = ('exact', command)
+    # shlex removes quotes: refuse syntax whose expansion depends on them, and shell plumbing.
+    if (re.search(r"'[^']*[$`*?~][^']*'|\"[^\"]*[*?~][^\"]*\"", command) or
+            any(c in command for c in '`<>\\\n') or '$(' in command):
+        return singleton
+    try:
+        segments = _segments(command)
+        lexer = shlex.shlex(command, posix=True, punctuation_chars=';&|')
+        lexer.whitespace_split = True
+        tokens = list(lexer)
+        if (any(token and set(token) <= set(';&|') and token != '|' for token in tokens) or
+                tokens.count('|') != len(segments) - 1):
+            return singleton
+    except ValueError:
+        return singleton
+    stages = []
+    for segment in segments:
+        tool, *args = segment
+        if tool in WRAPPERS or '/' in tool or '=' in tool:
+            return singleton
+        if tool in SUBCOMMANDS and args and not args[0].startswith('-'):
+            tool += ' ' + args.pop(0)
+        flags, operands, bindings = [], [], []
+        i = 0
+        while i < len(args):
+            arg = args[i]
+            if arg == '--':
+                return singleton
+            if arg.startswith('--'):
+                option, eq, value = arg.partition('=')
+                flags.append(option)
+                if option in LONG_VALUES:
+                    if not eq:
+                        if i + 1 == len(args) or args[i + 1].startswith('-'):
+                            return singleton
+                        i += 1
+                        value = args[i]
+                    bindings.append((option, value))
+                    operands.append(value)
+                elif eq:
+                    bindings.append((option, value))
+                    operands.append(value)
+            elif arg.startswith('-') and arg != '-':
+                flags.append(arg)
+                if arg in VALUE_FLAGS.get(tool, set()):
+                    if i + 1 == len(args):
+                        return singleton
+                    i += 1
+                    bindings.append((arg, args[i]))
+                    operands.append(args[i])
+                elif tool not in VALUE_FLAGS:
+                    # Unknown option arity/order: keep its exact position rather than guess.
+                    bindings.append((str(i), arg))
+                elif len(arg) > 2 and any('-' + c in VALUE_FLAGS[tool] for c in arg[1:]):
+                    return singleton
+            else:
+                value = arg
+                if tool not in PROGRAM_TOOLS | TRIVIAL:
+                    if value.startswith('$HOME/'):
+                        value = '~/' + value[6:]
+                    value = value.removeprefix('./')
+                    if len(value) > 1 and value.endswith('/') and '://' not in value:
+                        value = value[:-1]
+                operands.append(value)
+            i += 1
+        # Retain order too: a multiset alone would merge cp a b with cp b a.
+        canonical_flags = _flags(tool, flags)
+        conflicts = {'sort': {'-n', '-g', '-h', '-M', '-R', '-V'},
+                     'ls': {'-l', '-1', '-C', '-x', '-m'}, 'df': {'-h', '-H', '-k', '-m'}}
+        if len(set(canonical_flags) & conflicts.get(tool, set())) > 1:
+            return singleton
+        stages.append((tool, canonical_flags, tuple(sorted(operands)),
+                       tuple(operands), tuple(sorted(bindings))))
+    return ('stages', tuple(stages)) if stages else singleton
+
+
+def command_vote(valid, mode):
+    """Return the representative, winning count and exact strings (verified samples only)."""
+    clusters = {}
+    for command, count in valid.items():
+        key = voting_key(command) if mode == 'equivalence' else command
+        clusters.setdefault(key, Counter())[command] = count
+    if not clusters:
+        return None, 0, []
+    cluster = max(clusters.values(), key=lambda c: sum(c.values()))
+    size = sum(cluster.values())
+    exact = [cmd for cmd, n in valid.items() if n >= 3]
+    target = min(exact or cluster, key=lambda cmd: (-valid[cmd], len(cmd), cmd)) if size >= 3 else None
+    return target, size, sorted(cluster)
+
+
 def check_inputs(requests_path, raw_path, manifest_path):
     requests = read_jsonl(requests_path)
     raw = read_jsonl(raw_path)
