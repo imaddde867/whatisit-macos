@@ -1,2 +1,8 @@
 # One id per line; reason after #.
 r01612  # ps -o pgid: shell pgid is not the foreground group; tpgid is (both model reviewers, Opus 5.5 and Sonnet 5.5)
+r01798  # zero-byte regular files in a directory: same intent as held-out zero-length-files case (target swapped)
+r02351  # clipboard character count: twin of the held-out clipboard word count (wc -m vs wc -w)
+r02459  # traceroute to a host: same intent as the held-out traceroute case (host differs)
+r02269  # nc -z TCP port reachability: same intent as the held-out port-reachability case
+r00652  # iconv legacy encoding to UTF-8 into a new file: same intent as the held-out Latin-1 case
+r02108  # say -f file: same intent as the held-out read-file-aloud case (voice flag differs)
