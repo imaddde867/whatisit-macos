@@ -51,7 +51,7 @@ class VotingKeyTests(unittest.TestCase):
             ('ls a', 'cat a'), ('ls a', 'ls a | sort'),
             ('ls | sort', 'ls | head'), ('ls a && cat b', 'ls a; cat b'),
             ('cp a b', 'cp b a'), ('head -n 5 -c 10 a', 'head -n 10 -c 5 a'),
-            ('cat a a', 'cat a'), ('cat -- -x', 'cat -x'),
+            ('cat =ls', "cat '=ls'"), ('cat a a', 'cat a'), ('cat -- -x', 'cat -x'),
             ('cat a > x', 'cat a > y'), ('sudo ls', 'ls'),
             ('cat "$HOME/a"', "cat '$HOME/a'"),
             ('ls "*.txt"', 'ls *.txt'), ('echo "~"', 'echo ~'),
