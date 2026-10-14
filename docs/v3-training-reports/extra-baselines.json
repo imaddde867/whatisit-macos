@@ -1,0 +1,92 @@
+{
+  "s42Q5_K_M": {
+    "correct": {
+      "dev": 28,
+      "everyday": 52
+    },
+    "counts": {
+      "abstain-missed": 3,
+      "abstain-ok": 9,
+      "pass": 71,
+      "rejected": 17,
+      "wrong": 41
+    },
+    "inputs_sha256": {
+      "s42Q5_K_M-dev.json": "7803ebc79af4a8f70522b6f62c2128d8ca93b71de59476672b22b65b454dc3f0",
+      "s42Q5_K_M-everyday.json": "2b595371cbec5666af0ce4b9f905b51fccf4504efebe0f65672a3e67e6b8cfff"
+    },
+    "pooled": 80
+  },
+  "s42Q6_K": {
+    "correct": {
+      "dev": 28,
+      "everyday": 54
+    },
+    "counts": {
+      "abstain-missed": 2,
+      "abstain-ok": 10,
+      "pass": 72,
+      "rejected": 18,
+      "wrong": 39
+    },
+    "inputs_sha256": {
+      "s42Q6_K-dev.json": "2a0bc49cebba0767b261007d93c80c7cf5b550abd95633dd20eb368dbad2d2f5",
+      "s42Q6_K-everyday.json": "fb11d78eab277cb183803022cceafd4ecfefdf7b9748b05ed8e2f6217441ad26"
+    },
+    "pooled": 82
+  },
+  "s42Q8_0": {
+    "correct": {
+      "dev": 27,
+      "everyday": 54
+    },
+    "counts": {
+      "abstain-missed": 2,
+      "abstain-ok": 10,
+      "pass": 71,
+      "rejected": 16,
+      "wrong": 42
+    },
+    "inputs_sha256": {
+      "s42Q8_0-dev.json": "e04d0ec8c5b8c9d5df28933d9ef74188f0a7542bc5ed4b0247a86ff0f2523a71",
+      "s42Q8_0-everyday.json": "736089d6bbbb56ddf7807270ad7ebac3c21f43ec2eff977c67209afc99891c80"
+    },
+    "pooled": 81
+  },
+  "s42f16": {
+    "correct": {
+      "dev": 27,
+      "everyday": 54
+    },
+    "counts": {
+      "abstain-missed": 2,
+      "abstain-ok": 10,
+      "pass": 71,
+      "rejected": 16,
+      "wrong": 42
+    },
+    "inputs_sha256": {
+      "s42f16-dev.json": "e04d0ec8c5b8c9d5df28933d9ef74188f0a7542bc5ed4b0247a86ff0f2523a71",
+      "s42f16-everyday.json": "736089d6bbbb56ddf7807270ad7ebac3c21f43ec2eff977c67209afc99891c80"
+    },
+    "pooled": 81
+  },
+  "zerof16": {
+    "correct": {
+      "dev": 26,
+      "everyday": 42
+    },
+    "counts": {
+      "abstain-missed": 4,
+      "abstain-ok": 8,
+      "pass": 60,
+      "rejected": 30,
+      "wrong": 39
+    },
+    "inputs_sha256": {
+      "zerof16-dev.json": "02ecf99fc4c7591c2a3d2671d48d6d9e5f1ee8399095c7c891b9e42c719525ce",
+      "zerof16-everyday.json": "ec4ce7287308195a314c6e59d57cbfcd850563647cd57c5beb5fe9f1eb7443e1"
+    },
+    "pooled": 68
+  }
+}
