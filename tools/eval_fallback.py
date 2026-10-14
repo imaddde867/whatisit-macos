@@ -28,7 +28,7 @@ def main() -> int:
         from whatisit import config
         config.SYSTEM_PROMPT = Path(os.environ['EVAL_SYSTEM_PROMPT_FILE']).read_text().strip()
     counts = {'pass': 0, 'wrong': 0, 'rejected': 0, 'abstain-ok': 0, 'abstain-missed': 0}
-    times, outcomes = [], {}
+    times, outcomes, details = [], {}, {}
     for case in cases:
         start = time.perf_counter()
         answer = local_recovery_worker.suggest({'request': case['request'], 'path': None}, harness=harness)
@@ -43,6 +43,17 @@ def main() -> int:
             label = 'pass' if any(re.search(p, command) for p in patterns) else 'wrong'
         counts[label] += 1
         outcomes[case['id']] = label
+        reason = answer['reason']
+        kind = 'other'
+        if command is None:
+            if reason == 'Local generation returned no complete command.':
+                kind = 'empty_output'
+            elif reason.startswith('Generated command is not valid on macOS: '):
+                kind = 'lint'
+            elif reason.endswith('flagged as dangerous.'):
+                kind = 'danger'
+        details[case['id']] = {'label': label, 'command': command, 'reason': reason,
+                               'no_command_kind': kind}
         if label not in ('pass', 'abstain-ok') and '-q' not in sys.argv:
             print(f"{label:15} {case['id']} {case['request']}\n{'':16}{command or answer['reason']}"
                   f"\n{'':16}ref: {case['reference']}")
@@ -50,6 +61,7 @@ def main() -> int:
     print(f'\n{split}/{harness}: ' + '  '.join(f'{k} {v}' for k, v in counts.items()) +
           f'  | correct {counts["pass"] + counts["abstain-ok"]}/{total}  p50 {statistics.median(times):.2f}s')
     Path(f'/tmp/eval-{split}-{harness}.json').write_text(json.dumps(outcomes))  # for diffing variants
+    Path(f'/tmp/eval-{split}-{harness}-detail.json').write_text(json.dumps(details))
     return 0
 
 
