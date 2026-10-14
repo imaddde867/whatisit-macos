@@ -1,0 +1,5 @@
+{
+  "method": "rsync --copy-dest, --no-whole-file; final models require original GPU hashes",
+  "preserved_partial_q6": true,
+  "read_only_q8_basis_sha256": "1a86b961b52e78dd0506313e53872080cf3d11bafc7bb57c667467de919c3ce9"
+}

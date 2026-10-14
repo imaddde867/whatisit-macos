@@ -30,6 +30,9 @@ class ReproductionTests(unittest.TestCase):
                         'outputs_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
                                           for p in frozen.iterdir()}, 'rows': 60}
             (frozen / 'manifest.json').write_text(json.dumps(manifest))
+            (frozen / 'SHA256SUMS').write_text(''.join(
+                f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n'
+                for p in sorted(frozen.iterdir()) if p.name != 'SHA256SUMS'))
             (fresh / 'manifest.json').write_text(json.dumps({**manifest,
                 'review': 'model review pending',
                 'inputs_sha256': {'raw': 'pinned', 'builder': 'current'}}))
@@ -41,8 +44,16 @@ class ReproductionTests(unittest.TestCase):
             restore_review_artifacts(fresh, frozen)
             self.assertEqual({p.name: p.read_bytes() for p in fresh.iterdir()},
                              {p.name: p.read_bytes() for p in frozen.iterdir()})
+            manifest['review'] = 'tampered gate verdict'
+            (frozen / 'manifest.json').write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(ValueError, 'checksum.*manifest.json'):
+                restore_review_artifacts(fresh, frozen)
+            manifest['review'] = 'fixed model review'
             manifest['outputs_sha256']['../outside'] = 'bad'
             (frozen / 'manifest.json').write_text(json.dumps(manifest))
+            (frozen / 'SHA256SUMS').write_text(''.join(
+                f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n'
+                for p in sorted(frozen.iterdir()) if p.name != 'SHA256SUMS'))
             with self.assertRaisesRegex(ValueError, 'artifact name'):
                 restore_review_artifacts(fresh, frozen)
 

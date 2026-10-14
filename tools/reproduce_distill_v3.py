@@ -13,6 +13,17 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def restore_review_artifacts(fresh, frozen):
+    checked = set()
+    for line in (frozen / 'SHA256SUMS').read_text().splitlines():
+        digest, name = line.split('  ', 1)
+        if Path(name).name != name or name in ('.', '..', 'SHA256SUMS') or name in checked:
+            raise ValueError('invalid frozen checksum artifact name')
+        path = frozen / name
+        if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            raise ValueError(f'frozen checksum differs: {name}')
+        checked.add(name)
+    if checked != {p.name for p in frozen.iterdir() if p.name != 'SHA256SUMS'}:
+        raise ValueError('frozen checksum file set differs')
     manifest = json.loads((frozen / 'manifest.json').read_text())
     for name, digest in manifest['outputs_sha256'].items():
         if Path(name).name != name or name in ('.', '..'):

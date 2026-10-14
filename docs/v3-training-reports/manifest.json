@@ -7,7 +7,7 @@
     "eval/everyday.jsonl": "0421cd79108532e54a34bc6c48e9415c72dae4668ebd5cabd2e5d6760c8aa364",
     "tools/build_distill_dataset.py": "3df2e9d9ce124e112398b5659316fd23b0b793460235b55e8d2a304523ade6c3",
     "tools/eval_fallback.py": "6ba97ecebf16184e885a3b04d4cf340f855f74cd52327831f24e7c112ded4884",
-    "tools/reproduce_distill_v3.py": "b1e6ce4babefbfb6368bfdcf3687ab42c4d60399b43b4623210df9685313999b",
+    "tools/reproduce_distill_v3.py": "ff0ac1816b1a18951a5362b7c82ac938793131e850beb45eb4cfa88018cb7df8",
     "tools/train_distill_cuda.py": "af58e8a460fd0d01d5b3a7afbb08a8c6d08ab8513c1c7cfce9309d00d74b8623"
   },
   "outputs_sha256": {
@@ -15,8 +15,9 @@
     "analyze.py": "6876c60926dfda07085f6412b27724669b732bcc371df619f94481f5eb4f6174",
     "coverage.json": "158df95d91e3ead71f93dbc79fd2a18558495c894b525fad0c2ea97c43b95cd9",
     "coverage.py": "1f488318d9c0f3feef6819c02c8544b85c1e7547f10a575d69848cded7927e69",
+    "delta-transfer-basis.json": "fbbf39143c013fd88026786869555b01b67fdfbe8cf1d9b758f07e9581f53b45",
     "extra-baselines.json": "5fd98701aa7f138e54fd26c2c35fe7355de0b02aafc6d34c5ec92d7852415488",
-    "full-package-reproduction.json": "fd848876fb5cb331969b8a71a3efe7524870c31f92ef14a71679ff007d911ff2",
+    "full-package-reproduction.json": "2c6a07796d9f278720b799f93598ee2b70c677418bcbb7b83378260b280c20a7",
     "host-assets-sha256.txt": "bbaba03acfae5ecc81c390c4d5dfdfb5b8c5410eb1859e695b9c5a8b9fb36c9e",
     "host-preflight.json": "dc16292547ebd80fadf35facf1c453e3ac98307e24b32a3c413c2e66602890d2",
     "mac-environment.json": "c2139d1d1340b49f8f9d36c7a8e96642015a80ec4bc034376c89c1e32a3404de",
