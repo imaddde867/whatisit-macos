@@ -120,3 +120,17 @@ Deviations after the first diagnostic rebuild (no development scores inspected):
   Fresh full-corpus base/repair and full-package reproduction subsequently found
   zero changed labels, requests, audit records or clusters. Existing reviews and
   training runs remain valid; immutable original generator snapshots stay pinned.
+- A final man-page check found the preregistered positive `ls --color=always`
+  versus `ls --color always` test was wrong: optional long-option arguments need
+  `=`, and the second token can be a file/revision operand. Git pretty/format
+  options also have last-wins interactions. Required-value equivalence is now
+  limited to per-tool documented grep/curl options; unknown inline long options
+  retain their original positions. Four failing negative tests preceded the fix.
+  This is a semantic parsing correction, independent of development scores.
+- Relative-path normalization must preserve operand roles: `./-` is a file,
+  while `-` can mean stdin; a timed bare executable is searched on PATH; Git
+  pathspec magic is not a plain pathname. Pathname-producing stages feeding a
+  pipeline or redirected output retain their lexical path prefixes, since a
+  later pattern can observe them. Focused failing tests cover all four cases.
+  These guards preserve the frozen labels; full-package reproduction is checked
+  again before the result is finalized. No score-based rule selection occurs.
