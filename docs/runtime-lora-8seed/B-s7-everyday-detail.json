@@ -1,0 +1,482 @@
+{
+  "e001": {
+    "label": "pass",
+    "command": "mkdir -p ~/Desktop/project-backup",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e002": {
+    "label": "pass",
+    "command": "mkdir -p ~/Downloads && cp report.pdf ~/Downloads/",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e003": {
+    "label": "pass",
+    "command": "mv notes.txt notes-old.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e004": {
+    "label": "wrong",
+    "command": "ls -1Atrh ~/Downloads",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e005": {
+    "label": "pass",
+    "command": "find . -type f | wc -l",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e006": {
+    "label": "pass",
+    "command": "cp -R project project-copy",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e007": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: -exec: not installed on macOS",
+    "no_command_kind": "lint"
+  },
+  "e008": {
+    "label": "pass",
+    "command": "stat -f '%z' report.pdf",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e009": {
+    "label": "pass",
+    "command": "chmod -w notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e010": {
+    "label": "pass",
+    "command": "touch todo.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e011": {
+    "label": "wrong",
+    "command": "rm -f old.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e012": {
+    "label": "pass",
+    "command": "ls -S | head -n 5",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e013": {
+    "label": "pass",
+    "command": "open .",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e014": {
+    "label": "pass",
+    "command": "find -name '*.DS_Store' -exec rm {} +",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e015": {
+    "label": "pass",
+    "command": "head -n 20 app.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e016": {
+    "label": "pass",
+    "command": "tail -f app.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e017": {
+    "label": "pass",
+    "command": "wc -w notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e018": {
+    "label": "wrong",
+    "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e019": {
+    "label": "pass",
+    "command": "tail -n 5 notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e020": {
+    "label": "pass",
+    "command": "sort names.txt | uniq -c",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e021": {
+    "label": "pass",
+    "command": "awk -F',' '{print $2}' data.csv",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e022": {
+    "label": "pass",
+    "command": "grep -v 'draft' notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e023": {
+    "label": "pass",
+    "command": "cat part1.txt part2.txt > merged.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e024": {
+    "label": "pass",
+    "command": "pbcopy < notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e025": {
+    "label": "pass",
+    "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e026": {
+    "label": "pass",
+    "command": "diff -u v1.txt v2.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e027": {
+    "label": "pass",
+    "command": "mdfind -onlyin ~/Documents 'kMDItemContentType == \"public.pdf\"'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e028": {
+    "label": "pass",
+    "command": "find ~ -type f -size +100M",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e029": {
+    "label": "wrong",
+    "command": "find . -type f -exec grep -l 'invoice' {} +",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e030": {
+    "label": "pass",
+    "command": "command -v node > /dev/null && echo yes || echo no",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e031": {
+    "label": "wrong",
+    "command": "find . -type f -newermt 'yesterday'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e032": {
+    "label": "pass",
+    "command": "mdfind -onlyin \"$HOME\" 'kMDItemFSName == \"budget.xlsx\"'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e033": {
+    "label": "pass",
+    "command": "find . -type f -name '*.py' -exec grep -n TODO {} +",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e034": {
+    "label": "wrong",
+    "command": "mdfind -onlyin /Applications 'kMDItemCFBundleName == \"Google Chrome\"'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e035": {
+    "label": "pass",
+    "command": "lsof -nP -iTCP:3000 -sTCP:LISTEN",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e036": {
+    "label": "pass",
+    "command": "lsof -nP -iTCP:8080 | awk 'NR>1 {print $2}' | xargs kill",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e037": {
+    "label": "wrong",
+    "command": "ps -eo rss,pid,user,comm | sort -nr | head -n 5",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e038": {
+    "label": "pass",
+    "command": "pgrep -x \"Google Chrome\"",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e039": {
+    "label": "wrong",
+    "command": "lsof -iTCP:80",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e040": {
+    "label": "pass",
+    "command": "nohup ./backup.sh &",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e041": {
+    "label": "pass",
+    "command": "ps -o %cpu= -p $(pgrep Finder)",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e042": {
+    "label": "pass",
+    "command": "ps -A | grep python",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e043": {
+    "label": "pass",
+    "command": "ifconfig en0 | grep inet | awk '{print $2}'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e044": {
+    "label": "wrong",
+    "command": "curl -s http://checkip.dyndns.org/",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e045": {
+    "label": "pass",
+    "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e046": {
+    "label": "wrong",
+    "command": "curl -O https://example.com/file.zip",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e047": {
+    "label": "wrong",
+    "command": "networksetup -getcurrentlocation",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e048": {
+    "label": "pass",
+    "command": "dig +short MX +noall +answer gmail.com",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e049": {
+    "label": "pass",
+    "command": "curl -sI https://example.com",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e050": {
+    "label": "pass",
+    "command": "lsof -nP -i -n | awk '{print $9}' | sort -u",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e051": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: du --max-depth: not in man page",
+    "no_command_kind": "lint"
+  },
+  "e052": {
+    "label": "pass",
+    "command": "du -hs project_folder",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e053": {
+    "label": "pass",
+    "command": "diskutil list",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e054": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: /dev/disk4: path does not exist on macOS",
+    "no_command_kind": "lint"
+  },
+  "e055": {
+    "label": "wrong",
+    "command": "hdiutil create -srcdir ~/project/ -dstfile ~/Desktop/project.dmg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e056": {
+    "label": "pass",
+    "command": "diskutil info /dev/disk0 | grep -i smart",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e057": {
+    "label": "pass",
+    "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e058": {
+    "label": "pass",
+    "command": "df -h /Volumes/BACKUP",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e059": {
+    "label": "pass",
+    "command": "sysctl -n hw.memsize",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e060": {
+    "label": "pass",
+    "command": "sysctl -n hw.ncpu",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e061": {
+    "label": "pass",
+    "command": "sysctl -n hw.model hw.machine",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e062": {
+    "label": "pass",
+    "command": "date +%Y-%m-%d",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e063": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: /usr/bin/tzselect: path does not exist on macOS",
+    "no_command_kind": "lint"
+  },
+  "e064": {
+    "label": "wrong",
+    "command": "date -v '+%u' -f \"%Y-%m-%d\" \"2024-03-15\"",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e065": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e066": {
+    "label": "pass",
+    "command": "say \"build finished\"",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e067": {
+    "label": "pass",
+    "command": "git log --oneline -5",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e068": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e069": {
+    "label": "pass",
+    "command": "git rev-parse --abbrev-ref HEAD",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e070": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e071": {
+    "label": "wrong",
+    "command": "git -C . diff HEAD:notes.txt | grep -v '^---$'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e072": {
+    "label": "wrong",
+    "command": "find . -type f -name '*.log' -exec chmod g-w {} +",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e073": {
+    "label": "pass",
+    "command": "tar -xzf backup.tar.gz",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e074": {
+    "label": "pass",
+    "command": "zip -r project.zip project/",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e075": {
+    "label": "wrong",
+    "command": "sips -s width 800 -s height 0 photo.jpg --out small.jpg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e076": {
+    "label": "pass",
+    "command": "screencapture -P shot.png",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "e077": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e078": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e079": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "e080": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  }
+}
