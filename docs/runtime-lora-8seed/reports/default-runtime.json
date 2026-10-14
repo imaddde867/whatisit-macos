@@ -1,0 +1,26 @@
+{
+  "name": "default",
+  "adapter": null,
+  "adapter_sha256": null,
+  "server_sha256": "d3bce60d45758268a90e0fca82ce5a22d5c35ecb92a06d1c544ed68ec2efa769",
+  "identities": [
+    {
+      "split": "dev",
+      "pid": 60409,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui"
+    },
+    {
+      "split": "everyday",
+      "pid": 61758,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui"
+    }
+  ],
+  "eval": {
+    "dev": "dev/lint: pass 20  wrong 21  rejected 12  abstain-ok 6  abstain-missed 2  | correct 26/61  p50 0.21s",
+    "everyday": "everyday/lint: pass 40  wrong 19  rejected 17  abstain-ok 2  abstain-missed 2  | correct 42/80  p50 0.24s"
+  },
+  "sampled_mean_rss_bytes": 1193713452.5935483,
+  "sampled_peak_rss_bytes": 1212973056,
+  "sample_count": 310,
+  "sampling_seconds": 0.1
+}

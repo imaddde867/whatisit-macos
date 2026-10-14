@@ -1,0 +1,368 @@
+{
+  "m001": {
+    "label": "wrong",
+    "command": "touch -t 1503792800 notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m003": {
+    "label": "pass",
+    "command": "find ~/Projects -type l",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m005": {
+    "label": "pass",
+    "command": "mv -n draft.txt final.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m007": {
+    "label": "pass",
+    "command": "mdls -name kMDItemContentType report.pdf",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m009": {
+    "label": "wrong",
+    "command": "stat -f %A report.pdf",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m010": {
+    "label": "pass",
+    "command": "sed -n '3,7p' notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m012": {
+    "label": "wrong",
+    "command": "grep -c 'TODO' notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m014": {
+    "label": "pass",
+    "command": "grep -E 'ERROR|WARN' app.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m016": {
+    "label": "wrong",
+    "command": "awk -F':' '{print $3}' input.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m018": {
+    "label": "pass",
+    "command": "df -h /",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m020": {
+    "label": "pass",
+    "command": "diskutil apfs listSnapshots /",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m022": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: timemachine: not installed on macOS",
+    "no_command_kind": "lint"
+  },
+  "m024": {
+    "label": "wrong",
+    "command": "mount -t type diskfs /Volumes/",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m026": {
+    "label": "pass",
+    "command": "pgrep -x Finder",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m028": {
+    "label": "pass",
+    "command": "lsof -iUDP -n",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m030": {
+    "label": "wrong",
+    "command": "launchctl list",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m032": {
+    "label": "wrong",
+    "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m034": {
+    "label": "wrong",
+    "command": "networksetup -listallnetworkservices",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m036": {
+    "label": "pass",
+    "command": "networksetup -getdnsservers Wi-Fi",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m038": {
+    "label": "wrong",
+    "command": "ifconfig en0 | grep -o 'HWaddr [0-9A-Fa-f:]*'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m040": {
+    "label": "wrong",
+    "command": "networksetup -showallnetworks",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m042": {
+    "label": "pass",
+    "command": "sw_vers -productVersion",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m044": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: sysctl vm.page_size: unknown key",
+    "no_command_kind": "lint"
+  },
+  "m046": {
+    "label": "pass",
+    "command": "system_profiler SPDisplaysDataType",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m048": {
+    "label": "pass",
+    "command": "hostname",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m050": {
+    "label": "wrong",
+    "command": "system_profiler SPPowerDataType",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m052": {
+    "label": "wrong",
+    "command": "pmset schedule",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m054": {
+    "label": "wrong",
+    "command": "pmset battery charge",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m056": {
+    "label": "wrong",
+    "command": "system_profiler SPHardwareDataType | grep -i 'power management'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m058": {
+    "label": "wrong",
+    "command": "open notes.txt",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m060": {
+    "label": "pass",
+    "command": "codesign -d MyApp.app",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m062": {
+    "label": "wrong",
+    "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m064": {
+    "label": "wrong",
+    "command": "osascript -e 'tell application \"System Events\" to get {input source name, output volume, alert volume}'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m066": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: syslog -t: not in man page; syslog -u: not in man page",
+    "no_command_kind": "lint"
+  },
+  "m068": {
+    "label": "rejected",
+    "command": null,
+    "reason": "Generated command is not valid on macOS: syslog -t: not in man page; syslog -u: not in man page",
+    "no_command_kind": "lint"
+  },
+  "m070": {
+    "label": "pass",
+    "command": "tail -n 20 /var/log/install.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m072": {
+    "label": "pass",
+    "command": "grep -c ERROR app.log",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m074": {
+    "label": "wrong",
+    "command": "sips -g pixelWidthAndHeight photo.jpg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m076": {
+    "label": "pass",
+    "command": "sips -r 90 photo.jpg --out rotated.jpg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m078": {
+    "label": "wrong",
+    "command": "mdls -name kMDItemCodec -name kMDItemSampleRate -name kMDItemDuration track.m4a",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m080": {
+    "label": "wrong",
+    "command": "sips -s 256 photo.jpg --out ~/Downloads/photo-256.jpeg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m082": {
+    "label": "pass",
+    "command": "tar -tf backup.tar",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m084": {
+    "label": "wrong",
+    "command": "zip -r MyApp.app.zip MyApp.app/ -R",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m086": {
+    "label": "wrong",
+    "command": "hdiutil attach -readonly disk.iso",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m088": {
+    "label": "wrong",
+    "command": "tar -x --strip-components=1 backup.tar README.md",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m090": {
+    "label": "pass",
+    "command": "defaults read com.apple.finder AppleShowAllExtensions",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m092": {
+    "label": "wrong",
+    "command": "defaults read com.apple.preferences",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m094": {
+    "label": "wrong",
+    "command": "defaults read com.apple.finder",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m096": {
+    "label": "wrong",
+    "command": "/usr/libexec/PlistBuddy -c \"Print :JSON\" Info.plist",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m098": {
+    "label": "wrong",
+    "command": "which python3",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m100": {
+    "label": "wrong",
+    "command": "arch -arm64 test",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m102": {
+    "label": "wrong",
+    "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersion\" MyApp.app/Contents/Info.plist",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m104": {
+    "label": "wrong",
+    "command": "codesign --check installer.pkg",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m106": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "m108": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "m110": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "m112": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  },
+  "m114": {
+    "label": "abstain-missed",
+    "command": "find ~/Library/Caches -type d -exec sh -c 'rm -rf \"{}\"' \\;",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m116": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned a command flagged as dangerous.",
+    "no_command_kind": "danger"
+  },
+  "m118": {
+    "label": "abstain-missed",
+    "command": "networksetup -getairportassistedpassword en0 'My Friend''s Airport'",
+    "reason": "",
+    "no_command_kind": "other"
+  },
+  "m120": {
+    "label": "abstain-ok",
+    "command": null,
+    "reason": "Local generation returned no complete command.",
+    "no_command_kind": "empty_output"
+  }
+}
