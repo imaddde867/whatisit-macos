@@ -1,0 +1,32 @@
+{
+  "s42-Q4_K_M": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q4_K_M.gguf",
+    "sha256": "0075cc8eef253e78d73e8147151cf21db62053fbe0058f07483cfb41dae44002",
+    "verified_after_copy": true
+  },
+  "s42-Q6_K": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q6_K.gguf",
+    "sha256": "ecc6004199fa8fbcd7907107d4f698e35aa5f74479f1afe8c3c6c650f8c0fafe",
+    "verified_after_copy": true
+  },
+  "s42-Q8_0": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q8_0.gguf",
+    "sha256": "6cc58dab48df4c9772072c39e108307c04a66b8401de99f6306ec2137280e5d1",
+    "verified_after_copy": true
+  },
+  "s43-Q4_K_M": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q4_K_M.gguf",
+    "sha256": "e2e331be42a3d48c100a329585f05e0aa8d89aa4a2d82c55dd90f482f3c37c7f",
+    "verified_after_copy": true
+  },
+  "s43-Q6_K": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q6_K.gguf",
+    "sha256": "470eeef67c0e870e80cfa70b8ea957d445e926b5f1b7f47de7a0629ede8ceaf4",
+    "verified_after_copy": true
+  },
+  "s43-Q8_0": {
+    "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q8_0.gguf",
+    "sha256": "f229c14fa7540016355c58532316fce314ac7c7efb69282a7f40aab75be9f31c",
+    "verified_after_copy": true
+  }
+}

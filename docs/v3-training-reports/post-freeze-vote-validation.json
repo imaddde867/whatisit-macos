@@ -1,8 +1,9 @@
 {
-  "active_builder_commit": "655f7d2",
+  "active_builder_commit": "88e99ac",
   "changed_rows": 0,
   "frozen_data_unchanged": true,
   "frozen_generator_commit": "91e1e2f",
+  "full_package_byte_identical": true,
   "manifest_difference": "builder source hash only; frozen artifact snapshots and their original manifest remain pinned",
   "matching_core_artifacts_sha256": {
     "audit.jsonl": "bde010f5eaec7ed883b661b81f952db1c105d4ee6da50bf115b70307229a9a4e",
@@ -13,5 +14,13 @@
   },
   "recovered_rows": 60,
   "synthetic_edge_case": "stock zsh EQUALS expansion",
+  "synthetic_edge_cases": [
+    "stock zsh EQUALS",
+    "optional/unknown long options",
+    "stdin marker",
+    "executable PATH lookup",
+    "Git pathspec magic",
+    "pathname output consumed downstream"
+  ],
   "training_runs_remain_valid": true
 }
