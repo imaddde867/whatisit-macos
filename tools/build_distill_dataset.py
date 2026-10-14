@@ -143,8 +143,7 @@ VALUE_FLAGS = {'head': {'-n', '-c'}, 'tail': {'-n', '-c'},
                              '-resultBundlePath'},
                'find': {'-maxdepth', '-mindepth', '-type', '-name', '-iname', '-path', '-ipath',
                         '-size', '-user', '-group', '-perm', '-mtime', '-mmin', '-newer'}}
-LONG_VALUES = {'--color', '--max-count', '--regexp', '--file', '--output', '--format',
-               '--pretty', '--since', '--until', '--date', '--author', '--exclude'}
+LONG_VALUES = {'grep': {'--max-count', '--regexp', '--file'}, 'curl': {'--output'}}
 NO_VALUE_FLAGS = {
     'head': set(), 'tail': {'-F', '-f', '-q', '-r'},
     'grep': {'-' + c for c in 'a b c E F G H h I i l L n o q R r s v w x'.split()},
@@ -222,7 +221,7 @@ def voting_key(command):
     except ValueError:
         return singleton
     stages = []
-    for segment, profile in zip(segments, profiles):
+    for stage_index, (segment, profile) in enumerate(zip(segments, profiles)):
         tool, *args = segment
         if tool in WRAPPERS | {'for', 'do', 'done', 'if', 'then', 'else', 'fi', 'case', 'esac',
                                'while', 'until', 'select', 'function'} or '=' in tool:
@@ -243,7 +242,7 @@ def voting_key(command):
             if arg.startswith('--'):
                 option, eq, value = arg.partition('=')
                 flags.append(option)
-                if option in LONG_VALUES:
+                if option in LONG_VALUES.get(tool, ()):
                     if not eq:
                         if i + 1 == len(args) or args[i + 1].startswith('-'):
                             return singleton
@@ -252,7 +251,7 @@ def voting_key(command):
                     bindings.append((option, value))
                     operands.append(value)
                 elif eq:
-                    bindings.append((option, value))
+                    bindings.append((str(i), arg))
                     operands.append(value)
                 else:
                     bindings.append((str(i), option))
@@ -294,7 +293,14 @@ def voting_key(command):
                     if value.startswith('$HOME/') and profile[i] and profile[i][0] == (0, 'home'):
                         value = '~/' + value[6:]
                     if value.startswith('./') and not value.startswith('.//'):
-                        value = value[2:] or '.'
+                        relative = value[2:] or '.'
+                        piped = stage_index < len(separators) and (
+                            separators[stage_index] in ('|', '|&') or
+                            any(re.match(r'^(?:\d*|&)>', token) for token in segment))
+                        if (relative != '-' and (tool != '/usr/bin/time' or '/' in relative) and
+                                (tool != 'git status' or _path_like(value)) and
+                                (not piped or tool == 'cat' and separators[stage_index] == '|')):
+                            value = relative
                 operands.append(value)
                 positional.append(value)
                 if profile[i]:
