@@ -1,6 +1,7 @@
 {
   "all_files_byte_identical": true,
   "command": "PYTHONPATH=src .venv/bin/python tools/reproduce_distill_v3.py <fresh-output-directory>",
+  "external_package_checksums_verified": true,
   "files": 26,
   "outputs_sha256": {
     "SHA256SUMS": "7b758f0c7e2280c08a56ab40896280da7de3e8d0d426fd9e6eba0ee4a3122b97",
