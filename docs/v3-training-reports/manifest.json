@@ -1,12 +1,25 @@
 {
   "data_sha256": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+  "inputs_sha256": {
+    "data/teacher/eval-ceiling/teacher-report.json": "c2a96fe495642fa99fcba7c9cbf04c18206419dd6f82c85b2d0a2d0944d94e12",
+    "docs/stage2-arm-labels.json": "8273c1ab7ecd16ec169d8937f963dcd681521e2c241e82092170193c8cec083d",
+    "eval/dev.jsonl": "82cfd23597ddbec788b2e5f8b5ce8d2293659a28e6a0156f2234f9f9372d8c74",
+    "eval/everyday.jsonl": "0421cd79108532e54a34bc6c48e9415c72dae4668ebd5cabd2e5d6760c8aa364",
+    "tools/build_distill_dataset.py": "3df2e9d9ce124e112398b5659316fd23b0b793460235b55e8d2a304523ade6c3",
+    "tools/eval_fallback.py": "6ba97ecebf16184e885a3b04d4cf340f855f74cd52327831f24e7c112ded4884",
+    "tools/reproduce_distill_v3.py": "b1e6ce4babefbfb6368bfdcf3687ab42c4d60399b43b4623210df9685313999b",
+    "tools/train_distill_cuda.py": "af58e8a460fd0d01d5b3a7afbb08a8c6d08ab8513c1c7cfce9309d00d74b8623"
+  },
   "outputs_sha256": {
     "adapter-zero-step-test.txt": "c3ff8039b0fe59453b4359d0f9c6b61a6d028230d8004c9db72909159622c36f",
     "analyze.py": "6876c60926dfda07085f6412b27724669b732bcc371df619f94481f5eb4f6174",
     "coverage.json": "158df95d91e3ead71f93dbc79fd2a18558495c894b525fad0c2ea97c43b95cd9",
     "coverage.py": "1f488318d9c0f3feef6819c02c8544b85c1e7547f10a575d69848cded7927e69",
+    "extra-baselines.json": "5fd98701aa7f138e54fd26c2c35fe7355de0b02aafc6d34c5ec92d7852415488",
+    "full-package-reproduction.json": "fd848876fb5cb331969b8a71a3efe7524870c31f92ef14a71679ff007d911ff2",
     "host-assets-sha256.txt": "bbaba03acfae5ecc81c390c4d5dfdfb5b8c5410eb1859e695b9c5a8b9fb36c9e",
     "host-preflight.json": "dc16292547ebd80fadf35facf1c453e3ac98307e24b32a3c413c2e66602890d2",
+    "mac-environment.json": "c2139d1d1340b49f8f9d36c7a8e96642015a80ec4bc034376c89c1e32a3404de",
     "post-freeze-vote-validation.json": "ec31d07d69e342e57b70abf74ec148f644c552395d5cd7729dd482ad73c2ee54",
     "run-arm.py": "930b02bedac5566ce8d1bc18a83e24480d98b563e80cbf4a9cc67a03ff23bffc",
     "screen-batch.py": "a35a88fe5f0f2a57c226edb35bbe40bf4addb5f01645c5eed2a86e52ec0efe4c",

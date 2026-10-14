@@ -38,7 +38,7 @@ Both reports verify train_rows == steps, direct equality of val_ids, and the
 registered data/source hashes. Before merge, each unmerged LoRA adapter was
 saved; every adapter file hash is in its training report. A real-GPU zero-step
 integration test verified adapter persistence and unchanged merged source weights.
-The Mac suite has 81 tests with that hardware-only test skipped locally; all
+The Mac suite has 83 tests with that hardware-only test skipped locally; all
 six trainer tests passed on the GPU host. Host chat_tokens preflight passed
 all 1,149 rows (maximum 243 tokens). No eval directory was copied to the host.
 
@@ -61,5 +61,16 @@ were therefore unchanged. See post-freeze-vote-validation.json.
 
 Default sanity check passes: all 141 per-case labels exactly reproduce the
 saved default arm with stock PATH. Dev 26/61, everyday 42/80, pooled 68/141.
+
+The complete 26-file frozen data package also reproduces byte-for-byte:
+
+```sh
+PYTHONPATH=src .venv/bin/python tools/reproduce_distill_v3.py /tmp/whatisit-v3-fresh-repro
+```
+
+This reruns the existing builders/gates and seeded sample, verifies all rebuilt
+labels/lineage/counts, then reuses immutable model judgments and man/scratch
+review evidence. It does not rerun model judgment. The command refuses an
+existing directory; `full-package-reproduction.json` records every matching hash.
 
 Development screening results pending transfer completion.

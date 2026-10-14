@@ -117,3 +117,6 @@ Deviations after the first diagnostic rebuild (no development scores inspected):
   unquoted `=` now uses exact keys. A failing negative test preceded the fix.
   The full corpus is rebuilt to verify whether this affects any frozen label;
   any label change requires repeating the data review and training.
+  Fresh full-corpus base/repair and full-package reproduction subsequently found
+  zero changed labels, requests, audit records or clusters. Existing reviews and
+  training runs remain valid; immutable original generator snapshots stay pinned.
