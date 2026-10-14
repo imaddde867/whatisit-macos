@@ -1,4 +1,5 @@
 {
+  "active_builder_sha256": "70537ed79b99a7a39669ca96bfeecda770cbbfbb102591bed12722d75161c512",
   "all_files_byte_identical": true,
   "command": "PYTHONPATH=src .venv/bin/python tools/reproduce_distill_v3.py <fresh-output-directory>",
   "external_package_checksums_verified": true,

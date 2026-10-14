@@ -1,0 +1,2985 @@
+{
+  "attribution_passed": false,
+  "corpus_coverage_results": {
+    "s42-Q4_K_M": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 9,
+        "v3_correct": 10
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 34,
+        "v3_correct": 35
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 27,
+        "v3_correct": 27
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    },
+    "s42-Q6_K": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 11
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 45,
+        "v3_correct": 43
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 28
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 1,
+        "v3_correct": 1
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    },
+    "s42-Q8_0": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 11
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 44,
+        "v3_correct": 42
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 28
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 1,
+        "v3_correct": 1
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    },
+    "s43-Q4_K_M": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 9,
+        "v3_correct": 9
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 34,
+        "v3_correct": 33
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 27,
+        "v3_correct": 27
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    },
+    "s43-Q6_K": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 12
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 45,
+        "v3_correct": 40
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 21
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 1,
+        "v3_correct": 0
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    },
+    "s43-Q8_0": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 12
+      },
+      "both": {
+        "cases": 61,
+        "default_correct": 33,
+        "v2_correct": 44,
+        "v3_correct": 39
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 20
+      },
+      "new_in_v3": {
+        "cases": 2,
+        "default_correct": 0,
+        "v2_correct": 1,
+        "v3_correct": 0
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      }
+    }
+  },
+  "coverage": {
+    "corpus_coverage": {
+      "counts": {
+        "abstention": 12,
+        "both": 61,
+        "neither": 65,
+        "new_in_v3": 2,
+        "trivial_reference": 1
+      },
+      "definition": "corpus rows; all non-trivial reference stages have an exact tool/subcommand + sorted flag-set signature in at least one training command; operands ignored for coverage only",
+      "new_v3_signatures": 21,
+      "per_case": {
+        "e001": "both",
+        "e002": "both",
+        "e003": "both",
+        "e004": "neither",
+        "e005": "both",
+        "e006": "both",
+        "e007": "both",
+        "e008": "both",
+        "e009": "both",
+        "e010": "both",
+        "e011": "both",
+        "e012": "neither",
+        "e013": "both",
+        "e014": "neither",
+        "e015": "both",
+        "e016": "neither",
+        "e017": "both",
+        "e018": "both",
+        "e019": "both",
+        "e020": "both",
+        "e021": "neither",
+        "e022": "neither",
+        "e023": "neither",
+        "e024": "both",
+        "e025": "both",
+        "e026": "neither",
+        "e027": "neither",
+        "e028": "both",
+        "e029": "neither",
+        "e030": "neither",
+        "e031": "neither",
+        "e032": "neither",
+        "e033": "neither",
+        "e034": "both",
+        "e035": "neither",
+        "e036": "neither",
+        "e037": "neither",
+        "e038": "both",
+        "e039": "neither",
+        "e040": "neither",
+        "e041": "neither",
+        "e042": "neither",
+        "e043": "both",
+        "e044": "neither",
+        "e045": "both",
+        "e046": "neither",
+        "e047": "neither",
+        "e048": "both",
+        "e049": "both",
+        "e050": "neither",
+        "e051": "neither",
+        "e052": "both",
+        "e053": "neither",
+        "e054": "neither",
+        "e055": "neither",
+        "e056": "both",
+        "e057": "neither",
+        "e058": "both",
+        "e059": "both",
+        "e060": "both",
+        "e061": "both",
+        "e062": "both",
+        "e063": "both",
+        "e064": "both",
+        "e065": "neither",
+        "e066": "both",
+        "e067": "neither",
+        "e068": "neither",
+        "e069": "neither",
+        "e070": "neither",
+        "e071": "neither",
+        "e072": "trivial_reference",
+        "e073": "neither",
+        "e074": "neither",
+        "e075": "neither",
+        "e076": "neither",
+        "e077": "abstention",
+        "e078": "abstention",
+        "e079": "abstention",
+        "e080": "abstention",
+        "m001": "both",
+        "m003": "both",
+        "m005": "neither",
+        "m007": "both",
+        "m009": "neither",
+        "m010": "both",
+        "m012": "neither",
+        "m014": "both",
+        "m016": "both",
+        "m018": "both",
+        "m020": "both",
+        "m022": "both",
+        "m024": "neither",
+        "m026": "neither",
+        "m028": "neither",
+        "m030": "neither",
+        "m032": "neither",
+        "m034": "neither",
+        "m036": "new_in_v3",
+        "m038": "both",
+        "m040": "neither",
+        "m042": "neither",
+        "m044": "both",
+        "m046": "both",
+        "m048": "both",
+        "m050": "both",
+        "m052": "both",
+        "m054": "neither",
+        "m056": "both",
+        "m058": "both",
+        "m060": "neither",
+        "m062": "both",
+        "m064": "both",
+        "m066": "neither",
+        "m068": "neither",
+        "m070": "both",
+        "m072": "both",
+        "m074": "both",
+        "m076": "neither",
+        "m078": "new_in_v3",
+        "m080": "neither",
+        "m082": "both",
+        "m084": "neither",
+        "m086": "neither",
+        "m088": "neither",
+        "m090": "both",
+        "m092": "neither",
+        "m094": "neither",
+        "m096": "both",
+        "m098": "neither",
+        "m100": "neither",
+        "m102": "both",
+        "m104": "neither",
+        "m106": "abstention",
+        "m108": "abstention",
+        "m110": "abstention",
+        "m112": "abstention",
+        "m114": "abstention",
+        "m116": "abstention",
+        "m118": "abstention",
+        "m120": "abstention"
+      },
+      "signature_counts": {
+        "v2": 432,
+        "v3": 452
+      }
+    },
+    "counts": {
+      "abstention": 12,
+      "both": 58,
+      "neither": 65,
+      "new_in_v3": 4,
+      "trivial_reference": 1,
+      "v2_only": 1
+    },
+    "definition": "training rows; all non-trivial reference stages have an exact tool/subcommand + sorted flag-set signature in at least one training command; operands ignored for coverage only",
+    "new_v3_signatures": 35,
+    "per_case": {
+      "e001": "both",
+      "e002": "both",
+      "e003": "both",
+      "e004": "neither",
+      "e005": "both",
+      "e006": "both",
+      "e007": "both",
+      "e008": "both",
+      "e009": "both",
+      "e010": "both",
+      "e011": "both",
+      "e012": "neither",
+      "e013": "both",
+      "e014": "neither",
+      "e015": "both",
+      "e016": "neither",
+      "e017": "v2_only",
+      "e018": "both",
+      "e019": "both",
+      "e020": "both",
+      "e021": "neither",
+      "e022": "neither",
+      "e023": "neither",
+      "e024": "both",
+      "e025": "both",
+      "e026": "neither",
+      "e027": "neither",
+      "e028": "both",
+      "e029": "neither",
+      "e030": "neither",
+      "e031": "neither",
+      "e032": "neither",
+      "e033": "neither",
+      "e034": "both",
+      "e035": "neither",
+      "e036": "neither",
+      "e037": "neither",
+      "e038": "both",
+      "e039": "neither",
+      "e040": "neither",
+      "e041": "neither",
+      "e042": "neither",
+      "e043": "both",
+      "e044": "neither",
+      "e045": "both",
+      "e046": "neither",
+      "e047": "neither",
+      "e048": "both",
+      "e049": "both",
+      "e050": "neither",
+      "e051": "neither",
+      "e052": "both",
+      "e053": "neither",
+      "e054": "neither",
+      "e055": "neither",
+      "e056": "both",
+      "e057": "neither",
+      "e058": "new_in_v3",
+      "e059": "both",
+      "e060": "both",
+      "e061": "both",
+      "e062": "both",
+      "e063": "both",
+      "e064": "both",
+      "e065": "neither",
+      "e066": "both",
+      "e067": "neither",
+      "e068": "neither",
+      "e069": "neither",
+      "e070": "neither",
+      "e071": "neither",
+      "e072": "trivial_reference",
+      "e073": "neither",
+      "e074": "neither",
+      "e075": "neither",
+      "e076": "neither",
+      "e077": "abstention",
+      "e078": "abstention",
+      "e079": "abstention",
+      "e080": "abstention",
+      "m001": "both",
+      "m003": "both",
+      "m005": "neither",
+      "m007": "both",
+      "m009": "neither",
+      "m010": "both",
+      "m012": "neither",
+      "m014": "both",
+      "m016": "both",
+      "m018": "new_in_v3",
+      "m020": "both",
+      "m022": "both",
+      "m024": "neither",
+      "m026": "neither",
+      "m028": "neither",
+      "m030": "neither",
+      "m032": "neither",
+      "m034": "neither",
+      "m036": "new_in_v3",
+      "m038": "both",
+      "m040": "neither",
+      "m042": "neither",
+      "m044": "both",
+      "m046": "both",
+      "m048": "both",
+      "m050": "both",
+      "m052": "both",
+      "m054": "neither",
+      "m056": "both",
+      "m058": "both",
+      "m060": "neither",
+      "m062": "both",
+      "m064": "both",
+      "m066": "neither",
+      "m068": "neither",
+      "m070": "both",
+      "m072": "both",
+      "m074": "both",
+      "m076": "neither",
+      "m078": "new_in_v3",
+      "m080": "neither",
+      "m082": "both",
+      "m084": "neither",
+      "m086": "neither",
+      "m088": "neither",
+      "m090": "both",
+      "m092": "neither",
+      "m094": "neither",
+      "m096": "both",
+      "m098": "neither",
+      "m100": "neither",
+      "m102": "both",
+      "m104": "neither",
+      "m106": "abstention",
+      "m108": "abstention",
+      "m110": "abstention",
+      "m112": "abstention",
+      "m114": "abstention",
+      "m116": "abstention",
+      "m118": "abstention",
+      "m120": "abstention"
+    },
+    "signature_counts": {
+      "v2": 415,
+      "v3": 433
+    }
+  },
+  "coverage_results": {
+    "s42-Q4_K_M": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 9,
+        "v3_correct": 10
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 31,
+        "v3_correct": 32
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 27,
+        "v3_correct": 27
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 2,
+        "v3_correct": 2
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    },
+    "s42-Q6_K": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 11
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 43,
+        "v3_correct": 40
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 28
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 2,
+        "v3_correct": 3
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    },
+    "s42-Q8_0": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 11
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 41,
+        "v3_correct": 39
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 28
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 3,
+        "v3_correct": 3
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    },
+    "s43-Q4_K_M": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 9,
+        "v3_correct": 9
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 31,
+        "v3_correct": 30
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 27,
+        "v3_correct": 27
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 2,
+        "v3_correct": 2
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    },
+    "s43-Q6_K": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 12
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 43,
+        "v3_correct": 37
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 21
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 2,
+        "v3_correct": 2
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    },
+    "s43-Q8_0": {
+      "abstention": {
+        "cases": 12,
+        "default_correct": 8,
+        "v2_correct": 10,
+        "v3_correct": 12
+      },
+      "both": {
+        "cases": 58,
+        "default_correct": 30,
+        "v2_correct": 41,
+        "v3_correct": 36
+      },
+      "neither": {
+        "cases": 65,
+        "default_correct": 27,
+        "v2_correct": 26,
+        "v3_correct": 20
+      },
+      "new_in_v3": {
+        "cases": 4,
+        "default_correct": 2,
+        "v2_correct": 3,
+        "v3_correct": 2
+      },
+      "trivial_reference": {
+        "cases": 1,
+        "default_correct": 0,
+        "v2_correct": 0,
+        "v3_correct": 0
+      },
+      "v2_only": {
+        "cases": 1,
+        "default_correct": 1,
+        "v2_correct": 1,
+        "v3_correct": 1
+      }
+    }
+  },
+  "flips": {
+    "s42-Q4_K_M": {
+      "default": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e002"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e006"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e051"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m094"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        }
+      ],
+      "v2": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e002"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e051"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        }
+      ]
+    },
+    "s42-Q6_K": {
+      "default": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e002"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e003"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e006"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e009"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e010"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e012"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e026"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e033"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e041"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e044"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e047"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e048"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e052"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e055"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e057"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e061"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e063"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e064"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e065"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e068"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e070"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e071"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e075"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m001"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m016"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m020"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m024"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m032"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m036"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m044"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m046"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m054"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m066"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m084"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m102"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        },
+        {
+          "after": "abstain-missed",
+          "before": "abstain-ok",
+          "id": "m118"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m120"
+        }
+      ],
+      "v2": [
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e011"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e041"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e051"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e052"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e056"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e058"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e061"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e066"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m044"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m068"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m100"
+        }
+      ]
+    },
+    "s42-Q8_0": {
+      "default": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e002"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e003"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e006"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e007"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e009"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e010"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e012"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e026"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e033"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e041"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e047"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e048"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e052"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e056"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e057"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e061"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e063"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e064"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e065"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e066"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e068"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e070"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e071"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e075"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m001"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m016"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m020"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m024"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m032"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m036"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m044"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m046"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m054"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m066"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m084"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m102"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        },
+        {
+          "after": "abstain-missed",
+          "before": "abstain-ok",
+          "id": "m118"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m120"
+        }
+      ],
+      "v2": [
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e007"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e011"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e018"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e041"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e044"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e051"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e055"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e061"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m044"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m068"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m100"
+        }
+      ]
+    },
+    "s43-Q4_K_M": {
+      "default": [
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m094"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        }
+      ],
+      "v2": [
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e006"
+        }
+      ]
+    },
+    "s43-Q6_K": {
+      "default": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e003"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e004"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e006"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e009"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e010"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e018"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e021"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e026"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e027"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e033"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e035"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e036"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e037"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e040"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e041"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e047"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e048"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e052"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e056"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e057"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e061"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e062"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e064"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e065"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e066"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e068"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e069"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e070"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e075"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m001"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m016"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m020"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m024"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m032"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m036"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m046"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m050"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m054"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m066"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m084"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m102"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m120"
+        }
+      ],
+      "v2": [
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e002"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e004"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e011"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e012"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e018"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e021"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e026"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e027"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e035"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e036"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e037"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e038"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e040"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e041"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e044"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e047"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e051"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e055"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e063"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e069"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e071"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m036"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m050"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m068"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m100"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m118"
+        }
+      ]
+    },
+    "s43-Q8_0": {
+      "default": [
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e003"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e006"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e007"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e009"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e010"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e018"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e021"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e024"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e026"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e027"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e033"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e035"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e036"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e038"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e039"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e040"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e041"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e042"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e047"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e048"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e052"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e056"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e057"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e061"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "e062"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e064"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e065"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e066"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e068"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e069"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e070"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e071"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e075"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e080"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m001"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m016"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m020"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m024"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m032"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m036"
+        },
+        {
+          "after": "pass",
+          "before": "wrong",
+          "id": "m046"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m050"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m054"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m062"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m068"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m078"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m084"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m088"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m102"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m104"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m112"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m120"
+        }
+      ],
+      "v2": [
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e002"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e007"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e011"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e012"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e021"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e024"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e026"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e027"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e029"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e031"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e035"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e036"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e038"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e039"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e040"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "e041"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e042"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e044"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e047"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e050"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e051"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "e052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "e055"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "e063"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "e069"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "e078"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m036"
+        },
+        {
+          "after": "rejected",
+          "before": "pass",
+          "id": "m050"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m052"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m056"
+        },
+        {
+          "after": "wrong",
+          "before": "pass",
+          "id": "m058"
+        },
+        {
+          "after": "wrong",
+          "before": "rejected",
+          "id": "m066"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m074"
+        },
+        {
+          "after": "pass",
+          "before": "rejected",
+          "id": "m076"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m100"
+        },
+        {
+          "after": "rejected",
+          "before": "wrong",
+          "id": "m104"
+        },
+        {
+          "after": "abstain-ok",
+          "before": "abstain-missed",
+          "id": "m118"
+        }
+      ]
+    }
+  },
+  "latency_p50_seconds_by_split": {
+    "default": {
+      "dev": 0.21,
+      "everyday": 0.24
+    },
+    "s42-Q4_K_M": {
+      "dev": 0.2,
+      "everyday": 0.2
+    },
+    "s42-Q6_K": {
+      "dev": 0.2,
+      "everyday": 0.21
+    },
+    "s42-Q8_0": {
+      "dev": 0.22,
+      "everyday": 0.24
+    },
+    "s43-Q4_K_M": {
+      "dev": 0.2,
+      "everyday": 0.2
+    },
+    "s43-Q6_K": {
+      "dev": 0.21,
+      "everyday": 0.2
+    },
+    "s43-Q8_0": {
+      "dev": 0.23,
+      "everyday": 0.21
+    }
+  },
+  "nominated_seed": 42,
+  "rss": {
+    "s42-Q4_K_M": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q4_K_M.gguf",
+        "sample_count": 115,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1212956672
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q4_K_M.gguf",
+        "sample_count": 154,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1218314240
+      }
+    },
+    "s42-Q6_K": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q6_K.gguf",
+        "sample_count": 105,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1497694208
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q6_K.gguf",
+        "sample_count": 147,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1499398144
+      }
+    },
+    "s42-Q8_0": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q8_0.gguf",
+        "sample_count": 116,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1873461248
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/merged-Q8_0.gguf",
+        "sample_count": 165,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1873313792
+      }
+    },
+    "s43-Q4_K_M": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q4_K_M.gguf",
+        "sample_count": 115,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1213054976
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q4_K_M.gguf",
+        "sample_count": 154,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1212989440
+      }
+    },
+    "s43-Q6_K": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q6_K.gguf",
+        "sample_count": 97,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1496809472
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q6_K.gguf",
+        "sample_count": 126,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1499545600
+      }
+    },
+    "s43-Q8_0": {
+      "dev": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q8_0.gguf",
+        "sample_count": 114,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1873559552
+      },
+      "everyday": {
+        "model": "/Users/imadeddine/.local/share/whatisit/finetune/v3/seed43/merged-Q8_0.gguf",
+        "sample_count": 133,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_rss_bytes": 1873477632
+      }
+    }
+  },
+  "rss_budget_bytes": 1245577216,
+  "screening": {
+    "Q4_K_M": {
+      "by_seed": {
+        "42": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": true,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        },
+        "43": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": true,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        }
+      },
+      "passed": true
+    },
+    "Q6_K": {
+      "by_seed": {
+        "42": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": false,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        },
+        "43": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": true,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        }
+      },
+      "passed": false
+    },
+    "Q8_0": {
+      "by_seed": {
+        "42": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": true,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        },
+        "43": {
+          "abstain_missed_does_not_increase": true,
+          "accepted_wrong_does_not_increase": true,
+          "neither_split_regresses": true,
+          "pooled_improves": true
+        }
+      },
+      "passed": true
+    }
+  },
+  "stats": {
+    "default": {
+      "abstain_missed": 4,
+      "accepted_wrong": 40,
+      "dev": 26,
+      "everyday": 42,
+      "pooled": 68,
+      "rejected": 29
+    },
+    "s42-Q4_K_M": {
+      "abstain_missed": 2,
+      "accepted_wrong": 38,
+      "dev": 27,
+      "everyday": 45,
+      "paired": {
+        "default": {
+          "losses": 0,
+          "wins": 4
+        },
+        "v2": {
+          "losses": 0,
+          "wins": 2
+        }
+      },
+      "pooled": 72,
+      "rejected": 29,
+      "teacher_fixes_lost_vs_same_precision_v2": [],
+      "teacher_fixes_new_vs_same_precision_v2": [],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e018",
+        "e066",
+        "e068",
+        "e070",
+        "m016",
+        "m054",
+        "m118"
+      ]
+    },
+    "s42-Q6_K": {
+      "abstain_missed": 1,
+      "accepted_wrong": 42,
+      "dev": 29,
+      "everyday": 54,
+      "paired": {
+        "default": {
+          "losses": 9,
+          "wins": 24
+        },
+        "v2": {
+          "losses": 6,
+          "wins": 7
+        }
+      },
+      "pooled": 83,
+      "rejected": 15,
+      "teacher_fixes_lost_vs_same_precision_v2": [],
+      "teacher_fixes_new_vs_same_precision_v2": [
+        "e066",
+        "e078",
+        "m074",
+        "m076"
+      ],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e018",
+        "e066",
+        "e078",
+        "m052",
+        "m074",
+        "m076"
+      ]
+    },
+    "s42-Q8_0": {
+      "abstain_missed": 1,
+      "accepted_wrong": 39,
+      "dev": 29,
+      "everyday": 53,
+      "paired": {
+        "default": {
+          "losses": 10,
+          "wins": 24
+        },
+        "v2": {
+          "losses": 6,
+          "wins": 7
+        }
+      },
+      "pooled": 82,
+      "rejected": 19,
+      "teacher_fixes_lost_vs_same_precision_v2": [],
+      "teacher_fixes_new_vs_same_precision_v2": [
+        "e018",
+        "e078",
+        "m052",
+        "m074",
+        "m076"
+      ],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e018",
+        "e078",
+        "m052",
+        "m074",
+        "m076"
+      ]
+    },
+    "s43-Q4_K_M": {
+      "abstain_missed": 3,
+      "accepted_wrong": 39,
+      "dev": 27,
+      "everyday": 42,
+      "paired": {
+        "default": {
+          "losses": 0,
+          "wins": 1
+        },
+        "v2": {
+          "losses": 1,
+          "wins": 0
+        }
+      },
+      "pooled": 69,
+      "rejected": 30,
+      "teacher_fixes_lost_vs_same_precision_v2": [],
+      "teacher_fixes_new_vs_same_precision_v2": [],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e018",
+        "e066",
+        "e068",
+        "e070",
+        "m016",
+        "m054",
+        "m118"
+      ]
+    },
+    "s43-Q6_K": {
+      "abstain_missed": 0,
+      "accepted_wrong": 36,
+      "dev": 27,
+      "everyday": 46,
+      "paired": {
+        "default": {
+          "losses": 16,
+          "wins": 21
+        },
+        "v2": {
+          "losses": 16,
+          "wins": 7
+        }
+      },
+      "pooled": 73,
+      "rejected": 32,
+      "teacher_fixes_lost_vs_same_precision_v2": [
+        "e018",
+        "m052"
+      ],
+      "teacher_fixes_new_vs_same_precision_v2": [
+        "e040",
+        "e078",
+        "m074",
+        "m076",
+        "m118"
+      ],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e040",
+        "e078",
+        "m074",
+        "m076",
+        "m118"
+      ]
+    },
+    "s43-Q8_0": {
+      "abstain_missed": 0,
+      "accepted_wrong": 36,
+      "dev": 27,
+      "everyday": 44,
+      "paired": {
+        "default": {
+          "losses": 18,
+          "wins": 21
+        },
+        "v2": {
+          "losses": 16,
+          "wins": 6
+        }
+      },
+      "pooled": 71,
+      "rejected": 34,
+      "teacher_fixes_lost_vs_same_precision_v2": [],
+      "teacher_fixes_new_vs_same_precision_v2": [
+        "e040",
+        "e078",
+        "m074",
+        "m076",
+        "m118"
+      ],
+      "teacher_right_f16_student_wrong_fixed": [
+        "e040",
+        "e078",
+        "m074",
+        "m076",
+        "m118"
+      ]
+    }
+  },
+  "teacher_right_f16_student_wrong_ids": [
+    "e004",
+    "e011",
+    "e018",
+    "e040",
+    "e044",
+    "e054",
+    "e063",
+    "e066",
+    "e068",
+    "e070",
+    "e071",
+    "e075",
+    "e078",
+    "m001",
+    "m009",
+    "m016",
+    "m022",
+    "m030",
+    "m034",
+    "m038",
+    "m052",
+    "m054",
+    "m074",
+    "m076",
+    "m084",
+    "m086",
+    "m088",
+    "m092",
+    "m104",
+    "m118"
+  ],
+  "v2_same_precision": {
+    "Q4_K_M": {
+      "dev": 27,
+      "everyday": 43,
+      "pooled": 70
+    },
+    "Q6_K": {
+      "dev": 28,
+      "everyday": 54,
+      "pooled": 82
+    },
+    "Q8_0": {
+      "dev": 27,
+      "everyday": 54,
+      "pooled": 81
+    }
+  }
+}

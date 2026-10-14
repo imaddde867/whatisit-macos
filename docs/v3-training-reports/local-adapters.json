@@ -1,0 +1,24 @@
+{
+  "42": {
+    "directory": "/Users/imadeddine/.local/share/whatisit/finetune/v3/adapter-seed42",
+    "matches_training_report": true,
+    "sha256": {
+      "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "NOTICE": "7cbbadcff2879792d9f5120620a3a3476395d622d080e37a732b53f81d54185b",
+      "README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7",
+      "adapter_config.json": "3ce9eac310e2647acffa03250de43faff0c3c6055288daeb75a005f955d0ef95",
+      "adapter_model.safetensors": "7a717e58f6c9478a131725b6402f75677464ae892549cc24cfefeb50fdbc9dad"
+    }
+  },
+  "43": {
+    "directory": "/Users/imadeddine/.local/share/whatisit/finetune/v3/adapter-seed43",
+    "matches_training_report": true,
+    "sha256": {
+      "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "NOTICE": "7cbbadcff2879792d9f5120620a3a3476395d622d080e37a732b53f81d54185b",
+      "README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7",
+      "adapter_config.json": "5a1f3876e5a9e420597aef4094ac1f505924434194f2b07d4892b70a52f8366c",
+      "adapter_model.safetensors": "412fb400005c7b33f1f691bcd1ab3affeb9fdd4035bb719672922a714b611dac"
+    }
+  }
+}
