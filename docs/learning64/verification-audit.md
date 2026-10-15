@@ -274,9 +274,26 @@ python3 tools/rescore_learning64.py
 ```
 
 ### Test results
-- `tests/test_verify_references.py` — 28 passed (verifier + repaired-defect regressions)
-- `tests/test_rescore_learning64.py` — 9 passed (three-state, validation, determinism)
-- `tests/test_eval_learning64.py`, `tests/test_eval_semantics.py` — 9 each, unchanged, OK
+- `tests/test_verify_references.py` — 28 tests (verifier + repaired-defect regressions), now
+  `unittest`-discoverable and cross-platform, so `python -m unittest discover` runs them on
+  both ubuntu (GNU `stat`) and macOS (BSD `stat`) CI runners (validated on both).
+- `tests/test_rescore_learning64.py` — 9 tests (three-state, validation, determinism).
+- `tests/test_eval_learning64.py`, `tests/test_eval_semantics.py` — 9 each, unchanged, OK.
+
+Run them:
+```bash
+python3 -m unittest discover -s tests -v      # or per-file: python3 tests/test_verify_references.py
+```
+
+**Remote CI note (pre-existing, unrelated).** The PR's `ci.yml` runs
+`python -m unittest discover -s tests`. Its 7 pre-existing errors
+(`test_repair_distill_dataset`, `test_score_teacher_eval`, …) all raise
+`ModuleNotFoundError: No module named 'whatisit'` — these modules belong to the
+distill/teacher features and import a package name (`whatisit`) that does not
+exist in this repo (the package is `whatisit_macos`). These failures are present
+identically on the base branch `diagnostic/learning64` and on prior head
+`bcc7c2c`, i.e. they predate this PR and are outside the Learning64 scope. All
+Learning64 tests (including the 37 added here) pass on both CI OSes.
 
 ### Hashes
 - Verifier used on macOS (`verify_references.py`):
