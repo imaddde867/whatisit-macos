@@ -1,0 +1,1685 @@
+{
+  "summary": {
+    "total": 144,
+    "passed": 136,
+    "failed": 8,
+    "all_passed": false,
+    "manifest_all_match": true
+  },
+  "provenance": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "macver": "27.0.1",
+    "python": "3.9.6",
+    "machine": "arm64",
+    "stock_PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "shell": "/bin/zsh -f",
+    "run_utc": "2026-10-15T12:02:30Z",
+    "verifier_sha256": "b4a8f0120ef7d0f146c5ece9d3930c2416a558c26722128b3e2c5b5690e170f9",
+    "dataset_files_sha256": {
+      "eval_composition.jsonl": "83aff0162b17c49b7a97663d856b85d4fe14c05c73da2f46fd6c1088494dbe7b",
+      "eval_fit.jsonl": "160aad05095deec78bd8bd0edb8f372585b997f4b511c01500b0ae764f3b8cec",
+      "eval_operand.jsonl": "07812ede3fe6790e2597f74bbb767bf7f00e3ab5c06f884edb18e5ef9e282219",
+      "eval_paraphrase.jsonl": "eb4b9e54e998abc95044ab2956314a9b83a94a7c522b207a1de81b946ee751da",
+      "train.jsonl": "39acad20494e12af74507f316b9394fdca2914dfbdc0f322039fadfeb8a5337d"
+    },
+    "manifest_check": {
+      "manifest_present": true,
+      "files": {
+        "PROTOCOL.md": {
+          "match": true,
+          "declared": "d81c9e7a74819f476644779f659eef96b16c5b725f9100bb917ea0db4cb91d4e",
+          "actual": "d81c9e7a74819f476644779f659eef96b16c5b725f9100bb917ea0db4cb91d4e"
+        },
+        "eval_composition.jsonl": {
+          "match": true,
+          "declared": "83aff0162b17c49b7a97663d856b85d4fe14c05c73da2f46fd6c1088494dbe7b",
+          "actual": "83aff0162b17c49b7a97663d856b85d4fe14c05c73da2f46fd6c1088494dbe7b"
+        },
+        "eval_fit.jsonl": {
+          "match": true,
+          "declared": "160aad05095deec78bd8bd0edb8f372585b997f4b511c01500b0ae764f3b8cec",
+          "actual": "160aad05095deec78bd8bd0edb8f372585b997f4b511c01500b0ae764f3b8cec"
+        },
+        "eval_operand.jsonl": {
+          "match": true,
+          "declared": "07812ede3fe6790e2597f74bbb767bf7f00e3ab5c06f884edb18e5ef9e282219",
+          "actual": "07812ede3fe6790e2597f74bbb767bf7f00e3ab5c06f884edb18e5ef9e282219"
+        },
+        "eval_paraphrase.jsonl": {
+          "match": true,
+          "declared": "eb4b9e54e998abc95044ab2956314a9b83a94a7c522b207a1de81b946ee751da",
+          "actual": "eb4b9e54e998abc95044ab2956314a9b83a94a7c522b207a1de81b946ee751da"
+        },
+        "train.jsonl": {
+          "match": true,
+          "declared": "39acad20494e12af74507f316b9394fdca2914dfbdc0f322039fadfeb8a5337d",
+          "actual": "39acad20494e12af74507f316b9394fdca2914dfbdc0f322039fadfeb8a5337d"
+        }
+      },
+      "declared_status": "frozen: macOS reference verification passed 144/144 on macOS-27.0.1-arm64",
+      "all_match": true
+    },
+    "total_cases_loaded": 208,
+    "unique_cases": 144
+  },
+  "results": [
+    {
+      "id": "l64-001",
+      "reference": "stat -f %z budget.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "4\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-002",
+      "reference": "stat -f %z draft.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "12\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-003",
+      "reference": "stat -f %z events.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "8\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-004",
+      "reference": "stat -f %z memo.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "10\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-005",
+      "reference": "stat -f %A private.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "600\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0600",
+        "actual_octal": "600"
+      }
+    },
+    {
+      "id": "l64-006",
+      "reference": "stat -f %A shared.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "640\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0640",
+        "actual_octal": "640"
+      }
+    },
+    {
+      "id": "l64-007",
+      "reference": "stat -f %A script.sh",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "755\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0755",
+        "actual_octal": "755"
+      }
+    },
+    {
+      "id": "l64-008",
+      "reference": "stat -f %A readonly.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "444\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0444",
+        "actual_octal": "444"
+      }
+    },
+    {
+      "id": "l64-009",
+      "reference": "stat -f %i alpha.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217323894\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-010",
+      "reference": "stat -f %i beta.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217323896\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-011",
+      "reference": "stat -f %i gamma.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217323898\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-012",
+      "reference": "stat -f %i delta.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217323900\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-013",
+      "reference": "readlink latest",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "build-17\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-014",
+      "reference": "readlink current",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "release-A\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-015",
+      "reference": "readlink shortcut",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "docs/readme.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-016",
+      "reference": "readlink active",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "settings.conf\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-017",
+      "reference": "sed -i '' 's/foo/bar/g' notes.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:notes.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-018",
+      "reference": "sed -i '' 's/pending/ready/g' status.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:status.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-019",
+      "reference": "sed -i '' 's/red/blue/g' colors.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:colors.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-020",
+      "reference": "sed -i '' 's/cat/dog/g' words.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:words.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-021",
+      "reference": "head -n 2 fruits.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-022",
+      "reference": "head -n 3 items.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-023",
+      "reference": "head -n 4 rows.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\npear\nbanana\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-024",
+      "reference": "head -n 1 names.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-025",
+      "reference": "tail -n +2 report.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\npear\nbanana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-026",
+      "reference": "tail -n +3 history.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\nbanana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-027",
+      "reference": "tail -n +4 entries.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "banana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-028",
+      "reference": "tail -n +5 lines.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-029",
+      "reference": "cut -d: -f2 users.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "small\nlarge\nmedium\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-030",
+      "reference": "cut -d: -f3 records.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "10\n20\n30\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-031",
+      "reference": "cut -d: -f1 table.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "red\nblue\ngreen\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-032",
+      "reference": "cut -d: -f4 flags.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "yes\nno\nyes\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-033",
+      "reference": "grep -F 'ERROR' app.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR timeout\nERROR disk\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-034",
+      "reference": "grep -F 'WARN' service.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "WARN retry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-035",
+      "reference": "grep -F 'INFO' build.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "INFO start\nINFO finish\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-036",
+      "reference": "grep -F 'retry' debug.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "WARN retry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-037",
+      "reference": "grep -Fc 'WARN' warnings.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-038",
+      "reference": "grep -Fc 'ERROR' errors.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "2\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-039",
+      "reference": "grep -Fc 'INFO' progress.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "2\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-040",
+      "reference": "grep -Fc 'retry' attempts.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-041",
+      "reference": "sort -n scores.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-1\n2\n2\n10\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-042",
+      "reference": "sort -n sizes.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-5\n1\n3\n20\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-043",
+      "reference": "sort -n ages.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "0\n9\n11\n100\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-044",
+      "reference": "sort -n values.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-2\n4\n8\n30\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-045",
+      "reference": "sort -u tags.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\ncherry\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-046",
+      "reference": "sort -u labels.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\ncherry\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-047",
+      "reference": "sort -u words.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\ncherry\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-048",
+      "reference": "sort -u keys.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\ncherry\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-049",
+      "reference": "find docs -type f -name '*.txt'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "docs/nested/two.txt\ndocs/one.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-050",
+      "reference": "find reports -type f -name '*.csv'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "reports/one.csv\nreports/nested/two.csv\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-051",
+      "reference": "find assets -type f -name '*.png'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "assets/one.png\nassets/nested/two.png\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-052",
+      "reference": "find logs -type f -name '*.log'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "logs/one.log\nlogs/nested/two.log\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-053",
+      "reference": "find cache -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "cache/zero.txt\ncache/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-054",
+      "reference": "find scratch -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "scratch/zero.txt\nscratch/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-055",
+      "reference": "find incoming -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "incoming/zero.txt\nincoming/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-056",
+      "reference": "find work -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "work/zero.txt\nwork/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-057",
+      "reference": "date -j -f '%Y-%m-%d' '2025-02-17' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "17/02/2025\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-058",
+      "reference": "date -j -f '%Y-%m-%d' '2024-11-06' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "06/11/2024\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-059",
+      "reference": "date -j -f '%Y-%m-%d' '2026-08-23' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "23/08/2026\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-060",
+      "reference": "date -j -f '%Y-%m-%d' '2023-03-14' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "14/03/2023\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-061",
+      "reference": "shasum -a 256 archive.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "b6a98d9ce9a2d9149288fa3df42d377c3e42737afdcdaf714e33c0a100b51060  archive.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-062",
+      "reference": "shasum -a 256 download.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "f2c82decdd7181cf98945929a62598db7e6b477e11f6e0eb0ae97020eff151ad  download.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-063",
+      "reference": "shasum -a 256 payload.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ae9a6306a205417afddd14316cc1d0d5e04a98f1be10865dce643925ee070ce2  payload.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-064",
+      "reference": "shasum -a 256 package.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "673953e0ad7fc53247f4feadc2c2d4506396840d1f8796526f48d47333ac7652  package.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-001-o",
+      "reference": "stat -f %z invoice.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "10\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-002-o",
+      "reference": "stat -f %z outline.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "18\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-003-o",
+      "reference": "stat -f %z trace.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "14\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-004-o",
+      "reference": "stat -f %z letter.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "16\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-005-o",
+      "reference": "stat -f %A secret.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "644\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0644",
+        "actual_octal": "644"
+      }
+    },
+    {
+      "id": "l64-006-o",
+      "reference": "stat -f %A group.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "660\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0660",
+        "actual_octal": "660"
+      }
+    },
+    {
+      "id": "l64-007-o",
+      "reference": "stat -f %A runner.sh",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "700\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0700",
+        "actual_octal": "700"
+      }
+    },
+    {
+      "id": "l64-008-o",
+      "reference": "stat -f %A locked.txt",
+      "passed": false,
+      "returncode": 0,
+      "stdout": "400\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_octal": false,
+        "expected_octal": "0400",
+        "actual_octal": "400"
+      }
+    },
+    {
+      "id": "l64-009-o",
+      "reference": "stat -f %i epsilon.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217324062\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-010-o",
+      "reference": "stat -f %i zeta.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217324064\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-011-o",
+      "reference": "stat -f %i eta.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217324066\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-012-o",
+      "reference": "stat -f %i theta.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "217324068\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_inode_of": true
+      }
+    },
+    {
+      "id": "l64-013-o",
+      "reference": "readlink newest",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "build-29\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-014-o",
+      "reference": "readlink selected",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "release-C\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-015-o",
+      "reference": "readlink manual",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "help/guide.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-016-o",
+      "reference": "readlink enabled",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "options.conf\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-017-o",
+      "reference": "sed -i '' 's/old/new/g' journal.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:journal.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-018-o",
+      "reference": "sed -i '' 's/wait/done/g' queue.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:queue.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-019-o",
+      "reference": "sed -i '' 's/green/gold/g' palette.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:palette.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-020-o",
+      "reference": "sed -i '' 's/bird/fish/g' pets.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:pets.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-021-o",
+      "reference": "head -n 5 produce.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\npear\nbanana\napple\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-022-o",
+      "reference": "head -n 1 inventory.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-023-o",
+      "reference": "head -n 2 records.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-024-o",
+      "reference": "head -n 3 people.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\napple\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-025-o",
+      "reference": "tail -n +4 summary.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "banana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-026-o",
+      "reference": "tail -n +5 timeline.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-027-o",
+      "reference": "tail -n +2 ledger.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\npear\nbanana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-028-o",
+      "reference": "tail -n +3 list.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pear\nbanana\napple\ncherry\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-029-o",
+      "reference": "cut -d: -f4 accounts.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "yes\nno\nyes\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-030-o",
+      "reference": "cut -d: -f1 measurements.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "red\nblue\ngreen\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-031-o",
+      "reference": "cut -d: -f2 matrix.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "small\nlarge\nmedium\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-032-o",
+      "reference": "cut -d: -f3 switches.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "10\n20\n30\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-033-o",
+      "reference": "grep -F 'disk' worker.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR disk\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-034-o",
+      "reference": "grep -F 'start' daemon.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "INFO start\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-035-o",
+      "reference": "grep -F 'timeout' compile.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR timeout\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-036-o",
+      "reference": "grep -F 'finish' trace.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "INFO finish\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-037-o",
+      "reference": "grep -Fc 'start' messages.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-038-o",
+      "reference": "grep -Fc 'disk' faults.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-039-o",
+      "reference": "grep -Fc 'finish' updates.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-040-o",
+      "reference": "grep -Fc 'timeout' retries.log",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-041-o",
+      "reference": "sort -n points.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-3\n4\n4\n17\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-042-o",
+      "reference": "sort -n lengths.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-3\n4\n4\n17\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-043-o",
+      "reference": "sort -n years.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-3\n4\n4\n17\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-044-o",
+      "reference": "sort -n totals.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-3\n4\n4\n17\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-045-o",
+      "reference": "sort -u topics.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nfig\nkiwi\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-046-o",
+      "reference": "sort -u names.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nfig\nkiwi\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-047-o",
+      "reference": "sort -u terms.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nfig\nkiwi\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-048-o",
+      "reference": "sort -u tokens.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nfig\nkiwi\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-049-o",
+      "reference": "find notes -type f -name '*.md'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "notes/one.md\nnotes/nested/two.md\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-050-o",
+      "reference": "find tables -type f -name '*.tsv'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "tables/one.tsv\ntables/nested/two.tsv\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-051-o",
+      "reference": "find images -type f -name '*.jpg'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "images/one.jpg\nimages/nested/two.jpg\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-052-o",
+      "reference": "find traces -type f -name '*.txt'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "traces/nested/two.txt\ntraces/one.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-053-o",
+      "reference": "find staging -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "staging/zero.txt\nstaging/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-054-o",
+      "reference": "find pending -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "pending/zero.txt\npending/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-055-o",
+      "reference": "find outbox -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "outbox/zero.txt\noutbox/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-056-o",
+      "reference": "find sandbox -type f -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "sandbox/zero.txt\nsandbox/nested/empty.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-057-o",
+      "reference": "date -j -f '%Y-%m-%d' '2027-05-19' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "19/05/2027\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-058-o",
+      "reference": "date -j -f '%Y-%m-%d' '2024-02-29' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "29/02/2024\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-059-o",
+      "reference": "date -j -f '%Y-%m-%d' '2028-12-31' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "31/12/2028\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-060-o",
+      "reference": "date -j -f '%Y-%m-%d' '2022-09-07' '+%d/%m/%Y'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "07/09/2022\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-061-o",
+      "reference": "shasum -a 256 backup.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "05807ff98739cc4fe4c9104fc610a9efb2d6ada833bc3327ae4583d3d8e94700  backup.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-062-o",
+      "reference": "shasum -a 256 image.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "1d09ddac31db940e9059b650ebb7b9157fc98edfec1c194a87a83b8ba445de3d  image.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-063-o",
+      "reference": "shasum -a 256 bundle.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "d28c073269374ac03bb3b247b3dd073baa766e9541e501281896c92bbac4f751  bundle.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-064-o",
+      "reference": "shasum -a 256 release.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "46ccd95b236d540c9f24aa9f3b271c488d8ae69f68b7e30e1d3e12c24bfe428a  release.bin\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c01",
+      "reference": "grep -F 'ERROR' combined.log | head -n 2",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR one\nERROR two\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c02",
+      "reference": "grep -F 'ERROR' combined.log | tail -n +2",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR two\nERROR three\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c03",
+      "reference": "cut -d: -f2 roster.txt | sort -u",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "blue\nred\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c04",
+      "reference": "cut -d: -f3 totals.txt | sort -n",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-1\n2\n2\n10\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c05",
+      "reference": "sort -n unsorted.txt | head -n 3",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "-3\n2\n2\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c06",
+      "reference": "sort -n unsorted.txt | tail -n +3",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "2\n11\n50\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c07",
+      "reference": "sort -u vocabulary.txt | head -n 2",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c08",
+      "reference": "head -n 3 window.log | grep -F 'ERROR'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ERROR early\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c09",
+      "reference": "tail -n +2 headered.txt | cut -d: -f2",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "20\n10\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c10",
+      "reference": "grep -F 'WARN' warnings.log | sort -u",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "WARN apple\nWARN zebra\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c11",
+      "reference": "find mixed -type f -name '*.txt' -empty",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "mixed/sub/b.txt\nmixed/a.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_lines_unordered": true
+      }
+    },
+    {
+      "id": "l64-c12",
+      "reference": "find exports -type f -name '*.csv' | sort",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "exports/a.csv\nexports/sub/b.csv\nexports/z.csv\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c13",
+      "reference": "stat -f '%z %i' object.bin",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "7 217324249\n",
+      "stderr": "",
+      "check_results": {
+        "stdout_stat_fields": true
+      }
+    },
+    {
+      "id": "l64-c14",
+      "reference": "sed -i '' 's/foo/bar/g' update.txt && shasum -a 256 update.txt",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "ea9c38202e91fa5ee09e003c9c605885a98ecb4253c0e0f0a4d076b52cf492e7  update.txt\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true,
+        "file:update.txt": true,
+        "no_extra_files": true
+      }
+    },
+    {
+      "id": "l64-c15",
+      "reference": "head -n 4 sample.txt | sort -u",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "apple\nbanana\npear\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    },
+    {
+      "id": "l64-c16",
+      "reference": "cut -d: -f2 statuses.txt | grep -Fc 'ready'",
+      "passed": true,
+      "returncode": 0,
+      "stdout": "2\n",
+      "stderr": "",
+      "check_results": {
+        "stdout": true
+      }
+    }
+  ]
+}

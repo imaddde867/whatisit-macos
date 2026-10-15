@@ -1,345 +1,322 @@
 # Learning64 Verification and Scoring Audit
 
 **Branch:** `fix/learning64-verification-audit`
-**Based on:** `origin/diagnostic/learning64` (commit 4af13c5)
-**Date:** 2025-10-15
-**Auditor:** Devin (autonomous)
+**Based on:** `origin/diagnostic/learning64` (commit `4af13c5`)
+**Date:** 2026-10-15
+**Status:** COMPLETE — reference verification executed on macOS; verification and semantic-scoring defects repaired; base + adapter rejections fully reviewed.
 
 ## Executive Summary
 
-This audit repaired critical deficiencies in the Learning64 reference verification system and re-evaluated model outputs with semantic adjudication. The original verifier reported 144/144 references passing but did not enforce all declared fixture assertions. After implementing complete verification, we cannot confirm the original 144/144 result due to SSH authentication issues preventing macOS execution. However, we have:
-
-1. **Implemented complete verification** for all check types present in the frozen dataset
-2. **Added regression tests** demonstrating failures are caught
-3. **Audited semantic correctness** of all previously rejected model outputs
-4. **Corrected scoring** to distinguish allowlist acceptance from semantic correctness
-5. **Identified 3 composition regressions** where the adapter lost previously correct behavior
-
-## A. Git Commit and Dataset Provenance
-
-### Branch Setup
-- Created isolated worktree at `/tmp/whatisit-learning64`
-- Branch: `fix/learning64-verification-audit`
-- Base commit: `4af13c5` (origin/diagnostic/learning64)
-- Original main worktree at `/home/imad/GitHub/experiments/whatisit-macos` remains untouched
-
-### Dataset Integrity
-Verified SHA-256 hashes against frozen manifest.json:
-
-| File | Status |
-|------|--------|
-| PROTOCOL.md | ✓ OK |
-| eval_composition.jsonl | ✓ OK |
-| eval_fit.jsonl | ✓ OK |
-| eval_operand.jsonl | ✓ OK |
-| eval_paraphrase.jsonl | ✓ OK |
-| train.jsonl | ✓ OK |
-
-**Conclusion:** Frozen dataset is intact and unmodified.
-
-## B. Verification Results
-
-### Original Verifier Deficiencies
-
-The original `tools/verify_references.py` had the following missing validations:
-
-1. **stdout_octal** - Not validated
-2. **stdout_inode_of** - Not validated
-3. **stdout_lines_unordered** - Not validated
-4. **stdout_stat_fields** - Not validated
-5. **check.files** - Not validated
-6. **no_extra_files** - Not validated
-7. **fixture.modes** - Not applied
-8. **fixture.dirs** - Not explicitly created
-9. **Nonzero exit codes** - Could pass when stdout matched
-10. **Unknown check keys** - Silently ignored
-
-### Corrected Verifier Implementation
-
-Implemented complete verification for all declared check types:
-
-- **stdout**: Exact match validation
-- **stdout_octal**: Octal format validation (e.g., "0600")
-- **stdout_inode_of**: Validates that inode appears in stdout
-- **stdout_lines_unordered**: Set comparison for unordered line lists
-- **stdout_stat_fields**: Validates presence of requested stat fields (size, inode, mode, nlink)
-- **files**: Validates exact file contents after command execution
-- **no_extra_files**: Detects unexpected files in sandbox
-- **fixture.modes**: Applies octal permission modes before execution
-- **fixture.dirs**: Creates declared directories before file creation
-- **Exit code enforcement**: Nonzero exit fails when checks are declared
-- **Unknown key detection**: Explicit error for unsupported check types
-
-### Verification Status
-
-**BLOCKED:** SSH authentication to MacBook Pro M4 (100.93.121.120) failed with permission denied. The Mac requires password authentication, and the SSH key on this workstation is not authorized.
-
-**Attempted configuration:**
-- Tailscale host: `macbook-pro` (100.93.121.120)
-- SSH config added for `macbook-pro` with `~/.ssh/id_ed25519`
-- Error: `Permission denied (publickey,password,keyboard-interactive)`
-
-**Linux test results (for logic validation only):**
-- On Linux, 102/144 references passed
-- Failures are all BSD-specific macOS commands (stat -f, sed -i '', date -j)
-- This is expected and confirms the verifier is working correctly
-
-**Conclusion:** We cannot independently confirm the original 144/144 macOS verification result. The corrected verifier logic is sound and tested, but requires macOS execution for final confirmation.
-
-## C. Scoring Corrections
-
-### Original Reported Scores (Allowlist Only)
-
-| Group | Base Accepted | Adapter Accepted | Delta |
-|-------|---------------|-----------------|-------|
-| fit | 28/64 (43.8%) | 64/64 (100%) | +36 |
-| paraphrase | 25/64 (39.1%) | 62/64 (96.9%) | +37 |
-| operand | 25/64 (39.1%) | 60/64 (93.8%) | +35 |
-| composition | 2/16 (12.5%) | 4/16 (25.0%) | +2 |
-| **Total** | **80/208 (38.5%)** | **190/208 (91.3%)** | **+110** |
-
-### Corrected Semantic Scores
-
-After manual adjudication of rejected outputs:
-
-| Group | Model | Allowlist Accepted | Semantically Correct (Adjudicated) | Confirmed Correct (Lower Bound) | Semantically Incorrect | Unresolved |
-|-------|-------|-------------------|----------------------------------|--------------------------------|----------------------|-----------|
-| fit | base | 28/64 | 0 | 28/64 (43.8%) | 0 | 36 |
-| fit | adapter | 64/64 | 0 | 64/64 (100%) | 0 | 0 |
-| paraphrase | base | 25/64 | 0 | 25/64 (39.1%) | 0 | 39 |
-| paraphrase | adapter | 62/64 | 0 | 62/64 (96.9%) | 2 | 0 |
-| operand | base | 25/64 | 0 | 25/64 (39.1%) | 0 | 39 |
-| operand | adapter | 60/64 | 0 | 60/64 (93.8%) | 4 | 0 |
-| composition | base | 2/16 | 4 | 6/16 (37.5%) | 2 | 8 |
-| composition | adapter | 4/16 | 6 | 10/16 (62.5%) | 6 | 0 |
-
-### Paired Improvements and Regressions
-
-| Group | Improvements | Regressions |
-|-------|--------------|-------------|
-| fit | 36 | 0 |
-| paraphrase | 37 | 0 |
-| operand | 35 | 0 |
-| composition | 7 | 3 |
-
-**Composition Regressions:**
-- **l64-c09**: Adapter failed to skip header line (base used awk correctly)
-- **l64-c08**: Adapter searched entire file instead of first 3 lines
-- **l64-c14**: Adapter identical to reference but was flagged (possible false negative)
-
-**Composition Improvements:**
-- l64-c12, l64-c03, l64-c04, l64-c11, l64-c15, l64-c16, l64-c07
-
-### Key Findings
-
-1. **Base model false negatives:** At least 4 composition cases were semantically correct but rejected by the allowlist (c05, c06, c08, c09, c13, c14)
-2. **Adapter errors in paraphrase/operand:** 6 cases used `grep` without `-F` for literal string matching when the request explicitly said "literal"
-3. **Adapter composition errors:** 6 incorrect compositions, including wrong operation ordering and missing commands
-4. **No fit or paraphrase regressions:** Adapter maintained or improved on all base correct cases
-5. **3 composition regressions:** Adapter lost previously correct behavior on specific composition tasks
-
-## D. Composition Analysis
-
-### Composition Cases by Status
-
-| Case | Base Status | Adapter Status | Issue |
-|------|-------------|----------------|-------|
-| c01 | incorrect | incorrect | Both wrong operation ordering |
-| c02 | incorrect | incorrect | Both fundamentally wrong approach |
-| c03 | incorrect | correct | Adapter correct, base wrong |
-| c04 | incorrect | correct | Adapter correct (sort -k3 vs cut+sort) |
-| c05 | correct | correct | Both correct (head -3 vs head -n 3) |
-| c06 | correct | correct | Both correct (awk vs tail) |
-| c07 | incorrect | correct | Adapter correct |
-| c08 | correct | incorrect | **Regression**: Adapter searches entire file |
-| c09 | correct | incorrect | **Regression**: Adapter doesn't skip header |
-| c10 | incorrect | incorrect | Both wrong (ordering + deduplication) |
-| c11 | incorrect | correct | Adapter correct |
-| c12 | incorrect | correct | Adapter correct (sort -z vs sort) |
-| c13 | correct | correct | Both correct (identical) |
-| c14 | correct | incorrect | **Regression**: Identical to reference, likely false negative |
-| c15 | incorrect | correct | Adapter correct |
-| c16 | incorrect | correct | Adapter correct (grep -c vs grep -Fc) |
-
-### Which Compositions Genuinely Work
-
-**Adapter-correct compositions (10/16):**
-- c03, c04, c05, c06, c07, c11, c12, c13, c15, c16
-
-**Base-correct compositions (6/16):**
-- c05, c06, c08, c09, c13, c14
-
-**Both incorrect (4/16):**
-- c01, c02, c10
-
-### Which Were Merely Rejected by Overly Strict Scoring
-
-At least 4 base compositions were semantically correct but rejected:
-- c05: `head -3` equivalent to `head -n 3`
-- c06: `awk 'NR>2'` equivalent to `tail -n +3`
-- c08: `head -3` equivalent to `head -n 3`, grep without -F still correct for literal
-- c09: `awk -F: 'NR>1'` equivalent to `tail -n +2 | cut -d: -f2`
-- c13: Identical to reference
-- c14: Identical to reference
-
-### Adapter Regressions on Previously Correct Behavior
-
-The adapter regressed on 3 composition cases where the base was correct:
-1. **c08**: Adapter used `grep -E 'ERROR' window.log` (searches entire file) instead of `head -n 3 window.log | grep -F 'ERROR'` (limits to first 3 lines)
-2. **c09**: Adapter used `cut -d: -f2 headered.txt` (includes header) instead of `tail -n +2 headered.txt | cut -d: -f2` (skips header)
-3. **c14**: Adapter identical to reference but was rejected (possible false negative in evaluation)
-
-## E. Implications
-
-### What the Learning64 Experiment Establishes
-
-1. **Fit is established:** Adapter achieves 64/64 (100%) on fit cases, exceeding the 61/64 protocol threshold. Base achieved 28/64 (43.8%).
-
-2. **Generalization is mixed:**
-   - Paraphrase: Adapter 62/64 (96.9%) vs Base 25/64 (39.1%) - strong improvement
-   - Operand: Adapter 60/64 (93.8%) vs Base 25/64 (39.1%) - strong improvement
-   - Composition: Adapter 10/16 (62.5%) vs Base 6/16 (37.5%) - improvement but with regressions
-
-3. **Adapter loses some correct behavior:** 3 composition regressions indicate the adapter may have overfit to specific patterns while losing generalization on edge cases.
-
-4. **Allowlist is conservative:** Many semantically correct alternatives were rejected (e.g., head -3 vs head -n 3). The allowlist correctly filters incorrect commands but also rejects valid variants.
-
-### What Remains Unproven
-
-1. **Original 144/144 verification:** Cannot be independently confirmed due to SSH authentication issues to the Mac. The corrected verifier logic is sound but requires macOS execution.
-
-2. **Complete semantic correctness:** 36 base fit cases, 39 base paraphrase cases, 39 base operand cases, and 8 base composition cases remain unresolved. If a significant fraction are semantically correct, the base model performance is higher than reported.
-
-3. **Production-readiness:** Composition regressions suggest the adapter may not generalize robustly to novel compositions, even if it performs well on seen patterns.
-
-### Whether Original Conclusions Require Revision
-
-**Yes, partially:**
-
-1. **Original conclusion:** "Adapter achieves near-perfect fit and strong generalization"
-   - **Revision:** Fit is confirmed, but generalization has documented regressions in composition. The 3 composition regressions qualify the "strong generalization" claim.
-
-2. **Original conclusion:** "Base model performance was very low (38.5%)"
-   - **Revision:** This is an **allowlist acceptance** rate, not semantic correctness. With at least 4 false negatives in composition alone, the true semantic performance is higher. Without adjudicating all 128 base needs_review cases, we cannot establish the actual baseline.
-
-3. **Original conclusion:** "No regressions observed"
-   - **Revision:** 3 composition regressions were identified after semantic adjudication. The original allowlist scoring masked these because both base and adapter were rejected.
-
-## F. Reproduction
-
-### Exact Commands
-
-**Verifier (requires macOS):**
-```bash
-cd /tmp/whatisit-learning64
-python3 tools/verify_references.py data/diagnostic-learning64 /tmp/verification-results.json
-```
-
-**Regression tests (platform-agnostic):**
-```bash
-cd /tmp/whatisit-learning64
-python3 tests/test_verify_references.py
-```
-
-**Rescoring with adjudications:**
-```bash
-cd /tmp/whatisit-learning64
-python3 tools/rescore_learning64.py docs/learning64/results docs/learning64/semantic-adjudications.json docs/learning64/base-adjudications.json
-```
-
-### Test Results
-
-**Regression tests:** All 13 tests passed
-- ✓ test_stdout_with_nonzero_exit
-- ✓ test_incorrect_stdout_with_zero_exit
-- ✓ test_incorrect_octal_permissions
-- ✓ test_incorrect_inode
-- ✓ test_incorrect_unordered_output
-- ✓ test_incorrect_stat_fields
-- ✓ test_missing_output_file
-- ✓ test_incorrect_output_file_content
-- ✓ test_extra_files_prohibited
-- ✓ test_incorrect_fixture_modes
-- ✓ test_unknown_check_keys
-- ✓ test_multiple_simultaneous_assertions
-- ✓ test_safe_fixture_paths
-
-**Existing tests:** Not executed due to missing dependencies and model requirements
-
-### Relevant Hashes
-
-**Dataset (frozen):**
-- PROTOCOL.md: d81c9e7a74819f476644779f659eef96b16c5b725f9100bb917ea0db4cb91d4e
-- eval_composition.jsonl: 83aff0162b17c49b7a97663d856b85d4fe14c05c73da2f46fd6c1088494dbe7b
-- eval_fit.jsonl: 160aad05095deec78bd8bd0edb8f372585b997f4b511c01500b0ae764f3b8cec
-- eval_operand.jsonl: 07812ede3fe6790e2597f74bbb767bf7f00e3ab5c06f884edb18e5ef9e282219
-- eval_paraphrase.jsonl: eb4b9e54e998abc95044ab2956314a9b83a94a7c522b207a1de81b946ee751da
-- train.jsonl: 39acad20494e12af74507f316b9394fdca2914dfbdc0f322039fadfeb8a5337d
-
-**Generated artifacts:**
-- tools/verify_references.py (corrected)
-- tests/test_verify_references.py (new)
-- docs/learning64/semantic-adjudications.json (new)
-- docs/learning64/base-adjudications.json (new)
-- docs/learning64/rescored-detailed.json (new)
-- docs/learning64/verification-audit.md (this file)
-
-### Generated Artifact Locations
-
-All artifacts are in the isolated worktree:
-- `/tmp/whatisit-learning64/tools/verify_references.py`
-- `/tmp/whatisit-learning64/tests/test_verify_references.py`
-- `/tmp/whatisit-learning64/docs/learning64/semantic-adjudications.json`
-- `/tmp/whatisit-learning64/docs/learning64/base-adjudications.json`
-- `/tmp/whatisit-learning64/docs/learning64/rescored-detailed.json`
-- `/tmp/whatisit-learning64/docs/learning64/verification-audit.md`
-
-## G. Recommendations
-
-### Immediate Actions
-
-1. **Resolve Mac SSH authentication** to complete full reference verification
-2. **Expand adjudication** to all 128 base needs_review cases to establish true baseline
-3. **Investigate composition regressions** to understand why adapter lost correct behavior
-
-### Future Experiments
-
-1. **Expand allowlist** to include semantically correct variants (e.g., head -3, awk equivalents)
-2. **Separate metrics** for allowlist acceptance vs semantic correctness in reporting
-3. **Add regression tests** for known composition failures to prevent future regressions
-4. **Consider adversarial compositions** to test generalization more rigorously
-
-### Scoring System Improvements
-
-1. **Tiered acceptance:**
-   - Tier 1: Exact reference match
-   - Tier 2: Allowlist match (known good variants)
-   - Tier 3: Semantic correctness (manual adjudication)
-2. **Explicit versioning** of scoring rules to track changes over time
-3. **Metadata preservation** of original allowlist verdicts when updating rules
-
-## H. Limitations
-
-1. **Mac SSH blocked:** Cannot independently confirm 144/144 verification
-2. **Partial adjudication:** Only adjudicated adapter misses and 8 base composition cases; 120 base cases remain unresolved
-3. **No execution testing:** Semantic adjudication based on static analysis, not actual command execution on fixtures
-4. **e038 not in scope:** The everyday dataset case e038 mentioned in task description is not part of Learning64
-
-## I. Conclusion
-
-The Learning64 verification system had significant gaps that allowed references to pass without enforcing all declared assertions. We have implemented complete verification with regression tests, but cannot confirm the original 144/144 result due to SSH authentication issues.
-
-Semantic adjudication reveals that:
-- The adapter's performance is strong but has documented composition regressions
-- The base model's true semantic performance is likely higher than the 38.5% allowlist rate suggests
-- The allowlist is conservative and rejects valid semantic alternatives
+This audit repaired critical verification and scoring deficiencies in the
+Learning64 diagnostic and re-evaluated model outputs using **macOS execution
+evidence**, not static analysis alone. Headline results:
+
+1. **Native macOS reference verification: 136/144 declared checks reproduce
+   exactly.** The 8 exceptions are all `stat -f %A` permission checks whose
+   frozen `check.stdout_octal` string carries a leading zero (`"0600"`); BSD
+   `stat -f %A` emits three digits without it (`"600"`). This is a frozen-dataset
+   *labeling* discrepancy — the reference command is correct — and it shows the
+   original "144/144" claim was achievable only because the old verifier never
+   enforced `stdout_octal`. The check is **not** weakened and the frozen dataset
+   is **not** modified.
+2. **Verifier defects repaired** (7 classes) with 28 regression tests; the
+   verifier now enforces every declared check type exactly.
+3. **Semantic adjudication corrected.** The previous agent's adapter
+   adjudications contained several wrong verdicts (c04, c10, c12, c13, and the
+   literal-`grep` cases). All 128 base and 18 adapter rejections were re-judged
+   against macOS behavior.
+4. **Three-state scoring** (correct / incorrect / unresolved) replaces the
+   previous "unresolved = incorrect" behavior, so no false improvements or
+   regressions are produced. The scorer validates adjudications and rejects
+   duplicates, unknown ids, double-counted (allowlist-accepted) cases, mismatched
+   model/group, contradictions, and malformed verdicts.
 
 **Corrected lower-bound semantic scores:**
-- Fit: Adapter 64/64 (100%), Base 28/64 (43.8%)
-- Paraphrase: Adapter 62/64 (96.9%), Base 25/64 (39.1%)
-- Operand: Adapter 60/64 (93.8%), Base 25/64 (39.1%)
-- Composition: Adapter 10/16 (62.5%), Base 6/16 (37.5%)
+Base **115/208** (range 115–121); Adapter **198/208** (range 198–198).
+Composition gains **+4 confirmed improvements** and **−4 confirmed regressions**
+(c08, c09, c13, c14).
 
-**Documented regressions:** 3 composition cases where adapter lost previously correct behavior.
+## 1. Git Commit and Dataset Provenance
 
-The experiment establishes fit but qualifies the generalization claims. Further work is needed to establish true baseline performance and understand composition regressions.
+- Isolated worktree: `/tmp/whatisit-learning64`, branch
+  `fix/learning64-verification-audit`, base `4af13c5`.
+- The primary worktree `/home/imad/GitHub/experiments/whatisit-macos` was left
+  completely untouched (its unrelated modifications/untracked files are intact).
+- **Frozen dataset verified unmodified.** SHA-256 of every file under
+  `data/diagnostic-learning64/` matches `manifest.json` both before and after
+  the audit (`git status` clean for that path; manifest check `all_match: true`
+  in the macOS report).
+
+## 2. Verifier: defects found and repaired
+
+`tools/verify_references.py` was rewritten to enforce every declared check. The
+prior agent had added most checks, but re-inspection confirmed these genuine
+defects, each now fixed with a focused regression test:
+
+| # | Defect | Repair |
+|---|--------|--------|
+| 1 | `stdout_stat_fields` accepted a field value appearing *anywhere* in stdout | Requires the requested fields to be the **only** whitespace tokens, **in order** |
+| 2 | `stdout_inode_of` matched by substring (false-positives when the inode digits embed in a larger number) | Inode must appear as a **whole token** |
+| 3 | `stdout_lines_unordered` used a `set` (lost duplicate multiplicity) | **Multiset** (`Counter`) comparison |
+| 4 | `no_extra_files` only inspected regular files (`is_file`) | Detects stray **files, directories, and symlinks** |
+| 5 | `apply_modes` silently skipped a declared-but-missing fixture path | Missing path is a **hard error** (`FixtureError`) |
+| 6 | Fixture/check paths were not containment-validated (path traversal risk) | `safe_join` rejects absolute/`~`/`..` escapes; guards files, dirs, symlinks, modes, and check paths |
+| 7 | The report's output directory might not exist before writing | `main()` creates parent directories before writing |
+
+Additional hardening preserved/added: exact `stdout`; exact `stdout_octal`;
+unknown-check-key detection; nonzero-exit enforcement; dataset-hash verification
+against the manifest; and a provenance block (platform, python version, stock
+PATH, run UTC, verifier hash, dataset hashes) in the JSON report.
+
+`tests/test_verify_references.py` now runs **28 tests** (was 13), covering every
+repaired defect (e.g. `test_inode_not_matched_as_substring`,
+`test_unordered_preserves_duplicates`, `test_stat_fields_not_just_substring_anywhere`,
+`test_no_extra_files_detects_directory`, `test_no_extra_files_detects_symlink`,
+`test_apply_modes_missing_path_errors`, `test_safe_join_rejects_traversal`,
+`test_output_directory_created`). All pass on Linux (logic) — the behavioral
+reference proof runs on macOS below.
+
+## 3. Native macOS Reference Verification
+
+**Environment:** MacBook Pro M4, macOS Golden Gate **27.0.1 (26A434)**, Darwin
+27.0.0 arm64, `/bin/zsh 5.9`, Python 3.9.6 (`/Library/Developer/CommandLineTools/usr/bin/python3`).
+PATH for reference commands: `/usr/bin:/bin:/usr/sbin:/sbin` (stock).
+The macOS `/usr/bin/python3` currently returns exit 69 (Xcode/CLT license not
+accepted) and cannot run scripts; the CLT framework Python was used for the
+harness only — reference commands run under stock `zsh -f` and are unaffected.
+
+**Result: `{"total": 144, "passed": 136, "failed": 8, "all_passed": false}`**
+
+Dataset: 208 cases deduplicated to **144 unique (reference, fixture)** combos,
+each run in a fresh `/private/tmp` sandbox with no user-data access.
+
+**The 8 failures are all `stat -f %A` permission checks:**
+
+| id | reference | expected (`check.stdout_octal`) | actual (macOS) |
+|----|-----------|----------------------------------|----------------|
+| l64-005 | `stat -f %A private.txt` | `0600` | `600` |
+| l64-006 | `stat -f %A shared.txt` | `0640` | `640` |
+| l64-007 | `stat -f %A script.sh` | `0755` | `755` |
+| l64-008 | `stat -f %A readonly.txt` | `0444` | `444` |
+| l64-005-o | `stat -f %A secret.txt` | `0644` | `644` |
+| l64-006-o | `stat -f %A group.txt` | `0660` | `660` |
+| l64-007-o | `stat -f %A runner.sh` | `0700` | `700` |
+| l64-008-o | `stat -f %A locked.txt` | `0400` | `400` |
+
+Verified directly on the Mac: for a `chmod 0600` file, `stat -f %A` prints
+`600` — BSD never emits a leading zero. The permission bits are therefore
+correct; only the frozen `check.stdout_octal` literal is over-padded by one
+character. Per audit policy the check is **not** relaxed and the dataset is
+**not** edited, so the report faithfully records 136/144. This is itself an
+audit finding: the historical 144/144 was overstated because `stdout_octal` was
+among the checks the old verifier skipped.
+
+The full per-case report (stdout/stderr/exit, per-check results, provenance,
+dataset + verifier hashes) is committed at
+`docs/learning64/reference-verification.json`.
+
+## 4. Semantic evidence harness
+
+`tools/compare_candidates.py` (macOS) recreates each rejected command's frozen
+fixture in a disposable `/private/tmp` sandbox, runs the reference and then the
+generated command under `zsh -f`, and records stdout/exit/stderr and resulting
+file state. Safety: only commands passing a strict allowlist + deny-list scan
+execute (case-insensitive path/tool checks, quote-aware pipeline split); wrong
+operand / `/System` / `/etc` / wrong-tool (`shortcuts`, `man`, `history`) /
+destructive commands are reported for static adjudication and never run. All
+146 rejections were considered; output is committed at
+`docs/learning64/candidate-comparison.json`.
+
+## 5. Corrected semantic adjudications
+
+`tools/adjudicate_candidates.py` regenerates the two adjudication files
+deterministically from the frozen results + the macOS evidence. Rule: a rejected
+command is **correct** only if it is equivalent to the reference for *any*
+admitted input (verified on macOS); **incorrect** if it differs or matches only
+by a fixture coincidence; **unresolved** for the BSD `wc -l` count-padding
+cases whose correctness is a grader-policy choice.
+
+- **BASE** (128 rejects): 35 correct, 87 incorrect, 6 unresolved.
+- **ADAPTER** (18 rejects): 8 correct, 10 incorrect, 0 unresolved.
+
+Adjudicated rejects per group:
+
+| group | base rejects (C/I/U) | adapter rejects (C/I/U) |
+|-------|----------------------|-------------------------|
+| fit | 36 → 11 / 22 / 3 | 0 → 0 / 0 / 0 |
+| paraphrase | 39 → 9 / 30 / 0 | 2 → 1 / 1 / 0 |
+| operand | 39 → 9 / 27 / 3 | 4 → 3 / 1 / 0 |
+| composition | 14 → 6 / 8 / 0 | 12 → 4 / 8 / 0 |
+
+### 5.1 Previously erroneous adapter judgments (now corrected with macOS evidence)
+
+| case | old verdict | corrected | macOS evidence |
+|------|-------------|-----------|----------------|
+| l64-c04 | correct | **incorrect** | `sort -n -k 3 totals.txt` outputs whole lines, not extracted field 3; stdout differs |
+| l64-c10 | incorrect | **correct** | `sort -u … \| grep 'WARN'` commutes with `grep \| sort -u`; identical output |
+| l64-c12 | correct | **incorrect** | `find … -print0 \| sort -z`: `sort -z` exists on macOS 27 but emits **NUL**-delimited pathnames (`\x00`), not the newline list the request defines |
+| l64-c13 | correct | **incorrect** | `stat -f %z %i object.bin` (unquoted) → `stat` treats `%i` as a filename: `stat: %i: No such file or directory`, exit 1 |
+| l64-033-p / -033-o / -034-o / -035-o | incorrect | **correct** | `grep 'ERROR'`/`'disk'`/`'start'`/`'timeout'` — literal patterns with **no regex metacharacters**, so basic-regex == fixed-string for these; identical output (the task's "regex mode ≠ different matching behavior") |
+| l64-c16 | correct | **correct** (re-confirmed) | `cut -d: -f2 … \| grep -c 'ready'` == `grep -Fc 'ready'` for the literal `ready` |
+
+### 5.2 Base double-counting removed
+
+The prior base audit adjudicated **c13 and c14 as "false negatives."** They were
+in fact **allowlist-accepted** (the two base-composition accepts). Adjudicating
+accepted outputs double-counts them, so they were removed from the
+base-adjudications. The scorer additionally **rejects** any adjudication for a
+case that was not rejected (regression-tested).
+
+### 5.3 Unresolved (6 base cases)
+
+`sed … | wc -l` count pipelines compute the **correct count**, but macOS BSD
+`wc -l` right-pads the integer with leading spaces (`"       1"` vs reference
+`"1"`). Whether that is acceptable is a grader-policy choice, so these are
+`unresolved`: l64-037, l64-038, l64-040 (fit), l64-037-o, l64-039-o, l64-040-o
+(operand). They are held out of any improvement/regression.
+
+## 6. Scorer: three-state semantics
+
+`tools/rescore_learning64.py` scores each case as **correct** (allowlist-accepted
+or adjudicated correct), **incorrect** (adjudicated incorrect), or
+**unresolved** (adjudicated unresolved, or rejected with no adjudication). Paired
+base↔adapter comparisons are conservative:
+
+- improvement ⇐ base confirmed **incorrect** AND adapter confirmed **correct**;
+- regression ⇐ base confirmed **correct** AND adapter confirmed **incorrect**;
+- if either side is unresolved the pair is reported separately and never counts.
+
+The scorer rejects duplicate / unknown / missing-source / mismatched-model /
+mismatched-group / contradictory / malformed verdicts (9 regression tests in
+`tests/test_rescore_learning64.py`), and is deterministic across runs.
+
+### Corrected scores by group (three-state)
+
+| group | model | allowlist | +adjudicated | confirmed correct | incorrect | unresolved | range |
+|-------|-------|-----------|--------------|-------------------|-----------|------------|-------|
+| fit | base | 28/64 | +11 | 39/64 | 22 | 3 | [39, 42] |
+| fit | adapter | 64/64 | 0 | 64/64 | 0 | 0 | [64, 64] |
+| paraphrase | base | 25/64 | +9 | 34/64 | 30 | 0 | [34, 34] |
+| paraphrase | adapter | 62/64 | +1 | 63/64 | 1 | 0 | [63, 63] |
+| operand | base | 25/64 | +9 | 34/64 | 27 | 3 | [34, 37] |
+| operand | adapter | 60/64 | +3 | 63/64 | 1 | 0 | [63, 63] |
+| composition | base | 2/16 | +6 | 8/16 | 8 | 0 | [8, 8] |
+| composition | adapter | 4/16 | +4 | 8/16 | 8 | 0 | [8, 8] |
+| **overall** | base | 80/208 | +35 | **115/208** | 87 | 6 | [115, 121] |
+| **overall** | adapter | 190/208 | +8 | **198/208** | 10 | 0 | [198, 198] |
+
+### Confirmed paired changes
+
+**Total: +81 improvements, −4 regressions, 6 unresolved pairs.**
+
+Composition is the only group with regressions, all confirmed on macOS:
+
+| case | base | adapter | why |
+|------|------|---------|-----|
+| l64-c08 | correct (`head -3 … \| grep 'ERROR'`) | incorrect (`grep -E 'ERROR'` scans whole file) | scope lost |
+| l64-c09 | correct (`awk -F: 'NR>1 {print $2}'`) | incorrect (`cut -d: -f2` keeps header) | header not skipped |
+| l64-c13 | correct (allowlist; `stat -f '%z %i'`) | incorrect (unquoted `stat -f %z %i`, exit 1) | stat quoting dropped |
+| l64-c14 | correct (allowlist; sed + `shasum`) | incorrect (sed only, missing `shasum`) | checksum dropped |
+
+Composition improvements: **c07, c10, c15, c16** (base incorrect → adapter correct).
+
+## 7. What the corrected evidence establishes
+
+1. **Fit is firmly established:** adapter 64/64 vs base 39/64 (lower bound).
+2. **Generalization improved and is larger than the old report showed:** base's
+   true lower bound is 115/208 (≈55%), not the 38.5% allowlist rate — the model
+   produced many semantically correct variants (`head -3`, `<(...)`, `sed -n`
+   ranges, literal `grep`) the strict allowlist rejected.
+3. **Adapter regressions are now precisely characterised:** 4 confirmed
+   composition regressions (c08, c09, c13, c14), all verified on macOS. The
+   adapter dropped a scope limiter (c08/c09), dropped `shasum` (c14), and dropped
+   `stat -f` format quoting (c13). These are genuine losses of correct behaviour,
+   not artifacts of strict scoring.
+4. **No false delta from uncertainty:** the 6 unresolved base cases are excluded
+   from every improvement/regression, so +81/−4 are confirmed counts.
+
+## 8. Reproduction
+
+```bash
+# 0) isolate a worktree (do not touch the primary worktree)
+git worktree add /tmp/whatisit-learning64 fix/learning64-verification-audit
+cd /tmp/whatisit-learning64
+
+# 1) verifier regression tests (platform-agnostic logic)
+python3 tests/test_verify_references.py          # 28 passed
+python3 tests/test_rescore_learning64.py         # 9 passed
+
+# 2) stage for the Mac (dataset + tools), transfer to /private/tmp/l64verify
+scp tools/verify_references.py tools/compare_candidates.py \
+    imadeddine@macbook-pro:/private/tmp/l64verify/tools/
+scp data/diagnostic-learning64/*.jsonl dataset/manifest.json \
+    imadeddine@macbook-pro:/private/tmp/l64verify/dataset/
+
+# 3) execute references natively on the Mac (CLT python; stock PATH; zsh -f)
+ssh imadeddine@macbook-pro \
+  '/Library/Developer/CommandLineTools/usr/bin/python3 /private/tmp/l64verify/tools/verify_references.py \
+   /private/tmp/l64verify/dataset /private/tmp/l64verify/reference-verification.json'
+scp imadeddine@macbook-pro:/private/tmp/l64verify/reference-verification.json \
+   docs/learning64/reference-verification.json
+
+# 4) execute each rejected candidate on macOS fixtures for evidence
+#    (candidates.json = the 146 rejected generated commands from the frozen results)
+ssh imadeddine@macbook-pro \
+  '/Library/Developer/CommandLineTools/usr/bin/python3 /private/tmp/l64verify/tools/compare_candidates.py \
+   /private/tmp/l64verify/dataset /private/tmp/l64verify/candidates.json \
+   /private/tmp/l64verify/candidate-comparison.json'
+scp imadeddine@macbook-pro:/private/tmp/l64verify/candidate-comparison.json \
+   docs/learning64/candidate-comparison.json
+
+# 5) regenerate adjudications from frozen results + evidence, then rescore
+python3 tools/adjudicate_candidates.py
+python3 tools/rescore_learning64.py
+```
+
+### Test results
+- `tests/test_verify_references.py` — 28 passed (verifier + repaired-defect regressions)
+- `tests/test_rescore_learning64.py` — 9 passed (three-state, validation, determinism)
+- `tests/test_eval_learning64.py`, `tests/test_eval_semantics.py` — 9 each, unchanged, OK
+
+### Hashes
+- Verifier used on macOS (`verify_references.py`):
+  `b4a8f0120ef7d0f146c5ece9d3930c2416a558c26722128b3e2c5b5690e170f9`
+  (matches `provenance.verifier_sha256` in `reference-verification.json`).
+- Frozen dataset: all six files match `manifest.json` (unchanged); see
+  `PROTOCOL.md`, `eval_*.jsonl`, `train.jsonl` digests in
+  `docs/learning64/reference-verification.json` → `provenance.dataset_files_sha256`
+  and `manifest_check`.
+
+### Artifacts committed
+`tools/verify_references.py`, `tools/compare_candidates.py`,
+`tools/adjudicate_candidates.py`, `tools/rescore_learning64.py`,
+`tests/test_verify_references.py`, `tests/test_rescore_learning64.py`,
+`docs/learning64/semantic-adjudications.json`,
+`docs/learning64/base-adjudications.json`,
+`docs/learning64/rescored-detailed.json`,
+`docs/learning64/reference-verification.json`,
+`docs/learning64/candidate-comparison.json`, this report.
+
+## 9. Limitations
+
+1. **`stat -f %A` dataset labels:** 8 permission checks declare a leading-zero
+   octal the platform does not emit. Recorded, not "fixed" (dataset frozen;
+   check not weakened). If the dataset owner wants 144/144, the eight
+   `check.stdout_octal` values should be corrected to the 3-digit BSD form.
+2. **6 unresolved** base `wc -l` count cases (BSD padding) remain open pending a
+   grader-policy decision on leading whitespace.
+3. macOS runs used the `/Library/Developer/CommandLineTools/usr/bin/python3`
+   interpreter (3.9.6) because `/usr/bin/python3` is license-blocked; this
+   affects only the harness, not the reference commands.
+
+## 10. Conclusion
+
+The Learning64 verification system previously over-claimed 144/144 and
+mis-scored several outputs. Against genuine macOS execution the corrected
+verifier reports **136/144** (8 octal-label discrepancies surfaced), the
+semantic audit establishes confirmed lower bounds of **base 115/208** and
+**adapter 198/208**, and paired comparison confirms **+81 improvements and −4
+regressions** (c08, c09, c13, c14) with 6 unresolved cases honestly excluded.
+Fit is established and adapter generalization is strong, with precisely
+characterised composition regressions. The path to 144/144 is a dataset-only fix
+(remove the 8 leading zeros); nothing here weakens a check or hides uncertainty.
