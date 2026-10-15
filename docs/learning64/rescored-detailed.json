@@ -1,0 +1,3593 @@
+{
+  "summaries": {
+    "base-fit": {
+      "group": "base-fit",
+      "total": 64,
+      "allowlist_accepted": 28,
+      "semantically_correct": 0,
+      "confirmed_correct": 28,
+      "semantically_incorrect": 0,
+      "unresolved": 36,
+      "correct_lower_bound": 28,
+      "correct_upper_bound": 64
+    },
+    "adapter-fit": {
+      "group": "adapter-fit",
+      "total": 64,
+      "allowlist_accepted": 64,
+      "semantically_correct": 0,
+      "confirmed_correct": 64,
+      "semantically_incorrect": 0,
+      "unresolved": 0,
+      "correct_lower_bound": 64,
+      "correct_upper_bound": 64
+    },
+    "comparison-fit": {
+      "group": "fit",
+      "paired_cases": 64,
+      "improvements": 36,
+      "regressions": 0,
+      "improvement_cases": [
+        "l64-043",
+        "l64-038",
+        "l64-028",
+        "l64-057",
+        "l64-042",
+        "l64-032",
+        "l64-014",
+        "l64-039",
+        "l64-026",
+        "l64-027",
+        "l64-029",
+        "l64-045",
+        "l64-013",
+        "l64-059",
+        "l64-051",
+        "l64-044",
+        "l64-024",
+        "l64-054",
+        "l64-040",
+        "l64-033",
+        "l64-053",
+        "l64-016",
+        "l64-041",
+        "l64-019",
+        "l64-037",
+        "l64-034",
+        "l64-048",
+        "l64-060",
+        "l64-049",
+        "l64-035",
+        "l64-036",
+        "l64-052",
+        "l64-015",
+        "l64-047",
+        "l64-050",
+        "l64-058"
+      ],
+      "regression_cases": []
+    },
+    "base-paraphrase": {
+      "group": "base-paraphrase",
+      "total": 64,
+      "allowlist_accepted": 25,
+      "semantically_correct": 0,
+      "confirmed_correct": 25,
+      "semantically_incorrect": 0,
+      "unresolved": 39,
+      "correct_lower_bound": 25,
+      "correct_upper_bound": 64
+    },
+    "adapter-paraphrase": {
+      "group": "adapter-paraphrase",
+      "total": 64,
+      "allowlist_accepted": 62,
+      "semantically_correct": 0,
+      "confirmed_correct": 62,
+      "semantically_incorrect": 2,
+      "unresolved": 0,
+      "correct_lower_bound": 62,
+      "correct_upper_bound": 62
+    },
+    "comparison-paraphrase": {
+      "group": "paraphrase",
+      "paired_cases": 64,
+      "improvements": 37,
+      "regressions": 0,
+      "improvement_cases": [
+        "l64-037-p",
+        "l64-043-p",
+        "l64-028-p",
+        "l64-038-p",
+        "l64-047-p",
+        "l64-025-p",
+        "l64-039-p",
+        "l64-034-p",
+        "l64-029-p",
+        "l64-058-p",
+        "l64-014-p",
+        "l64-059-p",
+        "l64-035-p",
+        "l64-041-p",
+        "l64-030-p",
+        "l64-055-p",
+        "l64-016-p",
+        "l64-042-p",
+        "l64-015-p",
+        "l64-051-p",
+        "l64-013-p",
+        "l64-046-p",
+        "l64-049-p",
+        "l64-031-p",
+        "l64-057-p",
+        "l64-040-p",
+        "l64-019-p",
+        "l64-050-p",
+        "l64-027-p",
+        "l64-045-p",
+        "l64-056-p",
+        "l64-032-p",
+        "l64-026-p",
+        "l64-036-p",
+        "l64-054-p",
+        "l64-060-p",
+        "l64-052-p"
+      ],
+      "regression_cases": []
+    },
+    "base-operand": {
+      "group": "base-operand",
+      "total": 64,
+      "allowlist_accepted": 25,
+      "semantically_correct": 0,
+      "confirmed_correct": 25,
+      "semantically_incorrect": 0,
+      "unresolved": 39,
+      "correct_lower_bound": 25,
+      "correct_upper_bound": 64
+    },
+    "adapter-operand": {
+      "group": "adapter-operand",
+      "total": 64,
+      "allowlist_accepted": 60,
+      "semantically_correct": 0,
+      "confirmed_correct": 60,
+      "semantically_incorrect": 4,
+      "unresolved": 0,
+      "correct_lower_bound": 60,
+      "correct_upper_bound": 60
+    },
+    "comparison-operand": {
+      "group": "operand",
+      "paired_cases": 64,
+      "improvements": 35,
+      "regressions": 0,
+      "improvement_cases": [
+        "l64-025-o",
+        "l64-053-o",
+        "l64-013-o",
+        "l64-028-o",
+        "l64-005-o",
+        "l64-046-o",
+        "l64-051-o",
+        "l64-031-o",
+        "l64-042-o",
+        "l64-045-o",
+        "l64-059-o",
+        "l64-048-o",
+        "l64-037-o",
+        "l64-055-o",
+        "l64-060-o",
+        "l64-044-o",
+        "l64-039-o",
+        "l64-027-o",
+        "l64-030-o",
+        "l64-041-o",
+        "l64-016-o",
+        "l64-019-o",
+        "l64-056-o",
+        "l64-038-o",
+        "l64-020-o",
+        "l64-015-o",
+        "l64-040-o",
+        "l64-026-o",
+        "l64-047-o",
+        "l64-029-o",
+        "l64-043-o",
+        "l64-054-o",
+        "l64-058-o",
+        "l64-057-o",
+        "l64-036-o"
+      ],
+      "regression_cases": []
+    },
+    "base-composition": {
+      "group": "base-composition",
+      "total": 16,
+      "allowlist_accepted": 2,
+      "semantically_correct": 4,
+      "confirmed_correct": 6,
+      "semantically_incorrect": 2,
+      "unresolved": 8,
+      "correct_lower_bound": 6,
+      "correct_upper_bound": 14
+    },
+    "adapter-composition": {
+      "group": "adapter-composition",
+      "total": 16,
+      "allowlist_accepted": 4,
+      "semantically_correct": 6,
+      "confirmed_correct": 10,
+      "semantically_incorrect": 6,
+      "unresolved": 0,
+      "correct_lower_bound": 10,
+      "correct_upper_bound": 10
+    },
+    "comparison-composition": {
+      "group": "composition",
+      "paired_cases": 16,
+      "improvements": 7,
+      "regressions": 3,
+      "improvement_cases": [
+        "l64-c12",
+        "l64-c03",
+        "l64-c04",
+        "l64-c11",
+        "l64-c15",
+        "l64-c16",
+        "l64-c07"
+      ],
+      "regression_cases": [
+        "l64-c09",
+        "l64-c08",
+        "l64-c14"
+      ]
+    }
+  },
+  "all_rescored": {
+    "base-composition": [
+      {
+        "case_id": "l64-c01",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c02",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c03",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c04",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c05",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "head -3 is equivalent to head -n 3 on both Linux and macOS. Both take the first 3 lines. This is a trivial syntax variant that is semantically correct.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c06",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "awk 'NR>2 {print}' prints lines after line 2, which is equivalent to tail -n +3. Both achieve the same result of skipping the first two lines.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c07",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c08",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "head -3 is equivalent to head -n 3. The grep without -F is a minor issue (using regex instead of literal), but for the literal string 'ERROR' with no regex metacharacters, the behavior is identical. The ordering (head first, then grep) is correct.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c09",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "awk -F: 'NR>1 {print $2}' skips the first line (NR>1) and prints field 2, which is semantically equivalent to 'tail -n +2 | cut -d: -f2'. Both achieve the same result.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c10",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Wrong ordering and wrong deduplication: this sorts and deduplicates ALL lines first (uniq -u only keeps unique lines, i.e., removes ALL duplicates), then filters for WARN. This would incorrectly remove WARN lines that appear multiple times in the file. The reference uses sort -u after filtering, which keeps one copy of each unique WARN line.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c11",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c12",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c13",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": "correct",
+        "semantic_justification": "Identical to reference. Should have been accepted by regex. This appears to be a false negative in the allowlist.",
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c14",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": "correct",
+        "semantic_justification": "Identical to reference. Should have been accepted by regex. This appears to be a false negative in the allowlist.",
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c15",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-c16",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "This extracts the second field only from lines that end with ':ready', then counts the result with wc -l. But if a line has multiple colons, the second field is what's before the second colon, not necessarily 'ready'. The reference correctly extracts all second fields, then counts how many equal 'ready'. This could produce different results if the file has lines like 'foo:bar:ready' (second field is 'bar', not 'ready').",
+        "final_semantic_status": "semantically_incorrect"
+      }
+    ],
+    "base-paraphrase": [
+      {
+        "case_id": "l64-001-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-006-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-014-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-015-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-016-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-017-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-020-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-021-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-025-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-026-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-027-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-028-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-029-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-030-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-031-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-032-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-033-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-034-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-035-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-036-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-037-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-038-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-039-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-040-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-041-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-042-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-043-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-044-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-045-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-046-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-047-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-048-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-049-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-050-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-051-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-052-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-053-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-054-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-055-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-056-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-057-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-058-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-059-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-060-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-061-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ],
+    "adapter-fit": [
+      {
+        "case_id": "l64-001",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-006",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-014",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-015",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-016",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-017",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-020",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-021",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-025",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-026",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-027",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-028",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-029",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-030",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-031",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-032",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-033",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-034",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-035",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-036",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-037",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-038",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-039",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-040",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-041",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-042",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-043",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-044",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-045",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-046",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-047",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-048",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-049",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-050",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-051",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-052",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-053",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-054",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-055",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-056",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-057",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-058",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-059",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-060",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-061",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ],
+    "base-fit": [
+      {
+        "case_id": "l64-001",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-006",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-014",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-015",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-016",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-017",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-020",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-021",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-025",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-026",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-027",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-028",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-029",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-030",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-031",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-032",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-033",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-034",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-035",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-036",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-037",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-038",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-039",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-040",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-041",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-042",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-043",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-044",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-045",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-046",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-047",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-048",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-049",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-050",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-051",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-052",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-053",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-054",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-055",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-056",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-057",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-058",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-059",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-060",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-061",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ],
+    "base-operand": [
+      {
+        "case_id": "l64-001-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-006-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-014-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-015-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-016-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-017-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-020-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-021-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-025-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-026-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-027-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-028-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-029-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-030-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-031-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-032-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-033-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-034-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-035-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-036-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-037-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-038-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-039-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-040-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-041-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-042-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-043-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-044-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-045-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-046-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-047-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-048-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-049-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-050-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-051-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-052-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-053-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-054-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-055-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-056-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-057-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-058-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-059-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-060-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "unresolved"
+      },
+      {
+        "case_id": "l64-061-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ],
+    "adapter-paraphrase": [
+      {
+        "case_id": "l64-001-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-006-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-014-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-015-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-016-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-017-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-020-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-021-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-025-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-026-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-027-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-028-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-029-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-030-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-031-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-032-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-033-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "grep without -F interprets pattern as regex, not literal string. Request explicitly says 'literal ERROR'. Using regex could match different patterns (e.g., E.R.R.O.R with wildcards). The reference uses -F for fixed-string matching.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-034-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-035-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-036-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-037-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-038-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-039-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-040-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-041-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-042-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-043-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-044-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-045-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-046-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-047-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-048-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-049-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-050-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-051-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-052-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-053-p",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Missing -empty flag returns ALL files, not just empty ones. This fails the core requirement of filtering to files with no content.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-054-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-055-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-056-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-057-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-058-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-059-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-060-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-061-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064-p",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ],
+    "adapter-composition": [
+      {
+        "case_id": "l64-c01",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Wrong ordering: this skips the first line of the file, then filters. The reference correctly filters first (grep), then limits to first two (head). If the first line contains ERROR, this command would skip it.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c02",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "grep -Fm1 -v 'ERROR' prints non-matching lines after the first match, not the ERROR lines except the first. This is fundamentally different: it prints lines that DON'T contain ERROR, rather than lines that DO contain ERROR except the first.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c03",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c04",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "sort -n -k 3 sorts the entire file by the third field numerically. This produces the same sorted order as extracting field 3 and sorting it alone, since the primary sort key is field 3. This is a valid semantic alternative that achieves the same goal.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c05",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "head -3 is equivalent to head -n 3 on both Linux and macOS. Both take the first 3 lines. This is a trivial syntax variant that is semantically correct.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c06",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "sed -n '3,$p' prints lines 3 through end, which is equivalent to tail -n +3 (print from line 3 to end). Both achieve the same result after sorting.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c07",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c08",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "This searches the entire file for ERROR using regex (-E), rather than limiting to the first 3 lines first. If there are more than 3 ERROR lines in the file, this would print all of them, not just those in the first 3 lines. Also uses -E (regex) instead of -F (literal).",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c09",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Does not skip the header line. This would include the header's second field in the output, violating the requirement to skip the header.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c10",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Wrong ordering: this sorts and deduplicates ALL lines first, then filters for WARN. This could incorrectly remove WARN lines that are duplicates (sort -u only keeps one copy), whereas the reference keeps all unique WARN lines. Also uses grep without -F (regex instead of literal).",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c11",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c12",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "sort -z sorts null-terminated strings, which is safer for filenames with newlines. This is functionally equivalent for normal filenames and is actually more robust. The request doesn't specify output format, so this is a valid alternative.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c13",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "The quotes around the format string are optional when the format contains no spaces or special characters. Both 'stat -f '%z %i' object.bin' and 'stat -f %z %i object.bin' produce identical output on zsh. This is a trivial syntax variant.",
+        "final_semantic_status": "semantically_correct"
+      },
+      {
+        "case_id": "l64-c14",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Missing the shasum command. The request explicitly asks to print the SHA-256 checksum after the replacement. This command only does the replacement.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-c15",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-c16",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "correct",
+        "semantic_justification": "grep -c counts matching lines, which is equivalent to grep -Fc (fixed-string count) when the pattern is a simple literal with no regex metacharacters. For the literal string 'ready', both produce the same count. This is a trivial syntax variant.",
+        "final_semantic_status": "semantically_correct"
+      }
+    ],
+    "adapter-operand": [
+      {
+        "case_id": "l64-001-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-002-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-003-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-004-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-005-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-006-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-007-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-008-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-009-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-010-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-011-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-012-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-013-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-014-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "Uses wrong filename 'symlink' instead of 'selected'. The fixture defines a symlink named 'selected', not 'symlink'. This would fail on the actual fixture.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-015-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-016-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-017-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-018-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-019-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-020-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-021-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-022-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-023-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-024-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-025-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-026-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-027-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-028-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-029-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-030-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-031-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-032-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-033-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "grep without -F interprets pattern as regex, not literal string. Request explicitly says 'literal disk'. Reference uses -F for fixed-string matching.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-034-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "grep without -F interprets pattern as regex, not literal string. Request explicitly says 'literal start'. Reference uses -F for fixed-string matching.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-035-o",
+        "original_accepted": false,
+        "original_verdict": "needs_review",
+        "semantic_verdict": "incorrect",
+        "semantic_justification": "grep without -F interprets pattern as regex, not literal string. Request explicitly says 'literal timeout'. Reference uses -F for fixed-string matching.",
+        "final_semantic_status": "semantically_incorrect"
+      },
+      {
+        "case_id": "l64-036-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-037-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-038-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-039-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-040-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-041-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-042-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-043-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-044-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-045-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-046-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-047-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-048-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-049-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-050-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-051-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-052-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-053-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-054-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-055-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-056-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-057-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-058-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-059-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-060-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-061-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-062-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-063-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      },
+      {
+        "case_id": "l64-064-o",
+        "original_accepted": true,
+        "original_verdict": "accepted",
+        "semantic_verdict": null,
+        "semantic_justification": null,
+        "final_semantic_status": "accepted_by_allowlist"
+      }
+    ]
+  }
+}
