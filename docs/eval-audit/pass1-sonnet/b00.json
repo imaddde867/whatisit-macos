@@ -1,0 +1,412 @@
+{
+ "cases": [
+  {
+   "case": "m034",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0798",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Lists hardware ports, not service priority order"
+    },
+    {
+     "key": "x0797",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "nmcli is Linux NetworkManager"
+    },
+    {
+     "key": "x0014",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Lists services but is not documented as priority order; no order header"
+    },
+    {
+     "key": "x0534",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference"
+    }
+   ]
+  },
+  {
+   "case": "e007",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0607",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "BSD find: '+' must directly follow {}; 'photos/ +' errors"
+    },
+    {
+     "key": "x0047",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Recursive, photos never created, bad ./photos/{} dest path"
+    },
+    {
+     "key": "x0313",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recursive and photos folder not created"
+    },
+    {
+     "key": "x0605",
+     "verdict": "correct",
+     "category": null,
+     "note": "Creates folder, moves top-level jpgs"
+    },
+    {
+     "key": "x0606",
+     "verdict": "correct",
+     "category": null,
+     "note": "mv -n harmless; works"
+    },
+    {
+     "key": "x0608",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0604",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "'{} photos/ +' invalid for find -exec +"
+    },
+    {
+     "key": "x0146",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recurses into subfolders, not just this folder"
+    }
+   ]
+  },
+  {
+   "case": "e019",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0057",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    }
+   ]
+  },
+  {
+   "case": "e069",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0750",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0096",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints current branch (HEAD if detached)"
+    }
+   ]
+  },
+  {
+   "case": "m108",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0869",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Not a factory reset; modifies DNS only"
+    },
+    {
+     "key": "x0870",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Deletes system network configuration"
+    }
+   ]
+  },
+  {
+   "case": "e078",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0406",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Sends PDF as raw body, no attachment; invented addresses"
+    },
+    {
+     "key": "x0280",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "No attachment; invented address and subject"
+    },
+    {
+     "key": "x0102",
+     "verdict": "incorrect",
+     "category": "not_a_command",
+     "note": "Nonsensical echo/sed pipeline"
+    }
+   ]
+  },
+  {
+   "case": "e024",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0062",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0370",
+     "verdict": "correct",
+     "category": null,
+     "note": "Useless cat, fine"
+    }
+   ]
+  },
+  {
+   "case": "e003",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0143",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    }
+   ]
+  },
+  {
+   "case": "e061",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0185",
+     "verdict": "correct",
+     "category": null,
+     "note": "Shows model name and chip"
+    },
+    {
+     "key": "x0738",
+     "verdict": "correct",
+     "category": null,
+     "note": "Model identifier and chip brand string"
+    },
+    {
+     "key": "x0244",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "hw.machine is just arm64; no chip"
+    },
+    {
+     "key": "x0737",
+     "verdict": "correct",
+     "category": null,
+     "note": "Greps Model Name and Chip"
+    },
+    {
+     "key": "x0734",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0735",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0736",
+     "verdict": "correct",
+     "category": null,
+     "note": "sysctl accepts multiple names"
+    }
+   ]
+  },
+  {
+   "case": "m066",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0828",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "journalctl is Linux"
+    },
+    {
+     "key": "x0560",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid log show; extra info/debug ok"
+    },
+    {
+     "key": "x0559",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid"
+    },
+    {
+     "key": "x0028",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "system.log tail, sudo, live follow, not unified log"
+    },
+    {
+     "key": "x0387",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Follows system.log, not kernel unified log"
+    },
+    {
+     "key": "x0829",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "/var/log/syslog absent on macOS"
+    }
+   ]
+  },
+  {
+   "case": "e014",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0151",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "'*.DS_Store' also matches names like foo.DS_Store"
+    },
+    {
+     "key": "x0620",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0264",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "'*.DS_Store' matches extra files"
+    },
+    {
+     "key": "x0621",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0052",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Wildcard overmatch, xargs breaks on spaces, rm -rf"
+    },
+    {
+     "key": "x0223",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "'*.DS_Store' matches extra files"
+    },
+    {
+     "key": "x0618",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0619",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    }
+   ]
+  },
+  {
+   "case": "e065",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0746",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0743",
+     "verdict": "correct",
+     "category": null,
+     "note": "Keeps display awake 2h"
+    },
+    {
+     "key": "x0092",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset repeat sleep schedules sleep; needs sudo, persistent"
+    },
+    {
+     "key": "x0745",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0187",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-m takes no value; 7200 run as command"
+    },
+    {
+     "key": "x0744",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid flags, 2h"
+    }
+   ]
+  },
+  {
+   "case": "m106",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0867",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Deletes all files over 1G from /"
+    },
+    {
+     "key": "x0868",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Deletes Downloads, not big files"
+    }
+   ]
+  },
+  {
+   "case": "e070",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0097",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct"
+    },
+    {
+     "key": "x0188",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Only stages, does not commit"
+    }
+   ]
+  }
+ ]
+}
