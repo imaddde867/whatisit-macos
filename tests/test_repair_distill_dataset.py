@@ -1,7 +1,10 @@
 import copy
 from pathlib import Path
+import re
 import sys
+import types
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import repair_distill_dataset as repair
@@ -10,6 +13,17 @@ from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
 class RepairTests(unittest.TestCase):
     def setUp(self):
+        package = types.ModuleType('whatisit')
+        safety = types.ModuleType('whatisit.safety')
+        safety.check = lambda command: []
+        safety.PLACEHOLDER_HINT = re.compile(r'/path/to/')
+        package.safety = safety
+        modules = patch.dict(sys.modules, {'whatisit': package, 'whatisit.safety': safety})
+        modules.start()
+        self.addCleanup(modules.stop)
+        lint = patch('whatisit_macos.maclint.problems', return_value=[])
+        lint.start()
+        self.addCleanup(lint.stop)
         self.request = {'id': 'r1', 'request': 'Read metadata for sample.pdf.', 'kind': 'answer'}
         self.label = {'id': 'r1', 'messages': [
             {'role': 'system', 'content': 'system'},
