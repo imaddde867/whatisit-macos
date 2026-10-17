@@ -3,6 +3,11 @@ import sys
 import unittest
 from pathlib import Path
 
+try:
+    import whatisit  # noqa: F401
+except ImportError:
+    raise unittest.SkipTest('needs the upstream whatisit package (safety rules)')
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from score_teacher_eval import (effective_command, label_case, lint_reject,  # noqa: E402
                                 majority, score_case)
