@@ -48,3 +48,31 @@ class SplitTests(unittest.TestCase):
         self.assertEqual((len(val), len(empty)), (20, 5))
         self.assertEqual(split_validation(rows, 0.0), (list(range(200)), []))
 
+    def test_five_percent_grouped_split_keeps_source_families_together(self):
+        rows = [{'id': f'r{i}', 'source_id': f'family{i // 2}',
+                 'messages': [None, {'content': MACOS_PREFIX + f'request {i} token{i}'},
+                              {'content': '' if i % 4 == 0 else f'cmd{i}'}]}
+                for i in range(200)]
+        train, val = split_validation(rows, 0.05)
+        self.assertEqual((train, val), split_validation(rows, 0.05))
+        self.assertEqual(sorted(train + val), list(range(200)))
+        train_groups = {rows[i]['source_id'] for i in train}
+        val_groups = {rows[i]['source_id'] for i in val}
+        self.assertFalse(train_groups & val_groups)
+        self.assertLessEqual(abs(len(val) - 10), 2)
+        self.assertTrue(any(rows[i]['messages'][2]['content'] == '' for i in val))
+        self.assertTrue(any(rows[i]['messages'][2]['content'] for i in val))
+
+    def test_grouped_split_merges_same_command_and_near_duplicate_requests(self):
+        def row(i, source, request, command):
+            return {'id': f'r{i}', 'source_id': source,
+                    'messages': [None, {'content': MACOS_PREFIX + request}, {'content': command}]}
+        rows = [row(i, f's{i}', f'unique request number {i} alpha{i}', f'cmd{i}') for i in range(100)]
+        rows += [row(100, 's100', 'count lines in notes.txt', 'wc -l notes.txt'),
+                 row(101, 's101', 'how many lines does report.md have', 'wc -l notes.txt'),
+                 row(102, 's102', 'show disk usage of the project folder now', 'du -sh project'),
+                 row(103, 's103', 'show disk usage of the project folder please', 'du -sh project/')]
+        for fraction in (0.05, 0.2, 0.4):
+            train, val = split_validation(rows, fraction)
+            for pair in ((100, 101), (102, 103)):
+                self.assertEqual(pair[0] in val, pair[1] in val, (fraction, pair))
