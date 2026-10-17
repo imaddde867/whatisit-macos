@@ -21,6 +21,9 @@ class RepairTests(unittest.TestCase):
         modules = patch.dict(sys.modules, {'whatisit': package, 'whatisit.safety': safety})
         modules.start()
         self.addCleanup(modules.stop)
+        lint = patch('whatisit_macos.maclint.problems', return_value=[])
+        lint.start()
+        self.addCleanup(lint.stop)
         self.request = {'id': 'r1', 'request': 'Read metadata for sample.pdf.', 'kind': 'answer'}
         self.label = {'id': 'r1', 'messages': [
             {'role': 'system', 'content': 'system'},
