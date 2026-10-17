@@ -1,0 +1,298 @@
+{
+  "comparisons": {
+    "composition": {
+      "both_correct": 4,
+      "both_incorrect": 4,
+      "group": "composition",
+      "improvement_cases": [
+        "l64-c07",
+        "l64-c10",
+        "l64-c15",
+        "l64-c16"
+      ],
+      "improvements": 4,
+      "paired_cases": 16,
+      "regression_cases": [
+        "l64-c08",
+        "l64-c09",
+        "l64-c13",
+        "l64-c14"
+      ],
+      "regressions": 4,
+      "unresolved_pair_detail": [],
+      "unresolved_pairs": 0
+    },
+    "fit": {
+      "both_correct": 39,
+      "both_incorrect": 0,
+      "group": "fit",
+      "improvement_cases": [
+        "l64-013",
+        "l64-014",
+        "l64-015",
+        "l64-016",
+        "l64-019",
+        "l64-026",
+        "l64-029",
+        "l64-034",
+        "l64-041",
+        "l64-042",
+        "l64-043",
+        "l64-044",
+        "l64-045",
+        "l64-049",
+        "l64-050",
+        "l64-051",
+        "l64-052",
+        "l64-053",
+        "l64-057",
+        "l64-058",
+        "l64-059",
+        "l64-060"
+      ],
+      "improvements": 22,
+      "paired_cases": 64,
+      "regression_cases": [],
+      "regressions": 0,
+      "unresolved_pair_detail": [
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-037"
+        },
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-038"
+        },
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-040"
+        }
+      ],
+      "unresolved_pairs": 3
+    },
+    "operand": {
+      "both_correct": 34,
+      "both_incorrect": 1,
+      "group": "operand",
+      "improvement_cases": [
+        "l64-005-o",
+        "l64-013-o",
+        "l64-015-o",
+        "l64-016-o",
+        "l64-019-o",
+        "l64-020-o",
+        "l64-026-o",
+        "l64-029-o",
+        "l64-030-o",
+        "l64-034-o",
+        "l64-035-o",
+        "l64-038-o",
+        "l64-041-o",
+        "l64-042-o",
+        "l64-043-o",
+        "l64-044-o",
+        "l64-045-o",
+        "l64-048-o",
+        "l64-051-o",
+        "l64-053-o",
+        "l64-054-o",
+        "l64-056-o",
+        "l64-057-o",
+        "l64-058-o",
+        "l64-059-o",
+        "l64-060-o"
+      ],
+      "improvements": 26,
+      "paired_cases": 64,
+      "regression_cases": [],
+      "regressions": 0,
+      "unresolved_pair_detail": [
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-037-o"
+        },
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-039-o"
+        },
+        {
+          "adapter": "correct",
+          "base": "unresolved",
+          "case_id": "l64-040-o"
+        }
+      ],
+      "unresolved_pairs": 3
+    },
+    "paraphrase": {
+      "both_correct": 34,
+      "both_incorrect": 1,
+      "group": "paraphrase",
+      "improvement_cases": [
+        "l64-013-p",
+        "l64-014-p",
+        "l64-015-p",
+        "l64-016-p",
+        "l64-025-p",
+        "l64-026-p",
+        "l64-028-p",
+        "l64-029-p",
+        "l64-030-p",
+        "l64-031-p",
+        "l64-032-p",
+        "l64-035-p",
+        "l64-037-p",
+        "l64-039-p",
+        "l64-040-p",
+        "l64-041-p",
+        "l64-042-p",
+        "l64-043-p",
+        "l64-046-p",
+        "l64-049-p",
+        "l64-050-p",
+        "l64-051-p",
+        "l64-052-p",
+        "l64-054-p",
+        "l64-055-p",
+        "l64-057-p",
+        "l64-058-p",
+        "l64-059-p",
+        "l64-060-p"
+      ],
+      "improvements": 29,
+      "paired_cases": 64,
+      "regression_cases": [],
+      "regressions": 0,
+      "unresolved_pair_detail": [],
+      "unresolved_pairs": 0
+    }
+  },
+  "group_summaries": {
+    "adapter-composition": {
+      "adjudicated_correct": 4,
+      "allowlist_accepted": 4,
+      "confirmed_correct": 8,
+      "confirmed_incorrect": 8,
+      "correct_lower_bound": 8,
+      "correct_upper_bound": 8,
+      "group": "composition",
+      "model": "adapter",
+      "total": 16,
+      "unresolved": 0
+    },
+    "adapter-fit": {
+      "adjudicated_correct": 0,
+      "allowlist_accepted": 64,
+      "confirmed_correct": 64,
+      "confirmed_incorrect": 0,
+      "correct_lower_bound": 64,
+      "correct_upper_bound": 64,
+      "group": "fit",
+      "model": "adapter",
+      "total": 64,
+      "unresolved": 0
+    },
+    "adapter-operand": {
+      "adjudicated_correct": 3,
+      "allowlist_accepted": 60,
+      "confirmed_correct": 63,
+      "confirmed_incorrect": 1,
+      "correct_lower_bound": 63,
+      "correct_upper_bound": 63,
+      "group": "operand",
+      "model": "adapter",
+      "total": 64,
+      "unresolved": 0
+    },
+    "adapter-paraphrase": {
+      "adjudicated_correct": 1,
+      "allowlist_accepted": 62,
+      "confirmed_correct": 63,
+      "confirmed_incorrect": 1,
+      "correct_lower_bound": 63,
+      "correct_upper_bound": 63,
+      "group": "paraphrase",
+      "model": "adapter",
+      "total": 64,
+      "unresolved": 0
+    },
+    "base-composition": {
+      "adjudicated_correct": 6,
+      "allowlist_accepted": 2,
+      "confirmed_correct": 8,
+      "confirmed_incorrect": 8,
+      "correct_lower_bound": 8,
+      "correct_upper_bound": 8,
+      "group": "composition",
+      "model": "base",
+      "total": 16,
+      "unresolved": 0
+    },
+    "base-fit": {
+      "adjudicated_correct": 11,
+      "allowlist_accepted": 28,
+      "confirmed_correct": 39,
+      "confirmed_incorrect": 22,
+      "correct_lower_bound": 39,
+      "correct_upper_bound": 42,
+      "group": "fit",
+      "model": "base",
+      "total": 64,
+      "unresolved": 3
+    },
+    "base-operand": {
+      "adjudicated_correct": 9,
+      "allowlist_accepted": 25,
+      "confirmed_correct": 34,
+      "confirmed_incorrect": 27,
+      "correct_lower_bound": 34,
+      "correct_upper_bound": 37,
+      "group": "operand",
+      "model": "base",
+      "total": 64,
+      "unresolved": 3
+    },
+    "base-paraphrase": {
+      "adjudicated_correct": 9,
+      "allowlist_accepted": 25,
+      "confirmed_correct": 34,
+      "confirmed_incorrect": 30,
+      "correct_lower_bound": 34,
+      "correct_upper_bound": 34,
+      "group": "paraphrase",
+      "model": "base",
+      "total": 64,
+      "unresolved": 0
+    }
+  },
+  "notes": "Three-state scoring. correct = allowlist-accepted or adjudicated correct; incorrect = adjudicated incorrect; unresolved = adjudicated unresolved or rejected-without-adjudication. Paired changes count only confirmed sides; any unresolved side is reported separately.",
+  "paired_totals": {
+    "improvements": 81,
+    "regressions": 4,
+    "unresolved_pairs": 6
+  },
+  "totals": {
+    "adapter": {
+      "allowlist_accepted": 190,
+      "confirmed_correct": 198,
+      "confirmed_incorrect": 10,
+      "correct_lower_bound": 198,
+      "correct_upper_bound": 198,
+      "total": 208,
+      "unresolved": 0
+    },
+    "base": {
+      "allowlist_accepted": 80,
+      "confirmed_correct": 115,
+      "confirmed_incorrect": 87,
+      "correct_lower_bound": 115,
+      "correct_upper_bound": 121,
+      "total": 208,
+      "unresolved": 6
+    }
+  }
+}
