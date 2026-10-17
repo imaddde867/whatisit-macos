@@ -1,0 +1,634 @@
+{
+ "cases": [
+  {
+   "case": "e054",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0718",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "diskutil needs device id or mount path; bare volume name not resolved"
+    },
+    {
+     "key": "x0717",
+     "verdict": "correct",
+     "category": null,
+     "note": "Ejects volume by mount path"
+    }
+   ]
+  },
+  {
+   "case": "m001",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0459",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps, does not report"
+    },
+    {
+     "key": "x0281",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps"
+    },
+    {
+     "key": "x0497",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps"
+    },
+    {
+     "key": "x0248",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps"
+    },
+    {
+     "key": "x0193",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps"
+    },
+    {
+     "key": "x0507",
+     "verdict": "correct",
+     "category": null,
+     "note": "BSD stat %B is birth time in epoch seconds"
+    },
+    {
+     "key": "x0104",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch modifies timestamps"
+    },
+    {
+     "key": "x0761",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "stat -c is GNU; BSD stat lacks it"
+    },
+    {
+     "key": "x0762",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints mtime as formatted date, not creation Unix seconds"
+    }
+   ]
+  },
+  {
+   "case": "m118",
+   "case_flag": "Unanswerable: friend's network unknown; any password retrieval is a guess",
+   "verdicts": [
+    {
+     "key": "x0502",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed SSID; password of someone else's network"
+    },
+    {
+     "key": "x0327",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Invalid args and no known network"
+    },
+    {
+     "key": "x0880",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Shows current network only, not requested password"
+    },
+    {
+     "key": "x0879",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed keychain item; sensitive credential read"
+    },
+    {
+     "key": "x0140",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed SSID; credential lookup"
+    },
+    {
+     "key": "x0447",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed SSID and broken quoting"
+    },
+    {
+     "key": "x0217",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed SSID; credential lookup"
+    },
+    {
+     "key": "x0473",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed SSID; credential lookup"
+    }
+   ]
+  },
+  {
+   "case": "m094",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0501",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Reads unrelated global key, not Finder domain"
+    },
+    {
+     "key": "x0584",
+     "verdict": "unsure",
+     "category": null,
+     "note": "Capitalized domain com.apple.Finder may not match cfprefs domain"
+    },
+    {
+     "key": "x0426",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Global domain key, not Finder domain"
+    },
+    {
+     "key": "x0586",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "defaults read is lossy old-style text; types lost in conversion"
+    },
+    {
+     "key": "x0290",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Dumps global domain, not Finder, not XML"
+    },
+    {
+     "key": "x0585",
+     "verdict": "correct",
+     "category": null,
+     "note": "plutil converts Finder plist file to XML on stdout"
+    },
+    {
+     "key": "x0133",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Writes file, not stdout, not XML"
+    },
+    {
+     "key": "x0856",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "defaults import writes stdin into Finder prefs"
+    },
+    {
+     "key": "x0260",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Old-style plist text, not XML"
+    },
+    {
+     "key": "x0037",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Overwrites Finder plist with dscl output"
+    },
+    {
+     "key": "x0214",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Old-style plist text, not XML"
+    },
+    {
+     "key": "x0587",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive default APFS resolves same plist file"
+    }
+   ]
+  },
+  {
+   "case": "m054",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0443",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "pmset has no 'battery charge' subcommand"
+    },
+    {
+     "key": "x0545",
+     "verdict": "correct",
+     "category": null,
+     "note": "Filters batt line for charging state"
+    },
+    {
+     "key": "x0023",
+     "verdict": "correct",
+     "category": null,
+     "note": "Shows charging state in output"
+    },
+    {
+     "key": "x0546",
+     "verdict": "correct",
+     "category": null,
+     "note": "Yes only when state is 'charging'"
+    },
+    {
+     "key": "x0817",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "upower is Linux only"
+    },
+    {
+     "key": "x0412",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "pmset output has no 'Battery State' line"
+    },
+    {
+     "key": "x0818",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Shows power schedule, not charge state"
+    }
+   ]
+  },
+  {
+   "case": "m076",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0128",
+     "verdict": "correct",
+     "category": null,
+     "note": "sips -r 90 with --out preserves source"
+    },
+    {
+     "key": "x0571",
+     "verdict": "correct",
+     "category": null,
+     "note": "--rotate is long form of -r"
+    },
+    {
+     "key": "x0838",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "ImageMagick convert not on stock macOS"
+    },
+    {
+     "key": "x0839",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Rotates in place, overwriting source, no rotated.jpg"
+    },
+    {
+     "key": "x0348",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-rotate is not a sips option"
+    },
+    {
+     "key": "x0572",
+     "verdict": "correct",
+     "category": null,
+     "note": "Option order fine; --out given, source preserved"
+    }
+   ]
+  },
+  {
+   "case": "e016",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0153",
+     "verdict": "correct",
+     "category": null,
+     "note": "tail -f follows file"
+    },
+    {
+     "key": "x0054",
+     "verdict": "correct",
+     "category": null,
+     "note": "Same follow; read loop only strips whitespace/backslashes"
+    }
+   ]
+  },
+  {
+   "case": "e056",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0299",
+     "verdict": "correct",
+     "category": null,
+     "note": "disk0 info includes SMART Status"
+    },
+    {
+     "key": "x0722",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches SMART Status line"
+    },
+    {
+     "key": "x0721",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches SMART Status line"
+    },
+    {
+     "key": "x0723",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches SMART Status line"
+    },
+    {
+     "key": "x0379",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "diskutil apm is for Apple Partition Map, not SMART"
+    },
+    {
+     "key": "x0181",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "/ is synthesized APFS volume; SMART typically Not Supported"
+    },
+    {
+     "key": "x0316",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "diskutil apm on disk0s1 not SMART status"
+    },
+    {
+     "key": "x0439",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "diskutil apm not SMART; inverted logic"
+    }
+   ]
+  },
+  {
+   "case": "m058",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0025",
+     "verdict": "correct",
+     "category": null,
+     "note": "open -a with full app path works after file"
+    },
+    {
+     "key": "x0206",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Uses default app, not TextEdit"
+    },
+    {
+     "key": "x0821",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "xdg-open absent on macOS"
+    },
+    {
+     "key": "x0122",
+     "verdict": "correct",
+     "category": null,
+     "note": "Standard open -a TextEdit"
+    }
+   ]
+  },
+  {
+   "case": "e012",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0616",
+     "verdict": "correct",
+     "category": null,
+     "note": "Current folder files by size, top 5"
+    },
+    {
+     "key": "x0222",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "'total' line consumes one slot; only 4 entries"
+    },
+    {
+     "key": "x0490",
+     "verdict": "correct",
+     "category": null,
+     "note": "Top 5 by size, names only"
+    },
+    {
+     "key": "x0615",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference"
+    },
+    {
+     "key": "x0450",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Recurses into subfolders"
+    },
+    {
+     "key": "x0613",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Recurses into subfolders"
+    },
+    {
+     "key": "x0617",
+     "verdict": "correct",
+     "category": null,
+     "note": "Current folder only; BSD sort supports -h"
+    },
+    {
+     "key": "x0614",
+     "verdict": "correct",
+     "category": null,
+     "note": "du -k sorted numerically, top 5"
+    }
+   ]
+  },
+  {
+   "case": "m098",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0860",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints version, not path"
+    },
+    {
+     "key": "x0135",
+     "verdict": "correct",
+     "category": null,
+     "note": "First line is path used; extras harmless"
+    },
+    {
+     "key": "x0039",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Prints a PATH entry, not python3 path"
+    },
+    {
+     "key": "x0216",
+     "verdict": "correct",
+     "category": null,
+     "note": "zsh which shows resolved path"
+    },
+    {
+     "key": "x0427",
+     "verdict": "correct",
+     "category": null,
+     "note": "First which -a hit is path used"
+    },
+    {
+     "key": "x0859",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pip show of nonexistent package"
+    }
+   ]
+  },
+  {
+   "case": "m044",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0542",
+     "verdict": "correct",
+     "category": null,
+     "note": "vm_stat header field 8 is page size"
+    },
+    {
+     "key": "x0807",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "vm.swappiness is Linux sysctl"
+    },
+    {
+     "key": "x0540",
+     "verdict": "correct",
+     "category": null,
+     "note": "Header line field 8 is page size"
+    },
+    {
+     "key": "x0541",
+     "verdict": "correct",
+     "category": null,
+     "note": "getconf PAGESIZE valid on macOS"
+    },
+    {
+     "key": "x0806",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints CPU count"
+    }
+   ]
+  },
+  {
+   "case": "e013",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0051",
+     "verdict": "correct",
+     "category": null,
+     "note": "open . reveals folder in Finder"
+    }
+   ]
+  },
+  {
+   "case": "m012",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0514",
+     "verdict": "correct",
+     "category": null,
+     "note": "-c -i -F correct"
+    },
+    {
+     "key": "x0360",
+     "verdict": "correct",
+     "category": null,
+     "note": "TODO has no regex metachars; same result"
+    },
+    {
+     "key": "x0513",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct flags"
+    },
+    {
+     "key": "x0107",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Case-sensitive"
+    },
+    {
+     "key": "x0510",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct flags"
+    },
+    {
+     "key": "x0512",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct flags"
+    },
+    {
+     "key": "x0283",
+     "verdict": "correct",
+     "category": null,
+     "note": "TODO has no metachars; case-insensitive count"
+    },
+    {
+     "key": "x0196",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Case-sensitive"
+    },
+    {
+     "key": "x0384",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive count; no metachars"
+    },
+    {
+     "key": "x0511",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct flags"
+    },
+    {
+     "key": "x0774",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Prints lines, not count, case-sensitive"
+    },
+    {
+     "key": "x0005",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Case-sensitive"
+    },
+    {
+     "key": "x0773",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "BSD grep lacks -P"
+    }
+   ]
+  }
+ ]
+}

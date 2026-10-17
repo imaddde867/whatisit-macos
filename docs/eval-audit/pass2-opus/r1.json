@@ -1,0 +1,430 @@
+{
+ "cases": [
+  {
+   "case": "e005",
+   "case_flag": "Ambiguous: recursive vs top-level; reference counts dirs too.",
+   "verdicts": [
+    {
+     "key": "x0045",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "find . -type f recurses into subfolders; counts nested files, not items in this folder"
+    }
+   ]
+  },
+  {
+   "case": "e014",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0052",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "man find SYNOPSIS: 'find ... path ... [expression]'; BSD find requires path; also unsafe xargs on spaces"
+    },
+    {
+     "key": "x0151",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "BSD find SYNOPSIS requires path operand; 'find -name' fails with illegal option"
+    },
+    {
+     "key": "x0223",
+     "verdict": "correct",
+     "category": null,
+     "note": "man fnmatch: leading periods regular unless FNM_PERIOD; *.DS_Store matches .DS_Store; path given"
+    },
+    {
+     "key": "x0264",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "BSD find SYNOPSIS requires path operand; 'find -type' errors on macOS"
+    }
+   ]
+  },
+  {
+   "case": "e025",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0063",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "zshexpn: unquoted $(...) split on IFS; echo collapses newlines into one line"
+    },
+    {
+     "key": "x0266",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "zshexpn: unquoted $(...) word-split; file lines joined by spaces"
+    },
+    {
+     "key": "x0293",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "man tr SYNOPSIS: tr string1 string2 only; no file operand, usage error"
+    },
+    {
+     "key": "x0431",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "uppercases the literal string 'SHOW NOTES.TXT', never reads the file"
+    }
+   ]
+  },
+  {
+   "case": "e032",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0645",
+     "verdict": "correct",
+     "category": null,
+     "note": "find $HOME -name budget.xlsx locates file in home; slower than mdfind but valid BSD find"
+    }
+   ]
+  },
+  {
+   "case": "e037",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0073",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: -e identical to -A (legacy -e only in legacy mode); pmem alias of %mem; header sorts last"
+    },
+    {
+     "key": "x0167",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: rss, comm keywords valid; -ax all procs; sort -nr top 5"
+    },
+    {
+     "key": "x0271",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: -e = -A; rss,pid,user,command valid keywords; numeric sort on rss"
+    },
+    {
+     "key": "x0373",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: pmem alias %mem, rss valid; sort -rn by pmem top 5"
+    },
+    {
+     "key": "x0494",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: rss,pid,user,comm valid keywords; sort -nr top 5"
+    },
+    {
+     "key": "x0660",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps keywords pid,pmem,rss,comm valid; sort -k3,3nr sorts rss"
+    },
+    {
+     "key": "x0662",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps keywords valid; sort -nrk2 (man sort -k field1) sorts rss descending"
+    },
+    {
+     "key": "x0663",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps: %mem, rss valid; sort -k 2,2 -n -r on rss"
+    },
+    {
+     "key": "x0664",
+     "verdict": "correct",
+     "category": null,
+     "note": "ps aux RSS is column 6; sort -k6,6nr; header sorts to bottom"
+    }
+   ]
+  },
+  {
+   "case": "e043",
+   "case_flag": "Reference assumes en0 is the active interface.",
+   "verdicts": [
+    {
+     "key": "x0078",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "dumps every interface's IPv4 including 127.0.0.1 (lo0 listed first); misleading"
+    },
+    {
+     "key": "x0172",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "grep inet keeps en0 inet6 lines, printed before IPv4; first line is fe80 link-local"
+    },
+    {
+     "key": "x0235",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "lists all inet and inet6 addresses incl. 127.0.0.1, ::1, link-locals for every interface"
+    },
+    {
+     "key": "x0417",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "grep inet keeps inet6 lines; prints ::1, fe80 link-locals of all interfaces"
+    },
+    {
+     "key": "x0684",
+     "verdict": "correct",
+     "category": null,
+     "note": "/sbin/route get default interface fed to /usr/sbin/ipconfig getifaddr; correct"
+    },
+    {
+     "key": "x0687",
+     "verdict": "correct",
+     "category": null,
+     "note": "same as x0684: default-route interface to ipconfig getifaddr"
+    },
+    {
+     "key": "x0688",
+     "verdict": "correct",
+     "category": null,
+     "note": "default-route ipconfig getifaddr with non-loopback ifconfig fallback; correct"
+    }
+   ]
+  },
+  {
+   "case": "e051",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0298",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "relative 'Downloads/*' only works if cwd is $HOME; should be ~/Downloads"
+    },
+    {
+     "key": "x0711",
+     "verdict": "correct",
+     "category": null,
+     "note": "man du: -s, -k valid; per-item KB sizes sorted -nr; top 20"
+    },
+    {
+     "key": "x0712",
+     "verdict": "correct",
+     "category": null,
+     "note": "man du -k -s valid; all Downloads items sorted largest first"
+    },
+    {
+     "key": "x0715",
+     "verdict": "correct",
+     "category": null,
+     "note": "du -sk sorted -rn, awk formats KB/MB/GB; BSD awk printf/substr/index fine"
+    }
+   ]
+  },
+  {
+   "case": "e056",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0181",
+     "verdict": "correct",
+     "category": null,
+     "note": "man diskutil DEVICES: mount point accepted; SMART Status line in output (not in man; behaviour-based)"
+    }
+   ]
+  },
+  {
+   "case": "e062",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0090",
+     "verdict": "correct",
+     "category": null,
+     "note": "date +\"%Y-%m-%d\" prints YYYY-MM-DD"
+    }
+   ]
+  },
+  {
+   "case": "e076",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0101",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "man screencapture: -P opens picture in Preview window; unrequested side effect"
+    },
+    {
+     "key": "x0192",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "man screencapture: -P opens taken picture in Preview; unrequested side effect"
+    },
+    {
+     "key": "x0302",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "man screencapture: -i interactive selection; waits for user, escape cancels; not a plain screenshot"
+    },
+    {
+     "key": "x0342",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "man screencapture: -c forces capture to clipboard; shot.png not saved"
+    }
+   ]
+  },
+  {
+   "case": "m014",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0006",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "reads ~/app.log instead of app.log in current directory"
+    },
+    {
+     "key": "x0515",
+     "verdict": "correct",
+     "category": null,
+     "note": "man grep: -w word-regexp; matches ERROR/WARN tokens; -E alternation fine"
+    }
+   ]
+  },
+  {
+   "case": "m026",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0523",
+     "verdict": "correct",
+     "category": null,
+     "note": "man ps SYNOPSIS: -p pid[,pid...]; pgrep -x exact name; paste -sd, joins pids"
+    },
+    {
+     "key": "x0524",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "awk's own command line contains 'Finder.app/Contents/MacOS/Finder', so awk matches itself"
+    },
+    {
+     "key": "x0525",
+     "verdict": "correct",
+     "category": null,
+     "note": "[F]inder grep trick avoids self-match; man ps: args = command and arguments"
+    }
+   ]
+  },
+  {
+   "case": "m038",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0115",
+     "verdict": "correct",
+     "category": null,
+     "note": "grep -Eo MAC pattern extracts the en0 ether address; IPv6 groups won't match"
+    },
+    {
+     "key": "x0538",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "man ifconfig: ether = link family; header line printed too, awk $2 emits 'flags=...'"
+    }
+   ]
+  },
+  {
+   "case": "m050",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0119",
+     "verdict": "correct",
+     "category": null,
+     "note": "Shows AC Charger Connected and State of Charge (%); verbose (not in man; behaviour-based)"
+    }
+   ]
+  },
+  {
+   "case": "m062",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0124",
+     "verdict": "correct",
+     "category": null,
+     "note": "man PlistBuddy: Print [entry], entries like :CFBundleShortVersionString; correct"
+    },
+    {
+     "key": "x0553",
+     "verdict": "correct",
+     "category": null,
+     "note": "PlistBuddy Print :CFBundleIdentifier per man entry syntax"
+    },
+    {
+     "key": "x0554",
+     "verdict": "correct",
+     "category": null,
+     "note": "man plutil raw: 'result will be output to stdout unless -o is specified'; file not modified"
+    },
+    {
+     "key": "x0555",
+     "verdict": "correct",
+     "category": null,
+     "note": "man shows only :Key form; colonless top-level key works (not documented in man; behaviour-based)"
+    }
+   ]
+  },
+  {
+   "case": "m076",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0571",
+     "verdict": "correct",
+     "category": null,
+     "note": "man sips: --rotate degreesCW, --out file; source preserved"
+    }
+   ]
+  },
+  {
+   "case": "m094",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0584",
+     "verdict": "correct",
+     "category": null,
+     "note": "man defaults: export domain - gives XML; plutil reads stdin '-'; capital F resolves on case-insensitive APFS"
+    },
+    {
+     "key": "x0585",
+     "verdict": "correct",
+     "category": null,
+     "note": "man plutil: -convert xml1 -o - outputs to stdout; Finder plist file (may lag cfprefsd cache)"
+    },
+    {
+     "key": "x0587",
+     "verdict": "correct",
+     "category": null,
+     "note": "same as x0585; com.apple.Finder.plist resolves on default case-insensitive APFS"
+    }
+   ]
+  },
+  {
+   "case": "m102",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0594",
+     "verdict": "correct",
+     "category": null,
+     "note": "man shows only :Key form; colonless top-level key works (not documented in man; behaviour-based)"
+    }
+   ]
+  }
+ ]
+}

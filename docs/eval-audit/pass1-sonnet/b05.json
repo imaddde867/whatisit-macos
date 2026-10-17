@@ -1,0 +1,760 @@
+{
+ "cases": [
+  {
+   "case": "e043",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0172",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints IPv4 plus inet6 addresses, multiple lines."
+    },
+    {
+     "key": "x0235",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Includes loopback and IPv6 addresses for all interfaces."
+    },
+    {
+     "key": "x0417",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Excludes loopback but still prints inet6 and multiple lines."
+    },
+    {
+     "key": "x0684",
+     "verdict": "correct",
+     "category": null,
+     "note": "Gets default-route interface, ipconfig getifaddr gives its IPv4."
+    },
+    {
+     "key": "x0686",
+     "verdict": "correct",
+     "category": null,
+     "note": "en0/en1 fallback to ifconfig; prints IPv4."
+    },
+    {
+     "key": "x0078",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Includes 127.0.0.1 and every interface address."
+    },
+    {
+     "key": "x0688",
+     "verdict": "correct",
+     "category": null,
+     "note": "Default-route interface with ifconfig fallback; single IPv4."
+    },
+    {
+     "key": "x0687",
+     "verdict": "correct",
+     "category": null,
+     "note": "Default-route interface IPv4 via ipconfig getifaddr."
+    },
+    {
+     "key": "x0685",
+     "verdict": "correct",
+     "category": null,
+     "note": "Default-route lookup with sensible fallbacks."
+    }
+   ]
+  },
+  {
+   "case": "m026",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0790",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pidof does not exist on stock macOS."
+    },
+    {
+     "key": "x0523",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x PIDs fed to ps -p; shows pid and command."
+    },
+    {
+     "key": "x0251",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "lsof of open files, not command lines."
+    },
+    {
+     "key": "x0791",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Includes the grep process itself as a false match."
+    },
+    {
+     "key": "x0111",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Shows no PIDs."
+    },
+    {
+     "key": "x0525",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches Finder binary path; pid and args shown."
+    },
+    {
+     "key": "x0345",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "PIDs only, no command lines."
+    },
+    {
+     "key": "x0524",
+     "verdict": "correct",
+     "category": null,
+     "note": "awk index on full Finder binary path; pid and command."
+    },
+    {
+     "key": "x0385",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "lsof file descriptors, not command lines."
+    },
+    {
+     "key": "x0010",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Includes the grep process itself as a false match."
+    },
+    {
+     "key": "x0362",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "lsof file descriptors, not command lines."
+    },
+    {
+     "key": "x0284",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Network lsof filtering; not Finder PIDs or commands."
+    },
+    {
+     "key": "x0522",
+     "verdict": "correct",
+     "category": null,
+     "note": "Bracket trick avoids grep self-match; pid and command."
+    },
+    {
+     "key": "x0305",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Only returns Finder if frontmost; no command line."
+    },
+    {
+     "key": "x0526",
+     "verdict": "correct",
+     "category": null,
+     "note": "Bracket trick avoids grep self-match; pid and command."
+    }
+   ]
+  },
+  {
+   "case": "e062",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0186",
+     "verdict": "correct",
+     "category": null,
+     "note": "Standard."
+    },
+    {
+     "key": "x0090",
+     "verdict": "correct",
+     "category": null,
+     "note": "Standard, quoted format."
+    }
+   ]
+  },
+  {
+   "case": "m086",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0849",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "No -readonly or -nobrowse."
+    },
+    {
+     "key": "x0034",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "hdiutil mount is not a verb; readwrite is opposite."
+    },
+    {
+     "key": "x0848",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "Linux loop mount; mount -o loop invalid on macOS."
+    },
+    {
+     "key": "x0131",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Read-write requested, opposite of ask."
+    },
+    {
+     "key": "x0211",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "hdiutil mount and -read-only do not exist."
+    },
+    {
+     "key": "x0309",
+     "verdict": "correct",
+     "category": null,
+     "note": "ISO mounts read-only inherently; -nobrowse satisfies the ask."
+    },
+    {
+     "key": "x0579",
+     "verdict": "correct",
+     "category": null,
+     "note": "Exactly the reference."
+    },
+    {
+     "key": "x0580",
+     "verdict": "correct",
+     "category": null,
+     "note": "hdiutil accepts options after the image path."
+    },
+    {
+     "key": "x0390",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Missing -nobrowse."
+    }
+   ]
+  },
+  {
+   "case": "e051",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0480",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Files only, smallest first."
+    },
+    {
+     "key": "x0354",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Relative Downloads/* path and smallest first."
+    },
+    {
+     "key": "x0438",
+     "verdict": "correct",
+     "category": null,
+     "note": "du in MB per item, sorted descending."
+    },
+    {
+     "key": "x0715",
+     "verdict": "correct",
+     "category": null,
+     "note": "Per-item du -sk, descending, human units; tab handled."
+    },
+    {
+     "key": "x0455",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Files only, omits subfolders."
+    },
+    {
+     "key": "x0298",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Relative Downloads/* only works from home."
+    },
+    {
+     "key": "x0505",
+     "verdict": "correct",
+     "category": null,
+     "note": "du MB per item, numeric descending."
+    },
+    {
+     "key": "x0712",
+     "verdict": "correct",
+     "category": null,
+     "note": "Top-level items, du KB, sorted descending."
+    },
+    {
+     "key": "x0714",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "awk regex expects spaces but du uses tab; prints 0K."
+    },
+    {
+     "key": "x0179",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recursive files, smallest first."
+    },
+    {
+     "key": "x0713",
+     "verdict": "correct",
+     "category": null,
+     "note": "du depth 1 sorted human descending, top 20."
+    },
+    {
+     "key": "x0711",
+     "verdict": "correct",
+     "category": null,
+     "note": "Top-level items sorted descending, top 20."
+    },
+    {
+     "key": "x0085",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "xargs breaks on spaces; files only, recursive."
+    },
+    {
+     "key": "x0339",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Ascending order, biggest last."
+    },
+    {
+     "key": "x0376",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Files only, omits subfolders."
+    }
+   ]
+  },
+  {
+   "case": "e050",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0338",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Lists remote IPs, not apps."
+    },
+    {
+     "key": "x0709",
+     "verdict": "correct",
+     "category": null,
+     "note": "Unique process names with network sockets (header kept)."
+    },
+    {
+     "key": "x0353",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Remote IPs of listeners, not apps."
+    },
+    {
+     "key": "x0708",
+     "verdict": "correct",
+     "category": null,
+     "note": "Unique command names with network sockets."
+    },
+    {
+     "key": "x0437",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Port 80 connections only, no apps."
+    },
+    {
+     "key": "x0706",
+     "verdict": "correct",
+     "category": null,
+     "note": "Counts network sockets per process name."
+    },
+    {
+     "key": "x0710",
+     "verdict": "correct",
+     "category": null,
+     "note": "Unique commands with established TCP or UDP."
+    },
+    {
+     "key": "x0275",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Port 80 remote IPs, not apps."
+    },
+    {
+     "key": "x0239",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "netstat has no PID column; port 8080 only."
+    },
+    {
+     "key": "x0419",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints NAME column (addresses), not apps."
+    },
+    {
+     "key": "x0454",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints NAME column (addresses), not apps."
+    },
+    {
+     "key": "x0178",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Port 8080 only, no apps."
+    },
+    {
+     "key": "x0084",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints addresses, not app names."
+    },
+    {
+     "key": "x0375",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "netstat has no PID column; port 80 only."
+    },
+    {
+     "key": "x0402",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Lowercase tcp|udp rarely matches lsof output."
+    },
+    {
+     "key": "x0479",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Remote IPs, not apps."
+    },
+    {
+     "key": "x0707",
+     "verdict": "correct",
+     "category": null,
+     "note": "Unique commands with established TCP or UDP sockets."
+    }
+   ]
+  },
+  {
+   "case": "m120",
+   "case_flag": "Unanswerable: recovery cannot be guaranteed.",
+   "verdicts": [
+    {
+     "key": "x0042",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Meaningless find; cannot recover deleted files."
+    },
+    {
+     "key": "x0881",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Placeholder paths, no real recovery."
+    },
+    {
+     "key": "x0882",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "photorec not on stock macOS; recovery not guaranteed."
+    }
+   ]
+  },
+  {
+   "case": "e026",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0064",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Sorted set difference, loses order and duplicates."
+    },
+    {
+     "key": "x0157",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Sorts first, hides ordering differences."
+    },
+    {
+     "key": "x0227",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0267",
+     "verdict": "correct",
+     "category": null,
+     "note": "Unified diff."
+    }
+   ]
+  },
+  {
+   "case": "e008",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0048",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat -f %z gives byte size."
+    },
+    {
+     "key": "x0147",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat -f %z gives byte size."
+    },
+    {
+     "key": "x0609",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat -f %z gives byte size."
+    },
+    {
+     "key": "x0219",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat -f %z gives byte size."
+    }
+   ]
+  },
+  {
+   "case": "e075",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0382",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s width is not a resize option."
+    },
+    {
+     "key": "x0247",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "--resampleHeightWidth needs two values."
+    },
+    {
+     "key": "x0358",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s width/height are not resize options."
+    },
+    {
+     "key": "x0758",
+     "verdict": "correct",
+     "category": null,
+     "note": "Long form of -Z."
+    },
+    {
+     "key": "x0759",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0469",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-s needs property and value."
+    },
+    {
+     "key": "x0191",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Invalid -s usage."
+    },
+    {
+     "key": "x0320",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Width only, not longest side; -1 invalid."
+    }
+   ]
+  },
+  {
+   "case": "m056",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0820",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Shows scheduled events, not capabilities."
+    },
+    {
+     "key": "x0323",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "sysctl has no power capability list."
+    },
+    {
+     "key": "x0819",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "/sys/power does not exist on macOS."
+    },
+    {
+     "key": "x0548",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Shows current settings, not supported features."
+    },
+    {
+     "key": "x0547",
+     "verdict": "correct",
+     "category": null,
+     "note": "pmset -g capabilities lists supported features."
+    },
+    {
+     "key": "x0413",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "sysctl grep, not capabilities."
+    },
+    {
+     "key": "x0121",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "No such field in hardware profile."
+    },
+    {
+     "key": "x0024",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Missing -g; pmset cap invalid."
+    }
+   ]
+  },
+  {
+   "case": "e080",
+   "case_flag": "Request ambiguous; no stock way to set external monitor brightness.",
+   "verdicts": [
+    {
+     "key": "x0103",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Meaningless system-wide defaults write; not brightness."
+    }
+   ]
+  },
+  {
+   "case": "m064",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0556",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "List literal 'of' record plus System Events scope errors."
+    },
+    {
+     "key": "x0254",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Nonexistent properties."
+    },
+    {
+     "key": "x0027",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Nonexistent commands."
+    },
+    {
+     "key": "x0557",
+     "verdict": "correct",
+     "category": null,
+     "note": "Volume settings command works inside tell; same record."
+    },
+    {
+     "key": "x0125",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Nonexistent properties."
+    },
+    {
+     "key": "x0558",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "Properties not defined without the settings record."
+    },
+    {
+     "key": "x0827",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Sets output volume to 100; does not read."
+    },
+    {
+     "key": "x0826",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "amixer is Linux."
+    }
+   ]
+  },
+  {
+   "case": "m078",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0574",
+     "verdict": "correct",
+     "category": null,
+     "note": "afinfo lines hold codec, rate, duration."
+    },
+    {
+     "key": "x0840",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "ffprobe not on stock macOS."
+    },
+    {
+     "key": "x0576",
+     "verdict": "correct",
+     "category": null,
+     "note": "afinfo field positions give codec, rate, duration."
+    },
+    {
+     "key": "x0573",
+     "verdict": "correct",
+     "category": null,
+     "note": "afinfo field positions give codec, rate, duration."
+    },
+    {
+     "key": "x0129",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "kMDItemCodec and kMDItemSampleRate do not exist."
+    },
+    {
+     "key": "x0500",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "kMDItemSampleRate invalid; no codec."
+    },
+    {
+     "key": "x0575",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "afinfo prints lowercase 'estimated duration'; duration missed."
+    },
+    {
+     "key": "x0841",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "soxi not on stock macOS."
+    },
+    {
+     "key": "x0577",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches data format and estimated duration."
+    }
+   ]
+  }
+ ]
+}
