@@ -1,0 +1,106 @@
+{
+  "step1-default-dev": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 61
+  },
+  "step1-default-everyday": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 80
+  },
+  "default-dev": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 61
+  },
+  "default-everyday": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 80
+  },
+  "default-postflight-dev": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 61
+  },
+  "default-postflight-everyday": {
+    "labels_exactly_equal_saved": true,
+    "case_count": 80
+  },
+  "A-s1": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s2": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s3": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s4": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s5": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s6": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s7": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "A-s8": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s1": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s2": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s3": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s4": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s5": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s6": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s7": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  },
+  "B-s8": {
+    "runtime_adapter_hash_matches_conversion": true,
+    "expected_server_identity_per_split": true,
+    "case_count": 141
+  }
+}

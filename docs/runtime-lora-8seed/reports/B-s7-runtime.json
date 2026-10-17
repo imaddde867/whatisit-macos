@@ -1,0 +1,22 @@
+{
+  "name": "B-s7",
+  "adapter": "/Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/B-s7.gguf",
+  "adapter_sha256": "e8e77f85bad6640b74a76e0f43d6f9a002c4b5f15822f23dfbbdf438a78bfa03",
+  "server_sha256": "d3bce60d45758268a90e0fca82ce5a22d5c35ecb92a06d1c544ed68ec2efa769",
+  "identities": [
+    {
+      "split": "dev",
+      "pid": 1455,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui --lora /Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/B-s7.gguf"
+    },
+    {
+      "split": "everyday",
+      "pid": 2513,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui --lora /Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/B-s7.gguf"
+    }
+  ],
+  "eval": {
+    "dev": "dev/lint: pass 23  wrong 24  rejected 6  abstain-ok 6  abstain-missed 2  | correct 29/61  p50 0.21s",
+    "everyday": "everyday/lint: pass 53  wrong 16  rejected 7  abstain-ok 4  abstain-missed 0  | correct 57/80  p50 0.22s"
+  }
+}

@@ -1,0 +1,31 @@
+step 0: validation loss=1.6140 (49 rows)
+step 50/936: loss=0.4119, grad=15.6911
+step 100/936: loss=8.7815, grad=216.1369
+step 100: validation loss=0.8781 (49 rows)
+step 150/936: loss=1.0122, grad=38.3419
+step 200/936: loss=0.2961, grad=32.1457
+step 200: validation loss=0.6316 (49 rows)
+step 250/936: loss=1.3637, grad=37.2209
+step 300/936: loss=0.4660, grad=82.9925
+step 300: validation loss=0.5212 (49 rows)
+step 350/936: loss=0.2151, grad=32.1171
+step 400/936: loss=0.1856, grad=28.6634
+step 400: validation loss=0.4416 (49 rows)
+step 450/936: loss=0.1184, grad=19.8443
+step 500/936: loss=0.1933, grad=16.0447
+step 500: validation loss=0.4446 (49 rows)
+step 550/936: loss=0.0052, grad=3.0274
+step 600/936: loss=0.7653, grad=67.7349
+step 600: validation loss=0.3864 (49 rows)
+step 650/936: loss=0.1002, grad=18.0762
+step 700/936: loss=0.3761, grad=54.8236
+step 700: validation loss=0.3783 (49 rows)
+step 750/936: loss=0.3162, grad=24.9635
+step 800/936: loss=0.0563, grad=7.5764
+step 800: validation loss=0.3646 (49 rows)
+step 850/936: loss=0.2161, grad=30.3984
+step 900/936: loss=0.0370, grad=7.3614
+step 900: validation loss=0.3659 (49 rows)
+step 936: validation loss=0.3466 (49 rows)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.73it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.72it/s]
+{"steps": 936, "seed": 7, "batch_size": 1, "sequence_limit": 512, "learning_rate": 1e-05, "optimizer": "AdamW", "autocast": "bfloat16", "lora_rank": 8, "lora_alpha": 160, "lora_scale": 20, "lora_layers": 16, "val_fraction": 0.05, "train_rows": 936, "val_ids": ["r00037", "r00189", "r00290", "r00397", "r00399", "r00594", "r00646", "r00651", "r00686", "r00791", "r00840", "r00871", "r00883", "r00899", "r00972", "r01017", "r01053", "r01067", "r01128", "r01227", "r01295", "r01317", "r01391", "r01463", "r01479", "r01564", "r01673", "r01674", "r01694", "r01699", "r01711", "r01753", "r01808", "r01974", "r02008", "r02096", "r02099", "r02100", "r02107", "r02163", "r02198", "r02243", "r02248", "r02393", "r02405", "r02421", "r02469", "s2add002", "s2add003"], "val_source_ids": ["r00037", "r00189", "r00290", "r00397", "r00399", "r00594", "r00646", "r00651", "r00686", "r00791", "r00840", "r00871", "r00883", "r00899", "r00972", "r01017", "r01053", "r01067", "r01128", "r01227", "r01295", "r01317", "r01391", "r01463", "r01479", "r01564", "r01673", "r01674", "r01694", "r01699", "r01711", "r01753", "r01808", "r01974", "r02008", "r02096", "r02099", "r02100", "r02107", "r02163", "r02198", "r02243", "r02248", "r02393", "r02405", "r02421", "r02469", "s2family001"], "source_group_counts": {"train": 925, "validation": 48}, "validation_losses": [[0, 1.6140397458660358], [100, 0.8781012552125114], [200, 0.6316473999497841], [300, 0.521236770719822], [400, 0.44159517130500886], [500, 0.4445638193164439], [600, 0.3863834056935549], [700, 0.3782538233998431], [800, 0.3645756600522056], [900, 0.3659376787489199], [936, 0.34660053711945227]], "trainable_parameters": 5275648, "data_sha256": "e083bd4d1da30b9ed91d65236d08d19dbf0c7260fe3daeecc82d363a0c4f85f5", "source_sha256": "6f8a17a11129a31074c944f4c2602453fafd9de43bdaeb1630a8f511ec820f71", "adapter_sha256": {"README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7", "adapter_config.json": "c400567ce1d8d6953fe20935b93b41c9b800b10cead72fdaba0213e43c775f8e", "adapter_model.safetensors": "798ffe4e90517197cbf0714e981f11bed876deb2d259809e778859b230916926"}, "gpu": "NVIDIA GeForce RTX 5090", "cuda": "13.0", "wall_seconds": 61.84597679800936, "training_wall_seconds": 33.73482697599684, "training_peak_allocated_bytes": 6070263296, "zero_update_weights_equal": null, "packages": {"torch": "2.14.1", "transformers": "5.19.0", "peft": "0.21.0", "gguf": "0.19.0"}}
