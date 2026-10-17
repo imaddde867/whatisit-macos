@@ -14,6 +14,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
+if not Path('/bin/zsh').exists():
+    raise unittest.SkipTest('verify_references runs references under /bin/zsh -f')
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools'))
 import verify_references as vr
 from verify_references import run_one, apply_modes, build_fixture, FixtureError, safe_join
