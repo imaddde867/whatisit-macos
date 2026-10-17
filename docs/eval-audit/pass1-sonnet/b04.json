@@ -1,0 +1,700 @@
+{
+ "cases": [
+  {
+   "case": "e036",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0658",
+     "verdict": "correct",
+     "category": null,
+     "note": "Like reference but kill -9, includes clients"
+    },
+    {
+     "key": "x0657",
+     "verdict": "correct",
+     "category": null,
+     "note": "Listeners only, kills each PID"
+    },
+    {
+     "key": "x0072",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "awk prints header PID too; kill errors on it"
+    },
+    {
+     "key": "x0166",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "awk prints header PID too; kill errors on it"
+    },
+    {
+     "key": "x0399",
+     "verdict": "correct",
+     "category": null,
+     "note": "LISTEN only, skips header"
+    },
+    {
+     "key": "x0372",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches port in NAME column; kills"
+    },
+    {
+     "key": "x0434",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "$6 is DEVICE not TCP; matches nothing, kills nothing"
+    },
+    {
+     "key": "x0655",
+     "verdict": "correct",
+     "category": null,
+     "note": "LISTEN pids, kill -9 works"
+    },
+    {
+     "key": "x0659",
+     "verdict": "correct",
+     "category": null,
+     "note": "LISTEN pids, kill"
+    },
+    {
+     "key": "x0232",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "awk prints header PID too; kill errors on it"
+    },
+    {
+     "key": "x0656",
+     "verdict": "correct",
+     "category": null,
+     "note": "LISTEN pids, kill"
+    },
+    {
+     "key": "x0333",
+     "verdict": "correct",
+     "category": null,
+     "note": "Skips header, kills pids like reference"
+    }
+   ]
+  },
+  {
+   "case": "e035",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0165",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "netstat -p needs arg on macOS; no -p process listing"
+    },
+    {
+     "key": "x0231",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "netstat on macOS cannot show owning process; -t not listen"
+    },
+    {
+     "key": "x0270",
+     "verdict": "correct",
+     "category": null,
+     "note": "lsof lists process on port 3000"
+    },
+    {
+     "key": "x0295",
+     "verdict": "correct",
+     "category": null,
+     "note": "lsof lists process on port 3000"
+    },
+    {
+     "key": "x0654",
+     "verdict": "correct",
+     "category": null,
+     "note": "lsof lists process on port 3000"
+    },
+    {
+     "key": "x0071",
+     "verdict": "correct",
+     "category": null,
+     "note": "lsof lists process on port 3000"
+    }
+   ]
+  },
+  {
+   "case": "e055",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0340",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-dstfile is not an hdiutil option"
+    },
+    {
+     "key": "x0241",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-src not valid; also assumes ~/project"
+    },
+    {
+     "key": "x0481",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-dstfile is not an hdiutil option"
+    },
+    {
+     "key": "x0276",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "no -srcfolder; source treated wrongly; assumes ~/project"
+    },
+    {
+     "key": "x0466",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Valid hdiutil but assumes ~/project instead of project"
+    },
+    {
+     "key": "x0378",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Images cwd to sibling .dmg, not a named project folder"
+    },
+    {
+     "key": "x0720",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid srcfolder UDZO dmg"
+    },
+    {
+     "key": "x0506",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Valid hdiutil but assumes ~/project instead of project"
+    },
+    {
+     "key": "x0719",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid srcfolder UDZO dmg"
+    },
+    {
+     "key": "x0180",
+     "verdict": "unsure",
+     "category": null,
+     "note": "makehybrid creates optical-style image, assumes ~/project"
+    },
+    {
+     "key": "x0420",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-dstfile is not an hdiutil option"
+    },
+    {
+     "key": "x0456",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-dofile not an hdiutil option"
+    }
+   ]
+  },
+  {
+   "case": "m003",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0764",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "ls -l does not find symlinks recursively"
+    },
+    {
+     "key": "x0000",
+     "verdict": "correct",
+     "category": null,
+     "note": "find -type l"
+    },
+    {
+     "key": "x0763",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "BSD find has no -printf"
+    }
+   ]
+  },
+  {
+   "case": "m060",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0549",
+     "verdict": "correct",
+     "category": null,
+     "note": "codesign -dvvv shows details"
+    },
+    {
+     "key": "x0207",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "No -d display mode; --deep not for display"
+    },
+    {
+     "key": "x0550",
+     "verdict": "correct",
+     "category": null,
+     "note": "verbose=4 display"
+    },
+    {
+     "key": "x0823",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "sigcheck not on macOS"
+    },
+    {
+     "key": "x0551",
+     "verdict": "correct",
+     "category": null,
+     "note": "details to stderr, visible"
+    },
+    {
+     "key": "x0552",
+     "verdict": "correct",
+     "category": null,
+     "note": "display verbose=4"
+    },
+    {
+     "key": "x0026",
+     "verdict": "correct",
+     "category": null,
+     "note": "display verbose shows identity info"
+    },
+    {
+     "key": "x0123",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-d without -v prints little, no identity details"
+    },
+    {
+     "key": "x0822",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Re-signs the app ad hoc, modifies it"
+    }
+   ]
+  },
+  {
+   "case": "m014",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0006",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Uses ~/app.log instead of app.log"
+    },
+    {
+     "key": "x0515",
+     "verdict": "correct",
+     "category": null,
+     "note": "-w ok for ERROR/WARN tokens"
+    },
+    {
+     "key": "x0776",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Basic regex treats | literally"
+    },
+    {
+     "key": "x0775",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "BSD grep on stock macOS lacks -P"
+    },
+    {
+     "key": "x0108",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches reference"
+    }
+   ]
+  },
+  {
+   "case": "m046",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0808",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "lspci not on macOS"
+    },
+    {
+     "key": "x0117",
+     "verdict": "correct",
+     "category": null,
+     "note": "system_profiler displays"
+    },
+    {
+     "key": "x0019",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "ioreg IOGraphicsDevice not reliable display report"
+    },
+    {
+     "key": "x0809",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "xrandr not on stock macOS"
+    },
+    {
+     "key": "x0364",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "SPGraphicsDataType is not a valid data type"
+    }
+   ]
+  },
+  {
+   "case": "e004",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0044",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recursive, no hidden files"
+    },
+    {
+     "key": "x0394",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Mangled find expression, wrong order and scope"
+    },
+    {
+     "key": "x0596",
+     "verdict": "correct",
+     "category": null,
+     "note": "ls -lath hidden, newest first"
+    },
+    {
+     "key": "x0474",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Files only, no dirs, ordering not global"
+    },
+    {
+     "key": "x0430",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Bad -o precedence, not recursive-safe"
+    },
+    {
+     "key": "x0448",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Not newest-first, files only, misplaced options"
+    },
+    {
+     "key": "x0597",
+     "verdict": "correct",
+     "category": null,
+     "note": "Hidden, newest first"
+    },
+    {
+     "key": "x0598",
+     "verdict": "correct",
+     "category": null,
+     "note": "Hidden, newest first"
+    },
+    {
+     "key": "x0144",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-r reverses: oldest first"
+    }
+   ]
+  },
+  {
+   "case": "e011",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0150",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "rm deletes permanently, not trash"
+    },
+    {
+     "key": "x0329",
+     "verdict": "correct",
+     "category": null,
+     "note": "/usr/bin/trash exists on this macOS"
+    },
+    {
+     "key": "x0612",
+     "verdict": "correct",
+     "category": null,
+     "note": "Finder moves old.log to Trash"
+    },
+    {
+     "key": "x0221",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "rm deletes permanently, not trash"
+    },
+    {
+     "key": "x0611",
+     "verdict": "correct",
+     "category": null,
+     "note": "mv to ~/.Trash"
+    }
+   ]
+  },
+  {
+   "case": "e006",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0145",
+     "verdict": "correct",
+     "category": null,
+     "note": "cp -R project project-copy"
+    },
+    {
+     "key": "x0601",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies current dir, not project folder"
+    },
+    {
+     "key": "x0599",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies current dir, not project folder"
+    },
+    {
+     "key": "x0218",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Nests copy at project-copy/project"
+    },
+    {
+     "key": "x0600",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies current dir, not project folder"
+    },
+    {
+     "key": "x0603",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies current dir, not project folder"
+    },
+    {
+     "key": "x0602",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies current dir, not project folder"
+    },
+    {
+     "key": "x0046",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "find -prune copies nothing"
+    }
+   ]
+  },
+  {
+   "case": "e063",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0318",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "date -f reads nonexistent/invalid file"
+    },
+    {
+     "key": "x0341",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "date -f reads nonexistent/invalid file"
+    },
+    {
+     "key": "x0405",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "date -f reads nonexistent/invalid file"
+    },
+    {
+     "key": "x0440",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "date -f reads nonexistent/invalid file"
+    },
+    {
+     "key": "x0739",
+     "verdict": "correct",
+     "category": null,
+     "note": "TZ=Asia/Tokyo date"
+    },
+    {
+     "key": "x0457",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints fixed old date, not current Tokyo time"
+    },
+    {
+     "key": "x0300",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-v TZ= invalid, not Tokyo time"
+    },
+    {
+     "key": "x0091",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-v +0900 adjusts value; wrong semantics"
+    }
+   ]
+  },
+  {
+   "case": "m036",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0015",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Reads proxy setting, not DNS"
+    },
+    {
+     "key": "x0799",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "resolvectl not on macOS"
+    },
+    {
+     "key": "x0114",
+     "verdict": "correct",
+     "category": null,
+     "note": "networksetup -getdnsservers Wi-Fi"
+    },
+    {
+     "key": "x0800",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "nmcli not on macOS"
+    },
+    {
+     "key": "x0535",
+     "verdict": "correct",
+     "category": null,
+     "note": "Convoluted but gives Wi-Fi DNS, scutil fallback"
+    }
+   ]
+  },
+  {
+   "case": "m048",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0020",
+     "verdict": "correct",
+     "category": null,
+     "note": "uname -n same as hostname"
+    },
+    {
+     "key": "x0543",
+     "verdict": "correct",
+     "category": null,
+     "note": "sysctl kern.hostname"
+    },
+    {
+     "key": "x0810",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "hostnamectl not on macOS"
+    },
+    {
+     "key": "x0118",
+     "verdict": "correct",
+     "category": null,
+     "note": "hostname"
+    },
+    {
+     "key": "x0811",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "uname -p prints processor type"
+    }
+   ]
+  },
+  {
+   "case": "m100",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0488",
+     "verdict": "correct",
+     "category": null,
+     "note": "Runs arm64, checks arch; bash exists"
+    },
+    {
+     "key": "x0590",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference check"
+    },
+    {
+     "key": "x0588",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "/bin/true absent on macOS; always prints no"
+    },
+    {
+     "key": "x0589",
+     "verdict": "correct",
+     "category": null,
+     "note": "arch -arch arm64 valid"
+    },
+    {
+     "key": "x0136",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Tests interactivity, not arm64 capability"
+    },
+    {
+     "key": "x0862",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "setarch not on macOS"
+    },
+    {
+     "key": "x0592",
+     "verdict": "correct",
+     "category": null,
+     "note": "Checks arm64 host and slice, runs true"
+    },
+    {
+     "key": "x0591",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints yes if arm64 run succeeds"
+    },
+    {
+     "key": "x0861",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Runs x86_64, not arm64"
+    },
+    {
+     "key": "x0391",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "test with no args exits 1; fails"
+    }
+   ]
+  }
+ ]
+}

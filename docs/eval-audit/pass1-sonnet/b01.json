@@ -1,0 +1,682 @@
+{
+ "cases": [
+  {
+   "case": "e045",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0418",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Single attempt, ignores 'a few times'."
+    },
+    {
+     "key": "x0478",
+     "verdict": "correct",
+     "category": null,
+     "note": "ping -c 3 tries three times."
+    },
+    {
+     "key": "x0174",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Single curl attempt."
+    },
+    {
+     "key": "x0693",
+     "verdict": "correct",
+     "category": null,
+     "note": "Loops three attempts with timeout, prints status."
+    },
+    {
+     "key": "x0335",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "--retry only retries transient errors; dumps body; not repeated tries."
+    },
+    {
+     "key": "x0436",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Single attempt, dumps HTML."
+    },
+    {
+     "key": "x0692",
+     "verdict": "correct",
+     "category": null,
+     "note": "Three HEAD attempts with timeout; headers shown."
+    },
+    {
+     "key": "x0691",
+     "verdict": "correct",
+     "category": null,
+     "note": "Three attempts reporting ok/fail."
+    },
+    {
+     "key": "x0352",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Single attempt, dumps HTML."
+    },
+    {
+     "key": "x0237",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "--retry not several tries; dumps HTML body."
+    },
+    {
+     "key": "x0079",
+     "verdict": "correct",
+     "category": null,
+     "note": "ping -c 5 tries five times."
+    }
+   ]
+  },
+  {
+   "case": "m040",
+   "case_flag": "Request is vague; reference scutil --nwi is jargon-specific",
+   "verdicts": [
+    {
+     "key": "x0803",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "ip not on macOS."
+    },
+    {
+     "key": "x0116",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Only Wi-Fi service config, no reachability/active interfaces."
+    },
+    {
+     "key": "x0539",
+     "verdict": "correct",
+     "category": null,
+     "note": "Shows active interfaces, addresses and default route."
+    },
+    {
+     "key": "x0386",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "networksetup has no -showinterfaceinfo."
+    },
+    {
+     "key": "x0410",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "networksetup has no -showusage."
+    },
+    {
+     "key": "x0307",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Only lists service names."
+    },
+    {
+     "key": "x0442",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No -showallnetworks option."
+    },
+    {
+     "key": "x0017",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Dumps all interfaces, not active/reachability info."
+    },
+    {
+     "key": "x0471",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Assumes service named Ethernet; often absent."
+    },
+    {
+     "key": "x0204",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Assumes service named Ethernet; often absent."
+    },
+    {
+     "key": "x0252",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No -listallnetworks option."
+    }
+   ]
+  },
+  {
+   "case": "e039",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0233",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Only port 8080, not all listeners."
+    },
+    {
+     "key": "x0670",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists TCP LISTEN sockets numerically."
+    },
+    {
+     "key": "x0671",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists TCP LISTEN sockets numerically."
+    },
+    {
+     "key": "x0672",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists TCP LISTEN sockets numerically."
+    },
+    {
+     "key": "x0453",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Port 80 only."
+    },
+    {
+     "key": "x0075",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Port 80 only, any protocol."
+    },
+    {
+     "key": "x0169",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Port 80 only."
+    },
+    {
+     "key": "x0669",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists TCP LISTEN sockets numerically."
+    }
+   ]
+  },
+  {
+   "case": "e025",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0314",
+     "verdict": "correct",
+     "category": null,
+     "note": "Uppercases file content."
+    },
+    {
+     "key": "x0063",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Unquoted echo $(...) collapses newlines/whitespace and globs."
+    },
+    {
+     "key": "x0452",
+     "verdict": "correct",
+     "category": null,
+     "note": "Uppercases file; useless cat ok."
+    },
+    {
+     "key": "x0371",
+     "verdict": "correct",
+     "category": null,
+     "note": "a-z to A-Z works."
+    },
+    {
+     "key": "x0156",
+     "verdict": "correct",
+     "category": null,
+     "note": "Uppercases file."
+    },
+    {
+     "key": "x0431",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Uppercases a literal string, not the file."
+    },
+    {
+     "key": "x0293",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "tr does not accept file operands; errors."
+    },
+    {
+     "key": "x0266",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Unquoted echo collapses line breaks."
+    },
+    {
+     "key": "x0226",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    }
+   ]
+  },
+  {
+   "case": "e037",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0271",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorts by RSS desc; header sorts last."
+    },
+    {
+     "key": "x0494",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorts by RSS desc."
+    },
+    {
+     "key": "x0661",
+     "verdict": "correct",
+     "category": null,
+     "note": "ps -m sorts by memory; header stripped."
+    },
+    {
+     "key": "x0373",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by pmem desc."
+    },
+    {
+     "key": "x0663",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by RSS desc, header stripped."
+    },
+    {
+     "key": "x0351",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Ascending sort gives smallest, not top."
+    },
+    {
+     "key": "x0435",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "vm_stat awk is nonsense, no processes."
+    },
+    {
+     "key": "x0167",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by RSS desc."
+    },
+    {
+     "key": "x0660",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by RSS desc."
+    },
+    {
+     "key": "x0073",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by pmem desc."
+    },
+    {
+     "key": "x0662",
+     "verdict": "correct",
+     "category": null,
+     "note": "Sorted by RSS desc; -nrk2 valid."
+    },
+    {
+     "key": "x0664",
+     "verdict": "correct",
+     "category": null,
+     "note": "Column 6 is RSS on macOS ps aux."
+    }
+   ]
+  },
+  {
+   "case": "e074",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0757",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    },
+    {
+     "key": "x0100",
+     "verdict": "correct",
+     "category": null,
+     "note": "Trailing slash fine."
+    }
+   ]
+  },
+  {
+   "case": "m050",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0253",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Battery details; power source not clearly shown."
+    },
+    {
+     "key": "x0812",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "upower not on macOS."
+    },
+    {
+     "key": "x0813",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "acpi not on macOS."
+    },
+    {
+     "key": "x0021",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    },
+    {
+     "key": "x0119",
+     "verdict": "correct",
+     "category": null,
+     "note": "Power data includes charge % and current power source; verbose."
+    },
+    {
+     "key": "x0205",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "SPMacCapabilityDataType has no such info."
+    },
+    {
+     "key": "x0365",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No 'power status' field; && chain yields nothing."
+    },
+    {
+     "key": "x0544",
+     "verdict": "correct",
+     "category": null,
+     "note": "Parses pmset fields correctly for source and percent."
+    }
+   ]
+  },
+  {
+   "case": "m016",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0777",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Comma delimiter, not colon."
+    },
+    {
+     "key": "x0780",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Wrong file other.txt."
+    },
+    {
+     "key": "x0197",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    },
+    {
+     "key": "x0781",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Field 30, not 3."
+    },
+    {
+     "key": "x0516",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    },
+    {
+     "key": "x0423",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints first field."
+    },
+    {
+     "key": "x0007",
+     "verdict": "correct",
+     "category": null,
+     "note": "Useless cat fine."
+    },
+    {
+     "key": "x0778",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Double quotes expand $2; no colon delimiter."
+    },
+    {
+     "key": "x0779",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Double quotes let shell expand $3 to empty."
+    },
+    {
+     "key": "x0109",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    }
+   ]
+  },
+  {
+   "case": "m110",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0871",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Deletes all of Pictures."
+    },
+    {
+     "key": "x0872",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Destructive and unquoted path breaks."
+    }
+   ]
+  },
+  {
+   "case": "e044",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0690",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    },
+    {
+     "key": "x0401",
+     "verdict": "correct",
+     "category": null,
+     "note": "Returns IP wrapped in HTML; acceptable."
+    },
+    {
+     "key": "x0689",
+     "verdict": "correct",
+     "category": null,
+     "note": "Returns IP."
+    },
+    {
+     "key": "x0236",
+     "verdict": "correct",
+     "category": null,
+     "note": "Strips to digits and dots."
+    },
+    {
+     "key": "x0173",
+     "verdict": "correct",
+     "category": null,
+     "note": "Extracts IPv4."
+    }
+   ]
+  },
+  {
+   "case": "e072",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0752",
+     "verdict": "correct",
+     "category": null,
+     "note": "Appends *.log."
+    },
+    {
+     "key": "x0458",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Stages logs instead of ignoring."
+    },
+    {
+     "key": "x0755",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "'.log' matches only file named .log."
+    },
+    {
+     "key": "x0190",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "chmod unrelated."
+    },
+    {
+     "key": "x0098",
+     "verdict": "incorrect",
+     "category": "not_a_command",
+     "note": "Only echoes text, writes nothing."
+    },
+    {
+     "key": "x0753",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    },
+    {
+     "key": "x0754",
+     "verdict": "correct",
+     "category": null,
+     "note": "Appends *.log with blank line."
+    }
+   ]
+  },
+  {
+   "case": "e071",
+   "case_flag": "Reference shows only unstaged changes; HEAD diff also covers staged",
+   "verdicts": [
+    {
+     "key": "x0279",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "HEAD~1 and grep -F '^+' matches nothing."
+    },
+    {
+     "key": "x0751",
+     "verdict": "correct",
+     "category": null,
+     "note": "Diff of working tree vs HEAD."
+    },
+    {
+     "key": "x0441",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Wrong base and filters to filename lines."
+    },
+    {
+     "key": "x0189",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "HEAD:notes.txt invalid for diff."
+    },
+    {
+     "key": "x0381",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Shows last commit, not changes since it."
+    },
+    {
+     "key": "x0319",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Writes changes.txt, wrong diff."
+    },
+    {
+     "key": "x0482",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "HEAD:notes.txt invalid for diff."
+    },
+    {
+     "key": "x0246",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Shows last commit, not uncommitted changes."
+    }
+   ]
+  },
+  {
+   "case": "m007",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0002",
+     "verdict": "correct",
+     "category": null,
+     "note": "Spotlight content type (UTI); acceptable kind."
+    },
+    {
+     "key": "x0768",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "file is not Spotlight metadata."
+    },
+    {
+     "key": "x0767",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "stat -c is GNU."
+    },
+    {
+     "key": "x0508",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    }
+   ]
+  },
+  {
+   "case": "e015",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0152",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints first 20 lines."
+    },
+    {
+     "key": "x0053",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference."
+    }
+   ]
+  }
+ ]
+}

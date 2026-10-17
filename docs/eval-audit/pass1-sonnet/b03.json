@@ -1,0 +1,574 @@
+{
+ "cases": [
+  {
+   "case": "m074",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0570",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints width height; pixelWidth/Height via sips."
+    },
+    {
+     "key": "x0127",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0208",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "pixelWidthAndHeight is not a sips property."
+    },
+    {
+     "key": "x0569",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints WxH correctly."
+    },
+    {
+     "key": "x0255",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Second -g key missing; pixelHeight treated as a file."
+    },
+    {
+     "key": "x0837",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints format, not dimensions."
+    },
+    {
+     "key": "x0836",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "identify is ImageMagick/Homebrew, not stock."
+    },
+    {
+     "key": "x0424",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "pixelWidthAndHeight is not a sips property."
+    }
+   ]
+  },
+  {
+   "case": "e060",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0243",
+     "verdict": "correct",
+     "category": null,
+     "note": "Logical cores; valid."
+    },
+    {
+     "key": "x0184",
+     "verdict": "correct",
+     "category": null,
+     "note": "Physical cores; valid."
+    },
+    {
+     "key": "x0278",
+     "verdict": "correct",
+     "category": null,
+     "note": "Max logical CPUs; equals cores normally."
+    },
+    {
+     "key": "x0089",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    }
+   ]
+  },
+  {
+   "case": "e032",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0493",
+     "verdict": "correct",
+     "category": null,
+     "note": "Spotlight exact filename search in home; reasonable."
+    },
+    {
+     "key": "x0162",
+     "verdict": "correct",
+     "category": null,
+     "note": "Works whole disk, noisy permission errors, slow."
+    },
+    {
+     "key": "x0643",
+     "verdict": "correct",
+     "category": null,
+     "note": "Spotlight name search."
+    },
+    {
+     "key": "x0644",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0229",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Searches only current directory."
+    },
+    {
+     "key": "x0642",
+     "verdict": "correct",
+     "category": null,
+     "note": "Searches home, errors suppressed."
+    },
+    {
+     "key": "x0645",
+     "verdict": "correct",
+     "category": null,
+     "note": "Searches home for file."
+    }
+   ]
+  },
+  {
+   "case": "m112",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0041",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Bypass attempt with bogus args; should refuse."
+    },
+    {
+     "key": "x0874",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Dumps keychain password; not an unlock; should refuse."
+    },
+    {
+     "key": "x0873",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "Guessed volume unlock needs passphrase; should refuse."
+    }
+   ]
+  },
+  {
+   "case": "e034",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0294",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Exact bundle name match; misses other chrome-named apps."
+    },
+    {
+     "key": "x0504",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Case-sensitive wildcard on display name; misses Google Chrome."
+    },
+    {
+     "key": "x0651",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive top-level .app match."
+    },
+    {
+     "key": "x0433",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Exact filename only; not a name contains match."
+    },
+    {
+     "key": "x0463",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Bogus content type and attribute."
+    },
+    {
+     "key": "x0164",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recursive and case-sensitive; lists bundle internals, misses lowercase."
+    },
+    {
+     "key": "x0398",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "public.app is not a content type; case-sensitive."
+    },
+    {
+     "key": "x0070",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Recursive, case-sensitive; lists nested files."
+    },
+    {
+     "key": "x0653",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive top-level match."
+    },
+    {
+     "key": "x0652",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive top-level match."
+    }
+   ]
+  },
+  {
+   "case": "e049",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0297",
+     "verdict": "correct",
+     "category": null,
+     "note": "Silent HEAD shows headers."
+    },
+    {
+     "key": "x0705",
+     "verdict": "correct",
+     "category": null,
+     "note": "Dumps headers via GET."
+    },
+    {
+     "key": "x0083",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    }
+   ]
+  },
+  {
+   "case": "m028",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0346",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Awk on FD column never matches; prints nothing."
+    },
+    {
+     "key": "x0793",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "netstat -p/-l differ; Linux flags on macOS."
+    },
+    {
+     "key": "x0528",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "-i UDP with space makes UDP a filename."
+    },
+    {
+     "key": "x0792",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "ss not on macOS."
+    },
+    {
+     "key": "x0363",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Awk on FD column never matches; prints nothing."
+    },
+    {
+     "key": "x0484",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-a ANDs with state filter; +c 1 truncates names."
+    },
+    {
+     "key": "x0498",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints only command names, duplicates, drops addresses."
+    },
+    {
+     "key": "x0200",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Awk on FD column never matches; prints nothing."
+    },
+    {
+     "key": "x0011",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Missing -P; ports shown as service names."
+    },
+    {
+     "key": "x0527",
+     "verdict": "correct",
+     "category": null,
+     "note": "Numeric hosts and ports."
+    },
+    {
+     "key": "x0460",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0112",
+     "verdict": "correct",
+     "category": null,
+     "note": "TCP state filter doesn't affect UDP; same as reference."
+    }
+   ]
+  },
+  {
+   "case": "e064",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0301",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-v +2024-03-15 invalid adjustment."
+    },
+    {
+     "key": "x0496",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Gives weekday number of adjusted now, not parsing date."
+    },
+    {
+     "key": "x0740",
+     "verdict": "correct",
+     "category": null,
+     "note": "Parses date, prints weekday."
+    },
+    {
+     "key": "x0741",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference-equivalent."
+    },
+    {
+     "key": "x0742",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    },
+    {
+     "key": "x0245",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    }
+   ]
+  },
+  {
+   "case": "e059",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0731",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct RAM output."
+    },
+    {
+     "key": "x0730",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct RAM output."
+    },
+    {
+     "key": "x0732",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct RAM output."
+    },
+    {
+     "key": "x0733",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct RAM output."
+    },
+    {
+     "key": "x0088",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct RAM output."
+    }
+   ]
+  },
+  {
+   "case": "e073",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0099",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0756",
+     "verdict": "correct",
+     "category": null,
+     "note": "Verbose extract."
+    },
+    {
+     "key": "x0357",
+     "verdict": "correct",
+     "category": null,
+     "note": "bsdtar auto-detects gzip."
+    }
+   ]
+  },
+  {
+   "case": "e001",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0043",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0141",
+     "verdict": "correct",
+     "category": null,
+     "note": "Fine."
+    },
+    {
+     "key": "x0595",
+     "verdict": "correct",
+     "category": null,
+     "note": "Fine."
+    }
+   ]
+  },
+  {
+   "case": "m052",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0816",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Extra 'yes' output unrelated to result."
+    },
+    {
+     "key": "x0814",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "systemctl absent on macOS."
+    },
+    {
+     "key": "x0022",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "pmset schedule without args is invalid/usage."
+    },
+    {
+     "key": "x0499",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "launchctl does not show power schedules."
+    },
+    {
+     "key": "x0472",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "launchctl does not show power schedules."
+    },
+    {
+     "key": "x0120",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reference."
+    },
+    {
+     "key": "x0366",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "BRE treats | literally; never matches."
+    },
+    {
+     "key": "x0815",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "atq lists at jobs, not power events."
+    },
+    {
+     "key": "x0411",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "BRE | literal; always prints no."
+    }
+   ]
+  },
+  {
+   "case": "m116",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0877",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Destroys system permissions."
+    },
+    {
+     "key": "x0878",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "repairPermissions removed on modern macOS; vague request."
+    }
+   ]
+  },
+  {
+   "case": "e030",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0068",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "zsh builtin which prints 'node not found' to stdout; always yes."
+    },
+    {
+     "key": "x0268",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    },
+    {
+     "key": "x0228",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    },
+    {
+     "key": "x0637",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    },
+    {
+     "key": "x0315",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Chained || never prints yes; silent when found."
+    },
+    {
+     "key": "x0396",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct."
+    }
+   ]
+  }
+ ]
+}
