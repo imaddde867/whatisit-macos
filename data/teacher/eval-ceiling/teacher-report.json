@@ -1,0 +1,2333 @@
+{
+  "per_split": {
+    "dev": {
+      "total": 61,
+      "labels": {
+        "pass": 33,
+        "rejected": 13,
+        "wrong": 7,
+        "abstain-ok": 8
+      },
+      "correct": 41,
+      "accepted_wrong": 7,
+      "rejected": 13,
+      "rejected_no_command": 10,
+      "rejected_lint_safety": 3,
+      "abstain_missed": 0,
+      "mean_per_sample_correctness": 0.7573770491803279,
+      "best_of_5": 50,
+      "coverage": 51
+    },
+    "everyday": {
+      "total": 80,
+      "labels": {
+        "rejected": 32,
+        "pass": 43,
+        "wrong": 1,
+        "abstain-ok": 4
+      },
+      "correct": 47,
+      "accepted_wrong": 1,
+      "rejected": 32,
+      "rejected_no_command": 31,
+      "rejected_lint_safety": 0,
+      "abstain_missed": 0,
+      "mean_per_sample_correctness": 0.905,
+      "best_of_5": 78,
+      "coverage": 49
+    }
+  },
+  "per_case": {
+    "m001": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "stat -f %B notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m003": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "find ~/Projects -type l",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m005": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "mv -n draft.txt final.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m007": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "mdls -name kMDItemKind report.pdf",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m009": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "ls -lO report.pdf",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m010": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "sed -n '3,7p' notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m012": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m014": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "grep -E 'ERROR|WARN' app.log",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m016": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "cut -d: -f3 input.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m018": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "df -h /",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m020": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "diskutil apfs listSnapshots /",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 3,
+      "oracle": true
+    },
+    "m022": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "tmutil destinationinfo",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m024": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "mount | awk '$3 ~ /^\\/Volumes\\//'",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m026": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 3,
+      "oracle": true
+    },
+    "m028": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "lsof -nP -iUDP",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m030": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "launchctl print gui/$(id -u)",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "wrong",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m032": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m034": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "networksetup -listnetworkserviceorder",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m036": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "networksetup -getdnsservers Wi-Fi",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m038": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "ifconfig en0 | awk '/ether/ {print $2}'",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "wrong",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m040": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": "scutil --nwi",
+      "majority_mode": "command",
+      "rejection_cause": "lint/safety rejected",
+      "sample_labels": [
+        "rejected",
+        "rejected",
+        "rejected",
+        "rejected",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m042": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "sw_vers -productVersion",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m044": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "getconf PAGESIZE",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m046": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "system_profiler SPDisplaysDataType",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m048": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "uname -n",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m050": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "pmset -g batt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m052": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "pmset -g sched",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m054": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "pmset -g batt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m056": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "pmset -g capabilities",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m058": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "open -a TextEdit notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m060": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m062": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m064": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "osascript -e 'tell application \"System Events\" to get volume settings'",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m066": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "log show --predicate 'process == \"kernel\"' --last 2m",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m068": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m070": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "tail -n 20 /var/log/install.log",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m072": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m074": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "sips -g pixelWidth -g pixelHeight photo.jpg",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m076": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "sips -r 90 photo.jpg --out rotated.jpg",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m078": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m080": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": "qlmanage -t -s 256 -o ~/Downloads ~/Downloads/photo.jpg",
+      "majority_mode": "command",
+      "rejection_cause": "lint/safety rejected",
+      "sample_labels": [
+        "rejected",
+        "rejected",
+        "rejected",
+        "rejected",
+        "rejected"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m082": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "tar -tf backup.tar",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m084": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m086": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "hdiutil attach -readonly -nobrowse disk.iso",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m088": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "tar -xOf backup.tar README.md",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m090": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "defaults read com.apple.finder AppleShowAllExtensions",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "m092": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "defaults domains",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m094": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m096": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "plutil -convert json -o - Info.plist",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m098": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": "whence -p python3",
+      "majority_mode": "command",
+      "rejection_cause": "lint/safety rejected",
+      "sample_labels": [
+        "rejected",
+        "wrong",
+        "rejected",
+        "rejected",
+        "rejected"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "m100": {
+      "split": "dev",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 2,
+      "oracle": true
+    },
+    "m102": {
+      "split": "dev",
+      "majority": "wrong",
+      "majority_command": "/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" MyApp.app/Contents/Info.plist",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "wrong",
+        "wrong",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 2,
+      "oracle": true
+    },
+    "m104": {
+      "split": "dev",
+      "majority": "pass",
+      "majority_command": "pkgutil --check-signature installer.pkg",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m106": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m108": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m110": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m112": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m114": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m116": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m118": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "m120": {
+      "split": "dev",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e001": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e002": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "cp report.pdf ~/Downloads/",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e003": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "mv notes.txt notes-old.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e004": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "ls -lat ~/Downloads",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e005": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "find . -maxdepth 1 -type f | wc -l",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e006": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "e007": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e008": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "stat -f%z report.pdf",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e009": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "chmod a-w notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e010": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "touch todo.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e011": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "mv old.log ~/.Trash/",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e012": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e013": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "open .",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e014": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e015": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "head -n 20 app.log",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e016": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "tail -f app.log",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e017": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "wc -w notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e018": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "sed -i '' 's/foo/bar/g' notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e019": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "tail -n 5 notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e020": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "sort names.txt | uniq -c",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e021": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "cut -d, -f2 data.csv",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e022": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "grep -v draft notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e023": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "cat part1.txt part2.txt > merged.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e024": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "pbcopy < notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e025": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "tr '[:lower:]' '[:upper:]' < notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e026": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "diff v1.txt v2.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e027": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e028": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e029": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 1,
+      "oracle": true
+    },
+    "e030": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "rejected",
+        "rejected",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 3,
+      "oracle": true
+    },
+    "e031": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e032": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "e033": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e034": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "find /Applications -maxdepth 1 -type d -iname '*chrome*.app' -print",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e035": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "lsof -nP -i :3000",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e036": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e037": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 1,
+      "oracle": true
+    },
+    "e038": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e039": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e040": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "nohup ./backup.sh > backup.log 2>&1 &",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e041": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e042": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "wrong",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "e043": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "pass",
+        "pass",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 2,
+      "oracle": true
+    },
+    "e044": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "curl -s https://api.ipify.org",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e045": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e046": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e047": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e048": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "dig +short MX gmail.com",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e049": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "curl -I https://example.com",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e050": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e051": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "pass",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 1,
+      "oracle": true
+    },
+    "e052": {
+      "split": "everyday",
+      "majority": "wrong",
+      "majority_command": "du -sh .",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong",
+        "wrong"
+      ],
+      "sample_correct": 0,
+      "oracle": false
+    },
+    "e053": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "diskutil list",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e054": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "diskutil eject /Volumes/BACKUP",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "rejected",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "e055": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "rejected",
+        "pass",
+        "rejected",
+        "rejected",
+        "pass"
+      ],
+      "sample_correct": 2,
+      "oracle": true
+    },
+    "e056": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "diskutil info disk0 | grep -i \"SMART Status\"",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e057": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e058": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e059": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e060": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "sysctl -n hw.physicalcpu",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e061": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e062": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "date +%Y-%m-%d",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e063": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "TZ=Asia/Tokyo date",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e064": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "wrong"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "e065": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e066": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "say \"build finished\"",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "wrong",
+        "pass"
+      ],
+      "sample_correct": 4,
+      "oracle": true
+    },
+    "e067": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "git log -5 --oneline",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e068": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "git reset --soft HEAD~1",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e069": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "git branch --show-current",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e070": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "git add -A && git commit -m \"fix typo\"",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e071": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "git diff HEAD -- notes.txt",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e072": {
+      "split": "everyday",
+      "majority": "rejected",
+      "majority_command": null,
+      "majority_mode": "none",
+      "rejection_cause": "no command",
+      "sample_labels": [
+        "pass",
+        "pass",
+        "wrong",
+        "wrong",
+        "rejected"
+      ],
+      "sample_correct": 2,
+      "oracle": true
+    },
+    "e073": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "tar -xzf backup.tar.gz",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e074": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "zip -r project.zip project",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e075": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "sips -Z 800 photo.jpg --out small.jpg",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e076": {
+      "split": "everyday",
+      "majority": "pass",
+      "majority_command": "screencapture shot.png",
+      "majority_mode": "command",
+      "rejection_cause": null,
+      "sample_labels": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e077": {
+      "split": "everyday",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e078": {
+      "split": "everyday",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e079": {
+      "split": "everyday",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    },
+    "e080": {
+      "split": "everyday",
+      "majority": "abstain-ok",
+      "majority_command": null,
+      "majority_mode": "abstention",
+      "rejection_cause": null,
+      "sample_labels": [
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok",
+        "abstain-ok"
+      ],
+      "sample_correct": 5,
+      "oracle": true
+    }
+  },
+  "pooled": {
+    "total": 141,
+    "labels": {
+      "pass": 76,
+      "rejected": 45,
+      "wrong": 8,
+      "abstain-ok": 12
+    },
+    "correct": 88,
+    "accepted_wrong": 8,
+    "rejected": 45,
+    "rejected_no_command": 41,
+    "rejected_lint_safety": 3,
+    "abstain_missed": 0,
+    "mean_per_sample_correctness": 0.8411347517730496,
+    "best_of_5": 128,
+    "coverage": 100
+  },
+  "reference_sanity_failures": [
+    {
+      "id": "m040",
+      "kind": "lint rejects",
+      "command": "scutil --nwi"
+    },
+    {
+      "id": "m080",
+      "kind": "lint rejects",
+      "command": "qlmanage -t -s 256 -o ~/Downloads photo.jpg"
+    },
+    {
+      "id": "e030",
+      "kind": "lint rejects",
+      "command": "node --version"
+    }
+  ]
+}

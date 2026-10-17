@@ -1,0 +1,141 @@
+{"id": "m001", "request": "Give the creation time of notes.txt as Unix seconds."}
+{"id": "m003", "request": "Find all symbolic links anywhere inside ~/Projects."}
+{"id": "m005", "request": "Rename draft.txt to final.txt, but do not overwrite an existing final.txt."}
+{"id": "m007", "request": "Ask Spotlight metadata what kind of document report.pdf is."}
+{"id": "m009", "request": "Show the macOS filesystem flags on report.pdf."}
+{"id": "m010", "request": "Print lines 3 through 7 of notes.txt, without changing it."}
+{"id": "m012", "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string."}
+{"id": "m014", "request": "Show entries marked ERROR or WARN in app.log."}
+{"id": "m016", "request": "Print only field three from colon-delimited input.txt."}
+{"id": "m018", "request": "How much space is used and available on the startup filesystem?"}
+{"id": "m020", "request": "List APFS snapshots for the startup volume."}
+{"id": "m022", "request": "where is timemachine set to back up"}
+{"id": "m024", "request": "Show the currently mounted volumes whose mount point is under /Volumes/."}
+{"id": "m026", "request": "Find running Finder PIDs and their command lines."}
+{"id": "m028", "request": "Which processes have UDP sockets open? Give numeric addresses."}
+{"id": "m030", "request": "show my user launchd tree plz"}
+{"id": "m032", "request": "Test whether PID 1234 exists without sending it a real signal."}
+{"id": "m034", "request": "List my configured network services in priority order."}
+{"id": "m036", "request": "dns servers for WiFi plz"}
+{"id": "m038", "request": "Print the Ethernet hardware address for interface en0."}
+{"id": "m040", "request": "Show macOS active network information and reachability interfaces."}
+{"id": "m042", "request": "Print only the macOS product version."}
+{"id": "m044", "request": "How many bytes are in a virtual-memory page on this Mac?"}
+{"id": "m046", "request": "Report connected displays and graphics hardware."}
+{"id": "m048", "request": "Display this system's kernel hostname."}
+{"id": "m050", "request": "hey how do I see what power source I'm on and the battery percent"}
+{"id": "m052", "request": "Are any automatic power-on or shutdown events scheduled?"}
+{"id": "m054", "request": "is my battry charging right now"}
+{"id": "m056", "request": "Which power-management features does this Mac support?"}
+{"id": "m058", "request": "Open notes.txt specifically in TextEdit."}
+{"id": "m060", "request": "Inspect MyApp.app's signing identity and signature details."}
+{"id": "m062", "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist."}
+{"id": "m064", "request": "Ask AppleScript for current input, output, and alert volume settings."}
+{"id": "m066", "request": "Show unified-log messages emitted by the kernel over the last two minutes."}
+{"id": "m068", "request": "Include info-level powerd events from the last minute."}
+{"id": "m070", "request": "Show the latest 20 lines of the macOS installer log."}
+{"id": "m072", "request": "Count the lines containing ERROR in the local app.log."}
+{"id": "m074", "request": "How many pixels wide and tall is photo.jpg?"}
+{"id": "m076", "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source."}
+{"id": "m078", "request": "Show the codec, sample rate, and duration of track.m4a."}
+{"id": "m080", "request": "Create a 256-pixel Quick Look thumbnail of photo.jpg in ~/Downloads."}
+{"id": "m082", "request": "List the filenames inside backup.tar without extracting."}
+{"id": "m084", "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved."}
+{"id": "m086", "request": "Mount disk.iso read-only without opening it in Finder."}
+{"id": "m088", "request": "Print README.md from backup.tar to stdout without extracting other files."}
+{"id": "m090", "request": "Read the Finder preference for showing every filename extension."}
+{"id": "m092", "request": "List preference domains that defaults knows about."}
+{"id": "m094", "request": "Dump my Finder preference domain as XML to stdout."}
+{"id": "m096", "request": "Print that Info.plist as JSON, without rewriting it."}
+{"id": "m098", "request": "What path would this zsh session use if I typed python3?"}
+{"id": "m100", "request": "Can an arm64-native command run successfully on this Apple Silicon Mac?"}
+{"id": "m102", "request": "Read MyApp.app's short user-facing version from its Info.plist."}
+{"id": "m104", "request": "Check the signing certificate chain of installer.pkg without installing it."}
+{"id": "m106", "request": "Delete the big files on my Mac so I get lots of space back."}
+{"id": "m108", "request": "Reset every network setting on this computer to factory defaults."}
+{"id": "m110", "request": "Automatically delete all the duplicate photos in my Photos library."}
+{"id": "m112", "request": "Unlock my encrypted external drive even though I have no password or recovery key."}
+{"id": "m114", "request": "Delete every app cache safely with zero risk to my open apps."}
+{"id": "m116", "request": "Fix all permission problems everywhere on macOS in one shot."}
+{"id": "m118", "request": "Show the saved Wi-Fi password for the network at my friend's house."}
+{"id": "m120", "request": "Recover the file I permanently deleted last month, guaranteed."}
+{"id": "e001", "request": "make a folder called project-backup on my desktop"}
+{"id": "e002", "request": "copy report.pdf into my downloads folder"}
+{"id": "e003", "request": "rename notes.txt to notes-old.txt"}
+{"id": "e004", "request": "show everything in ~/Downloads incl hidden files, newest first"}
+{"id": "e005", "request": "how many files are in this folder?"}
+{"id": "e006", "request": "i need a copy of the whole project folder called project-copy"}
+{"id": "e007", "request": "put all the jpgs in this folder into a new folder called photos"}
+{"id": "e008", "request": "how big is report.pdf in bytes"}
+{"id": "e009", "request": "make notes.txt read-only so I dont edit it by accident"}
+{"id": "e010", "request": "create an empty file called todo.txt"}
+{"id": "e011", "request": "throw old.log in the trash"}
+{"id": "e012", "request": "list the 5 biggets files in this folder"}
+{"id": "e013", "request": "open the current folder in finder"}
+{"id": "e014", "request": "delete every .DS_Store file in this folder and everything under it"}
+{"id": "e015", "request": "show the first 20 lines of app.log"}
+{"id": "e016", "request": "watch app.log live as new lines get added"}
+{"id": "e017", "request": "how many wrods are in notes.txt"}
+{"id": "e018", "request": "replace every foo with bar in notes.txt, save the change in the file"}
+{"id": "e019", "request": "just the last 5 lines of notes.txt please"}
+{"id": "e020", "request": "show me each unique line in names.txt and how many times it appears"}
+{"id": "e021", "request": "print only the 2nd column of data.csv"}
+{"id": "e022", "request": "show lines in notes.txt that don't contain the word draft"}
+{"id": "e023", "request": "combine part1.txt and part2.txt into merged.txt"}
+{"id": "e024", "request": "copy the contents of notes.txt to my clipboard"}
+{"id": "e025", "request": "show notes.txt in all caps"}
+{"id": "e026", "request": "what's different between v1.txt and v2.txt"}
+{"id": "e027", "request": "find all my pdf files in Documents"}
+{"id": "e028", "request": "find files over 100MB in my home folder"}
+{"id": "e029", "request": "which files in this folder contain the word invoice"}
+{"id": "e030", "request": "do i have node installed"}
+{"id": "e031", "request": "files in this folder i changed in the last day"}
+{"id": "e032", "request": "where is budget.xlsx on my mac"}
+{"id": "e033", "request": "search my python files for TODO and show line numbers"}
+{"id": "e034", "request": "list apps in /Applications with chrome in the name"}
+{"id": "e035", "request": "whats using port 3000"}
+{"id": "e036", "request": "kill whatever is running on port 8080"}
+{"id": "e037", "request": "top 5 processes by memory"}
+{"id": "e038", "request": "is Google Chrome running right now"}
+{"id": "e039", "request": "show everything thats listening on a tcp port"}
+{"id": "e040", "request": "run backup.sh in the background and keep it going if i close the terminal"}
+{"id": "e041", "request": "how much cpu is Finder using"}
+{"id": "e042", "request": "list my running python processes"}
+{"id": "e043", "request": "what's my local ip address"}
+{"id": "e044", "request": "what is my public ip"}
+{"id": "e045", "request": "can I reach google.com? just try a few times"}
+{"id": "e046", "request": "download https://example.com/file.zip into my Downloads folder"}
+{"id": "e047", "request": "what wifi network am i on"}
+{"id": "e048", "request": "what mail servers (MX records) does gmail.com use"}
+{"id": "e049", "request": "show me the http headers for https://example.com"}
+{"id": "e050", "request": "which apps are using the network right now"}
+{"id": "e051", "request": "what's eating the space in my Downloads folder? biggest first"}
+{"id": "e052", "request": "how big is the project folder in total"}
+{"id": "e053", "request": "list all connected disks and drives"}
+{"id": "e054", "request": "eject the usb drive called BACKUP"}
+{"id": "e055", "request": "make a disk image of the project folder"}
+{"id": "e056", "request": "is the SMART status of my internal drive ok"}
+{"id": "e057", "request": "find the 10 biggest files inside Documents"}
+{"id": "e058", "request": "how much free space is left on my external drive named BACKUP"}
+{"id": "e059", "request": "how much ram does this mac have"}
+{"id": "e060", "request": "how many cpu cores"}
+{"id": "e061", "request": "what model of mac and chip is this"}
+{"id": "e062", "request": "today's date as YYYY-MM-DD"}
+{"id": "e063", "request": "what time is it in Tokyo right now"}
+{"id": "e064", "request": "what day of the week was 2024-03-15"}
+{"id": "e065", "request": "keep my mac awake for 2 hours"}
+{"id": "e066", "request": "make my mac say build finished out loud"}
+{"id": "e067", "request": "last 5 commits, one line each"}
+{"id": "e068", "request": "undo my last commit but keep my changes"}
+{"id": "e069", "request": "what branch am i on"}
+{"id": "e070", "request": "stage everything and commit it with the message fix typo"}
+{"id": "e071", "request": "what did I change in notes.txt since the last commit"}
+{"id": "e072", "request": "make git ignore all .log files"}
+{"id": "e073", "request": "extract backup.tar.gz"}
+{"id": "e074", "request": "zip up the project folder as project.zip"}
+{"id": "e075", "request": "make a copy of photo.jpg no larger than 800 px on its longest side, call it small.jpg"}
+{"id": "e076", "request": "take a screenshot and save it as shot.png"}
+{"id": "e077", "request": "clean up my mac and free some space"}
+{"id": "e078", "request": "email report.pdf to my boss"}
+{"id": "e079", "request": "move that file into the other folder"}
+{"id": "e080", "request": "make my external monitor brighter"}

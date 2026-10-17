@@ -1,0 +1,16 @@
+{
+  "path_for_all_evaluations": "/usr/bin:/bin:/usr/sbin:/sbin",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python_version": "3.14.8 (main, Sep 30 2026, 17:55:09) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "server_version": "version: 10333 (08659901c)\nbuilt with AppleClang 21.0.0.21000101 for Darwin arm64",
+  "sha256": {
+    "default_model": "6f8a17a11129a31074c944f4c2602453fafd9de43bdaeb1630a8f511ec820f71",
+    "eval_harness": "6ba97ecebf16184e885a3b04d4cf340f855f74cd52327831f24e7c112ded4884",
+    "llama_server": "d3bce60d45758268a90e0fca82ce5a22d5c35ecb92a06d1c544ed68ec2efa769",
+    "local_recovery_worker": "0cf257df60a279e82fd3142674cff0890a3f43bdce7d3889c1e90b88d27f7034",
+    "maclint": "0a0296e9e859d9e321d74e4bb9f6bd4e75eda4cf2d51fb3a2f53fe0bd17cef29",
+    "python": "7ebde552773a4045532637b114d645a313e045ac07b26f5e520bf039f1e34063",
+    "upstream_config": "786e102cb69e804534dfffa3c1595a3f115b18d9cd417eada0305b329cef54a0",
+    "upstream_engine": "14cdedfa04e53f5cfb82485380069e8e98a092663e61d82c9936e0e890b2409e"
+  }
+}

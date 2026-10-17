@@ -215,11 +215,12 @@ def main():
     torch.cuda.synchronize()
     wall = time.monotonic() - started
     peak = torch.cuda.max_memory_allocated()
+    args.output.mkdir(parents=True)
+    model.save_pretrained(args.output / 'adapter')
     merged = model.merge_and_unload(safe_merge=True).cpu()
     parameters = {name: value.detach().numpy() for name, value in merged.named_parameters()}
     if args.steps == 0 and original != {n: weight_digest(v) for n, v in parameters.items()}:
         raise ValueError('zero-update CUDA import/merge changed source weights')
-    args.output.mkdir(parents=True)
     merged.save_pretrained(args.output / 'fused')
     tokenizer.save_pretrained(args.output / 'fused')
     for filename in ('LICENSE',):
@@ -234,6 +235,8 @@ def main():
               'source_group_counts': {'train': len(train_source_ids), 'validation': len(val_source_ids)},
               'validation_losses': val_losses, 'trainable_parameters': count, 'data_sha256': hashlib.sha256(args.data.read_bytes()).hexdigest(),
               'source_sha256': hashlib.sha256(args.source.read_bytes()).hexdigest(),
+              'adapter_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                                 for p in sorted((args.output / 'adapter').iterdir()) if p.is_file()},
               'gpu': torch.cuda.get_device_name(), 'cuda': torch.version.cuda,
               'wall_seconds': time.monotonic() - run_started, 'training_wall_seconds': wall,
               'training_peak_allocated_bytes': peak, 'losses': losses,

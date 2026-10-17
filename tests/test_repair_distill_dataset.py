@@ -45,6 +45,31 @@ class RepairTests(unittest.TestCase):
         self.assertEqual(requests[0]['path'], 'sample.pdf')
         self.assertNotIn('path', self.request)
 
+    def test_cluster_majority_is_verified_and_audited(self):
+        raw = {**self.raw, 'samples': [{'parsed': True, 'finish_reason': 'stop', 'command': c}
+               for c in ('mdls sample.pdf', 'mdls ./sample.pdf', 'mdls "sample.pdf"', None, None)]}
+        provenance = {'r1': {'vote_mode': 'equivalence', 'cluster_votes': 3,
+                            'strings': ['mdls "sample.pdf"', 'mdls ./sample.pdf', 'mdls sample.pdf']}}
+        rows, _, audit = repair.repair([self.request], [self.label], [raw], [], provenance)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual((audit[0]['teacher_votes'], audit[0]['cluster_votes'], audit[0]['vote_mode']),
+                         (1, 3, 'equivalence'))
+        raw['samples'][1]['command'] = 'mdls other.pdf'
+        with self.assertRaisesRegex(ValueError, 'cluster'):
+            repair.repair([self.request], [self.label], [raw], [], provenance)
+
+    def test_v3_summary_counts_only_retained_recovered_rows(self):
+        row = {**self.label, 'source_id': 'r1'}
+        request = {**self.request, 'category': 'metadata'}
+        provenance = {'r1': {'cluster_votes': 4, 'strings': ['mdls sample.pdf', 'mdls ./sample.pdf']},
+                      'excluded': {'cluster_votes': 3, 'strings': ['x', 'y']}}
+        report = repair.v3_summary([row], [request], provenance, [])
+        self.assertEqual(report['recovered_rows'], 1)
+        self.assertEqual(report['recovered_by_agreement'], {'4': 1})
+        self.assertEqual(report['recovered_by_category'], {'metadata': 1})
+        self.assertEqual(report['recovered_multistring_rows'], 1)
+        self.assertEqual(report['new_tool_flag_signatures'], 1)
+
     def test_stale_annotation_and_missing_teacher_votes_fail_closed(self):
         stale = {**self.edit, 'original_target': 'other'}
         with self.assertRaisesRegex(ValueError, 'stale'):

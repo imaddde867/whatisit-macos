@@ -1,5 +1,10 @@
 from pathlib import Path
+import hashlib
+import json
+import os
+import subprocess
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
@@ -19,6 +24,29 @@ class TokenizerProbe:
 
 
 class CudaChatTests(unittest.TestCase):
+    @unittest.skipUnless(os.environ.get('WHATISIT_CUDA_ASSETS'), 'requires pinned CUDA assets')
+    def test_zero_step_saves_unmerged_adapter_and_hashes(self):
+        from whatisit import config
+        assets = Path(os.environ['WHATISIT_CUDA_ASSETS'])
+        with tempfile.TemporaryDirectory(prefix='whatisit-adapter-test-') as tmp:
+            root = Path(tmp)
+            row = self.record('pwd')
+            row.update(id='synthetic-adapter-probe')
+            row['messages'][0]['content'] = config.SYSTEM_PROMPT
+            data = root / 'train.jsonl'
+            data.write_text(json.dumps(row) + '\n')
+            output = root / 'output'
+            subprocess.run([sys.executable, 'tools/train_distill_cuda.py',
+                            str(assets / 'nl2sh-1.5b-Q4_K_M.gguf'), str(assets / 'student-metadata'),
+                            str(data), str(output), '--steps', '0'], check=True)
+            self.assertTrue((output / 'adapter/adapter_model.safetensors').is_file())
+            self.assertTrue((output / 'adapter/adapter_config.json').is_file())
+            report = json.loads((output / 'training-report.json').read_text())
+            self.assertTrue(report['zero_update_weights_equal'])
+            self.assertEqual(report['adapter_sha256'], {
+                p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in sorted((output / 'adapter').iterdir()) if p.is_file()})
+
     def record(self, target=''):
         return {'messages': [{'role': 'system', 'content': 'system'},
                              {'role': 'user', 'content': MACOS_PREFIX + 'Synthetic probe.'},
