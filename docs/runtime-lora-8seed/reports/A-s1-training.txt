@@ -1,0 +1,35 @@
+step 0: validation loss=2.7951 (57 rows)
+step 50/1092: loss=0.3048, grad=31.1996
+step 100/1092: loss=0.0678, grad=19.1771
+step 100: validation loss=0.6511 (57 rows)
+step 150/1092: loss=1.4945, grad=61.3676
+step 200/1092: loss=0.2502, grad=31.5473
+step 200: validation loss=0.5555 (57 rows)
+step 250/1092: loss=0.0239, grad=12.6840
+step 300/1092: loss=0.5761, grad=55.8695
+step 300: validation loss=0.4405 (57 rows)
+step 350/1092: loss=0.3697, grad=25.6575
+step 400/1092: loss=8.2739, grad=906.6027
+step 400: validation loss=0.4462 (57 rows)
+step 450/1092: loss=0.4373, grad=42.6457
+step 500/1092: loss=0.4308, grad=29.3845
+step 500: validation loss=0.6502 (57 rows)
+step 550/1092: loss=0.2205, grad=32.1393
+step 600/1092: loss=0.5188, grad=37.7730
+step 600: validation loss=0.4185 (57 rows)
+step 650/1092: loss=0.2441, grad=24.6602
+step 700/1092: loss=0.0001, grad=0.0072
+step 700: validation loss=0.3628 (57 rows)
+step 750/1092: loss=0.3102, grad=20.7018
+step 800/1092: loss=0.0003, grad=0.0215
+step 800: validation loss=0.5280 (57 rows)
+step 850/1092: loss=0.4734, grad=27.3849
+step 900/1092: loss=0.3294, grad=21.7334
+step 900: validation loss=0.3281 (57 rows)
+step 950/1092: loss=0.1979, grad=15.3769
+step 1000/1092: loss=0.9629, grad=70.5862
+step 1000: validation loss=0.4115 (57 rows)
+step 1050/1092: loss=1.1436, grad=50.3512
+step 1092: validation loss=0.5189 (57 rows)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.77it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.77it/s]
+{"steps": 1092, "seed": 1, "batch_size": 1, "sequence_limit": 512, "learning_rate": 1e-05, "optimizer": "AdamW", "autocast": "bfloat16", "lora_rank": 8, "lora_alpha": 160, "lora_scale": 20, "lora_layers": 16, "val_fraction": 0.05, "train_rows": 1092, "val_ids": ["r00037", "r00105", "r00112", "r00189", "r00200", "r00231", "r00246", "r00288", "r00397", "r00399", "r00519", "r00594", "r00646", "r00651", "r00686", "r00791", "r00840", "r00883", "r00972", "r01017", "r01053", "r01067", "r01128", "r01227", "r01295", "r01317", "r01391", "r01425", "r01463", "r01469", "r01479", "r01486", "r01564", "r01668", "r01673", "r01674", "r01694", "r01699", "r01711", "r01753", "r01889", "r01974", "r02008", "r02092", "r02096", "r02099", "r02100", "r02107", "r02160", "r02163", "r02198", "r02243", "r02248", "r02393", "r02405", "r02421", "r02469"], "val_source_ids": ["r00037", "r00105", "r00112", "r00189", "r00200", "r00231", "r00246", "r00288", "r00397", "r00399", "r00519", "r00594", "r00646", "r00651", "r00686", "r00791", "r00840", "r00883", "r00972", "r01017", "r01053", "r01067", "r01128", "r01227", "r01295", "r01317", "r01391", "r01425", "r01463", "r01469", "r01479", "r01486", "r01564", "r01668", "r01673", "r01674", "r01694", "r01699", "r01711", "r01753", "r01889", "r01974", "r02008", "r02092", "r02096", "r02099", "r02100", "r02107", "r02160", "r02163", "r02198", "r02243", "r02248", "r02393", "r02405", "r02421", "r02469"], "source_group_counts": {"train": 1074, "validation": 57}, "validation_losses": [[0, 2.7951461948585092], [100, 0.6510840502093759], [200, 0.5554543078944431], [300, 0.4404921003404429], [400, 0.44618306583301126], [500, 0.6501647561932546], [600, 0.4185430956999322], [700, 0.3627952891205368], [800, 0.5280494266286647], [900, 0.3281064614540746], [1000, 0.41147194674602106], [1092, 0.5188615565661039]], "trainable_parameters": 5275648, "data_sha256": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550", "source_sha256": "6f8a17a11129a31074c944f4c2602453fafd9de43bdaeb1630a8f511ec820f71", "adapter_sha256": {"README.md": "5549483c481a898f04ed82d4c8b891bd91bd3672cd420f729775fc47c5763ea7", "adapter_config.json": "6ea596bcc36bca04a06c1863c104003ddae7a45748e7d16ddae4ba43a205cb08", "adapter_model.safetensors": "51d5e3891527cb63841aa1839302b7af33558a8f944e940a412bd67d8812d8eb"}, "gpu": "NVIDIA GeForce RTX 5090", "cuda": "13.0", "wall_seconds": 67.44544770600623, "training_wall_seconds": 40.06448028999148, "training_peak_allocated_bytes": 6070438400, "zero_update_weights_equal": null, "packages": {"torch": "2.14.1", "transformers": "5.19.0", "peft": "0.21.0", "gguf": "0.19.0"}}

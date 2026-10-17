@@ -1,0 +1,13 @@
+{
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "server_version": "version: 10333 (08659901c)\nbuilt with AppleClang 21.0.0.21000101 for Darwin arm64",
+  "files_sha256": {
+    "eval/dev.jsonl": "82cfd23597ddbec788b2e5f8b5ce8d2293659a28e6a0156f2234f9f9372d8c74",
+    "eval/everyday.jsonl": "0421cd79108532e54a34bc6c48e9415c72dae4668ebd5cabd2e5d6760c8aa364",
+    "tools/eval_fallback.py": "291198cd139c8732f7c1b5e0df69841ebad55f78a5e650c01156ce2356010653",
+    "tools/train_distill_cuda.py": "af58e8a460fd0d01d5b3a7afbb08a8c6d08ab8513c1c7cfce9309d00d74b8623",
+    "src/whatisit_macos/local_recovery.py": "bca1f9de7db6a4f4316ea0ec579f8f05d599a3755c3e99abb6b8c3e346af172e",
+    "src/whatisit_macos/local_recovery_worker.py": "0cf257df60a279e82fd3142674cff0890a3f43bdce7d3889c1e90b88d27f7034",
+    "src/whatisit_macos/maclint.py": "0a0296e9e859d9e321d74e4bb9f6bd4e75eda4cf2d51fb3a2f53fe0bd17cef29"
+  }
+}

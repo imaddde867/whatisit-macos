@@ -1,0 +1,22 @@
+{
+  "name": "parity42-reviewer",
+  "adapter": "/Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/whatisit-8seed-parity42-reviewer.gguf",
+  "adapter_sha256": "dfc2a099c0d2d9ad1781561f0bcd95dc5ae12f67cb99b50e1d0b85dc3948c654",
+  "server_sha256": "d3bce60d45758268a90e0fca82ce5a22d5c35ecb92a06d1c544ed68ec2efa769",
+  "identities": [
+    {
+      "split": "dev",
+      "pid": 65932,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui --lora /Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/whatisit-8seed-parity42-reviewer.gguf"
+    },
+    {
+      "split": "everyday",
+      "pid": 66947,
+      "command": "/Users/imadeddine/.local/share/whatisit/bin/llama-server -m /Users/imadeddine/.local/share/whatisit/models/nl2sh-1.5b-Q4_K_M.gguf --host /Users/imadeddine/.local/share/whatisit/run/server.sock -t 4 -c 4096 --no-webui --lora /Users/imadeddine/.local/share/whatisit/finetune/runtime-lora-8seed/whatisit-8seed-parity42-reviewer.gguf"
+    }
+  ],
+  "eval": {
+    "dev": "dev/lint: pass 22  wrong 25  rejected 6  abstain-ok 7  abstain-missed 1  | correct 29/61  p50 0.19s",
+    "everyday": "everyday/lint: pass 49  wrong 13  rejected 14  abstain-ok 4  abstain-missed 0  | correct 53/80  p50 0.20s"
+  }
+}
