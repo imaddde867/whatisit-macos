@@ -1,0 +1,168 @@
+{
+  "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+  "results": [
+    {
+      "command": "date -j -u -f \"%Y-%m-%dT%H:%M:%S%z\" \"2025-06-15T14:30:00+0300\" \"+%Y-%m-%dT%H:%M:%SZ\"",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r00336",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "grep -Eo '([+-][0-9]{2}:?[0-9]{2}|Z)' mac-log-times.txt",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r00553",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "git -C project/ rev-parse 'HEAD@{1}'",
+      "finding": "HEAD@{1} is the previous reflog entry, not necessarily before the last checkout.",
+      "id": "r00740",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "stat -f '%A' .env.example",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r00896",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "date -j -v-1d -f \"%Y-%m-%d\" \"2028-03-01\" +%Y-%m-%d",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r00984",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "du -sh -I .DS_Store project/",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01082",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "grep -riw \"draft\" prose/",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01095",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "grep -Eo '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01209",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "du -sh -I node_modules project/",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01235",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "find fixtures -mindepth 3 -maxdepth 3 -type d -name cache",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01564",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "test -r sample.txt && test -w sample.txt && echo yes || echo no",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01674",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundlePackageType\" MyApp.app/Contents/Info.plist",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01690",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "grep -nE '^(<<<<<<<|=======|>>>>>>>)' project/notes.txt",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01811",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "mdfind -onlyin review 'kMDItemLastUsedDate < 2024-01-01'",
+      "finding": "Scratch scope only; empty index cannot establish query semantics.",
+      "id": "r01848",
+      "read_only_in_scratch": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "command": "stat -f \"%SB\" Project.alias",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r01911",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "mdfind -onlyin document-tests/ 'kMDItemAuthors == nil'",
+      "finding": "Scratch scope only; empty index cannot establish query semantics.",
+      "id": "r02102",
+      "read_only_in_scratch": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "command": "grep -F -C 2 FAILURE errors.txt",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02271",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "stat -l -f \"%SB\" current",
+      "finding": "BSD stat rejects simultaneous -l and -f.",
+      "id": "r02276",
+      "read_only_in_scratch": true,
+      "returncode": 1
+    },
+    {
+      "command": "stat -f \"%i\" report.pdf",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02338",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "stat -f \"%l %b\" data.bin",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02393",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "du -sh -L project/",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02397",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "date -j -v+90d -f \"%Y-%m-%d\" \"2025-01-15\" \"+%Y-%m-%d\"",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02163",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    },
+    {
+      "command": "stat -f '%B %N' original.txt copy.txt | sort -n",
+      "finding": "Read-only fixture check completed; no user-data access.",
+      "id": "r02473",
+      "read_only_in_scratch": true,
+      "returncode": 0
+    }
+  ]
+}
