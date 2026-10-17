@@ -47,17 +47,28 @@ does the job on stock macOS? **Model review, not human review.**
 - The student is further from 90% (127/141) than the regex showed: best ≈ 57%.
 - The teacher is not capped at 88. One teacher sample is right ≈ 92% of the
   time. The 88 came from the exact-string 3-of-5 label vote, which dropped 41 cases.
-- So verified teacher labels can in principle support a 90% target; the
-  current labels and the 1.5B imitation are the gap.
+- The teacher is not the bottleneck. Reaching 90% is not shown: the 1.5B
+  student still has to learn the labels, and Learning64 shows composition
+  does not transfer.
+- The same exact-string vote built the training set: of 2,520 teacher-sampled
+  requests, 1,207 (48%) were dropped as `no_majority`
+  (`data/distill/roihu_full_quality_report.md`); v3 recovered 60.
+- The runtime-LoRA gain survives the audit: default 58 -> A 74 / B 76.
 - The regex scorer is not a reliable metric. Frozen/held-out were written the
   same way and probably share the problem; they were not opened.
 
 ## Not covered
 
+- Pass 1 was light: Sonnet reviewers made 4-7 tool calls each and one batch
+  used no man pages. The 578 items where pass 1 agreed with the regex were
+  never re-checked, so scores carry an unmeasured error.
+- Reviewer case flags (possibly broken cases): m040, m114, m118, m120, e029,
+  e047, e052, e071, e080.
 - Lint-rejected outputs (about 10 per run) were not saved, so not audited. They
   already count as incorrect, so auditing them can only raise student scores.
 - 15 unresolved items keep the regex label.
 - No `eval/*.jsonl` change is made here.
 
 Reproduce: `scripts/build_pool.py` (pipx whatisit python, stock PATH, `PYTHONPATH=src`),
-then `scripts/final.py <audit dir> <pool.json>`.
+then `scripts/final.py <audit dir> <pool.json>`. With pass 2 removed it
+reproduces the regex numbers (65 / 78.5 / 82.0, teacher 116 / 126).
