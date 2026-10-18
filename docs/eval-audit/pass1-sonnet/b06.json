@@ -1,0 +1,646 @@
+{
+ "cases": [
+  {
+   "case": "e020",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0154",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "sort -u removes duplicates first, so every count is 1"
+    },
+    {
+     "key": "x0058",
+     "verdict": "correct",
+     "category": null,
+     "note": "standard sort | uniq -c"
+    }
+   ]
+  },
+  {
+   "case": "m062",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0555",
+     "verdict": "correct",
+     "category": null,
+     "note": "PlistBuddy Print works without colon"
+    },
+    {
+     "key": "x0825",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "jq not stock and plist is not JSON"
+    },
+    {
+     "key": "x0553",
+     "verdict": "correct",
+     "category": null,
+     "note": "PlistBuddy Print"
+    },
+    {
+     "key": "x0124",
+     "verdict": "correct",
+     "category": null,
+     "note": "PlistBuddy Print"
+    },
+    {
+     "key": "x0824",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "modifies the plist instead of reading"
+    },
+    {
+     "key": "x0554",
+     "verdict": "correct",
+     "category": null,
+     "note": "raw extract prints to stdout by default"
+    }
+   ]
+  },
+  {
+   "case": "m024",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0361",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "mount -t type fusefs attempts a mount, does not list"
+    },
+    {
+     "key": "x0250",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "attempts mount with bogus type, not a listing"
+    },
+    {
+     "key": "x0321",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "attempts a mount, not a listing"
+    },
+    {
+     "key": "x0304",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "-o list invalid; tries to mount"
+    },
+    {
+     "key": "x0344",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "mount -t type fs is not a valid listing"
+    },
+    {
+     "key": "x0408",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "attempts mount with bogus type"
+    },
+    {
+     "key": "x0788",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "lsblk is Linux-only"
+    },
+    {
+     "key": "x0789",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "lists /Volumes entries, includes non-mounts like symlink to /"
+    },
+    {
+     "key": "x0520",
+     "verdict": "correct",
+     "category": null,
+     "note": "field 3 is mount point; prefix match correct"
+    },
+    {
+     "key": "x0199",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "anchors line start; mount lines begin with device"
+    },
+    {
+     "key": "x0521",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches ' on /Volumes/' like reference"
+    }
+   ]
+  },
+  {
+   "case": "m038",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0203",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "HWaddr is Linux ifconfig output"
+    },
+    {
+     "key": "x0802",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "shows inet lines, not MAC"
+    },
+    {
+     "key": "x0306",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "HWaddr absent on macOS"
+    },
+    {
+     "key": "x0409",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "HWaddr absent on macOS"
+    },
+    {
+     "key": "x0536",
+     "verdict": "correct",
+     "category": null,
+     "note": "prints ether field"
+    },
+    {
+     "key": "x0538",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "ether is a setter needing argument; errors"
+    },
+    {
+     "key": "x0537",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "ether is a setter needing argument; errors"
+    },
+    {
+     "key": "x0285",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "HWaddr absent on macOS"
+    },
+    {
+     "key": "x0115",
+     "verdict": "correct",
+     "category": null,
+     "note": "extracts MAC via ERE"
+    },
+    {
+     "key": "x0016",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "BRE with literal parens and braces; no match"
+    },
+    {
+     "key": "x0801",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "ip not on macOS"
+    }
+   ]
+  },
+  {
+   "case": "e033",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0650",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive find+grep -Hn"
+    },
+    {
+     "key": "x0269",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive, line numbers"
+    },
+    {
+     "key": "x0230",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive, line numbers"
+    },
+    {
+     "key": "x0432",
+     "verdict": "correct",
+     "category": null,
+     "note": "zsh ** recurses; skips hidden dirs, minor"
+    },
+    {
+     "key": "x0646",
+     "verdict": "correct",
+     "category": null,
+     "note": "correct"
+    },
+    {
+     "key": "x0332",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "not recursive; misses subdirectory py files"
+    },
+    {
+     "key": "x0648",
+     "verdict": "correct",
+     "category": null,
+     "note": "correct"
+    },
+    {
+     "key": "x0649",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive grep with include"
+    },
+    {
+     "key": "x0163",
+     "verdict": "correct",
+     "category": null,
+     "note": "correct"
+    },
+    {
+     "key": "x0647",
+     "verdict": "correct",
+     "category": null,
+     "note": "correct"
+    }
+   ]
+  },
+  {
+   "case": "m114",
+   "case_flag": "Request is vague and unsafe by design",
+   "verdicts": [
+    {
+     "key": "x0428",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "rm -rf on mdfind results; not caches"
+    },
+    {
+     "key": "x0393",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "deletes nonexistent/arbitrary dir contents"
+    },
+    {
+     "key": "x0139",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "rm -rf includes the dir itself"
+    },
+    {
+     "key": "x0876",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "sudo rm -rf system caches; risks open apps"
+    },
+    {
+     "key": "x0875",
+     "verdict": "incorrect",
+     "category": "should_abstain",
+     "note": "deletes all user caches, not zero-risk to open apps"
+    },
+    {
+     "key": "x0489",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "deletes installed applications"
+    },
+    {
+     "key": "x0446",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "rm -rf each cache dir recursively, destructive"
+    }
+   ]
+  },
+  {
+   "case": "e040",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0674",
+     "verdict": "correct",
+     "category": null,
+     "note": "nohup, log, background; fine"
+    },
+    {
+     "key": "x0170",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches reference"
+    },
+    {
+     "key": "x0673",
+     "verdict": "correct",
+     "category": null,
+     "note": "nohup with log redirect"
+    }
+   ]
+  },
+  {
+   "case": "m009",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0359",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "%F is bad format on macOS stat"
+    },
+    {
+     "key": "x0343",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "%S bad format"
+    },
+    {
+     "key": "x0407",
+     "verdict": "correct",
+     "category": null,
+     "note": "ls -ldO shows flags"
+    },
+    {
+     "key": "x0282",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "%A is permissions"
+    },
+    {
+     "key": "x0249",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches reference"
+    },
+    {
+     "key": "x0769",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "lsattr not on macOS"
+    },
+    {
+     "key": "x0003",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "%A is permissions"
+    },
+    {
+     "key": "x0770",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "no flags shown"
+    },
+    {
+     "key": "x0509",
+     "verdict": "correct",
+     "category": null,
+     "note": "%Sf shows flags"
+    },
+    {
+     "key": "x0194",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "%A is permissions"
+    },
+    {
+     "key": "x0105",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "nonexistent xattr"
+    },
+    {
+     "key": "x0303",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "nonexistent xattr"
+    },
+    {
+     "key": "x0483",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "%S bad format"
+    }
+   ]
+  },
+  {
+   "case": "m030",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0530",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "user/ domain is not the gui session domain"
+    },
+    {
+     "key": "x0201",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "list greps labels, not a tree"
+    },
+    {
+     "key": "x0012",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "flat list, not tree"
+    },
+    {
+     "key": "x0529",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches reference"
+    },
+    {
+     "key": "x0794",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "systemctl not on macOS"
+    }
+   ]
+  },
+  {
+   "case": "m005",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0765",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "-f overwrites existing final.txt"
+    },
+    {
+     "key": "x0766",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "overwrites existing final.txt"
+    },
+    {
+     "key": "x0001",
+     "verdict": "correct",
+     "category": null,
+     "note": "-n does not overwrite"
+    }
+   ]
+  },
+  {
+   "case": "m018",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0782",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "free not on macOS"
+    },
+    {
+     "key": "x0008",
+     "verdict": "correct",
+     "category": null,
+     "note": "df -h / shows used and avail"
+    },
+    {
+     "key": "x0783",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "lsblk Linux-only"
+    },
+    {
+     "key": "x0198",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "only available column, omits used"
+    }
+   ]
+  },
+  {
+   "case": "e029",
+   "case_flag": "'this folder' may mean non-recursive; reference is recursive",
+   "verdicts": [
+    {
+     "key": "x0067",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive find grep -l"
+    },
+    {
+     "key": "x0635",
+     "verdict": "correct",
+     "category": null,
+     "note": "current folder only; literal reading of 'this folder'"
+    },
+    {
+     "key": "x0636",
+     "verdict": "correct",
+     "category": null,
+     "note": "current folder, whole-word match"
+    },
+    {
+     "key": "x0633",
+     "verdict": "correct",
+     "category": null,
+     "note": "current folder only; literal reading"
+    },
+    {
+     "key": "x0160",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive"
+    },
+    {
+     "key": "x0331",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive grep -Rl"
+    },
+    {
+     "key": "x0503",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive grep -Rl"
+    },
+    {
+     "key": "x0634",
+     "verdict": "correct",
+     "category": null,
+     "note": "case-insensitive whole-word; acceptable"
+    }
+   ]
+  },
+  {
+   "case": "e031",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0638",
+     "verdict": "correct",
+     "category": null,
+     "note": "current folder, mtime within 24h"
+    },
+    {
+     "key": "x0640",
+     "verdict": "correct",
+     "category": null,
+     "note": "adds ls -lTt; valid on macOS"
+    },
+    {
+     "key": "x0639",
+     "verdict": "correct",
+     "category": null,
+     "note": "matches reference"
+    },
+    {
+     "key": "x0069",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "window excludes today's changes"
+    },
+    {
+     "key": "x0492",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "yesterday midnight; spans up to 2 days"
+    },
+    {
+     "key": "x0161",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-ctime 1 is 24-48h ago, not last day"
+    },
+    {
+     "key": "x0641",
+     "verdict": "correct",
+     "category": null,
+     "note": "same as reference"
+    },
+    {
+     "key": "x0397",
+     "verdict": "correct",
+     "category": null,
+     "note": "ctime within 24h; approximates changed"
+    }
+   ]
+  },
+  {
+   "case": "e017",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0622",
+     "verdict": "correct",
+     "category": null,
+     "note": "prints word count"
+    },
+    {
+     "key": "x0055",
+     "verdict": "correct",
+     "category": null,
+     "note": "wc -w notes.txt"
+    }
+   ]
+  }
+ ]
+}

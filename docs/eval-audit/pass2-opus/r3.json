@@ -1,0 +1,61 @@
+{"cases": [
+{"case": "e007", "case_flag": null, "verdicts": [
+ {"key": "x0146", "verdict": "incorrect", "category": "missed_constraint", "note": "No -maxdepth: recurses into subfolders (and photos/ itself), not just this folder."},
+ {"key": "x0604", "verdict": "incorrect", "category": "other", "note": "BSD find needs {} right before +; /usr/bin/find errors 'no terminating \";\" or \"+\"'."},
+ {"key": "x0607", "verdict": "incorrect", "category": "other", "note": "Same: '{} photos/ +' rejected by BSD find ('no terminating'); nothing moved."}]},
+{"case": "e018", "case_flag": null, "verdicts": [
+ {"key": "x0224", "verdict": "correct", "category": null, "note": "Temp file then mv back; file ends up edited in place, no leftover."}]},
+{"case": "e030", "case_flag": null, "verdicts": [
+ {"key": "x0068", "verdict": "incorrect", "category": "wrong_output", "note": "zsh which writes 'not found' to stdout (zshbuiltins whence), so -z fails; always says yes."},
+ {"key": "x0315", "verdict": "incorrect", "category": "wrong_output", "note": "Logic broken: prints nothing when installed, 'yes' branch unreachable."}]},
+{"case": "e034", "case_flag": null, "verdicts": [
+ {"key": "x0070", "verdict": "incorrect", "category": "wrong_output", "note": "Recurses into Google Chrome.app bundle, dumps internal files; case-sensitive."},
+ {"key": "x0164", "verdict": "incorrect", "category": "wrong_output", "note": "Recurses into bundle, lists framework dirs etc., not just apps."},
+ {"key": "x0398", "verdict": "incorrect", "category": "wrong_operand", "note": "mdls: tree has com.apple.application, no public.app; '*chrome*' lacks c modifier (mdfind man cdw)."},
+ {"key": "x0504", "verdict": "incorrect", "category": "wrong_operand", "note": "mdls shows kMDItemUserVisibleName null for apps; case-sensitive match misses 'Chrome'."}]},
+{"case": "e041", "case_flag": null, "verdicts": [
+ {"key": "x0675", "verdict": "incorrect", "category": "wrong_operand", "note": "top man: -n nprocs 'only display up to nprocs processes'; -n 0 shows none, empty output."}]},
+{"case": "e045", "case_flag": null, "verdicts": [
+ {"key": "x0174", "verdict": "incorrect", "category": "missed_constraint", "note": "Single attempt; failure prints 000 then bogus 408."},
+ {"key": "x0237", "verdict": "incorrect", "category": "wrong_output", "note": "Dumps google HTML; curl man: --retry only on transient errors, one try if reachable."},
+ {"key": "x0335", "verdict": "incorrect", "category": "wrong_output", "note": "-s hides errors, failure prints nothing; one try when reachable; dumps 301 HTML."},
+ {"key": "x0352", "verdict": "incorrect", "category": "missed_constraint", "note": "One attempt only, dumps HTML; || true masks outcome."},
+ {"key": "x0418", "verdict": "incorrect", "category": "missed_constraint", "note": "Single attempt; prints misleading 000/408 on failure."},
+ {"key": "x0436", "verdict": "incorrect", "category": "missed_constraint", "note": "One attempt only, dumps HTML; || true masks outcome."}]},
+{"case": "e054", "case_flag": null, "verdicts": [
+ {"key": "x0718", "verdict": "correct", "category": null, "note": "diskutil man DEVICES: 'A volume name, e.g. Untitled' accepted as device."}]},
+{"case": "e058", "case_flag": null, "verdicts": [
+ {"key": "x0087", "verdict": "incorrect", "category": "wrong_output", "note": "diskutil strings: fields are 'Volume/Container Free Space'; no 'Available Space', grep empty."},
+ {"key": "x0183", "verdict": "incorrect", "category": "wrong_output", "note": "No 'Total Space Available' field in diskutil info; grep empty."},
+ {"key": "x0404", "verdict": "incorrect", "category": "wrong_output", "note": "No 'Available Space' field (only Volume/Container Free Space); grep empty."},
+ {"key": "x0468", "verdict": "incorrect", "category": "wrong_output", "note": "No 'Available Free Space' field in diskutil info; grep empty."}]},
+{"case": "e066", "case_flag": null, "verdicts": [
+ {"key": "x0747", "verdict": "correct", "category": null, "note": "Same as reference, capitalization irrelevant to speech."}]},
+{"case": "m010", "case_flag": null, "verdicts": [
+ {"key": "x0195", "verdict": "correct", "category": null, "note": "head -n 7 then tail -n +3 yields lines 3-7, read-only."}]},
+{"case": "m020", "case_flag": null, "verdicts": [
+ {"key": "x0518", "verdict": "correct", "category": null, "note": "plutil man: -extract keypath raw prints string; resolves same device '/' would."}]},
+{"case": "m032", "case_flag": null, "verdicts": [
+ {"key": "x0113", "verdict": "correct", "category": null, "note": "ps -p sends no signal; BSD ps exits 1 when no process matched."},
+ {"key": "x0202", "verdict": "correct", "category": null, "note": "ps -p existence check, no signal; success/failure output."},
+ {"key": "x0322", "verdict": "correct", "category": null, "note": "ps -p existence check, no signal."},
+ {"key": "x0347", "verdict": "correct", "category": null, "note": "ps -p existence check, no signal."},
+ {"key": "x0533", "verdict": "correct", "category": null, "note": "kill -0 (null signal) plus ps fallback for EPERM; correct."}]},
+{"case": "m044", "case_flag": null, "verdicts": [
+ {"key": "x0540", "verdict": "correct", "category": null, "note": "vm_stat header 'Mach Virtual Memory Statistics: (page size of %llu bytes)'; $8 is number."},
+ {"key": "x0541", "verdict": "correct", "category": null, "note": "/usr/bin/getconf exists, PAGESIZE in binary strings; sysconf page size."},
+ {"key": "x0542", "verdict": "correct", "category": null, "note": "Matches header line only; $8 is page size bytes."}]},
+{"case": "m056", "case_flag": null, "verdicts": [
+ {"key": "x0547", "verdict": "incorrect", "category": "hallucinated_flag", "note": "pmset man only '-g cap'; exact-match args ('capzzz' -> unhandled argument), no 'capabilities' string."}]},
+{"case": "m066", "case_flag": null, "verdicts": [
+ {"key": "x0559", "verdict": "correct", "category": null, "note": "log show synopsis has --predicate and --last num[m]; kernel last 2m."},
+ {"key": "x0560", "verdict": "correct", "category": null, "note": "--[no-]info/--[no-]debug valid for show; just includes more levels."}]},
+{"case": "m084", "case_flag": null, "verdicts": [
+ {"key": "x0257", "verdict": "incorrect", "category": "wrong_tool", "note": "zip man: resource fork support 'expected in next zip release'; not preserved."},
+ {"key": "x0462", "verdict": "incorrect", "category": "wrong_tool", "note": "Info-ZIP drops resource forks/xattrs per man; need ditto --sequesterRsrc."},
+ {"key": "x0846", "verdict": "incorrect", "category": "wrong_tool", "note": "Info-ZIP drops resource forks/Finder metadata per man."}]},
+{"case": "m098", "case_flag": null, "verdicts": [
+ {"key": "x0135", "verdict": "incorrect", "category": "wrong_output", "note": "-a lists every match; does not single out the one zsh would use."},
+ {"key": "x0216", "verdict": "correct", "category": null, "note": "zsh builtin which = whence -c, shows what zsh resolves."},
+ {"key": "x0427", "verdict": "correct", "category": null, "note": "First of which -a is the one used; equals which."}]}
+]}

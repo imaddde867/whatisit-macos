@@ -1,0 +1,316 @@
+{
+ "cases": [
+  {
+   "case": "e006",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0218",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "mkdir first makes cp -R put source at project-copy/project, not a copy named project-copy"
+    }
+   ]
+  },
+  {
+   "case": "e015",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0152",
+     "verdict": "correct",
+     "category": null,
+     "note": "tail -n +1 passes whole file; head -n 20 prints first 20 lines"
+    }
+   ]
+  },
+  {
+   "case": "e029",
+   "case_flag": "'in this folder' ambiguous recursive vs top-level",
+   "verdicts": [
+    {
+     "key": "x0067",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive find + grep -l per file lists matching files; -l per man 'only names of files'"
+    },
+    {
+     "key": "x0160",
+     "verdict": "correct",
+     "category": null,
+     "note": "recursive find -exec grep -l {} + lists matching files"
+    },
+    {
+     "key": "x0633",
+     "verdict": "correct",
+     "category": null,
+     "note": "maxdepth 1 limits to this folder; 'in this folder' allows non-recursive"
+    },
+    {
+     "key": "x0635",
+     "verdict": "correct",
+     "category": null,
+     "note": "same as x0633 with double quotes; non-recursive fits 'this folder'"
+    },
+    {
+     "key": "x0636",
+     "verdict": "correct",
+     "category": null,
+     "note": "grep -w per man 'searched for as a word'; matches the word invoice in this folder"
+    }
+   ]
+  },
+  {
+   "case": "e033",
+   "case_flag": "recursion scope of 'my python files' ambiguous",
+   "verdicts": [
+    {
+     "key": "x0332",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "*.py only top-level, misses nested python files; zsh errors if none match"
+    }
+   ]
+  },
+  {
+   "case": "e038",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0665",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x exact process name per man; prints running/not running"
+    },
+    {
+     "key": "x0666",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x exact name; prints status"
+    },
+    {
+     "key": "x0667",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x exact name; prints status"
+    },
+    {
+     "key": "x0668",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x exact name; yes/no answer"
+    }
+   ]
+  },
+  {
+   "case": "e044",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0173",
+     "verdict": "correct",
+     "category": null,
+     "note": "checkip.dyndns.org returns IP in HTML; grep -Eo extracts IPv4"
+    },
+    {
+     "key": "x0236",
+     "verdict": "correct",
+     "category": null,
+     "note": "sed strips letters, tags, spaces, colons leaving bare IPv4"
+    },
+    {
+     "key": "x0401",
+     "verdict": "correct",
+     "category": null,
+     "note": "raw HTML contains 'Current IP Address: x.x.x.x'; verbose but answers"
+    }
+   ]
+  },
+  {
+   "case": "e052",
+   "case_flag": "folder name ambiguous: 'the project folder'",
+   "verdicts": [
+    {
+     "key": "x0240",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "folder named project_folder; request/reference folder is project"
+    },
+    {
+     "key": "x0495",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "folder named project_folder; request/reference folder is project"
+    }
+   ]
+  },
+  {
+   "case": "e057",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0355",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "du -s on top-level entries ranks directories too, not files"
+    },
+    {
+     "key": "x0403",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "-maxdepth 1 skips files in subfolders of Documents"
+    }
+   ]
+  },
+  {
+   "case": "e064",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0742",
+     "verdict": "correct",
+     "category": null,
+     "note": "date man: -j no set, -f input_fmt parse; +%A prints weekday"
+    }
+   ]
+  },
+  {
+   "case": "m009",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0509",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat man: f 'Display the flags of file as in ls -lTdo', S string form"
+    }
+   ]
+  },
+  {
+   "case": "m016",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0007",
+     "verdict": "correct",
+     "category": null,
+     "note": "cut -d: -f3 prints field 3; man: delimiterless lines pass through unmodified (edge)"
+    }
+   ]
+  },
+  {
+   "case": "m028",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0011",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "lacks -P; man: -P inhibits port-number-to-name conversion, ports shown as names"
+    },
+    {
+     "key": "x0200",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "awk tests $4 (FD column like 23u), never matches :port; prints nothing"
+    },
+    {
+     "key": "x0346",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "awk $4 is FD column, regex :[0-9]+$ never matches; empty output"
+    },
+    {
+     "key": "x0363",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "awk $4 is FD column, never matches :port; empty output"
+    },
+    {
+     "key": "x0484",
+     "verdict": "correct",
+     "category": null,
+     "note": "-nP -iUDP lists UDP numeric; -sTCP state list affects only TCP; man: +c below 7 raised"
+    },
+    {
+     "key": "x0498",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "awk prints only command names, drops numeric addresses requested"
+    },
+    {
+     "key": "x0528",
+     "verdict": "correct",
+     "category": null,
+     "note": "-i UDP selects UDP; -n and -P numeric hosts and ports per man"
+    }
+   ]
+  },
+  {
+   "case": "m040",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0539",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "ifconfig/route don't show reachability/primary-interface info; scutil --nwi does"
+    }
+   ]
+  },
+  {
+   "case": "m054",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0412",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "pmset -g batt has no 'Battery State' line (not in binary strings); prints nothing"
+    }
+   ]
+  },
+  {
+   "case": "m064",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0557",
+     "verdict": "correct",
+     "category": null,
+     "note": "get volume settings (Standard Additions) works inside System Events tell"
+    }
+   ]
+  },
+  {
+   "case": "m078",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0575",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "afinfo prints lowercase 'estimated duration:'; case-sensitive 'Duration:' drops duration"
+    }
+   ]
+  },
+  {
+   "case": "m096",
+   "case_flag": "'that Info.plist' path unspecified; reference invents MyApp.app path",
+   "verdicts": [
+    {
+     "key": "x0261",
+     "verdict": "correct",
+     "category": null,
+     "note": "plutil man: -o - outputs to stdout, json format; source unchanged"
+    },
+    {
+     "key": "x0310",
+     "verdict": "correct",
+     "category": null,
+     "note": "lowercase name resolves on default case-insensitive APFS; -o - stdout, no rewrite"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,568 @@
+{
+ "cases": [
+  {
+   "case": "e042",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0273",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0680",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0681",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0296",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "lsof lists open files; space-separated pids invalid for -p"
+    },
+    {
+     "key": "x0683",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0171",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Only command names, no pid; case-sensitive misses Python"
+    },
+    {
+     "key": "x0682",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0465",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints only pids, so grep python matches nothing"
+    },
+    {
+     "key": "x0077",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    },
+    {
+     "key": "x0334",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists python processes; grep may self-match, acceptable"
+    }
+   ]
+  },
+  {
+   "case": "m104",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0392",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "codesign does not verify flat .pkg; use pkgutil"
+    },
+    {
+     "key": "x0292",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "codesign does not verify flat .pkg; use pkgutil"
+    },
+    {
+     "key": "x0138",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "codesign does not verify flat .pkg; use pkgutil"
+    },
+    {
+     "key": "x0865",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "dpkg is Debian, absent on macOS"
+    },
+    {
+     "key": "x0866",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "Actually installs the package"
+    },
+    {
+     "key": "x0311",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "xcodebuild export on a pkg path is nonsense"
+    },
+    {
+     "key": "x0262",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct pkgutil signature check"
+    },
+    {
+     "key": "x0040",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "codesign does not verify flat .pkg; use pkgutil"
+    }
+   ]
+  },
+  {
+   "case": "m010",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0106",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Later -n 5 wins; prints last 5 lines"
+    },
+    {
+     "key": "x0195",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lines 3-7 via head|tail"
+    },
+    {
+     "key": "x0772",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints lines 1-7"
+    },
+    {
+     "key": "x0771",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "BSD sed -i treats 3,7p as suffix; fails, would edit in place"
+    },
+    {
+     "key": "x0004",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference"
+    }
+   ]
+  },
+  {
+   "case": "e027",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0629",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    },
+    {
+     "key": "x0626",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    },
+    {
+     "key": "x0158",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    },
+    {
+     "key": "x0628",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    },
+    {
+     "key": "x0065",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    },
+    {
+     "key": "x0395",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid mdfind PDF content type query in Documents"
+    },
+    {
+     "key": "x0491",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid mdfind PDF content type query in Documents"
+    },
+    {
+     "key": "x0627",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid find for pdfs under Documents"
+    }
+   ]
+  },
+  {
+   "case": "m022",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0787",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "Lists volumes, not Time Machine destination"
+    },
+    {
+     "key": "x0786",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Lists backups, not the destination"
+    },
+    {
+     "key": "x0519",
+     "verdict": "correct",
+     "category": null,
+     "note": "Shows backup destination"
+    }
+   ]
+  },
+  {
+   "case": "m088",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0349",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Extracts to disk, does not print to stdout"
+    },
+    {
+     "key": "x0132",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Extracts to disk, does not print to stdout"
+    },
+    {
+     "key": "x0851",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "cats local README.md, not archive member"
+    },
+    {
+     "key": "x0258",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Extracts to disk, does not print to stdout"
+    },
+    {
+     "key": "x0486",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "--files-from=README.md reads names from file"
+    },
+    {
+     "key": "x0581",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct tar -xOf"
+    },
+    {
+     "key": "x0850",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Extracts to disk, does not print to stdout"
+    },
+    {
+     "key": "x0288",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Extracts to disk, does not print to stdout"
+    },
+    {
+     "key": "x0212",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "No -f; reads stdin, not backup.tar"
+    }
+   ]
+  },
+  {
+   "case": "e018",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0451",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Writes to new file, original unchanged"
+    },
+    {
+     "key": "x0056",
+     "verdict": "correct",
+     "category": null,
+     "note": "Correct BSD in-place sed"
+    },
+    {
+     "key": "x0330",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Prints only, does not save"
+    },
+    {
+     "key": "x0224",
+     "verdict": "correct",
+     "category": null,
+     "note": "Temp file then mv replaces original"
+    }
+   ]
+  },
+  {
+   "case": "m070",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0833",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "journalctl absent on macOS"
+    },
+    {
+     "key": "x0030",
+     "verdict": "correct",
+     "category": null,
+     "note": "/var/log symlinks to /private/var/log"
+    },
+    {
+     "key": "x0832",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "apt log does not exist on macOS"
+    }
+   ]
+  },
+  {
+   "case": "m084",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0130",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0578",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference ditto"
+    },
+    {
+     "key": "x0485",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0846",
+     "verdict": "unsure",
+     "category": null,
+     "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear"
+    },
+    {
+     "key": "x0425",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0287",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0415",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0847",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "tar gzip named .zip, not a zip"
+    },
+    {
+     "key": "x0210",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0389",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0257",
+     "verdict": "unsure",
+     "category": null,
+     "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear"
+    },
+    {
+     "key": "x0445",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0325",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Misused -R/-k/-m or malformed; -m deletes source"
+    },
+    {
+     "key": "x0462",
+     "verdict": "unsure",
+     "category": null,
+     "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear"
+    }
+   ]
+  },
+  {
+   "case": "m020",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0784",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "btrfs is Linux"
+    },
+    {
+     "key": "x0517",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "diskutil info has Device Identifier, awk yields empty"
+    },
+    {
+     "key": "x0518",
+     "verdict": "correct",
+     "category": null,
+     "note": "Resolves device id then lists snapshots"
+    },
+    {
+     "key": "x0009",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No such tccutil service/action"
+    },
+    {
+     "key": "x0785",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "tmutil lists backups, not APFS snapshots"
+    },
+    {
+     "key": "x0110",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference"
+    }
+   ]
+  },
+  {
+   "case": "e009",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0220",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Adds read, not read-only"
+    },
+    {
+     "key": "x0449",
+     "verdict": "correct",
+     "category": null,
+     "note": "Mode 444 read-only"
+    },
+    {
+     "key": "x0328",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "read-only not a valid mode"
+    },
+    {
+     "key": "x0148",
+     "verdict": "correct",
+     "category": null,
+     "note": "Removes write bit"
+    },
+    {
+     "key": "x0475",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "chflags readonly not a flag; uchg is"
+    },
+    {
+     "key": "x0049",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "touch -r does not change permissions"
+    },
+    {
+     "key": "x0610",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches reference"
+    }
+   ]
+  },
+  {
+   "case": "e010",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0149",
+     "verdict": "correct",
+     "category": null,
+     "note": "Creates todo.txt"
+    },
+    {
+     "key": "x0050",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Creates in home, not current directory"
+    }
+   ]
+  },
+  {
+   "case": "e066",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0747",
+     "verdict": "correct",
+     "category": null,
+     "note": "Speaks phrase"
+    },
+    {
+     "key": "x0093",
+     "verdict": "correct",
+     "category": null,
+     "note": "Speaks phrase"
+    }
+   ]
+  }
+ ]
+}
