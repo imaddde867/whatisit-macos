@@ -1,0 +1,562 @@
+{
+ "cases": [
+  {
+   "case": "e041",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0677",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep -x Finder, ps %cpu summed; valid BSD ps."
+    },
+    {
+     "key": "x0678",
+     "verdict": "correct",
+     "category": null,
+     "note": "ps comm full path matched by awk; sums CPU."
+    },
+    {
+     "key": "x0679",
+     "verdict": "correct",
+     "category": null,
+     "note": "Only Finder ends with Finder here; prints its CPU."
+    },
+    {
+     "key": "x0676",
+     "verdict": "correct",
+     "category": null,
+     "note": "comm path match, sums %cpu, prints percent."
+    },
+    {
+     "key": "x0076",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset -g cpu shows CPU speed limits, not per-process usage."
+    },
+    {
+     "key": "x0675",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "top -n 0 displays zero processes, so awk finds nothing."
+    },
+    {
+     "key": "x0234",
+     "verdict": "correct",
+     "category": null,
+     "note": "pgrep Finder matches only Finder; prints its CPU."
+    },
+    {
+     "key": "x0477",
+     "verdict": "correct",
+     "category": null,
+     "note": "Same as ps -p $(pgrep Finder) -o %cpu=; valid."
+    }
+   ]
+  },
+  {
+   "case": "m096",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0134",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Info.plist has no :Info:0 key; not JSON."
+    },
+    {
+     "key": "x0291",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "PlistBuddy Print outputs non-JSON text."
+    },
+    {
+     "key": "x0368",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No :JSON key; not JSON output."
+    },
+    {
+     "key": "x0310",
+     "verdict": "correct",
+     "category": null,
+     "note": "plutil -convert json -o - to stdout; macOS filesystem case-insensitive."
+    },
+    {
+     "key": "x0487",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No :Info:json key; not JSON output."
+    },
+    {
+     "key": "x0858",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Without -o it rewrites the plist in place."
+    },
+    {
+     "key": "x0215",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "Without -o it rewrites Info.plist in place."
+    },
+    {
+     "key": "x0857",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "jq cannot parse XML/binary plist."
+    },
+    {
+     "key": "x0038",
+     "verdict": "incorrect",
+     "category": "not_a_command",
+     "note": "dscl -readplist lacks required arguments."
+    },
+    {
+     "key": "x0261",
+     "verdict": "correct",
+     "category": null,
+     "note": "plutil -convert json -o - prints JSON to stdout, no rewrite."
+    }
+   ]
+  },
+  {
+   "case": "e002",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0429",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Copies into ~/Downloads/report/ subfolder, not downloads folder itself."
+    },
+    {
+     "key": "x0263",
+     "verdict": "correct",
+     "category": null,
+     "note": "Exact copy."
+    },
+    {
+     "key": "x0142",
+     "verdict": "correct",
+     "category": null,
+     "note": "Redundant mkdir -p harmless; copies into ~/Downloads."
+    }
+   ]
+  },
+  {
+   "case": "m090",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0853",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Writes the preference instead of reading it."
+    },
+    {
+     "key": "x0582",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Finder has no 'show all extensions' AppleScript property."
+    },
+    {
+     "key": "x0035",
+     "verdict": "correct",
+     "category": null,
+     "note": "Reads the key."
+    },
+    {
+     "key": "x0852",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "gsettings is GNOME/Linux, absent on macOS."
+    }
+   ]
+  },
+  {
+   "case": "e023",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0061",
+     "verdict": "correct",
+     "category": null,
+     "note": "Exact."
+    }
+   ]
+  },
+  {
+   "case": "m042",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0804",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "lsb_release not on macOS."
+    },
+    {
+     "key": "x0805",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "uname -r prints Darwin kernel version, not macOS version."
+    },
+    {
+     "key": "x0018",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints only the product version."
+    }
+   ]
+  },
+  {
+   "case": "e058",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0468",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "diskutil has no 'Available Free Space' field; grep matches nothing."
+    },
+    {
+     "key": "x0183",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "No 'Total Space Available' field in diskutil info."
+    },
+    {
+     "key": "x0356",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "df -h BACKUP is a relative path, not /Volumes/BACKUP."
+    },
+    {
+     "key": "x0242",
+     "verdict": "correct",
+     "category": null,
+     "note": "df -h on mounted volume."
+    },
+    {
+     "key": "x0380",
+     "verdict": "correct",
+     "category": null,
+     "note": "Avail column ($4) of df -h."
+    },
+    {
+     "key": "x0728",
+     "verdict": "correct",
+     "category": null,
+     "note": "Quoted path, fine."
+    },
+    {
+     "key": "x0277",
+     "verdict": "correct",
+     "category": null,
+     "note": "Matches Volume/Container Free Space lines."
+    },
+    {
+     "key": "x0729",
+     "verdict": "correct",
+     "category": null,
+     "note": "Avail column of df -h."
+    },
+    {
+     "key": "x0404",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Modern diskutil info lacks 'Available Space' line; likely empty output."
+    },
+    {
+     "key": "x0087",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "Modern diskutil info lacks 'Available Space' line; likely empty output."
+    },
+    {
+     "key": "x0317",
+     "verdict": "correct",
+     "category": null,
+     "note": "Case-insensitive free space match works."
+    }
+   ]
+  },
+  {
+   "case": "m080",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0444",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s needs key value; '256' is no valid key."
+    },
+    {
+     "key": "x0209",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "--resampleHeightWidth needs two numbers; none given."
+    },
+    {
+     "key": "x0414",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s 256 invalid key/value usage."
+    },
+    {
+     "key": "x0256",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "qlmanage -p previews; 256 treated as file, no thumbnail."
+    },
+    {
+     "key": "x0032",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "-p opens preview; does not write a thumbnail."
+    },
+    {
+     "key": "x0842",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "convert (ImageMagick) not on stock macOS."
+    },
+    {
+     "key": "x0286",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s 256 invalid key/value usage."
+    },
+    {
+     "key": "x0843",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Opens preview, creates no thumbnail."
+    },
+    {
+     "key": "x0367",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "sips -s 256 invalid key/value usage."
+    }
+   ]
+  },
+  {
+   "case": "e067",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0749",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0094",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0748",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    }
+   ]
+  },
+  {
+   "case": "e005",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0369",
+     "verdict": "correct",
+     "category": null,
+     "note": "Counts regular files in current dir only, incl. hidden."
+    },
+    {
+     "key": "x0312",
+     "verdict": "correct",
+     "category": null,
+     "note": "Counts entries in current dir (reference)."
+    },
+    {
+     "key": "x0045",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Recursive; counts files in subfolders too."
+    }
+   ]
+  },
+  {
+   "case": "m082",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0844",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "tar -x extracts, contradicting 'without extracting'."
+    },
+    {
+     "key": "x0033",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists names."
+    },
+    {
+     "key": "x0845",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "unzip cannot read tar."
+    },
+    {
+     "key": "x0324",
+     "verdict": "correct",
+     "category": null,
+     "note": "Lists entries verbosely, includes names; acceptable extra detail."
+    }
+   ]
+  },
+  {
+   "case": "e028",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0159",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0630",
+     "verdict": "correct",
+     "category": null,
+     "note": "stderr suppression harmless."
+    },
+    {
+     "key": "x0066",
+     "verdict": "correct",
+     "category": null,
+     "note": "Works; dirs rarely exceed 100M."
+    },
+    {
+     "key": "x0631",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0632",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    }
+   ]
+  },
+  {
+   "case": "m072",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0126",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Path local/app.log not app.log."
+    },
+    {
+     "key": "x0031",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0566",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0834",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "tail does not count ERROR lines."
+    },
+    {
+     "key": "x0568",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0567",
+     "verdict": "correct",
+     "category": null,
+     "note": "|| true harmless; still prints count."
+    },
+    {
+     "key": "x0835",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "Prints matching lines instead of counting."
+    }
+   ]
+  },
+  {
+   "case": "e057",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0724",
+     "verdict": "correct",
+     "category": null,
+     "note": "du -k per file, numeric sort, top 10."
+    },
+    {
+     "key": "x0182",
+     "verdict": "correct",
+     "category": null,
+     "note": "macOS sort 2.3-Apple supports -h."
+    },
+    {
+     "key": "x0725",
+     "verdict": "correct",
+     "category": null,
+     "note": "stat -f BSD, sorted by size."
+    },
+    {
+     "key": "x0726",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    },
+    {
+     "key": "x0355",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Sizes top-level entries, not files recursively."
+    },
+    {
+     "key": "x0403",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "-maxdepth 1 limits to top-level files only."
+    },
+    {
+     "key": "x0467",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "Not recursive; awk $9 breaks on names with spaces."
+    },
+    {
+     "key": "x0727",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid."
+    }
+   ]
+  }
+ ]
+}

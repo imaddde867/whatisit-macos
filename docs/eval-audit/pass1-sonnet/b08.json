@@ -1,0 +1,634 @@
+{
+ "cases": [
+  {
+   "case": "e021",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0265",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "awk default whitespace split; CSV needs comma delimiter"
+    },
+    {
+     "key": "x0225",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0059",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0623",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0476",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "NF==2 drops rows without exactly two fields"
+    },
+    {
+     "key": "x0155",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    }
+   ]
+  },
+  {
+   "case": "m068",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0562",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0388",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset history is not powerd log; bad flag"
+    },
+    {
+     "key": "x0564",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0461",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset history is not a valid usage here"
+    },
+    {
+     "key": "x0561",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "no --info; info messages not included"
+    },
+    {
+     "key": "x0565",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0563",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0308",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset history invalid, not powerd log"
+    },
+    {
+     "key": "x0831",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "journalctl not on macOS"
+    },
+    {
+     "key": "x0029",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "pmset -a alone is invalid/not logs"
+    },
+    {
+     "key": "x0830",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "no powerd filter, debug not info"
+    }
+   ]
+  },
+  {
+   "case": "e053",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0086",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    }
+   ]
+  },
+  {
+   "case": "e047",
+   "case_flag": "networksetup -getairportnetwork may fail on newer macOS (reports not associated).",
+   "verdicts": [
+    {
+     "key": "x0702",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0274",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "shows network location name, not Wi-Fi SSID"
+    },
+    {
+     "key": "x0703",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0081",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0699",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0374",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "no such networksetup option"
+    },
+    {
+     "key": "x0701",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0700",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0336",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "note": "no such networksetup option"
+    },
+    {
+     "key": "x0176",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "shows location name, not Wi-Fi SSID"
+    }
+   ]
+  },
+  {
+   "case": "m092",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0855",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "dumps Finder prefs, not domain list"
+    },
+    {
+     "key": "x0854",
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "note": "gsettings not on macOS"
+    },
+    {
+     "key": "x0326",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "dumps global domain contents"
+    },
+    {
+     "key": "x0289",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "key does not exist"
+    },
+    {
+     "key": "x0259",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "does not list domains"
+    },
+    {
+     "key": "x0213",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "reads one domain, not list"
+    },
+    {
+     "key": "x0350",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "greps nonsense text"
+    },
+    {
+     "key": "x0583",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0416",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "prints global keys, not domains"
+    },
+    {
+     "key": "x0036",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "reads one plist, not domain list"
+    }
+   ]
+  },
+  {
+   "case": "e046",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0080",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "curl -O saves in cwd; pipe is empty so mv does nothing"
+    },
+    {
+     "key": "x0694",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0175",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "saves to cwd, not Downloads; no -L"
+    },
+    {
+     "key": "x0695",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0696",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0238",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "saves to cwd, not Downloads"
+    },
+    {
+     "key": "x0697",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0698",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    }
+   ]
+  },
+  {
+   "case": "e068",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0095",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0421",
+     "verdict": "correct",
+     "category": null,
+     "note": "Mixed reset keeps changes in working tree, unstaged."
+    }
+   ]
+  },
+  {
+   "case": "m102",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0863",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "note": "jq not stock and cannot parse plist"
+    },
+    {
+     "key": "x0593",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0864",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "defaults write modifies, does not read"
+    },
+    {
+     "key": "x0594",
+     "verdict": "correct",
+     "category": null,
+     "note": "PlistBuddy accepts key without leading colon (verified)."
+    },
+    {
+     "key": "x0137",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "wrong key name"
+    }
+   ]
+  },
+  {
+   "case": "e038",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0665",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0400",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0464",
+     "verdict": "incorrect",
+     "category": "other",
+     "note": "launches Chrome if not running; errors otherwise"
+    },
+    {
+     "key": "x0667",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0272",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "launches Chrome when not running"
+    },
+    {
+     "key": "x0668",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0168",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "grep matches itself, false positive"
+    },
+    {
+     "key": "x0666",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0074",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "grep matches itself, false positive"
+    }
+   ]
+  },
+  {
+   "case": "e022",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0624",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0060",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0625",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    }
+   ]
+  },
+  {
+   "case": "m032",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0531",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0795",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "sends SIGKILL, kills process"
+    },
+    {
+     "key": "x0796",
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "note": "pkill -f 1234 kills matching processes"
+    },
+    {
+     "key": "x0322",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0533",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0347",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0532",
+     "verdict": "correct",
+     "category": null,
+     "note": "Prints exit status 0/1; acceptable."
+    },
+    {
+     "key": "x0202",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0113",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0013",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    }
+   ]
+  },
+  {
+   "case": "e076",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0470",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0422",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0383",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0760",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0342",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "-c sends to clipboard, not file"
+    },
+    {
+     "key": "x0192",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "-P also opens Preview, extra side effect"
+    },
+    {
+     "key": "x0101",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "-P opens Preview; -T 0 delay extra"
+    },
+    {
+     "key": "x0302",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "note": "interactive selection, not plain screenshot"
+    }
+   ]
+  },
+  {
+   "case": "e048",
+   "case_flag": null,
+   "verdicts": [
+    {
+     "key": "x0704",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0177",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0337",
+     "verdict": "correct",
+     "category": null,
+     "note": "Valid and meets request."
+    },
+    {
+     "key": "x0082",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "reverse lookup of A record, not MX"
+    }
+   ]
+  },
+  {
+   "case": "e052",
+   "case_flag": "Request ambiguous: 'the project folder' has no concrete path; reference assumes ./project.",
+   "verdicts": [
+    {
+     "key": "x0240",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "placeholder folder name project_folder"
+    },
+    {
+     "key": "x0716",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "assumes current dir is the project"
+    },
+    {
+     "key": "x0377",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "note": "counts files, not size"
+    },
+    {
+     "key": "x0495",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "note": "placeholder folder name project_folder"
+    }
+   ]
+  }
+ ]
+}
