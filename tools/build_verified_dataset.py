@@ -20,7 +20,6 @@ from pathlib import Path
 
 from build_distill_dataset import eval_leakage, read_jsonl, read_quarantine, voting_key
 from repair_distill_dataset import validate_command
-from score_teacher_eval import effective_command
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +46,7 @@ def load_verdicts(directory):
 
 
 def build(keymap, verdicts, confirmed, out_dir):
+    from score_teacher_eval import effective_command  # lazy: the module imports without upstream whatisit
     v3 = read_jsonl(ROOT / 'data/distill/stage2-v3/train.jsonl')
     corpus = {r['id']: r for r in read_jsonl(ROOT / 'data/corpus/requests.jsonl')}
     raw = {r['id']: r for r in read_jsonl(ROOT / 'data/teacher/roihu_full_raw_samples.jsonl')}
@@ -59,6 +59,11 @@ def build(keymap, verdicts, confirmed, out_dir):
     by_rid = {}
     for key, item in keymap.items():
         by_rid.setdefault((item['group'], item['rid']), []).append((key, item['command']))
+    uncovered = [row['id'] for row in v3
+                 if row['messages'][-1]['content'] and not by_rid.get(('v3_kept', row['id']))]
+    if uncovered:
+        raise ValueError(f'{len(uncovered)} v3 rows with a non-empty target have no keymap key: '
+                         f'{uncovered[:5]}')
 
     rows, audit = [], []
     for row in v3:
@@ -71,18 +76,36 @@ def build(keymap, verdicts, confirmed, out_dir):
         audit.append({'id': row['id'], 'action': 'keep_v3'})
 
     quarantine = read_quarantine(ROOT / 'data/distill/roihu_full_quarantine_ids.txt', set(corpus))
+    quarantine.update(read_quarantine(ROOT / 'data/distill/quarantine_ids.txt', set(corpus)))
+    kept_ids = {row['id'] for row in rows}
+    seen = {}
+    for record in read_jsonl(ROOT / 'data/distill/stage2-v3/requests.jsonl'):
+        if record['id'] in kept_ids:
+            seen.setdefault(' '.join(record['request'].casefold().split()), record['id'])
     new_rows, new_requests = [], []
     for (group, rid), cands in sorted(by_rid.items()):
         if group != 'no_majority':
             continue
         request = raw[rid]['request']
         counts = Counter(effective_command(s, request) for s in raw[rid]['samples'])
+        for key, command in cands:  # a bare KeyError here would hide the lint-environment mismatch
+            if command not in counts:
+                raise ValueError(f'{rid}: keymap candidate {key} command {command!r} is not in fresh counts')
         target = select({cmd: counts[cmd] for key, cmd in cands if key in correct})
         if target is None or rid in quarantine or any(k in rejected for k, cmd in cands if cmd == target):
             why = ('drop_no_correct' if target is None else
                    'drop_quarantine' if rid in quarantine else 'drop_second_judge')
             audit.append({'id': rid, 'action': why})
             continue
+        # shortcut: compares only normalized request text (v3 also compared path); corpus requests
+        # carry no path, so this can skip at most a few path-differing pairs.
+        norm = ' '.join(request.casefold().split())
+        if norm in seen:
+            audit.append({'id': rid, 'action': 'drop_duplicate_request', 'duplicate_of': seen[norm]})
+            continue
+        seen[norm] = rid
+        if corpus[rid]['request'] != request:
+            raise ValueError(f'{rid}: corpus and raw request differ')
         validate_command(rid, target, request)
         new_requests.append({**corpus[rid], 'id': rid})
         new_rows.append({'id': rid, 'source_id': rid, 'messages': [
