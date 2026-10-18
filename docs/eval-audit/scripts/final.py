@@ -1,13 +1,13 @@
 import json,glob,collections,statistics,sys
 A=sys.argv[1]; P=json.load(open(sys.argv[2]))
-K=json.load(open(f'{A}/key.json'))
+K=json.load(open(f'{A}/items.json'))
 def load(pat):
     V={}
     for f in glob.glob(pat):
         for c in json.load(open(f))['cases']:
             for v in c['verdicts']: V[v['key']]={**v,'case_flag':c.get('case_flag')}
     return V
-S1=load(f'{A}/verdicts/b*.json'); S2=load(f'{A}/recheck/out/r*.json')
+S1=load(f'{A}/pass1-sonnet/b*.json'); S2=load(f'{A}/pass2-opus/r*.json')
 ok=lambda s: s in('pass','abstain-ok')
 final={}; flips=collections.Counter(); unresolved=[]
 for k,i in K.items():
