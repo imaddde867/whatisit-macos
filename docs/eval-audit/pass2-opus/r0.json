@@ -1,0 +1,57 @@
+{"cases": [
+{"case": "e002", "case_flag": null, "verdicts": [
+ {"key": "x0429", "verdict": "incorrect", "category": "missed_constraint", "note": "Creates unrequested ~/Downloads/report subfolder; file lands at ~/Downloads/report/report.pdf, not in Downloads."}]},
+{"case": "e012", "case_flag": null, "verdicts": [
+ {"key": "x0490", "verdict": "incorrect", "category": "missed_constraint", "note": "man ls -S sorts all entries: includes directories, skips dotfiles, shows no sizes; not files-only."},
+ {"key": "x0614", "verdict": "correct", "category": null, "note": "find -maxdepth/-type f, man du -k 1KiB blocks; sort -nr top 5 regular files by size."},
+ {"key": "x0617", "verdict": "correct", "category": null, "note": "man du -h human units; man sort -h --human-numeric-sort exists on stock sort; top 5 files."}]},
+{"case": "e020", "case_flag": null, "verdicts": [
+ {"key": "x0154", "verdict": "incorrect", "category": "wrong_output", "note": "sort -u dedupes first, so uniq -c reports count 1 for every line."}]},
+{"case": "e031", "case_flag": null, "verdicts": [
+ {"key": "x0397", "verdict": "incorrect", "category": "wrong_operand", "note": "man find: -ctime n rounds up to full 24h, so -ctime 0 matches ~nothing; also ctime not mtime."}]},
+{"case": "e036", "case_flag": null, "verdicts": [
+ {"key": "x0072", "verdict": "incorrect", "category": "wrong_output", "note": "Header 'PID' passed first; /bin/kill -0 PID test: 'illegal process id', exits 2 before other pids."},
+ {"key": "x0166", "verdict": "incorrect", "category": "wrong_output", "note": "Header PID reaches kill first; /bin/kill aborts on illegal process id (verified, exit 2), kills nothing."},
+ {"key": "x0232", "verdict": "incorrect", "category": "wrong_output", "note": "Same header bug: kill aborts at 'PID' (verified exit 2); +M portmapper flag irrelevant."},
+ {"key": "x0434", "verdict": "incorrect", "category": "wrong_output", "note": "man lsof: $6 is DEVICE, TCP is in NODE ($8); filter matches nothing, nothing killed."}]},
+{"case": "e042", "case_flag": null, "verdicts": [
+ {"key": "x0171", "verdict": "incorrect", "category": "wrong_output", "note": "comm= names only, no PIDs; case-sensitive grep misses Python.app/Python3.framework processes."},
+ {"key": "x0296", "verdict": "incorrect", "category": "wrong_tool", "note": "Lists open files not processes; zsh no word-split, -p gets space-joined pids (lsof wants commas)."},
+ {"key": "x0465", "verdict": "incorrect", "category": "wrong_output", "note": "Outputs only PID column; grep python never matches numbers, prints nothing."},
+ {"key": "x0682", "verdict": "correct", "category": null, "note": "man ps: -a -x -ww, keywords pid ppid user %cpu %mem etime command valid; bracket trick hides grep."}]},
+{"case": "e050", "case_flag": "lsof without sudo only sees the user's own processes; reference nettop sees all.", "verdicts": [
+ {"key": "x0706", "verdict": "correct", "category": null, "note": "lsof -i lists internet files; NR>1 skips header; COMMAND counts per app, harmless extra counts."},
+ {"key": "x0707", "verdict": "correct", "category": null, "note": "Unique COMMANDs with ESTABLISHED TCP or UDP sockets; header naturally excluded."},
+ {"key": "x0708", "verdict": "correct", "category": null, "note": "Unique COMMAND column of lsof -i output, header skipped."},
+ {"key": "x0709", "verdict": "correct", "category": null, "note": "Prints header row then unique app names; header extra is harmless verbosity."},
+ {"key": "x0710", "verdict": "correct", "category": null, "note": "Same as ESTABLISHED/UDP filter via grep -E; unique COMMAND names."}]},
+{"case": "e055", "case_flag": "Folder location unspecified; reference assumes ./project.", "verdicts": [
+ {"key": "x0180", "verdict": "incorrect", "category": "wrong_operand", "note": "Assumes ~/project; makehybrid makes ISO/hybrid data-disc image (man) not standard dmg; writes to Desktop."},
+ {"key": "x0466", "verdict": "incorrect", "category": "wrong_operand", "note": "Valid create -srcfolder -format UDZO syntax, but hardcodes ~/project instead of the project folder here."},
+ {"key": "x0506", "verdict": "incorrect", "category": "wrong_operand", "note": "Valid -srcfolder/-format UDRO/-o, but assumes ~/project path not given by user."}]},
+{"case": "e061", "case_flag": null, "verdicts": [
+ {"key": "x0244", "verdict": "incorrect", "category": "wrong_output", "note": "hw.model = model identifier (e.g. Mac14,2), hw.machine = arm64; chip is machdep.cpu.brand_string."}]},
+{"case": "e072", "case_flag": null, "verdicts": [
+ {"key": "x0754", "verdict": "correct", "category": null, "note": "Appends *.log line to .gitignore; leading newline guards missing trailing newline."}]},
+{"case": "m012", "case_flag": null, "verdicts": [
+ {"key": "x0283", "verdict": "correct", "category": null, "note": "man grep -c count, -i ignore-case; TODO has no metachars so identical to -F."},
+ {"key": "x0360", "verdict": "correct", "category": null, "note": "-E on metachar-free 'TODO' equals literal match; -c -i correct."},
+ {"key": "x0384", "verdict": "correct", "category": null, "note": "Same as -cEi; literal-equivalent pattern, case-insensitive count."}]},
+{"case": "m024", "case_flag": null, "verdicts": [
+ {"key": "x0520", "verdict": "correct", "category": null, "note": "mount lines 'dev on /Volumes/X (...)'; $3 is mount point start, regex anchors /Volumes/."},
+ {"key": "x0521", "verdict": "correct", "category": null, "note": "Same as reference minus -F; pattern has no regex metachars."}]},
+{"case": "m036", "case_flag": null, "verdicts": [
+ {"key": "x0535", "verdict": "correct", "category": null, "note": "man networksetup -getdnsservers; falls back to scutil --dns en0 resolvers if none manual; dupes harmless."}]},
+{"case": "m046", "case_flag": null, "verdicts": [
+ {"key": "x0364", "verdict": "correct", "category": null, "note": "SPGraphicsDataType not in -listDataTypes but silently ignored (tested exit 0); SPDisplaysDataType covers both."}]},
+{"case": "m060", "case_flag": null, "verdicts": [
+ {"key": "x0123", "verdict": "incorrect", "category": "missed_constraint", "note": "man codesign -d: more output needs verbosity; bare -d prints only Executable=, no Authority/identity."}]},
+{"case": "m072", "case_flag": null, "verdicts": [
+ {"key": "x0126", "verdict": "incorrect", "category": "wrong_operand", "note": "'local' means current dir; path local/app.log is wrong file."}]},
+{"case": "m086", "case_flag": null, "verdicts": [
+ {"key": "x0309", "verdict": "incorrect", "category": "missed_constraint", "note": "Omits -readonly (man hdiutil attach: force device read-only); explicit constraint not enforced."}]},
+{"case": "m100", "case_flag": null, "verdicts": [
+ {"key": "x0488", "verdict": "incorrect", "category": "wrong_output", "note": "bash $OSTYPE is 'darwin26' (verified), never == darwin, so always prints no."},
+ {"key": "x0589", "verdict": "correct", "category": null, "note": "man arch: '-arch arch_name' form valid; runs /usr/bin/true as arm64, yes/no result."},
+ {"key": "x0592", "verdict": "incorrect", "category": "wrong_tool", "note": "Heuristic, never forces arm64; under Rosetta shell uname -m is x86_64, falsely says no."}]}
+]}
