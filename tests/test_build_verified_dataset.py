@@ -6,7 +6,7 @@ import sys
 import tempfile
 import types
 import unittest
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 try:
@@ -43,6 +43,7 @@ class BuildTests(unittest.TestCase):
                 {'id': 'r00004', 'request': 'summarize the disk usage of this folder', 'kind': 'answer'},
                 {'id': 'r00005', 'request': 'show the working directory', 'kind': 'answer'},
                 {'id': 'r00006', 'request': 'print the kernel version', 'kind': 'answer'},
+                {'id': 'r00007', 'request': 'Summarize the  disk usage of this folder', 'kind': 'answer'},
             ],
             self.root / 'data/distill/stage2-v3/train.jsonl': [
                 {'id': 'r00001', 'messages': [
@@ -70,6 +71,9 @@ class BuildTests(unittest.TestCase):
                  'samples': [{'command': 'du -sh .'}] * 3},
                 {'id': 'r00005', 'request': 'show the working directory',
                  'samples': [{'command': 'pwd'}] * 3},
+                # M2: mirrors quarantined r00004's request; pre-add drops must not enter seen
+                {'id': 'r00007', 'request': 'Summarize the  disk usage of this folder',
+                 'samples': [{'command': 'du -sh .'}] * 3},
             ],
         }
         for path, rows in records.items():
@@ -89,9 +93,10 @@ class BuildTests(unittest.TestCase):
             'x0004': {'group': 'no_majority', 'rid': 'r00004', 'command': 'du -sh .'},
             'x0005': {'group': 'no_majority', 'rid': 'r00005', 'command': 'pwd'},
             'x0006': {'group': 'v3_kept', 'rid': 'r00006', 'command': 'uname -a'},
+            'x0007': {'group': 'no_majority', 'rid': 'r00007', 'command': 'du -sh .'},
         }
         self.verdicts = {'x0001': 'correct', 'x0003': 'correct', 'x0004': 'correct',
-                         'x0005': 'correct', 'x0006': 'incorrect'}
+                         'x0005': 'correct', 'x0006': 'incorrect', 'x0007': 'correct'}
         self.confirmed = {'x0003': 'correct'}
 
     def run_build(self):
@@ -106,17 +111,19 @@ class BuildTests(unittest.TestCase):
     def test_happy_path_keeps_drops_and_adds_by_verdict(self):
         manifest, validate = self.run_build()
         rows = builder.read_jsonl(self.out / 'train.jsonl')
-        self.assertEqual([row['id'] for row in rows], ['r00001', 'r00002', 'r00003'])
+        self.assertEqual([row['id'] for row in rows], ['r00001', 'r00002', 'r00003', 'r00007'])
         self.assertEqual(rows[1]['messages'][-1]['content'], '')
         self.assertEqual(rows[2]['messages'], [
             {'role': 'system', 'content': 'SYS'},
             {'role': 'user', 'content': MACOS_PREFIX + 'list files by size'},
             {'role': 'assistant', 'content': 'ls -lS'}])
-        self.assertEqual((manifest['rows'], manifest['commands'], manifest['empty_targets']), (3, 2, 1))
-        self.assertEqual(manifest['actions'], {'keep_v3': 2, 'add_verified': 1,
+        self.assertEqual((manifest['rows'], manifest['commands'], manifest['empty_targets']), (4, 3, 1))
+        self.assertEqual(manifest['actions'], {'keep_v3': 2, 'add_verified': 2,
                                                'drop_v3_judged_incorrect': 1, 'drop_quarantine': 1,
                                                'drop_duplicate_request': 1})
-        validate.assert_called_once_with('r00003', 'ls -lS', 'list files by size')
+        self.assertEqual(validate.call_args_list, [
+            call('r00003', 'ls -lS', 'list files by size'),
+            call('r00007', 'du -sh .', 'Summarize the  disk usage of this folder')])
         audit = builder.read_jsonl(self.out / 'audit.jsonl')
         self.assertIn({'id': 'r00003', 'action': 'add_verified', 'target': 'ls -lS'}, audit)
         self.assertIn({'id': 'r00006', 'action': 'drop_v3_judged_incorrect', 'target': 'uname -a'}, audit)
@@ -143,6 +150,12 @@ class BuildTests(unittest.TestCase):
         self.assertIn({'id': 'r00005', 'action': 'drop_duplicate_request', 'duplicate_of': 'r00001'},
                       builder.read_jsonl(self.out / 'audit.jsonl'))
         self.assertNotIn('r00005', [row['id'] for row in builder.read_jsonl(self.out / 'train.jsonl')])
+
+    def test_duplicate_of_quarantined_request_is_still_added(self):
+        self.run_build()
+        audit = builder.read_jsonl(self.out / 'audit.jsonl')
+        self.assertIn({'id': 'r00007', 'action': 'add_verified', 'target': 'du -sh .'}, audit)
+        self.assertNotIn('drop_duplicate_request', [a['action'] for a in audit if a['id'] == 'r00007'])
 
     def test_corpus_and_raw_request_mismatch_raises(self):
         raw_path = self.root / 'data/teacher/roihu_full_raw_samples.jsonl'
