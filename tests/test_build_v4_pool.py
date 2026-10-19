@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -6,6 +7,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import build_v4_pool
+
+OPAQUE_CASE = re.compile(r'^c[0-9a-f]{12}$')
+OPAQUE_KEY = re.compile(r'^k[0-9a-f]{12}$')
 
 
 def write_jsonl(path, rows):
@@ -26,12 +30,21 @@ def tree_bytes(root):
             for path in sorted(root.rglob('*')) if path.is_file()}
 
 
-CONTROLS = [
-    {'key': 'ct0001', 'case': 'CTL-01', 'request': 'Control one.', 'command': 'ctl -1',
-     'expected': 'incorrect', 'source': 'docs/eval-audit/items.json#c1'},
-    {'key': 'ct0002', 'case': 'CTL-02', 'request': 'Control two.', 'command': 'ctl -2',
-     'expected': 'correct', 'source': 'docs/eval-audit/items.json#c2'},
-]
+def controls(positives, negatives, start=1):
+    rows = []
+    for index in range(positives + negatives):
+        expected = 'correct' if index < positives else 'incorrect'
+        number = start + index
+        rows.append({'key': f'ct{number:04d}', 'case': f'CTL-{number:02d}',
+                     'request': f'Control request {number}.',
+                     'command': f'ctl-{number} -{index}',
+                     'expected': expected,
+                     'source': f'docs/eval-audit/items.json#x{number:04d}',
+                     'provenance': f'fixture pass2 r{index}.json correct'})
+    return rows
+
+
+CONTROLS = controls(3, 3)
 
 
 class PoolTests(unittest.TestCase):
@@ -58,7 +71,7 @@ class PoolTests(unittest.TestCase):
             {'id': 'r00002', 'messages': [{'content': 'x'}, {'content': ''}]},
         ])
         write_jsonl(self.root / 'v3' / 'requests.jsonl', [
-            {'id': 'r00001', 'request': 'V3 request one.'},
+            {'id': 'r00001', 'request': 'V3 request one.', 'path': 'docs/report.pdf'},
             {'id': 'r00002', 'request': 'V3 request two.'},
         ])
         write_jsonl(self.root / 'controls.jsonl', CONTROLS)
@@ -71,82 +84,193 @@ class PoolTests(unittest.TestCase):
             self.root / 'corpus.jsonl', self.root / 'raw.jsonl', self.root / 'v3',
             Path(out_dir), **kwargs)
 
-    def test_keymap_contents_key_order_and_batch_slicing(self):
+    def test_keymap_and_batches_without_controls(self):
         out = self.root / 'out'
         manifest = self.build(out, batch_size=2)
         keymap = json.loads((out / 'keymap.json').read_text())
-        self.assertEqual(list(keymap), ['x0000', 'x0001', 'x0002', 'x0003', 'x0004'])
-        self.assertEqual(keymap, {
-            'x0000': {'group': 'v3_kept', 'rid': 'r00001', 'command': 'echo one'},
-            'x0001': {'group': 'no_majority', 'rid': 'r00003', 'command': 'a -2'},
-            'x0002': {'group': 'no_majority', 'rid': 'r00003', 'command': 'z -1'},
-            'x0003': {'group': 'no_majority', 'rid': 'r00005', 'command': 'b -5'},
-            'x0004': {'group': 'no_majority', 'rid': 'r00005', 'command': 'd -5'},
-        })
-        self.assertEqual(json.loads((out / 'batches' / 'b00.json').read_text()), {
-            'batch': 'b00',
-            'items': [{'case': 'r00001', 'request': 'V3 request one.',
-                       'candidates': [{'key': 'x0000', 'command': 'echo one'}]},
-                      {'case': 'r00003', 'request': 'Raw three.',
-                       'candidates': [{'key': 'x0001', 'command': 'a -2'},
-                                      {'key': 'x0002', 'command': 'z -1'}]}],
-        })
-        self.assertEqual(json.loads((out / 'batches' / 'b01.json').read_text()), {
-            'batch': 'b01',
-            'items': [{'case': 'r00005', 'request': 'Raw five.',
-                       'candidates': [{'key': 'x0003', 'command': 'b -5'},
-                                      {'key': 'x0004', 'command': 'd -5'}]}],
-        })
-        self.assertFalse((out / 'batches' / 'b02.json').exists())
+        self.assertEqual(len(keymap), 5)
+        for key, entry in keymap.items():
+            self.assertRegex(key, OPAQUE_KEY)
+            self.assertRegex(entry['case'], OPAQUE_CASE)
+            self.assertEqual(set(entry), {'case', 'group', 'rid', 'command', 'count'})
+        by_rid = {}
+        for key, entry in keymap.items():
+            by_rid.setdefault(entry['rid'], []).append(entry['command'])
+        self.assertEqual(by_rid['r00001'], ['echo one'])
+        self.assertEqual(sorted(by_rid['r00003']), ['a -2', 'z -1'])
+        self.assertEqual(sorted(by_rid['r00005']), ['b -5', 'd -5'])
+        self.assertEqual(keymap[next(key for key, entry in keymap.items()
+                                   if entry['rid'] == 'r00003' and entry['command'] == 'a -2')]['count'], 2)
+        self.assertEqual(keymap[next(key for key, entry in keymap.items()
+                                   if entry['rid'] == 'r00003' and entry['command'] == 'z -1')]['count'], 1)
+        self.assertEqual([item['case'] for item in json.loads(
+            (out / 'batches' / 'b00.json').read_text())['items']],
+            [keymap[next(key for key in keymap if keymap[key]['rid'] == 'r00001')]['case'],
+             keymap[next(key for key in keymap if keymap[key]['rid'] == 'r00003')]['case']])
         self.assertFalse((out / 'controls-map.json').exists())
-        self.assertEqual(manifest['counts'], {
-            'v3_rows': 2, 'v3_items': 1, 'v3_candidates': 1,
-            'no_majority_considered': 3, 'no_majority_with_candidates': 2,
-            'excluded_candidates': 0,
-            'items': 3, 'candidates': 5, 'batches': 2,
-            'controls_injected': 0, 'controls_total': 0,
-        })
-        self.assertEqual(manifest['excluded_candidates'], [])
-        self.assertEqual(manifest['warnings'], [{'rid': 'r00004', 'reason': 'no_candidates'}])
-        self.assertEqual(manifest['batch_size'], 2)
+        self.assertTrue((out / 'director-map.json').exists())
+        self.assertEqual(manifest['counts']['controls_total'], 0)
+        self.assertEqual(manifest['counts']['controls_injected'], 0)
         self.assertEqual(set(manifest['inputs_sha256']),
                          {'corpus', 'raw_samples', 'v3_train', 'v3_requests'})
+        self.assertEqual(set(manifest['artifacts_sha256']),
+                         {'keymap', 'director_map', 'batches'})
 
-    def test_controls_are_injected_after_items_and_mapped(self):
+    def test_v3_path_item_carries_explicit_inputs_line(self):
+        out = self.root / 'out'
+        self.build(out, batch_size=90)
+        batch = json.loads((out / 'batches' / 'b00.json').read_text())
+        requests = {item['case']: item['request'] for item in batch['items']}
+        self.assertIn('V3 request one.\nExplicit inputs: {"path": "docs/report.pdf"}',
+                      requests.values())
+        self.assertNotIn('Explicit inputs', requests[
+            next(case for case, entry in ((item['case'], item) for item in batch['items'])
+                 if entry['request'] == 'Raw three.')])
+
+    def test_controls_are_opaque_mixed_and_interleaved(self):
         out = self.root / 'out'
         manifest = self.build(out, controls_path=self.root / 'controls.jsonl',
-                              controls_per_batch=1)
-        b00 = json.loads((out / 'batches' / 'b00.json').read_text())
-        b01 = json.loads((out / 'batches' / 'b01.json').read_text())
-        self.assertEqual([item['case'] for item in b00['items']], ['r00001', 'CTL-01'])
-        self.assertEqual(b00['items'][1], {
-            'case': 'CTL-01', 'request': 'Control one.',
-            'candidates': [{'key': 'ct0001', 'command': 'ctl -1'}]})
-        self.assertEqual([item['case'] for item in b01['items']], ['r00003', 'CTL-02'])
-        b02 = json.loads((out / 'batches' / 'b02.json').read_text())
-        self.assertEqual([item['case'] for item in b02['items']], ['r00005'])
-        self.assertEqual(json.loads((out / 'controls-map.json').read_text()), {
-            'ct0001': {'expected': 'incorrect', 'source': 'docs/eval-audit/items.json#c1'},
-            'ct0002': {'expected': 'correct', 'source': 'docs/eval-audit/items.json#c2'},
-        })
-        self.assertEqual(manifest['counts']['controls_injected'], 2)
-        self.assertEqual(manifest['counts']['controls_total'], 2)
-        self.assertIn('controls', manifest['inputs_sha256'])
+                              controls_per_batch=3, control_seed=13)
+        controls_map = json.loads((out / 'controls-map.json').read_text())
+        director = json.loads((out / 'director-map.json').read_text())
+        self.assertEqual(len(controls_map), len(CONTROLS))
+        self.assertEqual(manifest['counts']['controls_injected'], len(CONTROLS))
+        self.assertEqual(manifest['counts']['controls_total'], len(CONTROLS))
+        self.assertEqual(manifest['counts']['controls_correct'], 3)
+        self.assertEqual(manifest['counts']['controls_incorrect'], 3)
+        self.assertEqual(set(controls_map), set(director[case]['candidates'][0]['key']
+                                                for case in director
+                                                if director[case]['kind'] == 'control'))
+        seen_cases, seen_keys = set(), set()
+        text = ''
+        for path in sorted((out / 'batches').glob('b*.json')):
+            text += path.read_text()
+            batch = json.loads(path.read_text())
+            correct = incorrect = 0
+            positions = []
+            for index, item in enumerate(batch['items']):
+                self.assertRegex(item['case'], OPAQUE_CASE)
+                seen_cases.add(item['case'])
+                for candidate in item['candidates']:
+                    self.assertRegex(candidate['key'], OPAQUE_KEY)
+                    seen_keys.add(candidate['key'])
+                if item['case'] in director and director[item['case']]['kind'] == 'control':
+                    positions.append(index)
+                    if director[item['case']]['expected'] == 'correct':
+                        correct += 1
+                    else:
+                        incorrect += 1
+            self.assertGreaterEqual(correct, 1)
+            self.assertGreaterEqual(incorrect, 1)
+            self.assertFalse(all(position == len(batch['items']) - 1 for position in positions))
+        self.assertEqual(seen_cases, set(director))
+        self.assertEqual(seen_keys, set(controls_map) | set(json.loads(
+            (out / 'keymap.json').read_text())))
+        self.assertNotIn('CTL-', text)
+        self.assertNotIn('ct000', text)
+        self.assertNotIn('r9', text)
+        self.assertTrue(any(director[case]['kind'] == 'control' for case in director))
 
-    def test_controls_beyond_batch_capacity_warn_without_injecting(self):
-        write_jsonl(self.root / 'controls.jsonl', CONTROLS + [
-            {'key': 'ct0003', 'case': 'CTL-03', 'request': 'Control three.',
-             'command': 'ctl -3', 'expected': 'incorrect',
-             'source': 'docs/eval-audit/items.json#c3'}])
-        out = self.root / 'out'
-        manifest = self.build(out, batch_size=90, controls_path=self.root / 'controls.jsonl',
-                              controls_per_batch=1)
-        self.assertEqual(manifest['counts']['controls_injected'], 1)
-        self.assertEqual(manifest['counts']['controls_total'], 3)
-        self.assertEqual(json.loads((out / 'controls-map.json').read_text()), {
-            'ct0001': {'expected': 'incorrect', 'source': 'docs/eval-audit/items.json#c1'}})
-        self.assertEqual(manifest['warnings'][-1],
-                         {'reason': 'controls_not_injected', 'keys': ['ct0002', 'ct0003']})
+    def test_insufficient_positive_controls_fails_closed(self):
+        root = self.root / '25'
+        write_jsonl(root / 'corpus.jsonl', [])
+        write_jsonl(root / 'raw.jsonl', [])
+        write_jsonl(root / 'v3' / 'train.jsonl', [
+            {'id': f'r{i:05d}', 'messages': [{'content': 'x'}, {'content': f'echo {i}'}]}
+            for i in range(1, 26)])
+        write_jsonl(root / 'v3' / 'requests.jsonl', [
+            {'id': f'r{i:05d}', 'request': f'Request {i}.'} for i in range(1, 26)])
+        write_jsonl(root / 'controls.jsonl', controls(24, 40))
+        with self.assertRaisesRegex(ValueError, 'insufficient correct controls'):
+            build_v4_pool.build_pool(root / 'corpus.jsonl', root / 'raw.jsonl', root / 'v3',
+                                     root / 'out', batch_size=1,
+                                     controls_path=root / 'controls.jsonl',
+                                     controls_per_batch=3, effective=stub_effective,
+                                     validate=stub_validate)
+
+    def test_control_capacity_exceeded_fails_closed(self):
+        root = self.root / '25'
+        write_jsonl(root / 'corpus.jsonl', [])
+        write_jsonl(root / 'raw.jsonl', [])
+        write_jsonl(root / 'v3' / 'train.jsonl', [
+            {'id': f'r{i:05d}', 'messages': [{'content': 'x'}, {'content': f'echo {i}'}]}
+            for i in range(1, 26)])
+        write_jsonl(root / 'v3' / 'requests.jsonl', [
+            {'id': f'r{i:05d}', 'request': f'Request {i}.'} for i in range(1, 26)])
+        write_jsonl(root / 'controls.jsonl', controls(25, 26))
+        with self.assertRaisesRegex(ValueError, 'insufficient control capacity'):
+            build_v4_pool.build_pool(root / 'corpus.jsonl', root / 'raw.jsonl', root / 'v3',
+                                     root / 'out', batch_size=1,
+                                     controls_path=root / 'controls.jsonl',
+                                     controls_per_batch=2, effective=stub_effective,
+                                     validate=stub_validate)
+
+    def test_25_batches_all_mixed_and_all_controls_accounted(self):
+        root = self.root / '25'
+        write_jsonl(root / 'corpus.jsonl', [])
+        write_jsonl(root / 'raw.jsonl', [])
+        write_jsonl(root / 'v3' / 'train.jsonl', [
+            {'id': f'r{i:05d}', 'messages': [{'content': 'x'}, {'content': f'echo {i}'}]}
+            for i in range(1, 26)])
+        write_jsonl(root / 'v3' / 'requests.jsonl', [
+            {'id': f'r{i:05d}', 'request': f'Request {i}.'} for i in range(1, 26)])
+        write_jsonl(root / 'controls.jsonl', controls(25, 40))
+        out = root / 'out'
+        manifest = build_v4_pool.build_pool(
+            root / 'corpus.jsonl', root / 'raw.jsonl', root / 'v3', out, batch_size=1,
+            controls_path=root / 'controls.jsonl', controls_per_batch=3,
+            control_seed=13, effective=stub_effective, validate=stub_validate)
+        self.assertEqual(manifest['counts']['batches'], 25)
+        self.assertEqual(manifest['counts']['controls_injected'], 65)
+        self.assertEqual(manifest['counts']['controls_total'], 65)
+        controls_map = json.loads((out / 'controls-map.json').read_text())
+        director = json.loads((out / 'director-map.json').read_text())
+        self.assertEqual(set(manifest['controls_by_batch']),
+                         {f'b{index:02d}' for index in range(25)})
+        for batch_name, summary in manifest['controls_by_batch'].items():
+            self.assertGreaterEqual(summary['correct'], 1)
+            self.assertGreaterEqual(summary['incorrect'], 1)
+        for path in sorted((out / 'batches').glob('b*.json')):
+            batch = json.loads(path.read_text())
+            control_cases = [item['case'] for item in batch['items']
+                             if director[item['case']]['kind'] == 'control']
+            self.assertTrue(control_cases)
+            self.assertTrue(any(director[case]['expected'] == 'correct'
+                                for case in control_cases))
+            self.assertTrue(any(director[case]['expected'] == 'incorrect'
+                                for case in control_cases))
+        self.assertEqual(len(controls_map), 65)
+        self.assertEqual(sum(1 for case in director if director[case]['kind'] == 'control'), 65)
+
+    def test_duplicate_control_pair_or_source_fails(self):
+        write_jsonl(self.root / 'controls.jsonl', CONTROLS + [CONTROLS[0]])
+        with self.assertRaisesRegex(ValueError, 'duplicate control key'):
+            self.build(self.root / 'out', controls_path=self.root / 'controls.jsonl',
+                       controls_per_batch=3)
+        duplicate_pair = dict(CONTROLS[1])
+        duplicate_pair['key'] = 'ct9999'
+        duplicate_pair['case'] = 'CTL-99'
+        duplicate_pair['source'] = 'docs/eval-audit/items.json#x9999'
+        write_jsonl(self.root / 'controls.jsonl', CONTROLS + [duplicate_pair])
+        with self.assertRaisesRegex(ValueError, 'duplicate control request/command pair'):
+            self.build(self.root / 'out2', controls_path=self.root / 'controls.jsonl',
+                       controls_per_batch=3)
+
+    def test_distribution_is_seeded_and_reproducible(self):
+        first, second = self.root / 'out1', self.root / 'out2'
+        self.build(first, controls_path=self.root / 'controls.jsonl', controls_per_batch=3,
+                   control_seed=13)
+        self.build(second, controls_path=self.root / 'controls.jsonl', controls_per_batch=3,
+                   control_seed=13)
+        self.assertEqual(tree_bytes(first), tree_bytes(second))
+        third = self.root / 'out3'
+        self.build(third, controls_path=self.root / 'controls.jsonl', controls_per_batch=3,
+                   control_seed=14)
+        self.assertNotEqual(tree_bytes(first), tree_bytes(third))
+        manifest = json.loads((third / 'manifest.json').read_text())
+        for summary in manifest['controls_by_batch'].values():
+            self.assertGreaterEqual(summary['correct'], 1)
+            self.assertGreaterEqual(summary['incorrect'], 1)
 
     def test_missing_v3_request_raises(self):
         write_jsonl(self.root / 'v3' / 'train.jsonl', [
@@ -178,16 +302,9 @@ class PoolTests(unittest.TestCase):
         out = self.root / 'out'
         manifest = self.build(out, batch_size=90, validate=validate)
         keymap = json.loads((out / 'keymap.json').read_text())
-        self.assertEqual(list(keymap), ['x0000', 'x0001', 'x0002', 'x0003'])
-        self.assertEqual(keymap['x0003'], {'group': 'no_majority', 'rid': 'r00005',
-                                           'command': 'b -5'})
-        items = {item['case']: item
-                 for item in json.loads((out / 'batches' / 'b00.json').read_text())['items']}
-        self.assertEqual(items['r00005']['candidates'],
-                         [{'key': 'x0003', 'command': 'b -5'}])
-        self.assertEqual(items['r00003']['candidates'],
-                         [{'key': 'x0001', 'command': 'a -2'},
-                          {'key': 'x0002', 'command': 'z -1'}])
+        self.assertEqual(len(keymap), 4)
+        self.assertFalse(any(entry['rid'] == 'r00005' and entry['command'] == 'd -5'
+                             for entry in keymap.values()))
         self.assertEqual(manifest['excluded_candidates'],
                          [{'rid': 'r00005', 'command': 'd -5'}])
         self.assertEqual(manifest['counts']['excluded_candidates'], 1)
@@ -201,30 +318,60 @@ class PoolTests(unittest.TestCase):
         out = self.root / 'out'
         manifest = self.build(out, validate=validate)
         keymap = json.loads((out / 'keymap.json').read_text())
-        self.assertEqual(list(keymap), ['x0000', 'x0001', 'x0002'])
-        self.assertEqual(json.loads((out / 'batches' / 'b01.json').read_text()), {
-            'batch': 'b01',
-            'items': [{'case': 'r00003', 'request': 'Raw three.',
-                       'candidates': [{'key': 'x0001', 'command': 'a -2'},
-                                      {'key': 'x0002', 'command': 'z -1'}]}],
-        })
-        self.assertFalse((out / 'batches' / 'b02.json').exists())
+        self.assertEqual(len(keymap), 3)
+        self.assertFalse(any(entry['rid'] == 'r00005' for entry in keymap.values()))
         self.assertEqual(manifest['excluded_candidates'], [
             {'rid': 'r00005', 'command': 'b -5'},
             {'rid': 'r00005', 'command': 'd -5'},
         ])
-        self.assertEqual(manifest['counts']['excluded_candidates'], 2)
-        self.assertEqual(manifest['counts']['no_majority_with_candidates'], 1)
-        self.assertEqual(manifest['counts']['items'], 2)
         self.assertIn({'rid': 'r00005', 'reason': 'all_candidates_excluded'},
                       manifest['warnings'])
 
     def test_rerun_is_byte_identical(self):
         first = self.root / 'out1'
         second = self.root / 'out2'
-        self.build(first, controls_path=self.root / 'controls.jsonl', controls_per_batch=2)
-        self.build(second, controls_path=self.root / 'controls.jsonl', controls_per_batch=2)
+        self.build(first, controls_path=self.root / 'controls.jsonl', controls_per_batch=3)
+        self.build(second, controls_path=self.root / 'controls.jsonl', controls_per_batch=3)
         self.assertEqual(tree_bytes(first), tree_bytes(second))
+
+    def test_nonempty_output_directory_fails(self):
+        out = self.root / 'out'
+        out.mkdir()
+        (out / 'stale.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'not empty'):
+            self.build(out)
+
+    def test_repository_controls_have_verified_positive_coverage(self):
+        path = Path(__file__).resolve().parents[1] / 'data/distill/stage2-v4/judge/controls.jsonl'
+        rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+        self.assertEqual(len(rows), 65)
+        self.assertEqual(sum(1 for row in rows if row['expected'] == 'correct'), 25)
+        self.assertEqual(sum(1 for row in rows if row['expected'] == 'incorrect'), 40)
+        self.assertEqual(len({row['source'] for row in rows}), 65)
+        self.assertEqual(len({(row['request'], row['command']) for row in rows}), 65)
+        repo = path.parents[4]
+        items = json.loads((repo / 'docs/eval-audit/items.json').read_text())
+        evidence = {
+            'ct0061': ('x0283', 'r0.json', 'm012'),
+            'ct0062': ('x0509', 'r2.json', 'm009'),
+            'ct0063': ('x0520', 'r0.json', 'm024'),
+            'ct0064': ('x0540', 'r3.json', 'm044'),
+            'ct0065': ('x0571', 'r1.json', 'm076'),
+        }
+        for key, (xid, pass2, marker) in evidence.items():
+            row = next(row for row in rows if row['key'] == key)
+            self.assertEqual(row['expected'], 'correct')
+            self.assertEqual(row['source'], f'docs/eval-audit/items.json#{xid}')
+            self.assertEqual(row['request'], items[xid]['request'])
+            self.assertEqual(row['command'], items[xid]['command'])
+            self.assertIn(f'pass2-opus/{pass2} {marker} {xid} correct',
+                          row['provenance'])
+            self.assertIn('pass1 b', row['provenance'])
+            pass2_data = json.loads(
+                (repo / 'docs/eval-audit/pass2-opus' / pass2).read_text())
+            verdict = next(v for case in pass2_data['cases']
+                           for v in case['verdicts'] if v['key'] == xid)
+            self.assertEqual(verdict['verdict'], 'correct')
 
 
 if __name__ == '__main__':
