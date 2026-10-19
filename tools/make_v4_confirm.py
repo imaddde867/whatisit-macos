@@ -8,70 +8,104 @@
         data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm \
         --sample 0.2 --seed 13 --batch-size 90
 
-Selection reuses build_verified_dataset.load_verdicts and .select (the same rules
-the builder applies): a v3_kept key is selected when its key was judged correct; a
-no_majority key is selected when select() over the fresh effective_command counts
-of its judged-correct candidates is not None. Pass-2 verdicts do not exist yet and
-are not read; the builder drops confirm-rejected labels later. The rid-sorted
-selected list is sampled with random.Random(seed), sorted again by rid, and sliced
-into b00, b01, ... batches whose items carry the same keys and requests as the
-pool. A keymap candidate command missing from the fresh counts raises ValueError
-(lint-environment drift; same guard as the builder). Writes bXX.json and
-manifest.json into out_dir.
+The director stage is bound to the exact pool and pass-1 judgments. It verifies the
+pool manifest, keymap, controls map and batch digests; strictly re-loads every
+pass-1 verdict against its immutable batch; and re-derives the selected labels with
+the same rules as the builder (`v3_kept`: any correct key; `no_majority`: the
+judged-correct candidates still `select()` a target). The rid-sorted selected list
+is sampled with `random.Random(seed)`; the picked items are sorted by their opaque
+case id and sliced into b00, b01, ... batches. Confirm batches carry the same opaque
+case ids, candidate keys, requests and commands as the pool.
+
+The manifest records the pool/keymap/raw/v3-request/pass-1 digests, the exact
+selected and sampled identities, and the digests of the generated batches. It refuses
+to write into a non-empty directory, so stale batch files can never be read as
+current. A keymap candidate whose fresh teacher frequency differs from its recorded
+count raises ValueError (candidate-string drift is not enough to hide frequency
+drift).
 """
 import argparse
 import json
-import random
 import sys
-from collections import Counter
 from pathlib import Path
 
 from build_distill_dataset import read_jsonl
 
 
+def _load_json(path, label):
+    path = Path(path)
+    if not path.is_file():
+        raise ValueError(f'{label} file {path} does not exist')
+    return json.loads(path.read_text())
+
+
+def _prepare_out(path):
+    path = Path(path)
+    if path.exists() and any(path.iterdir()):
+        raise ValueError(f'output directory {path} is not empty; move it aside or delete it '
+                         'before re-running')
+    path.mkdir(parents=True, exist_ok=True)
+
+
 def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
-                  sample=0.2, seed=13, batch_size=90, effective=None):
+                  sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None):
     if effective is None:
         from score_teacher_eval import effective_command as effective
-    from build_verified_dataset import load_verdicts, select
-    keymap = json.loads(Path(keymap_path).read_text())
+    from build_verified_dataset import (canonical_sha256, expected_confirm_batches,
+                                        hash_json_files, load_batches, load_verdicts,
+                                        sample_record, selected_items, sha256_file)
+    keymap_path = Path(keymap_path)
+    pool_dir = Path(pool_dir) if pool_dir is not None else keymap_path.parent
+    keymap = _load_json(keymap_path, 'keymap')
+    pool_keymap = _load_json(pool_dir / 'keymap.json', 'pool keymap')
+    if pool_keymap != keymap:
+        raise ValueError('keymap does not match the pool keymap')
+    pool_manifest = _load_json(pool_dir / 'manifest.json', 'pool manifest')
+    controls_map = _load_json(pool_dir / 'controls-map.json', 'pool controls map')
+    _load_json(pool_dir / 'director-map.json', 'pool director map')
+    pool_batches = load_batches(pool_dir / 'batches', 'pool batches')
+    artifacts = pool_manifest.get('artifacts_sha256', {})
+    expected_artifacts = {
+        'keymap': sha256_file(pool_dir / 'keymap.json'),
+        'controls_map': sha256_file(pool_dir / 'controls-map.json'),
+        'director_map': sha256_file(pool_dir / 'director-map.json'),
+        'batches': hash_json_files(pool_dir / 'batches', pool_batches),
+    }
+    if artifacts != expected_artifacts:
+        raise ValueError('pool artifacts do not match the pool manifest; rebuild the pool')
+    inputs = pool_manifest.get('inputs_sha256', {})
+    for name, path in (('raw_samples', raw_path), ('v3_requests', v3_requests_path)):
+        if inputs.get(name) != sha256_file(path):
+            raise ValueError(f'{name} changed since the pool was built; refusing to confirm')
+    if pool_manifest.get('counts', {}).get('controls_total', 0) < 1:
+        raise ValueError('pool has no controls; refusing to build a confirmation sample')
+
     raw = {row['id']: row for row in read_jsonl(Path(raw_path))}
     v3_requests = {row['id']: row for row in read_jsonl(Path(v3_requests_path))}
-    correct = {key for key, verdict in load_verdicts(verdict_dir).items()
-               if verdict == 'correct'}
-
-    by_rid = {}
-    for key, entry in keymap.items():
-        by_rid.setdefault((entry['group'], entry['rid']), []).append((key, entry['command']))
-    items = []
-    for (group, rid), candidates in sorted(by_rid.items(), key=lambda kv: kv[0][1]):
-        if group == 'v3_kept':
-            chosen = any(key in correct for key, _ in candidates)
-            request = v3_requests[rid]['request']
-        else:
-            request = raw[rid]['request']
-            counts = Counter(effective(s, request) for s in raw[rid]['samples'])
-            for key, command in candidates:  # a bare KeyError here would hide the lint-environment mismatch
-                if command not in counts:
-                    raise ValueError(f'{rid}: keymap candidate {key} command {command!r} is not in fresh counts')
-            chosen = select({command: counts[command]
-                             for key, command in candidates if key in correct}) is not None
-        if chosen:
-            items.append({'case': rid, 'request': request,
-                          'candidates': [{'key': key, 'command': command}
-                                         for key, command in candidates]})
-
-    picked = sorted(random.Random(seed).sample(items, round(len(items) * sample)),
-                    key=lambda item: item['case'])
+    verdicts = load_verdicts(verdict_dir, pool_batches, keymap=keymap,
+                             controls=controls_map,
+                             require_keys=set(keymap) | set(controls_map))
+    selected = selected_items(keymap, verdicts, raw, v3_requests, effective)
+    expected_batches, picked = expected_confirm_batches(selected, sample, seed, batch_size)
+    _prepare_out(out_dir)
     out = Path(out_dir)
-    out.mkdir(parents=True, exist_ok=True)
-    for index in range(0, len(picked), batch_size):
-        batch = {'batch': f'b{index // batch_size:02d}',
-                 'items': picked[index:index + batch_size]}
-        (out / f"{batch['batch']}.json").write_text(json.dumps(batch, indent=2) + '\n')
-    manifest = {'selected_total': len(items), 'sampled': len(picked), 'sample': sample,
-                'seed': seed, 'batch_size': batch_size}
-    (out / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    for name, batch in expected_batches.items():
+        (out / f'{name}.json').write_text(json.dumps(batch, indent=2) + '\n')
+    manifest = {
+        'selected_total': len(selected), 'sampled': len(picked),
+        'sample': sample, 'seed': seed, 'batch_size': batch_size,
+        'selected': sample_record(selected), 'sample_cases': sample_record(picked),
+        'inputs_sha256': {
+            'pool_manifest': sha256_file(pool_dir / 'manifest.json'),
+            'keymap': sha256_file(pool_dir / 'keymap.json'),
+            'raw_samples': sha256_file(raw_path),
+            'v3_requests': sha256_file(v3_requests_path),
+            'pass1_verdicts': canonical_sha256(verdicts),
+            'pass1_verdict_files': hash_json_files(verdict_dir, pool_batches),
+        },
+        'artifacts_sha256': hash_json_files(out, expected_batches),
+    }
+    (out / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     return manifest
 
 
@@ -86,10 +120,12 @@ def main():
     parser.add_argument('--sample', type=float, default=0.2)
     parser.add_argument('--seed', type=int, default=13)
     parser.add_argument('--batch-size', type=int, default=90)
+    parser.add_argument('--pool-dir', type=Path, default=None)
     args = parser.parse_args()
     manifest = build_confirm(args.keymap, args.raw_samples, args.v3_requests,
                              args.verdict_dir, args.out_dir, sample=args.sample,
-                             seed=args.seed, batch_size=args.batch_size)
+                             seed=args.seed, batch_size=args.batch_size,
+                             pool_dir=args.pool_dir)
     print(json.dumps(manifest, indent=2))
     return 0
 

@@ -1,19 +1,18 @@
 import json
 import os
-from pathlib import Path
-import subprocess
+import shutil
 import sys
 import tempfile
-import types
 import unittest
-from unittest.mock import call, patch
+from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-try:
-    import build_verified_dataset as builder
-    from whatisit_macos.local_recovery_worker import MACOS_PREFIX
-except ImportError as error:  # the scorer import is lazy, so only a broken environment skips
-    raise unittest.SkipTest(str(error))
+TESTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(TESTS))
+sys.path.insert(0, str(TESTS.parents[0] / 'tools'))
+
+import build_verified_dataset as builder
+from v4_campaign import Campaign, stub_effective, tree_bytes, write_jsonl
+from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
 
 class SelectTests(unittest.TestCase):
@@ -25,7 +24,8 @@ class SelectTests(unittest.TestCase):
         self.assertIn(builder.select(counts), {'ls -l -a', 'ls -a -l'})
 
     def test_within_cluster_most_frequent_then_shortest(self):
-        self.assertEqual(builder.select({'stat -f %B a.txt': 2, 'stat  -f %B a.txt': 3}), 'stat  -f %B a.txt')
+        self.assertEqual(builder.select({'stat -f %B a.txt': 2, 'stat  -f %B a.txt': 3}),
+                         'stat  -f %B a.txt')
         self.assertEqual(builder.select({'wc -l a': 1, 'wc -l  a': 1}), 'wc -l a')
 
 
@@ -34,143 +34,338 @@ class BuildTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
-        self.out = self.root / 'out'
-        records = {
-            self.root / 'data/corpus/requests.jsonl': [
-                {'id': 'r00001', 'request': 'Show the Working  Directory', 'kind': 'answer'},
-                {'id': 'r00002', 'request': 'what time is it', 'kind': 'abstain'},
-                {'id': 'r00003', 'request': 'list files by size', 'kind': 'answer'},
-                {'id': 'r00004', 'request': 'summarize the disk usage of this folder', 'kind': 'answer'},
-                {'id': 'r00005', 'request': 'show the working directory', 'kind': 'answer'},
-                {'id': 'r00006', 'request': 'print the kernel version', 'kind': 'answer'},
-                {'id': 'r00007', 'request': 'Summarize the  disk usage of this folder', 'kind': 'answer'},
-            ],
-            self.root / 'data/distill/stage2-v3/train.jsonl': [
-                {'id': 'r00001', 'messages': [
-                    {'role': 'system', 'content': 'SYS'},
-                    {'role': 'user', 'content': MACOS_PREFIX + 'Show the Working  Directory'},
-                    {'role': 'assistant', 'content': 'pwd -P'}]},
-                {'id': 'r00002', 'messages': [
-                    {'role': 'system', 'content': 'SYS'},
-                    {'role': 'user', 'content': MACOS_PREFIX + 'what time is it'},
-                    {'role': 'assistant', 'content': ''}]},
-                {'id': 'r00006', 'messages': [
-                    {'role': 'system', 'content': 'SYS'},
-                    {'role': 'user', 'content': MACOS_PREFIX + 'print the kernel version'},
-                    {'role': 'assistant', 'content': 'uname -a'}]},
-            ],
-            self.root / 'data/distill/stage2-v3/requests.jsonl': [
-                {'id': 'r00001', 'request': 'Show the Working  Directory', 'kind': 'answer'},
-                {'id': 'r00002', 'request': 'what time is it', 'kind': 'abstain'},
-                {'id': 'r00006', 'request': 'print the kernel version', 'kind': 'answer'},
-            ],
-            self.root / 'data/teacher/roihu_full_raw_samples.jsonl': [
-                {'id': 'r00003', 'request': 'list files by size',
-                 'samples': [{'command': 'ls -lS'}] * 3 + [{'command': 'ls -lt'}] * 2},
-                {'id': 'r00004', 'request': 'summarize the disk usage of this folder',
-                 'samples': [{'command': 'du -sh .'}] * 3},
-                {'id': 'r00005', 'request': 'show the working directory',
-                 'samples': [{'command': 'pwd'}] * 3},
-                # M2: mirrors quarantined r00004's request; pre-add drops must not enter seen
-                {'id': 'r00007', 'request': 'Summarize the  disk usage of this folder',
-                 'samples': [{'command': 'du -sh .'}] * 3},
-            ],
+        self.campaign = Campaign(self.root)
+        self.pass1 = self.campaign.write_pass1(overrides={
+            self.campaign.key('r00003', 'uname -a'): 'incorrect',
+            self.campaign.key('r00009', 'whoami'): 'incorrect',
+            self.campaign.key('r00006', 'ls -lt'): 'incorrect',
+        })
+        self.campaign.make_confirm(sample=1.0, seed=13)
+        self.confirm = self.campaign.confirm_dir
+        self.rejections = {
+            self.campaign.key('r00004', 'pwd -P'): 'incorrect',
+            self.campaign.key('r00011', 'cal'): 'incorrect',
         }
-        for path, rows in records.items():
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(''.join(json.dumps(row) + '\n' for row in rows))
-        (self.root / 'data/distill/roihu_full_quarantine_ids.txt').write_text(
-            'r00006 # historical list; r00006 is a v3 row, so only the corpus list below matters\n')
-        (self.root / 'data/distill/quarantine_ids.txt').write_text(
-            'r00004 # corpus-level list, names only this id\n')
-        (self.root / 'eval').mkdir()
-        for split in ('dev', 'everyday', 'frozen', 'heldout'):
-            (self.root / 'eval' / f'{split}.jsonl').write_text(json.dumps(
-                {'request': f'unrelated {split} task', 'reference': 'echo unrelated'}) + '\n')
-        self.keymap = {
-            'x0001': {'group': 'v3_kept', 'rid': 'r00001', 'command': 'pwd -P'},
-            'x0003': {'group': 'no_majority', 'rid': 'r00003', 'command': 'ls -lS'},
-            'x0004': {'group': 'no_majority', 'rid': 'r00004', 'command': 'du -sh .'},
-            'x0005': {'group': 'no_majority', 'rid': 'r00005', 'command': 'pwd'},
-            'x0006': {'group': 'v3_kept', 'rid': 'r00006', 'command': 'uname -a'},
-            'x0007': {'group': 'no_majority', 'rid': 'r00007', 'command': 'du -sh .'},
-        }
-        self.verdicts = {'x0001': 'correct', 'x0003': 'correct', 'x0004': 'correct',
-                         'x0005': 'correct', 'x0006': 'incorrect', 'x0007': 'correct'}
-        self.confirmed = {'x0003': 'correct'}
+        self.pass2 = self.campaign.write_pass2(overrides=self.rejections)
 
-    def run_build(self):
-        fake = types.ModuleType('score_teacher_eval')
-        fake.effective_command = lambda sample, request: sample.get('command')
-        with patch.object(builder, 'ROOT', self.root), \
-                patch.object(builder, 'validate_command', return_value=None) as validate, \
-                patch.dict(sys.modules, {'score_teacher_eval': fake}):
-            manifest = builder.build(self.keymap, self.verdicts, self.confirmed, self.out)
-        return manifest, validate
+    def build(self, out='out', **kwargs):
+        kwargs.setdefault('sample', 1.0)
+        kwargs.setdefault('seed', 13)
+        return self.campaign.build_verified(self.root / out, **kwargs)
 
     def test_happy_path_keeps_drops_and_adds_by_verdict(self):
-        manifest, validate = self.run_build()
-        rows = builder.read_jsonl(self.out / 'train.jsonl')
-        self.assertEqual([row['id'] for row in rows], ['r00001', 'r00002', 'r00003', 'r00007'])
+        manifest = self.build()
+        rows = builder.read_jsonl(self.root / 'out/train.jsonl')
+        self.assertEqual([row['id'] for row in rows],
+                         ['r00001', 'r00002', 'r00005', 'r00006', 'r00007',
+                          'r00012', 'r00014'])
         self.assertEqual(rows[1]['messages'][-1]['content'], '')
-        self.assertEqual(rows[2]['messages'], [
-            {'role': 'system', 'content': 'SYS'},
-            {'role': 'user', 'content': MACOS_PREFIX + 'list files by size'},
-            {'role': 'assistant', 'content': 'ls -lS'}])
-        self.assertEqual((manifest['rows'], manifest['commands'], manifest['empty_targets']), (4, 3, 1))
-        self.assertEqual(manifest['actions'], {'keep_v3': 2, 'add_verified': 2,
-                                               'drop_v3_judged_incorrect': 1, 'drop_quarantine': 1,
-                                               'drop_duplicate_request': 1})
-        self.assertEqual(validate.call_args_list, [
-            call('r00003', 'ls -lS', 'list files by size'),
-            call('r00007', 'du -sh .', 'Summarize the  disk usage of this folder')])
-        audit = builder.read_jsonl(self.out / 'audit.jsonl')
-        self.assertIn({'id': 'r00003', 'action': 'add_verified', 'target': 'ls -lS'}, audit)
-        self.assertIn({'id': 'r00006', 'action': 'drop_v3_judged_incorrect', 'target': 'uname -a'}, audit)
+        self.assertEqual(rows[0]['messages'][1]['content'],
+                         'Show the Working  Directory')
+        self.assertEqual(rows[3]['messages'][1]['content'],
+                         MACOS_PREFIX + 'list files by size')
+        self.assertEqual(rows[3]['messages'][-1]['content'], 'ls -lS')
+        self.assertEqual((manifest['rows'], manifest['commands'], manifest['empty_targets']),
+                         (7, 6, 1))
+        self.assertEqual(manifest['actions'], {
+            'add_verified': 4, 'drop_duplicate_request': 1, 'drop_eval_leakage': 1,
+            'drop_no_correct': 1, 'drop_quarantine': 1, 'drop_second_pass_rejected': 1,
+            'drop_v3_first_pass_incorrect': 1, 'drop_v3_second_pass_rejected': 1,
+            'keep_v3': 3})
+        audit = builder.read_jsonl(self.root / 'out/audit.jsonl')
+        self.assertIn({'id': 'r00003', 'action': 'drop_v3_first_pass_incorrect',
+                       'target': 'uname -a'}, audit)
+        self.assertIn({'id': 'r00004', 'action': 'drop_v3_second_pass_rejected',
+                       'target': 'pwd -P'}, audit)
+        self.assertIn({'id': 'r00011', 'action': 'drop_second_pass_rejected'}, audit)
+        self.assertIn({'id': 'r00008', 'action': 'drop_duplicate_request',
+                       'duplicate_of': 'r00007'}, audit)
+        self.assertIn({'id': 'r00010', 'action': 'drop_quarantine'}, audit)
+        self.assertIn({'id': 'r00013', 'action': 'drop_eval_leakage'}, audit)
 
-    def test_corpus_quarantine_list_only_row_is_dropped(self):
-        self.run_build()
-        self.assertIn({'id': 'r00004', 'action': 'drop_quarantine'},
-                      builder.read_jsonl(self.out / 'audit.jsonl'))
-        self.assertNotIn('r00004', [row['id'] for row in builder.read_jsonl(self.out / 'train.jsonl')])
+    def test_controls_are_graded_and_not_revealed_in_output(self):
+        manifest = self.build()
+        self.assertEqual(manifest['actions'].get('add_verified'), 4)
+        for row in builder.read_jsonl(self.root / 'out/train.jsonl'):
+            self.assertNotIn(row['id'], {control['case'] for control in
+                                         self.campaign.controls_map.values()})
+        self.assertFalse((self.root / 'out/controls-map.json').exists())
 
-    def test_v3_row_with_target_missing_from_keymap_raises(self):
-        self.keymap.pop('x0001')
-        with self.assertRaisesRegex(ValueError, '1 v3 rows.*r00001'):
-            self.run_build()
+    def test_control_verdict_mismatch_fails_closed(self):
+        control = self.campaign.control_key('ct0002')
+        self.campaign.write_pass1(overrides={control: 'correct'})
+        with self.assertRaisesRegex(ValueError, 'control .*expected'):
+            self.build()
 
-    def test_keymap_candidate_missing_from_fresh_counts_raises(self):
-        self.keymap['x0003']['command'] = 'ls -ltr'
-        self.verdicts['x0003'] = 'incorrect'  # raises even when the candidate is not judged correct
-        with self.assertRaisesRegex(ValueError, "r00003.*x0003.*'ls -ltr'"):
-            self.run_build()
+    def test_every_batch_has_mixed_controls(self):
+        for name, batch in self.campaign.pool_batches.items():
+            expected = {self.campaign.controls_map[item['candidates'][0]['key']]['expected']
+                        for item in batch['items']
+                        if item['candidates'][0]['key'] in self.campaign.controls_map}
+            self.assertEqual(expected, {'correct', 'incorrect'}, name)
 
-    def test_duplicate_of_kept_request_is_dropped_naming_first_occurrence(self):
-        self.run_build()
-        self.assertIn({'id': 'r00005', 'action': 'drop_duplicate_request', 'duplicate_of': 'r00001'},
-                      builder.read_jsonl(self.out / 'audit.jsonl'))
-        self.assertNotIn('r00005', [row['id'] for row in builder.read_jsonl(self.out / 'train.jsonl')])
+    def test_strict_verdict_loader_rejects_malformed_verdicts(self):
+        path = self.pass1 / 'b00.json'
+        original = path.read_text()
 
-    def test_duplicate_of_quarantined_request_is_still_added(self):
-        self.run_build()
-        audit = builder.read_jsonl(self.out / 'audit.jsonl')
-        self.assertIn({'id': 'r00007', 'action': 'add_verified', 'target': 'du -sh .'}, audit)
-        self.assertNotIn('drop_duplicate_request', [a['action'] for a in audit if a['id'] == 'r00007'])
+        def mutate(change):
+            data = json.loads(original)
+            change(data)
+            path.write_text(json.dumps(data))
 
-    def test_corpus_and_raw_request_mismatch_raises(self):
+        def verdicts(data):
+            return data['cases'][0]['verdicts']
+
+        def drop_one_key(data):
+            case = next(case for case in data['cases'] if len(case['verdicts']) > 1)
+            case['verdicts'].pop()
+
+        cases = [
+            ('top-level extra field', lambda d: d.update(extra=1),
+             'must contain exactly batch, judge, cases'),
+            ('batch field mismatch', lambda d: d.update(batch='b01'),
+             'does not match filename'),
+            ('empty judge', lambda d: d.update(judge='  '),
+             'judge identity'),
+            ('case extra field', lambda d: d['cases'][0].update(extra=1),
+             'must contain exactly case and verdicts'),
+            ('unknown case', lambda d: d['cases'][0].update(case='unknown'),
+             'unknown or misplaced case'),
+            ('duplicate case', lambda d: d['cases'].append(d['cases'][0]),
+             'judged twice'),
+            ('missing case', lambda d: d['cases'].pop(),
+             'missing verdicts for cases'),
+            ('verdict extra field', lambda d: verdicts(d)[0].update(extra=1),
+             'must contain exactly key, verdict'),
+            ('unknown key', lambda d: verdicts(d)[0].update(key='kdeadbeefdead'),
+             'misplaced or unknown key'),
+            ('duplicate key', lambda d: verdicts(d).append(verdicts(d)[0]),
+             'judged twice in case'),
+            ('invalid verdict', lambda d: verdicts(d)[0].update(verdict='maybe'),
+             'invalid verdict'),
+            ('incorrect without category',
+             lambda d: verdicts(d)[0].update(verdict='incorrect', category=None),
+             'needs a valid category'),
+            ('incorrect with bogus category',
+             lambda d: verdicts(d)[0].update(verdict='incorrect', category='bogus'),
+             'needs a valid category'),
+            ('correct with category',
+             lambda d: verdicts(d)[0].update(verdict='correct', category='other'),
+             'must have null category'),
+            ('unsure with category',
+             lambda d: verdicts(d)[0].update(verdict='unsure', category='other'),
+             'must have null category'),
+            ('empty evidence', lambda d: verdicts(d)[0].update(evidence=''),
+             'needs non-empty evidence'),
+            ('missing key', drop_one_key,
+             'missing verdicts for'),
+        ]
+        for name, change, message in cases:
+            with self.subTest(name=name):
+                mutate(change)
+                with self.assertRaisesRegex(ValueError, message):
+                    builder.load_verdicts(self.pass1, self.campaign.pool_batches,
+                                          keymap=self.campaign.keymap,
+                                          controls=self.campaign.controls_map)
+                path.write_text(original)
+
+    def test_pool_batches_require_opaque_identifiers(self):
+        path = self.campaign.pool / 'batches/b00.json'
+        data = json.loads(path.read_text())
+        data['items'][0]['case'] = 'r00001'
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'opaque c\\+12hex id'):
+            builder.load_batches(self.campaign.pool / 'batches', 'pool')
+
+    def test_verdict_command_must_match_the_keymap(self):
+        key = next(key for key in self.campaign.keymap
+                   if self.campaign.keymap[key]['case'] in
+                   {item['case'] for item in self.campaign.pool_batches['b00']['items']})
+        keymap = json.loads(json.dumps(self.campaign.keymap))
+        keymap[key]['command'] = 'tampered -x'
+        with self.assertRaisesRegex(ValueError, 'command does not match keymap'):
+            builder.load_verdicts(self.pass1, self.campaign.pool_batches,
+                                  keymap=keymap, controls=self.campaign.controls_map)
+
+    def test_verdict_loader_rejects_unexpected_and_missing_files(self):
+        (self.pass1 / 'notes.txt').write_text('extra')
+        with self.assertRaisesRegex(ValueError, 'unexpected files'):
+            builder.load_verdicts(self.pass1, self.campaign.pool_batches)
+        (self.pass1 / 'notes.txt').unlink()
+        (self.pass1 / 'b02.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'missing batches'):
+            builder.load_verdicts(self.pass1, self.campaign.pool_batches)
+
+    def test_pool_artifact_tamper_is_rejected(self):
+        path = self.campaign.pool / 'batches/b00.json'
+        path.write_text(path.read_text() + ' ')
+        with self.assertRaisesRegex(ValueError, 'pool artifacts do not match'):
+            self.build()
+
+    def test_pool_manifest_count_tamper_is_rejected(self):
+        manifest_path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['counts']['items'] += 1
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+        with self.assertRaisesRegex(ValueError, 'item count does not match'):
+            self.build(out='out-counts')
+
+    def test_corpus_and_raw_request_mismatch_is_rejected(self):
         raw_path = self.root / 'data/teacher/roihu_full_raw_samples.jsonl'
         raw = builder.read_jsonl(raw_path)
-        raw[0]['request'] = 'list every file by size'
-        raw_path.write_text(''.join(json.dumps(row) + '\n' for row in raw))
-        with self.assertRaisesRegex(ValueError, 'r00003.*differ'):
-            self.run_build()
+        next(row for row in raw if row['id'] == 'r00015')['request'] = 'changed request'
+        write_jsonl(raw_path, raw)
+        manifest_path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['inputs_sha256']['raw_samples'] = builder.sha256_file(raw_path)
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+        with self.assertRaisesRegex(ValueError, 'corpus and raw teacher requests differ'):
+            self.build(out='out-corpus')
+
+    def test_stale_pool_inputs_are_rejected(self):
+        path = self.root / 'data/teacher/roihu_full_raw_samples.jsonl'
+        path.write_text(path.read_text() + '\n')
+        with self.assertRaisesRegex(ValueError, 'input digests do not match'):
+            self.build()
+
+    def test_keymap_must_match_the_pool(self):
+        with self.assertRaisesRegex(ValueError, 'passed keymap does not match'):
+            builder.build({'k000000000000': {}}, self.pass1, self.confirm,
+                          self.pass2, self.root / 'out', pool_dir=self.campaign.pool)
+
+    def test_candidate_frequency_drift_is_rejected(self):
+        raw = {row['id']: row for row in builder.read_jsonl(
+            self.root / 'data/teacher/roihu_full_raw_samples.jsonl')}
+        raw['r00006']['samples'] = [{'cmd': 'ls -lS'}, {'cmd': 'ls -lS'},
+                                    {'cmd': 'ls -lS'}, {'cmd': 'ls -lt'}]
+        with self.assertRaisesRegex(ValueError, 'frequency changed'):
+            builder.verify_keymap(self.campaign.keymap, builder.read_jsonl(
+                self.root / 'data/distill/stage2-v3/train.jsonl'), raw, stub_effective)
+
+    def test_keymap_candidate_missing_from_fresh_counts_is_rejected(self):
+        key = self.campaign.key('r00006', 'ls -lt')
+        keymap = json.loads(json.dumps(self.campaign.keymap))
+        keymap[key]['command'] = 'ls -lT'
+        raw = {row['id']: row for row in builder.read_jsonl(
+            self.root / 'data/teacher/roihu_full_raw_samples.jsonl')}
+        with self.assertRaisesRegex(ValueError, "r00006.*ls -lT"):
+            builder.verify_keymap(keymap, builder.read_jsonl(
+                self.root / 'data/distill/stage2-v3/train.jsonl'), raw, stub_effective)
+
+    def test_confirm_batch_tamper_is_rejected(self):
+        path = self.confirm / 'b00.json'
+        data = json.loads(path.read_text())
+        data['items'][0]['request'] += ' tampered'
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'does not match the deterministic sample'):
+            self.build()
+
+    def test_confirm_directory_unexpected_file_is_rejected(self):
+        (self.confirm / 'b02.json').write_text(json.dumps(
+            {'batch': 'b02', 'items': []}))
+        with self.assertRaisesRegex(ValueError, 'complete sequence'):
+            self.build()
+        (self.confirm / 'b02.json').unlink()
+        (self.confirm / 'notes.txt').write_text('extra')
+        with self.assertRaisesRegex(ValueError, 'unexpected files'):
+            self.build()
+
+    def test_confirm_manifest_tamper_is_rejected(self):
+        path = self.confirm / 'manifest.json'
+        original = path.read_text()
+        for name, change, message in (
+                ('sampled', lambda d: d.update(sampled=99), 'sampled'),
+                ('selected', lambda d: d['selected'].pop(), 'selected labels'),
+                ('missing field', lambda d: d.pop('seed'), 'exactly'),
+                ('stale pass1 hash',
+                 lambda d: d['inputs_sha256'].update(pass1_verdicts='0' * 64),
+                 'bound to different pool or pass-1 inputs')):
+            with self.subTest(name=name):
+                data = json.loads(original)
+                change(data)
+                path.write_text(json.dumps(data))
+                with self.assertRaisesRegex(ValueError, message):
+                    self.build(confirm=self.confirm)
+        path.write_text(original)
+
+    def test_confirm_verdicts_must_be_exactly_the_sample(self):
+        path = self.pass2 / 'b00.json'
+        original = path.read_text()
+        data = json.loads(original)
+        case = next(case for case in data['cases'] if len(case['verdicts']) > 1)
+        case['verdicts'].pop()
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'missing verdicts for'):
+            self.build()
+        path.write_text(original)
+        with self.assertRaisesRegex(ValueError, 'outside the required candidate set'):
+            builder.load_verdicts(
+                self.pass2,
+                builder.load_batches(self.confirm, 'confirm', allow_manifest=True),
+                keymap=self.campaign.keymap, require_keys=set())
+
+    def test_twenty_percent_sample_is_recomputed_exactly(self):
+        confirm = self.root / 'confirm20'
+        pass2 = self.root / 'confirm-verdicts20'
+        self.campaign.make_confirm(out_dir=confirm, sample=0.2, seed=13)
+        self.campaign.write_pass2(confirm_dir=confirm, directory=pass2)
+        manifest = self.build(out='out20', confirm=confirm, pass2=pass2, sample=0.2)
+        self.assertEqual(manifest['rows'], 9)
+        self.assertNotIn('drop_v3_second_pass_rejected', manifest['actions'])
+        self.assertNotIn('drop_second_pass_rejected', manifest['actions'])
+        self.assertEqual(len(json.loads((confirm / 'manifest.json').read_text())['sample_cases']),
+                         2)
+        self.assertEqual(json.loads((confirm / 'manifest.json').read_text())['sampled'], 2)
+        sample = json.loads((confirm / 'b00.json').read_text())
+        self.assertEqual(len(sample['items']), 2)
+
+    def test_leakage_review_artifact_and_duplicate_order(self):
+        manifest = self.build()
+        review = builder.read_jsonl(self.root / 'out/eval_leakage_review.jsonl')
+        self.assertIn({'id': 'r00012', 'kind': 'tool+flags', 'split': 'dev'},
+                      review)
+        self.assertIn({'id': 'r00013', 'kind': 'tool+flags', 'split': 'heldout'},
+                      review)
+        self.assertEqual(manifest['eval_leakage_review'], review)
+        self.assertEqual(manifest['eval_leakage_review_count'], len(review))
+        audit = builder.read_jsonl(self.root / 'out/audit.jsonl')
+        self.assertIn({'id': 'r00013', 'action': 'drop_eval_leakage'}, audit)
+        self.assertIn({'id': 'r00014', 'action': 'add_verified', 'target': 'wc -l clean.log'},
+                      audit)
+        self.assertFalse([entry for entry in audit
+                          if entry['id'] == 'r00014' and entry['action'].startswith('drop_')])
+
+    def test_output_is_deterministic_and_hashes_cover_inputs(self):
+        first = self.build(out='out1')
+        second = self.build(out='out2')
+        self.assertEqual(first, second)
+        self.assertEqual(tree_bytes(self.root / 'out1'), tree_bytes(self.root / 'out2'))
+        self.assertEqual(set(first['inputs_sha256']), {
+            'corpus', 'raw_samples', 'v3_train', 'v3_requests', 'controls', 'keymap',
+            'pool_manifest', 'pool_batches', 'controls_map', 'director_map',
+            'pass1_verdicts', 'pass1_verdict_files', 'confirm_manifest',
+            'confirm_batches', 'confirm_verdicts', 'confirm_verdict_files', 'eval'})
+        for name, digest in first['outputs_sha256'].items():
+            path = self.root / f'out1/{name}.jsonl'
+            self.assertEqual(digest, builder.sha256_file(path))
+        self.assertEqual(first['train_sha256'], first['outputs_sha256']['train'])
+
+    def test_nonempty_output_directory_fails(self):
+        out = self.root / 'out-nonempty'
+        out.mkdir()
+        (out / 'stale.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'not empty'):
+            self.build(out=out)
 
     def test_module_import_needs_no_upstream_whatisit_and_stays_lazy(self):
         repo = Path(__file__).resolve().parents[1]
-        env = {**os.environ, 'PYTHONPATH': os.pathsep.join([str(repo / 'src'), str(repo / 'tools')])}
+        env = {**os.environ,
+               'PYTHONPATH': os.pathsep.join([str(repo / 'src'), str(repo / 'tools')])}
         code = ("import sys; sys.modules['whatisit'] = None; import build_verified_dataset; "
                 "assert 'score_teacher_eval' not in sys.modules, 'scorer imported eagerly'")
-        result = subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, env=env)
+        import subprocess
+        result = subprocess.run([sys.executable, '-c', code], capture_output=True, text=True,
+                                env=env)
         self.assertEqual(result.returncode, 0, result.stderr)
 
 
