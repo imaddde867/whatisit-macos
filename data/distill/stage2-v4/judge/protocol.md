@@ -84,7 +84,7 @@ Judges receive only a batch file and `LABEL.md`. They never receive any of these
 ```json
 keymap.json: {"k0123456789ab": {"case": "c0123456789ab", "group": "v3_kept" | "no_majority", "rid": "r00042", "command": "ls -la", "count": 1}}
 batch file:  {"batch": "b00", "items": [{"case": "c0123456789ab", "request": "<text>", "candidates": [{"key": "k0123456789ab", "command": "ls -la"}]}]}
-verdict file: {"batch": "b00", "judge": "<identity>", "cases": [{"case": "c0123456789ab", "verdicts": [{"key": "k0123456789ab", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short note>"}]}]}
+verdict file: {"batch": "b00", "judge": "<unique session identity>", "cases": [{"case": "c0123456789ab", "verdicts": [{"key": "k0123456789ab", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short note>"}]}]}
 controls.jsonl line: {"key": "ct0001", "case": "CTL-01", "request": "<text>", "command": "<cmd>", "expected": "correct|incorrect", "source": "docs/eval-audit/items.json#<id>", "provenance": "<optional source evidence>"}
 ```
 
@@ -97,7 +97,9 @@ covered exactly once with no unknown, misplaced, duplicated or missing entries.
 ## Pass 1 — pool verdicts (blind)
 
 Each batch goes to a fresh judge that sees ONLY its batch file and `LABEL.md` — no scorer
-labels, no source rows, no control or director maps. Output: one verdict file per batch,
+labels, no source rows, no control or director maps. The `judge` field is a unique session
+identity for that judging run (model plus a session suffix); an identity is never reused
+across batches or passes. Output: one verdict file per batch,
 `data/distill/stage2-v4/judge/verdicts/<batch>.json`, schema above. The director writes the
 verdicts directory before the first judge and does not read a partial batch downstream.
 Control verdicts are graded per batch: every control must match its expected value, so each
@@ -115,9 +117,12 @@ the picked items by opaque case id, and writes `b00`, `b01`, ... plus `manifest.
 `data/distill/stage2-v4/judge/confirm/`. Confirm batches carry the same opaque ids, candidate
 keys, requests and commands as the pool; director metadata (`group`, `rid`) is stripped. The
 manifest records the exact selected and sampled identities and SHA-256 digests of the pool,
-keymap, raw samples, v3 requests, pass-1 verdicts and generated batches.
+keymap, raw samples, v3 requests, both quarantine lists, pass-1 verdicts and generated
+batches.
 
-Each confirm batch goes to a fresh judge with the same blindness and rubric; output:
+Each confirm batch goes to a fresh judge with the same blindness and rubric; its session
+identity must differ from the pass-1 session that judged every case it confirms (the
+builder fails on reuse and records the session sets and per-case pairing digest). Output:
 `data/distill/stage2-v4/judge/confirm-verdicts/<batch>.json` — a sibling of `confirm/`, so
 `load_verdicts()` never reads the batch inputs. A confirm verdict that is not correct
 (`incorrect` or `unsure`) drops that label; the label is never re-selected and never replaced.
@@ -128,7 +133,11 @@ manifest that does not recompute exactly from the pass-1 selection fails the bui
 
 Controls are graded director-side against
 `data/distill/stage2-v4/judge/pool/controls-map.json`; expected values are never revealed to
-judges. Allocation is seeded and stratified: one expected-correct and one expected-incorrect
+judges. The builder does not trust the maps' digests alone: it recomputes every control
+entry (expected verdict, command, request, provenance, deterministic opaque case/key ids)
+from `controls.jsonl` and the `control-seed`, and the director map from the keymap and
+controls map. Any mismatch fails the build. Allocation is seeded and stratified: one
+expected-correct and one expected-incorrect
 control per batch, then the remaining controls are shuffled into the remaining per-batch
 slots. Total controls must fit the pool capacity and both polarities must be sufficient for
 every batch; over-capacity or under-supply fails, never warns. Every control is accounted for:
@@ -161,14 +170,17 @@ clean row with the same normalized request.
 
 ## Provenance
 
-Each verdict file records the judge identity in `judge`. The pool manifest records SHA-256
-digests of the corpus, raw samples, v3 train/requests and controls inputs plus every generated
-pool artifact (keymap, controls map, director map, each batch). The confirm manifest records
-the exact selected/sample identities and digests of the pool, keymap, raw samples, v3 requests,
-pass-1 verdicts and confirm batches. The final build re-verifies all of those digests, the
-control coverage and the exact 20% sample before writing anything, and its own manifest records
-the SHA-256 of every input (including pass-1/confirm verdict files and all four eval splits) and
-of its outputs (`train.jsonl`, `audit.jsonl`, `eval_leakage_review.jsonl`). Identical frozen
+Each verdict file records a unique judge-session identity in `judge`. The pool manifest
+records SHA-256 digests of the corpus, raw samples, v3 train/requests and controls inputs plus
+every generated pool artifact (keymap, controls map, director map, each batch). The confirm
+manifest records the exact selected/sample identities and digests of the pool, keymap, raw
+samples, v3 requests, both quarantine lists, pass-1 verdicts and confirm batches. The final
+build re-verifies all of those digests, the control coverage, the recomputed controls and
+director maps, the exact 20% sample, and the pass-1/pass-2 session independence before writing
+anything, and its own manifest records the SHA-256 of every input (including pass-1/confirm
+verdict files, both quarantine lists and all four eval splits), the judge-session sets with a
+per-case pairing digest, and the SHA-256 of its outputs (`train.jsonl`, `audit.jsonl`,
+`eval_leakage_review.jsonl`). Identical frozen
 inputs, seed and judgments produce byte-identical outputs. This is model review, not human
 certification, and is reported as such.
 
@@ -192,7 +204,9 @@ leaves no partial file; the batch is redone from scratch.
 
 The final builder is fail-closed: it refuses stale or tampered pool artifacts, changed
 inputs, incomplete verdict coverage, duplicate/unknown keys, malformed verdict schema,
-control mismatches, a confirm batch or manifest that does not recompute exactly, missing or
+control mismatches, a controls or director map that does not recompute from `controls.jsonl`,
+a confirm case judged by its own pass-1 session, a quarantine list changed after confirmation,
+a confirm batch or manifest that does not recompute exactly, missing or
 extra confirm verdicts, an empty confirmation sample, a non-empty output directory, a pool
 without controls, or an unverifiable output. Any re-run writes into a fresh or emptied
 directory — `pool/`, `confirm/`, `verdicts/` and `confirm-verdicts/` alike — so stale

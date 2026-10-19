@@ -51,12 +51,13 @@ Write one verdict file per batch, `<batch>.json`, into the verdicts directory na
 director. Verdict-file schema:
 
 ```json
-{"batch": "b00", "judge": "<identity>", "cases": [{"case": "c0123456789ab", "verdicts": [{"key": "k0123456789ab", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short note>"}]}]}
+{"batch": "b00", "judge": "<unique session identity>", "cases": [{"case": "c0123456789ab", "verdicts": [{"key": "k0123456789ab", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short note>"}]}]}
 ```
 
 Case ids and candidate keys are opaque; use them exactly as given. Do not infer anything from
 their spelling or ordering.
 
-`judge` records your identity as given by the director. Cover every key in the input exactly
+`judge` records your unique session identity as given by the director (model plus session
+suffix, never reused across batches or passes). Cover every key in the input exactly
 once, no extras. Validate with `python3` `json.load` and check the key count matches the input.
 Reply only: batch name, key count, counts per verdict.
