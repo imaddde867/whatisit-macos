@@ -15,8 +15,9 @@ skipped with a manifest warning). No-majority candidates are re-checked with
 repair_distill_dataset.validate_command (serving validation); a failing candidate
 is excluded and listed in the manifest, and a request whose candidates are all
 excluded is skipped like a zero-candidate one. A v3 row missing from v3
-requests.jsonl raises ValueError. Items are sorted by rid, keys x0000+ assigned in
-that order, then sliced into consecutive b00, b01, ... batches. Controls are
+requests.jsonl or a non-v3 corpus id missing from the raw file raises ValueError;
+batch_size and controls_per_batch must be >= 1. Items are sorted by rid, keys
+x0000+ assigned in that order, then sliced into consecutive b00, b01, ... batches. Controls are
 appended in file order, up to --controls-per-batch per batch, keys verbatim;
 surplus controls are only warned about. Quarantine filtering happens in the
 builder, not here. Writes keymap.json, batches/bXX.json, manifest.json and
@@ -37,6 +38,10 @@ def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
         from score_teacher_eval import effective_command as effective
     if validate is None:
         from repair_distill_dataset import validate_command as validate
+    if batch_size < 1:
+        raise ValueError('batch_size must be >= 1')
+    if controls_per_batch < 1:
+        raise ValueError('controls_per_batch must be >= 1')
     v3_dir = Path(v3_dir)
     corpus = {row['id']: row for row in read_jsonl(Path(corpus_path))}
     raw = {row['id']: row for row in read_jsonl(Path(raw_path))}
@@ -57,6 +62,10 @@ def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
     v3_count = len(items)
     v3_ids = {row['id'] for row in v3_rows}
     considered = sorted(rid for rid in corpus if rid not in v3_ids)
+    missing_raw = [rid for rid in considered if rid not in raw]
+    if missing_raw:
+        raise ValueError(f'{len(missing_raw)} corpus ids missing from {raw_path}: '
+                         f'{", ".join(missing_raw[:5])}')
     excluded = []
     for rid in considered:
         request = raw[rid]['request']

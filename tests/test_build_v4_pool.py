@@ -156,6 +156,20 @@ class PoolTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, r'1 v3 rows.*r00005'):
             self.build(self.root / 'out')
 
+    def test_zero_batch_size_and_controls_per_batch_raise(self):
+        with self.assertRaisesRegex(ValueError, 'batch_size must be >= 1'):
+            self.build(self.root / 'out', batch_size=0)
+        with self.assertRaisesRegex(ValueError, 'controls_per_batch must be >= 1'):
+            self.build(self.root / 'out', controls_per_batch=0)
+
+    def test_missing_raw_samples_row_raises(self):
+        write_jsonl(self.root / 'raw.jsonl', [
+            {'id': 'r00003', 'request': 'Raw three.', 'samples': [{'cmd': 'z -1'}]},
+            {'id': 'r00004', 'request': 'Raw four.', 'samples': [{'cmd': None}]},
+        ])
+        with self.assertRaisesRegex(ValueError, r'1 corpus ids missing.*r00005'):
+            self.build(self.root / 'out')
+
     def test_validate_exclusion_drops_candidate_and_records_it(self):
         def validate(rid, command, request):
             if (rid, command) == ('r00005', 'd -5'):

@@ -122,6 +122,13 @@ class ConfirmTests(unittest.TestCase):
         self.assertIn(batch['items'][0]['case'], {'r00001', 'r00003'})
         self.assertFalse((out / 'b01.json').exists())
 
+    def test_counts_drift_raises_naming_rid_key_and_command(self):
+        def effective(sample, request):
+            return 'stale' if sample['cmd'] == 'e -4' else sample['cmd']
+
+        with self.assertRaisesRegex(ValueError, r"r00004.*x0004.*'e -4'"):
+            self.confirm(self.root / 'out', sample=1.0, effective=effective)
+
     def test_rerun_is_byte_identical(self):
         first, second = self.root / 'out1', self.root / 'out2'
         self.confirm(first, sample=0.5, seed=13)

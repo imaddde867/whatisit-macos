@@ -15,7 +15,9 @@ of its judged-correct candidates is not None. Pass-2 verdicts do not exist yet a
 are not read; the builder drops confirm-rejected labels later. The rid-sorted
 selected list is sampled with random.Random(seed), sorted again by rid, and sliced
 into b00, b01, ... batches whose items carry the same keys and requests as the
-pool. Writes bXX.json and manifest.json into out_dir.
+pool. A keymap candidate command missing from the fresh counts raises ValueError
+(lint-environment drift; same guard as the builder). Writes bXX.json and
+manifest.json into out_dir.
 """
 import argparse
 import json
@@ -49,6 +51,9 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
         else:
             request = raw[rid]['request']
             counts = Counter(effective(s, request) for s in raw[rid]['samples'])
+            for key, command in candidates:  # a bare KeyError here would hide the lint-environment mismatch
+                if command not in counts:
+                    raise ValueError(f'{rid}: keymap candidate {key} command {command!r} is not in fresh counts')
             chosen = select({command: counts[command]
                              for key, command in candidates if key in correct}) is not None
         if chosen:
