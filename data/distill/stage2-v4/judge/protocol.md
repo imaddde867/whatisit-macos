@@ -13,15 +13,17 @@ not human-certified.** The rubric is the single source for judgments:
 | Input | Path | Use |
 |---|---|---|
 | Corpus requests | `data/corpus/requests.jsonl` | 2,520 requests; request text for no-majority items |
-| Raw teacher samples | `data/teacher/roihu_full_raw_samples.jsonl` | per-request samples; the no-majority candidate set |
+| Raw teacher samples | `data/teacher/roihu_full_raw_samples.jsonl` | per-request samples; no-majority candidates, serving-validated at pool time |
 | v3 train | `data/distill/stage2-v3/train.jsonl` | 1,149 rows, 902 with a command target (`v3_kept` items) |
 | v3 requests | `data/distill/stage2-v3/requests.jsonl` | request text for v3 items |
 | Controls | `data/distill/stage2-v4/judge/controls.jsonl` | director-built from the audited PR #33 items; expected values never revealed |
 
-Pool scale (sanity): 902 v3 items + 1,398 no-majority requests considered (zero-candidate
-requests are skipped), in 90-item batches with up to 3 controls appended per batch
-(`b00`, `b01`, ...). 25 of the no-majority requests are quarantined: they are still judged; the
-builder drops them at build time (`drop_quarantine`).
+Pool scale (as built): 902 v3 items + 1,398 no-majority requests considered; 19 candidate pairs
+(9 requests) fail serving validation and are excluded at pool time (`manifest.json`
+`excluded_candidates`; judges never see them), requests with no admissible candidates are
+skipped, leaving 2,177 items in 25 batches (`b00`–`b24`) with 60/60 controls injected. 25 of the
+no-majority requests are quarantined: the pool does not pre-filter them (they are judged when
+they have candidates); the builder drops them at build time (`drop_quarantine`).
 
 ## Commands
 
@@ -40,7 +42,7 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/what
 Final build (director, after pass 2):
 
 ```sh
-PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm data/distill/stage2-v4
+PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm-verdicts data/distill/stage2-v4
 ```
 
 ## Frozen schemas (verbatim)
@@ -64,9 +66,10 @@ partial batch.
 
 `make_v4_confirm.py` re-derives the selected labels from the pass-1 verdicts (`v3_kept`: any
 correct key; `no_majority`: the judged-correct candidates still `select()` a target), samples
-20% and re-batches them with the same keys and request text. Each confirm batch goes to a
-fresh judge with the same blindness and rubric; output:
-`data/distill/stage2-v4/judge/confirm/<batch>.json`. A confirm verdict that is not correct
+20% and writes the confirm batches and manifest into `data/distill/stage2-v4/judge/confirm/`.
+Each confirm batch goes to a fresh judge with the same blindness and rubric; output:
+`data/distill/stage2-v4/judge/confirm-verdicts/<batch>.json` — a sibling of `confirm/`, so
+`load_verdicts()` never reads the batch inputs. A confirm verdict that is not correct
 (`incorrect` or `unsure`) drops that label; the label is never re-selected and never replaced.
 
 ## Controls
@@ -91,9 +94,12 @@ network. Some candidates are destructive; man pages and existence checks only (s
 
 ## Failure handling
 
-Superseded or redone batches are never edited in place: a fresh judge re-judges the batch, the
-replacement file is written to the verdicts (or confirm) directory, and the previous file is
-moved to `data/distill/stage2-v4/judge/superseded/` so the builder never mixes two judgments of
-the same key. Re-judging a pool batch invalidates the confirm sample: re-run the confirm
+The director creates `data/distill/stage2-v4/judge/verdicts/`,
+`data/distill/stage2-v4/judge/confirm-verdicts/` and `data/distill/stage2-v4/judge/superseded/`
+before they are first written to. Superseded or redone batches are never edited in place: a
+fresh judge re-judges the batch, the replacement file is written to the verdicts (or
+confirm-verdicts) directory, and the previous file is moved to
+`data/distill/stage2-v4/judge/superseded/` so the builder never mixes two judgments of the
+same key. Re-judging a pool batch invalidates the confirm sample: re-run the confirm
 command (deterministic) and re-judge the overlapping confirm batches. A judge that fails
 mid-batch leaves no partial file; the batch is redone from scratch.
