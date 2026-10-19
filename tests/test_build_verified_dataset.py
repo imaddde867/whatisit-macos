@@ -97,6 +97,31 @@ class BuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'control .*expected'):
             self.build()
 
+    def test_pool_batch_without_mixed_controls_is_rejected(self):
+        v3 = builder.read_jsonl(self.root / 'data/distill/stage2-v3/train.jsonl')
+        raw = {row['id']: row for row in builder.read_jsonl(
+            self.root / 'data/teacher/roihu_full_raw_samples.jsonl')}
+        v3_requests = {row['id']: row for row in builder.read_jsonl(
+            self.root / 'data/distill/stage2-v3/requests.jsonl')}
+        control_cases = {entry['case'] for entry in self.campaign.controls_map.values()}
+        without_controls = json.loads(json.dumps(self.campaign.pool_batches))
+        without_controls['b00']['items'] = [
+            item for item in without_controls['b00']['items']
+            if item['case'] not in control_cases]
+        with self.assertRaisesRegex(ValueError, 'batch has no controls'):
+            builder.verify_pool_batches(without_controls, self.campaign.keymap,
+                                        self.campaign.controls_map, v3, raw,
+                                        v3_requests, stub_effective)
+        only_correct = json.loads(json.dumps(self.campaign.pool_batches))
+        only_correct['b00']['items'] = [
+            item for item in only_correct['b00']['items']
+            if self.campaign.controls_map.get(item['candidates'][0]['key'], {}).get(
+                'expected') != 'incorrect']
+        with self.assertRaisesRegex(ValueError, 'lacks one control of each polarity'):
+            builder.verify_pool_batches(only_correct, self.campaign.keymap,
+                                        self.campaign.controls_map, v3, raw,
+                                        v3_requests, stub_effective)
+
     def test_every_batch_has_mixed_controls(self):
         for name, batch in self.campaign.pool_batches.items():
             expected = {self.campaign.controls_map[item['candidates'][0]['key']]['expected']
