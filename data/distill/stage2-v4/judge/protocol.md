@@ -103,3 +103,7 @@ confirm-verdicts) directory, and the previous file is moved to
 same key. Re-judging a pool batch invalidates the confirm sample: re-run the confirm
 command (deterministic) and re-judge the overlapping confirm batches. A judge that fails
 mid-batch leaves no partial file; the batch is redone from scratch.
+
+Any re-run writes into a fresh or emptied directory — `pool/`, `confirm/`, `verdicts/` and
+`confirm-verdicts/` alike: move the previous run aside to `superseded/` or delete it first,
+so stale `bXX.json` files are never read as current.
