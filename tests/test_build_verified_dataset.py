@@ -122,6 +122,55 @@ class BuildTests(unittest.TestCase):
                                         self.campaign.controls_map, v3, raw,
                                         v3_requests, stub_effective)
 
+    def test_control_map_must_recompute_from_controls_jsonl(self):
+        # A consistently rewritten controls map, pool manifest and pass-1 verdicts must
+        # still fail: every control entry is recomputed from the tracked controls source.
+        path = self.campaign.pool / 'controls-map.json'
+        controls_map = json.loads(path.read_text())
+        key = next(iter(sorted(controls_map)))
+        was = controls_map[key]['expected']
+        flipped = 'incorrect' if was == 'correct' else 'correct'
+        controls_map[key]['expected'] = flipped
+        path.write_text(json.dumps(controls_map, indent=2) + '\n')
+        manifest_path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['artifacts_sha256']['controls_map'] = builder.sha256_file(path)
+        case = controls_map[key]['case']
+        for batch in self.campaign.pool_batches.values():
+            if any(item['case'] == case for item in batch['items']):
+                summary = manifest['controls_by_batch'][batch['batch']]
+                summary[flipped] += 1
+                summary[was] -= 1
+                break
+        else:
+            self.fail('flipped control appears in no pool batch')
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+        self.campaign.write_pass1(overrides={
+            self.campaign.key('r00003', 'uname -a'): 'incorrect',
+            self.campaign.key('r00009', 'whoami'): 'incorrect',
+            self.campaign.key('r00006', 'ls -lt'): 'incorrect',
+            key: flipped})
+        confirm = self.root / 'confirm-map-tamper'
+        pass2 = self.root / 'confirm-verdicts-map-tamper'
+        self.campaign.make_confirm(out_dir=confirm, sample=1.0, seed=13)
+        self.campaign.write_pass2(confirm_dir=confirm, directory=pass2)
+        with self.assertRaisesRegex(ValueError, 'does not recompute from controls.jsonl'):
+            self.build(confirm=confirm, pass2=pass2)
+
+    def test_director_map_must_match_the_pool_sources(self):
+        path = self.campaign.pool / 'director-map.json'
+        director = json.loads(path.read_text())
+        case = next(case for case, entry in sorted(director.items())
+                    if entry['kind'] == 'real')
+        director[case]['rid'] = 'r99999'
+        path.write_text(json.dumps(director, indent=2) + '\n')
+        manifest_path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['artifacts_sha256']['director_map'] = builder.sha256_file(path)
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+        with self.assertRaisesRegex(ValueError, 'director map does not match'):
+            self.build()
+
     def test_every_batch_has_mixed_controls(self):
         for name, batch in self.campaign.pool_batches.items():
             expected = {self.campaign.controls_map[item['candidates'][0]['key']]['expected']
@@ -304,7 +353,7 @@ class BuildTests(unittest.TestCase):
                 ('missing field', lambda d: d.pop('seed'), 'exactly'),
                 ('stale pass1 hash',
                  lambda d: d['inputs_sha256'].update(pass1_verdicts='0' * 64),
-                 'bound to different pool or pass-1 inputs')):
+                 'bound to different inputs')):
             with self.subTest(name=name):
                 data = json.loads(original)
                 change(data)
@@ -328,6 +377,24 @@ class BuildTests(unittest.TestCase):
                 self.pass2,
                 builder.load_batches(self.confirm, 'confirm', allow_manifest=True),
                 keymap=self.campaign.keymap, require_keys=set())
+
+    def test_quarantine_tamper_after_confirm_is_rejected(self):
+        path = self.root / 'data/distill/quarantine_ids.txt'
+        path.write_text(path.read_text() + '# added after confirmation\n')
+        with self.assertRaisesRegex(ValueError, 'bound to different inputs'):
+            self.build()
+
+    def test_confirm_judge_reuse_is_rejected(self):
+        self.campaign.write_pass2(judge='fixture-pass1')
+        with self.assertRaisesRegex(ValueError, 'fresh judge'):
+            self.build()
+
+    def test_judge_sessions_are_recorded(self):
+        manifest = self.build()
+        self.assertEqual(manifest['judge_sessions']['pass1'], ['fixture-pass1'])
+        self.assertEqual(manifest['judge_sessions']['pass2'], ['fixture-pass2'])
+        self.assertRegex(manifest['judge_sessions']['case_pairs_sha256'],
+                         r'^[0-9a-f]{64}$')
 
     def test_twenty_percent_sample_is_recomputed_exactly(self):
         confirm = self.root / 'confirm20'
@@ -368,8 +435,12 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(set(first['inputs_sha256']), {
             'corpus', 'raw_samples', 'v3_train', 'v3_requests', 'controls', 'keymap',
             'pool_manifest', 'pool_batches', 'controls_map', 'director_map',
+            'quarantine_ids', 'roihu_full_quarantine_ids',
             'pass1_verdicts', 'pass1_verdict_files', 'confirm_manifest',
             'confirm_batches', 'confirm_verdicts', 'confirm_verdict_files', 'eval'})
+        for name in ('quarantine_ids', 'roihu_full_quarantine_ids'):
+            self.assertEqual(first['inputs_sha256'][name],
+                             builder.sha256_file(self.root / f'data/distill/{name}.txt'))
         for name, digest in first['outputs_sha256'].items():
             path = self.root / f'out1/{name}.jsonl'
             self.assertEqual(digest, builder.sha256_file(path))

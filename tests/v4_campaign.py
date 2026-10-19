@@ -262,12 +262,13 @@ class Campaign:
 
     def make_confirm(self, out_dir=None, sample=1.0, seed=13, batch_size=90):
         out = Path(out_dir) if out_dir is not None else self.confirm_dir
-        self.confirm_manifest = make_v4_confirm.build_confirm(
-            self.pool / 'keymap.json',
-            self.root / 'data/teacher/roihu_full_raw_samples.jsonl',
-            self.root / 'data/distill/stage2-v3/requests.jsonl',
-            self.verdict_dir, out, sample=sample, seed=seed, batch_size=batch_size,
-            effective=stub_effective, pool_dir=self.pool)
+        with patch.object(build_verified_dataset, 'ROOT', self.root):
+            self.confirm_manifest = make_v4_confirm.build_confirm(
+                self.pool / 'keymap.json',
+                self.root / 'data/teacher/roihu_full_raw_samples.jsonl',
+                self.root / 'data/distill/stage2-v3/requests.jsonl',
+                self.verdict_dir, out, sample=sample, seed=seed, batch_size=batch_size,
+                effective=stub_effective, pool_dir=self.pool)
         return self.confirm_manifest
 
     def write_pass2(self, confirm_dir=None, directory=None, overrides=None,

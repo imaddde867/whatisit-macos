@@ -10,6 +10,9 @@ data/distill/stage2-v4/LABEL.md). The build is fail-closed:
 
 * the pool manifest, keymap, controls map, director map and every pool batch are
   verified against their recorded SHA-256 digests and against each other;
+* the controls map and the director map are recomputed from the tracked
+  controls.jsonl source (expected verdict, command, request, provenance and the
+  deterministic opaque ids), not only digest-checked;
 * every pool batch must carry at least one expected-correct and one
   expected-incorrect control, and every control verdict must match its expected
   value (a mismatched batch must be re-judged);
@@ -17,7 +20,11 @@ data/distill/stage2-v4/LABEL.md). The build is fail-closed:
   with a valid schema;
 * the deterministic 20% confirmation sample is regenerated from the pass-1
   verdicts and compared byte-for-byte with the confirm manifest and batches;
+* both quarantine lists are hashed into the confirm manifest and the build
+  manifest, so changing either after confirmation fails the build;
 * every sampled candidate must have exactly one valid pass-2 verdict;
+* the pass-2 judge identity must differ from the pass-1 judge for the same case;
+  the manifest records both session sets and the per-case pairing digest;
 * a confirmation-rejected selected label is dropped, never replaced or re-selected.
 
 Among correct candidates: largest voting_key cluster by teacher sample count, then
@@ -38,6 +45,7 @@ from collections import Counter
 from pathlib import Path
 
 from build_distill_dataset import eval_leakage, read_jsonl, read_quarantine, voting_key
+from build_v4_pool import load_controls, opaque_id
 from repair_distill_dataset import validate_command
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
@@ -54,6 +62,8 @@ EVAL_SPLITS = ('dev', 'everyday', 'frozen', 'heldout')
 BATCH_FILE = re.compile(r'^b\d{2}\.json$')
 CASE_ID = re.compile(r'^c[0-9a-f]{12}$')
 KEY_ID = re.compile(r'^k[0-9a-f]{12}$')
+QUARANTINE_PATHS = {'quarantine_ids': 'data/distill/quarantine_ids.txt',
+                    'roihu_full_quarantine_ids': 'data/distill/roihu_full_quarantine_ids.txt'}
 
 
 def select(correct_counts):
@@ -147,12 +157,14 @@ def _valid_evidence(value):
     return isinstance(value, str) and bool(value.strip())
 
 
-def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=None):
+def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=None,
+                  case_judges=None):
     """Strictly load verdict files against their immutable batch inputs.
 
     Every batch must have exactly one file, every case must be present exactly once,
     every candidate key must be judged exactly once, and every verdict must obey the
-    rubric schema. Control verdicts must match their expected values.
+    rubric schema. Control verdicts must match their expected values. When
+    ``case_judges`` is passed, it receives the judge identity of every judged case.
     """
     directory = Path(directory)
     if not directory.is_dir():
@@ -193,6 +205,8 @@ def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=N
             if case_id in seen_cases:
                 raise ValueError(f'{path}: case {case_id} judged twice')
             seen_cases.add(case_id)
+            if case_judges is not None:
+                case_judges[case_id] = data['judge']
             expected = {candidate['key']: candidate['command']
                         for candidate in batch_cases[case_id]['candidates']}
             entries = case['verdicts']
@@ -389,6 +403,53 @@ def verify_pool_manifest(pool_manifest, keymap, controls_map, paths, pool_batche
         raise ValueError('pool control_seed must be an integer')
 
 
+def verify_control_maps(controls, controls_map, director_map, keymap, control_seed):
+    """Recompute every control entry and the director view from controls.jsonl.
+
+    Digest checks accept a controls map, pool manifest and verdicts that were all
+    rewritten together; this reconstruction pins each control's expected verdict,
+    command, request, provenance and deterministic opaque ids to the tracked
+    controls source, and the director map to the keymap and controls map.
+    """
+    expected = {}
+    for control in controls:
+        case = opaque_id('c', control_seed, 'control', control['source'], control['key'])
+        key = opaque_id('k', control_seed, 'control', control['source'], control['key'])
+        if key in expected or key in keymap:
+            raise ValueError(f'control {control["key"]}: key {key} collides with another '
+                             'candidate')
+        entry = {'case': case, 'expected': control['expected'], 'source': control['source'],
+                 'request': control['request'], 'command': control['command'],
+                 'origin_case': control['case'], 'origin_key': control['key']}
+        if 'provenance' in control:
+            entry['provenance'] = control['provenance']
+        expected[key] = entry
+    for key in sorted(set(expected) | set(controls_map)):
+        if expected.get(key) != controls_map.get(key):
+            raise ValueError(f'control {key} does not recompute from controls.jsonl '
+                             f'({controls_map.get(key)!r}); rebuild the pool')
+    expected_director = {}
+    for key, entry in keymap.items():
+        case_entry = expected_director.setdefault(entry['case'], {
+            'kind': 'real', 'group': entry['group'], 'rid': entry['rid'], 'candidates': []})
+        case_entry['candidates'].append({'key': key, 'command': entry['command']})
+    for key, entry in controls_map.items():
+        if entry['case'] in expected_director:
+            raise ValueError(f'control {key}: case {entry["case"]} collides with a real case')
+        expected_director[entry['case']] = {
+            'kind': 'control', 'candidates': [{'key': key, 'command': entry['command']}],
+            'expected': entry['expected'], 'source': entry['source'],
+            'request': entry['request'], 'origin_case': entry['origin_case'],
+            'origin_key': entry['origin_key']}
+        if 'provenance' in entry:
+            expected_director[entry['case']]['provenance'] = entry['provenance']
+    for entry in expected_director.values():
+        entry['candidates'].sort(key=lambda candidate: candidate['key'])
+    if director_map != expected_director:
+        raise ValueError('director map does not match the keymap and controls map; '
+                         'rebuild the pool')
+
+
 def verify_pool_batches(pool_batches, keymap, controls_map, v3, raw, v3_requests, effective):
     keymap_by_case, keymap_keys = {}, set()
     for key, entry in keymap.items():
@@ -532,7 +593,7 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     if pool_keymap != keymap:
         raise ValueError('passed keymap does not match the pool keymap; refusing to build')
     controls_map = _load_json(pool_dir / 'controls-map.json', 'pool controls map')
-    _load_json(pool_dir / 'director-map.json', 'pool director map')
+    director_map = _load_json(pool_dir / 'director-map.json', 'pool director map')
     if set(controls_map) & set(keymap):
         raise ValueError('controls map and keymap share candidate keys')
     pool_batches = load_batches(pool_dir / 'batches', 'pool batches')
@@ -552,8 +613,11 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     controls_path = ROOT / 'data/distill/stage2-v4/judge/controls.jsonl'
     paths = {'corpus': corpus_path, 'raw_samples': raw_path, 'v3_train': v3_train_path,
              'v3_requests': v3_requests_path, 'controls': controls_path}
+    quarantine_paths = {name: ROOT / relative for name, relative in QUARANTINE_PATHS.items()}
     verify_pool_manifest(pool_manifest, keymap, controls_map, paths,
                          pool_batches=pool_batches)
+    verify_control_maps(load_controls(controls_path), controls_map, director_map, keymap,
+                        pool_manifest['control_seed'])
 
     corpus = {row['id']: row for row in read_jsonl(corpus_path)}
     raw = {row['id']: row for row in read_jsonl(raw_path)}
@@ -570,9 +634,11 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     if controls_by_batch != pool_manifest['controls_by_batch']:
         raise ValueError('pool control coverage summary does not match the pool batches')
 
+    pass1_judges = {}
     verdicts = load_verdicts(verdict_dir, pool_batches, keymap=keymap,
                              controls=controls_map,
-                             require_keys=set(keymap) | set(controls_map))
+                             require_keys=set(keymap) | set(controls_map),
+                             case_judges=pass1_judges)
     selected = selected_items(keymap, verdicts, raw, v3_requests, effective_command)
     expected_batches, picked = expected_confirm_batches(selected, sample, seed,
                                                         CONFIRM_BATCH_SIZE)
@@ -610,17 +676,27 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         'v3_requests': sha256_file(v3_requests_path),
         'pass1_verdicts': canonical_sha256(verdicts),
         'pass1_verdict_files': hash_json_files(verdict_dir, pool_batches),
+        'quarantine_ids': sha256_file(quarantine_paths['quarantine_ids']),
+        'roihu_full_quarantine_ids': sha256_file(
+            quarantine_paths['roihu_full_quarantine_ids']),
     }
     if confirm_manifest.get('inputs_sha256') != expected_inputs:
-        raise ValueError('confirm manifest is bound to different pool or pass-1 inputs; '
+        raise ValueError('confirm manifest is bound to different inputs; '
                          're-run make_v4_confirm.py')
     expected_artifacts = hash_json_files(confirm_batches_dir, confirm_batches)
     if confirm_manifest.get('artifacts_sha256') != expected_artifacts:
         raise ValueError('confirm batch outputs do not match the confirm manifest; '
                          'confirm data is stale or tampered')
     sample_keys = {candidate['key'] for item in picked for candidate in item['candidates']}
+    pass2_judges = {}
     confirmed = load_verdicts(confirm_verdicts_dir, confirm_batches, keymap=keymap,
-                              require_keys=sample_keys)
+                              require_keys=sample_keys, case_judges=pass2_judges)
+    sample_cases = [item['case'] for item in picked]
+    reused = [case for case in sample_cases if pass1_judges[case] == pass2_judges[case]]
+    if reused:
+        raise ValueError(f'{len(reused)} sampled cases were judged by the same identity in '
+                         f'pass 1 and pass 2, e.g. {reused[0]} by '
+                         f'{pass1_judges[reused[0]]!r}; pass 2 requires a fresh judge session')
 
     correct = {key for key, verdict in verdicts.items() if verdict == 'correct'}
     rejected = {key for key, verdict in confirmed.items() if verdict != 'correct'}
@@ -644,8 +720,8 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         rows.append(row)
         audit.append({'id': row['id'], 'action': 'keep_v3'})
 
-    quarantine = read_quarantine(ROOT / 'data/distill/roihu_full_quarantine_ids.txt', set(corpus))
-    quarantine.update(read_quarantine(ROOT / 'data/distill/quarantine_ids.txt', set(corpus)))
+    quarantine = read_quarantine(quarantine_paths['roihu_full_quarantine_ids'], set(corpus))
+    quarantine.update(read_quarantine(quarantine_paths['quarantine_ids'], set(corpus)))
     kept_ids = {row['id'] for row in rows}
     seen = {}
     for record in read_jsonl(ROOT / 'data/distill/stage2-v3/requests.jsonl'):
@@ -734,15 +810,24 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         'confirm_batches': hash_json_files(confirm_batches_dir, confirm_batches),
         'confirm_verdicts': canonical_sha256(confirmed),
         'confirm_verdict_files': hash_json_files(confirm_verdicts_dir, confirm_batches),
+        'quarantine_ids': sha256_file(quarantine_paths['quarantine_ids']),
+        'roihu_full_quarantine_ids': sha256_file(
+            quarantine_paths['roihu_full_quarantine_ids']),
         'eval': {split: sha256_file(ROOT / 'eval' / f'{split}.jsonl')
                  for split in EVAL_SPLITS},
     }
     outputs = {'train': sha256_file(out / 'train.jsonl'),
                'audit': sha256_file(out / 'audit.jsonl'),
                'eval_leakage_review': sha256_file(out / 'eval_leakage_review.jsonl')}
+    judge_sessions = {'pass1': sorted(set(pass1_judges.values())),
+                      'pass2': sorted(set(pass2_judges.values())),
+                      'case_pairs_sha256': canonical_sha256(
+                          {case: [pass1_judges[case], pass2_judges[case]]
+                           for case in sample_cases})}
     manifest = {'rows': len(rows), 'commands': len(rows) - empty, 'empty_targets': empty,
                 'actions': actions, 'inputs_sha256': inputs, 'outputs_sha256': outputs,
                 'train_sha256': outputs['train'],
+                'judge_sessions': judge_sessions,
                 'eval_leakage_review': leaks,
                 'eval_leakage_review_count': len(leaks)}
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')

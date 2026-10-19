@@ -18,7 +18,9 @@ case id and sliced into b00, b01, ... batches. Confirm batches carry the same op
 case ids, candidate keys, requests and commands as the pool.
 
 The manifest records the pool/keymap/raw/v3-request/pass-1 digests, the exact
-selected and sampled identities, and the digests of the generated batches. It refuses
+selected and sampled identities, and the digests of the generated batches, plus the
+quarantine-list digests (the final build refuses a quarantine list that changed after
+confirmation, since it decides which selected labels survive). It refuses
 to write into a non-empty directory, so stale batch files can never be read as
 current. A keymap candidate whose fresh teacher frequency differs from its recorded
 count raises ValueError (candidate-string drift is not enough to hide frequency
@@ -51,9 +53,10 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
                   sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None):
     if effective is None:
         from score_teacher_eval import effective_command as effective
-    from build_verified_dataset import (canonical_sha256, expected_confirm_batches,
-                                        hash_json_files, load_batches, load_verdicts,
-                                        sample_record, selected_items, sha256_file)
+    from build_verified_dataset import (QUARANTINE_PATHS, ROOT, canonical_sha256,
+                                        expected_confirm_batches, hash_json_files,
+                                        load_batches, load_verdicts, sample_record,
+                                        selected_items, sha256_file)
     keymap_path = Path(keymap_path)
     pool_dir = Path(pool_dir) if pool_dir is not None else keymap_path.parent
     keymap = _load_json(keymap_path, 'keymap')
@@ -91,6 +94,7 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
     out = Path(out_dir)
     for name, batch in expected_batches.items():
         (out / f'{name}.json').write_text(json.dumps(batch, indent=2) + '\n')
+    quarantine_paths = {name: ROOT / relative for name, relative in QUARANTINE_PATHS.items()}
     manifest = {
         'selected_total': len(selected), 'sampled': len(picked),
         'sample': sample, 'seed': seed, 'batch_size': batch_size,
@@ -102,6 +106,9 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
             'v3_requests': sha256_file(v3_requests_path),
             'pass1_verdicts': canonical_sha256(verdicts),
             'pass1_verdict_files': hash_json_files(verdict_dir, pool_batches),
+            'quarantine_ids': sha256_file(quarantine_paths['quarantine_ids']),
+            'roihu_full_quarantine_ids': sha256_file(
+                quarantine_paths['roihu_full_quarantine_ids']),
         },
         'artifacts_sha256': hash_json_files(out, expected_batches),
     }

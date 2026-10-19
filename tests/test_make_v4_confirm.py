@@ -160,7 +160,10 @@ class ConfirmTests(unittest.TestCase):
         self.assertEqual(tree_bytes(first), tree_bytes(second))
         self.assertEqual(set(manifest1['inputs_sha256']), {
             'pool_manifest', 'keymap', 'raw_samples', 'v3_requests', 'pass1_verdicts',
-            'pass1_verdict_files'})
+            'pass1_verdict_files', 'quarantine_ids', 'roihu_full_quarantine_ids'})
+        for name in ('quarantine_ids', 'roihu_full_quarantine_ids'):
+            self.assertEqual(manifest1['inputs_sha256'][name],
+                             builder.sha256_file(self.root / f'data/distill/{name}.txt'))
         for name, digest in manifest1['artifacts_sha256'].items():
             self.assertEqual(digest, builder.sha256_file(first / f'{name}.json'))
 
