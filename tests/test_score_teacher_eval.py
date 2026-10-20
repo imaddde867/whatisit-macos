@@ -1,16 +1,28 @@
 import os
 import sys
 import unittest
+import re
+import types
+from unittest.mock import patch
 from pathlib import Path
 
 try:
-    import whatisit  # noqa: F401
+    import whatisit
 except ImportError:
-    raise unittest.SkipTest('needs the upstream whatisit package (safety rules)')
+    whatisit = None
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from score_teacher_eval import (effective_command, label_case, lint_reject,  # noqa: E402
-                                majority, score_case)
+if whatisit is None:
+    upstream = types.ModuleType('whatisit')
+    upstream.safety = types.SimpleNamespace(check=lambda command: [],
+                                             PLACEHOLDER_HINT=re.compile(r'/path/to/'))
+    with patch.dict(sys.modules, {'whatisit': upstream}):
+        import score_teacher_eval as scorer
+else:
+    import score_teacher_eval as scorer
+effective_command, label_case, lint_reject = scorer.effective_command, scorer.label_case, scorer.lint_reject
+majority, score_case = scorer.majority, scorer.score_case
+from whatisit_macos import maclint
 
 
 def sample(command, parsed=True, finish='stop'):
@@ -21,6 +33,36 @@ def sample(command, parsed=True, finish='stop'):
 def case(accept, reference='ref'):
     return {'id': 't001', 'request': 'do the thing', 'reference': reference,
             'accept': accept}
+
+
+class SharedBoundaryTests(unittest.TestCase):
+    def setUp(self):
+        scanner = types.SimpleNamespace(check=lambda command: [],
+                                        PLACEHOLDER_HINT=re.compile(r'/path/to/'))
+        for mocked in (patch.object(scorer, 'safety', scanner),
+                       patch.object(maclint.shutil, 'which', side_effect=lambda command: command),
+                       patch.object(maclint, '_man_text', return_value='')):
+            mocked.start()
+            self.addCleanup(mocked.stop)
+
+    def test_empty_scanner_cannot_allow_structural_bypasses(self):
+        for command in ('ls;rm notes.txt', '/bin/rm notes.txt',
+                        "sh -c 'rm notes.txt'", 'rm /wrong/notes.txt'):
+            with self.subTest(command=command):
+                self.assertTrue(lint_reject(command, 'list /right/notes.txt'))
+                self.assertIsNone(effective_command(sample(command), 'list /right/notes.txt'))
+
+    def test_explicit_path_flows_through_scoring(self):
+        command = 'rm /tmp/notes.txt'
+        self.assertFalse(lint_reject(command, 'delete this file', '/tmp/notes.txt'))
+        self.assertTrue(lint_reject(command, 'delete this file', '/wrong/notes.txt'))
+        c = {**case(r'^rm '), 'request': 'delete this file', 'path': '/tmp/notes.txt'}
+        result = score_case(c, [sample(command)] * 5)
+        self.assertEqual(result['majority'], 'pass')
+        self.assertEqual(result['sample_correct'], 5)
+
+    def test_quoted_separator_is_plain_data(self):
+        self.assertFalse(lint_reject("printf '%s' 'a;b'", 'show a;b'))
 
 
 class LabelCaseTests(unittest.TestCase):
@@ -40,6 +82,7 @@ class LabelCaseTests(unittest.TestCase):
         self.assertEqual(label_case(c, 'rm note.txt'), 'abstain-missed')
 
 
+@unittest.skipUnless(whatisit is not None, 'needs upstream safety rules')
 class MajorityTests(unittest.TestCase):
     def test_three_of_five_agree(self):
         samples = [sample('stat -f %B notes.txt')] * 3 + [sample('ls'), sample('pwd')]
@@ -68,6 +111,7 @@ class MajorityTests(unittest.TestCase):
         self.assertEqual(result['rejection_cause'], 'lint/safety rejected')
 
 
+@unittest.skipUnless(whatisit is not None, 'needs upstream safety rules')
 class LintRejectTests(unittest.TestCase):
     def test_control_chars_and_length(self):
         self.assertTrue(lint_reject('echo a\r\nb', 'request'))
@@ -93,6 +137,7 @@ class LintRejectTests(unittest.TestCase):
                                      'cat /path/to/file.txt please'))
 
 
+@unittest.skipUnless(whatisit is not None, 'needs upstream safety rules')
 class EffectiveCommandTests(unittest.TestCase):
     def test_unparsed_or_non_stop_is_no_command(self):
         self.assertIsNone(effective_command(sample('ls', parsed=False), 'r'))
@@ -104,6 +149,7 @@ class EffectiveCommandTests(unittest.TestCase):
         self.assertEqual(effective_command(sample('echo hi'), 'r'), 'echo hi')
 
 
+@unittest.skipUnless(whatisit is not None, 'needs upstream safety rules')
 class ScoreCaseTests(unittest.TestCase):
     def test_sample_and_oracle_counts(self):
         samples = [sample('stat -f %B notes.txt')] * 3 + [

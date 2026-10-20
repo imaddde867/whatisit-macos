@@ -12,9 +12,9 @@ Items: every v3 train row with a non-empty target (one candidate, its target; a 
 request carrying a `path` gets the explicit-inputs line appended, byte-identical to
 the training prompt) and every corpus id outside v3 whose samples yield at least one
 lint-accepted command (candidates: sorted distinct effective_command values;
-zero-candidate requests are skipped with a manifest warning). No-majority candidates
+zero-candidate requests are skipped with a manifest warning). All non-empty v3 targets and no-majority candidates
 are re-checked with repair_distill_dataset.validate_command (serving validation); a
-failing candidate is excluded and listed in the manifest, and a request whose
+failing candidate is excluded with its reason in the manifest, and a request whose
 candidates are all excluded is skipped like a zero-candidate one. A v3 row missing
 from v3 requests.jsonl or a non-v3 corpus id missing from the raw file raises
 ValueError; batch_size and controls_per_batch must be >= 1.
@@ -151,6 +151,79 @@ def allocate_controls(controls, batch_count, controls_per_batch, seed):
     return assigned
 
 
+def exclusion(rid, command, error):
+    return {'rid': rid, 'command': command,
+            'reason': str(error).encode('unicode_escape').decode()[:1000]}
+
+
+def pool_population(corpus, raw, v3_rows, v3_requests, effective, validate):
+    """Use the serving boundary for every non-empty training candidate."""
+    missing = [row['id'] for row in v3_rows if row['id'] not in v3_requests]
+    if missing:
+        raise ValueError(f'{len(missing)} v3 rows have no request in '
+                         f'v3 requests: {", ".join(missing[:5])}')
+
+    items, warnings, excluded = [], [], []
+    for row in v3_rows:
+        target = row['messages'][-1]['content']
+        if target:
+            request = v3_requests[row['id']]['request']
+            path = v3_requests[row['id']].get('path')
+            try:
+                validate(row['id'], target, request, path)
+            except ValueError as exc:
+                excluded.append(exclusion(row['id'], target, exc))
+                continue
+            if path is not None:
+                request += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)
+            items.append({'group': 'v3_kept', 'rid': row['id'], 'request': request,
+                          'candidates': [(target, 1)]})
+    v3_ids = {row['id'] for row in v3_rows}
+    considered = sorted(rid for rid in corpus if rid not in v3_ids)
+    missing_raw = [rid for rid in considered if rid not in raw]
+    if missing_raw:
+        raise ValueError(f'{len(missing_raw)} corpus ids missing from raw samples: '
+                         f'{", ".join(missing_raw[:5])}')
+    for rid in considered:
+        request = raw[rid]['request']
+        complete = {sample['command'] for sample in raw[rid]['samples']
+                    if sample.get('parsed') is True and sample.get('finish_reason') == 'stop'
+                    and isinstance(sample.get('command'), str) and sample['command']}
+        rejected = set()
+        # Audit complete teacher commands before effective() hides policy failures as None.
+        for command in sorted(complete):
+            try:
+                validate(rid, command, request, raw[rid].get('path'))
+            except ValueError as exc:
+                rejected.add(command)
+                excluded.append(exclusion(rid, command, exc))
+        counts = Counter(effective(sample, request, raw[rid].get('path')) for sample in raw[rid]['samples'])
+        commands, had_candidates = [], bool(complete)
+        for command in sorted(set(counts) - {None}):
+            had_candidates = True
+            if command in rejected:
+                continue
+            if command not in complete:
+                try:
+                    validate(rid, command, request, raw[rid].get('path'))
+                except ValueError as exc:
+                    excluded.append(exclusion(rid, command, exc))
+                    continue
+            commands.append((command, counts[command]))
+        if commands:
+            if raw[rid].get('path') is not None:
+                request += '\nExplicit inputs: ' + json.dumps({'path': raw[rid]['path']}, ensure_ascii=False)
+            items.append({'group': 'no_majority', 'rid': rid, 'request': request,
+                          'candidates': commands})
+        elif had_candidates:
+            warnings.append({'rid': rid, 'reason': 'all_candidates_excluded'})
+        else:
+            warnings.append({'rid': rid, 'reason': 'no_candidates'})
+    items.sort(key=lambda item: item['rid'])
+
+    return items, warnings, excluded
+
+
 def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
                controls_path=None, controls_per_batch=3, effective=None, validate=None,
                control_seed=13):
@@ -170,49 +243,11 @@ def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
     raw = {row['id']: row for row in read_jsonl(Path(raw_path))}
     v3_rows = read_jsonl(v3_dir / 'train.jsonl')
     v3_requests = {row['id']: row for row in read_jsonl(v3_dir / 'requests.jsonl')}
-    missing = [row['id'] for row in v3_rows if row['id'] not in v3_requests]
-    if missing:
-        raise ValueError(f'{len(missing)} v3 rows have no request in '
-                         f'{v3_dir}/requests.jsonl: {", ".join(missing[:5])}')
-
-    items, warnings = [], []
-    for row in v3_rows:
-        target = row['messages'][-1]['content']
-        if target:
-            request = v3_requests[row['id']]['request']
-            path = v3_requests[row['id']].get('path')
-            if path is not None:
-                request += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)
-            items.append({'group': 'v3_kept', 'rid': row['id'], 'request': request,
-                          'candidates': [(target, 1)]})
-    v3_count = len(items)
+    items, warnings, excluded = pool_population(corpus, raw, v3_rows, v3_requests,
+                                                effective, validate)
+    v3_count = sum(item['group'] == 'v3_kept' for item in items)
     v3_ids = {row['id'] for row in v3_rows}
-    considered = sorted(rid for rid in corpus if rid not in v3_ids)
-    missing_raw = [rid for rid in considered if rid not in raw]
-    if missing_raw:
-        raise ValueError(f'{len(missing_raw)} corpus ids missing from {raw_path}: '
-                         f'{", ".join(missing_raw[:5])}')
-    excluded = []
-    for rid in considered:
-        request = raw[rid]['request']
-        counts = Counter(effective(sample, request) for sample in raw[rid]['samples'])
-        commands, had_candidates = [], False
-        for command in sorted(set(counts) - {None}):
-            had_candidates = True
-            try:
-                validate(rid, command, request)
-            except ValueError:
-                excluded.append({'rid': rid, 'command': command})
-                continue
-            commands.append((command, counts[command]))
-        if commands:
-            items.append({'group': 'no_majority', 'rid': rid, 'request': request,
-                          'candidates': commands})
-        elif had_candidates:
-            warnings.append({'rid': rid, 'reason': 'all_candidates_excluded'})
-        else:
-            warnings.append({'rid': rid, 'reason': 'no_candidates'})
-    items.sort(key=lambda item: item['rid'])
+    considered = sorted(set(corpus) - v3_ids)
 
     real_cases, real_keys = set(), set()
     keymap, keyed = {}, []
@@ -322,6 +357,7 @@ def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
     if controls_map:
         artifacts['controls_map'] = sha256(out / 'controls-map.json')
     counts = {'v3_rows': len(v3_rows), 'v3_items': v3_count, 'v3_candidates': v3_count,
+              'v3_policy_rejected': sum(entry['rid'] in v3_ids for entry in excluded),
               'no_majority_considered': len(considered),
               'no_majority_with_candidates': len(items) - v3_count,
               'excluded_candidates': len(excluded),
@@ -331,7 +367,8 @@ def build_pool(corpus_path, raw_path, v3_dir, out_dir, batch_size=90,
                                       if control['expected'] == 'correct'),
               'controls_incorrect': sum(1 for control in controls
                                         if control['expected'] == 'incorrect')}
-    manifest = {'inputs_sha256': inputs, 'artifacts_sha256': artifacts,
+    from repair_distill_dataset import validation_fingerprint
+    manifest = {'validation': validation_fingerprint(), 'inputs_sha256': inputs, 'artifacts_sha256': artifacts,
                 'counts': counts, 'batch_size': batch_size,
                 'control_seed': control_seed, 'controls_per_batch': controls_per_batch,
                 'controls_by_batch': controls_summary,

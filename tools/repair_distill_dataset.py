@@ -5,6 +5,10 @@ from collections import Counter
 from copy import deepcopy
 import hashlib
 import json
+import importlib.metadata
+import os
+import platform
+import sys
 from pathlib import Path
 import re
 
@@ -15,20 +19,44 @@ ROOT = Path(__file__).resolve().parents[1]
 CUES = re.compile(r"\bwithout\b|\bwihtout\b|haven't|unnamed|unspecified|unidentified", re.I)
 
 
-def validate_command(rid, command, request):
+def validate_command(rid, command, request, path=None):
     if not command:
         return
-    if len(command) > 4096 or any(c in command for c in '\x00\r\n'):
-        raise ValueError(f'{rid}: invalid command')
-    from whatisit import safety
-    from whatisit_macos.maclint import problems, unrequested_deletion
+    from whatisit_macos.maclint import validation_issues
     from build_distill_dataset import INTERACTIVE
-    findings = safety.check(command)
-    issues = problems(command) + unrequested_deletion(command, request)
-    issues += [f'{m.group(0)!r} is a placeholder' for m in safety.PLACEHOLDER_HINT.finditer(command)
-               if m.group(0).casefold() not in request.casefold()]
-    if any(severity == 'DANGER' for severity, _ in findings) or issues or INTERACTIVE.fullmatch(command):
-        raise ValueError(f'{rid}: command fails serving validation')
+    issues = validation_issues(command, request, path)
+    if INTERACTIVE.fullmatch(command):
+        issues.append('interactive command')
+    if issues:
+        raise ValueError(f'{rid}: command fails serving validation: ' + '; '.join(issues))
+
+
+def validation_fingerprint():
+    """Bind a campaign to the validation code and its relevant runtime environment."""
+    files = ('src/whatisit_macos/shell.py', 'src/whatisit_macos/maclint.py',
+             'tools/repair_distill_dataset.py', 'tools/build_distill_dataset.py')
+    code = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in files}
+    try:
+        from whatisit import safety
+    except ImportError:
+        safety = None
+    source = getattr(safety, '__file__', None)
+    if source:
+        source = Path(source).resolve()
+        if source.is_relative_to('/home') and not source.is_relative_to(ROOT):
+            code['upstream_safety'] = 'source_outside_task_workspace'
+        else:
+            code['upstream_safety'] = hashlib.sha256(source.read_bytes()).hexdigest()
+    else:
+        code['upstream_safety'] = 'unavailable'
+    try:
+        version = importlib.metadata.version('whatisit')
+    except importlib.metadata.PackageNotFoundError:
+        version = 'unavailable'
+    return {'code_sha256': code, 'whatisit_version': version,
+            'python': list(sys.version_info[:2]),
+            'platform': [platform.system(), platform.release()],
+            'path_sha256': hashlib.sha256(os.environ.get('PATH', '').encode()).hexdigest()}
 
 
 def repair(requests, labels, raw, amendments, provenance=None):
@@ -91,7 +119,7 @@ def repair(requests, labels, raw, amendments, provenance=None):
                 command = sample.get('command')
                 if sample.get('parsed') is True and sample.get('finish_reason') == 'stop' and command:
                     try:
-                        validate_command(rid, command, request['request'])
+                        validate_command(rid, command, request['request'], request.get('path'))
                     except ValueError:
                         continue
                     valid[command] += 1
@@ -120,7 +148,7 @@ def repair(requests, labels, raw, amendments, provenance=None):
                 item['original_target_votes'] = votes
                 votes = sum(s.get('parsed') is True and s.get('finish_reason') == 'stop' and
                             s.get('command') == (target or None) for s in teacher[rid]['samples'])
-                validate_command(rid, target, request['request'])
+                validate_command(rid, target, request['request'], request.get('path'))
                 row['messages'][-1]['content'] = target
                 request['kind'] = 'answer' if target else 'abstain'
                 if not target:
@@ -146,7 +174,7 @@ def repair(requests, labels, raw, amendments, provenance=None):
             elif target and 'target' not in edit and original_request != new_request and not edit.get('provenance'):
                 raise ValueError(f'{rid}: command rewrite requires reviewed provenance')
             row['messages'][1]['content'] = prompt
-            validate_command(rid, row['messages'][-1]['content'], new_request)
+            validate_command(rid, row['messages'][-1]['content'], new_request, request.get('path'))
             if item['action'] == 'keep':
                 item['action'] = ('explicit_path' if 'path' in edit else
                                   'clarified_request' if target else 'natural_abstain')
@@ -191,7 +219,7 @@ def add_additions(rows, requests, additions, system_prompt):
         path = item.get('path')
         if path is not None and (not isinstance(path, str) or not path or len(path) > 8192 or any(c in path for c in '\x00\r\n')):
             raise ValueError(f'{rid}: invalid addition path')
-        validate_command(rid, item['target'], item['request'])
+        validate_command(rid, item['target'], item['request'], path)
         prompt = MACOS_PREFIX + item['request']
         if path is not None:
             prompt += '\nExplicit inputs: ' + json.dumps({'path': path}, ensure_ascii=False)

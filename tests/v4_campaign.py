@@ -20,11 +20,11 @@ def write_jsonl(path, rows):
     path.write_text(''.join(json.dumps(row) + '\n' for row in rows))
 
 
-def stub_effective(sample, request):
+def stub_effective(sample, request, path=None):
     return sample['cmd']
 
 
-def stub_validate(rid, command, request):
+def stub_validate(rid, command, request, path=None):
     return None
 
 
@@ -191,7 +191,9 @@ EVAL_SPLITS = {
 class Campaign:
     """A complete small campaign: immutable inputs, pool, pass 1, confirm, pass 2."""
 
-    def __init__(self, root, batch_size=5, controls_per_batch=2, control_seed=13):
+    def __init__(self, root, batch_size=5, controls_per_batch=2, control_seed=13,
+                 validate=stub_validate):
+        self.validate = validate
         self.root = Path(root)
         self.batch_size = batch_size
         self.controls_per_batch = controls_per_batch
@@ -208,7 +210,7 @@ class Campaign:
             self.root / 'data/distill/stage2-v3', self.pool,
             batch_size=batch_size, controls_path=self.judge_dir / 'controls.jsonl',
             controls_per_batch=controls_per_batch, effective=stub_effective,
-            validate=stub_validate, control_seed=control_seed)
+            validate=self.validate, control_seed=control_seed)
         self.keymap = json.loads((self.pool / 'keymap.json').read_text())
         self.controls_map = json.loads((self.pool / 'controls-map.json').read_text())
         self.pool_batches = read_batches(self.pool / 'batches')
@@ -268,7 +270,7 @@ class Campaign:
                 self.root / 'data/teacher/roihu_full_raw_samples.jsonl',
                 self.root / 'data/distill/stage2-v3/requests.jsonl',
                 self.verdict_dir, out, sample=sample, seed=seed, batch_size=batch_size,
-                effective=stub_effective, pool_dir=self.pool)
+                effective=stub_effective, pool_dir=self.pool, validate=self.validate)
         return self.confirm_manifest
 
     def write_pass2(self, confirm_dir=None, directory=None, overrides=None,
@@ -289,7 +291,7 @@ class Campaign:
         fake = types.ModuleType('score_teacher_eval')
         fake.effective_command = stub_effective
         with patch.object(build_verified_dataset, 'ROOT', self.root), \
-                patch.object(build_verified_dataset, 'validate_command', return_value=None), \
+                patch.object(build_verified_dataset, 'validate_command', self.validate), \
                 patch.dict(sys.modules, {'score_teacher_eval': fake}):
             return build_verified_dataset.build(
                 self.keymap,

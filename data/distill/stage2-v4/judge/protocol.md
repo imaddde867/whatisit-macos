@@ -1,6 +1,6 @@
 # Stage-2 v4 verified-label judge protocol (pre-registered)
 
-Stage2-v4 keeps stage2-v3 rows whose target survives a strict blind judge and adds
+Stage2-v4 keeps stage2-v3 rows whose target passes the shared serving policy and a strict blind judge, and adds
 no-majority corpus requests whose teacher samples include a judged-correct command
 (`tools/build_verified_dataset.py`). The director builds the pool, dispatches one batch per
 fresh judge, then runs the confirm and build commands. Labels come from two blind passes:
@@ -19,7 +19,7 @@ judgments: `data/distill/stage2-v4/LABEL.md`; this protocol is the runbook.
 | Controls | `data/distill/stage2-v4/judge/controls.jsonl` | 65 director-built controls: 25 expected-correct, 40 expected-incorrect; values never revealed |
 | Rubric | `data/distill/stage2-v4/LABEL.md` | the only judgment rubric |
 
-Pool scale (as built with `--batch-size 90 --controls-per-batch 3 --control-seed 13`):
+Historical pool scale before issue #35 (requires regeneration; these are not current-policy counts), as built with `--batch-size 90 --controls-per-batch 3 --control-seed 13`:
 902 v3 items + 1,275 no-majority requests with admissible candidates = 2,177 items,
 5,640 candidates, 25 batches (`b00`–`b24`). 1,398 corpus ids outside v3 are considered;
 19 candidate pairs (9 requests) fail serving validation and are excluded at pool time
@@ -29,6 +29,26 @@ every batch contains at least one expected-correct and one expected-incorrect co
 25 non-v3 requests are quarantined: the pool does not pre-filter them (they are judged when
 they have candidates; `r00849` has no admissible candidate), and the builder drops each one
 with a selected target at build time (`drop_quarantine`; 24 in the current pool).
+
+Issue #35 applies the same bounded parser, lint, upstream DANGER, placeholder and
+lexical deletion checks to every non-empty v3 target and new candidate. Validation
+receives request text and the structured `path` separately; the explicit-inputs line
+is formatting for judge/training prompts only. Unsupported shell syntax fails closed.
+Rejected v3 targets are excluded from the pool and audit-dropped from the final build,
+never changed into abstentions. Existing empty v3 targets remain unchanged.
+
+Pool `excluded_candidates` records bounded, escaped validation reasons, including v3
+exclusions; `counts.v3_policy_rejected` counts rejected historical commands. Pool,
+confirm and final manifests carry the validation code and environment fingerprint.
+The fingerprint hashes local validation code, Python/platform, PATH (digest only),
+and upstream distribution version; upstream source is hashed only inside the task
+workspace or outside `/home`. A home-installed dependency outside the workspace is
+marked `source_outside_task_workspace`, so its local source edits are not detected.
+Confirm and final stages reject stale fingerprints and reconstruct the complete
+policy-accepted candidate population and exclusion list before sampling or building.
+Regenerate the pool, judgments and confirmation after any policy/environment change;
+historical source datasets and campaign artifacts remain immutable. No new campaign
+counts or acceptance claim are established by the code update.
 
 The five newest expected-correct controls (`ct0061`–`ct0065`) come from audited PR #33
 items that passed both the original blind pass and the independent pass-2 review:
@@ -152,6 +172,7 @@ every control in a batch to grade correctly before that batch counts.
 The final builder writes `audit.jsonl` with one entry per considered id. Action values:
 
 - `keep_v3` — v3 row kept (including an empty target, kept unchanged).
+- `drop_v3_policy_rejected` — non-empty v3 target fails current serving policy; reason recorded.
 - `drop_v3_first_pass_incorrect` — v3 target judged not correct in pass 1.
 - `drop_v3_second_pass_rejected` — v3 target rejected in the pass-2 confirm sample.
 - `drop_second_pass_rejected` — selected no-majority label rejected in pass 2.

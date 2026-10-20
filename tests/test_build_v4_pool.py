@@ -17,11 +17,11 @@ def write_jsonl(path, rows):
     path.write_text(''.join(json.dumps(row) + '\n' for row in rows))
 
 
-def stub_effective(sample, request):
+def stub_effective(sample, request, path=None):
     return sample['cmd']
 
 
-def stub_validate(rid, command, request):
+def stub_validate(rid, command, request, path=None):
     return None
 
 
@@ -83,6 +83,20 @@ class PoolTests(unittest.TestCase):
         return build_v4_pool.build_pool(
             self.root / 'corpus.jsonl', self.root / 'raw.jsonl', self.root / 'v3',
             Path(out_dir), **kwargs)
+
+    def test_v3_policy_rejection_is_audited_with_structured_path(self):
+        calls = []
+        def validate(rid, command, request, path=None):
+            calls.append((rid, command, request, path))
+            if rid == 'r00001':
+                raise ValueError('unsupported shell syntax')
+        manifest = self.build(self.root / 'out', validate=validate)
+        keymap = json.loads((self.root / 'out/keymap.json').read_text())
+        self.assertFalse(any(e['rid'] == 'r00001' for e in keymap.values()))
+        self.assertIn(('r00001', 'echo one', 'V3 request one.', 'docs/report.pdf'), calls)
+        self.assertEqual(manifest['excluded_candidates'], [{
+            'rid': 'r00001', 'command': 'echo one', 'reason': 'unsupported shell syntax'}])
+        self.assertEqual(manifest['counts']['v3_policy_rejected'], 1)
 
     def test_keymap_and_batches_without_controls(self):
         out = self.root / 'out'
@@ -295,7 +309,7 @@ class PoolTests(unittest.TestCase):
             self.build(self.root / 'out')
 
     def test_validate_exclusion_drops_candidate_and_records_it(self):
-        def validate(rid, command, request):
+        def validate(rid, command, request, path=None):
             if (rid, command) == ('r00005', 'd -5'):
                 raise ValueError('fixture: fails serving validation')
 
@@ -306,12 +320,12 @@ class PoolTests(unittest.TestCase):
         self.assertFalse(any(entry['rid'] == 'r00005' and entry['command'] == 'd -5'
                              for entry in keymap.values()))
         self.assertEqual(manifest['excluded_candidates'],
-                         [{'rid': 'r00005', 'command': 'd -5'}])
+                         [{'rid': 'r00005', 'command': 'd -5', 'reason': 'fixture: fails serving validation'}])
         self.assertEqual(manifest['counts']['excluded_candidates'], 1)
         self.assertEqual(manifest['counts']['candidates'], 4)
 
     def test_all_candidates_excluded_drops_rid_like_zero_candidates(self):
-        def validate(rid, command, request):
+        def validate(rid, command, request, path=None):
             if rid == 'r00005':
                 raise ValueError('fixture: fails serving validation')
 
@@ -321,8 +335,8 @@ class PoolTests(unittest.TestCase):
         self.assertEqual(len(keymap), 3)
         self.assertFalse(any(entry['rid'] == 'r00005' for entry in keymap.values()))
         self.assertEqual(manifest['excluded_candidates'], [
-            {'rid': 'r00005', 'command': 'b -5'},
-            {'rid': 'r00005', 'command': 'd -5'},
+            {'rid': 'r00005', 'command': 'b -5', 'reason': 'fixture: fails serving validation'},
+            {'rid': 'r00005', 'command': 'd -5', 'reason': 'fixture: fails serving validation'},
         ])
         self.assertIn({'rid': 'r00005', 'reason': 'all_candidates_excluded'},
                       manifest['warnings'])
