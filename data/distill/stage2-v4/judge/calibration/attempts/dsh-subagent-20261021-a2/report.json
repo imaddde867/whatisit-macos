@@ -1,0 +1,117 @@
+{
+ "agreement": {
+  "agree": 101,
+  "false_accepts": [
+   {
+    "accepted": "incorrect",
+    "batch": "b01",
+    "key": "k3ccaed041b99"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b04",
+    "key": "k420e79d15642"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b04",
+    "key": "k5698ae5433a9"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b00",
+    "key": "k7c58727dbf07"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b00",
+    "key": "k992623916b55"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b01",
+    "key": "kcc527d863d94"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b01",
+    "key": "kde29c6d0a487"
+   },
+   {
+    "accepted": "incorrect",
+    "batch": "b01",
+    "key": "ke14a56fde8f9"
+   }
+  ],
+  "false_rejects": [
+   {
+    "accepted": "correct",
+    "batch": "b04",
+    "key": "k62df3848e1d6"
+   },
+   {
+    "accepted": "correct",
+    "batch": "b01",
+    "key": "kb04196041f8b"
+   },
+   {
+    "accepted": "correct",
+    "batch": "b00",
+    "key": "kfc71117d0870"
+   }
+  ],
+  "total": 112,
+  "unsure": []
+ },
+ "calibration_manifest_sha256": "6611782f025d46db4bcec5dc6683582502ba94b5d86ae26c43936664999213a4",
+ "controls": {
+  "matched": 10,
+  "mismatches": [
+   {
+    "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;",
+    "expected": "incorrect",
+    "key": "k89de0398f504",
+    "observed": "correct",
+    "origin_key": "ct0015",
+    "request": "put all the jpgs in this folder into a new folder called photos"
+   },
+   {
+    "command": "ps -axo comm= | grep python",
+    "expected": "incorrect",
+    "key": "kb1ee9d0f7685",
+    "observed": "correct",
+    "origin_key": "ct0019",
+    "request": "list my running python processes"
+   },
+   {
+    "command": "find /Applications -type d -name '*Chrome*'",
+    "expected": "incorrect",
+    "key": "kfadf81351405",
+    "observed": "correct",
+    "origin_key": "ct0007",
+    "request": "list apps in /Applications with chrome in the name"
+   }
+  ],
+  "total": 13
+ },
+ "judge_sessions": {
+  "a0": "dsh-judge-a0-a2",
+  "a1": "dsh-judge-a1-a2",
+  "cal-controls": "dsh-judge-cal-controls-a2"
+ },
+ "pass": false,
+ "pass_bar": {
+  "agreement_required": 101,
+  "agreement_total": 112,
+  "controls": "every control verdict must equal its expected value; unsure counts as failure",
+  "false_accept_max": 2,
+  "false_accept_total": 35,
+  "pilot": "then one b05 attempt with the live controls; any failure still trips the budget",
+  "unsure_max": 2
+ },
+ "verdict_sha256": {
+  "a0": "dba1c52ad42d65ab511efc45365bd3cbcb7a78a65b5bae2d41818fd691babfc8",
+  "a1": "fe8326e4a9037ade71b2aa6956c078ae0e125e9607ffed92ede31d443fa220a1",
+  "cal-controls": "c1f85e04eb77210e7407f27483b29c87f80b151c89735024570ac86ce79169f1"
+ }
+}

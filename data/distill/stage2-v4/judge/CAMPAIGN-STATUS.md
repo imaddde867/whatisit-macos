@@ -48,7 +48,9 @@ limit documented in [docs/teacher-ceiling.md](../../../../docs/teacher-ceiling.m
 
 1. A replacement judge is identified and qualified on a disjoint calibration set
    (frozen before any campaign batch is re-judged), with read-only man-page tools and
-   no candidate execution.
+   no candidate execution. The set and its bar live in [calibration/](calibration/):
+   13 spent controls (13/13 required), 112 accepted verdicts (≥101 required, ≤2 false
+   accepts, ≤2 unsure).
 2. The retry plan is explicitly revised in a new revision (`r3`): provider amendment,
    judge identity, budget reset under the same caps (one fresh retry per failed batch,
    stop at three failed attempts, stop when a retry fails).
@@ -57,6 +59,14 @@ limit documented in [docs/teacher-ceiling.md](../../../../docs/teacher-ceiling.m
 Acceptance after pass 1 is unchanged: deterministic 20% confirm by independent sessions,
 `build_verified_dataset.py`, a human spot check of at least 30 retained rows, quality
 report, and a byte-identical rebuild.
+
+## Judge qualification attempts
+
+- **2026-10-21, attempt 1 — DSH subagent judge: failed.** 10/13 spent controls and 8 false
+  accepts of 35; the same permissive pattern as the Strata attempts (correct flags, wrong
+  semantics). No campaign batch was re-judged, no confirm was produced, and the retry
+  budget is untouched. Details:
+  [calibration/attempts/dsh-subagent-20261021-a2/ATTEMPT.md](calibration/attempts/dsh-subagent-20261021-a2/ATTEMPT.md).
 
 ## What this commit contains
 

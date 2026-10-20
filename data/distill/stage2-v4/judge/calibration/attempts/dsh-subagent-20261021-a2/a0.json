@@ -1,0 +1,436 @@
+{
+  "batch": "a0",
+  "judge": "dsh-judge-a0-a2",
+  "cases": [
+    {
+      "case": "ca7f59a43e745",
+      "verdicts": [
+        {
+          "key": "kf48db2d38a6e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ln -s with $(pwd)-joined target creates the absolute symlink requested."
+        }
+      ]
+    },
+    {
+      "case": "cd2039e724f65",
+      "verdicts": [
+        {
+          "key": "k7c58727dbf07",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk prints timestamp plus pid/processIdentifier for lines containing \"fault\"."
+        }
+      ]
+    },
+    {
+      "case": "cf3860d55dbf3",
+      "verdicts": [
+        {
+          "key": "k992623916b55",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log stream supports --timeout; 10 terminates the stream after ten seconds."
+        }
+      ]
+    },
+    {
+      "case": "c30c3aff72033",
+      "verdicts": [
+        {
+          "key": "k5086aa219c50",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums every numeric token and prints the mean."
+        },
+        {
+          "key": "k6aba8718a709",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Skips blank lines and averages the first field of each line."
+        },
+        {
+          "key": "k22cfb8ba1eeb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Numeric-only regex sums all numbers and prints their mean."
+        },
+        {
+          "key": "kfc71117d0870",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "n++ also runs on blank lines, counting zeros into the average."
+        },
+        {
+          "key": "k5648832b900a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums all fields of non-blank lines, covering every number, then averages."
+        }
+      ]
+    },
+    {
+      "case": "c3ae027a1a417",
+      "verdicts": [
+        {
+          "key": "k6c5a70cee71b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -sk above 1048576 KiB prints only directories; size column stripped."
+        },
+        {
+          "key": "k03e92aae905c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same 1 GiB KiB threshold; cut strips the size column."
+        },
+        {
+          "key": "k0014b2eee721",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "maxdepth 1 limits to immediate children, missing nested directories over 1 GiB."
+        },
+        {
+          "key": "kb04196041f8b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "du without -type d lists regular files as well as directories."
+        },
+        {
+          "key": "kce3ee859999c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find -type d with du -sk threshold lists directories above 1 GiB."
+        }
+      ]
+    },
+    {
+      "case": "c6b022594f3d2",
+      "verdicts": [
+        {
+          "key": "k3637b95906aa",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "cut -d= -f1 prints text before the first equals on each line."
+        }
+      ]
+    },
+    {
+      "case": "ce6c6c60acfd2",
+      "verdicts": [
+        {
+          "key": "k32f8b507beba",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries public.image with kMDItemProfileName prefix 'Adobe RGB*', the real profile key."
+        },
+        {
+          "key": "k7b6cc6bff661",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "kMDItemColorProfile is not a Spotlight attribute; images use kMDItemProfileName."
+        },
+        {
+          "key": "k5379e76d178c",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Exact 'Adobe RGB' misses profile names such as 'Adobe RGB (1998)'."
+        },
+        {
+          "key": "k46f9a45031c2",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "kMDItemColorProfile is not a Spotlight attribute, so the query matches nothing."
+        },
+        {
+          "key": "kd8ba5076f4a0",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "kMDItemColorProfile is not a Spotlight attribute, so the query matches nothing."
+        }
+      ]
+    },
+    {
+      "case": "cd7209dc72ec8",
+      "verdicts": [
+        {
+          "key": "kc46412bc0fdb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mkfifo creates the named pipe event.pipe."
+        }
+      ]
+    },
+    {
+      "case": "ceaad488d4266",
+      "verdicts": [
+        {
+          "key": "k081b8b546f87",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "readdir skips . and .. and prints the maximum name length."
+        },
+        {
+          "key": "k6ecf223c0ec2",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "perl -0 keeps find's NUL terminator in $_, so length is one too high."
+        }
+      ]
+    },
+    {
+      "case": "c116efc3b5008",
+      "verdicts": [
+        {
+          "key": "k72cc36636f5f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Wildcard query against the real kMDItemKeywords array attribute."
+        },
+        {
+          "key": "k0b9e1afdba82",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same wildcard kMDItemKeywords query; quoting passes one identical argument."
+        },
+        {
+          "key": "k0f3cc584ea37",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "kMDItemKeyword is not an attribute; kMDItemKeywords is the real key."
+        }
+      ]
+    },
+    {
+      "case": "ce64fc9840283",
+      "verdicts": [
+        {
+          "key": "k8996c763d7ad",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk extracts the value from the battery Condition: line."
+        },
+        {
+          "key": "k7c295c5be162",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep prints the Condition: line with its value."
+        },
+        {
+          "key": "ka9dc178453e9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed prints the first battery Condition value without its label."
+        }
+      ]
+    },
+    {
+      "case": "c2afaf65667fa",
+      "verdicts": [
+        {
+          "key": "k0c6fa177cd35",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find -maxdepth 1 with du -k -s reports each top-level entry in KiB."
+        },
+        {
+          "key": "k40717d29e17f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same command using du -sk; each top-level entry with KiB usage."
+        },
+        {
+          "key": "k53afd1494bc0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -k -d 1 lists children then root; sed '$d' drops the root total."
+        },
+        {
+          "key": "ka4f7da98d600",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -k -d 1 with awk removing the /Volumes/WORK total line."
+        }
+      ]
+    },
+    {
+      "case": "ca8a25bfbd9a3",
+      "verdicts": [
+        {
+          "key": "ke7b0171c6d4a",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "kMDItemFinderLabel does not exist; mdls returns (null) so awk prints 0."
+        },
+        {
+          "key": "k9ec500123882",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls -raw on kMDItemFSLabel prints the numeric Finder label."
+        }
+      ]
+    },
+    {
+      "case": "cf4fc9fec52b0",
+      "verdicts": [
+        {
+          "key": "k8f86fb0afd02",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "diskutil(8) has no apfs listPhysicalStores subverb; apfs list shows physical stores."
+        }
+      ]
+    },
+    {
+      "case": "c1f174bcebf75",
+      "verdicts": [
+        {
+          "key": "kb0c8b54e480d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -extract raw prints the LSApplicationCategoryType value from Info.plist."
+        }
+      ]
+    },
+    {
+      "case": "c3ade5d8e21a8",
+      "verdicts": [
+        {
+          "key": "k212e3db40f7b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -RHE: recursive extended-regex search printing filenames."
+        },
+        {
+          "key": "kdf4dec488ebf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "-H -r -E equivalent; prints matches with filenames."
+        },
+        {
+          "key": "k3591886d1d9c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "-RH -E equivalent recursive extended-regex search showing filenames."
+        },
+        {
+          "key": "k80badfb67f25",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "-rEH equivalent recursive extended-regex search showing filenames."
+        },
+        {
+          "key": "kd59a3699bddd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BRE \\{3\\} interval is valid; -H prints the filename."
+        }
+      ]
+    },
+    {
+      "case": "c0337913f55a0",
+      "verdicts": [
+        {
+          "key": "k5698ae5433a9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 parses the JSON array and dumps eventMessage values."
+        },
+        {
+          "key": "k3b2d85da19b5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "JXA reads UTF-8 data, parses the array, joins eventMessage values."
+        },
+        {
+          "key": "k425e64878587",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "JXA reads the file as UTF-8, parses it, joins eventMessage values."
+        },
+        {
+          "key": "k43247d5fe781",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "JXA builds the absolute path, parses the file, joins eventMessage values."
+        }
+      ]
+    },
+    {
+      "case": "c3f9c148368e0",
+      "verdicts": [
+        {
+          "key": "k093f64d72682",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil apfs listUsers is the documented APFS crypto-user verb."
+        }
+      ]
+    },
+    {
+      "case": "c9567d8ccd8c4",
+      "verdicts": [
+        {
+          "key": "kce2e48c823d2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Verbose codesign output shows Signature=adhoc and flags=adhoc for ad-hoc code."
+        },
+        {
+          "key": "k3a6f839c97b8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep checks Signature=adhoc in codesign -dvvv output."
+        },
+        {
+          "key": "k952cb46e08ec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep adhoc matches Signature=adhoc for ad-hoc signed code."
+        },
+        {
+          "key": "kdd2e4a6f32c2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Case-insensitive check for Signature=adhoc works."
+        }
+      ]
+    },
+    {
+      "case": "cb121b0c4e860",
+      "verdicts": [
+        {
+          "key": "k16f5a77febd1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the Read-Only Media/Volume lines; 'No' means writable."
+        },
+        {
+          "key": "ka81ae814a1f6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the Read-Only fields that state writability."
+        },
+        {
+          "key": "k62df3848e1d6",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Pattern 'Read-Only:' never matches 'Read-Only Media:'/'Read-Only Volume:' lines; always says not writable."
+        },
+        {
+          "key": "k6dab0b5c00d5",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil info has no Writable field, so grep prints nothing."
+        },
+        {
+          "key": "k420e79d15642",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Derives Writable Yes/No from the Read-Only Media field."
+        }
+      ]
+    }
+  ]
+}
