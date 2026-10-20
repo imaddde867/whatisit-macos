@@ -69,13 +69,13 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/what
 Confirm (director, after pass 1; deterministic):
 
 ```sh
-PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/make_v4_confirm.py data/distill/stage2-v4/judge/pool/keymap.json data/teacher/roihu_full_raw_samples.jsonl data/distill/stage2-v3/requests.jsonl data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm --sample 0.2 --seed 13 --batch-size 90
+PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/make_v4_confirm.py data/distill/stage2-v4/judge/pool/keymap.json data/teacher/roihu_full_raw_samples.jsonl data/distill/stage2-v3/requests.jsonl data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm --sample 0.2 --seed 13 --batch-size 90 --adjudication data/distill/stage2-v4/judge/control-adjudication-r3-20261021.json
 ```
 
 Final build (director, after pass 2):
 
 ```sh
-PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm data/distill/stage2-v4/judge/confirm-verdicts data/distill/stage2-v4/verified
+PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm data/distill/stage2-v4/judge/confirm-verdicts data/distill/stage2-v4/verified --adjudication data/distill/stage2-v4/judge/control-adjudication-r3-20261021.json
 ```
 
 All three tools refuse a non-empty output directory. Move a previous run aside before
@@ -182,7 +182,18 @@ starts all pass-1 judgments with fresh sessions; no verdicts are reused. No cont
 edits occur in response to r2 judge failures. Allow one fresh retry per failed
 batch. Stop if that retry fails or total failed attempts reach three. Count schema,
 coverage, control and incomplete-attempt failures in r2; prior revisions do not
-consume this budget. Stopping never relaxes the all-controls gate.
+consume this budget. Stopping never relaxes the verified-controls gate.
+
+Revision `20261021-r3` keeps the r2 pool, controls and retry budget and adds an
+evidence-based control adjudication before `b05`. All 52 controls still live after
+`b00`–`b04` were judged from the request, command, man pages and read-only probes;
+51 are verified and gated exactly as before. `ct0018` (`if [[ -z $(which node) ]] …`
+for "do i have node installed") answers the request correctly, so its
+expected-incorrect verdict is unsupported and it is **contested**: it still needs a
+verdict (coverage is unchanged) but is not compared with its expected value. The
+adjudication file is pinned to the controls-map digest, and a stale or misplaced
+entry fails closed. This is a correction of an unsupported expectation, not a
+relaxation of the gate: every verified control must still match in every batch.
 
 Before judging, verify byte-identical repeated pool generation and hold the
 validation environment, including device/mount state, constant through confirmation

@@ -36,6 +36,7 @@ a duplicate-request identity: hard leakage is filtered before the duplicate seen
 is updated, and review-level leakage findings are written to
 eval_leakage_review.jsonl.
 """
+import argparse
 import hashlib
 import json
 import random
@@ -158,7 +159,7 @@ def _valid_evidence(value):
 
 
 def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=None,
-                  case_judges=None):
+                  case_judges=None, contested=None):
     """Strictly load verdict files against their immutable batch inputs.
 
     Every batch must have exactly one file, every case must be present exactly once,
@@ -171,6 +172,10 @@ def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=N
         raise ValueError(f'verdict directory {directory} does not exist')
     keymap = keymap or {}
     controls = controls or {}
+    contested = set(contested or ())
+    if contested - set(controls):
+        raise ValueError('contested controls are not in the controls map: '
+                         f'{sorted(contested - set(controls))[:5]}')
     expected_files = sorted(f'{name}.json' for name in batches)
     files = sorted(path.name for path in directory.iterdir() if path.is_file())
     unexpected = [name for name in files if name not in expected_files]
@@ -272,6 +277,8 @@ def load_verdicts(directory, batches, keymap=None, controls=None, require_keys=N
     for key, control in controls.items():
         if key not in verdicts:
             raise ValueError(f'control {key} has no verdict')
+        if key in contested:
+            continue
         if verdicts[key] != control['expected']:
             raise ValueError(f'control {key} expected {control["expected"]!r}, judge said '
                              f'{verdicts[key]!r}; re-judge the batch with a fresh judge')
@@ -448,6 +455,19 @@ def verify_pool_manifest(pool_manifest, keymap, controls_map, paths, pool_batche
         raise ValueError('pool controls_per_batch must be >= 2')
     if not isinstance(pool_manifest['control_seed'], int):
         raise ValueError('pool control_seed must be an integer')
+
+
+def load_adjudication(path, controls_map, controls_sha):
+    """Return the contested control keys from an adjudication pinned to this controls map."""
+    data = _load_json(Path(path), 'control adjudication')
+    if data.get('inputs_sha256', {}).get('controls-map.json') != controls_sha:
+        raise ValueError('control adjudication is stale for this controls map')
+    keys = data.get('contested_keys')
+    if not isinstance(keys, list) or not all(isinstance(key, str) for key in keys):
+        raise ValueError('control adjudication contested_keys must be a list of strings')
+    if not set(keys) <= set(controls_map):
+        raise ValueError('control adjudication names keys outside the controls map')
+    return set(keys)
 
 
 def verify_control_maps(controls, controls_map, director_map, keymap, control_seed):
@@ -639,7 +659,7 @@ def _load_json(path, label):
 
 
 def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_dir,
-          pool_dir=None, sample=CONFIRM_SAMPLE, seed=CONFIRM_SEED):
+          pool_dir=None, sample=CONFIRM_SAMPLE, seed=CONFIRM_SEED, adjudication=None):
     pool_dir = Path(pool_dir) if pool_dir is not None else Path(verdict_dir).parent / 'pool'
     pool_manifest = _load_json(pool_dir / 'manifest.json', 'pool manifest')
     pool_keymap = _load_json(pool_dir / 'keymap.json', 'pool keymap')
@@ -658,6 +678,10 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     }
     if pool_manifest.get('artifacts_sha256') != expected_artifacts:
         raise ValueError('pool artifacts do not match the pool manifest; rebuild the pool')
+    contested, adjudication_sha = set(), None
+    if adjudication is not None:
+        adjudication_sha = sha256_file(Path(adjudication))
+        contested = load_adjudication(adjudication, controls_map, expected_artifacts['controls_map'])
 
     corpus_path = ROOT / 'data/corpus/requests.jsonl'
     raw_path = ROOT / 'data/teacher/roihu_full_raw_samples.jsonl'
@@ -692,7 +716,7 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     verdicts = load_verdicts(verdict_dir, pool_batches, keymap=keymap,
                              controls=controls_map,
                              require_keys=set(keymap) | set(controls_map),
-                             case_judges=pass1_judges)
+                             case_judges=pass1_judges, contested=contested)
     selected = selected_items(keymap, verdicts, raw, v3_requests, effective_command)
     expected_batches, picked = expected_confirm_batches(selected, sample, seed,
                                                         CONFIRM_BATCH_SIZE)
@@ -734,6 +758,7 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         'quarantine_ids': sha256_file(quarantine_paths['quarantine_ids']),
         'roihu_full_quarantine_ids': sha256_file(
             quarantine_paths['roihu_full_quarantine_ids']),
+        'control_adjudication': adjudication_sha,
     }
     if confirm_manifest.get('inputs_sha256') != expected_inputs:
         raise ValueError('confirm manifest is bound to different inputs; '
@@ -893,6 +918,8 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
                 'actions': actions, 'inputs_sha256': inputs, 'outputs_sha256': outputs,
                 'train_sha256': outputs['train'],
                 'judge_sessions': judge_sessions,
+                'control_adjudication': {'sha256': adjudication_sha,
+                                         'contested_keys': sorted(contested)},
                 'eval_leakage_review': leaks,
                 'eval_leakage_review_count': len(leaks)}
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
@@ -900,10 +927,18 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 6:
-        raise SystemExit('usage: build_verified_dataset.py <keymap.json> <verdict dir> '
-                         '<confirm batches dir> <confirm-verdicts dir> <out dir>')
-    keymap_path = Path(sys.argv[1])
-    keymap = json.loads(keymap_path.read_text())
-    print(json.dumps(build(keymap, sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5],
-                           pool_dir=keymap_path.parent), indent=2))
+    parser = argparse.ArgumentParser(
+        description='Build the verified v4 dataset from pass-1 and confirm verdicts.')
+    parser.add_argument('keymap', type=Path)
+    parser.add_argument('verdict_dir', type=Path)
+    parser.add_argument('confirm_batches', type=Path)
+    parser.add_argument('confirm_verdicts', type=Path)
+    parser.add_argument('out_dir', type=Path)
+    parser.add_argument('--adjudication', type=Path, default=None,
+                        help='control adjudication JSON; contested controls are not gated')
+    args = parser.parse_args()
+    keymap = json.loads(args.keymap.read_text())
+    print(json.dumps(build(keymap, args.verdict_dir, args.confirm_batches,
+                           args.confirm_verdicts, args.out_dir,
+                           pool_dir=args.keymap.parent,
+                           adjudication=args.adjudication), indent=2))
