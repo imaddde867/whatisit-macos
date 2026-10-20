@@ -8,6 +8,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+from whatisit_macos import maclint
 
 from whatisit_macos import local_recovery
 from whatisit_macos import local_recovery_worker
@@ -70,7 +71,8 @@ class LocalRecoveryTests(unittest.TestCase):
                 self.assertEqual(answer['status'], 'unsupported')
                 self.assertIsNone(answer['command'])
 
-    def run_worker(self, *, mode='server', findings=None, command='find . -type f', request='list files'):
+    def run_worker(self, *, mode='server', findings=None, command='find . -type f', request='list files',
+                   path='/tmp/example', harness='lint', host_checks=False):
         with tempfile.TemporaryDirectory() as directory:
             model = os.path.join(directory, 'model.gguf')
             server = os.path.join(directory, 'llama-server')
@@ -99,10 +101,43 @@ class LocalRecoveryTests(unittest.TestCase):
             package.config, package.engine, package.safety = config, engine, safety
             with patch.dict(sys.modules, {'whatisit': package, 'whatisit.config': config,
                                           'whatisit.engine': engine, 'whatisit.safety': safety}), \
-                    patch.dict(os.environ, {'WHATISIT_LLAMA_SERVER': server}, clear=True):
+                    patch.dict(os.environ, {'WHATISIT_LLAMA_SERVER': server}, clear=True), \
+                    patch.object(maclint.shutil, 'which', side_effect=lambda command: command), \
+                    patch.object(maclint, '_man_text', side_effect=maclint._man_text if host_checks else lambda command: ''):
                 answer = local_recovery_worker.suggest(
-                    {'request': request, 'path': '/tmp/example'})
+                    {'request': request, 'path': path}, harness=harness)
         return answer, calls
+
+    def test_worker_rejects_invalid_explicit_path_before_generation(self):
+        for path in ('', '  ', '/tmp/a\nnext', '/tmp/a\x00', '/tmp/a\t', '/tmp/a\x7f', '/tmp/a\x85'):
+            with self.subTest(path=path):
+                answer, calls = self.run_worker(path=path)
+                self.assertEqual(answer['status'], 'unsupported')
+                self.assertEqual(calls, [])
+
+    def test_worker_structural_guards_with_no_scanner_findings(self):
+        for command, request in (
+                ('ls;rm notes.txt', 'list files'),
+                ('rm /wrong/notes.txt', 'delete /right/notes.txt'),
+                ('/bin/rm notes.txt', 'list files'),
+                ("sh -c 'rm notes.txt'", 'delete notes.txt')):
+            with self.subTest(command=command):
+                answer, _ = self.run_worker(command=command, request=request, path=None)
+                self.assertEqual(answer['status'], 'unsupported')
+
+    def test_worker_explicit_path_authorizes_only_its_target(self):
+        for command, status in (('rm /tmp/notes.txt', 'suggestion'),
+                                ('rm /elsewhere/notes.txt', 'unsupported')):
+            with self.subTest(command=command):
+                answer, _ = self.run_worker(command=command, request='delete this file',
+                                            path='/tmp/notes.txt')
+                self.assertEqual(answer['status'], status)
+
+    def test_worker_preserves_quoted_separator_and_model_ablation(self):
+        answer, _ = self.run_worker(command="printf '%s' 'a;b'", path=None)
+        self.assertEqual(answer['status'], 'suggestion')
+        answer, _ = self.run_worker(command='ls;rm notes.txt', harness='model')
+        self.assertEqual(answer['status'], 'suggestion')
 
     def test_worker_reuses_upstream_server_and_reports_cautions(self):
         answer, calls = self.run_worker(findings=[('CAUTION', 'uses sudo')])
@@ -134,7 +169,7 @@ class LocalRecoveryTests(unittest.TestCase):
 
     @unittest.skipUnless(sys.platform == 'darwin', 'lint reads this Mac\'s man pages')
     def test_worker_rejects_gnu_only_output(self):
-        answer, _ = self.run_worker(command='du -x --max-depth=1 | sort -n')
+        answer, _ = self.run_worker(command='du -x --max-depth=1 | sort -n', host_checks=True)
         self.assertEqual(answer['status'], 'unsupported')
         self.assertIsNone(answer['command'])
         self.assertIn('--max-depth', answer['reason'])

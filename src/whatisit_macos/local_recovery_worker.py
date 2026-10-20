@@ -18,7 +18,8 @@ def suggest(payload: object, harness: str = 'lint') -> dict:
             any(char in request for char in '\x00\r\n')):
         return _unsupported('Request must contain 1–2000 characters.')
     path = payload['path']
-    if path is not None and (not isinstance(path, str) or len(path) > 8192):
+    if path is not None and (not isinstance(path, str) or not path.strip() or len(path) > 8192 or
+                             any(ord(char) < 32 or 127 <= ord(char) < 160 for char in path)):
         return _unsupported('Invalid explicit inputs.')
     try:
         from whatisit import config, engine, safety
@@ -70,18 +71,16 @@ def suggest(payload: object, harness: str = 'lint') -> dict:
     command = commands[0]
     if len(command) > 4096 or any(char in command for char in '\x00\r\n'):
         return _unsupported('Local generation returned an invalid command.')
-    findings = safety.check(command)
-    if any(severity == 'DANGER' for severity, _ in findings):
-        return _unsupported('Local generation returned a command flagged as dangerous.')
-    if harness != 'model':
-        from whatisit_macos.maclint import problems, unrequested_deletion
-        issues = problems(command) + unrequested_deletion(command, request)
-        # PLACEHOLDER_HINT only: upstream's <...> pattern also matches redirections like `sort <a >b`.
-        issues += [f'{m.group(0)!r} is a placeholder, not something you named'
-                   for m in safety.PLACEHOLDER_HINT.finditer(command)
-                   if m.group(0).casefold() not in request.casefold()]
+    if harness == 'model':
+        findings = safety.check(command)
+        if any(severity == 'DANGER' for severity, _ in findings):
+            return _unsupported('Local generation returned a command flagged as dangerous.')
+    else:
+        from whatisit_macos.maclint import validation_issues
+        issues = validation_issues(command, request, path=path, safety=safety)
         if issues:
             return _unsupported('Generated command is not valid on macOS: ' + '; '.join(issues[:3]))
+        findings = safety.check(command)
     notes = ['Generated locally; review before running.']
     notes.extend(f'Review: {reason}' for severity, reason in findings if severity == 'CAUTION')
     return {'status': 'suggestion', 'command': command, 'reason': '', 'notes': notes,
