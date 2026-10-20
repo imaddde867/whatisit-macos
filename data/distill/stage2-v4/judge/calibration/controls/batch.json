@@ -1,0 +1,135 @@
+{
+ "batch": "cal-controls",
+ "items": [
+  {
+   "case": "cc33c16decdf1",
+   "request": "list my running python processes",
+   "candidates": [
+    {
+     "key": "kc33c16decdf1",
+     "command": "lsof -p $(pgrep -d ' ' python)"
+    }
+   ]
+  },
+  {
+   "case": "cb1ee9d0f7685",
+   "request": "list my running python processes",
+   "candidates": [
+    {
+     "key": "kb1ee9d0f7685",
+     "command": "ps -axo comm= | grep python"
+    }
+   ]
+  },
+  {
+   "case": "c3888209f9d8d",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "candidates": [
+    {
+     "key": "k3888209f9d8d",
+     "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure"
+    }
+   ]
+  },
+  {
+   "case": "c5229bce577d5",
+   "request": "take a screenshot and save it as shot.png",
+   "candidates": [
+    {
+     "key": "k5229bce577d5",
+     "command": "screencapture -P shot.png"
+    }
+   ]
+  },
+  {
+   "case": "c473b8e22e090",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "candidates": [
+    {
+     "key": "k473b8e22e090",
+     "command": "find -type f -name '*.DS_Store' -exec rm {} +"
+    }
+   ]
+  },
+  {
+   "case": "cf0f3516eca55",
+   "request": "show me each unique line in names.txt and how many times it appears",
+   "candidates": [
+    {
+     "key": "kf0f3516eca55",
+     "command": "sort -u names.txt | uniq -c"
+    }
+   ]
+  },
+  {
+   "case": "c89de0398f504",
+   "request": "put all the jpgs in this folder into a new folder called photos",
+   "candidates": [
+    {
+     "key": "k89de0398f504",
+     "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;"
+    }
+   ]
+  },
+  {
+   "case": "c26d0007fb52f",
+   "request": "replace every foo with bar in notes.txt, save the change in the file",
+   "candidates": [
+    {
+     "key": "k26d0007fb52f",
+     "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt"
+    }
+   ]
+  },
+  {
+   "case": "cfadf81351405",
+   "request": "list apps in /Applications with chrome in the name",
+   "candidates": [
+    {
+     "key": "kfadf81351405",
+     "command": "find /Applications -type d -name '*Chrome*'"
+    }
+   ]
+  },
+  {
+   "case": "cd40ba8dcc386",
+   "request": "find the 10 biggest files inside Documents",
+   "candidates": [
+    {
+     "key": "kd40ba8dcc386",
+     "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10"
+    }
+   ]
+  },
+  {
+   "case": "c6c64f6b2af35",
+   "request": "top 5 processes by memory",
+   "candidates": [
+    {
+     "key": "k6c64f6b2af35",
+     "command": "ps -axo rss,comm | sort -nr | head -n 5"
+    }
+   ]
+  },
+  {
+   "case": "c4bba56587dcf",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "candidates": [
+    {
+     "key": "k4bba56587dcf",
+     "command": "vm_stat | awk 'NR==1{print $8}'"
+    }
+   ]
+  },
+  {
+   "case": "ce2daa749d4df",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "candidates": [
+    {
+     "key": "ke2daa749d4df",
+     "command": "getconf PAGESIZE"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "k26d0007fb52f": {
+  "batch": "b00",
+  "case": "cdaf707248c5b",
+  "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt",
+  "expected": "correct",
+  "origin_key": "ct0058",
+  "request": "replace every foo with bar in notes.txt, save the change in the file",
+  "source": "docs/eval-audit/items.json#x0224"
+ },
+ "k3888209f9d8d": {
+  "batch": "b02",
+  "case": "c174468a673aa",
+  "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure",
+  "expected": "correct",
+  "origin_key": "ct0055",
+  "request": "Test whether PID 1234 exists without sending it a real signal.",
+  "source": "docs/eval-audit/items.json#x0202"
+ },
+ "k473b8e22e090": {
+  "batch": "b02",
+  "case": "c51c5b723e08a",
+  "command": "find -type f -name '*.DS_Store' -exec rm {} +",
+  "expected": "incorrect",
+  "origin_key": "ct0014",
+  "request": "delete every .DS_Store file in this folder and everything under it",
+  "source": "docs/eval-audit/items.json#x0264"
+ },
+ "k4bba56587dcf": {
+  "batch": "b03",
+  "case": "ca1ebc89bac02",
+  "command": "vm_stat | awk 'NR==1{print $8}'",
+  "expected": "correct",
+  "origin_key": "ct0064",
+  "request": "How many bytes are in a virtual-memory page on this Mac?",
+  "source": "docs/eval-audit/items.json#x0540"
+ },
+ "k5229bce577d5": {
+  "batch": "b04",
+  "case": "cde18321a9a04",
+  "command": "screencapture -P shot.png",
+  "expected": "incorrect",
+  "origin_key": "ct0010",
+  "request": "take a screenshot and save it as shot.png",
+  "source": "docs/eval-audit/items.json#x0192"
+ },
+ "k6c64f6b2af35": {
+  "batch": "b04",
+  "case": "c4963304ef391",
+  "command": "ps -axo rss,comm | sort -nr | head -n 5",
+  "expected": "correct",
+  "origin_key": "ct0051",
+  "request": "top 5 processes by memory",
+  "source": "docs/eval-audit/items.json#x0167"
+ },
+ "k89de0398f504": {
+  "batch": "b03",
+  "case": "c2d9df7035bc5",
+  "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;",
+  "expected": "incorrect",
+  "origin_key": "ct0015",
+  "request": "put all the jpgs in this folder into a new folder called photos",
+  "source": "docs/eval-audit/items.json#x0146"
+ },
+ "kb1ee9d0f7685": {
+  "batch": "b00",
+  "case": "c878dbbe6e9ee",
+  "command": "ps -axo comm= | grep python",
+  "expected": "incorrect",
+  "origin_key": "ct0019",
+  "request": "list my running python processes",
+  "source": "docs/eval-audit/items.json#x0171"
+ },
+ "kc33c16decdf1": {
+  "batch": "b01",
+  "case": "cc1508f7ff753",
+  "command": "lsof -p $(pgrep -d ' ' python)",
+  "expected": "incorrect",
+  "origin_key": "ct0013",
+  "request": "list my running python processes",
+  "source": "docs/eval-audit/items.json#x0296"
+ },
+ "kd40ba8dcc386": {
+  "batch": "b03",
+  "case": "c02c1a081f22b",
+  "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10",
+  "expected": "incorrect",
+  "origin_key": "ct0040",
+  "request": "find the 10 biggest files inside Documents",
+  "source": "docs/eval-audit/items.json#x0403"
+ },
+ "ke2daa749d4df": {
+  "batch": "b01",
+  "case": "c4b86e2823b90",
+  "command": "getconf PAGESIZE",
+  "expected": "correct",
+  "origin_key": "ct0053",
+  "request": "How many bytes are in a virtual-memory page on this Mac?",
+  "source": "docs/eval-audit/items.json#x0541"
+ },
+ "kf0f3516eca55": {
+  "batch": "b00",
+  "case": "c1bff404f4e03",
+  "command": "sort -u names.txt | uniq -c",
+  "expected": "incorrect",
+  "origin_key": "ct0001",
+  "request": "show me each unique line in names.txt and how many times it appears",
+  "source": "docs/eval-audit/items.json#x0154"
+ },
+ "kfadf81351405": {
+  "batch": "b02",
+  "case": "cb924b915b118",
+  "command": "find /Applications -type d -name '*Chrome*'",
+  "expected": "incorrect",
+  "origin_key": "ct0007",
+  "request": "list apps in /Applications with chrome in the name",
+  "source": "docs/eval-audit/items.json#x0164"
+ }
+}
