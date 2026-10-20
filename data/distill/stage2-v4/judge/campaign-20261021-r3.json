@@ -2,7 +2,7 @@
  "revision": "20261021-r3",
  "issue": 36,
  "base_commit": null,
- "status": "pass1 in progress: b00-b05 accepted (b05 by the main-session judge); b06-b22 pending",
+ "status": "pass1 in progress: b00-b06 accepted (1,634 candidate verdicts); b07-b22 pending",
  "budget_stop": false,
  "failed_attempts": 2,
  "retry_budget": {
@@ -23,7 +23,8 @@
   "b02": "c1e0096ded28ed023e8298ba44b792516d88c3f7b7eb9dfe79f58e30d633f503",
   "b03": "403836bc32cd47284f550f6863bfd5610b8d511b30d0c706290427c0a0878887",
   "b04": "1eebcd7bc36168e4b6a1291bc25fef7f0a8a7913bf5bbdfded878d80636b0a56",
-  "b05": "9c9e08d487f4d85c062e5110b2bba18171475a42148458439fd95cd03400f568"
+  "b05": "9c9e08d487f4d85c062e5110b2bba18171475a42148458439fd95cd03400f568",
+  "b06": "be9cc1af813ef6df79f7c64fce53d03a3b9944a578590b9c0f92d8233ca425a1"
  },
  "attempts": [
   {
@@ -82,6 +83,20 @@
     "ct0022": "incorrect matched",
     "ct0024": "incorrect matched",
     "ct0057": "correct matched"
+   }
+  },
+  {
+   "attempt": 1,
+   "batch": "b06",
+   "judge": "dsh-main-20261022-b06-a1",
+   "status": "passed",
+   "keys": 228,
+   "controls": 3,
+   "verdict_sha256": "be9cc1af813ef6df79f7c64fce53d03a3b9944a578590b9c0f92d8233ca425a1",
+   "controls_detail": {
+    "ct0054": "correct matched",
+    "ct0002": "incorrect matched",
+    "ct0018": "contested; verdict required, not compared"
    }
   }
  ],
