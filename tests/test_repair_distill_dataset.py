@@ -35,6 +35,13 @@ class RepairTests(unittest.TestCase):
                      'original_target': 'mdls sample.pdf', 'request': 'Read metadata for this file.',
                      'path': 'sample.pdf', 'reason': 'Move named operand to explicit path.'}
 
+    def test_structured_path_deletion_uses_shared_validation(self):
+        repair.validate_command('r1', 'rm notes.txt', 'Delete this file.', 'notes.txt')
+        with self.assertRaises(ValueError):
+            repair.validate_command('r1', 'rm notes.txt extra.txt', 'Delete this file.', 'notes.txt')
+        with self.assertRaises(ValueError):
+            repair.validate_command('r1', 'rm notes.txt', 'Delete this file.\nExplicit inputs: {"path": "notes.txt"}')
+
     def test_path_repair_preserves_target_and_records_source(self):
         rows, requests, audit = repair.repair([self.request], [self.label], [self.raw], [self.edit])
         self.assertEqual(rows[0]['messages'][1]['content'], MACOS_PREFIX +

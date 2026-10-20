@@ -53,6 +53,14 @@ class BuildTests(unittest.TestCase):
         kwargs.setdefault('seed', 13)
         return self.campaign.build_verified(self.root / out, **kwargs)
 
+    def test_policy_change_requires_regeneration_before_build(self):
+        path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(path.read_text())
+        manifest['validation'] = {'old': 'policy'}
+        path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'validation policy or environment changed'):
+            self.build()
+
     def test_happy_path_keeps_drops_and_adds_by_verdict(self):
         manifest = self.build()
         rows = builder.read_jsonl(self.root / 'out/train.jsonl')
