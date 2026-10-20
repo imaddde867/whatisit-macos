@@ -13,7 +13,10 @@ hashes, counts and the pre-registered pass bar is [manifest.json](manifest.json)
 | Set | Content | Why it is legitimate |
 |---|---|---|
 | `controls/` | The 13 controls injected into the accepted `b00`–`b04` batches (8 expected-incorrect, 5 expected-correct), re-blinded as one batch of 13 cases | Every control is injected once, so these are **spent**: no remaining batch will ever see them. They have the live gate's difficulty and polarity mix. |
-| `agreement/` | 40 cases (117 candidates) sampled from accepted `b00`–`b04` verdicts: 4 hard cases (≥1 accepted-incorrect) and 4 positive cases (all accepted-correct) per batch | Tests that the replacement judge behaves like the judge whose labels it continues. These verdicts are already decided; no remaining campaign item is used. |
+| `agreement/` | 40 cases (112 candidates) sampled from accepted `b00`–`b04` verdicts: 4 hard cases (≥1 accepted-incorrect) and 4 positive cases (all accepted-correct) per batch | Tests that the replacement judge behaves like the judge whose labels it continues. These verdicts are already decided; no remaining campaign item is used. |
+
+Candidates the accepted judge marked `unsure` carry no label and are excluded from the
+agreement sample; they are neither agreement nor disagreement.
 
 Blindness: every case and key id is re-hashed with a fixed salt, so the batch files
 carry only `{case, request, candidates:[{key, command}]}` — no ids, labels, provenance
@@ -24,7 +27,7 @@ the accepted verdicts.
 ## Pre-registered pass bar (frozen)
 
 - **Controls: 13/13.** Any mismatch, including `unsure`, fails.
-- **Agreement: ≥ 106 of 117** accepted verdicts reproduced.
+- **Agreement: ≥ 101 of 112** accepted verdicts reproduced.
 - **False accepts: ≤ 2 of the 35** accepted-incorrect verdicts judged `correct`.
 - **Unsure: ≤ 2** across the whole set.
 

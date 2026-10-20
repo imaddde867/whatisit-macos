@@ -94,12 +94,12 @@
    ]
   },
   {
-   "case": "c1100ba9742c1",
-   "request": "Please locate files inside metrics/ with more than a million lines.",
+   "case": "cd8b92d3d0409",
+   "request": "show acl and bsd flags on ~/Library/Containers/com.example.MyApp",
    "candidates": [
     {
-     "key": "k5ea537043495",
-     "command": "find metrics/ -type f -exec awk 'FNR > 1000000 { print FILENAME; exit }' {} \\;"
+     "key": "k26fe8e4cd089",
+     "command": "ls -ldeO ~/Library/Containers/com.example.MyApp"
     }
    ]
   },
@@ -129,10 +129,6 @@
    "case": "c9a7f8c57e84c",
    "request": "Spotlight-find video clips with codec H.264 under ~/Movies/test-set.",
    "candidates": [
-    {
-     "key": "k1fdc79e364e8",
-     "command": "mdfind -onlyin ~/Movies/test-set 'kMDItemCodecs == \"H.264\" && kMDItemContentTypeTree == public.movie'"
-    },
     {
      "key": "k1d9afda44015",
      "command": "mdfind -onlyin ~/Movies/test-set 'kMDItemCodecs == \"H.264\" && kMDItemContentType == \"public.movie\"'"
@@ -170,28 +166,28 @@
    ]
   },
   {
-   "case": "c945ec9a9453c",
-   "request": "which interfaces have ipv6 link local addreses",
+   "case": "c5dd94cfdfd7a",
+   "request": "List TCP connections in CLOSE_WAIT state.",
    "candidates": [
     {
-     "key": "k138306b5011b",
-     "command": "ifconfig -a | awk '/^[a-z0-9]+:/ {iface=$1} /inet6 fe80/ {print iface}' | sort -u"
+     "key": "k45ea26d5efeb",
+     "command": "netstat -an -p tcp | awk '$6 == \"CLOSE_WAIT\"'"
     },
     {
-     "key": "ka222f8ca8679",
-     "command": "ifconfig -a | awk '/^[a-zA-Z0-9]+:/ {iface=$1; sub(/:$/, \"\", iface)} /inet6 fe80:/ {print iface}' | sort -u"
+     "key": "k2b48e2a17d15",
+     "command": "netstat -an -p tcp | grep CLOSE_WAIT"
     },
     {
-     "key": "kb00c03963c71",
-     "command": "ifconfig -a | awk '/^[a-z0-9]+:/ {iface=$1; sub(/:$/,\"\",iface)} /inet6 fe80/ {print iface}' | sort -u"
+     "key": "k97e4199a6393",
+     "command": "netstat -an | grep '^tcp' | grep CLOSE_WAIT"
     },
     {
-     "key": "k97455a3294a1",
-     "command": "ifconfig -a | awk 'BEGIN{iface=\"\"} /^[^[:space:]]/{iface=$1; sub(/:$/,\"\",iface)} /^[[:space:]]+inet6 fe80:/{if(!seen[iface]++) print iface}'"
+     "key": "kfd75c96a426f",
+     "command": "lsof -nP -iTCP -sTCP:CLOSE_WAIT"
     },
     {
-     "key": "kf58b1fa00ee9",
-     "command": "ifconfig -a | awk '/^[a-z][a-z0-9]*:/ {iface=$1; sub(/:$/, \"\", iface)} /inet6 fe80/ {print iface}' | sort -u"
+     "key": "k0756216d7644",
+     "command": "lsof -iTCP -sTCP:CLOSE_WAIT"
     }
    ]
   },
@@ -286,22 +282,22 @@
    ]
   },
   {
-   "case": "c882d1e62609b",
-   "request": "Can you show the last commit in project/?",
+   "case": "c817dd935a52b",
+   "request": "show the file type of report.pdf",
    "candidates": [
     {
-     "key": "kbeb9eda4ee94",
-     "command": "git -C project log -1"
+     "key": "kc09b187e1b63",
+     "command": "file report.pdf"
     }
    ]
   },
   {
-   "case": "c380180732cf2",
-   "request": "list the shared libraries referenced by bin/demo without executing it",
+   "case": "cd134e7948af5",
+   "request": "Trace DNS delegation for example.org.",
    "candidates": [
     {
-     "key": "kfc905202b523",
-     "command": "otool -L bin/demo"
+     "key": "k3838942ebd81",
+     "command": "dig +trace example.org"
     }
    ]
   },

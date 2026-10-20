@@ -1,24 +1,24 @@
 {
  "artifacts_sha256": {
-  "agreement/batches/a0.json": "4411669e4261206594c057ab83eabb90b3978f7e11fd8dd34feda1a010c30dc6",
-  "agreement/batches/a1.json": "882d9bf36e5ea7bbc77466f0a7cfbddc47c7c96546ab4f8611e4b2a07edcaa1e",
-  "agreement/key.json": "69c6631ee3d3d80516b544873eb6fedbbae22841c4e88f76fe2cc312ca0abbb8",
+  "agreement/batches/a0.json": "ba49a128a732296d3a0e1b2d5e02994f7420100132ee914902f247e6cff67f8f",
+  "agreement/batches/a1.json": "34ec9cb0f7c3e9d2705e97ca3fe0660c77b7d95b89330ad0ac88c7e23356187b",
+  "agreement/key.json": "8246ca34498d9ae3ffa9390946a160b9347f48ba3393ee153310f624d7a07d9e",
   "controls/batch.json": "4b52a906ef17588f6b4c193fd883f9e010702642653cb9f20ee9b8b889f1b9b2",
   "controls/key.json": "497f5e47b5530c894e9b6e49c5af185b8495aeae9b8dc87c64e2deae3288f705"
  },
  "blindness": "Fresh opaque case/key ids; expected labels exist only in key.json; the judge never sees the key files, controls.jsonl or controls-map.json.",
  "counts": {
   "agreement": {
-   "accepted_correct": 81,
+   "accepted_correct": 77,
    "accepted_incorrect": 35,
    "by_source_batch": {
     "b00": 16,
-    "b01": 27,
-    "b02": 29,
+    "b01": 23,
+    "b02": 28,
     "b03": 20,
     "b04": 25
    },
-   "candidates": 117,
+   "candidates": 112,
    "cases": 40
   },
   "controls": {
@@ -32,8 +32,8 @@
   "The 13 spent controls were answered by the accepted judge; a new judge passing them is necessary, not sufficient."
  ],
  "pass_bar": {
-  "agreement_required": 106,
-  "agreement_total": 117,
+  "agreement_required": 101,
+  "agreement_total": 112,
   "controls": "every control verdict must equal its expected value; unsure counts as failure",
   "false_accept_max": 2,
   "false_accept_total": 35,

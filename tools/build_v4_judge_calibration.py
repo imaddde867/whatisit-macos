@@ -112,14 +112,22 @@ def control_batch(spent):
 
 
 def sample_agreement(batches, verdicts, controls_map, seed, per_batch):
-    """Stratified sample of accepted cases: hard (>=1 incorrect) and positive (all correct)."""
+    """Stratified sample of accepted cases: hard (>=1 incorrect) and positive (all correct).
+
+    Candidates the accepted judge marked unsure carry no label, so they are excluded
+    from the sample instead of being counted as agreement or disagreement.
+    """
     hard, positive = [], []
     for name, batch in sorted(batches.items()):
         for item in batch['items']:
             if any(candidate['key'] in controls_map for candidate in item['candidates']):
                 continue
-            outcomes = [verdicts[candidate['key']] for candidate in item['candidates']]
-            entry = (name, item, outcomes)
+            pairs = [(candidate, verdicts[candidate['key']]) for candidate in item['candidates']
+                     if verdicts[candidate['key']] in ('correct', 'incorrect')]
+            if not pairs:
+                continue
+            outcomes = [outcome for _, outcome in pairs]
+            entry = (name, item, pairs)
             if 'incorrect' in outcomes:
                 hard.append(entry)
             elif all(outcome == 'correct' for outcome in outcomes):
@@ -152,9 +160,9 @@ def agreement_batches(chosen):
         split['a1' if index % 2 == 0 else 'a0'].append(('positive', entry))
     for name, entries in split.items():
         items = []
-        for _, (source, item, outcomes) in sorted(entries, key=lambda pair: (pair[1][0], pair[1][1]['case'])):
+        for _, (source, item, pairs) in sorted(entries, key=lambda pair: (pair[1][0], pair[1][1]['case'])):
             candidates = []
-            for candidate, outcome in zip(item['candidates'], outcomes):
+            for candidate, outcome in pairs:
                 key = blind('k', candidate['key'])
                 candidates.append({'key': key, 'command': candidate['command']})
                 batch_keys[name].add(key)

@@ -120,28 +120,12 @@
    ]
   },
   {
-   "case": "c0ce946446728",
-   "request": "Calculate the population standard deviation of values in observations.txt.",
+   "case": "cd7209dc72ec8",
+   "request": "Create a named pipe called event.pipe.",
    "candidates": [
     {
-     "key": "k886f06641ac6",
-     "command": "awk '{for(i=1;i<=NF;i++){a[n++]=$i; s+=$i}} END{if(!n){print \"nan\"; exit} m=s/n; for(i=0;i<n;i++){d=a[i]-m; ss+=d*d} print sqrt(ss/n)}' observations.txt"
-    },
-    {
-     "key": "ka32b8d381d85",
-     "command": "awk '{for(i=1;i<=NF;i++){n++; sum+=$i; sumsq+=$i*$i}} END{if(n){v=sumsq/n-(sum/n)^2; if(v<0)v=0; print sqrt(v)}}' observations.txt"
-    },
-    {
-     "key": "k7b2732b6589b",
-     "command": "awk -v OFMT='%.6f' '{for(i=1;i<=NF;i++){x[n++]=$i; s+=$i}} END {if(n){m=s/n; ss=0; for(i=0;i<n;i++){d=x[i]-m; ss+=d*d}; print sqrt(ss/n)} else print 0}' observations.txt"
-    },
-    {
-     "key": "k467cd41662d4",
-     "command": "awk '{for(i=1;i<=NF;i++){n++; s+=$i; ss+=$i*$i}} END {if(n==0){print 0; exit} v=ss/n-(s/n)^2; if(v<0)v=0; print sqrt(v)}' observations.txt"
-    },
-    {
-     "key": "k677016340fcb",
-     "command": "awk '{for(i=1;i<=NF;i++){x=$i; n++; s+=x; ss+=x*x}} END {if(n>0){m=s/n; print sqrt(ss/n-m*m)} else print 0}' observations.txt"
+     "key": "kc46412bc0fdb",
+     "command": "mkfifo event.pipe"
     }
    ]
   },
@@ -196,24 +180,24 @@
    ]
   },
   {
-   "case": "ceb7f60d71321",
-   "request": "Could you show the uncompressed size of project.zip?",
+   "case": "c2afaf65667fa",
+   "request": "Display each top-level entry in /Volumes/WORK with its usage measured in KiB.",
    "candidates": [
     {
-     "key": "kbdb1ae48cd81",
-     "command": "unzip -l project.zip | awk 'NF >= 4 && $1 ~ /^[0-9]+$/ {s += $1} END {if (NR == 0) exit 1; print s+0}'"
+     "key": "k0c6fa177cd35",
+     "command": "find /Volumes/WORK -mindepth 1 -maxdepth 1 -exec du -k -s {} +"
     },
     {
-     "key": "k8fa44dd13309",
-     "command": "unzip -l project.zip | awk 'END {print $1+0}'"
+     "key": "k40717d29e17f",
+     "command": "find /Volumes/WORK -mindepth 1 -maxdepth 1 -exec du -sk {} +"
     },
     {
-     "key": "k66f25bcfecd3",
-     "command": "unzip -l project.zip | awk 'NF == 3 && $1 ~ /^[0-9]+$/ && $2 ~ /^[0-9]+$/ && $3 ~ /^files?$/ {print $1; exit}'"
+     "key": "k53afd1494bc0",
+     "command": "du -k -d 1 /Volumes/WORK | sed '$d'"
     },
     {
-     "key": "ka2c1405cd032",
-     "command": "unzip -l project.zip | awk 'END {print $1}'"
+     "key": "ka4f7da98d600",
+     "command": "du -k -d 1 /Volumes/WORK | awk '$2 != \"/Volumes/WORK\"'"
     }
    ]
   },
@@ -300,34 +284,34 @@
    ]
   },
   {
-   "case": "cd134e7948af5",
-   "request": "Trace DNS delegation for example.org.",
+   "case": "c3f9c148368e0",
+   "request": "Inspect encryption users on APFS volume disk3s1.",
    "candidates": [
     {
-     "key": "k3838942ebd81",
-     "command": "dig +trace example.org"
+     "key": "k093f64d72682",
+     "command": "diskutil apfs listUsers disk3s1"
     }
    ]
   },
   {
-   "case": "c3a78cddaa01d",
-   "request": "I want indexed video files under clip-tests/ whose frame rate is above 30.",
+   "case": "c9567d8ccd8c4",
+   "request": "would you find out whether /System/Applications/Notes.app has an ad-hoc signature",
    "candidates": [
     {
-     "key": "k4fa953864021",
-     "command": "mdfind -onlyin clip-tests/ 'kMDItemContentTypeTree == public.movie && kMDItemVideoFrameRate > 30'"
+     "key": "kce2e48c823d2",
+     "command": "codesign --display --verbose=4 /System/Applications/Notes.app 2>&1 | grep -qE 'flags=.*adhoc|Signature=adhoc' && echo ad-hoc || echo not-ad-hoc"
     },
     {
-     "key": "kb14d80d9e0b4",
-     "command": "mdfind -onlyin \"$PWD/clip-tests\" 'kMDItemVideoFrameRate > 30'"
+     "key": "k3a6f839c97b8",
+     "command": "codesign -dvvv /System/Applications/Notes.app 2>&1 | grep -q 'Signature=adhoc' && echo ad-hoc || echo not-ad-hoc"
     },
     {
-     "key": "k385728ae70c5",
-     "command": "mdfind -onlyin \"$PWD/clip-tests\" 'kMDItemContentTypeTree == public.movie && kMDItemVideoFrameRate > 30'"
+     "key": "k952cb46e08ec",
+     "command": "codesign -dv --verbose=4 /System/Applications/Notes.app 2>&1 | grep -q 'adhoc' && echo 'ad-hoc' || echo 'not ad-hoc'"
     },
     {
-     "key": "k6fb396088aba",
-     "command": "mdfind -onlyin clip-tests/ 'kMDItemContentTypeTree == \"public.movie\" && kMDItemVideoFrameRate > 30'"
+     "key": "kdd2e4a6f32c2",
+     "command": "codesign -dv --verbose=4 /System/Applications/Notes.app 2>&1 | grep -qi 'Signature=adhoc' && echo yes || echo no"
     }
    ]
   },

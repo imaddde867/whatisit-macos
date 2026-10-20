@@ -95,6 +95,9 @@ def score(calibration_dir, verdict_dir, report_path):
             mismatches.append({'key': key, 'origin_key': control.get('origin_key'),
                                'expected': control['expected'], 'observed': verdicts[key],
                                'request': control['request'], 'command': control['command']})
+    for key, entry in sorted(agreement_keys.items()):
+        if entry['accepted'] not in ('correct', 'incorrect'):
+            raise SystemExit(f'{key}: agreement key carries no accepted label')
     agree, false_accepts, false_rejects, unsure = 0, [], [], []
     for key, entry in sorted(agreement_keys.items()):
         observed = verdicts[key]

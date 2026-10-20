@@ -95,6 +95,23 @@ class CalibrationBuildTests(unittest.TestCase):
         self.assertNotIn(CONTROL_CASE, first)
         self.assertNotIn(CONTROL_KEY, first)
 
+    def test_excludes_accepted_unsure_candidates(self):
+        path = self.verdicts / 'b00.json'
+        data = json.loads(path.read_text())
+        for case in data['cases']:
+            for verdict in case['verdicts']:
+                if verdict['key'] == 'k000000000003':
+                    verdict['verdict'] = 'unsure'
+                    verdict['category'] = None
+        path.write_text(json.dumps(data))
+        record = self.build()
+        key = json.loads((self.out / 'agreement' / 'key.json').read_text())
+        accepted = {entry['accepted'] for entry in key.values()}
+        self.assertTrue(accepted <= {'correct', 'incorrect'}, accepted)
+        self.assertEqual(record['counts']['agreement']['candidates'], len(key))
+        text = ''.join(path.read_text() for path in (self.out / 'agreement' / 'batches').glob('*.json'))
+        self.assertNotIn('df -h', text)
+
     def test_refuses_control_mismatch(self):
         path = self.verdicts / 'b00.json'
         data = json.loads(path.read_text())
