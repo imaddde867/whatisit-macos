@@ -1,0 +1,1421 @@
+{
+  "batch": "b16",
+  "items": [
+    {
+      "case": "r01677",
+      "request": "remove just com.example.note attr from folder drafts/ pls",
+      "candidates": [
+        {
+          "key": "x3794",
+          "command": "xattr -d com.example.note drafts/"
+        }
+      ]
+    },
+    {
+      "case": "r01678",
+      "request": "Show the number of efficiency cores exposed by Apple Silicon.",
+      "candidates": [
+        {
+          "key": "x3795",
+          "command": "sysctl -n hw.perflevel1.physicalcpu"
+        }
+      ]
+    },
+    {
+      "case": "r01679",
+      "request": "find files named .env.sample under workspace/ but skip .git directories",
+      "candidates": [
+        {
+          "key": "x3796",
+          "command": "find workspace/ -name .git -prune -o -type f -name .env.sample -print"
+        }
+      ]
+    },
+    {
+      "case": "r01680",
+      "request": "Read the text-encoding metadata for every .txt file directly inside ~/Library/Logs/MyApp.",
+      "candidates": [
+        {
+          "key": "x3797",
+          "command": "find ~/Library/Logs/MyApp -maxdepth 1 -type f -name '*.txt' -exec file --mime-encoding {} +"
+        },
+        {
+          "key": "x3798",
+          "command": "find ~/Library/Logs/MyApp -maxdepth 1 -type f -name '*.txt' -exec mdls -name kMDItemTextEncoding {} ';'"
+        },
+        {
+          "key": "x3799",
+          "command": "find ~/Library/Logs/MyApp -maxdepth 1 -type f -name '*.txt' -exec mdls -name kMDItemTextEncoding {} +"
+        },
+        {
+          "key": "x3800",
+          "command": "find ~/Library/Logs/MyApp -maxdepth 1 -type f -name '*.txt' -exec sh -c 'for f; do printf \"%s\\n\" \"$f\"; mdls -name kMDItemTextEncoding \"$f\"; done' _ {} +"
+        }
+      ]
+    },
+    {
+      "case": "r01681",
+      "request": "I want the UUIDs and names of snapshots on APFS volume disk3s1.",
+      "candidates": [
+        {
+          "key": "x3801",
+          "command": "LC_ALL=C diskutil apfs listSnapshots disk3s1 | awk '/Snapshot Name:/ {sub(/^[[:space:]]*Snapshot Name:[[:space:]]*/, \"\"); name=$0} /Snapshot UUID:/ {sub(/^[[:space:]]*Snapshot UUID:[[:space:]]*/, \"\"); uuid=$0} uuid != \"\" && name != \"\" {print uuid, name; uuid=\"\"; name=\"\"}'"
+        },
+        {
+          "key": "x3802",
+          "command": "diskutil apfs listSnapshots disk3s1 | awk '/Snapshot Name:/ {name=$NF} /Snapshot UUID:/ {print $NF, name}'"
+        },
+        {
+          "key": "x3803",
+          "command": "diskutil apfs listSnapshots disk3s1 | awk '/[+]-- [0-9A-Fa-f]+-[0-9A-Fa-f-]+/ && !/:/ {uuid=$NF} /Name:/ {sub(/^.*Name: /, \"\"); print uuid, $0}'"
+        },
+        {
+          "key": "x3804",
+          "command": "diskutil apfs listSnapshots disk3s1 | awk -F'UUID = | Name = ' '/UUID = .* Name = / {print $2, $3}'"
+        },
+        {
+          "key": "x3805",
+          "command": "diskutil apfs listSnapshots disk3s1 | grep -E \"Snapshot UUID|Name:\""
+        }
+      ]
+    },
+    {
+      "case": "r01682",
+      "request": "Show me the idle system-sleep timeout while on the charger, without modifying it.",
+      "candidates": [
+        {
+          "key": "x3806",
+          "command": "pmset -g custom | awk '/AC Power/{f=1} f && /^[[:space:]]*sleep[[:space:]]/{print $2; exit}'"
+        },
+        {
+          "key": "x3807",
+          "command": "pmset -g custom | awk '/AC Power:/{f=1} f && /System Sleep Timer/{print $NF; exit}'"
+        },
+        {
+          "key": "x3808",
+          "command": "pmset -g custom | awk '/^AC Power:/{a=1; next} /^[^ ].*:$/{a=0} a && $1==\"sleep\"{print $2}'"
+        },
+        {
+          "key": "x3809",
+          "command": "pmset -g custom | awk '/^AC Power:/{f=1; next} /^[A-Z]/{f=0} f && $1~/^sleep$/{print $2; exit}'"
+        },
+        {
+          "key": "x3810",
+          "command": "pmset -g custom | awk '/^AC Power:/{f=1; next} f && /^[[:space:]]*sleep[[:space:]]/{print $2; exit}'"
+        }
+      ]
+    },
+    {
+      "case": "r01683",
+      "request": "show which files are ignored in project/",
+      "candidates": [
+        {
+          "key": "x3811",
+          "command": "git ls-files --others --ignored --exclude-standard project/"
+        }
+      ]
+    },
+    {
+      "case": "r01684",
+      "request": "show software report in json no hardware details",
+      "candidates": [
+        {
+          "key": "x3812",
+          "command": "system_profiler SPSoftwareDataType -json"
+        }
+      ]
+    },
+    {
+      "case": "r01685",
+      "request": "Can you pad image.png to a 1200 by 900 pixel canvas with white borders and save padded.png?",
+      "candidates": [
+        {
+          "key": "x3813",
+          "command": "sips --padColor 0xFFFFFF --padToHeightWidth 900 1200 image.png --out padded.png"
+        },
+        {
+          "key": "x3814",
+          "command": "sips --padToHeightWidth 1200 900 --padColor FFFFFF image.png -o padded.png"
+        },
+        {
+          "key": "x3815",
+          "command": "sips --padToHeightWidth 900 1200 --padColor FFFFFF image.png --out padded.png"
+        },
+        {
+          "key": "x3816",
+          "command": "sips -s format png --padToHeightWidth 900 1200 --padColor FFFFFF image.png --out padded.png"
+        },
+        {
+          "key": "x3817",
+          "command": "sips image.png --padToHeightWidth 900 1200 --padColor FFFFFF --out padded.png"
+        }
+      ]
+    },
+    {
+      "case": "r01686",
+      "request": "Show the IPv6 scope identifiers assigned to interface en0.",
+      "candidates": [
+        {
+          "key": "x3818",
+          "command": "ifconfig en0 | grep 'inet6 .*%en0'"
+        },
+        {
+          "key": "x3819",
+          "command": "ifconfig en0 | grep 'inet6'"
+        },
+        {
+          "key": "x3820",
+          "command": "ifconfig en0 | grep 'inet6.*scopeid'"
+        },
+        {
+          "key": "x3821",
+          "command": "ifconfig en0 | grep -oE 'scopeid 0x[0-9a-f]+'"
+        },
+        {
+          "key": "x3822",
+          "command": "ifconfig en0 | grep inet6 | grep -oE '%[A-Za-z0-9]+|scopeid [0-9a-fx]+' | sort -u"
+        }
+      ]
+    },
+    {
+      "case": "r01687",
+      "request": "resize image.png to half its original width and height and write half-size.png",
+      "candidates": [
+        {
+          "key": "x3823",
+          "command": "W=$(sips -g pixelWidth image.png | awk '/pixelWidth/{print $2}'); H=$(sips -g pixelHeight image.png | awk '/pixelHeight/{print $2}'); sips -z $((H/2)) $((W/2)) image.png --out half-size.png"
+        },
+        {
+          "key": "x3824",
+          "command": "set -- $(sips -g pixelWidth -g pixelHeight image.png | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{w=int(w/2); h=int(h/2); if(w<1)w=1; if(h<1)h=1; print w, h}'); sips -o half-size.png --resampleWidth $1 --resampleHeight $2 image.png"
+        },
+        {
+          "key": "x3825",
+          "command": "w=$(sips -g pixelWidth image.png | awk '/pixelWidth/{print $2}') && h=$(sips -g pixelHeight image.png | awk '/pixelHeight/{print $2}') && sips -z $((h/2)) $((w/2)) image.png --out half-size.png"
+        },
+        {
+          "key": "x3826",
+          "command": "w=$(sips -g pixelWidth image.png | awk 'END{print $2}') && h=$(sips -g pixelHeight image.png | awk 'END{print $2}') && sips -z $((h/2)) $((w/2)) image.png --out half-size.png"
+        }
+      ]
+    },
+    {
+      "case": "r01688",
+      "request": "Inspect the read-only volume and read-only media flags for disk4s1 separately.",
+      "candidates": [
+        {
+          "key": "x3827",
+          "command": "diskutil info disk4s1 | grep -E \"Read-Only Volume|Media Read-Only\""
+        },
+        {
+          "key": "x3828",
+          "command": "diskutil info disk4s1 | grep -E 'Read-Only Volume:|Read-Only Media:'"
+        },
+        {
+          "key": "x3829",
+          "command": "diskutil info disk4s1 | grep -E 'Volume Read-Only|Media Read-Only'"
+        },
+        {
+          "key": "x3830",
+          "command": "diskutil info disk4s1 | grep -Ei 'Read Only (Volume|Media):'"
+        },
+        {
+          "key": "x3831",
+          "command": "diskutil info disk4s1 | grep -iE 'Volume Read-Only|Media Read-Only'"
+        }
+      ]
+    },
+    {
+      "case": "r01689",
+      "request": "Display detailed SMB properties for the share mounted at /Volumes/WORK.",
+      "candidates": [
+        {
+          "key": "x3832",
+          "command": "smbutil statfs /Volumes/WORK"
+        },
+        {
+          "key": "x3833",
+          "command": "smbutil statshares -v /Volumes/WORK"
+        },
+        {
+          "key": "x3834",
+          "command": "src=$(mount | awk '$3 == \"/Volumes/WORK\" {print $1; exit}') && [ -n \"$src\" ] && src=${src#//} && host=${src%%/*} && path=${src#*/} && host=${host##*@} && smbutil statshares -v \"//$host/$path\""
+        }
+      ]
+    },
+    {
+      "case": "r01690",
+      "request": "print CFBundlePackageType from MyApp.app Info.plist plz",
+      "candidates": [
+        {
+          "key": "x3835",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundlePackageType\" MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r01691",
+      "request": "Find regular files with no permissions at all inside permission-tests/.",
+      "candidates": [
+        {
+          "key": "x3836",
+          "command": "find permission-tests/ -type f -perm 000"
+        }
+      ]
+    },
+    {
+      "case": "r01693",
+      "request": "Please show loaded user launch agents whose labels begin with com.example.",
+      "candidates": [
+        {
+          "key": "x3837",
+          "command": "launchctl list | awk '$3 ~ /^com\\.example/ {print $3}'"
+        },
+        {
+          "key": "x3838",
+          "command": "launchctl list | awk '$3 ~ /^com\\.example/'"
+        },
+        {
+          "key": "x3839",
+          "command": "launchctl list | awk '$3 ~ /^com\\.example\\./ {print $3}'"
+        }
+      ]
+    },
+    {
+      "case": "r01694",
+      "request": "Could you show the device types available for Simulator?",
+      "candidates": [
+        {
+          "key": "x3840",
+          "command": "xcrun simctl list devicetypes"
+        }
+      ]
+    },
+    {
+      "case": "r01695",
+      "request": "Summarize visible processes by owner.",
+      "candidates": [
+        {
+          "key": "x3841",
+          "command": "ps -axo user= | sort | uniq -c | sort -nr"
+        }
+      ]
+    },
+    {
+      "case": "r01696",
+      "request": "Create a 4 MiB zero-filled test file named blank.bin.",
+      "candidates": [
+        {
+          "key": "x3842",
+          "command": "dd if=/dev/zero of=blank.bin bs=1048576 count=4"
+        }
+      ]
+    },
+    {
+      "case": "r01697",
+      "request": "Could you show the installed npm version?",
+      "candidates": [
+        {
+          "key": "x3843",
+          "command": "npm --version"
+        }
+      ]
+    },
+    {
+      "case": "r01698",
+      "request": "Print records appearing in either sorted-a.txt or sorted-b.txt but not both.",
+      "candidates": [
+        {
+          "key": "x3844",
+          "command": "awk -v a=sorted-a.txt -v b=sorted-b.txt 'FILENAME == a { p[$0] = 1 } FILENAME == b { q[$0] = 1 } END { for (k in p) if (!(k in q)) print k; for (k in q) if (!(k in p)) print k }' sorted-a.txt sorted-b.txt | sort"
+        },
+        {
+          "key": "x3845",
+          "command": "comm -3 sorted-a.txt sorted-b.txt"
+        },
+        {
+          "key": "x3846",
+          "command": "comm -3 sorted-a.txt sorted-b.txt | sed $'s/^\\t//'"
+        }
+      ]
+    },
+    {
+      "case": "r01699",
+      "request": "Display terminal control-character assignments.",
+      "candidates": [
+        {
+          "key": "x3847",
+          "command": "stty -a"
+        }
+      ]
+    },
+    {
+      "case": "r01700",
+      "request": "extract URLTypes role values from the apps Info.plist at MyApp.app",
+      "candidates": [
+        {
+          "key": "x3848",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleURLTypes\" MyApp.app/Contents/Info.plist 2>/dev/null | awk '/CFBundleURLRoles = Array \\{/{f=1; next} f && /^[[:space:]]*\\}$/{f=0; next} f {gsub(/^[[:space:]]+|[[:space:]]+$/, \"\"); if (length($0)) print}'"
+        },
+        {
+          "key": "x3849",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleURLTypes\" MyApp.app/Contents/Info.plist | sed -n 's/^[[:space:]]*CFBundleURLRole[[:space:]]*=[[:space:]]*//p'"
+        },
+        {
+          "key": "x3850",
+          "command": "/usr/libexec/PlistBuddy -c 'Print :CFBundleURLTypes' MyApp.app/Contents/Info.plist | sed -n 's/^[[:space:]]*CFBundleTypeRole = \\(.*\\)/\\1/p'"
+        },
+        {
+          "key": "x3851",
+          "command": "plutil -p MyApp.app/Contents/Info.plist | sed -E -n 's/^[[:space:]]*\"?CFBundleURLRole\"?[[:space:]]*=[[:space:]]*\"?([^\";]+)\"?[[:space:]]*;?[[:space:]]*$/\\1/p'"
+        }
+      ]
+    },
+    {
+      "case": "r01701",
+      "request": "Show Thunderbolt devices and link speeds.",
+      "candidates": [
+        {
+          "key": "x3852",
+          "command": "system_profiler SPThunderboltDataType"
+        }
+      ]
+    },
+    {
+      "case": "r01702",
+      "request": "Can you set the local project/Config.plist key debug to false?",
+      "candidates": [
+        {
+          "key": "x3853",
+          "command": "/usr/libexec/PlistBuddy -c \"Set :debug false\" project/Config.plist"
+        }
+      ]
+    },
+    {
+      "case": "r01703",
+      "request": "Show the estimated battery runtime remaining.",
+      "candidates": [
+        {
+          "key": "x3854",
+          "command": "pmset -g batt"
+        },
+        {
+          "key": "x3855",
+          "command": "pmset -g batt | awk '/[Rr]emaining/ {if (match($0, /[0-9]+:[0-9]+(:[0-9]+)?/)) {print substr($0, RSTART, RLENGTH); exit}}'"
+        },
+        {
+          "key": "x3856",
+          "command": "pmset -g batt | grep -Eo '[0-9]+:[0-9]+ remaining'"
+        },
+        {
+          "key": "x3857",
+          "command": "pmset -g batt | grep -oE '[0-9]+:[0-9]+ remaining'"
+        }
+      ]
+    },
+    {
+      "case": "r01704",
+      "request": "show the package type declared by MyApp.app",
+      "candidates": [
+        {
+          "key": "x3858",
+          "command": "defaults read MyApp.app/Contents/Info CFBundlePackageType"
+        }
+      ]
+    },
+    {
+      "case": "r01705",
+      "request": "Hide sample.txt's extension in Finder.",
+      "candidates": [
+        {
+          "key": "x3859",
+          "command": "/usr/bin/SetFile -a E sample.txt"
+        },
+        {
+          "key": "x3860",
+          "command": "osascript -e \"tell application \\\"Finder\\\" to set extension hidden of (POSIX file \\\"$PWD/sample.txt\\\" as alias) to true\""
+        },
+        {
+          "key": "x3861",
+          "command": "osascript -e 'on run argv' -e 'tell application \"Finder\" to set extension hidden of ((POSIX file (item 1 of argv)) as alias) to true' -e 'end run' \"$PWD/sample.txt\""
+        },
+        {
+          "key": "x3862",
+          "command": "osascript -e 'tell application \"Finder\" to set extension hidden of file (POSIX file ((do shell script \"pwd\") & \"/sample.txt\")) to true'"
+        }
+      ]
+    },
+    {
+      "case": "r01706",
+      "request": "List Finder-invisible entries directly in project/.",
+      "candidates": [
+        {
+          "key": "x3863",
+          "command": "find project -maxdepth 1 -mindepth 1 '(' -name '.*' -o -flags +hidden ')' -print"
+        },
+        {
+          "key": "x3864",
+          "command": "find project -mindepth 1 -maxdepth 1 \\( -name '.*' -o -flags +hidden \\)"
+        },
+        {
+          "key": "x3865",
+          "command": "find project -mindepth 1 -maxdepth 1 \\( -name '.*' -o -flags hidden \\) -print"
+        },
+        {
+          "key": "x3866",
+          "command": "find project/ -maxdepth 1 -mindepth 1 \\( -name '.*' -o -flags hidden \\) -print"
+        }
+      ]
+    },
+    {
+      "case": "r01708",
+      "request": "show the compression format of backup.bin",
+      "candidates": [
+        {
+          "key": "x3867",
+          "command": "file backup.bin"
+        }
+      ]
+    },
+    {
+      "case": "r9017",
+      "request": "make a disk image of the project folder",
+      "candidates": [
+        {
+          "key": "x5656",
+          "command": "hdiutil makehybrid -o ~/Desktop/project.dmg ~/project/"
+        }
+      ]
+    },
+    {
+      "case": "r01709",
+      "request": "which folders under work/ have no read permssion for me",
+      "candidates": [
+        {
+          "key": "x3868",
+          "command": "find work/ -type d -exec sh -c 'for dir do if [ ! -r \"$dir\" ]; then printf \"%s\\n\" \"$dir\"; fi; done' sh {} + 2>/dev/null"
+        }
+      ]
+    },
+    {
+      "case": "r01711",
+      "request": "Query example.org's TXT records.",
+      "candidates": [
+        {
+          "key": "x3869",
+          "command": "dig +short TXT example.org"
+        }
+      ]
+    },
+    {
+      "case": "r01712",
+      "request": "show the dictionary of preferences for the Calculator app",
+      "candidates": [
+        {
+          "key": "x3870",
+          "command": "defaults read com.apple.calculator"
+        }
+      ]
+    },
+    {
+      "case": "r01713",
+      "request": "Can you count entries per day in ~/Library/Logs/MyApp/access.log, where lines begin YYYY-MM-DD HH:MM:SS?",
+      "candidates": [
+        {
+          "key": "x3871",
+          "command": "awk '/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] / {print $1}' ~/Library/Logs/MyApp/access.log | sort | uniq -c"
+        },
+        {
+          "key": "x3872",
+          "command": "awk '/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] / {print substr($0,1,10)}' ~/Library/Logs/MyApp/access.log | sort | uniq -c"
+        },
+        {
+          "key": "x3873",
+          "command": "awk '/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/ {count[$1]++} END {for (day in count) print day, count[day]}' ~/Library/Logs/MyApp/access.log | sort"
+        },
+        {
+          "key": "x3874",
+          "command": "awk 'NF {count[$1]++} END {for (day in count) print day, count[day]}' ~/Library/Logs/MyApp/access.log | sort"
+        },
+        {
+          "key": "x3875",
+          "command": "grep -E '^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]' ~/Library/Logs/MyApp/access.log | cut -c1-10 | sort | uniq -c"
+        }
+      ]
+    },
+    {
+      "case": "r01714",
+      "request": "show filenames present in first.zip but absent from second.zip",
+      "candidates": [
+        {
+          "key": "x3876",
+          "command": "comm -23 <(zipinfo -1 first.zip | LC_ALL=C sort -u) <(zipinfo -1 second.zip | LC_ALL=C sort -u)"
+        }
+      ]
+    },
+    {
+      "case": "r01715",
+      "request": "Could you inspect the currently active network service IDs in the macOS dynamic store?",
+      "candidates": [
+        {
+          "key": "x3877",
+          "command": "printf 'show\\nquit\\n' | scutil | grep -E -A5 'State:/Network/Interface/[^/]+/Service/Active' || true"
+        },
+        {
+          "key": "x3878",
+          "command": "scutil --get /Network/Global/Interface | grep -oE '[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}' | sort -u"
+        },
+        {
+          "key": "x3879",
+          "command": "scutil --get State:/Network/Global/ActiveNetworkServices"
+        },
+        {
+          "key": "x3880",
+          "command": "scutil --get State:/Network/Global/IPv4 | grep -E 'PrimaryService|BackupService' | awk '{print $3}'"
+        }
+      ]
+    },
+    {
+      "case": "r01716",
+      "request": "Replace tabs with four spaces in layout.txt to stdout.",
+      "candidates": [
+        {
+          "key": "x3881",
+          "command": "sed $'s/\\t/    /g' layout.txt"
+        }
+      ]
+    },
+    {
+      "case": "r01717",
+      "request": "Inspect the supported virtual-size range of workspace.sparsebundle without resizing it.",
+      "candidates": [
+        {
+          "key": "x3882",
+          "command": "hdiutil resize -dryrun workspace.sparsebundle"
+        },
+        {
+          "key": "x3883",
+          "command": "hdiutil resize -limits workspace.sparsebundle"
+        },
+        {
+          "key": "x3884",
+          "command": "hdiutil resize -list workspace.sparsebundle"
+        }
+      ]
+    },
+    {
+      "case": "r01718",
+      "request": "List the files in ~/Library/Saved Application State by modification date.",
+      "candidates": [
+        {
+          "key": "x3885",
+          "command": "ls -lt \"$HOME/Library/Saved Application State\""
+        }
+      ]
+    },
+    {
+      "case": "r01719",
+      "request": "Show the startup time of Terminal's process.",
+      "candidates": [
+        {
+          "key": "x3886",
+          "command": "pgrep -x Terminal | head -n 1 | xargs -I{} ps -p {} -o lstart="
+        },
+        {
+          "key": "x3887",
+          "command": "pgrep -x Terminal | xargs -I{} ps -o lstart= -p {}"
+        },
+        {
+          "key": "x3888",
+          "command": "ps -axo lstart,comm | grep '[T]erminal' | awk '{print $1, $2, $3, $4, $5}'"
+        },
+        {
+          "key": "x3889",
+          "command": "ps -axo lstart=,comm= | grep -E '(^|/)Terminal$' | awk '{print $1, $2, $3, $4, $5}'"
+        },
+        {
+          "key": "x3890",
+          "command": "ps -o lstart= -p $(pgrep -x Terminal) 2>/dev/null"
+        }
+      ]
+    },
+    {
+      "case": "r01722",
+      "request": "Print records in range.txt whose second field is between 5 and 20 inclusive.",
+      "candidates": [
+        {
+          "key": "x3891",
+          "command": "awk '$2>=5 && $2<=20' range.txt"
+        }
+      ]
+    },
+    {
+      "case": "r01723",
+      "request": "Please show the annotation on tag v1.0 in project/.",
+      "candidates": [
+        {
+          "key": "x3892",
+          "command": "git -C project tag -v v1.0"
+        }
+      ]
+    },
+    {
+      "case": "r01724",
+      "request": "Could you list USB devices with their manufacturers and product names, excluding serial numbers?",
+      "candidates": [
+        {
+          "key": "x3893",
+          "command": "ioreg -p IOUSB -l -w 0 | awk -F'\"' '/\"USB Product Name\"/{print \"Product Name:\", $4} /\"USB Vendor Name\"/{print \"Manufacturer:\", $4}'"
+        },
+        {
+          "key": "x3894",
+          "command": "system_profiler SPUSBDataType | awk '/^    [^ ].*:$/{if (man != \"\" || prod != \"\") printf \"%s | Manufacturer: %s | Product Name: %s\\n\", name, man, (prod != \"\" ? prod : name); name=$0; sub(/^ +/, \"\", name); sub(/:$/, \"\", name); man=\"\"; prod=\"\"; next} /^ +Manufacturer:/{sub(/^[^:]*: +/, \"\"); man=$0} /^ +Product Name:/{sub(/^[^:]*: +/, \"\"); prod=$0} END{if (man != \"\" || prod != \"\") printf \"%s | Manufacturer: %s | Product Name: %s\\n\", name, man, (prod != \"\" ? prod : name)}'"
+        },
+        {
+          "key": "x3895",
+          "command": "system_profiler SPUSBDataType | awk '/^[[:space:]]+[^:]+:[[:space:]]*$/ && !/Serial Number/ { line=$0; sub(/^[[:space:]]+/, \"\", line); sub(/:[[:space:]]*$/, \"\", line); name=line } /Manufacturer:[[:space:]]/ { if (name) { m=$0; sub(/^[[:space:]]*Manufacturer:[[:space:]]*/, \"\", m); print m \": \" name } }'"
+        },
+        {
+          "key": "x3896",
+          "command": "system_profiler SPUSBDataType | grep -E 'Product Name:|Manufacturer:'"
+        },
+        {
+          "key": "x3897",
+          "command": "system_profiler SPUSBDataType | grep -v '^[[:space:]]*Serial Number:' | awk -v OFS=' - ' '/^[[:space:]]+[^[:space:]].*:[[:space:]]*$/ {name=$0; gsub(/^[[:space:]]+/,x,name); gsub(/[[:space:]]+$/,x,name); sub(/:$/,x,name)} /^[[:space:]]+Manufacturer:[[:space:]]*/ {mfr=$0; sub(/^[[:space:]]+Manufacturer:[[:space:]]*/,x,mfr); gsub(/[[:space:]]+$/,x,mfr); if (name != x && mfr != x) print name, mfr; name=x}'"
+        }
+      ]
+    },
+    {
+      "case": "r01726",
+      "request": "show attrib values on texture.png as hex plz",
+      "candidates": [
+        {
+          "key": "x3898",
+          "command": "while IFS= read -r a; do echo \"$a:\"; xattr -p \"$a\" texture.png | od -An -tx1; done < <(xattr texture.png)"
+        },
+        {
+          "key": "x3899",
+          "command": "xattr -l -x texture.png"
+        },
+        {
+          "key": "x3900",
+          "command": "xattr -x texture.png"
+        },
+        {
+          "key": "x3901",
+          "command": "xattr texture.png | while IFS= read -r a; do printf '%s\\n' \"$a\"; xattr -p \"$a\" texture.png | od -An -tx1; done"
+        }
+      ]
+    },
+    {
+      "case": "r01727",
+      "request": "I want to skip the first two header lines of readings.txt and print the rest.",
+      "candidates": [
+        {
+          "key": "x3902",
+          "command": "tail -n +3 readings.txt"
+        }
+      ]
+    },
+    {
+      "case": "r01728",
+      "request": "can you help me inspect the transport-security dictionary in Client.app's Info.plist",
+      "candidates": [
+        {
+          "key": "x3903",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :NSAppTransportSecurity\" Client.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r01729",
+      "request": "is tcp keep alive during sleep enabled in power prefs",
+      "candidates": [
+        {
+          "key": "x3904",
+          "command": "pmset -g custom | grep -i tcpkeepalive || echo 'tcpkeepalive: not set'"
+        },
+        {
+          "key": "x3905",
+          "command": "pmset -g | awk '/tcpkeepalive/ {print ($2 == 1 ? \"enabled\" : \"disabled\"); found=1} END {if (!found) print \"not found\"}'"
+        },
+        {
+          "key": "x3906",
+          "command": "pmset -g | grep -i tcpkeepalive"
+        },
+        {
+          "key": "x3907",
+          "command": "pmset -g | grep tcpkeepalive || echo \"tcpkeepalive disabled/not set\""
+        }
+      ]
+    },
+    {
+      "case": "r01731",
+      "request": "List read-only kernel information keys beneath hw.perflevel0.",
+      "candidates": [
+        {
+          "key": "x3908",
+          "command": "sysctl -a | grep '^hw\\.perflevel0\\.' | cut -d: -f1"
+        },
+        {
+          "key": "x3909",
+          "command": "sysctl -o -a | grep -E '^hw[.]perflevel0[.]' | cut -d: -f1"
+        }
+      ]
+    },
+    {
+      "case": "r01732",
+      "request": "Find processes using /Volumes/WORK before I eject it.",
+      "candidates": [
+        {
+          "key": "x3910",
+          "command": "lsof +D /Volumes/WORK"
+        },
+        {
+          "key": "x3911",
+          "command": "lsof +D /Volumes/WORK 2>/dev/null"
+        },
+        {
+          "key": "x3912",
+          "command": "lsof +D /Volumes/WORK | awk 'NR>1 {print $2, $1}' | sort -u"
+        },
+        {
+          "key": "x3913",
+          "command": "lsof +D /Volumes/WORK || true"
+        },
+        {
+          "key": "x3914",
+          "command": "lsof | grep -F '/Volumes/WORK'"
+        }
+      ]
+    },
+    {
+      "case": "r01733",
+      "request": "I want to open the folder ~/Library/Application Support/MyApp in Finder.",
+      "candidates": [
+        {
+          "key": "x3915",
+          "command": "open \"$HOME/Library/Application Support/MyApp\""
+        }
+      ]
+    },
+    {
+      "case": "r01734",
+      "request": "Please compare the signing team identifiers of Client.app and Client.app/Contents/Frameworks/Core.framework.",
+      "candidates": [
+        {
+          "key": "x3916",
+          "command": "a=$(codesign -dvvv Client.app 2>&1 | awk -F= '/^TeamIdentifier=/{print $2; exit}'); b=$(codesign -dvvv Client.app/Contents/Frameworks/Core.framework 2>&1 | awk -F= '/^TeamIdentifier=/{print $2; exit}'); echo \"Client.app: $a\"; echo \"Core.framework: $b\"; [ \"$a\" = \"$b\" ] && echo SAME || echo DIFFERENT"
+        }
+      ]
+    },
+    {
+      "case": "r01736",
+      "request": "bring MyApp.app to the front",
+      "candidates": [
+        {
+          "key": "x3917",
+          "command": "open -a MyApp.app"
+        }
+      ]
+    },
+    {
+      "case": "r01737",
+      "request": "Find files larger than 512 KiB but smaller than 2 MiB in fixtures/.",
+      "candidates": [
+        {
+          "key": "x3918",
+          "command": "find fixtures/ -type f -size +524288c -size -2097152c"
+        }
+      ]
+    },
+    {
+      "case": "r01738",
+      "request": "Can you calculate the free-memory byte count from the reported page count and actual page size?",
+      "candidates": [
+        {
+          "key": "x3919",
+          "command": "vm_stat | awk '/page size of/{ps=$8} /Pages free/{gsub(/[^0-9]/,\"\",$3); printf \"%d\\n\", $3*ps}'"
+        }
+      ]
+    },
+    {
+      "case": "r01739",
+      "request": "show the version of the installed Java runtime",
+      "candidates": [
+        {
+          "key": "x3920",
+          "command": "java -version 2>&1"
+        }
+      ]
+    },
+    {
+      "case": "r01741",
+      "request": "show the dimensions of movie.mp4",
+      "candidates": [
+        {
+          "key": "x3921",
+          "command": "mdls -name kMDItemPixelWidth -name kMDItemPixelHeight movie.mp4"
+        }
+      ]
+    },
+    {
+      "case": "r01742",
+      "request": "Can you extract all text inside double quotation marks in phrases.txt?",
+      "candidates": [
+        {
+          "key": "x3922",
+          "command": "awk 'BEGIN{RS=\"\\\"\"} NR%2==0' phrases.txt"
+        },
+        {
+          "key": "x3923",
+          "command": "awk '{ while (match($0, /\"[^\"]*\"/)) { print substr($0, RSTART+1, RLENGTH-2); $0 = substr($0, RSTART+RLENGTH) } }' phrases.txt"
+        },
+        {
+          "key": "x3924",
+          "command": "grep -o '\"[^\"]*\"' phrases.txt | sed 's/\"//g'"
+        },
+        {
+          "key": "x3925",
+          "command": "grep -o '\"[^\"]*\"' phrases.txt | tr -d '\"'"
+        },
+        {
+          "key": "x3926",
+          "command": "grep -oE '\"[^\"]*\"' phrases.txt | sed 's/^\"//;s/\"$//'"
+        }
+      ]
+    },
+    {
+      "case": "r01743",
+      "request": "I need to see the current assertion level for background tasks.",
+      "candidates": [
+        {
+          "key": "x3927",
+          "command": "launchctl print background | grep -i 'assertion level'"
+        },
+        {
+          "key": "x3928",
+          "command": "pmset -g assertions"
+        },
+        {
+          "key": "x3929",
+          "command": "pmset -g assertions | awk '/^[[:space:]]*BackgroundTask/ {print $2}'"
+        },
+        {
+          "key": "x3930",
+          "command": "pmset -g assertions | grep -i 'BackgroundTask'"
+        },
+        {
+          "key": "x3931",
+          "command": "pmset -g assertions | grep -iE 'background[ _-]?task'"
+        }
+      ]
+    },
+    {
+      "case": "r01744",
+      "request": "Print eventType frequencies from mac-unified.ndjson.",
+      "candidates": [
+        {
+          "key": "x3932",
+          "command": "awk 'match($0, /\"eventType\"[[:space:]]*:[[:space:]]*(\"[^\"]*\"|[^,}]*)/) {v=substr($0,RSTART,RLENGTH); sub(/^\"eventType\"[[:space:]]*:[[:space:]]*/,\"\",v); gsub(/^\"|\"$/,\"\",v); c[v]++} END {for(k in c) printf \"%d\\t%s\\n\", c[k], k}' mac-unified.ndjson | sort -nr"
+        },
+        {
+          "key": "x3933",
+          "command": "grep -oE '\"eventType\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' mac-unified.ndjson | cut -d'\"' -f4 | sort | uniq -c | sort -rn"
+        },
+        {
+          "key": "x3934",
+          "command": "grep -oE '\"eventType\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' mac-unified.ndjson | sed -E 's/.*:[[:space:]]*\"([^\"]*)\"/\\1/' | sort | uniq -c"
+        },
+        {
+          "key": "x3935",
+          "command": "sed -n 's/.*\"eventType\":\"\\([^\"]*\\)\".*/\\1/p' mac-unified.ndjson | sort | uniq -c | sort -rn"
+        }
+      ]
+    },
+    {
+      "case": "r01745",
+      "request": "Show the detailed network configuration for the macOS location named Automatic without switching locations.",
+      "candidates": [
+        {
+          "key": "x3936",
+          "command": "networksetup -getinfo \"Automatic\""
+        },
+        {
+          "key": "x3937",
+          "command": "scutil --get NetworkLocations/Automatic"
+        }
+      ]
+    },
+    {
+      "case": "r9042",
+      "request": "which files in this folder contain the word invoice",
+      "candidates": [
+        {
+          "key": "x5681",
+          "command": "find . -type f -exec grep -l 'invoice' {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "r01748",
+      "request": "Please show the current key repeat delay preference.",
+      "candidates": [
+        {
+          "key": "x3938",
+          "command": "defaults read -g InitialKeyRepeat"
+        }
+      ]
+    },
+    {
+      "case": "r01750",
+      "request": "read the Dock preference for showing recent applications",
+      "candidates": [
+        {
+          "key": "x3939",
+          "command": "defaults read com.apple.dock show-recents"
+        }
+      ]
+    },
+    {
+      "case": "r01751",
+      "request": "can you help me find the trust settings configured specifically in my user domain",
+      "candidates": [
+        {
+          "key": "x3940",
+          "command": "security dump-trust-settings"
+        },
+        {
+          "key": "x3941",
+          "command": "security dump-trust-settings -d user"
+        },
+        {
+          "key": "x3942",
+          "command": "security dump-trust-settings -u"
+        },
+        {
+          "key": "x3943",
+          "command": "security dump-trust-settings User"
+        }
+      ]
+    },
+    {
+      "case": "r01752",
+      "request": "Please duplicate the Finder alias Manual.alias as Manual-copy.alias without resolving it.",
+      "candidates": [
+        {
+          "key": "x3944",
+          "command": "ditto Manual.alias Manual-copy.alias"
+        }
+      ]
+    },
+    {
+      "case": "r01753",
+      "request": "Can you request https://example.org/ with an Accept-Language header of en?",
+      "candidates": [
+        {
+          "key": "x3945",
+          "command": "curl -H 'Accept-Language: en' https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "r01754",
+      "request": "is ~/Library/Logs included in time machine backups",
+      "candidates": [
+        {
+          "key": "x3946",
+          "command": "tmutil isexcluded ~/Library/Logs"
+        }
+      ]
+    },
+    {
+      "case": "r01755",
+      "request": "Locate files in inputs/ with at least one line longer than 1000 characters.",
+      "candidates": [
+        {
+          "key": "x3947",
+          "command": "find inputs -type f -exec grep -lE '.{1001,}' {} +"
+        },
+        {
+          "key": "x3948",
+          "command": "find inputs/ -type f -exec awk 'FNR==1 {found=0} !found && length($0)>1000 {found=1; print FILENAME}' {} +"
+        },
+        {
+          "key": "x3949",
+          "command": "find inputs/ -type f -exec awk 'length($0) > 1000 { print FILENAME; exit }' {} \\;"
+        },
+        {
+          "key": "x3950",
+          "command": "find inputs/ -type f -exec grep -l -E '.{1001}' {} +"
+        },
+        {
+          "key": "x3951",
+          "command": "find inputs/ -type f -exec grep -lE '.{1001}' {} +"
+        }
+      ]
+    },
+    {
+      "case": "r01756",
+      "request": "Resolve the full path of the executable used for the system profiler utility.",
+      "candidates": [
+        {
+          "key": "x3952",
+          "command": "which system_profiler"
+        }
+      ]
+    },
+    {
+      "case": "r01757",
+      "request": "copy only .css files from styles/ to theme/ pls",
+      "candidates": [
+        {
+          "key": "x3953",
+          "command": "mkdir -p theme && find styles -maxdepth 1 -type f -name '*.css' -exec cp -p {} theme/ +"
+        },
+        {
+          "key": "x3954",
+          "command": "mkdir -p theme && find styles -maxdepth 1 -type f -name '*.css' -exec cp {} theme/ +"
+        },
+        {
+          "key": "x3955",
+          "command": "mkdir -p theme && find styles -maxdepth 1 -type f -name '*.css' -exec cp {} theme/ \\;"
+        },
+        {
+          "key": "x3956",
+          "command": "mkdir -p theme && find styles/ -maxdepth 1 -type f -name '*.css' -exec cp {} theme/ \\;"
+        }
+      ]
+    },
+    {
+      "case": "r01759",
+      "request": "I want to compare the permissions of original.txt and copy.txt side by side.",
+      "candidates": [
+        {
+          "key": "x3957",
+          "command": "stat -f \"%N %Sp\" original.txt copy.txt | column -t"
+        },
+        {
+          "key": "x3958",
+          "command": "stat -f '%Sp %N' original.txt copy.txt | paste - -"
+        }
+      ]
+    },
+    {
+      "case": "r01760",
+      "request": "Show installed Homebrew formulae and casks that depend on jq.",
+      "candidates": [
+        {
+          "key": "x3959",
+          "command": "brew uses --installed jq"
+        }
+      ]
+    },
+    {
+      "case": "r01761",
+      "request": "list mounted nfs server stats without altering mounts",
+      "candidates": [
+        {
+          "key": "x3960",
+          "command": "nfsstat -m"
+        }
+      ]
+    },
+    {
+      "case": "r01762",
+      "request": "Read the Ethernet network service's media options.",
+      "candidates": [
+        {
+          "key": "x3961",
+          "command": "networksetup -getMedia \"Ethernet\""
+        },
+        {
+          "key": "x3962",
+          "command": "networksetup -getMediaOptions Ethernet"
+        },
+        {
+          "key": "x3963",
+          "command": "networksetup -getmedia \"Ethernet\""
+        },
+        {
+          "key": "x3964",
+          "command": "networksetup -getmedia Ethernet"
+        },
+        {
+          "key": "x3965",
+          "command": "networksetup -getmediaoptions Ethernet"
+        }
+      ]
+    },
+    {
+      "case": "r01764",
+      "request": "Find the newest instance of MyApp.",
+      "candidates": [
+        {
+          "key": "x3966",
+          "command": "find . -name 'MyApp' -exec stat -f '%m %N' {} + | sort -nr | head -n 1 | cut -d' ' -f2-"
+        },
+        {
+          "key": "x3967",
+          "command": "find . -name 'MyApp' -type f -exec stat -f \"%m %N\" {} + | sort -nr | head -n 1 | cut -d ' ' -f 2-"
+        },
+        {
+          "key": "x3968",
+          "command": "mdfind -name 'MyApp' 2>/dev/null | while IFS= read -r f; do stat -f '%m %N' \"$f\" 2>/dev/null; done | sort -nr | head -n 1 | cut -d' ' -f2-"
+        }
+      ]
+    },
+    {
+      "case": "r01765",
+      "request": "Can I see each process's name and priority together in Terminal?",
+      "candidates": [
+        {
+          "key": "x3969",
+          "command": "ps -A -o comm,pri"
+        },
+        {
+          "key": "x3970",
+          "command": "ps -axo comm,pri"
+        },
+        {
+          "key": "x3971",
+          "command": "ps -axo pid,comm,pri"
+        }
+      ]
+    },
+    {
+      "case": "r01766",
+      "request": "report whether backup.tar contains absolute paths or parent-directory traversal entries without extracting it",
+      "candidates": [
+        {
+          "key": "x3972",
+          "command": "if tar -tf backup.tar >/dev/null 2>&1; then tar -tf backup.tar | grep -Eq '^/|(^|/)[.][.](/|$)' && echo 'backup.tar contains absolute paths or parent-directory traversal entries' || echo 'backup.tar does not contain absolute paths or parent-directory traversal entries'; else echo 'backup.tar: could not list archive'; fi"
+        },
+        {
+          "key": "x3973",
+          "command": "tar -tf backup.tar | grep -E -q '^/|(^|/)\\.\\.(/|$)' && echo 'contains absolute paths or parent-directory traversal entries' || echo 'does not contain absolute paths or parent-directory traversal entries'"
+        },
+        {
+          "key": "x3974",
+          "command": "tar -tf backup.tar | grep -Eq '^/|(^|/)\\.\\.(/|$)' && echo contains || echo does not contain"
+        },
+        {
+          "key": "x3975",
+          "command": "tar -tf backup.tar | grep -q -E '(^/|(^|/)\\.\\.(/|$))' && echo yes || echo no"
+        },
+        {
+          "key": "x3976",
+          "command": "tar -tf backup.tar | grep -q -E '^/|(^|/)[.][.](/|$)' && echo yes || echo no"
+        }
+      ]
+    },
+    {
+      "case": "r01767",
+      "request": "show acl on ~/Library/Application Support/MyApp plese",
+      "candidates": [
+        {
+          "key": "x3977",
+          "command": "ls -lde \"$HOME/Library/Application Support/MyApp\""
+        },
+        {
+          "key": "x3978",
+          "command": "ls -lde ~/Library/Application\\ Support/MyApp"
+        },
+        {
+          "key": "x3979",
+          "command": "ls -lde@ \"$HOME/Library/Application Support/MyApp\""
+        },
+        {
+          "key": "x3980",
+          "command": "ls -lde@ ~/Library/Application\\ Support/MyApp"
+        }
+      ]
+    },
+    {
+      "case": "r01768",
+      "request": "Can you tell whether disk4 uses GPT or an older partition scheme?",
+      "candidates": [
+        {
+          "key": "x3981",
+          "command": "diskutil info disk4 | grep \"Partition Map Type\""
+        },
+        {
+          "key": "x3982",
+          "command": "diskutil info disk4 | grep 'Partition Map Type'"
+        },
+        {
+          "key": "x3983",
+          "command": "diskutil info disk4 | grep -i 'Partition Map Type'"
+        }
+      ]
+    },
+    {
+      "case": "r01769",
+      "request": "Could you show the assertion count for network-client activity on this Mac?",
+      "candidates": [
+        {
+          "key": "x3984",
+          "command": "pmset -g assertions | awk '/NetworkClientActive/ {print $2; exit}'"
+        },
+        {
+          "key": "x3985",
+          "command": "pmset -g assertions | awk '/NetworkClientActive/ {print $NF; exit}'"
+        },
+        {
+          "key": "x3986",
+          "command": "pmset -g assertions | awk 'BEGIN{count=0} /NetworkClientActive/{count=$2; exit} END{print count}'"
+        },
+        {
+          "key": "x3987",
+          "command": "pmset -g assertions | grep -i 'NetworkClient'"
+        }
+      ]
+    },
+    {
+      "case": "r01770",
+      "request": "Display the MX hostnames and priorities for example.org, excluding other response sections.",
+      "candidates": [
+        {
+          "key": "x3988",
+          "command": "dig +short MX example.org"
+        }
+      ]
+    },
+    {
+      "case": "r01771",
+      "request": "Show the number of performance cores exposed by Apple Silicon.",
+      "candidates": [
+        {
+          "key": "x3989",
+          "command": "sysctl -n hw.perflevel0.physicalcpu"
+        }
+      ]
+    },
+    {
+      "case": "r01773",
+      "request": "pls open https://example.com in Safari",
+      "candidates": [
+        {
+          "key": "x3990",
+          "command": "open -a Safari https://example.com"
+        }
+      ]
+    },
+    {
+      "case": "r01774",
+      "request": "Please show the media name and protocol for disk4 in one report.",
+      "candidates": [
+        {
+          "key": "x3991",
+          "command": "LC_ALL=C diskutil info disk4 | LC_ALL=C awk -F': +' '/Media Name/{if(m==\"\")m=$2} /Protocol/{if(p==\"\")p=$2} END{if(m==\"\")m=\"N/A\"; if(p==\"\")p=\"N/A\"; printf \"Media Name: %s | Protocol: %s\\n\", m, p}'"
+        },
+        {
+          "key": "x3992",
+          "command": "diskutil info disk4 | grep -E '(Media Name|Protocol):'"
+        },
+        {
+          "key": "x3993",
+          "command": "diskutil info disk4 | grep -E 'Media Name:|Protocol:'"
+        },
+        {
+          "key": "x3994",
+          "command": "diskutil info disk4 | grep -E 'Media Name|Protocol'"
+        }
+      ]
+    },
+    {
+      "case": "r01775",
+      "request": "Can you show the modification times recorded in backup.tar?",
+      "candidates": [
+        {
+          "key": "x3995",
+          "command": "tar -tvf backup.tar"
+        }
+      ]
+    },
+    {
+      "case": "r01776",
+      "request": "Can you open a new Finder window at ~/Downloads?",
+      "candidates": [
+        {
+          "key": "x3996",
+          "command": "open -n ~/Downloads"
+        },
+        {
+          "key": "x3997",
+          "command": "open ~/Downloads"
+        },
+        {
+          "key": "x3998",
+          "command": "osascript -e 'set p to path to downloads folder' -e 'tell application \"Finder\" to make new Finder window to p'"
+        }
+      ]
+    },
+    {
+      "case": "r01777",
+      "request": "Please show the extended attributes and their values on this file.\nExplicit inputs: {\"path\": \"sample.bin\"}",
+      "candidates": [
+        {
+          "key": "x3999",
+          "command": "xattr -l sample.bin"
+        }
+      ]
+    },
+    {
+      "case": "r01778",
+      "request": "show the CFBundleSignature creator code declared by MyApp.app",
+      "candidates": [
+        {
+          "key": "x4000",
+          "command": "plutil -extract CFBundleSignature raw MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r01779",
+      "request": "Copy MyApp.app into staging/ without preserving extended attributes.",
+      "candidates": [
+        {
+          "key": "x4001",
+          "command": "cp -R -X MyApp.app staging/"
+        },
+        {
+          "key": "x4002",
+          "command": "cp -RX MyApp.app staging/"
+        },
+        {
+          "key": "x4003",
+          "command": "mkdir -p staging && cp -R -X MyApp.app staging/"
+        },
+        {
+          "key": "x4004",
+          "command": "mkdir -p staging && cp -RPX MyApp.app staging/"
+        },
+        {
+          "key": "x4005",
+          "command": "mkdir -p staging && ditto --noextattr MyApp.app staging/"
+        }
+      ]
+    },
+    {
+      "case": "r01780",
+      "request": "Report the terminal's supported color count according to its capability database.",
+      "candidates": [
+        {
+          "key": "x4006",
+          "command": "tput colors"
+        }
+      ]
+    },
+    {
+      "case": "r01781",
+      "request": "Show the kernel's maximum per-process file limit.",
+      "candidates": [
+        {
+          "key": "x4007",
+          "command": "sysctl -n kern.maxfilesperproc"
+        }
+      ]
+    }
+  ]
+}

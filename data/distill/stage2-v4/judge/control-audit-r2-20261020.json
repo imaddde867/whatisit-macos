@@ -1,0 +1,781 @@
+{
+  "authorization": "User approved Astra plan and retry cap: sounds good, go ahead please.",
+  "calibration_decision": "ct0006 is a supported negative: a newline-containing filename can make newline-delimited counting overcount. Keep ct0022 for unsupported project_folder operand. Other disputed controls are unsuitable calibration, not automatically opposite labels.",
+  "eligibility": "Exact source request/command; both historical passes match expected; expected verdict supported by request/rubric and judge-permitted local manuals/existence checks, without adding unstated constraints or relying on undocumented output labels.",
+  "independent_review": {
+    "human_certification": false,
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "result": "no substantive findings;11 replacement semantics and source/provenance/selection invariants passed;54 unchanged lines",
+    "session": "review_r2_replacements"
+  },
+  "new_controls_sha256": "d3274ff7dfbf2d3db40b19eb23188ed3820cd87c22a6a8ac4ca5971d95afe61a",
+  "prior_archive": "data/distill/stage2-v4/judge/superseded/campaign-consensus-20261020-r1",
+  "prior_controls_sha256": "e916254e5e9545c857c633728855e8fb93962c4e60202410f9f2222e89eb42a4",
+  "replace_controls": [
+    "ct0003",
+    "ct0016",
+    "ct0024",
+    "ct0025",
+    "ct0030",
+    "ct0032",
+    "ct0036",
+    "ct0038",
+    "ct0039",
+    "ct0042",
+    "ct0050"
+  ],
+  "replacements": [
+    {
+      "control": "ct0003",
+      "new": {
+        "case": "CTL-03",
+        "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)",
+        "expected": "incorrect",
+        "key": "ct0003",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0266 incorrect (pass1 b01 incorrect)",
+        "request": "show notes.txt in all caps",
+        "source": "docs/eval-audit/items.json#x0266"
+      },
+      "old": {
+        "case": "CTL-03",
+        "command": "lsof -iUDP -n",
+        "expected": "incorrect",
+        "key": "ct0003",
+        "request": "Which processes have UDP sockets open? Give numeric addresses.",
+        "source": "docs/eval-audit/items.json#x0011"
+      },
+      "pass1": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0266",
+        "note": "Unquoted echo collapses line breaks.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0266",
+        "note": "zshexpn: unquoted $(...) word-split; file lines joined by spaces",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "Unquoted command substitution splits multiline uppercase file output; echo joins words, losing original line structure. zshexpn COMMAND SUBSTITUTION; echo arguments."
+    },
+    {
+      "control": "ct0016",
+      "new": {
+        "case": "CTL-16",
+        "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+        "expected": "incorrect",
+        "key": "ct0016",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0346 incorrect (pass1 b03 incorrect)",
+        "request": "Which processes have UDP sockets open? Give numeric addresses.",
+        "source": "docs/eval-audit/items.json#x0346"
+      },
+      "old": {
+        "case": "CTL-16",
+        "command": "screencapture -i shot.png",
+        "expected": "incorrect",
+        "key": "ct0016",
+        "request": "take a screenshot and save it as shot.png",
+        "source": "docs/eval-audit/items.json#x0302"
+      },
+      "pass1": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0346",
+        "note": "Awk on FD column never matches; prints nothing.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0346",
+        "note": "awk $4 is FD column, regex :[0-9]+$ never matches; empty output",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "lsof FD is column4, not an address; /:[0-9]+$/ cannot select the requested socket processes from FD values. lsof OUTPUT."
+    },
+    {
+      "control": "ct0024",
+      "new": {
+        "case": "CTL-24",
+        "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+        "expected": "incorrect",
+        "key": "ct0024",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json e057 x0355 incorrect (pass1 b02 incorrect)",
+        "request": "find the 10 biggest files inside Documents",
+        "source": "docs/eval-audit/items.json#x0355"
+      },
+      "old": {
+        "case": "CTL-24",
+        "command": "ifconfig en0 | grep inet | awk '{print $2}'",
+        "expected": "incorrect",
+        "key": "ct0024",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e043 x0172 incorrect (pass1 b05 incorrect)",
+        "request": "what's my local ip address",
+        "source": "docs/eval-audit/items.json#x0172"
+      },
+      "pass1": {
+        "case": "e057",
+        "category": "wrong_operand",
+        "key": "x0355",
+        "note": "Sizes top-level entries, not files recursively.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e057",
+        "category": "wrong_output",
+        "key": "x0355",
+        "note": "du -s on top-level entries ranks directories too, not files",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "du -s on Documents/* emits directory totals as well as files, so requested largest files can be replaced by directory summaries. du -s."
+    },
+    {
+      "control": "ct0025",
+      "new": {
+        "case": "CTL-25",
+        "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+        "expected": "incorrect",
+        "key": "ct0025",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0363 incorrect (pass1 b03 incorrect)",
+        "request": "Which processes have UDP sockets open? Give numeric addresses.",
+        "source": "docs/eval-audit/items.json#x0363"
+      },
+      "old": {
+        "case": "CTL-25",
+        "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+        "expected": "incorrect",
+        "key": "ct0025",
+        "provenance": "docs/eval-audit/pass2-opus/r3.json e058 x0183 incorrect (pass1 b02 incorrect)",
+        "request": "how much free space is left on my external drive named BACKUP",
+        "source": "docs/eval-audit/items.json#x0183"
+      },
+      "pass1": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0363",
+        "note": "Awk on FD column never matches; prints nothing.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0363",
+        "note": "awk $4 is FD column, never matches :port; empty output",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "The awk test treats column4 (FD) as a colon-port address; it excludes actual UDP socket rows. lsof OUTPUT."
+    },
+    {
+      "control": "ct0030",
+      "new": {
+        "case": "CTL-30",
+        "command": "mkdir -p ~/Downloads/report && cp report.pdf ~/Downloads/report",
+        "expected": "incorrect",
+        "key": "ct0030",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e002 x0429 incorrect (pass1 b02 incorrect)",
+        "request": "copy report.pdf into my downloads folder",
+        "source": "docs/eval-audit/items.json#x0429"
+      },
+      "old": {
+        "case": "CTL-30",
+        "command": "grep -n TODO *.py",
+        "expected": "incorrect",
+        "key": "ct0030",
+        "request": "search my python files for TODO and show line numbers",
+        "source": "docs/eval-audit/items.json#x0332"
+      },
+      "pass1": {
+        "case": "e002",
+        "category": "wrong_operand",
+        "key": "x0429",
+        "note": "Copies into ~/Downloads/report/ subfolder, not downloads folder itself.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e002",
+        "category": "missed_constraint",
+        "key": "x0429",
+        "note": "Creates unrequested ~/Downloads/report subfolder; file lands at ~/Downloads/report/report.pdf, not in Downloads.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "Creates an unrequested report subdirectory and copies into Downloads/report, rather than placing report.pdf in Downloads. mkdir/cp semantics; LABEL extra-side-effect rule."
+    },
+    {
+      "control": "ct0032",
+      "new": {
+        "case": "CTL-32",
+        "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+        "expected": "incorrect",
+        "key": "ct0032",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0431 incorrect (pass1 b01 incorrect)",
+        "request": "show notes.txt in all caps",
+        "source": "docs/eval-audit/items.json#x0431"
+      },
+      "old": {
+        "case": "CTL-32",
+        "command": "ifconfig | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://'",
+        "expected": "incorrect",
+        "key": "ct0032",
+        "request": "what's my local ip address",
+        "source": "docs/eval-audit/items.json#x0078"
+      },
+      "pass1": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0431",
+        "note": "Uppercases a literal string, not the file.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0431",
+        "note": "uppercases the literal string 'SHOW NOTES.TXT', never reads the file",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "Transforms literal SHOW NOTES.TXT and never reads notes.txt; arbitrary file contents are not converted. printf/tr operands."
+    },
+    {
+      "control": "ct0036",
+      "new": {
+        "case": "CTL-36",
+        "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill",
+        "expected": "incorrect",
+        "key": "ct0036",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0434 incorrect (pass1 b04 incorrect)",
+        "request": "kill whatever is running on port 8080",
+        "source": "docs/eval-audit/items.json#x0434"
+      },
+      "old": {
+        "case": "CTL-36",
+        "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+        "expected": "incorrect",
+        "key": "ct0036",
+        "request": "how much free space is left on my external drive named BACKUP",
+        "source": "docs/eval-audit/items.json#x0087"
+      },
+      "pass1": {
+        "case": "e036",
+        "category": "wrong_operand",
+        "key": "x0434",
+        "note": "$6 is DEVICE not TCP; matches nothing, kills nothing",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e036",
+        "category": "wrong_output",
+        "key": "x0434",
+        "note": "man lsof: $6 is DEVICE, TCP is in NODE ($8); filter matches nothing, nothing killed.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "Filters lsof column6 (DEVICE) for TCP, which belongs to NODE protocol output; real listening rows are discarded. lsof OUTPUT."
+    },
+    {
+      "control": "ct0038",
+      "new": {
+        "case": "CTL-38",
+        "command": "ps -axo pid= | grep python",
+        "expected": "incorrect",
+        "key": "ct0038",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e042 x0465 incorrect (pass1 b09 incorrect)",
+        "request": "list my running python processes",
+        "source": "docs/eval-audit/items.json#x0465"
+      },
+      "old": {
+        "case": "CTL-38",
+        "command": "mdfind -onlyin /Applications 'kMDItemContentTypeTree == \"public.app\" && kMDItemDisplayName == \"*chrome*\"'",
+        "expected": "incorrect",
+        "key": "ct0038",
+        "request": "list apps in /Applications with chrome in the name",
+        "source": "docs/eval-audit/items.json#x0398"
+      },
+      "pass1": {
+        "case": "e042",
+        "category": "wrong_output",
+        "key": "x0465",
+        "note": "Prints only pids, so grep python matches nothing",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e042",
+        "category": "wrong_output",
+        "key": "x0465",
+        "note": "Outputs only PID column; grep python never matches numbers, prints nothing.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "ps -axo pid= outputs numeric process IDs only; grep python cannot find the requested Python processes. ps KEYWORDS pid and header override."
+    },
+    {
+      "control": "ct0039",
+      "new": {
+        "case": "CTL-39",
+        "command": "du -hs project_folder",
+        "expected": "incorrect",
+        "key": "ct0039",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json e052 x0495 incorrect (pass1 b08 incorrect)",
+        "request": "how big is the project folder in total",
+        "source": "docs/eval-audit/items.json#x0495"
+      },
+      "old": {
+        "case": "CTL-39",
+        "command": "ifconfig | grep inet | awk '{print $2}' | sed 's/addr://'",
+        "expected": "incorrect",
+        "key": "ct0039",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e043 x0235 incorrect (pass1 b05 incorrect)",
+        "request": "what's my local ip address",
+        "source": "docs/eval-audit/items.json#x0235"
+      },
+      "pass1": {
+        "case": "e052",
+        "category": "wrong_operand",
+        "key": "x0495",
+        "note": "placeholder folder name project_folder",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e052",
+        "category": "wrong_operand",
+        "key": "x0495",
+        "note": "folder named project_folder; request/reference folder is project",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "rationale": "Invents project_folder operand not supplied by request, same documented wrong-operand basis as retained ct0022. du -s; LABEL names/paths."
+    },
+    {
+      "control": "ct0042",
+      "new": {
+        "case": "CTL-42",
+        "command": "grep -cEi 'TODO' notes.txt",
+        "expected": "correct",
+        "key": "ct0042",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0360 correct (pass1 b07 correct)",
+        "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+        "source": "docs/eval-audit/items.json#x0360"
+      },
+      "old": {
+        "case": "CTL-42",
+        "command": "find . -type f -exec grep -l 'invoice' {} \\;",
+        "expected": "correct",
+        "key": "ct0042",
+        "request": "which files in this folder contain the word invoice",
+        "source": "docs/eval-audit/items.json#x0067"
+      },
+      "pass1": {
+        "case": "m012",
+        "category": null,
+        "key": "x0360",
+        "note": "TODO has no regex metachars; same result",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m012",
+        "category": null,
+        "key": "x0360",
+        "note": "-E on metachar-free 'TODO' equals literal match; -c -i correct.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "correct"
+      },
+      "rationale": "-c counts matching lines; -i ignores case; TODO contains no regex metacharacters so -E preserves literal matching. grep manual."
+    },
+    {
+      "control": "ct0050",
+      "new": {
+        "case": "CTL-50",
+        "command": "grep -ciE 'TODO' notes.txt",
+        "expected": "correct",
+        "key": "ct0050",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0384 correct (pass1 b07 correct)",
+        "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+        "source": "docs/eval-audit/items.json#x0384"
+      },
+      "old": {
+        "case": "CTL-50",
+        "command": "find . -type f -exec grep -l 'invoice' {} +",
+        "expected": "correct",
+        "key": "ct0050",
+        "request": "which files in this folder contain the word invoice",
+        "source": "docs/eval-audit/items.json#x0160"
+      },
+      "pass1": {
+        "case": "m012",
+        "category": null,
+        "key": "x0384",
+        "note": "Case-insensitive count; no metachars",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m012",
+        "category": null,
+        "key": "x0384",
+        "note": "Same as -cEi; literal-equivalent pattern, case-insensitive count.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "correct"
+      },
+      "rationale": "Same documented count/case/literal semantics with reordered -ciE options. Exact source/command distinct; no assertion of statistical independence."
+    }
+  ],
+  "retained_disputed_controls": [
+    "ct0006",
+    "ct0022"
+  ],
+  "retry_budget": {
+    "failure_counts_include": "Every schema/coverage/control failure or incomplete judge attempt in r2. Archived prior revisions do not count.",
+    "fresh_retries_per_failed_batch": 1,
+    "gate": "All controls must match; no relaxed gate, no edits in response to r2 judge failures.",
+    "stop_at_total_failed_attempts": 3,
+    "stop_when_retry_fails": true
+  },
+  "revision": "20261020-r2",
+  "selection": "Traverse unused historical source IDs in ascending order separately per polarity, and controls in ascending key order. Exclude all sources used in either prior campaign and duplicate request/command pairs. Record every skipped candidate before the final selected ID and its reason. Preserve positions, keys, cases and polarity. Candidate inventory was inspected before registration; no new campaign labels used.",
+  "skip_log": [
+    {
+      "for_control": "ct0003",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0003",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0016",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0016",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0016",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0016",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0024",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0024",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0024",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0024",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0025",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0025",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0025",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0025",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Undocumented diskutil output field; same unverified-output issue as retired controls.",
+      "source": "x0404"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Requires undocumented pmset output-label spelling; unavailable from permitted manual evidence.",
+      "source": "x0412"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Local IP request does not specify interface/address family; same scope ambiguity as retired controls.",
+      "source": "x0417"
+    },
+    {
+      "for_control": "ct0030",
+      "reason": "Reachability attempt/count and HTTP-code interpretation are not explicit enough for robust mandatory calibration.",
+      "source": "x0418"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Undocumented diskutil output field; same unverified-output issue as retired controls.",
+      "source": "x0404"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Requires undocumented pmset output-label spelling; unavailable from permitted manual evidence.",
+      "source": "x0412"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Local IP request does not specify interface/address family; same scope ambiguity as retired controls.",
+      "source": "x0417"
+    },
+    {
+      "for_control": "ct0032",
+      "reason": "Reachability attempt/count and HTTP-code interpretation are not explicit enough for robust mandatory calibration.",
+      "source": "x0418"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Undocumented diskutil output field; same unverified-output issue as retired controls.",
+      "source": "x0404"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Requires undocumented pmset output-label spelling; unavailable from permitted manual evidence.",
+      "source": "x0412"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Local IP request does not specify interface/address family; same scope ambiguity as retired controls.",
+      "source": "x0417"
+    },
+    {
+      "for_control": "ct0036",
+      "reason": "Reachability attempt/count and HTTP-code interpretation are not explicit enough for robust mandatory calibration.",
+      "source": "x0418"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Undocumented diskutil output field; same unverified-output issue as retired controls.",
+      "source": "x0404"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Requires undocumented pmset output-label spelling; unavailable from permitted manual evidence.",
+      "source": "x0412"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Local IP request does not specify interface/address family; same scope ambiguity as retired controls.",
+      "source": "x0417"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Reachability attempt/count and HTTP-code interpretation are not explicit enough for robust mandatory calibration.",
+      "source": "x0418"
+    },
+    {
+      "for_control": "ct0038",
+      "reason": "Reachability output/attempt interpretation remains debatable; avoid an ambiguous mandatory negative.",
+      "source": "x0436"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Request does not distinguish unconditional attempts from retries on transient failure; do not reject curl --retry solely for early success.",
+      "source": "x0237"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Chip versus architecture granularity is not explicit; hw.machine alone makes calibration depend on interpreting chip.",
+      "source": "x0244"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Visible output/status interpretation of a generic installation question is underspecified; avoid adjudicating an unstated yes-output format.",
+      "source": "x0315"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Same transient-retry versus unconditional-attempt ambiguity as x0237.",
+      "source": "x0335"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Undocumented diskutil output field; same unverified-output issue as retired controls.",
+      "source": "x0404"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Requires undocumented pmset output-label spelling; unavailable from permitted manual evidence.",
+      "source": "x0412"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Local IP request does not specify interface/address family; same scope ambiguity as retired controls.",
+      "source": "x0417"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Reachability attempt/count and HTTP-code interpretation are not explicit enough for robust mandatory calibration.",
+      "source": "x0418"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Reachability output/attempt interpretation remains debatable; avoid an ambiguous mandatory negative.",
+      "source": "x0436"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Meaning of project folder versus home-directory operand is not explicit enough to add location constraints.",
+      "source": "x0466"
+    },
+    {
+      "for_control": "ct0039",
+      "reason": "Undocumented diskutil free-space label; avoid unverified-output calibration.",
+      "source": "x0468"
+    },
+    {
+      "for_control": "ct0042",
+      "reason": "Uses info.plist rather than requested Info.plist; fails on case-sensitive filesystems.",
+      "source": "x0310"
+    },
+    {
+      "for_control": "ct0042",
+      "reason": "PID-match exit status needed for branch truth is not established by the permitted ps man page; avoid an unverified positive.",
+      "source": "x0322"
+    },
+    {
+      "for_control": "ct0042",
+      "reason": "Same ps exit-status documentation gap as x0322.",
+      "source": "x0347"
+    },
+    {
+      "for_control": "ct0050",
+      "reason": "Uses info.plist rather than requested Info.plist; fails on case-sensitive filesystems.",
+      "source": "x0310"
+    },
+    {
+      "for_control": "ct0050",
+      "reason": "PID-match exit status needed for branch truth is not established by the permitted ps man page; avoid an unverified positive.",
+      "source": "x0322"
+    },
+    {
+      "for_control": "ct0050",
+      "reason": "Same ps exit-status documentation gap as x0322.",
+      "source": "x0347"
+    },
+    {
+      "for_control": "ct0050",
+      "reason": "Sorts a header alongside rounded pmem values; cannot establish exactly five process rows for all-zero rounded values without extra assumptions.",
+      "source": "x0373"
+    }
+  ],
+  "status": "replacement-only review passed; r2 frozen before pilot"
+}

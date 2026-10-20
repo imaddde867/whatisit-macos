@@ -50,11 +50,12 @@ Regenerate the pool, judgments and confirmation after any policy/environment cha
 historical source datasets and campaign artifacts remain immutable. No new campaign
 counts or acceptance claim are established by the code update.
 
-The five newest expected-correct controls (`ct0061`–`ct0065`) come from audited PR #33
+The expected-correct controls `ct0061`–`ct0065` come from audited PR #33
 items that passed both the original blind pass and the independent pass-2 review:
 `x0283`, `x0509`, `x0520`, `x0540`, `x0571` in `docs/eval-audit/items.json`. Their
 `provenance` fields name the exact pass-2 file, marker, key and verdict (for example
-`docs/eval-audit/pass2-opus/r0.json m012 x0283 correct (pass1 b07 correct)`). Older
+`docs/eval-audit/pass2-opus/r0.json m012 x0283 correct (pass1 b07 correct)`). The
+consensus replacements described below carry the same provenance format; unchanged
 controls retain their original source references.
 
 ## Commands
@@ -74,11 +75,12 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/what
 Final build (director, after pass 2):
 
 ```sh
-PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm data/distill/stage2-v4/judge/confirm-verdicts data/distill/stage2-v4
+PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python tools/build_verified_dataset.py data/distill/stage2-v4/judge/pool/keymap.json data/distill/stage2-v4/judge/verdicts data/distill/stage2-v4/judge/confirm data/distill/stage2-v4/judge/confirm-verdicts data/distill/stage2-v4/verified
 ```
 
-All three tools refuse a non-empty output directory. Move a previous run aside or delete it
-before re-running.
+All three tools refuse a non-empty output directory. Move a previous run aside before
+re-running. Final artifacts go under `verified/` because the stage2-v4 root already
+contains the rubric and judge inputs.
 
 ## Blind identifiers
 
@@ -150,6 +152,43 @@ A missing confirm verdict, an extra verdict outside the sample, a changed confir
 manifest that does not recompute exactly from the pass-1 selection fails the build.
 
 ## Controls
+
+Revision `20261020-r2` supersedes the historical-consensus checkpoint. Every control
+must match its exact source request and command, have both historical audit passes
+agree with its expected verdict, and have a request-based rationale supported by
+the rubric and judges' permitted documentation. Historical agreement alone does
+not settle unstated scope, interface, interaction or word-matching assumptions, or
+undocumented output fields.
+
+The director registered the selection rule and retry budget in
+`control-audit-r2-20261020.json`. Eleven unsuitable controls are replaced; `ct0006`
+and `ct0022` retain their expected-incorrect verdicts. For `ct0006`, a filename
+containing a newline gives a concrete counting defect in `find . -type f | wc -l`;
+this retention does not add an unstated direct-child scope to the request.
+`ct0022` invents the operand `project_folder` without request support.
+
+Control positions, case/key names and polarities stay fixed. Traverse unused
+historical source IDs in ascending order separately per polarity, assigning them
+to replaced controls in ascending control-key order. Exclude sources used in either
+prior checkpoint and duplicate request/command pairs. Record each rejected source
+and its rationale before selecting the next eligible source. Check only the new
+replacements before freezing; do not repeat whole-control audits until a model
+agrees. The audit records every old/new mapping and historical provenance.
+
+The initial campaign and the consensus checkpoint are preserved under
+`superseded/campaign-original-20261020/` and
+`superseded/campaign-consensus-20261020-r1/`. Revision r2 regenerates the pool and
+starts all pass-1 judgments with fresh sessions; no verdicts are reused. No control
+edits occur in response to r2 judge failures. Allow one fresh retry per failed
+batch. Stop if that retry fails or total failed attempts reach three. Count schema,
+coverage, control and incomplete-attempt failures in r2; prior revisions do not
+consume this budget. Stopping never relaxes the all-controls gate.
+
+Before judging, verify byte-identical repeated pool generation and hold the
+validation environment, including device/mount state, constant through confirmation
+and final build. The fingerprint does not capture path existence. A changed
+population fails closed at confirmation/build and invalidates this campaign; do
+not silently update the pool or import old verdicts.
 
 Controls are graded director-side against
 `data/distill/stage2-v4/judge/pool/controls-map.json`; expected values are never revealed to

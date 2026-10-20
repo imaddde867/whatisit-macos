@@ -1,0 +1,1881 @@
+{
+  "batch": "b03",
+  "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b03-a1",
+  "cases": [
+    {
+      "case": "ceb7e70da4ea9",
+      "verdicts": [
+        {
+          "key": "k0b05561f17dc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "NUL-delimited paths are filtered for bytes outside ASCII."
+        },
+        {
+          "key": "k489a0d119665",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Perl detects high bytes in each NUL-delimited pathname."
+        },
+        {
+          "key": "k818d6efa8aaf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters NUL-delimited pathnames for non-ASCII bytes."
+        },
+        {
+          "key": "ka03db13b9f9a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints matching non-ASCII paths with NUL delimiters."
+        }
+      ]
+    },
+    {
+      "case": "c638fc0e0303d",
+      "verdicts": [
+        {
+          "key": "k7e2ac2eec693",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds HEIC files and reads their pixelHeight property."
+        },
+        {
+          "key": "kc942723b62fe",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Maximum depth one omits HEIC images in nested Downloads folders."
+        },
+        {
+          "key": "kd640bdaef1e6",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Maximum depth one omits nested HEIC images."
+        }
+      ]
+    },
+    {
+      "case": "cb6ce544f8329",
+      "verdicts": [
+        {
+          "key": "k69e89f62b8a0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ANDs PID selection with standard-output descriptor 1."
+        }
+      ]
+    },
+    {
+      "case": "c9aa9a497fa11",
+      "verdicts": [
+        {
+          "key": "kebec292ed538",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Parses the numeric timezone offset and formats the result in UTC."
+        }
+      ]
+    },
+    {
+      "case": "ce06d6286104f",
+      "verdicts": [
+        {
+          "key": "k28c4ab5d3c43",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Redirects the source bytes into the named resource fork."
+        },
+        {
+          "key": "k43f5bdd1e642",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Copies source bytes to the named resource-fork stream."
+        }
+      ]
+    },
+    {
+      "case": "cad4d7686cc64",
+      "verdicts": [
+        {
+          "key": "k787825235fb6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the loaded agent executable from launchctl program output."
+        },
+        {
+          "key": "k8d7dd1a11913",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "ProgramArguments zero can differ from Program, which specifies the actual executable."
+        },
+        {
+          "key": "k968c2966d018",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Space-only indentation does not match launchctl tab-indented program lines."
+        },
+        {
+          "key": "kc608d8cd8b5f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads Program first and falls back to the executable argument."
+        },
+        {
+          "key": "ke94201d3a4f7",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "ProgramArguments zero takes precedence here even when Program specifies a different executable."
+        }
+      ]
+    },
+    {
+      "case": "cafd2aa20ed76",
+      "verdicts": [
+        {
+          "key": "k4fac56c75ef1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries the SOA DNS record with stock dig."
+        }
+      ]
+    },
+    {
+      "case": "c6c4ccd901553",
+      "verdicts": [
+        {
+          "key": "k4b41794c8d94",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ruid and uid report real and effective user IDs separately."
+        }
+      ]
+    },
+    {
+      "case": "c4d6aa4671afe",
+      "verdicts": [
+        {
+          "key": "k47d318b574ac",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks the loopback UP interface flag."
+        },
+        {
+          "key": "k4dd4a7bc292f",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Active link status is distinct from UP; loopback does not report Ethernet-style active status."
+        },
+        {
+          "key": "k5b46528e9b9d",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Looks for active link status instead of the UP flag."
+        },
+        {
+          "key": "ke4785571a851",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks the UP flag on lo0."
+        }
+      ]
+    },
+    {
+      "case": "cac12fd83f40f",
+      "verdicts": [
+        {
+          "key": "k566051ace68f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD sed edits the log, removing only the specified leading timestamp pattern."
+        }
+      ]
+    },
+    {
+      "case": "c13332b550bb3",
+      "verdicts": [
+        {
+          "key": "k234d50f86a81",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects PID text descriptors and prints their path fields."
+        },
+        {
+          "key": "k9bbb58dd2f23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ANDs the process and text selections, printing pathname fields."
+        },
+        {
+          "key": "kd16827015de3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Wide comm output reports the executable command pathname without arguments."
+        },
+        {
+          "key": "kd2f3dcbf5071",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "comm requests the process executable command without arguments."
+        }
+      ]
+    },
+    {
+      "case": "cc0317ae82ce8",
+      "verdicts": [
+        {
+          "key": "k8a2f56b1d0c8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requests the PCI hardware report."
+        }
+      ]
+    },
+    {
+      "case": "c3c1172dd5371",
+      "verdicts": [
+        {
+          "key": "k0283cccb2bd3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Associates USB device headings with negotiated speed lines."
+        },
+        {
+          "key": "k0d7d059c726f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints device headings together with their USB speeds."
+        },
+        {
+          "key": "k10b1af3e4a78",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows device speeds and identifies common USB 2 and USB 3 rates."
+        },
+        {
+          "key": "k4d831899c856",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "USB speed precedes the drive Media section, so the filter misses its speed."
+        },
+        {
+          "key": "k8d564127db03",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Labels devices by their reported negotiated USB speed."
+        }
+      ]
+    },
+    {
+      "case": "c997d56a1f5cd",
+      "verdicts": [
+        {
+          "key": "k155a695ab96b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "vmmap lists mapped regions and backing files for the process."
+        },
+        {
+          "key": "k44bd327f1177",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "vmmap begins regions with purpose names, not the expected pair of address columns."
+        },
+        {
+          "key": "k9099956d4d63",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "vmmap address ranges lack the required 0x prefixes; sed also duplicates the leading slash."
+        }
+      ]
+    },
+    {
+      "case": "c49b23c3de088",
+      "verdicts": [
+        {
+          "key": "k47fad533b98d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "who -u includes login-session idle times."
+        },
+        {
+          "key": "k8057ecc53bfd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "who -a includes idle times along with session details."
+        },
+        {
+          "key": "k80bee9beb9c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "w lists logged-in sessions and their idle times."
+        }
+      ]
+    },
+    {
+      "case": "c9490d0bc08a0",
+      "verdicts": [
+        {
+          "key": "k308fec8d792e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists flags for archive and immediate entries using BSD ls -O."
+        },
+        {
+          "key": "k50279ea6585a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports archive flags and immediate non-directory entries."
+        },
+        {
+          "key": "k5cee9beebf62",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports directory flags and immediate file flags."
+        },
+        {
+          "key": "k7d8ee706a814",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects archive itself and immediate non-directory entries for flag display."
+        }
+      ]
+    },
+    {
+      "case": "cb7167013d6bd",
+      "verdicts": [
+        {
+          "key": "k3749e3da71e8",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "JXA has no global print function; the loop cannot output JSON lines."
+        },
+        {
+          "key": "k801b8e3b4645",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Python requires developer tools and is excluded by the stock-macOS rubric."
+        },
+        {
+          "key": "kb7125b1b7df7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stock Perl JSON::PP decodes the array and emits compact JSON objects."
+        },
+        {
+          "key": "kd5042b1a9580",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stock /usr/bin/jq emits each array element as compact JSON."
+        },
+        {
+          "key": "kedc4d32065af",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Creates an unrequested mac-logs.jsonl file instead of simply returning converted lines."
+        }
+      ]
+    },
+    {
+      "case": "c626198b881b7",
+      "verdicts": [
+        {
+          "key": "k3625a2d36f18",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the specified launch-agent property list."
+        }
+      ]
+    },
+    {
+      "case": "c137716e60644",
+      "verdicts": [
+        {
+          "key": "k64f4d2570814",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The stock firewall tool lists registered application paths."
+        }
+      ]
+    },
+    {
+      "case": "c3b83c45ae98e",
+      "verdicts": [
+        {
+          "key": "kbe0cff364bdc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Converts the plist to XML at the requested alternate output path."
+        }
+      ]
+    },
+    {
+      "case": "c4b75b825edcb",
+      "verdicts": [
+        {
+          "key": "k59fda6ae7444",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints regular files with no non-whitespace matches."
+        },
+        {
+          "key": "kbde68bfe45d1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds nonempty files without non-whitespace characters."
+        },
+        {
+          "key": "kdfc7475de353",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters nonempty files for absence of non-whitespace bytes."
+        },
+        {
+          "key": "ke218e8ae8b45",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists files containing no non-whitespace characters."
+        }
+      ]
+    },
+    {
+      "case": "c290a54068d86",
+      "verdicts": [
+        {
+          "key": "k085310f04a1a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the StartInterval value in the agent definition."
+        },
+        {
+          "key": "ke07e1891e389",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts StartInterval as an unencapsulated number."
+        },
+        {
+          "key": "ke5bfa3ce1c0c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the launch-agent StartInterval key."
+        },
+        {
+          "key": "kfea29b1f52ea",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "launchctl reports run interval, which neither grep alternative matches."
+        }
+      ]
+    },
+    {
+      "case": "c02c1a081f22b",
+      "verdicts": [
+        {
+          "key": "k7ea8d3c1ed8e",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Limits the search to immediate files, omitting larger files in Documents subdirectories."
+        }
+      ]
+    },
+    {
+      "case": "cfb98d70ff602",
+      "verdicts": [
+        {
+          "key": "k80516502d59c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the screenshot location preference, falling back to the default Desktop."
+        }
+      ]
+    },
+    {
+      "case": "c31c4749c5cd0",
+      "verdicts": [
+        {
+          "key": "kd700fd6cae72",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Creates both directories with explicit mode 0750."
+        }
+      ]
+    },
+    {
+      "case": "c64205a127f5c",
+      "verdicts": [
+        {
+          "key": "kd80ee913a2c1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the image alpha-channel property with sips."
+        }
+      ]
+    },
+    {
+      "case": "ce8a27dc80d5e",
+      "verdicts": [
+        {
+          "key": "k340bcf9e2622",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "BSD stat %b reports allocated blocks, not filesystem block size."
+        },
+        {
+          "key": "k76bbabbf2d3f",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "%b reports allocated blocks and the operand is not project."
+        },
+        {
+          "key": "k80bf95c58160",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "BSD stat has no %o field; its block-size field is %k."
+        },
+        {
+          "key": "kfd2f519f1eb3",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "BSD stat has no %s field; filesystem I/O block size is %k."
+        }
+      ]
+    },
+    {
+      "case": "c263dea177f2a",
+      "verdicts": [
+        {
+          "key": "k74a1b428716d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ls -r reverses filename ordering in incoming."
+        },
+        {
+          "key": "k794f2ac0444c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists incoming entries one per line in reverse filename order."
+        },
+        {
+          "key": "k7e49fed68a77",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts incoming filenames in reverse order."
+        },
+        {
+          "key": "k805ab04a2087",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists immediate regular-file paths in reverse alphabetical order."
+        }
+      ]
+    },
+    {
+      "case": "cca7690f51732",
+      "verdicts": [
+        {
+          "key": "kccda1d6592eb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the DHCP subnet_mask option for en0."
+        }
+      ]
+    },
+    {
+      "case": "cd0c342a4ac13",
+      "verdicts": [
+        {
+          "key": "k917aae63e5c6",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Local defaults documentation does not identify the current default speech voice domain and key."
+        },
+        {
+          "key": "k97361fbbf410",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Local manuals do not establish whether Voice identifies the current default speech voice."
+        },
+        {
+          "key": "ka44ac8547231",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Local manuals do not establish whether TimeDefaultVoiceSpec identifies the normal speech voice."
+        },
+        {
+          "key": "ke6859f867997",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Local manuals do not establish this voice preference domain and key."
+        }
+      ]
+    },
+    {
+      "case": "cf4042247d5bc",
+      "verdicts": [
+        {
+          "key": "k57d2d217114b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects immediate symlink entries in the Logs directory."
+        },
+        {
+          "key": "k675b505a504a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints immediate symlink paths in Logs."
+        },
+        {
+          "key": "ka834bd733854",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds immediate Logs entries whose type is symbolic link."
+        }
+      ]
+    },
+    {
+      "case": "c5b6bbd1f6472",
+      "verdicts": [
+        {
+          "key": "k4e69851409ba",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects terminal-less processes and sorts parsed elapsed seconds numerically."
+        },
+        {
+          "key": "k5f3e7230a250",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Parses elapsed days and clock fields before sorting terminal-less processes."
+        },
+        {
+          "key": "ka5d5019153df",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Converts elapsed times to seconds and sorts processes lacking terminals."
+        },
+        {
+          "key": "kb9d1e90a8db6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts processes with unknown terminals by parsed elapsed duration."
+        }
+      ]
+    },
+    {
+      "case": "c7cbb713442d5",
+      "verdicts": [
+        {
+          "key": "kd454c272ac87",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "say lists available voices for the quoted question-mark argument."
+        }
+      ]
+    },
+    {
+      "case": "c65dd43587be3",
+      "verdicts": [
+        {
+          "key": "kf624946dd1f5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Opens the project directory in a Terminal window."
+        }
+      ]
+    },
+    {
+      "case": "cc221124920ec",
+      "verdicts": [
+        {
+          "key": "kc39b659bd32d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts regular files whose named resource-fork size exceeds zero."
+        },
+        {
+          "key": "kca1882a84765",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts positive resource-fork byte sizes for immediate files."
+        }
+      ]
+    },
+    {
+      "case": "c6d938ae74ca3",
+      "verdicts": [
+        {
+          "key": "k1ab45f9f180f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches names containing either literal square bracket."
+        },
+        {
+          "key": "kb43946fe86f4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches names containing a literal opening square bracket."
+        },
+        {
+          "key": "kc08c2dfefcd5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Escapes the opening bracket in the find filename pattern."
+        },
+        {
+          "key": "kcf7b1bbd75b6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The bracket expression matches either opening or closing square brackets."
+        },
+        {
+          "key": "kf920481123a5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches either literal bracket through escaped filename patterns."
+        }
+      ]
+    },
+    {
+      "case": "c61a53dd8f341",
+      "verdicts": [
+        {
+          "key": "k716f4f14ac84",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Groups case-folded paths and prints colliding original names."
+        },
+        {
+          "key": "kd6cd28532b04",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Groups names by parent directory and lowercase basename."
+        },
+        {
+          "key": "kdf1927e1072f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports regular-file paths that collide after case folding."
+        }
+      ]
+    },
+    {
+      "case": "cf58dbc8eb663",
+      "verdicts": [
+        {
+          "key": "kdbbdbc2d7141",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Produces a separate human-readable usage total for each named directory."
+        }
+      ]
+    },
+    {
+      "case": "c467e39f873d9",
+      "verdicts": [
+        {
+          "key": "k659b69277ca2",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "system_profiler documents -listDataTypes, not -list."
+        },
+        {
+          "key": "k6fbaa067f150",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists available data types and sorts the output."
+        },
+        {
+          "key": "kaf927537ba81",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Removes the heading and sorts profiler type names alphabetically."
+        },
+        {
+          "key": "kb9dc0e04de89",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "The option is case-sensitive -listDataTypes, not -listdatatypes."
+        }
+      ]
+    },
+    {
+      "case": "c182656ca128a",
+      "verdicts": [
+        {
+          "key": "k9ecb6cd55b09",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sets curl connection timeout to three seconds."
+        }
+      ]
+    },
+    {
+      "case": "cd3685e9c3312",
+      "verdicts": [
+        {
+          "key": "kda4d8a765fec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sets only modification time using the requested local date and minute."
+        }
+      ]
+    },
+    {
+      "case": "c077250f03edf",
+      "verdicts": [
+        {
+          "key": "k0594a3baa391",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Regex stops at escaped quotes, grouping distinct JSON subsystem strings together."
+        },
+        {
+          "key": "k2b4621de2715",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Closing and reopening numbered files with > truncates earlier records when a subsystem recurs."
+        },
+        {
+          "key": "kbc3417f1b8f1",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The regex does not parse escaped quotes in subsystem JSON strings."
+        }
+      ]
+    },
+    {
+      "case": "c2d9df7035bc5",
+      "verdicts": [
+        {
+          "key": "kab5ef4c52eb8",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Recurses into subdirectories and the new destination instead of moving only this folder’s JPGs."
+        }
+      ]
+    },
+    {
+      "case": "c30edc2b14954",
+      "verdicts": [
+        {
+          "key": "k3d49fdc0cc79",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD find accepts symbolic group-write mode with an all-bits prefix."
+        },
+        {
+          "key": "k64ae1c7d2604",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects group-writable immediate regular files."
+        },
+        {
+          "key": "k6a845a483497",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests the group-write permission bit on immediate regular files."
+        },
+        {
+          "key": "ke6f9b8ed641e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD find supports plus-prefixed symbolic permission matching."
+        }
+      ]
+    },
+    {
+      "case": "cabb21411df14",
+      "verdicts": [
+        {
+          "key": "k3c7f8b253298",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "UTF-8 wc -m counts characters rather than bytes."
+        },
+        {
+          "key": "k89ef70d33f76",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Perl decodes input as UTF-8 and sums character lengths."
+        },
+        {
+          "key": "kc799e96a6169",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "UTF-8 wc -m counts characters from the file."
+        },
+        {
+          "key": "kdaa2f27ff068",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts UTF-8 characters and prints the numeric count."
+        }
+      ]
+    },
+    {
+      "case": "c7528e162f73e",
+      "verdicts": [
+        {
+          "key": "k2f9ef9c6d7dc",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Prints assertion summary or assertion rows, not the subsequent timeout-remaining line."
+        },
+        {
+          "key": "k6ac06808d827",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints UserIsActive assertion rows together with their timeout-remaining lines."
+        },
+        {
+          "key": "kc01474b2a3f8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Includes the line following each named UserIsActive assertion, containing its timeout."
+        }
+      ]
+    },
+    {
+      "case": "c790c5cc0702a",
+      "verdicts": [
+        {
+          "key": "kbfafa803dbe2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The shell kill builtin lists signal names with -l."
+        }
+      ]
+    },
+    {
+      "case": "cfddda35ffe98",
+      "verdicts": [
+        {
+          "key": "k11a3d312ce98",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursive extended-regex grep includes filenames and matching lines."
+        },
+        {
+          "key": "k29161e6e5091",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively matches version plus three digits and forces filename output."
+        },
+        {
+          "key": "k296f57cf7e38",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Searches recursively with the requested extended expression and filenames."
+        },
+        {
+          "key": "k6d73b37edf69",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints filenames and recursively matching version-number lines."
+        },
+        {
+          "key": "kedcc1f12ef20",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses the BSD basic-regex repetition syntax and filename output."
+        }
+      ]
+    },
+    {
+      "case": "c5eda7a802881",
+      "verdicts": [
+        {
+          "key": "kdc1c2525494b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the symlink’s stored target without resolving it."
+        }
+      ]
+    },
+    {
+      "case": "c090b4e0594ec",
+      "verdicts": [
+        {
+          "key": "k68ba118bebb0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Asks Finder for the file’s locked property."
+        },
+        {
+          "key": "k7aaf139f7442",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Resolves the file alias and reads Finder locked."
+        },
+        {
+          "key": "kc002d821ac61",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "kMDItemLocked is not Finder’s locked property and is not a standard metadata attribute."
+        },
+        {
+          "key": "kc89e7d0568b6",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "GetFileInfo emits attribute letters, not the word locked."
+        },
+        {
+          "key": "ke9cd43e09a35",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Asks Finder for locked on final.pdf in the current folder."
+        }
+      ]
+    },
+    {
+      "case": "c4c9f08ab9019",
+      "verdicts": [
+        {
+          "key": "k1671888df72c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Writes JSON to an alternate filename, preserving the original plist."
+        },
+        {
+          "key": "kcd52a9c59ca9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Writes JSON to a new output path without modifying the input."
+        }
+      ]
+    },
+    {
+      "case": "ce960ee657596",
+      "verdicts": [
+        {
+          "key": "kb1a559559f5f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries Finder’s id property for the Downloads folder."
+        },
+        {
+          "key": "kcdf4091d67e4",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Spotlight UUID metadata is distinct from Finder’s folder id."
+        }
+      ]
+    },
+    {
+      "case": "cc338dd872fa3",
+      "verdicts": [
+        {
+          "key": "k9822abb760bf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds framework directories embedded anywhere in Player.app."
+        }
+      ]
+    },
+    {
+      "case": "c3678ecdba9cf",
+      "verdicts": [
+        {
+          "key": "kb772ca9af44c",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "diskutil apfs has no listPhysicalStores subcommand; physical stores appear in apfs list."
+        }
+      ]
+    },
+    {
+      "case": "c5b8f9204be69",
+      "verdicts": [
+        {
+          "key": "k6320cfdf7982",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "networksetup labels IPv4 configuration as DHCP Configuration or Manual Configuration, not IPv4:."
+        },
+        {
+          "key": "k69c0d5f7b2d4",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The IPv4 mode is not reported on an IPv4: line."
+        },
+        {
+          "key": "kcb00ebb7d89e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "networksetup does not output DHCP enabled: yes, so DHCP is mislabeled Manual."
+        },
+        {
+          "key": "kd1e6eeabc90a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "There is no IPv4: configuration-mode line to extract."
+        },
+        {
+          "key": "ke398bedc6a9d",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The mode precedes Configuration; no line starts Configuration:."
+        }
+      ]
+    },
+    {
+      "case": "cc1f7d38785b4",
+      "verdicts": [
+        {
+          "key": "k144befbc90df",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries indexed audio files for the requested author/artist."
+        },
+        {
+          "key": "k3d4a9c306ada",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Combines audio content type and the indexed artist/author value."
+        },
+        {
+          "key": "ka745e8e4d474",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Limits the audio and author metadata query to music-tests."
+        },
+        {
+          "key": "kaaea85ab091d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds indexed audio with the specified author/artist."
+        },
+        {
+          "key": "kd626373107cf",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemAudioArtist is not the standard artist attribute; audio artist uses kMDItemAuthors."
+        }
+      ]
+    },
+    {
+      "case": "c591a2b05c972",
+      "verdicts": [
+        {
+          "key": "ka16acf9f10d5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries indexed HTML documents whose metadata title contains Sample Site."
+        },
+        {
+          "key": "kc0f326393cd6",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Searches file text rather than indexed HTML title metadata."
+        },
+        {
+          "key": "kf71897b53eaf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Searches Spotlight HTML title metadata within web-tests."
+        }
+      ]
+    },
+    {
+      "case": "c7d3c37e2f6c8",
+      "verdicts": [
+        {
+          "key": "k6eaf68441100",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters directly connected network routes while excluding host and multicast routes."
+        },
+        {
+          "key": "kb608109d76db",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects directly connected and loopback network routes, excluding host and multicast entries."
+        },
+        {
+          "key": "kb777e947d377",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Tests column four for C, but netstat routing flags occupy column three."
+        }
+      ]
+    },
+    {
+      "case": "c18d13a8726ff",
+      "verdicts": [
+        {
+          "key": "k9278a35c11ff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Creates a missing checkpoint file without truncating existing content."
+        }
+      ]
+    },
+    {
+      "case": "cc1fc752ef8b7",
+      "verdicts": [
+        {
+          "key": "k2e8dcd30e9ed",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries Spotlight’s camera-raw-image content type hierarchy."
+        },
+        {
+          "key": "k440953a443da",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemRawImageFormat is not a standard Spotlight raw-camera attribute."
+        },
+        {
+          "key": "k48d027d16e63",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds indexed files conforming to the camera raw image type."
+        },
+        {
+          "key": "k83ed15913a27",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemRawImageWidth and kMDItemRawImageHeight are not standard Spotlight attributes."
+        },
+        {
+          "key": "ke3a09946a5f7",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The camera RAW content type is public.camera-raw-image, not public.raw-image."
+        }
+      ]
+    },
+    {
+      "case": "cd1085e4c9c3a",
+      "verdicts": [
+        {
+          "key": "kc3b563d04bcf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lipo -archs reports architectures in the application executable."
+        }
+      ]
+    },
+    {
+      "case": "c7f52c217edee",
+      "verdicts": [
+        {
+          "key": "k599688467e88",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries the spreadsheet content-type hierarchy within Downloads."
+        }
+      ]
+    },
+    {
+      "case": "cad62aa97bb22",
+      "verdicts": [
+        {
+          "key": "k464565816c91",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "BSD stat has no %A field for numeric permissions."
+        },
+        {
+          "key": "k82b894926a16",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The greedy sed substitution removes the permission mode along with the parent path."
+        },
+        {
+          "key": "k8a30b5cf9197",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "BSD stat %n is a newline, not a filename."
+        },
+        {
+          "key": "k8d67d5756f60",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints numeric file modes and strips only parent directories from names."
+        },
+        {
+          "key": "kb10c58a17816",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists file paths with numeric modes using BSD stat %N and %p."
+        }
+      ]
+    },
+    {
+      "case": "c384ba5798de6",
+      "verdicts": [
+        {
+          "key": "k34a644f60b22",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts entitlements and tests the get-task-allow Boolean value."
+        },
+        {
+          "key": "k4092c297aded",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Removes XML whitespace before checking the true entitlement entry."
+        },
+        {
+          "key": "k5ece063a04e0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts entitlements and checks whether the named key exists."
+        },
+        {
+          "key": "k93fe9be97bee",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks the extracted entitlement data for the requested key."
+        },
+        {
+          "key": "kfcf44566dddb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports whether the extracted entitlements contain the requested key."
+        }
+      ]
+    },
+    {
+      "case": "c53deb652dd8a",
+      "verdicts": [
+        {
+          "key": "k81777dd9230c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tmutil reports exclusion status for all three specified paths together."
+        }
+      ]
+    },
+    {
+      "case": "c2db646ae70f5",
+      "verdicts": [
+        {
+          "key": "kcdf382a49acc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the current allocated vnode count from kern.num_vnodes."
+        }
+      ]
+    },
+    {
+      "case": "caa62402fad05",
+      "verdicts": [
+        {
+          "key": "k30fbf63e3759",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "imageinfo -format prints only the image format, not segment metadata."
+        },
+        {
+          "key": "k386e8f12bfa1",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The local hdiutil manual does not document the Segment Information/FilePath text layout."
+        },
+        {
+          "key": "k393f5e58eb8c",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "-format is a Boolean output selector, not a metadata key-path option."
+        },
+        {
+          "key": "kd3baf33bed57",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "hdiutil has no segmentnames verb."
+        }
+      ]
+    },
+    {
+      "case": "c7213df31a6ca",
+      "verdicts": [
+        {
+          "key": "k1887982d8243",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the app’s declared LSApplicationCategoryType string."
+        }
+      ]
+    },
+    {
+      "case": "c59e67496ff6c",
+      "verdicts": [
+        {
+          "key": "k6f41ae2bd897",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pmap displays disk-image partitions without attaching or mounting the image."
+        }
+      ]
+    },
+    {
+      "case": "c35cd1e17bd53",
+      "verdicts": [
+        {
+          "key": "k34554358114d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Git pathspec matches tracked paths below src in project."
+        },
+        {
+          "key": "k41aba980380a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists tracked files scoped to src in the project repository."
+        },
+        {
+          "key": "kb9f102614e22",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists tracked src paths with git ls-files."
+        }
+      ]
+    },
+    {
+      "case": "c858383c49021",
+      "verdicts": [
+        {
+          "key": "k8a5c0e19fd46",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prunes vendor directories before finding node_modules directories."
+        }
+      ]
+    },
+    {
+      "case": "cf256ab84da0e",
+      "verdicts": [
+        {
+          "key": "kb53a34110bd0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the hardware CPU package count."
+        }
+      ]
+    },
+    {
+      "case": "c217a21a3e25a",
+      "verdicts": [
+        {
+          "key": "k893e61a63c11",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries indexed movies with pixel width at least 1920."
+        }
+      ]
+    },
+    {
+      "case": "cd24c251aee22",
+      "verdicts": [
+        {
+          "key": "k09a8921f39eb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints only the hardware Model Name value."
+        },
+        {
+          "key": "k6dbf7dd05c9f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters the hardware report to Model Name and removes its label."
+        },
+        {
+          "key": "k7a82d505ce12",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts only the Model Name field."
+        },
+        {
+          "key": "ka054bb1c42f6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the model-name value without serial or UUID fields."
+        }
+      ]
+    },
+    {
+      "case": "c3985ce752e65",
+      "verdicts": [
+        {
+          "key": "k19a6b75b5eac",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Without -a, lsof ORs PID and txt selections, including other processes’ libraries."
+        },
+        {
+          "key": "k2cf0b9f5e008",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the process and filters shared-library or framework paths."
+        },
+        {
+          "key": "k3f1d0423e9f2",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Filtering only dylib misses framework shared libraries and .so files."
+        },
+        {
+          "key": "k6e47238c411b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ANDs PID and text descriptors, selecting library and framework paths."
+        },
+        {
+          "key": "k91e893c62b34",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Without -a, text descriptors from other processes are included."
+        }
+      ]
+    },
+    {
+      "case": "c93879ff44cdd",
+      "verdicts": [
+        {
+          "key": "k55d61576e846",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes a separate usage total for every immediate assets directory."
+        }
+      ]
+    },
+    {
+      "case": "c59cda51348e6",
+      "verdicts": [
+        {
+          "key": "k9154444a0819",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads authenticated-root protection status without modifying it."
+        }
+      ]
+    },
+    {
+      "case": "cd9a7194d10c7",
+      "verdicts": [
+        {
+          "key": "k1475b715d33d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Deep strict verification checks nested signatures without signing or modifying code."
+        },
+        {
+          "key": "kddcf0823c882",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Verifies the application and nested signatures with strict checks and verbose output."
+        }
+      ]
+    },
+    {
+      "case": "c50ecc2f17362",
+      "verdicts": [
+        {
+          "key": "k0ab433191d5e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads recentFiles from the specified preference domain."
+        }
+      ]
+    },
+    {
+      "case": "c8731f298cfe2",
+      "verdicts": [
+        {
+          "key": "k27ede82e4aa6",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Also matches display names, admitting documents whose title does not contain Planning."
+        },
+        {
+          "key": "k40ea3860fd5b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Display-name matches admit documents without the requested title substring."
+        },
+        {
+          "key": "k5ca818bcdd5c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Searches display names and does not require documents or matching title metadata."
+        },
+        {
+          "key": "keaf2ab60d98a",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Tests kMDItemDisplayName instead of the requested title attribute."
+        }
+      ]
+    },
+    {
+      "case": "cce33ca9c1232",
+      "verdicts": [
+        {
+          "key": "k447d7bf41cb1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Captures the screen after three seconds into menu.png, including an open menu."
+        }
+      ]
+    },
+    {
+      "case": "c0bebb3f8a04b",
+      "verdicts": [
+        {
+          "key": "k68e0064ae8c8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Decodes and prints the certificate request locally without submission."
+        }
+      ]
+    },
+    {
+      "case": "c09488a45f034",
+      "verdicts": [
+        {
+          "key": "k6140d4e8fe52",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads both indexed geographic coordinate attributes from the image."
+        }
+      ]
+    },
+    {
+      "case": "c0131d1b24d60",
+      "verdicts": [
+        {
+          "key": "k06e902f8020c",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemFinderLabel is not the standard attribute; fallback zero conceals missing metadata."
+        },
+        {
+          "key": "kd430fe0b7973",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the numeric indexed Finder label using kMDItemFSLabel."
+        }
+      ]
+    },
+    {
+      "case": "caa06e39de67b",
+      "verdicts": [
+        {
+          "key": "k1bdddca5dfc3",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder has no displayed extension property."
+        },
+        {
+          "key": "k44fee63c2cf9",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder does not define a displayed extension property."
+        },
+        {
+          "key": "k8b1d4aeb30bc",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The requested displayed extension property does not exist in Finder."
+        },
+        {
+          "key": "ka854f3ab4a16",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Nonexistent displayed extension fails compilation; extension visible is also not Finder’s extension hidden property."
+        },
+        {
+          "key": "kceda5294c2c3",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder does not have a displayed extension property."
+        }
+      ]
+    },
+    {
+      "case": "cdc64cd6e5084",
+      "verdicts": [
+        {
+          "key": "k9c175fa45a41",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "BSD stat %n emits a newline instead of the filename."
+        },
+        {
+          "key": "kc1335ff1f396",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses BSD stat’s mode, owner, byte size, filename and tab format fields."
+        }
+      ]
+    },
+    {
+      "case": "ca14f36831457",
+      "verdicts": [
+        {
+          "key": "k8d10c9f13c11",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemAudioRecordingDate is not the standard recording-date attribute."
+        },
+        {
+          "key": "keb1265792c23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the indexed kMDItemRecordingDate attribute."
+        },
+        {
+          "key": "kf81d20bb5608",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Content creation date is distinct from the requested recording date."
+        }
+      ]
+    },
+    {
+      "case": "ca1ebc89bac02",
+      "verdicts": [
+        {
+          "key": "k6388b4e39edb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The vm_stat banner’s eighth field is the page size in bytes."
+        }
+      ]
+    },
+    {
+      "case": "cbc39d6cf22ea",
+      "verdicts": [
+        {
+          "key": "k7bf4cc58812f",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Unquoted space splits Application Scripts into two separate find roots."
+        },
+        {
+          "key": "k8ab71808ba7d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Quotes the space and lists immediate folder basenames."
+        }
+      ]
+    },
+    {
+      "case": "cbe06b1b6afb6",
+      "verdicts": [
+        {
+          "key": "k1a4f8cb8cfbf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums numeric values and divides each column by its numeric count."
+        },
+        {
+          "key": "k512272209b83",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Its numeric pattern rejects scientific notation, omitting valid numeric table values."
+        },
+        {
+          "key": "k62c4f8dbbf76",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Accumulates numeric column values and emits each column average."
+        },
+        {
+          "key": "k6f563559f77b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recognizes numeric fields and computes each column’s mean."
+        },
+        {
+          "key": "k8813c2267680",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums each numeric table column and divides by its row count."
+        }
+      ]
+    },
+    {
+      "case": "c6cb341ea10ee",
+      "verdicts": [
+        {
+          "key": "k1b21f6c73846",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "curl -6 restricts the request to IPv6."
+        }
+      ]
+    },
+    {
+      "case": "cc666ff06df4c",
+      "verdicts": [
+        {
+          "key": "k3f01db471547",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Thunderbolt Bus: does not match numbered Thunderbolt/USB4 Bus 0: headings."
+        },
+        {
+          "key": "k42192139d7c7",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The heading expression requires Bus: and misses numbered bus headings."
+        },
+        {
+          "key": "k7a294f8245dd",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Hard-coded two-space bus and four-space link indentation does not match profiler output."
+        },
+        {
+          "key": "k8ce9bcd37e91",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints Thunderbolt bus headings and link-width fields."
+        },
+        {
+          "key": "kaef1bc22048e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Thunderbolt Bus does not match Thunderbolt/USB4 Bus headings."
+        }
+      ]
+    },
+    {
+      "case": "ceb62545865aa",
+      "verdicts": [
+        {
+          "key": "k47c278d887c6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints environment blocks from the current GUI launchd domain."
+        },
+        {
+          "key": "k4cfe53b938af",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Exports launchd’s session environment as shell-readable assignments."
+        },
+        {
+          "key": "ka7543e5ab3bf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts launchd GUI session environment assignments."
+        },
+        {
+          "key": "kd575538974b9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the environment block from the GUI launchd domain."
+        },
+        {
+          "key": "kfad7588c357f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the environment block for the current GUI launchd session."
+        }
+      ]
+    }
+  ]
+}

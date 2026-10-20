@@ -1,0 +1,321 @@
+{
+  "candidate_commands_executed": false,
+  "comparison_sha256": "25d7928c7039679c060e08b330dc436cac0e59773148cf558d8dc62859868fc5",
+  "controls": [
+    {
+      "actual": "correct",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "lsof -n suppresses hostname conversion; -P separately suppresses port-name conversion. Numeric addresses does not expressly require numeric ports. Historical rejection imports that extra constraint.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/lsof.txt:661",
+          "evidence/lsof.txt:721",
+          "data/distill/stage2-v4/LABEL.md"
+        ],
+        "verdict_assessment": "Neither incorrect nor correct is unambiguous"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "lsof -iUDP -n",
+      "control": "ct0003",
+      "evidence": "Selects UDP sockets and suppresses hostname resolution, retaining process information and numeric network addresses.",
+      "expected": "incorrect",
+      "request": "Which processes have UDP sockets open? Give numeric addresses.",
+      "source": "docs/eval-audit/items.json#x0011"
+    },
+    {
+      "actual": "correct",
+      "adjudication": {
+        "calibration_limit": "Newline counterexample supports a real error, but request scope is ambiguous and rubric does not explicitly set arbitrary-filename robustness as calibration criterion.",
+        "classification": "supported_negative_weak_calibration",
+        "rationale": "find recursively emits newline-delimited pathnames; wc -l counts newline characters, not files. A newline-containing filename gives a concrete overcount. The historical recursion objection alone depends on interpreting this folder as direct children.",
+        "recommendation": "replace mandatory control; retain documented technical defect in audit",
+        "sources": [
+          "evidence/find.txt:413",
+          "evidence/wc.txt:12",
+          "evidence/logical-counterexamples.json",
+          "https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_170"
+        ],
+        "verdict_assessment": "incorrect"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "find . -type f | wc -l",
+      "control": "ct0006",
+      "evidence": "Recursively enumerates regular files under the current folder and counts their output lines.",
+      "expected": "incorrect",
+      "request": "how many files are in this folder?",
+      "source": "docs/eval-audit/items.json#x0045"
+    },
+    {
+      "actual": "correct",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "screencapture -i selects a region/window interactively; PNG is the default and a destination operand is supplied. The request does not specify full-screen or noninteractive capture; the rubric does not ban interaction.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/screencapture.txt:23",
+          "evidence/screencapture.txt:53",
+          "evidence/screencapture.txt:90"
+        ],
+        "verdict_assessment": "Incorrect expectation unsupported by stated request"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "screencapture -i shot.png",
+      "control": "ct0016",
+      "evidence": "Interactive screencapture lets the user select a screenshot and saves the PNG as shot.png.",
+      "expected": "incorrect",
+      "request": "take a screenshot and save it as shot.png",
+      "source": "docs/eval-audit/items.json#x0302"
+    },
+    {
+      "actual": "unsure",
+      "adjudication": {
+        "classification": "supported_negative",
+        "rationale": "du summarizes the explicitly supplied operand project_folder. The request neither names that path nor supplies an explicit path. Guessing that literal directory is not justified by the request. The hidden reference project is not used as authority.",
+        "recommendation": "retain expected incorrect with request-based wrong-operand rationale",
+        "sources": [
+          "evidence/du.txt:78",
+          "data/distill/stage2-v4/LABEL.md:13"
+        ],
+        "verdict_assessment": "incorrect"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "du -sh project_folder",
+      "control": "ct0022",
+      "evidence": "Need the actual project directory pathname; the request does not establish that it is named project_folder.",
+      "expected": "incorrect",
+      "request": "how big is the project folder in total",
+      "source": "docs/eval-audit/items.json#x0240"
+    },
+    {
+      "actual": "unsure",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "ifconfig en0 is limited to one assumed interface; grep inet also accepts inet6. Neither an IPv4-only requirement nor an active-interface identity is specified. Multiple addresses alone do not prove failure under harmless verbosity allowance.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/ifconfig.txt:578",
+          "data/distill/stage2-v4/LABEL.md:16"
+        ],
+        "verdict_assessment": "Requires interface assumptions absent from request"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "ifconfig en0 | grep inet | awk '{print $2}'",
+      "control": "ct0024",
+      "evidence": "Need to know whether en0 is configured with the local address the user wants.",
+      "expected": "incorrect",
+      "request": "what's my local ip address",
+      "source": "docs/eval-audit/items.json#x0172"
+    },
+    {
+      "actual": "unsure",
+      "adjudication": {
+        "classification": "unverified_output",
+        "rationale": "Installed diskutil strings contain Volume Free Space and Container Free Space but not Total Space Available. This corroborates historical rejection, but cannot rule out dynamically assembled or filesystem-dependent output; man diskutil does not promise field labels.",
+        "recommendation": "replace negative control; do not claim runtime verification",
+        "sources": [
+          "evidence/diskutil-output-labels.json",
+          "data/distill/stage2-v4/judge/control-audit-ct0053.json"
+        ],
+        "verdict_assessment": "Likely incorrect; not established from allowed static documentation"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+      "control": "ct0025",
+      "evidence": "Need BACKUP filesystem-specific output labels; diskutil documentation does not establish a Total Space Available field.",
+      "expected": "incorrect",
+      "request": "how much free space is left on my external drive named BACKUP",
+      "source": "docs/eval-audit/items.json#x0183"
+    },
+    {
+      "actual": "correct",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "Shell *.py expands names in the current directory and grep -n supplies line numbers. The request does not explicitly require recursive searching; the hidden recursive reference is not an added requirement.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/grep.txt:181",
+          "https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html"
+        ],
+        "verdict_assessment": "Incorrect expectation unsupported by stated scope"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "grep -n TODO *.py",
+      "control": "ct0030",
+      "evidence": "Searches Python files in the current directory and prefixes matching lines with their line numbers.",
+      "expected": "incorrect",
+      "request": "search my python files for TODO and show line numbers",
+      "source": "docs/eval-audit/items.json#x0332"
+    },
+    {
+      "actual": "correct",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "The pipeline excludes inet6 and reports IPv4 addresses across interfaces. The request does not explicitly exclude loopback or require exactly one address. More addresses alone do not establish incorrectness.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/ifconfig.txt:578",
+          "data/distill/stage2-v4/LABEL.md:16"
+        ],
+        "verdict_assessment": "Incorrect expectation unsupported by output constraints"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "ifconfig | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://'",
+      "control": "ct0032",
+      "evidence": "Displays local IPv4 addresses from all interfaces, including loopback; additional local addresses are harmless verbosity.",
+      "expected": "incorrect",
+      "request": "what's my local ip address",
+      "source": "docs/eval-audit/items.json#x0078"
+    },
+    {
+      "actual": "unsure",
+      "adjudication": {
+        "classification": "unverified_output",
+        "rationale": "Installed diskutil strings show free-space labels and no Available Space substring. Absence from static strings is corroboration, not proof for every renderer, locale, filesystem or supported version.",
+        "recommendation": "replace negative control; do not claim runtime verification",
+        "sources": [
+          "evidence/diskutil-output-labels.json"
+        ],
+        "verdict_assessment": "Likely incorrect; not established from allowed static documentation"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+      "control": "ct0036",
+      "evidence": "Need BACKUP filesystem-specific diskutil output labels; its man page does not establish an Available Space field.",
+      "expected": "incorrect",
+      "request": "how much free space is left on my external drive named BACKUP",
+      "source": "docs/eval-audit/items.json#x0087"
+    },
+    {
+      "actual": "unsure",
+      "adjudication": {
+        "calibration_limit": "Local type declarations and Apple type documentation support wrong UTI, but exceed blind judges prescribed man-page/existence checks. Compliant unsure should not be punished as calibration failure.",
+        "classification": "supported_negative_evidence_not_permitted",
+        "rationale": "public.app is not the standard application type. Apple defines com.apple.application and com.apple.application-bundle; the local application-bundle declaration conforms to com.apple.application, not public.app. The incorrect type predicate can exclude matching application bundles. Case sensitivity is a secondary behavior, not an invented case-insensitive request requirement.",
+        "recommendation": "replace mandatory control under current evidence restrictions",
+        "sources": [
+          "evidence/application-type-declarations.json",
+          "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/application",
+          "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/applicationbundle",
+          "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html"
+        ],
+        "verdict_assessment": "incorrect"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "mdfind -onlyin /Applications 'kMDItemContentTypeTree == \"public.app\" && kMDItemDisplayName == \"*chrome*\"'",
+      "control": "ct0038",
+      "evidence": "Need validation of public.app as an application UTI and query case matching; mdfind man pages omit these semantics.",
+      "expected": "incorrect",
+      "request": "list apps in /Applications with chrome in the name",
+      "source": "docs/eval-audit/items.json#x0398"
+    },
+    {
+      "actual": "correct",
+      "adjudication": {
+        "classification": "ambiguous",
+        "rationale": "ifconfig without arguments displays all interfaces; this pipeline includes IPv4 and IPv6. The request specifies neither address family nor exclusion of loopback. The rubric allows harmless extra output.",
+        "recommendation": "replace negative control",
+        "sources": [
+          "evidence/ifconfig.txt:578",
+          "data/distill/stage2-v4/LABEL.md:16"
+        ],
+        "verdict_assessment": "Incorrect expectation unsupported by output constraints"
+      },
+      "agrees": false,
+      "category": null,
+      "command": "ifconfig | grep inet | awk '{print $2}' | sed 's/addr://'",
+      "control": "ct0039",
+      "evidence": "Lists local IPv4 and IPv6 interface addresses; including multiple local addresses is harmless additional output.",
+      "expected": "incorrect",
+      "request": "what's my local ip address",
+      "source": "docs/eval-audit/items.json#x0235"
+    },
+    {
+      "actual": "incorrect",
+      "adjudication": {
+        "classification": "unsupported_positive",
+        "rationale": "Plain grep matches invoice inside invoices as well as a standalone word. grep -l changes output to filenames, not word boundaries. The request says the word invoice; the historical substring reference cannot override it. At minimum the word-versus-substring interpretation makes unconditional expected correct unsuitable.",
+        "recommendation": "replace positive control; do not silently relabel or edit request",
+        "sources": [
+          "evidence/grep.txt:14",
+          "evidence/grep.txt:158",
+          "evidence/grep.txt:228",
+          "evidence/logical-counterexamples.json"
+        ],
+        "verdict_assessment": "incorrect under literal whole-word reading; positive control unsuitable"
+      },
+      "agrees": false,
+      "category": "missed_constraint",
+      "command": "find . -type f -exec grep -l 'invoice' {} \\;",
+      "control": "ct0042",
+      "evidence": "grep matches substrings such as invoices, without enforcing the requested word invoice.",
+      "expected": "correct",
+      "request": "which files in this folder contain the word invoice",
+      "source": "docs/eval-audit/items.json#x0067"
+    },
+    {
+      "actual": "incorrect",
+      "adjudication": {
+        "classification": "unsupported_positive",
+        "rationale": "Using find -exec ... {} + batches filenames but does not change grep substring matching. A file containing only invoices can be selected without a standalone invoice word. At minimum unconditional expected correct is unsuitable without a clarified request.",
+        "recommendation": "replace positive control; do not silently relabel or edit request",
+        "sources": [
+          "evidence/grep.txt:14",
+          "evidence/grep.txt:228",
+          "evidence/logical-counterexamples.json"
+        ],
+        "verdict_assessment": "incorrect under literal whole-word reading; positive control unsuitable"
+      },
+      "agrees": false,
+      "category": "missed_constraint",
+      "command": "find . -type f -exec grep -l 'invoice' {} +",
+      "control": "ct0050",
+      "evidence": "grep selects substring matches such as invoices rather than requiring the word invoice.",
+      "expected": "correct",
+      "request": "which files in this folder contain the word invoice",
+      "source": "docs/eval-audit/items.json#x0160"
+    }
+  ],
+  "controls_changed": false,
+  "independent_review": {
+    "conclusion": "Retain ct0022. Replace other12 as mandatory controls. Technical negative support for ct0006/ct0038 remains documented, with calibration limits.",
+    "human_certification": false,
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "session": "review_adjudication13"
+  },
+  "principle": "Judge exact request; hidden references and historical consensus do not add requirements. Keep runtime-dependent assertions distinct from documented semantics.",
+  "proposed_outcome": {
+    "note": "Replacement means unsuitable as mandatory calibration, not automatic opposite verdict. Preserve current controls/pool before any amendment; select fresh sources deterministically under a recorded semantic eligibility rule.",
+    "reason": "Calibration requires an expected verdict established by exact request/rubric and judge-permitted evidence, not merely historical agreement or a technically possible objection.",
+    "replace_same_polarity": [
+      "ct0003",
+      "ct0006",
+      "ct0016",
+      "ct0024",
+      "ct0025",
+      "ct0030",
+      "ct0032",
+      "ct0036",
+      "ct0038",
+      "ct0039",
+      "ct0042",
+      "ct0050"
+    ],
+    "retain_expected_incorrect": [
+      "ct0022"
+    ]
+  },
+  "scope": "All13 disagreements only; no commands executed, no control edits, no blind audit relabeling",
+  "status": "completed: evidence-based adjudication with independent Sol medium review; control edits not applied"
+}

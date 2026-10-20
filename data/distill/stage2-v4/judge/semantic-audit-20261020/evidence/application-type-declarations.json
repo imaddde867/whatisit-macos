@@ -1,0 +1,30 @@
+{
+  "file": "/System/Library/CoreServices/CoreTypes.bundle/Contents/Info.plist",
+  "limitation": "Registry declaration snapshot, not an executed Spotlight query.",
+  "matching_declarations": [
+    {
+      "UTTypeConformsTo": [
+        "public.executable"
+      ],
+      "UTTypeDescription": "application",
+      "UTTypeIdentifier": "com.apple.application"
+    },
+    {
+      "UTTypeConformsTo": [
+        "com.apple.application",
+        "com.apple.localizable-name-bundle",
+        "com.apple.package"
+      ],
+      "UTTypeIcons": {
+        "UTTypeIconName": "GenericApplicationIcon",
+        "UTTypeSymbolName": "appstore"
+      },
+      "UTTypeIdentifier": "com.apple.application-bundle",
+      "UTTypeTagSpecification": {
+        "com.apple.ostype": "APPL",
+        "public.filename-extension": "app"
+      }
+    }
+  ],
+  "sha256": "f6dbcef2e0a5f904745345d0c803e906c99b82601502d6d16520ebd947b6ccb5"
+}

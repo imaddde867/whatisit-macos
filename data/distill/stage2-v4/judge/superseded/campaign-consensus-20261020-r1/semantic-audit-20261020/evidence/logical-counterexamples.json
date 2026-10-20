@@ -1,0 +1,13 @@
+{
+  "file_count": {
+    "filename": "a\nb",
+    "find_print_text": "./a\nb\n",
+    "newline_count": 2,
+    "number_of_files": 1
+  },
+  "word_matching": {
+    "line": "invoices",
+    "plain_invoice_pattern_matches": true,
+    "whole_word_invoice_matches": false
+  }
+}

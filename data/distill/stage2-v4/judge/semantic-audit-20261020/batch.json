@@ -1,0 +1,655 @@
+{
+  "batch": "semantic65",
+  "items": [
+    {
+      "case": "cbcdb6b0a4482",
+      "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+      "candidates": [
+        {
+          "key": "k03863092053d",
+          "command": "grep -ci 'TODO' notes.txt"
+        }
+      ]
+    },
+    {
+      "case": "cde18321a9a04",
+      "request": "take a screenshot and save it as shot.png",
+      "candidates": [
+        {
+          "key": "k06efcc042c1f",
+          "command": "screencapture -P shot.png"
+        }
+      ]
+    },
+    {
+      "case": "c007cf831d9a8",
+      "request": "top 5 processes by memory",
+      "candidates": [
+        {
+          "key": "k0978c531a572",
+          "command": "ps -eo pmem,comm | sort -rn | head -n 5"
+        }
+      ]
+    },
+    {
+      "case": "c8c2790874cdb",
+      "request": "search my python files for TODO and show line numbers",
+      "candidates": [
+        {
+          "key": "k0ce5f7f1aeaa",
+          "command": "grep -n TODO *.py"
+        }
+      ]
+    },
+    {
+      "case": "cc1508f7ff753",
+      "request": "list my running python processes",
+      "candidates": [
+        {
+          "key": "k1357b28a3c4b",
+          "command": "lsof -p $(pgrep -d ' ' python)"
+        }
+      ]
+    },
+    {
+      "case": "c4963304ef391",
+      "request": "top 5 processes by memory",
+      "candidates": [
+        {
+          "key": "k1976b4677cf0",
+          "command": "ps -axo rss,comm | sort -nr | head -n 5"
+        }
+      ]
+    },
+    {
+      "case": "ca8771bae11dd",
+      "request": "take a screenshot and save it as shot.png",
+      "candidates": [
+        {
+          "key": "k1e06c6a12061",
+          "command": "screencapture -P -T 0 shot.png"
+        }
+      ]
+    },
+    {
+      "case": "cb924b915b118",
+      "request": "list apps in /Applications with chrome in the name",
+      "candidates": [
+        {
+          "key": "k1e729d9da640",
+          "command": "find /Applications -type d -name '*Chrome*'"
+        }
+      ]
+    },
+    {
+      "case": "c51c5b723e08a",
+      "request": "delete every .DS_Store file in this folder and everything under it",
+      "candidates": [
+        {
+          "key": "k2197c8db4e5f",
+          "command": "find -type f -name '*.DS_Store' -exec rm {} +"
+        }
+      ]
+    },
+    {
+      "case": "cec23613767ee",
+      "request": "show notes.txt in all caps",
+      "candidates": [
+        {
+          "key": "k23b89fbca194",
+          "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')"
+        }
+      ]
+    },
+    {
+      "case": "c1bff404f4e03",
+      "request": "show me each unique line in names.txt and how many times it appears",
+      "candidates": [
+        {
+          "key": "k242c4403055c",
+          "command": "sort -u names.txt | uniq -c"
+        }
+      ]
+    },
+    {
+      "case": "c846950e26d1f",
+      "request": "Which processes have UDP sockets open? Give numeric addresses.",
+      "candidates": [
+        {
+          "key": "k26a897615366",
+          "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u"
+        }
+      ]
+    },
+    {
+      "case": "c6ecff2cd2416",
+      "request": "how much free space is left on my external drive named BACKUP",
+      "candidates": [
+        {
+          "key": "k2c17228dde29",
+          "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\""
+        }
+      ]
+    },
+    {
+      "case": "c53c1d11417f3",
+      "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist.",
+      "candidates": [
+        {
+          "key": "k2d85c2e9ca35",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "cdaf707248c5b",
+      "request": "replace every foo with bar in notes.txt, save the change in the file",
+      "candidates": [
+        {
+          "key": "k325a94c0693f",
+          "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt"
+        }
+      ]
+    },
+    {
+      "case": "c4206d39c4472",
+      "request": "Which processes have UDP sockets open? Give numeric addresses.",
+      "candidates": [
+        {
+          "key": "k340afdbe4f24",
+          "command": "lsof -iUDP -n"
+        }
+      ]
+    },
+    {
+      "case": "c97cbaa3e8e7d",
+      "request": "Print that Info.plist as JSON, without rewriting it.",
+      "candidates": [
+        {
+          "key": "k3a2b46da1306",
+          "command": "plutil -convert json -o - Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "c54ac23bb1193",
+      "request": "what's my local ip address",
+      "candidates": [
+        {
+          "key": "k3b3e1d433eed",
+          "command": "ifconfig en0 | grep inet | awk '{print $2}'"
+        }
+      ]
+    },
+    {
+      "case": "c878dbbe6e9ee",
+      "request": "list my running python processes",
+      "candidates": [
+        {
+          "key": "k3f9e9323750a",
+          "command": "ps -axo comm= | grep python"
+        }
+      ]
+    },
+    {
+      "case": "c59b4abb08b8a",
+      "request": "what is my public ip",
+      "candidates": [
+        {
+          "key": "k448c244e8539",
+          "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'"
+        }
+      ]
+    },
+    {
+      "case": "cac32df4c832e",
+      "request": "list apps in /Applications with chrome in the name",
+      "candidates": [
+        {
+          "key": "k4cc356a65f0d",
+          "command": "find /Applications -name \"*Chrome*\""
+        }
+      ]
+    },
+    {
+      "case": "ca74446f1f4b5",
+      "request": "kill whatever is running on port 8080",
+      "candidates": [
+        {
+          "key": "k54425aad3ebb",
+          "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill"
+        }
+      ]
+    },
+    {
+      "case": "ce9d3129f104d",
+      "request": "can I reach google.com? just try a few times",
+      "candidates": [
+        {
+          "key": "k5a88ecd76e7b",
+          "command": "curl -sSf https://www.google.com || true"
+        }
+      ]
+    },
+    {
+      "case": "c3a585d2a5460",
+      "request": "Test whether PID 1234 exists without sending it a real signal.",
+      "candidates": [
+        {
+          "key": "k5ba7c8fd0d77",
+          "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\""
+        }
+      ]
+    },
+    {
+      "case": "c3fdb229449c6",
+      "request": "Show entries marked ERROR or WARN in app.log.",
+      "candidates": [
+        {
+          "key": "k5ee24c560fda",
+          "command": "grep -E 'ERROR|WARN' ~/app.log"
+        }
+      ]
+    },
+    {
+      "case": "ca1ebc89bac02",
+      "request": "How many bytes are in a virtual-memory page on this Mac?",
+      "candidates": [
+        {
+          "key": "k6388b4e39edb",
+          "command": "vm_stat | awk 'NR==1{print $8}'"
+        }
+      ]
+    },
+    {
+      "case": "c4bd9d4d374ea",
+      "request": "Inspect MyApp.app's signing identity and signature details.",
+      "candidates": [
+        {
+          "key": "k73923be3f851",
+          "command": "codesign -d MyApp.app"
+        }
+      ]
+    },
+    {
+      "case": "c2d3c751c6324",
+      "request": "show notes.txt in all caps",
+      "candidates": [
+        {
+          "key": "k794a0acc41f2",
+          "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\""
+        }
+      ]
+    },
+    {
+      "case": "c02c1a081f22b",
+      "request": "find the 10 biggest files inside Documents",
+      "candidates": [
+        {
+          "key": "k7ea8d3c1ed8e",
+          "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10"
+        }
+      ]
+    },
+    {
+      "case": "c6fb36b124a94",
+      "request": "what's my local ip address",
+      "candidates": [
+        {
+          "key": "k83b06502d354",
+          "command": "ifconfig | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://'"
+        }
+      ]
+    },
+    {
+      "case": "c5e08d5312f4c",
+      "request": "how many files are in this folder?",
+      "candidates": [
+        {
+          "key": "k8475a320092f",
+          "command": "find . -type f | wc -l"
+        }
+      ]
+    },
+    {
+      "case": "c4cee0265b9b9",
+      "request": "show the first 20 lines of app.log",
+      "candidates": [
+        {
+          "key": "k8573b2d0cf55",
+          "command": "tail -n +1 app.log | head -n 20"
+        }
+      ]
+    },
+    {
+      "case": "ccd69b9b34b7f",
+      "request": "today's date as YYYY-MM-DD",
+      "candidates": [
+        {
+          "key": "k858e5a05ac97",
+          "command": "date +\"%Y-%m-%d\""
+        }
+      ]
+    },
+    {
+      "case": "c8141a485453f",
+      "request": "Count the lines containing ERROR in the local app.log.",
+      "candidates": [
+        {
+          "key": "k8d1886e018ca",
+          "command": "grep -c ERROR local/app.log"
+        }
+      ]
+    },
+    {
+      "case": "c4b515ab27948",
+      "request": "what is my public ip",
+      "candidates": [
+        {
+          "key": "k9170df8303b9",
+          "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'"
+        }
+      ]
+    },
+    {
+      "case": "c174468a673aa",
+      "request": "Test whether PID 1234 exists without sending it a real signal.",
+      "candidates": [
+        {
+          "key": "k91e23461ad3e",
+          "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure"
+        }
+      ]
+    },
+    {
+      "case": "cdcb38fac09ff",
+      "request": "Print the Ethernet hardware address for interface en0.",
+      "candidates": [
+        {
+          "key": "k9a61fe93bf72",
+          "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'"
+        }
+      ]
+    },
+    {
+      "case": "c70168cd6c1de",
+      "request": "kill whatever is running on port 8080",
+      "candidates": [
+        {
+          "key": "k9a62803859d9",
+          "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill"
+        }
+      ]
+    },
+    {
+      "case": "cf1cc2f0b85a8",
+      "request": "kill whatever is running on port 8080",
+      "candidates": [
+        {
+          "key": "k9b5c3c7c4e41",
+          "command": "lsof -i :8080 | awk '{print $2}' | xargs kill"
+        }
+      ]
+    },
+    {
+      "case": "c0b09161a529f",
+      "request": "hey how do I see what power source I'm on and the battery percent",
+      "candidates": [
+        {
+          "key": "k9f704d345f79",
+          "command": "system_profiler SPPowerDataType"
+        }
+      ]
+    },
+    {
+      "case": "c977bf2522a5c",
+      "request": "which files in this folder contain the word invoice",
+      "candidates": [
+        {
+          "key": "ka14a7bb01c67",
+          "command": "find . -type f -exec grep -l 'invoice' {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "cbdb068cfc0b7",
+      "request": "what's my local ip address",
+      "candidates": [
+        {
+          "key": "ka27e1b851527",
+          "command": "ifconfig | grep inet | awk '{print $2}' | sed 's/addr://'"
+        }
+      ]
+    },
+    {
+      "case": "c024c38520e63",
+      "request": "how big is the project folder in total",
+      "candidates": [
+        {
+          "key": "ka5da1004423c",
+          "command": "du -sh project_folder"
+        }
+      ]
+    },
+    {
+      "case": "c2d9df7035bc5",
+      "request": "put all the jpgs in this folder into a new folder called photos",
+      "candidates": [
+        {
+          "key": "kab5ef4c52eb8",
+          "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;"
+        }
+      ]
+    },
+    {
+      "case": "c06577bd23397",
+      "request": "what's eating the space in my Downloads folder? biggest first",
+      "candidates": [
+        {
+          "key": "kacb34b811e93",
+          "command": "du -sh Downloads/* | sort -rh"
+        }
+      ]
+    },
+    {
+      "case": "cf00e67bc214c",
+      "request": "do i have node installed",
+      "candidates": [
+        {
+          "key": "kb499110b0a02",
+          "command": "if [[ -z $(which node) ]]; then echo \"no\"; else echo \"yes\"; fi"
+        }
+      ]
+    },
+    {
+      "case": "c29ea217e3860",
+      "request": "delete every .DS_Store file in this folder and everything under it",
+      "candidates": [
+        {
+          "key": "kbe754eb4f487",
+          "command": "find -name \"*.DS_Store\" | xargs rm -rf"
+        }
+      ]
+    },
+    {
+      "case": "c5c3518e7514e",
+      "request": "take a screenshot and save it as shot.png",
+      "candidates": [
+        {
+          "key": "kc065cde2a631",
+          "command": "screencapture -c shot.png"
+        }
+      ]
+    },
+    {
+      "case": "ca0ff80771225",
+      "request": "Show the macOS filesystem flags on report.pdf.",
+      "candidates": [
+        {
+          "key": "kc3093d1d9f23",
+          "command": "stat -f \"%Sf\" report.pdf"
+        }
+      ]
+    },
+    {
+      "case": "c2ef2a3e8d165",
+      "request": "i need a copy of the whole project folder called project-copy",
+      "candidates": [
+        {
+          "key": "kc381277e5b8c",
+          "command": "mkdir project-copy && cp -R project project-copy"
+        }
+      ]
+    },
+    {
+      "case": "c32aa2b6b21f1",
+      "request": "Print only field three from colon-delimited input.txt.",
+      "candidates": [
+        {
+          "key": "kc6cc0ae2056f",
+          "command": "cat input.txt | cut -d: -f3"
+        }
+      ]
+    },
+    {
+      "case": "c432bb634947e",
+      "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source.",
+      "candidates": [
+        {
+          "key": "kca952c245123",
+          "command": "sips --rotate 90 photo.jpg --out rotated.jpg"
+        }
+      ]
+    },
+    {
+      "case": "c5d55cf367f77",
+      "request": "which files in this folder contain the word invoice",
+      "candidates": [
+        {
+          "key": "kcf98cd67d97f",
+          "command": "find . -type f -exec grep -l 'invoice' {} +"
+        }
+      ]
+    },
+    {
+      "case": "ca2bb2eedd031",
+      "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+      "candidates": [
+        {
+          "key": "kd45ce090ee60",
+          "command": "mount | awk '$3 ~ /^\\/Volumes\\//'"
+        }
+      ]
+    },
+    {
+      "case": "c4e21edb25426",
+      "request": "how much free space is left on my external drive named BACKUP",
+      "candidates": [
+        {
+          "key": "kd53eb9a8ead4",
+          "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'"
+        }
+      ]
+    },
+    {
+      "case": "c07cce4a8bfb8",
+      "request": "can I reach google.com? just try a few times",
+      "candidates": [
+        {
+          "key": "kd7942dffb099",
+          "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408"
+        }
+      ]
+    },
+    {
+      "case": "c4b86e2823b90",
+      "request": "How many bytes are in a virtual-memory page on this Mac?",
+      "candidates": [
+        {
+          "key": "kd7b1908944ff",
+          "command": "getconf PAGESIZE"
+        }
+      ]
+    },
+    {
+      "case": "cfaa6cc6b83b4",
+      "request": "top 5 processes by memory",
+      "candidates": [
+        {
+          "key": "ke09507eea6d9",
+          "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5"
+        }
+      ]
+    },
+    {
+      "case": "c04be7f58eac0",
+      "request": "put all the jpgs in this folder into a new folder called photos",
+      "candidates": [
+        {
+          "key": "ke20aaf4a8279",
+          "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv -- {} photos/ +"
+        }
+      ]
+    },
+    {
+      "case": "c7fd4a6d296ad",
+      "request": "Print lines 3 through 7 of notes.txt, without changing it.",
+      "candidates": [
+        {
+          "key": "ke8212daaee4c",
+          "command": "head -n 7 notes.txt | tail -n +3"
+        }
+      ]
+    },
+    {
+      "case": "c40928b6df1b3",
+      "request": "What path would this zsh session use if I typed python3?",
+      "candidates": [
+        {
+          "key": "ke87abf07df87",
+          "command": "which python3"
+        }
+      ]
+    },
+    {
+      "case": "c6fb54622c503",
+      "request": "delete every .DS_Store file in this folder and everything under it",
+      "candidates": [
+        {
+          "key": "kedccfb2c4f6d",
+          "command": "find -name '*.DS_Store' -exec rm {} +"
+        }
+      ]
+    },
+    {
+      "case": "c7a65fd717957",
+      "request": "list apps in /Applications with chrome in the name",
+      "candidates": [
+        {
+          "key": "kf219d735103a",
+          "command": "mdfind -onlyin /Applications 'kMDItemContentTypeTree == \"public.app\" && kMDItemDisplayName == \"*chrome*\"'"
+        }
+      ]
+    },
+    {
+      "case": "c1a546aeff0b4",
+      "request": "put all the jpgs in this folder into a new folder called photos",
+      "candidates": [
+        {
+          "key": "kf25a6a3f6a5b",
+          "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv {} photos/ +"
+        }
+      ]
+    },
+    {
+      "case": "ca05676812661",
+      "request": "take a screenshot and save it as shot.png",
+      "candidates": [
+        {
+          "key": "kf558cd108f09",
+          "command": "screencapture -i shot.png"
+        }
+      ]
+    }
+  ]
+}

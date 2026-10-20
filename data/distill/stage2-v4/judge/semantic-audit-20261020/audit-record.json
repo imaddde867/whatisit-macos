@@ -1,0 +1,15 @@
+{
+  "adjudication_sha256": "800307f34a0a4e820f97f12fecfbe9dff73d0ed29f451daacefa1b38d0f6a106",
+  "adjudication_status": "13/13 reviewed; retain1, replace12 proposed; no control edits",
+  "agreed": 52,
+  "batch_sha256": "c9fa0cf8b65ada4d512ef38c61bbfd21517ea80ef65f5dfde2757a6bbd01ee56",
+  "blindness": "Judge sees only batch.json and LABEL.md; no expected values, counts by polarity, historical labels or provenance",
+  "comparison_sha256": "25d7928c7039679c060e08b330dc436cac0e59773148cf558d8dc62859868fc5",
+  "controls_sha256": "e916254e5e9545c857c633728855e8fb93962c4e60202410f9f2222e89eb42a4",
+  "disagreed": 13,
+  "judge": "gpt-6.1-sol-medium-semantic65-20261020-a1",
+  "purpose": "Independent blind semantic clarity audit of all65 current controls, not campaign pass1 labels",
+  "rubric_sha256": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+  "status": "completed; exact schema/coverage passed; disagreements require adjudication",
+  "verdict_sha256": "e6342858e629e486cde93c034db0d1eef05c1c1413aef896f5ecaf376113493f"
+}

@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-21",
+  "scope": "Post-stop director diagnosis only; not a new judge attempt or accepted label",
+  "gate_replay": "Existing load_verdicts reproduced the original control rejection on the archived verdict",
+  "controls_checked": [
+    {
+      "key": "k1d242bc53e9d",
+      "control": {
+        "case": "c63c10a577778",
+        "expected": "incorrect",
+        "source": "docs/eval-audit/items.json#x0355",
+        "request": "find the 10 biggest files inside Documents",
+        "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+        "origin_case": "CTL-24",
+        "origin_key": "ct0024",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json e057 x0355 incorrect (pass1 b02 incorrect)"
+      },
+      "observed": {
+        "key": "k1d242bc53e9d",
+        "verdict": "correct",
+        "category": null,
+        "evidence": "du -h -s per entry, sort -hr (BSD sort supports -h), head 10."
+      }
+    },
+    {
+      "key": "ka5da1004423c",
+      "control": {
+        "case": "c024c38520e63",
+        "expected": "incorrect",
+        "source": "docs/eval-audit/items.json#x0240",
+        "request": "how big is the project folder in total",
+        "command": "du -sh project_folder",
+        "origin_case": "CTL-22",
+        "origin_key": "ct0022"
+      },
+      "observed": {
+        "key": "ka5da1004423c",
+        "verdict": "correct",
+        "category": null,
+        "evidence": "du -sh gives one total for the named project folder."
+      }
+    },
+    {
+      "key": "ke09507eea6d9",
+      "control": {
+        "case": "cfaa6cc6b83b4",
+        "expected": "correct",
+        "source": "docs/eval-audit/items.json#x0271",
+        "request": "top 5 processes by memory",
+        "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+        "origin_case": "CTL-57",
+        "origin_key": "ct0057",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e037 x0271 correct (pass1 b01 correct)"
+      },
+      "observed": {
+        "key": "ke09507eea6d9",
+        "verdict": "correct",
+        "category": null,
+        "evidence": "ps -eo rss first, sort -nr, head 5 gives top memory processes."
+      }
+    }
+  ],
+  "control_mismatches": 2,
+  "findings": [
+    "Complete b05 output contains 237 candidate verdicts across 93 cases; 2 of 3 controls disagree with frozen expectations.",
+    "For the biggest-files control, the model explicitly recognized that du -s includes aggregated directories, but accepted the command as a standard idiom.",
+    "A static counterexample is Documents containing a directory whose total exceeds each individual file: this pipeline can rank that directory as one of the requested files. No candidate was executed.",
+    "For project_folder, the model recognized the operand was inferred, but accepted it despite the copy-paste-ready requirement and lack of a supplied path.",
+    "Saved system message includes the exact frozen rubric; saved public batch equals frozen b05; du manual response included the -s documentation.",
+    "Frozen input hashes and all five accepted verdict hashes remain unchanged.",
+    "Read-only SSH check confirms Strata 0.1.44.1, qwen3.8-flash-next-iq3_s, one slot, 262144 context.",
+    "Evidence supports permissive semantic judging, not missing input, tool transport failure, or a wrong biggest-files control."
+  ],
+  "manual_evidence": {
+    "source": "local du(1)",
+    "summary_option": "     -s      Display an entry for each specified file.  (Equivalent to -d 0)\n\n     --si    \"Human-readable\" output.  Use unit suffixes: Byte, Kilobyte,"
+  },
+  "disposition": {
+    "rejected_verdict": "remains archived and excluded",
+    "controls": "unchanged",
+    "accepted_batches": "b00-b04 unchanged",
+    "budget_stop": "preserved",
+    "runner": "not restarted",
+    "recommendation": "Do not retry unchanged Strata as campaign judge. Use it for supporting read-only work; qualify any replacement judge on disjoint examples before explicitly revising the recorded retry plan."
+  },
+  "limitations": [
+    "This diagnosis does not measure error rates on real candidates or establish how another model would perform.",
+    "No new model generation, training, confirmation, dataset build, or candidate execution was performed."
+  ],
+  "evidence_sha256": {
+    "data/distill/stage2-v4/LABEL.md": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+    "data/distill/stage2-v4/judge/pool/batches/b05.json": "df93883b65ae5b1c98aad0ff7a803ec2bf2a0597180943adbc10bf3471b7ce49",
+    "data/distill/stage2-v4/judge/pool/controls-map.json": "4e8976b6cba7372f2bbfdee7182ba2dc6d09cc1007fcb094f9c7c188963a8d1f",
+    "data/distill/stage2-v4/judge/superseded/r2-strata-b05-a2.json": "9956e3d644496ed348804157bbd62dfb1dc3d3d928d2635b6a20fae9c61a722b",
+    "data/distill/stage2-v4/judge/strata-runs/b05-a2/input.json": "826dc97ad5bf790a7852e5e38e1194a09adbcc590129829e42e9e6d2295425d4",
+    "data/distill/stage2-v4/judge/strata-runs/b05-a2/trace.jsonl": "e7bb4d9024b6872fca302a32769b36edeb21169fe4c0022b8ad97d06b082d37b"
+  }
+}

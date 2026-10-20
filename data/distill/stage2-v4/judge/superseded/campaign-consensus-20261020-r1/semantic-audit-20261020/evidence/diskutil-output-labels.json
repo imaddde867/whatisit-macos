@@ -1,0 +1,16 @@
+{
+  "binary": "/usr/sbin/diskutil",
+  "binary_sha256": "81c90e225c6c28f812d2f2563be7fefa630266b592ca2fe02fe590fd67fca5ac",
+  "exact_phrase_presence": {
+    "Available Space": false,
+    "Total Space Available": false
+  },
+  "limitation": "Absence from strings does not rule out dynamically assembled or localized output.",
+  "matching_output_labels": [
+    "   Container Free Space:      %s",
+    "   Container Total Space:     %s",
+    "   Volume Free Space:         %s%s",
+    "   Volume Total Space:        %s"
+  ],
+  "method": "static ASCII strings only; binary not executed"
+}

@@ -1,0 +1,1930 @@
+{
+  "batch": "b04",
+  "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b04-a1",
+  "cases": [
+    {
+      "case": "c95464ca953af",
+      "verdicts": [
+        {
+          "key": "kd32c36d2285b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sysctl exposes vm.loadavg; -n prints only its value."
+        }
+      ]
+    },
+    {
+      "case": "ce1a9310260c7",
+      "verdicts": [
+        {
+          "key": "k5289ca1233e2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Locates the Ierrs column and prints one interface name and input-error count."
+        },
+        {
+          "key": "k61c13c4d1fea",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "With byte columns, NF minus five selects Ierrs, including rows lacking a hardware address."
+        },
+        {
+          "key": "k709273a3d06f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the Ierrs column alongside each interface name."
+        },
+        {
+          "key": "kaf068986fab9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects link rows and adjusts the Ierrs field for missing hardware addresses."
+        },
+        {
+          "key": "kb630819ad4f7",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Without byte columns, ordinary interface rows have fewer than ten fields and are excluded."
+        }
+      ]
+    },
+    {
+      "case": "c4ddfc43be313",
+      "verdicts": [
+        {
+          "key": "ke9802e21ab0d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Runs three vm_stat snapshots separated by two five-second sleeps."
+        }
+      ]
+    },
+    {
+      "case": "ca02f001b2260",
+      "verdicts": [
+        {
+          "key": "k70a0bfcd2bf4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "file identifies report.pdf from its file contents and metadata."
+        }
+      ]
+    },
+    {
+      "case": "c57c5bc40f5bd",
+      "verdicts": [
+        {
+          "key": "k0be7c3407e9f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Limits Spotlight searching to assets and matches the exact SVG content type."
+        }
+      ]
+    },
+    {
+      "case": "c4963304ef391",
+      "verdicts": [
+        {
+          "key": "k1976b4677cf0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts resident memory numerically descending and prints the five largest processes."
+        }
+      ]
+    },
+    {
+      "case": "c0ed42fd5a03e",
+      "verdicts": [
+        {
+          "key": "k340fdb26929e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "kern.clockrate reports kernel clock-rate parameters."
+        }
+      ]
+    },
+    {
+      "case": "c7f3ffeb5bcbe",
+      "verdicts": [
+        {
+          "key": "k1256de75ab60",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "AND combines TCP selection with an anchored exact command-name regular expression."
+        }
+      ]
+    },
+    {
+      "case": "cef3b1ebc8c65",
+      "verdicts": [
+        {
+          "key": "kb79bdc38118b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD find supports depth limits; only directories at depths one and two are printed."
+        }
+      ]
+    },
+    {
+      "case": "c91dfccb2de47",
+      "verdicts": [
+        {
+          "key": "k3538a883b409",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Formats birth time with TZ set to UTC."
+        },
+        {
+          "key": "k6b0f2ccd83a2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints birth time as an explicitly UTC ISO-style timestamp."
+        },
+        {
+          "key": "k7454bea0c0a5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "TZ=UTC makes the formatted birth time use UTC."
+        }
+      ]
+    },
+    {
+      "case": "cd1f6d53c9250",
+      "verdicts": [
+        {
+          "key": "k2b3ef3539952",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Searches indexed movie content types with frame rates greater than 30 in clip-tests."
+        },
+        {
+          "key": "k6ab138aae653",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The indexed video frame-rate attribute selects videos above 30 within clip-tests."
+        },
+        {
+          "key": "k6b2e931c9d38",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Combines the movie type tree and frame-rate predicate within clip-tests."
+        },
+        {
+          "key": "kaf3ac46410b5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries the movie type tree and frame-rate threshold inside clip-tests."
+        }
+      ]
+    },
+    {
+      "case": "c20873a66671d",
+      "verdicts": [
+        {
+          "key": "k35df9cefbcf5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat reads the Finder alias file itself and formats its modification date."
+        },
+        {
+          "key": "ka603c546f7cd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the alias file modification timestamp without resolving Finder aliases."
+        },
+        {
+          "key": "kb47fa7cf6e0b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Formats the modification time of the alias file itself."
+        },
+        {
+          "key": "keece3bfe94e7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports the alias file modification time and name."
+        }
+      ]
+    },
+    {
+      "case": "cb08f9822e78b",
+      "verdicts": [
+        {
+          "key": "k23e701872163",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil reports device block size, which is distinct from filesystem block size."
+        },
+        {
+          "key": "k9365f7101204",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The stat B field is birth time; filesystem I/O block size uses k."
+        },
+        {
+          "key": "kbd508a3b1a03",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The stat b field counts allocated blocks rather than reporting block size."
+        },
+        {
+          "key": "ke9c90472633f",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The stat b field is allocated-block count, not block size."
+        }
+      ]
+    },
+    {
+      "case": "c3ba5153dd429",
+      "verdicts": [
+        {
+          "key": "k053b025bc620",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints owner name, symbolic permissions, and numeric mode."
+        },
+        {
+          "key": "k0f8b3dccff87",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints owner name and symbolic permissions with the filename."
+        },
+        {
+          "key": "k33d7a3cb91da",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Long listing includes file ownership and permission bits."
+        },
+        {
+          "key": "ka9cf6dd61719",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat Su and Sp print owner name and permission bits."
+        }
+      ]
+    },
+    {
+      "case": "ca8387bf63590",
+      "verdicts": [
+        {
+          "key": "kc8799e2fbaba",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD tar supports --numeric-owner during creation and preserves numeric UID/GID headers."
+        }
+      ]
+    },
+    {
+      "case": "c5a98c9e228b9",
+      "verdicts": [
+        {
+          "key": "k1dd42315b821",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The bracket range space-through-> excludes digits and colons, so numeric local endpoints are truncated or empty."
+        },
+        {
+          "key": "k354c2e3b2feb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects PID TCP sockets, keeps name fields, and removes remote endpoints and trailing state."
+        },
+        {
+          "key": "k7b7c3b5252b3",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Unfiltered lsof field output retains process-ID and file-descriptor records alongside endpoints."
+        },
+        {
+          "key": "ka7e97c31b793",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Keeps only socket name fields and removes remote endpoints and state text."
+        },
+        {
+          "key": "ke13921c53743",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "lsof name fields contain endpoints without a TCP prefix; /^nTCP/ misses them."
+        }
+      ]
+    },
+    {
+      "case": "cc735a83dad3d",
+      "verdicts": [
+        {
+          "key": "k5db8bda79e50",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Without -a, user and device selections are ORed, including unrelated files."
+        },
+        {
+          "key": "k6f0d2d55351a",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "+d requires a directory; /dev/disk4s1 is a device node."
+        },
+        {
+          "key": "k8c7cec3e169b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Without -a, the user and filesystem selectors are ORed."
+        },
+        {
+          "key": "k9d9cfe8d9632",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "+d searches directories, not a disk device node."
+        }
+      ]
+    },
+    {
+      "case": "c28b5d7652173",
+      "verdicts": [
+        {
+          "key": "k5b03e12ef186",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Parses activity records, sorts descending by timestamps, and emits the first message for each activity."
+        },
+        {
+          "key": "k8a1ddeb3ffff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Parses activity records and retains the newest timestamped eventMessage for each activity."
+        },
+        {
+          "key": "kc1535ee047f6",
+          "verdict": "incorrect",
+          "category": "not_a_command",
+          "evidence": "The JavaScript contains a top-level return statement outside a function."
+        }
+      ]
+    },
+    {
+      "case": "c58cd9643f6f7",
+      "verdicts": [
+        {
+          "key": "k402742abb896",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Handles Device Location or Internal fields and reports internal versus external."
+        },
+        {
+          "key": "k8fe78625104b",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil info reports Device Location; an anchored Internal field is not its normal location output."
+        },
+        {
+          "key": "kb096524e6000",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows the diskutil location line containing Internal or External."
+        },
+        {
+          "key": "kb39de2d6a36e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The literal Internal: Yes does not match diskutil Device Location output or its padded columns."
+        },
+        {
+          "key": "kdbd6c997c3b8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses Device Location as fallback and reports its internal or external value."
+        }
+      ]
+    },
+    {
+      "case": "c1afa67761b70",
+      "verdicts": [
+        {
+          "key": "kd3399216a46e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -list -project lists project schemes; the Xcode project implies development tools."
+        }
+      ]
+    },
+    {
+      "case": "cd36fbffc2423",
+      "verdicts": [
+        {
+          "key": "k535431fcdc8d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters listening TCP port 5432 sockets to IPv4 or IPv6 localhost addresses."
+        }
+      ]
+    },
+    {
+      "case": "c6568f9ec9f79",
+      "verdicts": [
+        {
+          "key": "k4cf9c9b3ade6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "defaults read succeeds when the debug key exists and the conditional reports yes or no."
+        }
+      ]
+    },
+    {
+      "case": "ce89000206956",
+      "verdicts": [
+        {
+          "key": "ka487bcb749b4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil documents list[Volume]Groups with an optional APFS container argument."
+        }
+      ]
+    },
+    {
+      "case": "c456e3f34861e",
+      "verdicts": [
+        {
+          "key": "k2ecf318cb2d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "nohidden clears the BSD hidden flag on sample.txt."
+        }
+      ]
+    },
+    {
+      "case": "ccfd8f47ffc6b",
+      "verdicts": [
+        {
+          "key": "k6335cc188243",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the diskutil Mount Point value."
+        },
+        {
+          "key": "k783260fad05a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows the diskutil Mount Point line."
+        },
+        {
+          "key": "k8eec68b3be7b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Removes the Mount Point label and prints its value."
+        },
+        {
+          "key": "kb33629fcb686",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the diskutil Mount Point value."
+        },
+        {
+          "key": "ke31ca0fda2ff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the first Mount Point value after removing its label."
+        }
+      ]
+    },
+    {
+      "case": "ccb4f425b0f30",
+      "verdicts": [
+        {
+          "key": "k0f656e5017ca",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays signature details and tests explicit ad-hoc signature indicators."
+        },
+        {
+          "key": "kaf864e71ff0c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests the Signature=adhoc marker from displayed signing details."
+        },
+        {
+          "key": "kfad5bad6df19",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays verbose signature information and reports whether adhoc occurs."
+        },
+        {
+          "key": "kff7c35e39c68",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks the explicit ad-hoc signature marker and reports yes or no."
+        }
+      ]
+    },
+    {
+      "case": "cd3d54ee2f44c",
+      "verdicts": [
+        {
+          "key": "k011af1726a59",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows the removable-media information for the specified disk."
+        },
+        {
+          "key": "k36d4036fbde5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the Removable Media line for disk4."
+        },
+        {
+          "key": "k6cd0b25d0c5c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints disk4 removable-media information."
+        },
+        {
+          "key": "k9c3df9e5c90f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows removable-media information reported by diskutil."
+        },
+        {
+          "key": "kae7a8d91c167",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the Removable Media field for disk4."
+        }
+      ]
+    },
+    {
+      "case": "c90fb0c6d3b1c",
+      "verdicts": [
+        {
+          "key": "kb64e5455b75d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD sed edits table.txt in place, removing the final semicolon and following field from each row."
+        }
+      ]
+    },
+    {
+      "case": "cffbd3d1b8e8c",
+      "verdicts": [
+        {
+          "key": "k47558111c5e6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "df accepts multiple filesystem operands and reports utilization for each."
+        },
+        {
+          "key": "k9602e62b80e0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports utilization for all three specified filesystem paths in one df invocation."
+        }
+      ]
+    },
+    {
+      "case": "cabc9f47dc60c",
+      "verdicts": [
+        {
+          "key": "k32c9e79b32bf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts CFBundleDisplayName and CFBundleName from the localized property list."
+        },
+        {
+          "key": "k8d33d5b577db",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects localized CFBundle name keys and prints their string values."
+        },
+        {
+          "key": "ka59fe24bb70d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Raw plutil extraction prints each localized application name to stdout."
+        },
+        {
+          "key": "kb1bb033f1277",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "InfoPlist.strings may be a binary property list; sed only handles the textual assignment representation."
+        }
+      ]
+    },
+    {
+      "case": "c06d78aadd3e6",
+      "verdicts": [
+        {
+          "key": "k2dc9ef9528cc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts lines by their leading 20-character UTC timestamps and removes the temporary prefix."
+        },
+        {
+          "key": "k884bf9d37d32",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts both files by leading timestamps with deterministic collation."
+        },
+        {
+          "key": "ka3e7b083763c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Merges both logs into timestamp order using their first fields."
+        },
+        {
+          "key": "kf069211ab945",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Combines both logs and stably sorts their leading timestamp fields."
+        }
+      ]
+    },
+    {
+      "case": "cee58b3d422be",
+      "verdicts": [
+        {
+          "key": "k3383d2a63de9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy prints the CFBundleExecutable value from Helper.app metadata."
+        },
+        {
+          "key": "k4dca15df3a92",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the declared CFBundleExecutable key without launching the application."
+        },
+        {
+          "key": "k76e0671c74d0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Raw extraction prints the declared executable filename."
+        },
+        {
+          "key": "k94d8a37a6f49",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "defaults accepts plist paths with an omitted extension and reads CFBundleExecutable."
+        }
+      ]
+    },
+    {
+      "case": "ce5302b234e7a",
+      "verdicts": [
+        {
+          "key": "k248b5961835a",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "lsof port selection also matches remote endpoints, so results need not use local port 9001."
+        },
+        {
+          "key": "k3cc7b2670614",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Both protocol selections match either endpoint port, including remote port 9001."
+        },
+        {
+          "key": "kf9fa0a854f51",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "The selectors include connections whose remote port is 9001 but local port differs."
+        }
+      ]
+    },
+    {
+      "case": "cdd83fc89093f",
+      "verdicts": [
+        {
+          "key": "k499440282981",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Extracted XML string contents retain entity escapes instead of returning the original RecentFiles values."
+        },
+        {
+          "key": "k9bc418be4aea",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Raw extraction of an array prints its element count, not its values."
+        },
+        {
+          "key": "kb8558d8156c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts RecentFiles as XML and selects only string text values."
+        },
+        {
+          "key": "kd89245efb0ef",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "plutil raw prints an array count rather than the RecentFiles entries."
+        }
+      ]
+    },
+    {
+      "case": "cbb8cf0c59026",
+      "verdicts": [
+        {
+          "key": "k09ea83c34969",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-i selects Internet sockets and omits UNIX-domain sockets."
+        },
+        {
+          "key": "k5ba1a1816a7c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Internet-only socket selection omits the process UNIX-domain sockets."
+        },
+        {
+          "key": "kd4386a40c572",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters file types to Internet, UNIX, and generic sockets and prints numeric descriptors."
+        },
+        {
+          "key": "kdcc541a9f1de",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-a intersects Internet and UNIX socket selectors rather than selecting both socket types."
+        },
+        {
+          "key": "kde2c4fbab41f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-i excludes UNIX-domain sockets, so it cannot list all open sockets."
+        }
+      ]
+    },
+    {
+      "case": "c6a2df1269c43",
+      "verdicts": [
+        {
+          "key": "k3d4029499b82",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "df reports the current directory filesystem and its fifth field is the used percentage."
+        }
+      ]
+    },
+    {
+      "case": "c6eec6bd9bae3",
+      "verdicts": [
+        {
+          "key": "k4aa2adfc5074",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The Data format line begins with its channel count in field three."
+        },
+        {
+          "key": "k58ce9bae88c4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the channel count from the first Data format line."
+        },
+        {
+          "key": "k62a3c9033400",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "afinfo reports channels on its Data format line, not a Channels: line."
+        },
+        {
+          "key": "k760a11f990b4",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "afinfo does not use a Number of Channels output label."
+        },
+        {
+          "key": "ka8735bbe7cdc",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "afinfo does not report a Number of channels field."
+        }
+      ]
+    },
+    {
+      "case": "c407ac920afc5",
+      "verdicts": [
+        {
+          "key": "k03e7b812700e",
+          "verdict": "incorrect",
+          "category": "not_a_command",
+          "evidence": "Literal backslashes before quotes occur outside awk strings and make the awk program invalid."
+        },
+        {
+          "key": "k1d3f4fe93074",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Resets keys per file, ignores comment lines, and prints files containing repeated trimmed keys."
+        },
+        {
+          "key": "k435091b329a7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tracks repeated keys separately per file and prints each affected filename."
+        },
+        {
+          "key": "k79a0056ac631",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Runs a fresh awk per file and prints that filename on its first duplicate key."
+        },
+        {
+          "key": "keabcd2c48088",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Resets state per file and prints each file once when a noncomment key repeats."
+        }
+      ]
+    },
+    {
+      "case": "cbf7ee8538fe5",
+      "verdicts": [
+        {
+          "key": "k2995bb9ea913",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "dig +trace follows and displays DNS delegation for example.org."
+        }
+      ]
+    },
+    {
+      "case": "c2393573cfc6e",
+      "verdicts": [
+        {
+          "key": "k0b0331fa1e5f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "nc -z tests the localhost TCP port without sending payload data."
+        }
+      ]
+    },
+    {
+      "case": "cc94433a26687",
+      "verdicts": [
+        {
+          "key": "k502514ac8155",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Captures the screen directly to screenshot.pdf using explicit PDF format."
+        }
+      ]
+    },
+    {
+      "case": "c6c38eb3ab5d4",
+      "verdicts": [
+        {
+          "key": "k0d2cadc9c29a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Field four is available disk space, not the free-inode column."
+        },
+        {
+          "key": "k5c1f3daf5887",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds the ifree column by its header and prints that filesystem value."
+        },
+        {
+          "key": "kc3f5a776efbc",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The fourth df field reports available blocks, not free inodes."
+        },
+        {
+          "key": "kcde44714d52c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Adding -P does not make field four the free-inode count."
+        },
+        {
+          "key": "kf77e4d4323bf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD df includes ifree as the seventh column in its inode display."
+        }
+      ]
+    },
+    {
+      "case": "cc69fd5f5f897",
+      "verdicts": [
+        {
+          "key": "k947f0570e392",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the Checksum Type value from disk-image information."
+        },
+        {
+          "key": "kaf67aef55689",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the Checksum Type metadata value."
+        },
+        {
+          "key": "kc6cc7ce9a771",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows the stored Checksum Type metadata line."
+        },
+        {
+          "key": "kccd725ce2568",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the Checksum Type value from image metadata."
+        },
+        {
+          "key": "kcf8c170d1655",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the image Checksum Type line."
+        }
+      ]
+    },
+    {
+      "case": "cb2d0c5a3df0b",
+      "verdicts": [
+        {
+          "key": "kcfab261da649",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Verifies the image against stored checksums and redirects both output streams to image-check.txt."
+        }
+      ]
+    },
+    {
+      "case": "c708b20fe5862",
+      "verdicts": [
+        {
+          "key": "k2e824dc36593",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads and lists the compressed archive without extraction; errors produce a failing exit status."
+        },
+        {
+          "key": "k6742fe98e533",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests gzip integrity and then checks that tar can read the archive."
+        },
+        {
+          "key": "kb9847ba1145a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks that tar can read the gzip-compressed archive without extracting files."
+        },
+        {
+          "key": "kba21adab67e9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests compressed-stream and tar readability, then reports success or corruption."
+        }
+      ]
+    },
+    {
+      "case": "cf52ca7bc0edb",
+      "verdicts": [
+        {
+          "key": "k64a396a5c9fb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy Delete removes the debug key from the specified plist."
+        }
+      ]
+    },
+    {
+      "case": "ce8bc4839db92",
+      "verdicts": [
+        {
+          "key": "k3bdba355633c",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The sips manual does not establish whether deleting color-management dictionaries also removes the embedded PNG ICC profile."
+        },
+        {
+          "key": "k8606802c756c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Copies PNG chunks except iCCP into a new file, leaving the source intact."
+        }
+      ]
+    },
+    {
+      "case": "cc0d3c1d08395",
+      "verdicts": [
+        {
+          "key": "kd5e1d0b63678",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "otool -L inspects Mach-O shared-library references without executing the binary."
+        }
+      ]
+    },
+    {
+      "case": "c7b8c9361bea0",
+      "verdicts": [
+        {
+          "key": "k6d61687ac17f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "git show reads main:README.md in project without changing the checked-out branch."
+        }
+      ]
+    },
+    {
+      "case": "c1e31a587e002",
+      "verdicts": [
+        {
+          "key": "k5dc8e56e0562",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "hdiutil info lists currently attached disk images and their devices without opening contents."
+        },
+        {
+          "key": "kb5c68b361050",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects attached disk-image device lines that have mounted-volume paths."
+        },
+        {
+          "key": "kc1e1b1917b1f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects disk-image device headings from the attached disk listing."
+        }
+      ]
+    },
+    {
+      "case": "ca2bfc6f6cb0b",
+      "verdicts": [
+        {
+          "key": "k2cc31296613e",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "launchctl documents print output as unstable and does not document whether GUI domains contain a uid field."
+        },
+        {
+          "key": "k5ce6c2be7c5a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "A GUI domain is identified by its associated user UID; id -u prints the current user UID."
+        },
+        {
+          "key": "kab5f959679ed",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The login-domain handle is an audit-session identifier rather than its associated numeric user ID."
+        },
+        {
+          "key": "kea65469a7492",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The local launchctl manual does not specify whether print emits a uid field for GUI domains."
+        },
+        {
+          "key": "kf9ec1029e27b",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The local launchctl manual does not specify whether GUI-domain output contains a numeric user field."
+        }
+      ]
+    },
+    {
+      "case": "cf57e4f99a3ca",
+      "verdicts": [
+        {
+          "key": "k0df4a6a685d6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The Amperage pattern also matches InstantAmperage, displaying the instantaneous battery-current property."
+        },
+        {
+          "key": "k1355d312c1c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the battery InstantAmperage property."
+        },
+        {
+          "key": "k5afce11f4572",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Looks for InstantaneousCurrent rather than InstantAmperage and falls back to the averaged Amperage value."
+        },
+        {
+          "key": "kaae73a7ca384",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Amperage matching includes InstantAmperage in the battery properties."
+        },
+        {
+          "key": "kbb07e8931a45",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays InstantAmperage together with the battery Amperage property."
+        }
+      ]
+    },
+    {
+      "case": "c5d1a628cbee4",
+      "verdicts": [
+        {
+          "key": "k782248f77778",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "python3 is not part of the rubric stock-macOS command environment."
+        },
+        {
+          "key": "k9e954b317afb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Parses the JSON array using stock JXA and prints the eventMessage values."
+        },
+        {
+          "key": "kef15e48368f6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the JSON array using Foundation and outputs each eventMessage."
+        },
+        {
+          "key": "kfa60799e760f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Resolves the input file in the current directory, parses JSON, and emits eventMessage values."
+        }
+      ]
+    },
+    {
+      "case": "c9d36fcab3098",
+      "verdicts": [
+        {
+          "key": "kf356b6ecd7ea",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The mdfind manual does not document nil comparison semantics for attributes absent from indexed records."
+        }
+      ]
+    },
+    {
+      "case": "c31ba53b8e776",
+      "verdicts": [
+        {
+          "key": "k43d707a9afff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters ARP entries to the exact en0 interface name."
+        },
+        {
+          "key": "k6f365e9f2be1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "arp supports -i to select interface entries when listing its cache."
+        },
+        {
+          "key": "k981d68987ff1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches ARP entries with an exact on en0 interface field."
+        },
+        {
+          "key": "kc309ccd3bd7e",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Unanchored en0 also matches interfaces such as en01 and hostnames containing en0."
+        }
+      ]
+    },
+    {
+      "case": "ca60ddc202a6b",
+      "verdicts": [
+        {
+          "key": "k7017b2cbee1e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sends an explicit Accept: application/json header with the HTTPS request."
+        }
+      ]
+    },
+    {
+      "case": "c0089df245827",
+      "verdicts": [
+        {
+          "key": "k65ecbb3ed277",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects processes whose parent PID is 4200."
+        },
+        {
+          "key": "k9235861afa0c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists process IDs and commands with parent PID 4200."
+        },
+        {
+          "key": "k95a31dec0b3b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters process rows by their parent PID."
+        },
+        {
+          "key": "k9bcb43783986",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Headerless ps output is filtered to children of PID 4200."
+        },
+        {
+          "key": "kd1a8d8f63fab",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows child processes of PID 4200 with an informational header."
+        }
+      ]
+    },
+    {
+      "case": "c238dd8af50e3",
+      "verdicts": [
+        {
+          "key": "k6ca69308fd7c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces any existing archive so the new ZIP contains only the two requested files."
+        }
+      ]
+    },
+    {
+      "case": "c8e8af92636fa",
+      "verdicts": [
+        {
+          "key": "k1acecf430638",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Listens once on IPv4 localhost port 9000 and copies received data to stdout."
+        }
+      ]
+    },
+    {
+      "case": "c12b2a5a4c36c",
+      "verdicts": [
+        {
+          "key": "k0b025a3ce07f",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The expression expects an equals separator, whereas plutil -p prints dictionary entries with =>."
+        },
+        {
+          "key": "k80ac4b23094b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds ExampleKit in the resolved-pins display and prints its nearby version value."
+        },
+        {
+          "key": "kd3ff339f8e35",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Python is not stock under the rubric, and the request does not imply Python tooling."
+        }
+      ]
+    },
+    {
+      "case": "cf2c44fff7cba",
+      "verdicts": [
+        {
+          "key": "k193f6fcbac41",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters A answer records and prints only their TTL fields."
+        },
+        {
+          "key": "k1b242f0ee26c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Unfiltered answers can include CNAME records, so it can print TTLs belonging to non-A records."
+        },
+        {
+          "key": "k383f079f515e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects only A records and outputs their TTL column."
+        },
+        {
+          "key": "ka1769fba8917",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints TTL values only for A records in the answer section."
+        },
+        {
+          "key": "kbf6851a4a349",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters A records before extracting TTL values."
+        }
+      ]
+    },
+    {
+      "case": "c0b03439d10fd",
+      "verdicts": [
+        {
+          "key": "k5be553478a1d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The USB System Information report shows attached devices organized by their buses."
+        }
+      ]
+    },
+    {
+      "case": "c8b3db30b249f",
+      "verdicts": [
+        {
+          "key": "k5986efe17439",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches the documented Pages copy-on-write counter and removes formatting punctuation."
+        },
+        {
+          "key": "k8f4cda06ab96",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "vm_stat labels the counter Pages copy-on-write, not Copy-on-write faults."
+        },
+        {
+          "key": "k9b9bc5423d3f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches the copy-on-write counter and prints its numeric value without punctuation."
+        },
+        {
+          "key": "ka082fee116ec",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "There is no Copy-on-write faults: output label in vm_stat."
+        },
+        {
+          "key": "kfe247877f1a5",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The counter label is Pages copy-on-write, so this pattern produces no count."
+        }
+      ]
+    },
+    {
+      "case": "c85f4a70d22d4",
+      "verdicts": [
+        {
+          "key": "k3c6bd88b42f8",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Finder comments require a serialized property-list string; this writes raw text bytes to the metadata attribute."
+        },
+        {
+          "key": "kcc9c781c5495",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "mdls is read-only and has no -write option."
+        }
+      ]
+    },
+    {
+      "case": "c1398d8a55cbb",
+      "verdicts": [
+        {
+          "key": "k53376a420969",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses BSD word boundaries and a basic-regex backreference to find adjacent repeated words."
+        },
+        {
+          "key": "k8287ee65b928",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The manuals require REG_ENHANCED for extended backreferences but do not establish whether this grep invocation enables it."
+        },
+        {
+          "key": "k9601cf0d4350",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The grep manual does not establish whether -E enables the enhanced backreference support this pattern needs."
+        },
+        {
+          "key": "kfaea7c7eb622",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The local manuals do not establish enhanced-regex activation for grep -E backreferences."
+        },
+        {
+          "key": "kfc219081a80c",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The manuals do not establish whether grep -E activates REG_ENHANCED for its numeric backreference."
+        }
+      ]
+    },
+    {
+      "case": "c0d6d1d28a328",
+      "verdicts": [
+        {
+          "key": "k7b6a3be31922",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The installed readlink manual documents -f recursive symlink resolution to an absolute canonical pathname."
+        }
+      ]
+    },
+    {
+      "case": "ca64c2d8cad9d",
+      "verdicts": [
+        {
+          "key": "k14d4098fa168",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Captures camera headings and model fields while omitting unique-ID fields."
+        },
+        {
+          "key": "k4a90b94a4a9b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the camera report with Unique ID lines removed."
+        },
+        {
+          "key": "k65f01ed2c895",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Associates each camera heading with its Model ID value."
+        },
+        {
+          "key": "kc122e08ffb0c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The camera report uses Model ID:, so matching only Model Identifier: produces no models."
+        },
+        {
+          "key": "kc76cf1003134",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints each camera heading with the Model ID value and excludes unique IDs."
+        }
+      ]
+    },
+    {
+      "case": "c85969aafb11e",
+      "verdicts": [
+        {
+          "key": "k3001b124c678",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The indexed text-encoding attribute is kMDItemTextEncodingName, not kMDItemEncoding."
+        },
+        {
+          "key": "ka56fa70100a8",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "file infers MIME encoding from contents rather than reading the indexed Spotlight attribute."
+        }
+      ]
+    },
+    {
+      "case": "c138fb3bb24d3",
+      "verdicts": [
+        {
+          "key": "k1a3b55fe4ce1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases only the deduplication key and prints each original line on its first occurrence."
+        }
+      ]
+    },
+    {
+      "case": "c7f096fea24e1",
+      "verdicts": [
+        {
+          "key": "k1d61987d0ec4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts subsystem strings, counts their occurrences, and prints counts with subsystem names."
+        },
+        {
+          "key": "k1e433b09d18f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts subsystem values and counts identical values with sort and uniq."
+        },
+        {
+          "key": "k499ccdd8fa86",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts extracted subsystem values and orders the counts descending."
+        },
+        {
+          "key": "kc2bc297bd5bc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts subsystem values and counts occurrences using sort and uniq."
+        },
+        {
+          "key": "kc92ed2f77aa6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Captures subsystem string values and prints their occurrence counts."
+        }
+      ]
+    },
+    {
+      "case": "c6f12acd1dee7",
+      "verdicts": [
+        {
+          "key": "k98358bc11493",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "hw.logicalcpu_max is the documented maximum supported logical-CPU count."
+        }
+      ]
+    },
+    {
+      "case": "c6b7952c30842",
+      "verdicts": [
+        {
+          "key": "k3eab213a26dd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports each immediate entry disk usage in 1024-byte units with one summary per entry."
+        },
+        {
+          "key": "k825b28612742",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Without -s, du recursively lists nested directory entries as well as the requested entries."
+        },
+        {
+          "key": "ka07df213ce0d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Converts each immediate entry byte size to KiB and retains its name."
+        },
+        {
+          "key": "ke1f96b35c042",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists immediate entry sizes divided by 1024 with their original names."
+        },
+        {
+          "key": "kf63727b5659c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Converts byte sizes of immediate entries to rounded KiB values."
+        }
+      ]
+    },
+    {
+      "case": "cde18321a9a04",
+      "verdicts": [
+        {
+          "key": "k06efcc042c1f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-P additionally opens the screenshot in Preview, an unrequested application-opening side effect."
+        }
+      ]
+    },
+    {
+      "case": "cfcb57605753f",
+      "verdicts": [
+        {
+          "key": "kb0bb3412085f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries the indexed size attribute for exactly 1024 bytes within exports."
+        }
+      ]
+    },
+    {
+      "case": "c0763eaf02b54",
+      "verdicts": [
+        {
+          "key": "k4b0e1757b08a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "vmmap -summary prints memory allocation and VM usage statistics for PID 4200."
+        },
+        {
+          "key": "k780a836cd1df",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "vmmap reports memory regions and allocation statistics for PID 4200."
+        }
+      ]
+    },
+    {
+      "case": "c0d2907e07a7d",
+      "verdicts": [
+        {
+          "key": "k6bd2be4d94c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ls -d targets the directory itself, and -le includes its attached ACL entries."
+        }
+      ]
+    },
+    {
+      "case": "cc294a771b425",
+      "verdicts": [
+        {
+          "key": "k2407d8bdf39a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requires Review and negates the Done tag within the requested search directory."
+        },
+        {
+          "key": "k24d63e0f1b16",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The mdfind manual does not document whether literal NOT is accepted in this metadata-query expression."
+        },
+        {
+          "key": "kcedcafb25000",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Combines a Review tag match with exclusion of Done in the specified directory."
+        }
+      ]
+    },
+    {
+      "case": "c4298fe48f2d6",
+      "verdicts": [
+        {
+          "key": "k8a4d63d7633e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "gzip -l displays the compression ratio in its third output column."
+        }
+      ]
+    },
+    {
+      "case": "c476b643456fb",
+      "verdicts": [
+        {
+          "key": "k3d7a26ee4077",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-getMTU retrieves a single configured value; -listValidMTURange reports the requested MTU range."
+        }
+      ]
+    },
+    {
+      "case": "cd66f2dd96218",
+      "verdicts": [
+        {
+          "key": "k0c628d125f88",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads standard tap-to-click preference domains with host-specific fallback."
+        },
+        {
+          "key": "k10abda3a99ac",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the standard trackpad Clicking preference, falling back across trackpad domains."
+        },
+        {
+          "key": "k93cdf54e3328",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the standard Clicking preference from built-in or Bluetooth trackpad domains."
+        },
+        {
+          "key": "kaec5476babcb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the standard trackpad Clicking preference or reports that it is unset."
+        },
+        {
+          "key": "kf175309eeab0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the built-in trackpad Clicking preference."
+        }
+      ]
+    },
+    {
+      "case": "cb2e41d683a01",
+      "verdicts": [
+        {
+          "key": "k8f954ff6de21",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil apfs listUsers lists cryptographic users associated with the requested APFS volume."
+        }
+      ]
+    },
+    {
+      "case": "c14ad4dfb9907",
+      "verdicts": [
+        {
+          "key": "kbfb2c2ce259f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "system_profiler -listDataTypes lists available System Information report categories."
+        }
+      ]
+    },
+    {
+      "case": "c38eab351084e",
+      "verdicts": [
+        {
+          "key": "k1497191565f3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the Finder key and reports whether an explicit value exists."
+        },
+        {
+          "key": "kcd355b47e088",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses the key lookup exit status to report whether ShowPathbar is set."
+        },
+        {
+          "key": "kdaca755d510b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Suppresses the preference value and reports whether the key exists."
+        },
+        {
+          "key": "kdd9589d9770d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests Finder preference key existence and reports the result."
+        }
+      ]
+    },
+    {
+      "case": "c9199245ad50f",
+      "verdicts": [
+        {
+          "key": "k172bb9bb465a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the indexed musical-genre attribute from demo.mp3."
+        }
+      ]
+    },
+    {
+      "case": "ceea7d5d8e5e3",
+      "verdicts": [
+        {
+          "key": "k139dbbedecc1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sort -f ignores case for comparisons while preserving each original output line."
+        }
+      ]
+    },
+    {
+      "case": "c1e94fdf57bb4",
+      "verdicts": [
+        {
+          "key": "k18b259fd3703",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "cmpr is not a documented top statistics key for compressed memory."
+        },
+        {
+          "key": "k59c6f20c057a",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "cmem is not a documented top statistics key."
+        },
+        {
+          "key": "kb1269e52c8c4",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The vmmap manual does not document a Physical footprint (compressed) output field or its relation to process-monitor compression."
+        }
+      ]
+    },
+    {
+      "case": "c411354711d6c",
+      "verdicts": [
+        {
+          "key": "k278b5124f14e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively selects regular .key files and removes only group and other read bits."
+        },
+        {
+          "key": "k55f90f92ba18",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-maxdepth 1 skips regular .key files in subdirectories of test-keys."
+        },
+        {
+          "key": "k80328b810885",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Removes group and other read permission from every recursively selected regular .key file."
+        }
+      ]
+    },
+    {
+      "case": "c6a039ebbaeac",
+      "verdicts": [
+        {
+          "key": "k1a3c8a19890c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Misses valid level-one headings with leading indentation, tabs after #, or Setext syntax."
+        },
+        {
+          "key": "k60fa5bdd972c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Misses valid indented ATX headings and Setext level-one headings."
+        },
+        {
+          "key": "k70a24370f2f4",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Recognizes ATX headings but misses valid Setext level-one headings."
+        },
+        {
+          "key": "kf3402a31dff5",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Misses valid indented and Setext level-one headings."
+        }
+      ]
+    },
+    {
+      "case": "cdd912f21f200",
+      "verdicts": [
+        {
+          "key": "k07fdd543d837",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Writes the response body to body.txt and response headers separately to headers.txt."
+        },
+        {
+          "key": "ka2d0a0ed600f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "curl -o saves the body while -D saves response headers."
+        },
+        {
+          "key": "kee4376f11244",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stores headers and body in their respective requested output files."
+        }
+      ]
+    },
+    {
+      "case": "c398d978ffbbc",
+      "verdicts": [
+        {
+          "key": "k073c683a1cb8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The APFS container tree reports volume capacity information, including configured reserves and quotas."
+        }
+      ]
+    },
+    {
+      "case": "ca3631f9ffed0",
+      "verdicts": [
+        {
+          "key": "keaf950ae28a1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shows the latest commit in project without changing repository contents."
+        }
+      ]
+    },
+    {
+      "case": "cd9ac01e16df3",
+      "verdicts": [
+        {
+          "key": "k2a04e8307fd7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays diskutil read-only fields, which indicate whether the disk is writable."
+        },
+        {
+          "key": "k31dd97cd9114",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints diskutil read-only or writable status fields."
+        },
+        {
+          "key": "k77bd8a1b6336",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Tests the read-only field for No and reports whether the disk is writable."
+        },
+        {
+          "key": "k9fd7d978434f",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil uses read-only status labels rather than a Writable field."
+        },
+        {
+          "key": "kb4edc6f07b8a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil labels the field Media Read-Only, not Read-Only Media; the awk pattern misses it."
+        }
+      ]
+    }
+  ]
+}
