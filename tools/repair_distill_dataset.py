@@ -42,8 +42,9 @@ def validation_fingerprint():
         safety = None
     source = getattr(safety, '__file__', None)
     if source:
-        source = Path(source).resolve()
-        if source.is_relative_to('/home') and not source.is_relative_to(ROOT):
+        raw, source = Path(source), Path(source).resolve()
+        # macOS resolves /home into /System/Volumes/Data/home, so check the unresolved path too.
+        if (raw.is_relative_to('/home') or source.is_relative_to('/home')) and not source.is_relative_to(ROOT):
             code['upstream_safety'] = 'source_outside_task_workspace'
         else:
             code['upstream_safety'] = hashlib.sha256(source.read_bytes()).hexdigest()
