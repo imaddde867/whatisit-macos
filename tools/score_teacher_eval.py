@@ -7,8 +7,7 @@
 Applies to every parsed sample exactly the checks local_recovery_worker.suggest()
 runs after generation, in the same order: reject commands longer than 4,096
 characters or containing NUL/CR/LF, reject on safety.check DANGER, reject on
-maclint.problems + unrequested_deletion + the safety.PLACEHOLDER_HINT rule as
-written there; otherwise accept. Labels follow tools/eval_fallback.py:
+the shared maclint.validation_issues boundary; otherwise accept. Labels follow tools/eval_fallback.py:
 pass / wrong / rejected / abstain-ok / abstain-missed (accept regex or list,
 any match; null accept = the right outcome is no command). A null command,
 unparsed output or a non-`stop` finish counts as no command.
@@ -43,27 +42,17 @@ def valid_stop(sample: dict) -> bool:
     return bool(sample.get('parsed')) and sample.get('finish_reason') in VALID_STOP
 
 
-def lint_reject(command: str, request: str) -> bool:
+def lint_reject(command: str, request: str, path: str | None = None) -> bool:
     """True when suggest() would return unsupported for this generated command."""
-    if len(command) > 4096 or any(char in command for char in '\x00\r\n'):
-        return True
-    if any(severity == 'DANGER' for severity, _ in safety.check(command)):
-        return True
-    issues = maclint.problems(command) + maclint.unrequested_deletion(command, request)
-    # PLACEHOLDER_HINT only: upstream's <...> pattern also matches redirections
-    # like `sort <a >b`, so the worker re-checks the match against the request.
-    issues += [f'{match.group(0)!r} is a placeholder, not something you named'
-               for match in safety.PLACEHOLDER_HINT.finditer(command)
-               if match.group(0).casefold() not in request.casefold()]
-    return bool(issues)
+    return bool(maclint.validation_issues(command, request, path=path, safety=safety))
 
 
-def effective_command(sample: dict, request: str) -> str | None:
+def effective_command(sample: dict, request: str, path: str | None = None) -> str | None:
     """The command this sample contributes, or None (no command)."""
     if not valid_stop(sample):
         return None
     command = sample.get('command')
-    if not command or lint_reject(command, request):
+    if not command or lint_reject(command, request, path):
         return None
     return command
 
@@ -94,16 +83,17 @@ def majority(samples: list[dict]) -> tuple[str | None, str]:
 
 def score_case(case: dict, samples: list[dict]) -> dict:
     request = case['request']
+    path = case.get('path')
     majority_command, mode = majority(samples)
     if mode == 'command':
-        rejected_by_lint = lint_reject(majority_command, request)
+        rejected_by_lint = lint_reject(majority_command, request, path)
         effective = None if rejected_by_lint else majority_command
         rejection_cause = 'lint/safety rejected' if rejected_by_lint else None
     else:
         effective = None
         rejection_cause = None if mode == 'abstention' else 'no command'
     majority_label = label_case(case, effective)
-    sample_labels = [label_case(case, effective_command(sample, request))
+    sample_labels = [label_case(case, effective_command(sample, request, path))
                      for sample in samples]
     correct = lambda label: label in ('pass', 'abstain-ok')  # noqa: E731
     return {
@@ -148,7 +138,7 @@ def reference_sanity(cases: dict) -> list[dict]:
         for command in [case['reference'], *(case.get('also_correct') or [])]:
             if not command:
                 continue
-            if lint_reject(command, case['request']):
+            if lint_reject(command, case['request'], case.get('path')):
                 failures.append({'id': case['id'], 'kind': 'lint rejects',
                                  'command': command})
             elif label_case(case, command) != 'pass':

@@ -29,6 +29,14 @@ class ConfirmTests(unittest.TestCase):
     def confirm(self, out='confirm', **kwargs):
         return self.campaign.make_confirm(self.root / out, **kwargs)
 
+    def test_policy_change_requires_regeneration_before_confirm(self):
+        path = self.campaign.pool / 'manifest.json'
+        manifest = json.loads(path.read_text())
+        manifest['validation'] = {'old': 'policy'}
+        path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'validation policy or environment changed'):
+            self.confirm()
+
     def test_selection_and_sample_one_keep_every_selected_label(self):
         out = self.root / 'confirm'
         manifest = self.confirm(sample=1.0, seed=13, batch_size=90)
@@ -133,7 +141,7 @@ class ConfirmTests(unittest.TestCase):
                 path, self.root / 'data/teacher/roihu_full_raw_samples.jsonl',
                 self.root / 'data/distill/stage2-v3/requests.jsonl',
                 self.campaign.verdict_dir, self.root / 'confirm',
-                effective=lambda sample, request: sample['cmd'],
+                effective=lambda sample, request, path=None: sample['cmd'],
                 pool_dir=self.campaign.pool)
 
     def test_pool_artifact_tamper_is_rejected(self):

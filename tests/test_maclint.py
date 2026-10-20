@@ -29,12 +29,12 @@ class MacLintTests(unittest.TestCase):
     def test_deletion_requires_a_named_target(self):
         for request, command in [
                 ('delete notes.txt', 'rm notes.txt'),
-                ('remove the .tmp files in this folder', "find . -name '*.tmp' -delete"),
-                ('delete the old-build directory', 'rm -rf old-build'),
-                ('delete all .DS_Store files here', 'find . -name .DS_Store -print0 | xargs -0 rm')]:
+                ('delete the old-build directory', 'rm -rf old-build')]:
             with self.subTest(command=command):
                 self.assertEqual(unrequested_deletion(command, request), [])
         for request, command in [
+                ('remove the .tmp files in this folder', "find . -name '*.tmp' -delete"),
+                ('delete all .DS_Store files here', 'find . -name .DS_Store -print0 | xargs -0 rm'),
                 ('delete every app cache', 'rm -rf ~/Library/Caches'),
                 ('delete all the duplicate photos', 'mdfind -name dup | xargs rm -f'),
                 ('free some space', 'find /Applications -name "*.app" -exec rm -rfv {} \\;'),

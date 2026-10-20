@@ -29,8 +29,8 @@ data/distill/stage2-v4/LABEL.md). The build is fail-closed:
 
 Among correct candidates: largest voting_key cluster by teacher sample count, then
 the most frequent exact string, then shortest, then lexicographic. v3 command rows
-judged incorrect in pass 1 or rejected in pass 2 are dropped with distinct audit
-actions; v3 empty targets are kept unchanged. Requests with no correct candidate are
+rejected by serving policy, judged incorrect in pass 1 or rejected in pass 2 are
+dropped with distinct audit actions; v3 empty targets are kept unchanged. Requests with no correct candidate are
 dropped, never turned into empty targets. Leakage-rejected candidates do not reserve
 a duplicate-request identity: hard leakage is filtered before the duplicate seen-set
 is updated, and review-level leakage findings are written to
@@ -45,8 +45,8 @@ from collections import Counter
 from pathlib import Path
 
 from build_distill_dataset import eval_leakage, read_jsonl, read_quarantine, voting_key
-from build_v4_pool import load_controls, opaque_id
-from repair_distill_dataset import validate_command
+from build_v4_pool import exclusion, load_controls, opaque_id, pool_population
+from repair_distill_dataset import validate_command, validation_fingerprint
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -290,11 +290,14 @@ def _request_for_rid(group, rid, raw, v3_requests):
     if group == 'no_majority':
         if rid not in raw:
             raise ValueError(f'{rid}: raw teacher samples are missing')
-        return raw[rid]['request']
+        request = raw[rid]['request']
+        if raw[rid].get('path') is not None:
+            request += '\nExplicit inputs: ' + json.dumps({'path': raw[rid]['path']}, ensure_ascii=False)
+        return request
     raise ValueError(f'{rid}: unknown keymap group {group!r}')
 
 
-def verify_keymap(keymap, v3, raw, effective):
+def verify_keymap(keymap, v3, raw, effective, v3_requests=None):
     """Bind keymap entries to immutable v3/raw inputs, including candidate frequencies."""
     v3_targets = {row['id']: row['messages'][-1]['content'] for row in v3}
     v3_ids = set(v3_targets)
@@ -339,7 +342,7 @@ def verify_keymap(keymap, v3, raw, effective):
             if rid not in raw:
                 raise ValueError(f'{rid}: no_majority keymap rid is missing from raw samples')
             request = raw[rid]['request']
-            counts = Counter(effective(sample, request) for sample in raw[rid]['samples'])
+            counts = Counter(effective(sample, request, raw[rid].get('path')) for sample in raw[rid]['samples'])
             for key, entry in candidates:
                 command = entry['command']
                 if command not in counts:
@@ -351,6 +354,12 @@ def verify_keymap(keymap, v3, raw, effective):
     for row in v3:
         target = row['messages'][-1]['content']
         if target:
+            if v3_requests is not None:
+                record = v3_requests[row['id']]
+                try:
+                    validate_command(row['id'], target, record['request'], record.get('path'))
+                except ValueError:
+                    continue
             candidates = by_rid.get(('v3_kept', row['id']), [])
             if len(candidates) != 1:
                 raise ValueError(f'{row["id"]}: v3 row with a target must have exactly one '
@@ -358,7 +367,45 @@ def verify_keymap(keymap, v3, raw, effective):
     return by_rid
 
 
+def verify_validation(manifest):
+    if manifest.get('validation') != validation_fingerprint():
+        raise ValueError('validation policy or environment changed; regenerate pool and confirmation')
+
+
+def verify_population(keymap, manifest, corpus, raw, v3, v3_requests, effective,
+                      validate=None):
+    validate = validate or validate_command
+    items, warnings, excluded = pool_population(corpus, raw, v3, v3_requests,
+                                                effective, validate)
+    expected = {}
+    seed = manifest['control_seed']
+    for item in items:
+        for command, count in item['candidates']:
+            key = opaque_id('k', seed, item['group'], item['rid'], command)
+            expected[key] = {'case': opaque_id('c', seed, item['group'], item['rid']),
+                             'group': item['group'], 'rid': item['rid'],
+                             'command': command, 'count': count}
+    for key in keymap.keys() & expected.keys():
+        if not isinstance(keymap[key], dict) or keymap[key].get('count') != expected[key]['count']:
+            raise ValueError(f'{key}: candidate frequency changed')
+    if keymap != expected:
+        raise ValueError('keymap does not match the complete policy-accepted population; rebuild pool')
+    if manifest.get('excluded_candidates') != excluded or manifest.get('warnings') != warnings:
+        raise ValueError('pool policy exclusions do not match current validation; rebuild pool')
+    v3_ids = {row['id'] for row in v3}
+    v3_items = sum(item['group'] == 'v3_kept' for item in items)
+    counts = {'v3_rows': len(v3), 'v3_items': v3_items, 'v3_candidates': v3_items,
+              'v3_policy_rejected': sum(entry['rid'] in v3_ids for entry in excluded),
+              'no_majority_considered': len(set(corpus) - v3_ids),
+              'no_majority_with_candidates': len(items) - v3_items,
+              'excluded_candidates': len(excluded), 'items': len(items),
+              'candidates': len(expected)}
+    if any(manifest['counts'].get(name) != count for name, count in counts.items()):
+        raise ValueError('pool manifest population count does not match current validation')
+
+
 def verify_pool_manifest(pool_manifest, keymap, controls_map, paths, pool_batches=None):
+    verify_validation(pool_manifest)
     required = {'inputs_sha256', 'artifacts_sha256', 'counts', 'batch_size',
                 'control_seed', 'controls_per_batch', 'controls_by_batch'}
     missing = required - set(pool_manifest)
@@ -510,8 +557,9 @@ def verify_pool_batches(pool_batches, keymap, controls_map, v3, raw, v3_requests
     return controls_by_batch
 
 
-def selected_items(keymap, verdicts, raw, v3_requests, effective):
+def selected_items(keymap, verdicts, raw, v3_requests, effective, validate=None):
     """Re-derive the pass-1 selected labels in the same order used by make_v4_confirm."""
+    validate = validate or validate_command
     correct = {key for key, verdict in verdicts.items() if verdict == 'correct'}
     by_rid = {}
     for key, entry in keymap.items():
@@ -522,6 +570,10 @@ def selected_items(keymap, verdicts, raw, v3_requests, effective):
         cases = {entry['case'] for _, entry in candidates}
         if len(cases) != 1:
             raise ValueError(f'{rid}: candidates disagree on case id')
+        _request_for_rid(group, rid, raw, v3_requests)
+        record = v3_requests[rid] if group == 'v3_kept' else raw[rid]
+        for _, entry in candidates:
+            validate(rid, entry['command'], record['request'], record.get('path'))
         if group == 'v3_kept':
             chosen = any(key in correct for key, _ in candidates)
             request = _request_for_rid(group, rid, raw, v3_requests)
@@ -529,7 +581,7 @@ def selected_items(keymap, verdicts, raw, v3_requests, effective):
             if rid not in raw:
                 raise ValueError(f'{rid}: raw samples missing for selected-item derivation')
             request = raw[rid]['request']
-            counts = Counter(effective(sample, request) for sample in raw[rid]['samples'])
+            counts = Counter(effective(sample, request, raw[rid].get('path')) for sample in raw[rid]['samples'])
             for key, entry in candidates:
                 if entry['command'] not in counts:
                     raise ValueError(f'{rid}: keymap candidate {key} command is not in fresh counts')
@@ -540,6 +592,7 @@ def selected_items(keymap, verdicts, raw, v3_requests, effective):
         else:
             raise ValueError(f'{rid}: unknown keymap group {group!r}')
         if chosen:
+            request = _request_for_rid(group, rid, raw, v3_requests)
             items.append({'case': next(iter(cases)), 'group': group, 'rid': rid,
                           'request': request,
                           'candidates': [{'key': key, 'command': entry['command']}
@@ -628,7 +681,8 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     v3_requests = {row['id']: row for row in read_jsonl(v3_requests_path)}
     from score_teacher_eval import effective_command  # lazy: module imports without upstream whatisit
 
-    by_rid = verify_keymap(keymap, v3, raw, effective_command)
+    verify_population(keymap, pool_manifest, corpus, raw, v3, v3_requests, effective_command)
+    by_rid = verify_keymap(keymap, v3, raw, effective_command, v3_requests)
     controls_by_batch = verify_pool_batches(pool_batches, keymap, controls_map, v3, raw,
                                             v3_requests, effective_command)
     if controls_by_batch != pool_manifest['controls_by_batch']:
@@ -651,10 +705,11 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     confirm_manifest = _load_json(Path(confirm_batches_dir) / 'manifest.json',
                                   'confirm manifest')
     confirm_fields = {'selected_total', 'sampled', 'sample', 'seed', 'batch_size',
-                      'selected', 'sample_cases', 'inputs_sha256', 'artifacts_sha256'}
+                      'selected', 'sample_cases', 'inputs_sha256', 'artifacts_sha256', 'validation'}
     if set(confirm_manifest) != confirm_fields:
         raise ValueError('confirm manifest does not contain exactly '
                          f'{sorted(confirm_fields)}; re-run make_v4_confirm.py')
+    verify_validation(confirm_manifest)
     expected_sample = sample_record(picked)
     expected_selected = sample_record(selected)
     checks = {
@@ -705,6 +760,14 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         target = row['messages'][-1]['content']
         keys = [key for key, _ in by_rid.get(('v3_kept', row['id']), [])]
         if target:
+            record = v3_requests[row['id']]
+            try:
+                validate_command(row['id'], target, record['request'], record.get('path'))
+            except ValueError as exc:
+                audit.append({'id': row['id'], 'action': 'drop_v3_policy_rejected',
+                              'target': target,
+                              'reason': exclusion(row['id'], target, exc)['reason']})
+                continue
             target_keys = [key for key in keys if keymap[key]['command'] == target]
             if len(target_keys) != 1:
                 raise ValueError(f'{row["id"]}: v3 target is not bound to exactly one keymap key')
@@ -733,7 +796,7 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
         if group != 'no_majority':
             continue
         request = raw[rid]['request']
-        counts = Counter(effective_command(sample, request) for sample in raw[rid]['samples'])
+        counts = Counter(effective_command(sample, request, raw[rid].get('path')) for sample in raw[rid]['samples'])
         for key, entry in cands:
             command = entry['command']
             if command not in counts:
@@ -756,11 +819,12 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
             continue
         if corpus[rid]['request'] != request:
             raise ValueError(f'{rid}: corpus and raw request differ')
-        validate_command(rid, target, request)
+        validate_command(rid, target, request, raw[rid].get('path'))
         norm = ' '.join(request.casefold().split())
         row = {'id': rid, 'source_id': rid, 'messages': [
             {'role': 'system', 'content': v3[0]['messages'][0]['content']},
-            {'role': 'user', 'content': MACOS_PREFIX + request},
+            {'role': 'user', 'content': MACOS_PREFIX +
+             _request_for_rid(group, rid, raw, v3_requests)},
             {'role': 'assistant', 'content': target}]}
         candidates.append({'rid': rid, 'request': request, 'row': row, 'norm': norm})
 
@@ -824,7 +888,8 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
                       'case_pairs_sha256': canonical_sha256(
                           {case: [pass1_judges[case], pass2_judges[case]]
                            for case in sample_cases})}
-    manifest = {'rows': len(rows), 'commands': len(rows) - empty, 'empty_targets': empty,
+    manifest = {'validation': validation_fingerprint(), 'rows': len(rows),
+                'commands': len(rows) - empty, 'empty_targets': empty,
                 'actions': actions, 'inputs_sha256': inputs, 'outputs_sha256': outputs,
                 'train_sha256': outputs['train'],
                 'judge_sessions': judge_sessions,

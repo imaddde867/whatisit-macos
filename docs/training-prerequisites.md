@@ -1,3 +1,5 @@
+> Historical preparation record. Its pending-task statements describe the early distillation run and are superseded by the [current resume order](../README.md#known-limits). Do not restart teacher sampling or treat this record as the current training authorization.
+
 # Distillation and training prerequisites (2026-10-12)
 
 The RTX 5090 host is healthy according to an authorized host-level check: 32,607 MiB VRAM, NVIDIA driver 595.99.02, CUDA 13.2, and roughly 792 MiB occupied. Ordinary workspace-sandbox commands cannot see `/dev/nvidia*`; in that sandbox `nvidia-smi` fails and loopback connections return `EPERM`. These are sandbox limits, not evidence of a broken driver. A pinned llama.cpp b11565 CUDA 12.8 server now serves Qwen3.8-27B UD-Q6_K locally on port 8080 with thinking enabled, four 32k slots and Q8 KV cache. The M4 Mac is online and SSH access to the authorized repository works after the owner explicitly approved adding the existing Linux public key.

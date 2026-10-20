@@ -10,6 +10,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import build_distill_dataset as builder
+from whatisit_macos import maclint
 
 
 class DistillDatasetTests(unittest.TestCase):
@@ -56,7 +57,7 @@ class DistillDatasetTests(unittest.TestCase):
             (self.evals / f'{split}.jsonl').write_text(json.dumps({
                 'request': f'unrelated {split} task', 'reference': 'unrelated -z'}) + '\n')
 
-    def run_builder(self, *, problems=None, safety_findings=None, deletion_issues=None, quarantine=None, vote='exact'):
+    def run_builder(self, *, problems=None, safety_findings=None, quarantine=None, vote='exact'):
         if vote == 'equivalence':
             root = Path(self.tmp.name) / 'equivalence'
             self.out, self.report, self.review = root / 'train.jsonl', root / 'quality.md', root / 'review.jsonl'
@@ -70,9 +71,9 @@ class DistillDatasetTests(unittest.TestCase):
         with patch.object(builder.platform, 'system', return_value='Darwin'), \
                 patch.dict(sys.modules, {'whatisit': package, 'whatisit.config': config,
                                          'whatisit.safety': safety}), \
-                patch.object(builder, 'problems', side_effect=problems or (lambda command: [])), \
-                patch.object(builder, 'unrequested_deletion',
-                             side_effect=deletion_issues or (lambda command, request: [])):
+                patch.object(maclint.shutil, 'which', side_effect=lambda command: command), \
+                patch.object(maclint, '_man_text', return_value=''), \
+                patch.object(maclint, 'problems', side_effect=problems or maclint.problems):
             return builder.build(self.requests, self.raw, self.manifest, self.evals,
                                  self.out, self.report, self.review,
                                  quarantine or Path(self.tmp.name) / 'no-quarantine.txt', vote=vote)
@@ -141,11 +142,23 @@ class DistillDatasetTests(unittest.TestCase):
                            [{'command': 'cat /path/to/file', 'parsed': True, 'finish_reason': 'stop'}] +
                            [{'command': None, 'parsed': True, 'finish_reason': 'stop'}] * 2)
         self.write_inputs()
-        counts = self.run_builder(deletion_issues=lambda command, request:
-                                  ['unnamed target'] if command.startswith('rm ') else [])
+        counts = self.run_builder()
         self.assertEqual(counts['kept'], 0)
         self.assertIn('deletion_guard', self.report.read_text())
         self.assertIn('placeholder', self.report.read_text())
+
+    def test_shared_guards_reject_compact_deletion_with_empty_scanner(self):
+        for command in ('ls;rm surprise.txt', '/bin/rm surprise.txt',
+                        "sh -c 'rm surprise.txt'", 'rm /wrong/notes.txt'):
+            with self.subTest(command=command):
+                self.samples[0] = [dict(command=command, parsed=True, finish_reason='stop')] * 5
+                self.rows[0]['request'] = 'delete /right/notes.txt'
+                self.write_inputs()
+                counts = self.run_builder()
+                self.assertEqual(counts['kept'], 0)
+                self.assertIn('deletion_guard', self.report.read_text())
+                for output in (self.out, self.report, self.review):
+                    output.unlink()
 
     def test_refuses_non_mac_and_modified_manifest(self):
         with patch.object(builder.platform, 'system', return_value='Linux'):

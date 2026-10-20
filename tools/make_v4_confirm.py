@@ -50,13 +50,15 @@ def _prepare_out(path):
 
 
 def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
-                  sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None):
+                  sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None, validate=None):
     if effective is None:
         from score_teacher_eval import effective_command as effective
     from build_verified_dataset import (QUARANTINE_PATHS, ROOT, canonical_sha256,
                                         expected_confirm_batches, hash_json_files,
                                         load_batches, load_verdicts, sample_record,
-                                        selected_items, sha256_file)
+                                        selected_items, sha256_file, validate_command,
+                                        validation_fingerprint, verify_validation, verify_population)
+    validate = validate or validate_command
     keymap_path = Path(keymap_path)
     pool_dir = Path(pool_dir) if pool_dir is not None else keymap_path.parent
     keymap = _load_json(keymap_path, 'keymap')
@@ -64,6 +66,7 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
     if pool_keymap != keymap:
         raise ValueError('keymap does not match the pool keymap')
     pool_manifest = _load_json(pool_dir / 'manifest.json', 'pool manifest')
+    verify_validation(pool_manifest)
     controls_map = _load_json(pool_dir / 'controls-map.json', 'pool controls map')
     _load_json(pool_dir / 'director-map.json', 'pool director map')
     pool_batches = load_batches(pool_dir / 'batches', 'pool batches')
@@ -77,7 +80,9 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
     if artifacts != expected_artifacts:
         raise ValueError('pool artifacts do not match the pool manifest; rebuild the pool')
     inputs = pool_manifest.get('inputs_sha256', {})
-    for name, path in (('raw_samples', raw_path), ('v3_requests', v3_requests_path)):
+    for name, path in (('raw_samples', raw_path), ('v3_requests', v3_requests_path),
+                       ('v3_train', Path(v3_requests_path).with_name('train.jsonl')),
+                       ('corpus', ROOT / 'data/corpus/requests.jsonl')):
         if inputs.get(name) != sha256_file(path):
             raise ValueError(f'{name} changed since the pool was built; refusing to confirm')
     if pool_manifest.get('counts', {}).get('controls_total', 0) < 1:
@@ -85,10 +90,13 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
 
     raw = {row['id']: row for row in read_jsonl(Path(raw_path))}
     v3_requests = {row['id']: row for row in read_jsonl(Path(v3_requests_path))}
+    corpus = {row['id']: row for row in read_jsonl(ROOT / 'data/corpus/requests.jsonl')}
+    v3 = read_jsonl(Path(v3_requests_path).with_name('train.jsonl'))
+    verify_population(keymap, pool_manifest, corpus, raw, v3, v3_requests, effective, validate)
     verdicts = load_verdicts(verdict_dir, pool_batches, keymap=keymap,
                              controls=controls_map,
                              require_keys=set(keymap) | set(controls_map))
-    selected = selected_items(keymap, verdicts, raw, v3_requests, effective)
+    selected = selected_items(keymap, verdicts, raw, v3_requests, effective, validate)
     expected_batches, picked = expected_confirm_batches(selected, sample, seed, batch_size)
     _prepare_out(out_dir)
     out = Path(out_dir)
@@ -96,6 +104,7 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
         (out / f'{name}.json').write_text(json.dumps(batch, indent=2) + '\n')
     quarantine_paths = {name: ROOT / relative for name, relative in QUARANTINE_PATHS.items()}
     manifest = {
+        'validation': validation_fingerprint(),
         'selected_total': len(selected), 'sampled': len(picked),
         'sample': sample, 'seed': seed, 'batch_size': batch_size,
         'selected': sample_record(selected), 'sample_cases': sample_record(picked),

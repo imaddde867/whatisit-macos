@@ -15,7 +15,7 @@ from pathlib import Path
 from check_corpus import jaccard, words
 from teacher_sample import TEACHER_SYSTEM_PROMPT
 from whatisit_macos.local_recovery_worker import MACOS_PREFIX
-from whatisit_macos.maclint import problems, unrequested_deletion
+from whatisit_macos.maclint import validation_findings
 
 SUBCOMMANDS = {'git', 'brew', 'defaults', 'hdiutil', 'diskutil', 'launchctl', 'npm', 'pip', 'plutil', 'xcrun'}
 WRAPPERS = {'sudo', 'env', 'command', 'time', 'nohup'}
@@ -477,20 +477,10 @@ def build(requests_path, raw_path, manifest_path, eval_dir, output_path, report_
                 rejects['interactive'] += 1
                 rejected_candidates += 1
                 continue
-            findings = safety.check(command)
-            lint_issues = problems(command)
-            deletion_issues = unrequested_deletion(command, record['request'])
-            placeholders = [m.group(0) for m in safety.PLACEHOLDER_HINT.finditer(command)
-                            if m.group(0).casefold() not in record['request'].casefold()]
-            if any(severity == 'DANGER' for severity, _ in findings):
-                rejects['danger'] += 1
-            if lint_issues:
-                rejects['macos_lint'] += 1
-            if deletion_issues:
-                rejects['deletion_guard'] += 1
-            if placeholders:
-                rejects['placeholder'] += 1
-            if any(severity == 'DANGER' for severity, _ in findings) or lint_issues or deletion_issues or placeholders:
+            findings = validation_findings(command, record['request'],
+                                           path=record.get('path'), safety=safety)
+            rejects.update(findings.keys())
+            if findings:
                 rejected_candidates += 1
                 continue
             valid[command] += 1
