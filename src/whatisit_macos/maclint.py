@@ -77,6 +77,8 @@ def problems(command: str) -> list[str]:
         return [str(error)]
     for parsed in commands:
         for wrapper in parsed.wrappers:
+            if wrapper.value in ('exec', 'command'):
+                continue  # shell builtins/precommand modifiers; stock macOS has no exec binary
             if not shutil.which(wrapper.value) and not wrapper.value.startswith(('./', '~/')):
                 found.append(f'{wrapper.value}: wrapper is not installed on macOS')
         if parsed.lookup:

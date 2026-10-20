@@ -82,6 +82,19 @@ class CommandSafetyTests(unittest.TestCase):
                     self.assertEqual(maclint.problems(command), [])
                     self.assertEqual(maclint.unrequested_deletion(command, 'show files'), [])
 
+    def test_zsh_only_expansions_never_pass_as_literal_targets(self):
+        for name in ('$[1]', '$~HOME', '$+HOME', '$=HOME'):
+            with self.subTest(name=name):
+                self.assertTrue(maclint.unrequested_deletion(
+                    f'rm -rf "{name}"', f'Delete the file named {name}'))
+
+    def test_builtin_wrappers_need_no_path_lookup(self):
+        with patch.object(maclint, '_man_text', return_value=''), \
+                patch.object(maclint.shutil, 'which', side_effect=lambda c: '/bin/ls' if c == 'ls' else None):
+            self.assertEqual(maclint.problems('exec ls'), [])
+            self.assertEqual(maclint.problems('command ls'), [])
+            self.assertTrue(maclint.problems('nohup ls'))
+
     def test_malformed_deletion_fails_closed(self):
         self.assertTrue(maclint.unrequested_deletion("rm 'notes.txt", 'delete notes.txt'))
 
