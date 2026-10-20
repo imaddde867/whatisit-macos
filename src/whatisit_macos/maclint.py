@@ -2,16 +2,16 @@
 
 import functools
 import os
+import posixpath
 import re
 import shlex
 import shutil
 import subprocess
 
+from .shell import parse
+
 BUILTINS = {':', 'cd', 'killall', 'echo', 'for', 'do', 'done', 'if', 'then', 'fi', 'while', 'export',
             'read', 'test', '[', 'printf', 'true', 'false', 'set', 'unset', 'alias', 'source', '.'}
-WRAPPERS = {'sudo', 'xargs', 'time', 'nohup', 'env', 'command', 'exec'}
-SEPARATORS = {'|', '&&', '||', ';', '|&'}
-EXEC_FLAGS = {'-exec', '-execdir', '-ok', '-okdir'}
 NO_FLAG_CHECK = {'zsh', 'bash', 'sh', 'dash', 'ksh', 'perl', 'python', 'python3', 'ruby', 'node'}  # option sets live in other man pages
 SYSTEM_PATHS = ('/proc/', '/sys/', '/etc/', '/var/log/', '/usr/', '/dev/')
 
@@ -64,52 +64,30 @@ def _ps_keywords(args: list[str]) -> list[str]:
     return found
 
 
-def _segments(tokens: list[str]) -> list[list[str]]:
-    segments, current = [], []
-    for token in tokens:
-        if token in SEPARATORS or token.endswith(';'):
-            if token.endswith(';') and token not in SEPARATORS:
-                current.append(token[:-1])
-            segments.append(current)
-            current = []
-        else:
-            current.append(token)
-    segments.append(current)
-    return segments
-
-
 def problems(command: str) -> list[str]:
     """Return reasons the command will not run as written on this Mac; empty means no finding."""
     found = []
     if re.search(r'\{\{.*?\}\}', command):
         found.append('unfilled {{placeholder}} in command')
-    for inner in re.findall(r'\$\(([^()]*)\)', command):
-        found += problems(inner)
-    command = re.sub(r'\$\(([^()]*)\)', 'SUBSTITUTION', command)
     if re.search(r"\bsed\s+(-[a-zA-Z]*\s+)*-i\s+(?!''|\"\"|-e|\S*\.bak)", command):
         found.append("BSD sed -i needs a suffix argument: sed -i ''")
     try:
-        tokens = shlex.split(command)
-    except ValueError:
-        return ['command could not be parsed']
-    for segment in _segments(tokens):
-        while segment and segment[0] in ('do', 'then', 'else', '!'):
-            segment.pop(0)
-        while segment and (segment[0] in WRAPPERS or re.match(r'^\w+=', segment[0])):
-            wrapper = segment.pop(0)
-            if wrapper == 'command' and segment[:1] and segment[0] in ('-v', '-V'):
-                segment = []  # `command -v name` only looks the name up
-            if wrapper in ('xargs', 'sudo'):
-                while segment and segment[0].startswith('-'):
-                    flag = segment.pop(0)
-                    if wrapper == 'xargs' and flag in ('-J', '-I', '-L', '-n', '-P', '-s', '-R', '-S') and segment:
-                        segment.pop(0)  # option argument, e.g. the `%` in xargs -J %
+        commands = parse(command)
+    except ValueError as error:
+        return [str(error)]
+    for parsed in commands:
+        for wrapper in parsed.wrappers:
+            if not shutil.which(wrapper.value) and not wrapper.value.startswith(('./', '~/')):
+                found.append(f'{wrapper.value}: wrapper is not installed on macOS')
+        if parsed.lookup:
+            continue
+        segment = [word.value for word in parsed.words]
         if not segment:
             continue
-        cmd = segment[0]
-        if cmd in BUILTINS or '/' in cmd and (shutil.which(cmd) or cmd.startswith(('./', '~/'))):
-            continue  # a script path the user may have; its existence is not ours to judge
-        if not shutil.which(cmd):
+        cmd = parsed.name
+        if cmd in BUILTINS and '/' not in segment[0]:
+            continue
+        if not shutil.which(segment[0]) and not segment[0].startswith(('./', '~/')):
             found.append(f'{cmd}: not installed on macOS')
             continue
         for arg in segment[1:]:
@@ -126,13 +104,6 @@ def problems(command: str) -> list[str]:
                         ['sysctl', '-N', arg], capture_output=True).returncode:
                     found.append(f'sysctl {arg}: unknown key')
         args = segment[1:]
-        for index, arg in enumerate(args):
-            if arg in EXEC_FLAGS:
-                target = args[index + 1] if index + 1 < len(args) else ''
-                if target and target not in BUILTINS and not shutil.which(target):
-                    found.append(f'{target}: not installed on macOS')
-                args = args[:index]
-                break
         page = cmd
         if args and re.fullmatch(r'[a-z][a-z0-9-]*', args[0]) and _man_text(f'{cmd}-{args[0]}'):
             page, args = f'{cmd}-{args[0]}', args[1:]  # git log -> man git-log
@@ -169,60 +140,94 @@ BROAD_TARGETS = {'/', '~', '*', '.', '..', '~/', './', '/*', '~/*'}
 DELETERS = {'rm', 'rmdir', 'unlink', 'shred', 'trash'}
 
 
-def unrequested_deletion(command: str, request: str) -> list[str]:
-    """Deleting needs a target the user named: every path a delete touches must appear in the request.
-
-    Structural trust-boundary check, not a command list: `rm notes.txt` for "delete notes.txt" passes,
-    `rm -rf ~/Library/Caches` for "clear app caches" and anything piped into `xargs rm` do not.
-    """
+def _named_targets(request: str, path: str | None) -> set[str]:
+    """Only complete lexical names; ambiguous prose can use the explicit path input."""
     try:
-        tokens = shlex.split(command)
+        names = shlex.split(request)
     except ValueError:
-        return []
-    wanted = request.casefold()
+        names = []
+    names = [name.rstrip(',;:!?') for name in names]
+    if path is not None:
+        names.append(path)
+    return {name[2:] if name.startswith('./') else name for name in names}
+
+
+def unrequested_deletion(command: str, request: str, path: str | None = None) -> list[str]:
+    """Align recognized deletion operands with named targets; this does not infer intent."""
+    try:
+        commands = parse(command)
+    except ValueError as error:
+        return [str(error)]
+    named = _named_targets(request, path)
     found = []
-
-    def named(target: str) -> bool:
-        target = target.rstrip('/').casefold()
-        return bool(target) and target not in BROAD_TARGETS and (
-            target in wanted or os.path.basename(target) in wanted)
-
-    fed_by_named_find = False
-    for segment in _segments(tokens):
-        if segment[:1] == ['find']:
-            names = [segment[i + 1].replace('*', '').replace('?', '') for i in range(len(segment) - 1)
-                     if segment[i] in ('-name', '-iname', '-path')]
-            fed_by_named_find = any(named(n) for n in names)
-        while segment and (segment[0] in WRAPPERS or re.match(r'^\w+=', segment[0])):
-            wrapper = segment.pop(0)
-            while wrapper in ('sudo', 'xargs') and segment and segment[0].startswith('-'):
-                segment.pop(0)
-            if wrapper == 'xargs' and segment and segment[0] in DELETERS and not fed_by_named_find:
-                found.append('deletes items piped from another command, not a target you named')
-        if not segment:
+    changed_directory = False
+    for parsed in commands:
+        cmd = parsed.name
+        if parsed.lookup:
             continue
-        cmd, args = segment[0], segment[1:]
-        if cmd in DELETERS:
-            targets = [a for a in args if not a.startswith('-')]
-            if not targets:
-                continue
-        elif cmd == 'find' and ('-delete' in args or any(
-                a in EXEC_FLAGS and args[i + 1:i + 2] and args[i + 1] in DELETERS for i, a in enumerate(args))):
-            starts = []
-            for a in args:
-                if a.startswith('-') or a in ('(', '!'):
-                    break
-                starts.append(a)
-            patterns = [args[i + 1].replace('*', '').replace('?', '') for i, a in enumerate(args[:-1])
-                        if a in ('-name', '-iname', '-path')]
-            targets = [t for t in starts if t not in ('.', './')] + patterns
-            if not targets:  # `find . -delete` with no filter
-                found.append('find -delete with no name filter')
-                continue
-        else:
+        if cmd == 'cd':
+            changed_directory = True
+        args = parsed.words[1:]
+        if cmd not in DELETERS:
             continue
-        for target in targets:
-            if not named(target):
-                found.append(f'deletes {target}, which the request does not name')
-                break
+        if parsed.indirect:
+            found.append('deletion through find or xargs is unsupported')
+            continue
+        targets = []
+        options = True
+        allowed = {'rm': 'dfiIPRrvW', 'rmdir': 'v', 'unlink': '', 'shred': '', 'trash': ''}[cmd]
+        for word in args:
+            value = word.value
+            if options and value == '--':
+                options = False
+                continue
+            if options and value.startswith('-') and value != '-':
+                if value.startswith('--') or not value[1:] or any(c not in allowed for c in value[1:]):
+                    found.append(f'{cmd}: unsupported deletion option {value}')
+                continue
+            options = False
+            targets.append(word)
+        if not targets:
+            found.append(f'{cmd}: deletion requires an explicit literal target')
+        if cmd == 'unlink' and len(targets) != 1:
+            found.append('unlink requires exactly one target')
+        for word in targets:
+            target = word.value
+            canonical = target[2:] if target.startswith('./') else target
+            # Normalize only to reject broad scopes, never to grant target equivalence.
+            broad = posixpath.normpath(re.sub(r'/+', '/', canonical)) in {'/', '.', '..', '~'}
+            if (not target or canonical in BROAD_TARGETS or broad or word.dynamic or
+                    target.startswith('~') and not word.home or
+                    changed_directory and not target.startswith('/') and not word.home or
+                    canonical not in named):
+                found.append(f'deletes {target}, which is not an unambiguous named literal target')
     return found
+
+
+def validation_findings(command: str, request: str, path: str | None = None, *, safety=None) -> dict[str, list[str]]:
+    """One serving/data acceptance boundary; categories retain dataset rejection evidence."""
+    if not isinstance(command, str) or not command.strip() or len(command) > 4096 or any(c in command for c in '\x00\r\n'):
+        return {'invalid_command': ['invalid generated command']}
+    if (not isinstance(request, str) or not request.strip() or len(request) > 2000 or
+            any(c in request for c in '\x00\r\n') or
+            path is not None and (not isinstance(path, str) or not path.strip() or
+                                  len(path) > 8192 or any(ord(c) < 32 or 127 <= ord(c) < 160 for c in path))):
+        return {'invalid_command': ['invalid request or explicit path']}
+    if safety is None:
+        from whatisit import safety
+    findings = safety.check(command)
+    result = {
+        'danger': [reason for severity, reason in findings if severity == 'DANGER'],
+        'macos_lint': problems(command),
+        'deletion_guard': unrequested_deletion(command, request, path),
+        'placeholder': [f'{m.group(0)!r} is a placeholder, not something you named'
+                        for m in safety.PLACEHOLDER_HINT.finditer(command)
+                        if m.group(0).casefold() not in request.casefold() and
+                        (path is None or m.group(0) not in path)],
+    }
+    return {category: reasons for category, reasons in result.items() if reasons}
+
+
+def validation_issues(command: str, request: str, path: str | None = None, *, safety=None) -> list[str]:
+    return [reason for reasons in validation_findings(command, request, path, safety=safety).values()
+            for reason in reasons]
