@@ -1,0 +1,154 @@
+{
+ "revision": "20261021-r3",
+ "issue": 36,
+ "base_commit": null,
+ "status": "pass1 in progress: b00-b05 accepted (b05 by the main-session judge); b06-b22 pending",
+ "budget_stop": false,
+ "failed_attempts": 2,
+ "retry_budget": {
+  "failure_counts_include": "Every schema/coverage/control failure or incomplete judge attempt in this campaign. The two Strata b05 attempts remain counted.",
+  "fresh_retries_per_failed_batch": 1,
+  "gate": "All verified controls must match per batch; contested controls require a verdict but are not gated.",
+  "stop_at_total_failed_attempts": 3,
+  "stop_when_retry_fails": true
+ },
+ "judging_plan": {
+  "pass1": "main-session DSH judge (dsh-main-20261021-b05-a1); fresh identity per batch; rubric LABEL.md; read-only man pages; no candidate execution",
+  "pass2": "independent fresh sessions; same rubric; 20% deterministic sample",
+  "pilot": "b05 accepted 2026-10-21"
+ },
+ "accepted_pass1": {
+  "b00": "5427a12067870cc7e9ecd7c5a2e99d2f7142997d9b06211def0751932e403ba8",
+  "b01": "d9b785e493c6532d9cb1afaef82e90f84332d7b867031fcd7fc1fb13c3eb5ea1",
+  "b02": "c1e0096ded28ed023e8298ba44b792516d88c3f7b7eb9dfe79f58e30d633f503",
+  "b03": "403836bc32cd47284f550f6863bfd5610b8d511b30d0c706290427c0a0878887",
+  "b04": "1eebcd7bc36168e4b6a1291bc25fef7f0a8a7913bf5bbdfded878d80636b0a56",
+  "b05": "9c9e08d487f4d85c062e5110b2bba18171475a42148458439fd95cd03400f568"
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "batch": "b00",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b00-a1",
+   "status": "passed"
+  },
+  {
+   "attempt": 1,
+   "batch": "b01",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b01-a1",
+   "status": "passed"
+  },
+  {
+   "attempt": 1,
+   "batch": "b02",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b02-a1",
+   "status": "passed"
+  },
+  {
+   "attempt": 1,
+   "batch": "b03",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b03-a1",
+   "status": "passed"
+  },
+  {
+   "attempt": 1,
+   "batch": "b04",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b04-a1",
+   "status": "passed"
+  },
+  {
+   "attempt": 1,
+   "batch": "b05",
+   "provider": "Strata on5090-1",
+   "status": "failed",
+   "reason": "controller 32-round limit"
+  },
+  {
+   "attempt": 2,
+   "batch": "b05",
+   "provider": "Strata on5090-1",
+   "status": "failed",
+   "reason": "2 of 3 controls flipped"
+  },
+  {
+   "attempt": 3,
+   "batch": "b05",
+   "judge": "dsh-main-20261021-b05-a1",
+   "status": "passed",
+   "keys": 237,
+   "controls": 3,
+   "verdict_sha256": "9c9e08d487f4d85c062e5110b2bba18171475a42148458439fd95cd03400f568",
+   "controls_detail": {
+    "ct0022": "incorrect matched",
+    "ct0024": "incorrect matched",
+    "ct0057": "correct matched"
+   }
+  }
+ ],
+ "control_adjudication": {
+  "path": "data/distill/stage2-v4/judge/control-adjudication-r3-20261021.json",
+  "sha256": "5e401d4f24f43cbdcc780269b0c60c7907af9780960fa6dee6ca1b6388ed2185",
+  "counts": {
+   "live": 52,
+   "verified": 51,
+   "contested": 1
+  },
+  "contested_keys": [
+   "kb499110b0a02"
+  ],
+  "rule": "A live control keeps its expected label unless hard evidence on stock macOS shows the label is wrong; when the request is ambiguous or the behaviour cannot be established, the control is contested and excluded from the per-batch gate but still requires a verdict."
+ },
+ "pool_counts": {
+  "batches": 23,
+  "candidates": 5111,
+  "controls_correct": 25,
+  "controls_incorrect": 40,
+  "controls_injected": 65,
+  "controls_total": 65,
+  "excluded_candidates": 1252,
+  "items": 2062,
+  "no_majority_considered": 1398,
+  "no_majority_with_candidates": 1197,
+  "v3_candidates": 865,
+  "v3_items": 865,
+  "v3_policy_rejected": 37,
+  "v3_rows": 1149
+ },
+ "pool_manifest_sha256": "55e37d9e26b2d4a609fe1abcd0531cf9620c13d3ce97fe207ced2329930fa2b2",
+ "sha256": {
+  "data/corpus/requests.jsonl": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+  "data/distill/stage2-v3/requests.jsonl": "b537b7550fc988924ecd86bf7e31f8cb27f7895e94b4de883674e0c86c0e8932",
+  "data/distill/stage2-v3/train.jsonl": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+  "data/distill/stage2-v4/LABEL.md": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+  "data/distill/stage2-v4/judge/controls.jsonl": "d3274ff7dfbf2d3db40b19eb23188ed3820cd87c22a6a8ac4ca5971d95afe61a",
+  "data/distill/stage2-v4/judge/protocol.md": "943e249d41fd40423b9d93ca9900e0eb99f67e1703ff6b478c9084080e256151",
+  "data/teacher/roihu_full_raw_samples.jsonl": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd"
+ },
+ "qualification": {
+  "set": "data/distill/stage2-v4/judge/calibration",
+  "attempts": [
+   "dsh-subagent-20261021-a2 (failed: 10/13 controls, 8 false accepts)",
+   "main-session-20261021 (failed agreement bar; review found ~8% reference error)"
+  ],
+  "note": "b05 was accepted on its own live controls after the pilot gate; the agreement-bar failures are recorded as label-quality evidence, not waived."
+ },
+ "validation": {
+  "code_sha256": {
+   "src/whatisit_macos/maclint.py": "a62de486e1b42c21a9a8d2311f2cb0765a1a4218918276fd4e82298e9319f0b9",
+   "src/whatisit_macos/shell.py": "862b712d6aeec948ca64a652dfc469971d48200ce0bbc55aac5f0da925520afd",
+   "tools/build_distill_dataset.py": "168dc41685da56a9dccc513e2775e167bf972d5abc542dc6be39804d15f779c6",
+   "tools/repair_distill_dataset.py": "667ef8d39e86e2d4f74d4c0a3da637a444fb8147ff2ffa4ec7eca10588c839f0",
+   "upstream_safety": "012f8ce882a7272a36ade26dfbee3542810e49ee42922f2515334b58db08a1f9"
+  },
+  "path_sha256": "6e53700166cb62101d9bcf4d31401a4b4b295fc410cfc38566d929087f94483b",
+  "platform": [
+   "Darwin",
+   "27.0.0"
+  ],
+  "python": [
+   3,
+   14
+  ],
+  "whatisit_version": "0.4.0"
+ }
+}

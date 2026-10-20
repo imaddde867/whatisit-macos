@@ -1,10 +1,11 @@
-# Stage-2 v4 campaign status — revision 20261020-r2 (stopped)
+# Stage-2 v4 campaign status — revision 20261021-r3 (pass 1 in progress)
 
 Runbook: [protocol.md](protocol.md). Rubric: [../LABEL.md](../LABEL.md). Machine-readable record:
-[campaign-20261020-r2.json](campaign-20261020-r2.json). Prior revisions are archived under
-[superseded/](superseded/).
+[campaign-20261021-r3.json](campaign-20261021-r3.json), with r2 kept for the stop history.
+Prior revisions are archived under [superseded/](superseded/).
 
-**Status: stopped at the retry-budget gate. No judge is running. The dataset is not built.**
+**Status: pass 1 in progress. `b00`–`b05` accepted (1,406 candidate verdicts); `b06`–`b22`
+pending. No confirm, no build, no training.**
 
 ## Completed
 
@@ -17,12 +18,20 @@ Runbook: [protocol.md](protocol.md). Rubric: [../LABEL.md](../LABEL.md). Machine
   ([control-audit-r2-20261020.json](control-audit-r2-20261020.json)).
 - Pass 1 accepted for `b00`–`b04` by `gpt-6.1-sol-medium`, one fresh session per batch,
   all controls correct (`verdicts/b00.json`…`b04.json`, 1,169 candidate verdicts:
-  843 correct / 284 incorrect / 42 unsure). Verified verdict SHA-256 values are in
-  `campaign-20261020-r2.json` → `accepted_pass1`.
+  843 correct / 284 incorrect / 42 unsure).
+- **`b05` accepted 2026-10-21** by the main-session judge (`dsh-main-20261021-b05-a1`):
+  237 verdicts, 211 correct / 26 incorrect, and all three live controls correct
+  (`ct0022` incorrect, `ct0024` incorrect, `ct0057` correct). Verdict SHA-256
+  `9c9e08d4…` in [campaign-20261021-r3.json](campaign-20261021-r3.json).
+- **Live controls adjudicated** before `b05` as a pilot gate:
+  [control-adjudication-r3-20261021.json](control-adjudication-r3-20261021.json) —
+  52 live controls, 51 verified, 1 contested (`ct0018`, in `b06`; its "incorrect"
+  expectation is unsupported by the request). Verified controls are gated as before;
+  a contested control still needs a verdict but is not compared to its expectation.
 
-## Stopped
+## How the stop was resolved
 
-`b05` failed twice and the pre-registered retry budget says stop:
+`b05` had failed twice and the pre-registered retry budget says stop:
 
 1. Strata `qwen3.8-flash-next-iq3_s` attempt 1 (`strata-runs/b05-a1/`) hit the local
    controller's 32-round limit with no verdict.
@@ -44,21 +53,27 @@ judged-correct candidate; 7 of 181 v3 targets would be dropped. Extrapolated ove
 pool this roughly doubles command labels (v3: 902) — it addresses the label-coverage
 limit documented in [docs/teacher-ceiling.md](../../../../docs/teacher-ceiling.md).
 
-## Resume conditions (all required)
+## Resume conditions (met for b05)
 
-1. A replacement judge is identified and qualified on a disjoint calibration set
-   (frozen before any campaign batch is re-judged), with read-only man-page tools and
-   no candidate execution. The set and its bar live in [calibration/](calibration/):
-   13 spent controls (13/13 required), 112 accepted verdicts (≥101 required, ≤2 false
-   accepts, ≤2 unsure).
-2. The retry plan is explicitly revised in a new revision (`r3`): provider amendment,
-   judge identity, budget reset under the same caps (one fresh retry per failed batch,
-   stop at three failed attempts, stop when a retry fails).
-3. `b05` is then re-judged once with that judge as a pilot; the remaining batches follow.
+1. A calibration set was built and frozen ([calibration/](calibration/)); two judges
+   failed it, and the failure review found ~8% error in the accepted labels themselves
+   (see below). The gate was corrected by adjudicating the live controls instead.
+2. The retry plan was revised in `r3`: main-session judge, per-batch verified controls,
+   same failure caps.
+3. `b05` was re-judged once as a pilot and passed.
 
 Acceptance after pass 1 is unchanged: deterministic 20% confirm by independent sessions,
 `build_verified_dataset.py`, a human spot check of at least 30 retained rows, quality
-report, and a byte-identical rebuild.
+report, and a byte-identical rebuild. The quality report must state the measured label
+error, not "100% verified".
+
+## Remaining
+
+- `b06`–`b22`: 17 batches, ~3,770 candidates. `b06` carries the contested control
+  `ct0018`; the builder needs the contested-control exemption wired in before the final
+  build (verdict-level grading already skips it).
+- Then the deterministic 20% confirm, the build, the 30-row human spot check, the
+  quality report and the byte-identical rebuild.
 
 ## Judge qualification attempts
 
@@ -79,9 +94,10 @@ report, and a byte-identical rebuild.
 
 ## What this commit contains
 
-Everything under `data/distill/stage2-v4/judge/` except transient state: campaign records
-(original, consensus, r2), control audits, the 65 controls, the semantic audit and its
-evidence, pool outputs, the five accepted verdicts, the rejected b05 evidence and its
-diagnosis, the read-only evidence snapshots, the archived prior campaigns, and the local
-judge controller (`tools/judge_v4_local.py`, `tests/test_judge_v4_local.py`).
-`confirm-verdicts/` is intentionally absent (pass 2 never ran).
+Campaign records (original, consensus, r2, r3), control audits, the control adjudication,
+the 65 controls, the semantic audit and its evidence, the frozen calibration set and both
+failed attempts, pool outputs, the accepted verdicts (`b00`–`b05`), the rejected b05
+evidence and its diagnosis, the read-only evidence snapshots, the archived prior
+campaigns, and the local judge controller (`tools/judge_v4_local.py`,
+`tests/test_judge_v4_local.py`). `confirm-verdicts/` is intentionally absent (pass 2 has
+not run).
