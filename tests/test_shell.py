@@ -163,6 +163,18 @@ class ShellTests(unittest.TestCase):
             with self.subTest(command=text), self.assertRaises(ValueError):
                 parse(text)
 
+    def test_zsh_only_dollar_expansions_are_rejected_unless_literal(self):
+        for expansion in ('$[1]', '$~HOME', '$+HOME', '$=HOME', '$^HOME', '$.'):
+            for text in (f'rm {expansion}', f'rm "{expansion}"', f'rm a{expansion}'):
+                with self.subTest(command=text), self.assertRaises(ValueError):
+                    parse(text)
+            for text in (f"rm '{expansion}'", f'rm "\\{expansion}"', f'rm \\{expansion}'):
+                with self.subTest(command=text):
+                    self.assertEqual(parse(text)[0].words[1].value, expansion)
+        for text in ('rm $', 'rm a$', 'rm $ b', 'rm "$ b"'):
+            with self.subTest(command=text):
+                self.assertTrue(parse(text))
+
     def test_unsupported_or_malformed_syntax_fails_closed(self):
         rejected = [
             '', '   ', 'ls |', '| ls', 'ls &&', 'ls;;echo no', 'ls & echo no',

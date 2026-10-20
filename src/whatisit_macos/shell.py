@@ -137,7 +137,8 @@ def _lex(command: str) -> list[_Token | str]:
                     dynamic = True
                     i += len(variable[0])
                     continue
-                if i + 1 < len(command) and command[i + 1] in "{0123456789@*#?$!-\"'":
+                # Fail closed: zsh also expands $[..], $~X, $+X, $=X, $^X; only a bare $ is literal.
+                if i + 1 < len(command) and not command[i + 1].isspace() and command[i + 1] not in '|;&<>':
                     raise ValueError('complex parameter or special shell expansion is not supported')
             if not quote:
                 if c in '()' or c == '#' and not value:

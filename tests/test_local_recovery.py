@@ -120,7 +120,9 @@ class LocalRecoveryTests(unittest.TestCase):
                 ('ls;rm notes.txt', 'list files'),
                 ('rm /wrong/notes.txt', 'delete /right/notes.txt'),
                 ('/bin/rm notes.txt', 'list files'),
-                ("sh -c 'rm notes.txt'", 'delete notes.txt')):
+                ("sh -c 'rm notes.txt'", 'delete notes.txt'),
+                ('rm "$[1]"', 'Delete the file named $[1]'),
+                ('rm -rf "$~HOME"', 'Delete the file named $~HOME')):
             with self.subTest(command=command):
                 answer, _ = self.run_worker(command=command, request=request, path=None)
                 self.assertEqual(answer['status'], 'unsupported')
