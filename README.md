@@ -43,7 +43,8 @@ Treat these as a low-power regression signal, not a benchmark: 59 cases, impleme
 - The lint gate is host-specific by design (it reads this Mac's `PATH` and man pages). It can false-positive on real flags the man page omits (`scutil --nwi`, `qlmanage -o`).
 - The deletion guard requires every delete target to appear literally in the request; upstream's scanner alone let `rm -rf ~/Library/Caches` and `… | xargs rm -f` through.
 - Tried and rejected on dev: prompt rewrites, static few-shot, man-page retrieval, one lint-guided repair re-prompt, top-2 tldr-pages example retrieval (12/61 vs 26/61 without it: the 1.5B model copies the examples), a 4B model, and the `qcoder-nl2sh` GGUF (same score as default).
-- Next lever: a macOS-specific fine-tune. [Zero-step toolchain feasibility passed](docs/finetune-feasibility.md) with 0/61 dev label flips; a first LoRA on 1,075 teacher rows did not beat the default on dev + everyday (71 and 68 of 141 across two seeds, against 68 for the default), so it was not scored on frozen or held-out: [stage-1 result](docs/stage1-training-result.md).
+- Training experiments: [v3 results](docs/v3-training-result.md), [runtime LoRA results](docs/runtime-lora-8seed-result.md), and [semantic scoring audit](docs/eval-audit/README.md). No candidate has passed the independent release gate.
+- Resume with [#35: shell parsing and deletion-target safety](https://github.com/imaddde867/whatisit-macos/issues/35), then [#36: real v4 judging and verified labels](https://github.com/imaddde867/whatisit-macos/issues/36), [#15: training](https://github.com/imaddde867/whatisit-macos/issues/15), and [#11: release gate](https://github.com/imaddde867/whatisit-macos/issues/11). The [v4 protocol](data/distill/stage2-v4/judge/protocol.md) is scaffolding, not a completed dataset.
 
 ## Tests
 
