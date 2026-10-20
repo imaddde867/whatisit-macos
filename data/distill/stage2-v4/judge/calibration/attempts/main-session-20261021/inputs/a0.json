@@ -1,0 +1,329 @@
+{
+ "batch": "a0",
+ "items": [
+  {
+   "case": "c9340b58fa349",
+   "request": "I'd like to know how many bytes are in the resource fork of legacy.txt.",
+   "candidates": [
+    {
+     "key": "kd91e9a2aa07d",
+     "command": "stat -f%z legacy.txt/..namedfork/rsrc"
+    },
+    {
+     "key": "k9f877a6f9e3e",
+     "command": "xattr -x -p com.apple.ResourceFork legacy.txt 2>/dev/null | sed -e 's/0x//g' -e 's/0X//g' | tr -cd '0-9a-fA-F' | wc -c | awk '{print int($1/2)}'"
+    },
+    {
+     "key": "k00d7801bc83f",
+     "command": "ls -l@ legacy.txt | grep com.apple.ResourceFork= | cut -d= -f2"
+    },
+    {
+     "key": "ke49c31062da8",
+     "command": "stat -f%z legacy.txt/..namedfork/rsrc 2>/dev/null || echo 0"
+    }
+   ]
+  },
+  {
+   "case": "c28b7c09cb283",
+   "request": "Give deploy.sh mode 0750 while leaving its directory alone.",
+   "candidates": [
+    {
+     "key": "kf91c7f1b264e",
+     "command": "chmod 0750 deploy.sh"
+    }
+   ]
+  },
+  {
+   "case": "cd909fbf2a24d",
+   "request": "List APFS containers in property-list form.",
+   "candidates": [
+    {
+     "key": "kdc24475c2664",
+     "command": "diskutil apfs listContainers -plist"
+    }
+   ]
+  },
+  {
+   "case": "c657905202f27",
+   "request": "Report whether an AC adapter is connected.",
+   "candidates": [
+    {
+     "key": "k1096ad71d2e2",
+     "command": "pmset -g batt | grep -q \"AC Power\" && echo yes || echo no"
+    },
+    {
+     "key": "k464c9e608e22",
+     "command": "pmset -g batt | awk '/Now drawing/ {print ($0 ~ /AC Power/) ? \"yes\" : \"no\"}'"
+    },
+    {
+     "key": "k94a2da3e9a4a",
+     "command": "pmset -g batt | grep -q 'AC Power' && echo 'AC adapter connected' || echo 'AC adapter not connected'"
+    },
+    {
+     "key": "k489b0f5b80a7",
+     "command": "pmset -g batt | grep -q 'AC Power' && echo \"AC adapter connected\" || echo \"AC adapter not connected\""
+    },
+    {
+     "key": "k660212b9c8e7",
+     "command": "pmset -g batt | grep -q \"AC Power\" && echo \"AC adapter connected\" || echo \"AC adapter not connected\""
+    }
+   ]
+  },
+  {
+   "case": "c4ec20b75085d",
+   "request": "Report the indexed focal length of camera-test.jpg.",
+   "candidates": [
+    {
+     "key": "k5875b7c04ed8",
+     "command": "mdls -name kMDItemFocalLength camera-test.jpg"
+    },
+    {
+     "key": "k0fec1103eade",
+     "command": "mdls -name kMDIFocalLength -raw camera-test.jpg"
+    },
+    {
+     "key": "k1036689bd769",
+     "command": "mdls -name kMDItemFocalLength -raw camera-test.jpg"
+    }
+   ]
+  },
+  {
+   "case": "c65eed228cf7e",
+   "request": "Fetch https://example.org/ using HTTP/1.1 and retain normal certificate validation.",
+   "candidates": [
+    {
+     "key": "kc22f5234a4bf",
+     "command": "curl --http1.1 https://example.org/"
+    }
+   ]
+  },
+  {
+   "case": "c66fa0cf5d201",
+   "request": "print uptime and the current local clock on one line",
+   "candidates": [
+    {
+     "key": "k92762ecf9e47",
+     "command": "uptime | tr '\\n' ' '; date"
+    }
+   ]
+  },
+  {
+   "case": "cd5032eb0a820",
+   "request": "Report the CPU percentage, resident memory, and elapsed time for PID 4200, without headings.",
+   "candidates": [
+    {
+     "key": "k13f22b97122a",
+     "command": "ps -p 4200 -o %cpu,rss,etime | tail -n +2"
+    },
+    {
+     "key": "k55e94abef1f5",
+     "command": "ps -p 4200 -o %cpu=,rss=,etime="
+    },
+    {
+     "key": "k638048fcd960",
+     "command": "ps -o %cpu,rss,etime -p 4200 | tail -n +2"
+    },
+    {
+     "key": "kdb17a3956319",
+     "command": "ps -h -p 4200 -o %cpu,rss,etime"
+    },
+    {
+     "key": "kaec2f5e9d8fa",
+     "command": "ps -o pcpu=,rss=,etime= -p 4200"
+    }
+   ]
+  },
+  {
+   "case": "cc26e26ab217c",
+   "request": "which procs have report.pdf open for writing",
+   "candidates": [
+    {
+     "key": "k0f1fc2a4da25",
+     "command": "lsof -a -d w -Fpc report.pdf"
+    },
+    {
+     "key": "k971c564ceeca",
+     "command": "lsof -a -d w,u report.pdf"
+    },
+    {
+     "key": "kcceffabb234b",
+     "command": "lsof -w report.pdf | awk 'NR==1 || $4 ~ /[wu]$/'"
+    },
+    {
+     "key": "k5a276fc6cac5",
+     "command": "lsof -Fpcfn report.pdf | awk '/^p/{p=substr($0,2)} /^c/{c=substr($0,2)} /^f/ && $0 ~ /^f[0-9]+[wu]$/ {print p, c}' | sort -u"
+    }
+   ]
+  },
+  {
+   "case": "c1a1418a216df",
+   "request": "Show the latest completed Time Machine backup path.",
+   "candidates": [
+    {
+     "key": "k4731ceefaa34",
+     "command": "tmutil latestbackup"
+    }
+   ]
+  },
+  {
+   "case": "c801603dc7f03",
+   "request": "Report file-system capacity in POSIX-style 1024-byte units for /Volumes/WORK.",
+   "candidates": [
+    {
+     "key": "k4ce5ef1b9338",
+     "command": "df -k /Volumes/WORK"
+    }
+   ]
+  },
+  {
+   "case": "cc5321b4e8d08",
+   "request": "pick rows in points.tsv where x and y are equel",
+   "candidates": [
+    {
+     "key": "kaf425a8b0755",
+     "command": "awk -F'\\t' 'NR==1{for(i=1;i<=NF;i++){if($i==\"x\")x=i; else if($i==\"y\")y=i} if(x&&y)next} NF>=2 && (x&&y?$x==$y:$1==$2)' points.tsv"
+    },
+    {
+     "key": "kcb3abe2f2783",
+     "command": "awk -F'\\t' -v OFS='\\t' 'NR==1{for(i=1;i<=NF;i++){if($i==\"x\")cx=i; else if($i==\"y\")cy=i}; if(cx&&cy){print; next} else {cx=1; cy=2}} cx&&cy&&$cx==$cy' points.tsv"
+    },
+    {
+     "key": "k67f28ba51e76",
+     "command": "awk -F'\\t' '$1 == $2' points.tsv"
+    },
+    {
+     "key": "k021e9ea323d9",
+     "command": "awk -F'\\t' '$1==$2' points.tsv"
+    }
+   ]
+  },
+  {
+   "case": "c351addb7b2b1",
+   "request": "Can you list login sessions with their idle times?",
+   "candidates": [
+    {
+     "key": "kbdb59744d425",
+     "command": "who -u"
+    },
+    {
+     "key": "k3d620f54ac55",
+     "command": "who -a"
+    },
+    {
+     "key": "kda4c2a932f7d",
+     "command": "w"
+    }
+   ]
+  },
+  {
+   "case": "c6ce905787d60",
+   "request": "Can you report whether the loopback network interface is marked up?",
+   "candidates": [
+    {
+     "key": "k8859089cabd9",
+     "command": "ifconfig lo0 | grep -q 'flags=.*<UP' && echo up || echo down"
+    },
+    {
+     "key": "ka65897327125",
+     "command": "ifconfig lo0 | grep -q 'status: active' && echo \"up\" || echo \"down\""
+    },
+    {
+     "key": "ka9c9ba31aedc",
+     "command": "ifconfig lo0 2>/dev/null | grep -q \"status: active\" && echo up || echo down"
+    },
+    {
+     "key": "k83e633d8edf4",
+     "command": "ifconfig lo0 | grep -q '<UP' && echo up || echo down"
+    }
+   ]
+  },
+  {
+   "case": "c91d5a7cdda1c",
+   "request": "List signal names understood by the shell.",
+   "candidates": [
+    {
+     "key": "ka2d8f05ce7a5",
+     "command": "kill -l"
+    }
+   ]
+  },
+  {
+   "case": "cf597af0fe2df",
+   "request": "Show the macOS file metadata of sample.bin as tab-separated fields: mode, owner, bytes, name.",
+   "candidates": [
+    {
+     "key": "k09a3946cb4ef",
+     "command": "stat -f \"%p\t%Su\t%z\t%n\" sample.bin"
+    },
+    {
+     "key": "k89f7b8549fb9",
+     "command": "stat -f '%Sp%t%Su%t%z%t%N' sample.bin"
+    }
+   ]
+  },
+  {
+   "case": "c8df8b5851f03",
+   "request": "How much compressed memory is attributed to PID 4200 in the macOS process monitor?",
+   "candidates": [
+    {
+     "key": "k05aeea1a2325",
+     "command": "top -l 1 -stats pid,cmpr -pid 4200 | awk '/^[[:space:]]*4200[[:space:]]/ {print $2; exit}'"
+    },
+    {
+     "key": "k6b3660616063",
+     "command": "top -l 1 -stats pid,cmem -pid 4200 | awk '/^[[:space:]]*4200([[:space:]]|$)/ {print $2; exit}'"
+    }
+   ]
+  },
+  {
+   "case": "c19cc0288edd4",
+   "request": "test localhost tcp 6543 with no payload",
+   "candidates": [
+    {
+     "key": "k3758f20f17c6",
+     "command": "nc -z localhost 6543"
+    }
+   ]
+  },
+  {
+   "case": "c37c99156d87a",
+   "request": "Remove group and other read permission from all regular .key files in test-keys/.",
+   "candidates": [
+    {
+     "key": "k02e21776c081",
+     "command": "find test-keys/ -type f -name '*.key' -exec chmod go-r {} +"
+    },
+    {
+     "key": "kd9dfed01141c",
+     "command": "find test-keys -maxdepth 1 -type f -name '*.key' -exec chmod go-r {} +"
+    },
+    {
+     "key": "ka9d27fbd5ee3",
+     "command": "find test-keys -type f -name '*.key' -exec chmod go-r {} +"
+    }
+   ]
+  },
+  {
+   "case": "c8f5b73b8d70e",
+   "request": "I need you to show the executable filename declared inside Helper.app",
+   "candidates": [
+    {
+     "key": "k26e2281bcb51",
+     "command": "/usr/libexec/PlistBuddy -c \"Print CFBundleExecutable\" Helper.app/Contents/Info.plist"
+    },
+    {
+     "key": "k95c5f4d2d896",
+     "command": "/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' Helper.app/Contents/Info.plist"
+    },
+    {
+     "key": "kc5b93886175b",
+     "command": "plutil -extract CFBundleExecutable raw Helper.app/Contents/Info.plist"
+    },
+    {
+     "key": "kab4251d7219e",
+     "command": "defaults read Helper.app/Contents/Info CFBundleExecutable"
+    }
+   ]
+  }
+ ]
+}

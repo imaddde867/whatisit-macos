@@ -1,0 +1,418 @@
+{
+ "batch": "a1",
+ "judge": "dsh-main-20261021-a1",
+ "cases": [
+  {
+   "case": "ca7b3720fd4bf",
+   "verdicts": [
+    {
+     "key": "kc1b4ab10555b",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "Entitlement key is com.apple.developer.associated-domains, not associated-domains."
+    },
+    {
+     "key": "k7c0183c70073",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -p flattens the entitlements; awk prints the associated-domains block."
+    },
+    {
+     "key": "kf5bcf43cbf8a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Shows the key line and the XML that follows it."
+    },
+    {
+     "key": "k2bd7d437a8aa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -p reads stdin, grep shows the entitlement block."
+    }
+   ]
+  },
+  {
+   "case": "c4af7900d848d",
+   "verdicts": [
+    {
+     "key": "k486256acaccf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "%G ISO week-year and %V ISO week number for the given date."
+    }
+   ]
+  },
+  {
+   "case": "c5523f004188e",
+   "verdicts": [
+    {
+     "key": "k08495f9054eb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "printf prints just the LANG value."
+    }
+   ]
+  },
+  {
+   "case": "c60dc734b0a96",
+   "verdicts": [
+    {
+     "key": "kc7cf180439b4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finds the ifree column from the header and prints it."
+    },
+    {
+     "key": "k4dbcfc83b5be",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Column 6 is iused, not ifree."
+    },
+    {
+     "key": "kacaf82c128c1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Column 7 is ifree on df -i."
+    },
+    {
+     "key": "ke5ff73e961ba",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Header-matched ifree column."
+    },
+    {
+     "key": "k551257655d54",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Column 4 is Available, not ifree."
+    }
+   ]
+  },
+  {
+   "case": "c1715cdcf90cf",
+   "verdicts": [
+    {
+     "key": "k5df07a8d8cce",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "touch updates timestamps without writing content."
+    }
+   ]
+  },
+  {
+   "case": "c4fc964aec11f",
+   "verdicts": [
+    {
+     "key": "k88aea93a5606",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "say -v ? prints name, locale, then comment; $2 is the locale."
+    },
+    {
+     "key": "k2bc5e3b22504",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Matches en_US style locale tokens in the say listing."
+    },
+    {
+     "key": "k61acf8869781",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Case-insensitive en locale prefix on the second column."
+    },
+    {
+     "key": "k298dfe14860c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Locale token followed by the comment marker."
+    }
+   ]
+  },
+  {
+   "case": "c433da48bde5d",
+   "verdicts": [
+    {
+     "key": "k2d7d228db664",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "clipboard info names PNGf when the clipboard holds a PNG."
+    }
+   ]
+  },
+  {
+   "case": "c85c1af5eb72a",
+   "verdicts": [
+    {
+     "key": "kc6ec0a656423",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil info has no Filesystem Identifier or Optimal Transfer Size fields."
+    },
+    {
+     "key": "kc9dba350e76b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "%d is the filesystem device number; %k is the optimal block size."
+    },
+    {
+     "key": "k161e46d76d02",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "%i is the inode number, not the filesystem identifier."
+    }
+   ]
+  },
+  {
+   "case": "c6929d6104241",
+   "verdicts": [
+    {
+     "key": "kfbdab3b4e09a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep -c counts lines containing a non-space character."
+    }
+   ]
+  },
+  {
+   "case": "c1f442b5ffe7b",
+   "verdicts": [
+    {
+     "key": "k8903658f89c9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "--cached is valid for git submodule status and limits by path."
+    }
+   ]
+  },
+  {
+   "case": "c04aa94e7bcb5",
+   "verdicts": [
+    {
+     "key": "k62f789e8913d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Prints lines after the first START until the next STOP."
+    },
+    {
+     "key": "k53c9fc27a30e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "First START guard, stops at STOP, markers excluded."
+    },
+    {
+     "key": "kebefdfed0afb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same range logic with marker exclusion."
+    },
+    {
+     "key": "k8f8c68673b18",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same range logic with marker exclusion."
+    },
+    {
+     "key": "kcc71b7a733bb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Stops at a STOP only after a START was seen."
+    }
+   ]
+  },
+  {
+   "case": "cc344d2f0d361",
+   "verdicts": [
+    {
+     "key": "k910d34a7478b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tar lists directory entries with a trailing slash."
+    }
+   ]
+  },
+  {
+   "case": "ccc2757925e27",
+   "verdicts": [
+    {
+     "key": "k56ed2a1a1ffd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Checks the get-task-allow key and its true value."
+    },
+    {
+     "key": "k930c8a63b482",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Whitespace-stripped match of key plus true value."
+    },
+    {
+     "key": "k3aedfb6ac812",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Tests key presence only, so a false entitlement reads yes."
+    },
+    {
+     "key": "k1b10d16996eb",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Tests key presence only, so a false entitlement reads yes."
+    },
+    {
+     "key": "kd75ba7de0ce2",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Tests key presence only, so a false entitlement reads yes."
+    }
+   ]
+  },
+  {
+   "case": "ccc65f24cb4b0",
+   "verdicts": [
+    {
+     "key": "k93edad547c88",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Matches names containing either bracket."
+    },
+    {
+     "key": "k5d29dddf2c24",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Matches only the opening bracket, so ] names are missed."
+    },
+    {
+     "key": "k632e876bb994",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Matches only the opening bracket, so ] names are missed."
+    },
+    {
+     "key": "kd738f5ffc1fa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Bracket expression matches a literal [ or ]."
+    },
+    {
+     "key": "k3345b5783158",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Both escaped bracket patterns, ORed."
+    }
+   ]
+  },
+  {
+   "case": "cce59ffb84bde",
+   "verdicts": [
+    {
+     "key": "k8600a3109897",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Unquoted space splits the path, so find gets two missing paths."
+    },
+    {
+     "key": "k6445bfeaf45e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Escaped space, top-level directories only, basenames printed."
+    }
+   ]
+  },
+  {
+   "case": "cfcb4c274bc08",
+   "verdicts": [
+    {
+     "key": "k8d11c7f07ae2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder id of the Downloads folder."
+    },
+    {
+     "key": "k4250524256bd",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "mdls returns null for both UUID attributes, so no identifier is shown."
+    }
+   ]
+  },
+  {
+   "case": "c42da630efd2a",
+   "verdicts": [
+    {
+     "key": "k1c45546dacc8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler SPUSBDataType lists USB devices and topology."
+    }
+   ]
+  },
+  {
+   "case": "c18f5eb705983",
+   "verdicts": [
+    {
+     "key": "k59b3f0ec6515",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Keeps only ARP entries whose interface field is en0."
+    },
+    {
+     "key": "kae55ea7073e8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "-i en0 with -a limits the ARP listing to en0."
+    },
+    {
+     "key": "k8214c902bf2f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep keeps the on en0 lines."
+    },
+    {
+     "key": "k7a961acb994b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Matches en0 anywhere in the listing; practical for arp output."
+    }
+   ]
+  },
+  {
+   "case": "ce1a919375960",
+   "verdicts": [
+    {
+     "key": "kf0341bd841e9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -c accepts a slash-delimited regex; -a ANDs TCP with the exact name."
+    }
+   ]
+  },
+  {
+   "case": "c9bef6a742731",
+   "verdicts": [
+    {
+     "key": "kf456305c335b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xml1 output piped through sed prints each string value."
+    },
+    {
+     "key": "k13e407a6271f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "raw on an array prints the element count, not the values."
+    },
+    {
+     "key": "k6c303f0b14ad",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xmllint selects the string text nodes."
+    },
+    {
+     "key": "kaaa2262c15b0",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "raw on an array prints the element count, not the values."
+    }
+   ]
+  }
+ ]
+}

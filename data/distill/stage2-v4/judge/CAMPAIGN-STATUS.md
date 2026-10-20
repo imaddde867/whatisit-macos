@@ -67,6 +67,15 @@ report, and a byte-identical rebuild.
   semantics). No campaign batch was re-judged, no confirm was produced, and the retry
   budget is untouched. Details:
   [calibration/attempts/dsh-subagent-20261021-a2/ATTEMPT.md](calibration/attempts/dsh-subagent-20261021-a2/ATTEMPT.md).
+- **2026-10-21, attempt 2 — main-session judge: failed the agreement bar, and the review
+  found reference errors.** 81/103 accepted verdicts reproduced, 17 false accepts of 34.
+  Disagreement review verified at least 8 accepted labels that are demonstrably wrong
+  (`stat %p`, `plutil -p -`, `lsof -F`, `say -v '?'` columns, `git submodule --cached`,
+  `plutil … xml1 | sed`, `tmutil latestbackup`) and about 6 of the judge's own verdicts
+  that were wrong. Conclusion: the accepted pass-1 labels carry roughly 8% error, so a
+  100%-per-batch control gate built from the same audit material cannot be passed by an
+  honest independent judge. Details:
+  [calibration/attempts/main-session-20261021/ATTEMPT.md](calibration/attempts/main-session-20261021/ATTEMPT.md).
 
 ## What this commit contains
 
