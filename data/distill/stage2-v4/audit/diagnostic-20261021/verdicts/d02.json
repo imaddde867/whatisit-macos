@@ -1,0 +1,172 @@
+{
+  "batch": "d02",
+  "judge": "diag-opencode-deepseek-v4.1-flash-free-20261021-d02",
+  "cases": [
+    {
+      "case": "cd3d54ee2f44c",
+      "verdicts": [
+        {"key": "k011af1726a59", "verdict": "correct", "category": null, "evidence": "diskutil info accepts /dev/disk4 and prints the Removable Media line."},
+        {"key": "k36d4036fbde5", "verdict": "correct", "category": null, "evidence": "Same read-only query with single quotes; prints Removable Media."},
+        {"key": "k6cd0b25d0c5c", "verdict": "correct", "category": null, "evidence": "grep -i Removable matches the Removable Media field."},
+        {"key": "k9c3df9e5c90f", "verdict": "correct", "category": null, "evidence": "Same single-quoted grep; matches the Removable Media field."},
+        {"key": "kae7a8d91c167", "verdict": "correct", "category": null, "evidence": "Prints the Removable Media field from diskutil info."}
+      ]
+    },
+    {
+      "case": "c38a33c25cb80",
+      "verdicts": [
+        {"key": "k0163ea408e9c", "verdict": "correct", "category": null, "evidence": "mount with no arguments lists mounts; grep detects disk4s1 without mounting."},
+        {"key": "k96740357dd5a", "verdict": "correct", "category": null, "evidence": "diskutil info reports Mounted and Mount Point read-only."},
+        {"key": "ka1e0aa945382", "verdict": "incorrect", "category": "wrong_output", "evidence": "diskutil info indents fields, so ^Mounted never matches; always prints Not mounted."},
+        {"key": "kb0f41ce2a051", "verdict": "correct", "category": null, "evidence": "Leading-space pattern matches indented Mounted and Mount Point lines."}
+      ]
+    },
+    {
+      "case": "c941e4b4ace0c",
+      "verdicts": [
+        {"key": "k1709bb7d560b", "verdict": "incorrect", "category": "missed_constraint", "evidence": "mount has no default local filesystem type; needs -t and root, so fails."}
+      ]
+    },
+    {
+      "case": "caabbfa39aa52",
+      "verdicts": [
+        {"key": "k18d35fa2f2b9", "verdict": "correct", "category": null, "evidence": "grep -i matches the indented Partition Map Type line."},
+        {"key": "k3d676ba8a892", "verdict": "correct", "category": null, "evidence": "Exact-case match on the Partition Map Type line."},
+        {"key": "k752b1eac0157", "verdict": "correct", "category": null, "evidence": "diskutil accepts /dev/disk4 and prints Partition Map Type."},
+        {"key": "kcd9dda517d63", "verdict": "correct", "category": null, "evidence": "Unanchored grep matches the Partition Map Type line."}
+      ]
+    },
+    {
+      "case": "c6d938ae74ca3",
+      "verdicts": [
+        {"key": "k1ab45f9f180f", "verdict": "correct", "category": null, "evidence": "Grouped -name patterns match a literal [ or ]; -print lists them."},
+        {"key": "kb43946fe86f4", "verdict": "correct", "category": null, "evidence": "Bracket expression [[] matches a literal [; find prints by default."},
+        {"key": "kc08c2dfefcd5", "verdict": "correct", "category": null, "evidence": "Backslash escapes [ per find man page; -print lists matches."},
+        {"key": "kcf7b1bbd75b6", "verdict": "correct", "category": null, "evidence": "[][] class matches either bracket; default print."},
+        {"key": "kf920481123a5", "verdict": "correct", "category": null, "evidence": "Escaped bracket alternatives match [ or ]; prints paths."}
+      ]
+    },
+    {
+      "case": "c215a89e1a557",
+      "verdicts": [
+        {"key": "k1b30b1917bfc", "verdict": "incorrect", "category": "wrong_operand", "evidence": "Queries disk4s1, not the requested disk4s1s."},
+        {"key": "k2c0e568694cc", "verdict": "correct", "category": null, "evidence": "Targets disk4s1s; grep finds the Partition Offset line."},
+        {"key": "k56463f734e2d", "verdict": "correct", "category": null, "evidence": "Targets disk4s1s; prints offset or a clear not-found message."},
+        {"key": "ke713bf407c56", "verdict": "correct", "category": null, "evidence": "Targets disk4s1s and prints the Partition Offset line."}
+      ]
+    },
+    {
+      "case": "c91892905be81",
+      "verdicts": [
+        {"key": "k205989476636", "verdict": "correct", "category": null, "evidence": "diskutil info is read-only and reports the disk partition map type."},
+        {"key": "k544dccce47f5", "verdict": "incorrect", "category": "other", "evidence": "diskutil has no partitionMap verb; command errors."},
+        {"key": "k5f7d44087b97", "verdict": "incorrect", "category": "other", "evidence": "diskutil has no partitionMap verb; command errors."},
+        {"key": "kbc1c02479c03", "verdict": "incorrect", "category": "other", "evidence": "diskutil has no partitionMap verb; command errors."}
+      ]
+    },
+    {
+      "case": "c384ba5798de6",
+      "verdicts": [
+        {"key": "k34a644f60b22", "verdict": "incorrect", "category": "wrong_output", "evidence": "Abstract entitlement output has no XML key tags; always prints false."},
+        {"key": "k4092c297aded", "verdict": "incorrect", "category": "wrong_output", "evidence": "Default --entitlements - is not XML; exact XML grep always says no."},
+        {"key": "k5ece063a04e0", "verdict": "correct", "category": null, "evidence": ":- writes XML entitlements; grep detects the key."},
+        {"key": "k93fe9be97bee", "verdict": "correct", "category": null, "evidence": "Default output still contains the key name; grep works."},
+        {"key": "kfcf44566dddb", "verdict": "correct", "category": null, "evidence": ":- writes XML; key presence answers the entitlement question."}
+      ]
+    },
+    {
+      "case": "cbac58183ad07",
+      "verdicts": [
+        {"key": "k6cf3c50162c0", "verdict": "correct", "category": null, "evidence": "diskutil mount readOnly is the documented read-only form."},
+        {"key": "k703306779576", "verdict": "incorrect", "category": "missed_constraint", "evidence": "-mountOptions readOnly is passed verbatim to -o; mount expects rdonly."},
+        {"key": "kf74926f32a0b", "verdict": "incorrect", "category": "missed_constraint", "evidence": "readOnly is not a mount -o option; volume is not reliably read-only."}
+      ]
+    },
+    {
+      "case": "ca9e3e1708301",
+      "verdicts": [
+        {"key": "k7788b73b7054", "verdict": "correct", "category": null, "evidence": "diskutil accepts -plist after the device and emits a plist."},
+        {"key": "kbdb98557702d", "verdict": "correct", "category": null, "evidence": "Absolute stock path; -plist before device; emits a plist."},
+        {"key": "kf1dede78dabe", "verdict": "correct", "category": null, "evidence": "Canonical diskutil list -plist form; disk4 is accepted."}
+      ]
+    },
+    {
+      "case": "c0ccfd3e19c98",
+      "verdicts": [
+        {"key": "k817e9983fb62", "verdict": "correct", "category": null, "evidence": "Matches /dev/disk4 followed by a non-digit; header printed."},
+        {"key": "k8bb6c378d610", "verdict": "correct", "category": null, "evidence": "Matches /disk4 followed by a non-digit; header printed."},
+        {"key": "ka44df65204e3", "verdict": "correct", "category": null, "evidence": "df -P is valid; awk matches /dev/disk4 slice lines."},
+        {"key": "kba17caf21a7b", "verdict": "correct", "category": null, "evidence": "grep matches the Filesystem header and /dev/disk4s devices."},
+        {"key": "kfbc4affb0a53", "verdict": "correct", "category": null, "evidence": "Regex matches the header or /dev/disk4 followed by non-digit."}
+      ]
+    },
+    {
+      "case": "c118e7dd4f711",
+      "verdicts": [
+        {"key": "ke52695a516a7", "verdict": "correct", "category": null, "evidence": "verifyDisk checks the partition map read-only, without repairs."},
+        {"key": "kf7ab1ab66bb1", "verdict": "correct", "category": null, "evidence": "Same verify-only verb using a plain disk identifier."},
+        {"key": "kfed2692417ea", "verdict": "incorrect", "category": "other", "evidence": "diskutil has no verifyPartitionMap verb; command errors."}
+      ]
+    },
+    {
+      "case": "c3f6eab2b90a0",
+      "verdicts": [
+        {"key": "ke54859887523", "verdict": "correct", "category": null, "evidence": "unmountDisk without force unmounts all volumes normally."}
+      ]
+    },
+    {
+      "case": "cf4500bd9d45c",
+      "verdicts": [
+        {"key": "kf1d58940e6a5", "verdict": "correct", "category": null, "evidence": "hdiutil detach without -force performs a normal detach."}
+      ]
+    },
+    {
+      "case": "c813b69163a74",
+      "verdicts": [
+        {"key": "k2696ddc4e999", "verdict": "incorrect", "category": "wrong_output", "evidence": "Follows only keys named signpost; misses exported signpostName entries."},
+        {"key": "k3afc5fc18df3", "verdict": "correct", "category": null, "evidence": "Matches signpostName or signpost_name and extracts values; sort -u."},
+        {"key": "k7cc080fa5004", "verdict": "incorrect", "category": "wrong_output", "evidence": "Pattern does not match signpostName, so exported names are missed."},
+        {"key": "kf7cc31cd87b1", "verdict": "incorrect", "category": "wrong_tool", "evidence": "python3 is not stock macOS; also has a loose name fallback."}
+      ]
+    },
+    {
+      "case": "cc221124920ec",
+      "verdicts": [
+        {"key": "kc39b659bd32d", "verdict": "correct", "category": null, "evidence": "stat -f %z on ..namedfork/rsrc counts nonempty resource forks."},
+        {"key": "kca1882a84765", "verdict": "correct", "category": null, "evidence": "Same resource-fork stat; awk prints a count, default 0."}
+      ]
+    },
+    {
+      "case": "c6cd68352628c",
+      "verdicts": [
+        {"key": "kfec051f00919", "verdict": "correct", "category": null, "evidence": "Standard AppleScript reads Finder front window bounds."}
+      ]
+    },
+    {
+      "case": "ca8188664bd35",
+      "verdicts": [
+        {"key": "k318b469c7a4f", "verdict": "correct", "category": null, "evidence": "stat -f %c prints st_ctime as Unix seconds."}
+      ]
+    },
+    {
+      "case": "c5271ac83c103",
+      "verdicts": [
+        {"key": "k23ce61fa599d", "verdict": "incorrect", "category": "missed_constraint", "evidence": "Only prints padded lines; codes.txt itself is not updated."},
+        {"key": "k2d9ab267add1", "verdict": "correct", "category": null, "evidence": "Pads via awk then replaces codes.txt atomically."},
+        {"key": "k724cc49df6de", "verdict": "correct", "category": null, "evidence": "Same awk padding written back to codes.txt."},
+        {"key": "kc7ce39f80fe5", "verdict": "correct", "category": null, "evidence": "BSD sed -i pads short lines with leading zeros in place."},
+        {"key": "kec252295fdbb", "verdict": "correct", "category": null, "evidence": "awk pads then mv replaces codes.txt."}
+      ]
+    },
+    {
+      "case": "c64567459ab38",
+      "verdicts": [
+        {"key": "k012fa103a485", "verdict": "correct", "category": null, "evidence": "launchctl print shows last exit code; grep extracts it."},
+        {"key": "k2a7b0dfce760", "verdict": "correct", "category": null, "evidence": "launchctl list label includes LastExitStatus."},
+        {"key": "kab3554d8c35b", "verdict": "correct", "category": null, "evidence": "print output has last exit code; the regex matches."},
+        {"key": "ke9ea44e04f5c", "verdict": "correct", "category": null, "evidence": "Plain launchctl list label prints the job dictionary with LastExitStatus."},
+        {"key": "kedd69882334e", "verdict": "correct", "category": null, "evidence": "grep extracts LastExitStatus from the job dictionary."}
+      ]
+    }
+  ]
+}

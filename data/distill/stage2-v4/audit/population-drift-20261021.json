@@ -1,0 +1,282 @@
+{
+ "generated_at": "2026-10-21T21:35:28+03:00",
+ "campaign_head": "9a327a20b80c607518394544f16c4aea9acb545d",
+ "rubric_sha256": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+ "artifacts_sha256": {
+  "keymap": "eee680f15e7ca03ed6d53e2d0446875dee9503ee35542e220c70f0fd7a135004",
+  "manifest": "55e37d9e26b2d4a609fe1abcd0531cf9620c13d3ce97fe207ced2329930fa2b2",
+  "controls_map": "4e8976b6cba7372f2bbfdee7182ba2dc6d09cc1007fcb094f9c7c188963a8d1f"
+ },
+ "validation": {
+  "code_sha256": {
+   "src/whatisit_macos/maclint.py": "a62de486e1b42c21a9a8d2311f2cb0765a1a4218918276fd4e82298e9319f0b9",
+   "src/whatisit_macos/shell.py": "862b712d6aeec948ca64a652dfc469971d48200ce0bbc55aac5f0da925520afd",
+   "tools/build_distill_dataset.py": "168dc41685da56a9dccc513e2775e167bf972d5abc542dc6be39804d15f779c6",
+   "tools/repair_distill_dataset.py": "667ef8d39e86e2d4f74d4c0a3da637a444fb8147ff2ffa4ec7eca10588c839f0",
+   "upstream_safety": "012f8ce882a7272a36ade26dfbee3542810e49ee42922f2515334b58db08a1f9"
+  },
+  "path_sha256": "6e53700166cb62101d9bcf4d31401a4b4b295fc410cfc38566d929087f94483b",
+  "platform": [
+   "Darwin",
+   "27.0.0"
+  ],
+  "python": [
+   3,
+   14
+  ],
+  "whatisit_version": "0.4.0"
+ },
+ "missing_paths": [
+  "/dev/disk4",
+  "/dev/disk4s1",
+  "/dev/disk5"
+ ],
+ "baseline": {
+  "items": 2062,
+  "candidates": 5111,
+  "excluded_candidates": 1252,
+  "warnings": 201
+ },
+ "recomputed": {
+  "items": 2058,
+  "candidates": 5093,
+  "excluded_candidates": 1270,
+  "warnings": 205
+ },
+ "difference": {
+  "missing_from_recomputed": 18,
+  "unexpected_in_recomputed": 0
+ },
+ "affected_rids": [
+  "r00186",
+  "r00451",
+  "r00500",
+  "r00547",
+  "r00637",
+  "r00752",
+  "r01171",
+  "r01314",
+  "r01481",
+  "r01768",
+  "r02142",
+  "r02144",
+  "r02500"
+ ],
+ "selected_affected_keys": 13,
+ "selected_affected_rids": [
+  "r00500",
+  "r00547",
+  "r00637",
+  "r00752",
+  "r01171",
+  "r01314",
+  "r01481",
+  "r01768",
+  "r02142",
+  "r02144",
+  "r02500"
+ ],
+ "retained_affected_rids": [
+  "r00500",
+  "r00547",
+  "r00637",
+  "r00752",
+  "r01171",
+  "r01314",
+  "r01481",
+  "r01768",
+  "r02142",
+  "r02500"
+ ],
+ "retained_targets_referencing_missing_paths": [
+  "r00752",
+  "r01171",
+  "r01481",
+  "r02500"
+ ],
+ "candidates": [
+  {
+   "key": "k011af1726a59",
+   "rid": "r00500",
+   "group": "no_majority",
+   "command": "diskutil info /dev/disk4 | grep -i \"Removable Media\"",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r00500: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "k0163ea408e9c",
+   "rid": "r00547",
+   "group": "no_majority",
+   "command": "mount | grep -q '/dev/disk4s1' && echo mounted || echo not mounted",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r00547: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k0d6494f0743d",
+   "rid": "r00186",
+   "group": "no_majority",
+   "command": "diskutil info /dev/disk4 | awk '/Physical Sector Size/{print $4}'",
+   "selected": false,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r00186: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "k1709bb7d560b",
+   "rid": "r01481",
+   "group": "no_majority",
+   "command": "mount -o ro /dev/disk4s1 mountpoint",
+   "selected": true,
+   "retained": true,
+   "retained_target": true,
+   "exclusion_reason": "r01481: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k1b30b1917bfc",
+   "rid": "r00637",
+   "group": "no_majority",
+   "command": "diskutil info /dev/disk4s1 | grep -i offset",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r00637: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k205989476636",
+   "rid": "r02144",
+   "group": "no_majority",
+   "command": "diskutil info /dev/disk4",
+   "selected": true,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r02144: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "k544dccce47f5",
+   "rid": "r02144",
+   "group": "no_majority",
+   "command": "diskutil partitionMap show /dev/disk4",
+   "selected": true,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r02144: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "k5db8bda79e50",
+   "rid": "r00451",
+   "group": "no_majority",
+   "command": "lsof -u $(whoami) /dev/disk4s1",
+   "selected": false,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r00451: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k6cf3c50162c0",
+   "rid": "r01171",
+   "group": "no_majority",
+   "command": "diskutil mount readOnly /dev/disk4s1",
+   "selected": true,
+   "retained": true,
+   "retained_target": true,
+   "exclusion_reason": "r01171: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k6f0d2d55351a",
+   "rid": "r00451",
+   "group": "no_majority",
+   "command": "lsof -a -u \"$(whoami)\" +d /dev/disk4s1",
+   "selected": false,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r00451: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k703306779576",
+   "rid": "r01171",
+   "group": "no_majority",
+   "command": "diskutil mount -mountOptions readOnly /dev/disk4s1",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r01171: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k752b1eac0157",
+   "rid": "r01768",
+   "group": "no_majority",
+   "command": "diskutil info /dev/disk4 | grep -i 'Partition Map Type'",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r01768: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "k8c7cec3e169b",
+   "rid": "r00451",
+   "group": "no_majority",
+   "command": "lsof -u \"$USER\" +f -- /dev/disk4s1",
+   "selected": false,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r00451: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "k9d9cfe8d9632",
+   "rid": "r00451",
+   "group": "no_majority",
+   "command": "lsof -u \"$(id -un)\" +d /dev/disk4s1",
+   "selected": false,
+   "retained": false,
+   "retained_target": false,
+   "exclusion_reason": "r00451: command fails serving validation: /dev/disk4s1: path does not exist on macOS"
+  },
+  {
+   "key": "kbdb98557702d",
+   "rid": "r02142",
+   "group": "no_majority",
+   "command": "/usr/sbin/diskutil list -plist /dev/disk4",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r02142: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "ke52695a516a7",
+   "rid": "r01314",
+   "group": "no_majority",
+   "command": "diskutil verifyDisk /dev/disk4",
+   "selected": true,
+   "retained": true,
+   "retained_target": false,
+   "exclusion_reason": "r01314: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "ke54859887523",
+   "rid": "r00752",
+   "group": "no_majority",
+   "command": "diskutil unmountDisk /dev/disk4",
+   "selected": true,
+   "retained": true,
+   "retained_target": true,
+   "exclusion_reason": "r00752: command fails serving validation: /dev/disk4: path does not exist on macOS"
+  },
+  {
+   "key": "kf1d58940e6a5",
+   "rid": "r02500",
+   "group": "no_majority",
+   "command": "hdiutil detach /dev/disk5",
+   "selected": true,
+   "retained": true,
+   "retained_target": true,
+   "exclusion_reason": "r02500: command fails serving validation: /dev/disk5: path does not exist on macOS"
+  }
+ ],
+ "canonical_confirm_error": "ValueError: keymap does not match the complete policy-accepted population; rebuild pool",
+ "canonical_build_error": "ValueError: keymap does not match the complete policy-accepted population; rebuild pool (tools/build_verified_dataset.py:399)",
+ "interpretation": "The frozen pool includes 18 candidates that current serving validation rejects because /dev/disk4, /dev/disk4s1 or /dev/disk5 is absent. The validation fingerprint does not capture path existence. A changed population invalidates the campaign per protocol.md; verdicts may not be reused after a rebuild."
+}

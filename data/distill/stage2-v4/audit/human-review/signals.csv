@@ -1,0 +1,41 @@
+review_id,id,group,pass1,pass1_evidence,diagnostic,diagnostic_note
+HR-01,r00225,v3_kept,not_judged_empty_target,v3 empty target kept unchanged,not_sampled,
+HR-02,r01996,no_majority,correct,diff -U5.,not_sampled,
+HR-03,r00071,v3_kept,not_judged_empty_target,v3 empty target kept unchanged,not_sampled,
+HR-04,r00561,no_majority,correct,log --style json processImagePath basenames.,not_sampled,
+HR-05,r01163,no_majority,correct,sample to a file.,not_sampled,
+HR-06,r02463,v3_kept,correct,mount -t nfs.,not_sampled,
+HR-07,r01481,no_majority,correct,mount -o ro.,incorrect,"mount has no default local filesystem type; needs -t and root, so fails."
+HR-08,r01228,v3_kept,correct,awk dedupe preserving order.,not_sampled,
+HR-09,r00547,no_majority,correct,mount table or diskutil status answers mount state without mounting.,correct,diskutil info reports Mounted and Mount Point read-only.
+HR-10,r00503,no_majority,correct,Replaces any existing archive so the new ZIP contains only the two requested files.,correct,"Removes any old archive, then zips exactly report.pdf and notes.txt."
+HR-11,r02309,no_majority,correct,lsof FIFO/PIPE.,incorrect,macOS lsof types anonymous pipes as PIPE; a FIFO-only filter misses them.
+HR-12,r02383,no_majority,correct,launchctl last exit.,correct,Plain launchctl list label prints the job dictionary with LastExitStatus.
+HR-13,r00111,v3_kept,not_judged_empty_target,v3 empty target kept unchanged,not_sampled,
+HR-14,r00103,v3_kept,not_judged_empty_target,v3 empty target kept unchanged,not_sampled,
+HR-15,r00870,no_majority,correct,move only when the destination does not exist.,not_sampled,
+HR-16,r01239,no_majority,correct,rsync exclude.,not_sampled,
+HR-17,r00728,no_majority,correct,kill -s USR1 sends the signal.,not_sampled,
+HR-18,r02222,v3_kept,correct,PlistBuddy NSPrincipalClass.,not_sampled,
+HR-19,r00752,no_majority,correct,diskutil unmountDisk unmounts without force.,correct,unmountDisk without force unmounts all volumes normally.
+HR-20,r00022,no_majority,correct,Filters IPv4 TCP listeners by port.,not_sampled,
+HR-21,r01975,v3_kept,correct,lsof user +D.,not_sampled,
+HR-22,r00690,no_majority,correct,du -x keeps the walk on the volume and lists direct children.,not_sampled,
+HR-23,r02500,no_majority,correct,hdiutil detach.,correct,hdiutil detach without -force performs a normal detach.
+HR-24,r02353,v3_kept,correct,xattr -c.,not_sampled,
+HR-25,r01149,no_majority,correct,ioreg clamshell state.,not_sampled,
+HR-26,r01625,v3_kept,correct,mkdir + mv app.,not_sampled,
+HR-27,r01301,no_majority,correct,screencapture display 2.,not_sampled,
+HR-28,r01171,no_majority,correct,diskutil mount readOnly.,correct,diskutil mount readOnly is the documented read-only form.
+HR-29,r02104,v3_kept,correct,Ejectable field.,not_sampled,
+HR-30,r00013,no_majority,correct,Computes numbered chunk names and emits a header once for each chunk.,not_sampled,
+HR-31,r00993,no_majority,correct,sparse file creation.,not_sampled,
+HR-32,r00004,no_majority,correct,Divides available KiB blocks by 1048576 and truncates.,not_sampled,
+HR-33,r00462,no_majority,correct,"Filters file types to Internet, UNIX, and generic sockets and prints numeric descriptors.",correct,"Filters lsof types IPv4, IPv6, unix, sock and prints numeric fds."
+HR-34,r00008,v3_kept,not_judged_empty_target,v3 empty target kept unchanged,not_sampled,
+HR-35,r01873,v3_kept,correct,chmod -x on .txt files.,not_sampled,
+HR-36,r01849,no_majority,correct,plist array to lines.,not_sampled,
+HR-37,r00500,no_majority,correct,Prints disk4 removable-media information.,correct,grep -i Removable matches the Removable Media field.
+HR-38,r00637,no_majority,correct,diskutil info reports the partition offset field.,correct,Targets disk4s1s; grep finds the Partition Offset line.
+HR-39,r01501,v3_kept,correct,plutil -p SystemVersion.,not_sampled,
+HR-40,r01444,v3_kept,correct,security cms -D.,not_sampled,

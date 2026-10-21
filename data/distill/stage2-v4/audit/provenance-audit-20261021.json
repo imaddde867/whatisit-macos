@@ -1,0 +1,294 @@
+{
+ "generated_at": "2026-10-21T21:35:40+03:00",
+ "campaign_head": "9a327a20b80c607518394544f16c4aea9acb545d",
+ "method": "Recorded verdict judge strings, git add dates for each verdict file, and the pre-registered calibration attempt record. No session transcript exists in the repository.",
+ "batches": [
+  {
+   "batch": "b00",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b00-a1",
+   "candidates": 233,
+   "commit": "6fba0f6",
+   "commit_time": "2026-10-21T02:27:53+03:00",
+   "identity_date": "20261020",
+   "identity_matches_commit_date": false,
+   "subject": "data: freeze v4 judge campaign r2 at the retry-budget stop (#36)",
+   "identity_relation": "earlier"
+  },
+  {
+   "batch": "b01",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b01-a1",
+   "candidates": 224,
+   "commit": "6fba0f6",
+   "commit_time": "2026-10-21T02:27:53+03:00",
+   "identity_date": "20261020",
+   "identity_matches_commit_date": false,
+   "subject": "data: freeze v4 judge campaign r2 at the retry-budget stop (#36)",
+   "identity_relation": "earlier"
+  },
+  {
+   "batch": "b02",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b02-a1",
+   "candidates": 233,
+   "commit": "6fba0f6",
+   "commit_time": "2026-10-21T02:27:53+03:00",
+   "identity_date": "20261020",
+   "identity_matches_commit_date": false,
+   "subject": "data: freeze v4 judge campaign r2 at the retry-budget stop (#36)",
+   "identity_relation": "earlier"
+  },
+  {
+   "batch": "b03",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b03-a1",
+   "candidates": 235,
+   "commit": "6fba0f6",
+   "commit_time": "2026-10-21T02:27:53+03:00",
+   "identity_date": "20261020",
+   "identity_matches_commit_date": false,
+   "subject": "data: freeze v4 judge campaign r2 at the retry-budget stop (#36)",
+   "identity_relation": "earlier"
+  },
+  {
+   "batch": "b04",
+   "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b04-a1",
+   "candidates": 244,
+   "commit": "6fba0f6",
+   "commit_time": "2026-10-21T02:27:53+03:00",
+   "identity_date": "20261020",
+   "identity_matches_commit_date": false,
+   "subject": "data: freeze v4 judge campaign r2 at the retry-budget stop (#36)",
+   "identity_relation": "earlier"
+  },
+  {
+   "batch": "b05",
+   "judge": "dsh-main-20261021-b05-a1",
+   "candidates": 237,
+   "commit": "d281cb2",
+   "commit_time": "2026-10-21T02:52:53+03:00",
+   "identity_date": "20261021",
+   "identity_matches_commit_date": true,
+   "subject": "data: accept b05 and record the r3 gate with adjudicated controls",
+   "identity_relation": "same_day"
+  },
+  {
+   "batch": "b06",
+   "judge": "dsh-main-20261022-b06-a1",
+   "candidates": 228,
+   "commit": "61d373e",
+   "commit_time": "2026-10-21T02:59:03+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b06 (228 verdicts, contested control exercised)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b07",
+   "judge": "dsh-main-20261022-b07-a1",
+   "candidates": 233,
+   "commit": "833d6e8",
+   "commit_time": "2026-10-21T03:00:56+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b07 (233 verdicts, controls matched)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b08",
+   "judge": "dsh-main-20261022-b08-a1",
+   "candidates": 207,
+   "commit": "0d39502",
+   "commit_time": "2026-10-21T09:38:35+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b08 (207 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b09",
+   "judge": "dsh-main-20261022-b09-a1",
+   "candidates": 220,
+   "commit": "f098713",
+   "commit_time": "2026-10-21T09:40:57+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b09 (220 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b10",
+   "judge": "dsh-main-20261022-b10-a1",
+   "candidates": 232,
+   "commit": "de91b5b",
+   "commit_time": "2026-10-21T09:43:06+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b10 (232 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b11",
+   "judge": "dsh-main-20261022-b11-a1",
+   "candidates": 228,
+   "commit": "c268857",
+   "commit_time": "2026-10-21T09:45:08+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b11 (228 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b12",
+   "judge": "dsh-main-20261022-b12-a1",
+   "candidates": 237,
+   "commit": "b18e701",
+   "commit_time": "2026-10-21T09:52:26+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b12 (237 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b13",
+   "judge": "dsh-main-20261022-b13-a1",
+   "candidates": 234,
+   "commit": "111e439",
+   "commit_time": "2026-10-21T09:54:18+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b13 (234 verdicts, 2/2 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b14",
+   "judge": "dsh-main-20261022-b14-a1",
+   "candidates": 223,
+   "commit": "a7c0626",
+   "commit_time": "2026-10-21T11:54:40+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b14 (223 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b15",
+   "judge": "dsh-main-20261022-b15-a1",
+   "candidates": 217,
+   "commit": "5359239",
+   "commit_time": "2026-10-21T11:57:15+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b15 (217 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b16",
+   "judge": "dsh-main-20261022-b16-a1",
+   "candidates": 244,
+   "commit": "d9e07ca",
+   "commit_time": "2026-10-21T11:58:46+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b16 (244 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b17",
+   "judge": "dsh-main-20261022-b17-a1",
+   "candidates": 239,
+   "commit": "217b242",
+   "commit_time": "2026-10-21T13:02:57+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b17 (239 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b18",
+   "judge": "dsh-main-20261022-b18-a1",
+   "candidates": 187,
+   "commit": "7eb704e",
+   "commit_time": "2026-10-21T13:03:47+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b18 (187 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b19",
+   "judge": "dsh-main-20261022-b19-a1",
+   "candidates": 241,
+   "commit": "0ec9e0c",
+   "commit_time": "2026-10-21T13:05:17+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b19 (241 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b20",
+   "judge": "dsh-main-20261022-b20-a1",
+   "candidates": 216,
+   "commit": "fd28344",
+   "commit_time": "2026-10-21T13:06:20+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b20 (216 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b21",
+   "judge": "dsh-main-20261022-b21-a1",
+   "candidates": 214,
+   "commit": "4739786",
+   "commit_time": "2026-10-21T13:07:12+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b21 (214 verdicts, 3/3 controls)",
+   "identity_relation": "future"
+  },
+  {
+   "batch": "b22",
+   "judge": "dsh-main-20261022-b22-a1",
+   "candidates": 170,
+   "commit": "9a327a2",
+   "commit_time": "2026-10-21T13:09:56+03:00",
+   "identity_date": "20261022",
+   "identity_matches_commit_date": false,
+   "subject": "data: accept b22 and complete pass 1 (5,176 verdicts, 23/23 batches)",
+   "identity_relation": "future"
+  }
+ ],
+ "totals": {
+  "batches": 23,
+  "candidates": 5176,
+  "b00_b04_candidates": 1169,
+  "b05_b22_candidates": 4007,
+  "future_dated_batches": 17,
+  "main_session_batches": 18,
+  "earlier_identity_batches": 5,
+  "same_day_batches": 1
+ },
+ "calibration": {
+  "judge": "dsh-main-20261021-a1",
+  "total": 103,
+  "agree": 81,
+  "false_accepts": 17,
+  "false_rejects": 5,
+  "unsure": 0,
+  "bar": {
+   "agreement_required": 93,
+   "false_accept_max": 2,
+   "unsure_max": 2
+  },
+  "pass": false,
+  "record": "data/distill/stage2-v4/judge/calibration/attempts/main-session-20261021/{ATTEMPT.md,report.json}"
+ },
+ "findings": [
+  "b00-b04 use one gpt-6.1-sol-medium identity per batch and match their commit dates.",
+  "b05 uses dsh-main-20261021-b05-a1 and was committed 2026-10-21.",
+  "b06-b22 use identities dated 20261022 but were committed 2026-10-21, up to about one day before the identity date.",
+  "The same main-session judge (dsh-main-20261021-a1) failed the frozen calibration bar: 81/103 agreement, 17 false accepts, 5 false rejects.",
+  "b06-b22 were judged after that failure by identities sharing the dsh-main prefix; no transcript, tool log or session record substantiates one fresh session per batch.",
+  "The protocol requires a unique session identity per batch; distinct strings exist, but provenance cannot be verified from the repository."
+ ],
+ "conclusion": "Pass-1 provenance for b05-b22 is not independently verifiable and is contradicted by future-dated identities. The batch verdicts cannot be accepted as fresh-session evidence without re-judging or a verifiable session record."
+}

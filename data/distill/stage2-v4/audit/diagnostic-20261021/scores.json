@@ -1,0 +1,265 @@
+{
+ "generated_at": "2026-10-21T21:35:17+03:00",
+ "purpose": "Diagnostic blind review; NOT the official pass-2 confirmation sample.",
+ "rubric_sha256": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+ "reviewer": "diag-opencode-deepseek-v4.1-flash-free-20261021-{d00,d01,d02}; three fresh OpenCode subagent sessions",
+ "sample": {
+  "d00": "20 cases from b00-b04 (early pass-1 batches)",
+  "d01": "20 cases from b05-b22 (late pass-1 batches)",
+  "d02": "20 cases selected for device-dependent, destructive or otherwise suspicious candidates"
+ },
+ "batches": {
+  "d00": {
+   "cases": 20,
+   "candidates": 39,
+   "confusion": {
+    "correct_to_correct": 32,
+    "incorrect_to_correct": 3,
+    "incorrect_to_incorrect": 4
+   },
+   "agreement": 36
+  },
+  "d01": {
+   "cases": 20,
+   "candidates": 54,
+   "confusion": {
+    "correct_to_correct": 46,
+    "correct_to_incorrect": 1,
+    "incorrect_to_correct": 1,
+    "incorrect_to_incorrect": 6
+   },
+   "agreement": 52
+  },
+  "d02": {
+   "cases": 20,
+   "candidates": 66,
+   "confusion": {
+    "correct_to_correct": 49,
+    "correct_to_incorrect": 5,
+    "incorrect_to_correct": 2,
+    "incorrect_to_incorrect": 10
+   },
+   "agreement": 59
+  }
+ },
+ "overall": {
+  "cases": 60,
+  "candidates": 159,
+  "confusion": {
+   "correct_to_correct": 127,
+   "correct_to_incorrect": 6,
+   "incorrect_to_correct": 6,
+   "incorrect_to_incorrect": 20
+  },
+  "agree": 147,
+  "disagree": 12,
+  "agreement_rate": 0.9245
+ },
+ "disagreements": [
+  {
+   "batch": "d00",
+   "case": "cbb8cf0c59026",
+   "key": "k09ea83c34969",
+   "rid": "r00462",
+   "group": "no_majority",
+   "request": "Can you list the file descriptor numbers for PID 4200's open sockets?",
+   "command": "lsof -p 4200 -a -i -F f | sed -n 's/^f\\([0-9]*\\).*/\\1/p' | sort -un",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "lsof -a -i -F f restricts to PID 4200 sockets; sed extracts fds.",
+   "resolution": "false_reject",
+   "resolution_evidence": "man lsof: -F selects fields; each output line is <field-id><data>, and f is the file-descriptor field. The sed extracts the digits.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d00",
+   "case": "cbb8cf0c59026",
+   "key": "k5ba1a1816a7c",
+   "rid": "r00462",
+   "group": "no_majority",
+   "request": "Can you list the file descriptor numbers for PID 4200's open sockets?",
+   "command": "lsof -p 4200 -a -i -Ff | sed -n '/^f/ {s/[^0-9]//g; p}'",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "Sed strips the f prefix and prints numeric fd lines for the sockets.",
+   "resolution": "false_reject",
+   "resolution_evidence": "man lsof: f is the file-descriptor field and is always selected; every -F output line starts with its identifier. The sed strips the f prefix and prints the digits.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d00",
+   "case": "cbb8cf0c59026",
+   "key": "kde2c4fbab41f",
+   "rid": "r00462",
+   "group": "no_majority",
+   "request": "Can you list the file descriptor numbers for PID 4200's open sockets?",
+   "command": "lsof -p 4200 -a -i -F f | awk '/^f/ {print substr($0,2)}'",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "awk prints the fd field for PID 4200's internet sockets.",
+   "resolution": "false_reject",
+   "resolution_evidence": "man lsof: -F field output is <identifier><value>, so /^f/ lines are file descriptors and substr($0,2) is the fd number.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d01",
+   "case": "cde629701dc73",
+   "key": "k29efef3b5a61",
+   "rid": "r02309",
+   "group": "no_majority",
+   "request": "need open pipes for my user not sockets",
+   "command": "lsof -u $(whoami) | awk '$5==\"FIFO\"'",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "missed_constraint",
+   "diagnostic_evidence": "macOS lsof types anonymous pipes as PIPE; a FIFO-only filter misses them.",
+   "resolution": "false_accept",
+   "resolution_evidence": "man lsof TYPE: PIPE is a pipe; FIFO is a FIFO special file. The request asks for open pipes, so filtering only FIFO misses anonymous pipes.",
+   "is_retained_target": true
+  },
+  {
+   "batch": "d01",
+   "case": "cde629701dc73",
+   "key": "k89c82ebc9834",
+   "rid": "r02309",
+   "group": "no_majority",
+   "request": "need open pipes for my user not sockets",
+   "command": "lsof -u \"$USER\" -F | awk -v OFS='\\t' '/^p/{p=substr($0,2); next} /^f/{f=substr($0,2); next} /^t/{t=substr($0,2); next} /^n/{n=substr($0,2); if(t==\"PIPE\") print p,f,t,n}'",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "Field-mode parse prints pid/fd/type/name for PIPE-type files of the user.",
+   "resolution": "false_reject",
+   "resolution_evidence": "man lsof: -F emits p/f/t/n field lines; the awk prints pid, fd, type and name when t is PIPE. It answers the request.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c941e4b4ace0c",
+   "key": "k1709bb7d560b",
+   "rid": "r01481",
+   "group": "no_majority",
+   "request": "mount disk4s1 at existing empty folder mountpoint read only",
+   "command": "mount -o ro /dev/disk4s1 mountpoint",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "missed_constraint",
+   "diagnostic_evidence": "mount has no default local filesystem type; needs -t and root, so fails.",
+   "resolution": "false_accept",
+   "resolution_evidence": "man mount: \"There is no default local file system for use with mount. A type must be specified in order to mount a non-NFS filesystem.\" -t is required.",
+   "is_retained_target": true
+  },
+  {
+   "batch": "d02",
+   "case": "c384ba5798de6",
+   "key": "k34a644f60b22",
+   "rid": "r00400",
+   "group": "no_majority",
+   "request": "Please check whether Tool.app has the get-task-allow entitlement.",
+   "command": "codesign -d --entitlements - Tool.app 2>/dev/null | grep -A1 '<key>get-task-allow</key>' | grep -q '<true' && echo true || echo false",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "wrong_output",
+   "diagnostic_evidence": "Abstract entitlement output has no XML key tags; always prints false.",
+   "resolution": "false_accept",
+   "resolution_evidence": "man codesign: --entitlements writes an abstract representation by default; --xml or --der is required. Grepping XML key tags cannot match.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c384ba5798de6",
+   "key": "k4092c297aded",
+   "rid": "r00400",
+   "group": "no_majority",
+   "request": "Please check whether Tool.app has the get-task-allow entitlement.",
+   "command": "codesign -d --entitlements - Tool.app 2>/dev/null | tr -d '[:space:]' | grep -qF '<key>get-task-allow</key><true/>' && echo yes || echo no",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "wrong_output",
+   "diagnostic_evidence": "Default --entitlements - is not XML; exact XML grep always says no.",
+   "resolution": "false_accept",
+   "resolution_evidence": "man codesign: default entitlement output is abstract, not XML; --xml/--der needed. The XML tag grep always takes the false branch.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c813b69163a74",
+   "key": "k2696ddc4e999",
+   "rid": "r02448",
+   "group": "no_majority",
+   "request": "List signpost names from mac-activities.json, an exported macOS activity array.",
+   "command": "osascript -l JavaScript -e 'ObjC.import(\"Foundation\"); var d=$.NSData.alloc.initWithContentsOfFile(\"mac-activities.json\"); var s=$.NSString.alloc.initWithDataEncoding(d,$.NSUTF8StringEncoding).js; var a=JSON.parse(s); function names(v){ if(Array.isArray(v)) return v.flatMap(names); if(typeof v==\"string\") return v?[v]:[]; if(v&&typeof v==\"object\") return typeof v.name==\"string\"?[v.name]:Object.values(v).flatMap(names); return[]; } function f(o){ if(Array.isArray(o)) return o.flatMap(f); if(o&&typeof o==\"object\") return Object.entries(o).flatMap(function(e){ return e[0]==\"signpost\"?names(e[1]):f(e[1]); }); return[]; } Array.from(new Set(f(a))).join(\"\\n\")'",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "wrong_output",
+   "diagnostic_evidence": "Follows only keys named signpost; misses exported signpostName entries.",
+   "resolution": "probable_false_accept_unverified",
+   "resolution_evidence": "Matrix fixture is not in the repo. The command descends only objects under key \"signpost\" and collects \"name\" strings; it does not read a \"signpostName\" field. Sibling candidates handle signpostName/signpost_name.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c813b69163a74",
+   "key": "k7cc080fa5004",
+   "rid": "r02448",
+   "group": "no_majority",
+   "request": "List signpost names from mac-activities.json, an exported macOS activity array.",
+   "command": "tr -d '\\n' < mac-activities.json | grep -oE '\"(signpost_name|signpost)\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | cut -d'\"' -f4 | sort -u",
+   "pass1": "correct",
+   "diagnostic": "incorrect",
+   "diagnostic_category": "wrong_output",
+   "diagnostic_evidence": "Pattern does not match signpostName, so exported names are missed.",
+   "resolution": "probable_false_accept_unverified",
+   "resolution_evidence": "The regex matches signpost_name or signpost, not camelCase signpostName. Sibling candidates in the same case match signpost(_name|Name), so this candidate likely misses the fixture field.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c64567459ab38",
+   "key": "k2a7b0dfce760",
+   "rid": "r02383",
+   "group": "no_majority",
+   "request": "can u show the last exit status of user launch agent com.example.MyApp",
+   "command": "launchctl list com.example.MyApp | grep -i LastExitStatus",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "launchctl list label includes LastExitStatus.",
+   "resolution": "probable_false_reject",
+   "resolution_evidence": "man launchctl: list [label] prints information about the requested job; the macOS dictionary includes LastExitStatus. Exact key is not documented in the man page.",
+   "is_retained_target": false
+  },
+  {
+   "batch": "d02",
+   "case": "c64567459ab38",
+   "key": "kedd69882334e",
+   "rid": "r02383",
+   "group": "no_majority",
+   "request": "can u show the last exit status of user launch agent com.example.MyApp",
+   "command": "launchctl list com.example.MyApp | grep LastExitStatus",
+   "pass1": "incorrect",
+   "diagnostic": "correct",
+   "diagnostic_category": null,
+   "diagnostic_evidence": "grep extracts LastExitStatus from the job dictionary.",
+   "resolution": "probable_false_reject",
+   "resolution_evidence": "man launchctl: list [label] prints information about the requested job; the macOS dictionary includes LastExitStatus. Exact key is not documented in the man page.",
+   "is_retained_target": false
+  }
+ ],
+ "resolution_counts": {
+  "false_reject": 4,
+  "false_accept": 4,
+  "probable_false_accept_unverified": 2,
+  "probable_false_reject": 2
+ },
+ "limitations": [
+  "Same model family as pass 1; this is model review, not human review and not independent ground truth.",
+  "Purposive samples, not a random sample of the full population; rates are sample-specific.",
+  "The signpost fixture is not in the repository, so those two resolutions are probable, not verified.",
+  "The exact launchctl LastExitStatus key is not in the man page; those two resolutions are probable, not verified.",
+  "No candidate command was executed."
+ ]
+}

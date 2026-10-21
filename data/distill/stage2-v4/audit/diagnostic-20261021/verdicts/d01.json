@@ -1,0 +1,430 @@
+{
+  "batch": "d01",
+  "judge": "diag-opencode-deepseek-v4.1-flash-free-20261021-d01",
+  "cases": [
+    {
+      "case": "ce2a643762c08",
+      "verdicts": [
+        {
+          "key": "kcd3db900a403",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls reads kMDItemFinderComment; -name and -raw are valid stock flags."
+        }
+      ]
+    },
+    {
+      "case": "c36e031be9be1",
+      "verdicts": [
+        {
+          "key": "k709f4edcdf7f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "cd enters project; --allow-empty creates a no-change commit with the message."
+        }
+      ]
+    },
+    {
+      "case": "c4dabfceb01fe",
+      "verdicts": [
+        {
+          "key": "k304ceab6c180",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints AC/Battery Power headers plus each section's disksleep line."
+        },
+        {
+          "key": "k3ef93fe61252",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Pairs every disksleep line with its preceding AC/Battery header."
+        },
+        {
+          "key": "k58138ec9b317",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Maps AC/Battery from the header to the disksleep value in $2."
+        },
+        {
+          "key": "k6ceafc0f17dd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints section, 'disksleep', and value for each power source."
+        },
+        {
+          "key": "kffa3527b7253",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep shows both power-source headers and the disksleep settings."
+        }
+      ]
+    },
+    {
+      "case": "cdb3e36dfcdd9",
+      "verdicts": [
+        {
+          "key": "k004719c62794",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stock find supports -mindepth/-maxdepth; lists every top-level entry, dotfiles included, sized by du."
+        },
+        {
+          "key": "kdb1169f72eaf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same as above; the trailing slash does not change the entries found."
+        },
+        {
+          "key": "kec9bae51d474",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -s of the directory totals all contents including hidden entries."
+        }
+      ]
+    },
+    {
+      "case": "cf9989ed81a20",
+      "verdicts": [
+        {
+          "key": "k947a90f497dd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "kMDItemAlbum is the indexed album attribute; mdls flags are valid."
+        }
+      ]
+    },
+    {
+      "case": "c4926d56f3aba",
+      "verdicts": [
+        {
+          "key": "k671dd8494afc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "LibreSSL x509 accepts -noout -purpose and lists permitted purposes."
+        }
+      ]
+    },
+    {
+      "case": "cbf26387f6ba7",
+      "verdicts": [
+        {
+          "key": "k269788bbc5a9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "zipinfo -1 lists names; grep removes directory entries so wc counts files."
+        },
+        {
+          "key": "kb89d9f33bb58",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "unzip -Z1 is zipinfo mode; same directory-excluding file count."
+        },
+        {
+          "key": "ked46f322d80f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "unzip -l's 'N files' total counts directory entries too, overstating the file count."
+        },
+        {
+          "key": "kfaa0f7b7cd49",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Counts every zip entry, including directories whose names end in slash."
+        }
+      ]
+    },
+    {
+      "case": "c2be72fe478a1",
+      "verdicts": [
+        {
+          "key": "k572f2a0b569b",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Character slice of FinderInfo hex yields a hex fragment, not the extended hide-extension flag."
+        },
+        {
+          "key": "k8e62cf3c1e3d",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Dumps all FinderInfo bytes; never decodes the extension-hidden flag."
+        },
+        {
+          "key": "ka4c03c905f7e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Prints the raw FinderInfo hex blob, not the extension-hidden value."
+        },
+        {
+          "key": "ke86d71adec3f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finder's extension hidden property returns the requested boolean for the file."
+        }
+      ]
+    },
+    {
+      "case": "cd1e1f32f6108",
+      "verdicts": [
+        {
+          "key": "k0353d6dfd749",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -m1 prints the first Public Key Algorithm line from x509 -text."
+        },
+        {
+          "key": "k47c4c9e344fd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed strips the label and prints each Public Key Algorithm value."
+        },
+        {
+          "key": "k6a33c2a320c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the Public Key Algorithm line from the certificate text."
+        },
+        {
+          "key": "k9a25734e6a6f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Takes the first matching line and strips the label, leaving the algorithm."
+        }
+      ]
+    },
+    {
+      "case": "cde629701dc73",
+      "verdicts": [
+        {
+          "key": "k29efef3b5a61",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "macOS lsof types anonymous pipes as PIPE; a FIFO-only filter misses them."
+        },
+        {
+          "key": "k30d9b11d43b1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters the user's lsof lines for both FIFO and PIPE types."
+        },
+        {
+          "key": "k795f757d2e11",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same FIFO/PIPE filter with numeric ports and no DNS lookups."
+        },
+        {
+          "key": "k89c82ebc9834",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Field-mode parse prints pid/fd/type/name for PIPE-type files of the user."
+        },
+        {
+          "key": "kd161e229661c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters the user's lsof output to FIFO and PIPE file types."
+        }
+      ]
+    },
+    {
+      "case": "cd4c8f97b2640",
+      "verdicts": [
+        {
+          "key": "k9e0abcb9e809",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "jobs is a zsh builtin listing this terminal shell's background jobs."
+        }
+      ]
+    },
+    {
+      "case": "ce956384f2aa3",
+      "verdicts": [
+        {
+          "key": "k0924c62d7393",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tolower plus reversed-copy comparison prints case-insensitive palindromes, skipping empty."
+        },
+        {
+          "key": "k0e6111d662cb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same tolower/reverse test; blank lines also compare equal as palindromes."
+        },
+        {
+          "key": "k10f209201b69",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Bare pattern prints nonempty records whose lowercased text equals its reverse."
+        },
+        {
+          "key": "kc90ae2c4a9b0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tolower/reverse comparison prints palindromic lines regardless of case."
+        },
+        {
+          "key": "kcc3b355431e1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Same logic as kc90; prints case-insensitive palindromes from words.txt."
+        }
+      ]
+    },
+    {
+      "case": "ceeac5c41d38e",
+      "verdicts": [
+        {
+          "key": "k920765387864",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tmutil listlocalsnapshots takes the volume mount point as its argument."
+        }
+      ]
+    },
+    {
+      "case": "cd6df5e2ba8b1",
+      "verdicts": [
+        {
+          "key": "k76dc0013f844",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du counts multiply hard-linked files once by default, giving the requested total."
+        },
+        {
+          "key": "ka88dae336461",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "du -l counts each hard link multiple times, inflating the total."
+        }
+      ]
+    },
+    {
+      "case": "c77571d10cde7",
+      "verdicts": [
+        {
+          "key": "ke10f56a8fbff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "netstat -rn route lines include the en0 interface name."
+        }
+      ]
+    },
+    {
+      "case": "cf5113cdbfcf9",
+      "verdicts": [
+        {
+          "key": "kb23e68be41b2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "say -r sets words per minute and -f speaks the file's contents."
+        }
+      ]
+    },
+    {
+      "case": "c81950d86dee9",
+      "verdicts": [
+        {
+          "key": "k932b995e6fef",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xxd -r reverses a hex dump to binary; redirection stores it in bytes.bin."
+        }
+      ]
+    },
+    {
+      "case": "c35ed5a7ae723",
+      "verdicts": [
+        {
+          "key": "k23d14f99609d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Hex is a valid bplist string 'Approved'; -wx writes it to the Finder-comment xattr."
+        },
+        {
+          "key": "k3f899437ed70",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "AppleScript gets cwd via pwd and sets Finder's comment property."
+        },
+        {
+          "key": "k4e200b20011c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Shell expands the absolute path; Finder sets the comment on that file."
+        }
+      ]
+    },
+    {
+      "case": "cb411435e0667",
+      "verdicts": [
+        {
+          "key": "k241e6e73c0ab",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -A lists all processes; pid= suppresses the header; wc counts PIDs."
+        },
+        {
+          "key": "k438f3e968178",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -A minus its header yields one line per process."
+        },
+        {
+          "key": "kcf8e38bd716f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -ax lists all processes; headerless pid output counted by wc."
+        },
+        {
+          "key": "kea9e22f6ea41",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -A with the header removed counts every process."
+        },
+        {
+          "key": "kfd36f4aff87d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -ax with the header removed counts every process."
+        }
+      ]
+    },
+    {
+      "case": "ce736edd872f3",
+      "verdicts": [
+        {
+          "key": "k0a3616c6aca8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed deletes the Serial Number line, leaving hardware info without serials."
+        },
+        {
+          "key": "k5e20cc0b90b6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Case-insensitive grep removes serial-number lines from the hardware report."
+        },
+        {
+          "key": "k92b6163e38e5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep removes the 'Serial Number' line, leaving no serial in the report."
+        },
+        {
+          "key": "ke9e3b34d5820",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -v removes the 'Serial Number' line from the report."
+        },
+        {
+          "key": "kf365b372879a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Valid multi-datatype mini report with serial lines filtered out."
+        }
+      ]
+    }
+  ]
+}

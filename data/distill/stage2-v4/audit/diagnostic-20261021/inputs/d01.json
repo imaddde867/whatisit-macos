@@ -1,0 +1,341 @@
+{
+  "batch": "d01",
+  "items": [
+    {
+      "case": "ce2a643762c08",
+      "request": "Show notes.md's Finder comment.",
+      "candidates": [
+        {
+          "key": "kcd3db900a403",
+          "command": "mdls -name kMDItemFinderComment -raw notes.md"
+        }
+      ]
+    },
+    {
+      "case": "c36e031be9be1",
+      "request": "Please make an empty commit with message Start work in project/.",
+      "candidates": [
+        {
+          "key": "k709f4edcdf7f",
+          "command": "cd project/ && git commit --allow-empty -m \"Start work\""
+        }
+      ]
+    },
+    {
+      "case": "c4dabfceb01fe",
+      "request": "Report configured disk-sleep timeouts for AC and battery power.",
+      "candidates": [
+        {
+          "key": "k304ceab6c180",
+          "command": "pmset -g custom | grep -E '^(AC|Battery) Power|^[[:space:]]*disksleep'"
+        },
+        {
+          "key": "k3ef93fe61252",
+          "command": "pmset -g custom | awk '/^(AC|Battery) Power/{p=$0} /disksleep/{print p\": \"$0}'"
+        },
+        {
+          "key": "k58138ec9b317",
+          "command": "pmset -g custom | awk '/Power:/{p=$1} /disksleep/{print p, $2}'"
+        },
+        {
+          "key": "k6ceafc0f17dd",
+          "command": "pmset -g custom | awk '/^(AC|Battery) Power/{section=$1} /^[[:space:]]*disksleep/{print section, $1, $2}'"
+        },
+        {
+          "key": "kffa3527b7253",
+          "command": "pmset -g custom | grep -E 'Power:|disksleep'"
+        }
+      ]
+    },
+    {
+      "case": "cdb3e36dfcdd9",
+      "request": "Include hidden entries in project/'s disk-usage summary.",
+      "candidates": [
+        {
+          "key": "k004719c62794",
+          "command": "find project -mindepth 1 -maxdepth 1 -exec du -sh {} +"
+        },
+        {
+          "key": "kdb1169f72eaf",
+          "command": "find project/ -mindepth 1 -maxdepth 1 -exec du -sh {} +"
+        },
+        {
+          "key": "kec9bae51d474",
+          "command": "du -sh project/"
+        }
+      ]
+    },
+    {
+      "case": "cf9989ed81a20",
+      "request": "Can you get the indexed album name for the sample audio file song.m4a?",
+      "candidates": [
+        {
+          "key": "k947a90f497dd",
+          "command": "mdls -name kMDItemAlbum -raw song.m4a"
+        }
+      ]
+    },
+    {
+      "case": "c4926d56f3aba",
+      "request": "hey, please show certificate purposes permitted by certs/test.pem",
+      "candidates": [
+        {
+          "key": "k671dd8494afc",
+          "command": "openssl x509 -in certs/test.pem -noout -purpose"
+        }
+      ]
+    },
+    {
+      "case": "cbf26387f6ba7",
+      "request": "show how many files are in project.zip",
+      "candidates": [
+        {
+          "key": "k269788bbc5a9",
+          "command": "zipinfo -1 project.zip | grep -v '/$' | wc -l"
+        },
+        {
+          "key": "kb89d9f33bb58",
+          "command": "unzip -Z1 project.zip | grep -v '/$' | wc -l"
+        },
+        {
+          "key": "ked46f322d80f",
+          "command": "unzip -l project.zip | awk 'END {if (NR) print $2}'"
+        },
+        {
+          "key": "kfaa0f7b7cd49",
+          "command": "zipinfo -1 project.zip | wc -l"
+        }
+      ]
+    },
+    {
+      "case": "c2be72fe478a1",
+      "request": "finder thinks template.txt has hidden extention can you show that value",
+      "candidates": [
+        {
+          "key": "k572f2a0b569b",
+          "command": "xattr -px com.apple.FinderInfo template.txt | cut -c17-20"
+        },
+        {
+          "key": "k8e62cf3c1e3d",
+          "command": "xattr -p com.apple.FinderInfo template.txt | od -An -tx1 -v"
+        },
+        {
+          "key": "ka4c03c905f7e",
+          "command": "xattr -px com.apple.FinderInfo template.txt"
+        },
+        {
+          "key": "ke86d71adec3f",
+          "command": "osascript -e 'tell application \"Finder\" to get extension hidden of (POSIX file \"template.txt\" as alias)'"
+        }
+      ]
+    },
+    {
+      "case": "cd1e1f32f6108",
+      "request": "Please inspect the public key algorithm of certs/service.pem.",
+      "candidates": [
+        {
+          "key": "k0353d6dfd749",
+          "command": "openssl x509 -in certs/service.pem -noout -text | grep -m1 'Public Key Algorithm'"
+        },
+        {
+          "key": "k47c4c9e344fd",
+          "command": "openssl x509 -in certs/service.pem -noout -text | sed -n 's/.*Public Key Algorithm: //p'"
+        },
+        {
+          "key": "k6a33c2a320c3",
+          "command": "openssl x509 -in certs/service.pem -noout -text | grep 'Public Key Algorithm'"
+        },
+        {
+          "key": "k9a25734e6a6f",
+          "command": "openssl x509 -in certs/service.pem -noout -text | grep '^ *Public Key Algorithm:' | head -n 1 | sed 's/.*: //'"
+        }
+      ]
+    },
+    {
+      "case": "cde629701dc73",
+      "request": "need open pipes for my user not sockets",
+      "candidates": [
+        {
+          "key": "k29efef3b5a61",
+          "command": "lsof -u $(whoami) | awk '$5==\"FIFO\"'"
+        },
+        {
+          "key": "k30d9b11d43b1",
+          "command": "lsof -u \"$(id -un)\" | awk '$5 == \"FIFO\" || $5 == \"PIPE\"'"
+        },
+        {
+          "key": "k795f757d2e11",
+          "command": "lsof -n -P -u \"$(id -un)\" | awk '$5==\"PIPE\" || $5==\"FIFO\"'"
+        },
+        {
+          "key": "k89c82ebc9834",
+          "command": "lsof -u \"$USER\" -F | awk -v OFS='\\t' '/^p/{p=substr($0,2); next} /^f/{f=substr($0,2); next} /^t/{t=substr($0,2); next} /^n/{n=substr($0,2); if(t==\"PIPE\") print p,f,t,n}'"
+        },
+        {
+          "key": "kd161e229661c",
+          "command": "lsof -u \"$USER\" | awk '$5==\"FIFO\" || $5==\"PIPE\"'"
+        }
+      ]
+    },
+    {
+      "case": "cd4c8f97b2640",
+      "request": "Show background jobs started from this Terminal session.",
+      "candidates": [
+        {
+          "key": "k9e0abcb9e809",
+          "command": "jobs"
+        }
+      ]
+    },
+    {
+      "case": "ce956384f2aa3",
+      "request": "show palindromic lines in words.txt ignorng case",
+      "candidates": [
+        {
+          "key": "k0924c62d7393",
+          "command": "awk '{s=tolower($0); r=\"\"; for(i=length(s); i>0; i--) r=r substr(s,i,1); if(length(s)>0 && s==r) print}' words.txt"
+        },
+        {
+          "key": "k0e6111d662cb",
+          "command": "awk '{s=tolower($0); r=\"\"; for(i=length(s); i>0; i--) r=r substr(s,i,1); if(s==r) print}' words.txt"
+        },
+        {
+          "key": "k10f209201b69",
+          "command": "awk '{l=tolower($0); r=\"\"; for(i=length(l);i>0;i--) r=r substr(l,i,1)} l==r && l!=\"\"' words.txt"
+        },
+        {
+          "key": "kc90ae2c4a9b0",
+          "command": "awk '{l=tolower($0); r=\"\"; for(i=length(l); i>0; i--) r=r substr(l,i,1); if(l==r) print}' words.txt"
+        },
+        {
+          "key": "kcc3b355431e1",
+          "command": "awk '{l=tolower($0); r=\"\"; for(i=length(l);i>0;i--) r=r substr(l,i,1); if(l==r) print}' words.txt"
+        }
+      ]
+    },
+    {
+      "case": "ceeac5c41d38e",
+      "request": "List Time Machine local snapshots associated with /Volumes/WORK.",
+      "candidates": [
+        {
+          "key": "k920765387864",
+          "command": "tmutil listlocalsnapshots /Volumes/WORK"
+        }
+      ]
+    },
+    {
+      "case": "cd6df5e2ba8b1",
+      "request": "Count hard-linked files once in a project/ usage total.",
+      "candidates": [
+        {
+          "key": "k76dc0013f844",
+          "command": "du -sh project/"
+        },
+        {
+          "key": "ka88dae336461",
+          "command": "du -lsh project/"
+        }
+      ]
+    },
+    {
+      "case": "c77571d10cde7",
+      "request": "Show routing entries associated with en0.",
+      "candidates": [
+        {
+          "key": "ke10f56a8fbff",
+          "command": "netstat -rn | grep en0"
+        }
+      ]
+    },
+    {
+      "case": "cf5113cdbfcf9",
+      "request": "Can you read report.txt aloud at 120 words per minute?",
+      "candidates": [
+        {
+          "key": "kb23e68be41b2",
+          "command": "say -r 120 -f report.txt"
+        }
+      ]
+    },
+    {
+      "case": "c81950d86dee9",
+      "request": "I need to convert a hexadecimal dump in bytes.txt back into binary data in bytes.bin.",
+      "candidates": [
+        {
+          "key": "k932b995e6fef",
+          "command": "xxd -r bytes.txt > bytes.bin"
+        }
+      ]
+    },
+    {
+      "case": "c35ed5a7ae723",
+      "request": "Set report.pdf's Finder comment to 'Approved'.",
+      "candidates": [
+        {
+          "key": "k23d14f99609d",
+          "command": "xattr -wx com.apple.metadata:kMDItemFinderComment 62706c697374303058417070726f766564080000000000000101000000000000000100000000000000000000000000000011 report.pdf"
+        },
+        {
+          "key": "k3f899437ed70",
+          "command": "osascript -e 'tell application \"Finder\" to set comment of file \"report.pdf\" of folder (POSIX file (do shell script \"pwd\") as alias) to \"Approved\"'"
+        },
+        {
+          "key": "k4e200b20011c",
+          "command": "osascript -e \"tell application \\\"Finder\\\" to set comment of file (POSIX file \\\"$(pwd -P)/report.pdf\\\") to \\\"Approved\\\"\""
+        }
+      ]
+    },
+    {
+      "case": "cb411435e0667",
+      "request": "Count all visible processes on this Mac.",
+      "candidates": [
+        {
+          "key": "k241e6e73c0ab",
+          "command": "ps -A -o pid= | wc -l"
+        },
+        {
+          "key": "k438f3e968178",
+          "command": "ps -A | awk 'NR>1' | wc -l"
+        },
+        {
+          "key": "kcf8e38bd716f",
+          "command": "ps -ax -o pid= | wc -l"
+        },
+        {
+          "key": "kea9e22f6ea41",
+          "command": "ps -A | tail -n +2 | wc -l"
+        },
+        {
+          "key": "kfd36f4aff87d",
+          "command": "ps -ax | tail -n +2 | wc -l"
+        }
+      ]
+    },
+    {
+      "case": "ce736edd872f3",
+      "request": "Produce a basic hardware report without serial numbers.",
+      "candidates": [
+        {
+          "key": "k0a3616c6aca8",
+          "command": "system_profiler SPHardwareDataType | sed '/Serial Number/d'"
+        },
+        {
+          "key": "k5e20cc0b90b6",
+          "command": "system_profiler SPHardwareDataType | grep -v -i 'serial'"
+        },
+        {
+          "key": "k92b6163e38e5",
+          "command": "system_profiler SPHardwareDataType | grep -v Serial"
+        },
+        {
+          "key": "ke9e3b34d5820",
+          "command": "system_profiler SPHardwareDataType | grep -v \"Serial Number\""
+        },
+        {
+          "key": "kf365b372879a",
+          "command": "system_profiler -detailLevel mini SPHardwareDataType SPMemoryDataType SPDisplaysDataType SPNetworkDataType | grep -v -i 'serial'"
+        }
+      ]
+    }
+  ]
+}
