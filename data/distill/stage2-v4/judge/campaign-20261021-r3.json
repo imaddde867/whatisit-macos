@@ -2,7 +2,7 @@
  "revision": "20261021-r3",
  "issue": 36,
  "base_commit": null,
- "status": "pass1 in progress: b00-b18 accepted (4,335 candidate verdicts); b19-b22 pending",
+ "status": "pass1 in progress: b00-b19 accepted (4,576 candidate verdicts); b20-b22 pending",
  "budget_stop": false,
  "failed_attempts": 2,
  "retry_budget": {
@@ -36,7 +36,8 @@
   "b15": "7e6a48ef53339e8818cad73448da579291bc03f75c99e31a16849dc1c97727bf",
   "b16": "411d4ae9207d58bda031881a8c2b4bc610213ce01306b2d666124c5b0455bfe3",
   "b17": "f67f2da2e298e1ec1ace1a3eb11edb64be65e2b1cf48a92da2ae96de51fbb488",
-  "b18": "dc557adff5d3a36613ebf698c6ede87c648840f593f1777c28a7f40039e68067"
+  "b18": "dc557adff5d3a36613ebf698c6ede87c648840f593f1777c28a7f40039e68067",
+  "b19": "c5550285f57ccedd3dc650960be75ebbf186ae19f677f95c8fc371fd59d1a15f"
  },
  "attempts": [
   {
@@ -275,6 +276,20 @@
     "ct0030": "incorrect matched",
     "ct0045": "correct matched",
     "ct0009": "incorrect matched"
+   }
+  },
+  {
+   "attempt": 1,
+   "batch": "b19",
+   "judge": "dsh-main-20261022-b19-a1",
+   "status": "passed",
+   "keys": 241,
+   "controls": 3,
+   "verdict_sha256": "c5550285f57ccedd3dc650960be75ebbf186ae19f677f95c8fc371fd59d1a15f",
+   "controls_detail": {
+    "ct0004": "incorrect matched",
+    "ct0048": "correct matched",
+    "ct0012": "incorrect matched"
    }
   }
  ],
