@@ -1,0 +1,1864 @@
+{
+ "batch": "b07",
+ "judge": "dsh-main-20261022-b07-a1",
+ "cases": [
+  {
+   "case": "cd7435ac1b832",
+   "verdicts": [
+    {
+     "key": "k165b84d7178a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Spotlight display name or Finder name of the folder."
+    },
+    {
+     "key": "ka81cc22dbf01",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Spotlight display name or Finder name of the folder."
+    },
+    {
+     "key": "kbdbfdd14ab0f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Spotlight display name or Finder name of the folder."
+    },
+    {
+     "key": "kca16f4cbdc26",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Spotlight display name or Finder name of the folder."
+    }
+   ]
+  },
+  {
+   "case": "cea6d0027e091",
+   "verdicts": [
+    {
+     "key": "k87737d42fdcc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil extract plus tag stripping."
+    },
+    {
+     "key": "k951b6197cb88",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil extract plus tag stripping."
+    },
+    {
+     "key": "kba38595c283b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil extract plus tag stripping."
+    }
+   ]
+  },
+  {
+   "case": "ca69b7c320bd8",
+   "verdicts": [
+    {
+     "key": "k61251377cda3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo prints the Compression Ratio field."
+    }
+   ]
+  },
+  {
+   "case": "c2a2e5964afaa",
+   "verdicts": [
+    {
+     "key": "k209734b40de6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "state values counted with awk or grep."
+    },
+    {
+     "key": "k4063cb284026",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "state values counted with awk or grep."
+    },
+    {
+     "key": "k4151e93a9538",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "state values counted with awk or grep."
+    },
+    {
+     "key": "k8d6f8bf4bfba",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "state values counted with awk or grep."
+    },
+    {
+     "key": "kff121f07df0a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "state values counted with awk or grep."
+    }
+   ]
+  },
+  {
+   "case": "cab5e66bcbae1",
+   "verdicts": [
+    {
+     "key": "k73306b667c74",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ifconfig -l lists interface names."
+    }
+   ]
+  },
+  {
+   "case": "c5aa0fc4300d7",
+   "verdicts": [
+    {
+     "key": "k7284ec94c5d4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sort -n -u sorts numerically and drops duplicates."
+    }
+   ]
+  },
+  {
+   "case": "c7994ed0c22ca",
+   "verdicts": [
+    {
+     "key": "ka1b60bd0075f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -ld shows the directory and file modes."
+    }
+   ]
+  },
+  {
+   "case": "c3b5efe1f0569",
+   "verdicts": [
+    {
+     "key": "ke84e2d5b84be",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "java_home prints the active home."
+    }
+   ]
+  },
+  {
+   "case": "c72739014421e",
+   "verdicts": [
+    {
+     "key": "kfdd40181d174",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "locale -k prints day=\"Sunday\";... not day_1= lines, so the sed prints nothing."
+    }
+   ]
+  },
+  {
+   "case": "c1b2e10ea3a23",
+   "verdicts": [
+    {
+     "key": "k5a4e0ca882a1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xmllint --noout reports malformed XML."
+    }
+   ]
+  },
+  {
+   "case": "c2feee2b5d461",
+   "verdicts": [
+    {
+     "key": "k4167bec6b644",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    },
+    {
+     "key": "k59842cd21806",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not stock, and packages_distributed does not exist."
+    },
+    {
+     "key": "k75babdc0e104",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3/pip are not part of the stock macOS environment."
+    },
+    {
+     "key": "k7f64cecace23",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    },
+    {
+     "key": "kf9b39a6dc9ab",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3/pip are not part of the stock macOS environment."
+    }
+   ]
+  },
+  {
+   "case": "ca36859c2cd23",
+   "verdicts": [
+    {
+     "key": "kbf39c4b90620",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ping -c 5 sends five probes."
+    }
+   ]
+  },
+  {
+   "case": "cdf87e16e353f",
+   "verdicts": [
+    {
+     "key": "k6325c358cb18",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ditto preserves creation dates."
+    },
+    {
+     "key": "k8d05e789b15d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ditto preserves creation dates."
+    },
+    {
+     "key": "kde7b8ea09039",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ditto preserves creation dates."
+    }
+   ]
+  },
+  {
+   "case": "c44d368a17bdb",
+   "verdicts": [
+    {
+     "key": "kcfb3f3b374c0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "route get prints the interface."
+    }
+   ]
+  },
+  {
+   "case": "cbd67d1b83ab7",
+   "verdicts": [
+    {
+     "key": "k23da909ea7f6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "screencapture -w selects a window, -o drops the shadow."
+    }
+   ]
+  },
+  {
+   "case": "ccf29b0d51afa",
+   "verdicts": [
+    {
+     "key": "k4d6e13449c7f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep or awk extracts user fields."
+    },
+    {
+     "key": "k4fb8124030f2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep or awk extracts user fields."
+    },
+    {
+     "key": "kbdf8ae8380a4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep or awk extracts user fields."
+    },
+    {
+     "key": "kdb3bf4e44770",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep or awk extracts user fields."
+    },
+    {
+     "key": "kde2c9e661668",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "only matches username=, missing user= and other field forms."
+    }
+   ]
+  },
+  {
+   "case": "cb411435e0667",
+   "verdicts": [
+    {
+     "key": "k241e6e73c0ab",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps with a headerless PID column counted."
+    },
+    {
+     "key": "k438f3e968178",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps with a headerless PID column counted."
+    },
+    {
+     "key": "kcf8e38bd716f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps with a headerless PID column counted."
+    },
+    {
+     "key": "kea9e22f6ea41",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps with a headerless PID column counted."
+    },
+    {
+     "key": "kfd36f4aff87d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps with a headerless PID column counted."
+    }
+   ]
+  },
+  {
+   "case": "c9ac6497d9ca3",
+   "verdicts": [
+    {
+     "key": "k201e1ddbba8d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind literal question-mark query."
+    }
+   ]
+  },
+  {
+   "case": "c8e2d60339679",
+   "verdicts": [
+    {
+     "key": "kb980101a8bef",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kMDItemKind from Spotlight."
+    },
+    {
+     "key": "kc6d3c4e1dd5e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kMDItemKind from Spotlight."
+    }
+   ]
+  },
+  {
+   "case": "cfe1640acc357",
+   "verdicts": [
+    {
+     "key": "kb65078b16360",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep -c with an escaped trailing backslash."
+    }
+   ]
+  },
+  {
+   "case": "cb3f3833f5e6f",
+   "verdicts": [
+    {
+     "key": "kda7f540c3595",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "id -G prints primary and supplementary GIDs."
+    }
+   ]
+  },
+  {
+   "case": "c7b4494c692b9",
+   "verdicts": [
+    {
+     "key": "k7e93dd4b045e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "networksetup -getsearchdomains."
+    }
+   ]
+  },
+  {
+   "case": "c2a4485fb2a23",
+   "verdicts": [
+    {
+     "key": "k2c4874f403ad",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du -s -h with an ignore mask."
+    }
+   ]
+  },
+  {
+   "case": "c210792821898",
+   "verdicts": [
+    {
+     "key": "k84d63bf5fd1f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or uniq -c groups subsystem and category counts."
+    },
+    {
+     "key": "k86082213e9c3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or uniq -c groups subsystem and category counts."
+    },
+    {
+     "key": "ke254f9c56ae0",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    }
+   ]
+  },
+  {
+   "case": "cc31864733e03",
+   "verdicts": [
+    {
+     "key": "k05276462847a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil info Disk Size."
+    }
+   ]
+  },
+  {
+   "case": "c8c32d2f68789",
+   "verdicts": [
+    {
+     "key": "k0e4a60118288",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -a -c -i4 -sTCP:LISTEN."
+    },
+    {
+     "key": "k3ba8940c283e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -a -c -i4 -sTCP:LISTEN."
+    },
+    {
+     "key": "k845d52a935c8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -a -c -i4 -sTCP:LISTEN."
+    },
+    {
+     "key": "k903be6a5e2d6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -a -c -i4 -sTCP:LISTEN."
+    },
+    {
+     "key": "kd8219a56aff6",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "lsof -i 4 with a space treats 4 as a name, so the selection is wrong."
+    }
+   ]
+  },
+  {
+   "case": "c77c774cc2456",
+   "verdicts": [
+    {
+     "key": "k802da1152049",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed replaces the first draft per line and prints."
+    }
+   ]
+  },
+  {
+   "case": "c32cfdeaabca5",
+   "verdicts": [
+    {
+     "key": "k843d00c66363",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips prints pixel dimensions."
+    }
+   ]
+  },
+  {
+   "case": "c9dfd435b744f",
+   "verdicts": [
+    {
+     "key": "k14e65767b43c",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "extracts the value \"Yes\" rather than the device name."
+    },
+    {
+     "key": "k7bacf1fdd254",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler audio device name."
+    },
+    {
+     "key": "k7dfc91d1ab33",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "System Events has no default output device property."
+    },
+    {
+     "key": "k8fc6c85179f7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler audio device name."
+    },
+    {
+     "key": "kfa82443ee357",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "System Events has no default audio output device property."
+    }
+   ]
+  },
+  {
+   "case": "c007cf831d9a8",
+   "verdicts": [
+    {
+     "key": "k0978c531a572",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps sorted by memory, top five."
+    }
+   ]
+  },
+  {
+   "case": "cde8019d65655",
+   "verdicts": [
+    {
+     "key": "k5f5cf1d4f682",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig @server resolves the name."
+    }
+   ]
+  },
+  {
+   "case": "c0bbbc194d6e3",
+   "verdicts": [
+    {
+     "key": "k0c2b7c58660a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find lists dot directories directly."
+    },
+    {
+     "key": "k1c6c849c366f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find lists dot directories directly."
+    },
+    {
+     "key": "k9f162abd059c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find lists dot directories directly."
+    },
+    {
+     "key": "kc87034a54994",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find lists dot directories directly."
+    }
+   ]
+  },
+  {
+   "case": "cc9547f60b88f",
+   "verdicts": [
+    {
+     "key": "kd24a39c3f585",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "cal 2 2028 prints February 2028."
+    }
+   ]
+  },
+  {
+   "case": "c475b79f031be",
+   "verdicts": [
+    {
+     "key": "k06a2d4ab2486",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil apfs list has no \"Capacity Not In Use By Volumes\" line."
+    },
+    {
+     "key": "k3845621943d4",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil apfs list has no Container Free Space line."
+    },
+    {
+     "key": "k94a4bff156cd",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil apfs list has no Total Free Space line."
+    },
+    {
+     "key": "k956614c94dff",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil info disk3 has no Container Free Space field."
+    },
+    {
+     "key": "keff6f1b129bc",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil apfs list has no Free Space: line; it prints Capacity Not Allocated."
+    }
+   ]
+  },
+  {
+   "case": "c20b42ddceee2",
+   "verdicts": [
+    {
+     "key": "kb98f53caeab0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stapler validate checks the ticket."
+    }
+   ]
+  },
+  {
+   "case": "cd0aac4ccb1e9",
+   "verdicts": [
+    {
+     "key": "k0370f49c43b4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "bg resumes the stopped job."
+    }
+   ]
+  },
+  {
+   "case": "cc4c5ce4b2c97",
+   "verdicts": [
+    {
+     "key": "k170d18c67ff7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and modification times compared."
+    },
+    {
+     "key": "k6b9d6e188350",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and modification times compared."
+    },
+    {
+     "key": "kadb5ab2a990f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and modification times compared."
+    },
+    {
+     "key": "kc39ad0e6b127",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and modification times compared."
+    }
+   ]
+  },
+  {
+   "case": "cb3932e8638f3",
+   "verdicts": [
+    {
+     "key": "kf73fca835906",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind audio sample-rate query."
+    }
+   ]
+  },
+  {
+   "case": "ce98747ff8736",
+   "verdicts": [
+    {
+     "key": "k614629d9f37e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler SPAirPortDataType."
+    }
+   ]
+  },
+  {
+   "case": "c1d766e183c0b",
+   "verdicts": [
+    {
+     "key": "k7921620f4a80",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date +%s prints the epoch."
+    }
+   ]
+  },
+  {
+   "case": "cf8ba773bffb0",
+   "verdicts": [
+    {
+     "key": "k47f2dcb5d319",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "process start times sorted oldest first."
+    },
+    {
+     "key": "k81603448bd0d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "process start times sorted oldest first."
+    },
+    {
+     "key": "k8418f360ea47",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "process start times sorted oldest first."
+    },
+    {
+     "key": "k9f4014caf20d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "process start times sorted oldest first."
+    },
+    {
+     "key": "kc819ce8c3690",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "process start times sorted oldest first."
+    }
+   ]
+  },
+  {
+   "case": "c0a1ae727ad44",
+   "verdicts": [
+    {
+     "key": "k4caae98ae383",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Info.plist CFBundleDocumentTypes."
+    },
+    {
+     "key": "k59031be28829",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "kMDItemSupportedDocumentTypes is not a Spotlight attribute."
+    },
+    {
+     "key": "k680218979f6c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Info.plist CFBundleDocumentTypes."
+    },
+    {
+     "key": "k693a0956ab1d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Info.plist CFBundleDocumentTypes."
+    }
+   ]
+  },
+  {
+   "case": "cc19f0beac6cd",
+   "verdicts": [
+    {
+     "key": "k1083e0d5f1ff",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind presentation UTI query."
+    }
+   ]
+  },
+  {
+   "case": "c3ba0844c4773",
+   "verdicts": [
+    {
+     "key": "k05760f2c4583",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums positive numbers."
+    },
+    {
+     "key": "k3c77d1e7e356",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums positive numbers."
+    },
+    {
+     "key": "k49ff51f2cd3c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums positive numbers."
+    },
+    {
+     "key": "kb3a0c7c336f0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums positive numbers."
+    },
+    {
+     "key": "kf71a0d71ae5d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums positive numbers."
+    }
+   ]
+  },
+  {
+   "case": "c07cce4a8bfb8",
+   "verdicts": [
+    {
+     "key": "kd7942dffb099",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "no retry; the request asks to try a few times."
+    }
+   ]
+  },
+  {
+   "case": "c7ed95887be42",
+   "verdicts": [
+    {
+     "key": "k117fe5703ce5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git show HEAD prints the patch."
+    },
+    {
+     "key": "k9f6202086090",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git show HEAD prints the patch."
+    },
+    {
+     "key": "kf85bdd9396d8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git show HEAD prints the patch."
+    }
+   ]
+  },
+  {
+   "case": "c508177e7627a",
+   "verdicts": [
+    {
+     "key": "k13571fdc4ec4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl removes trailing commas before closing braces."
+    },
+    {
+     "key": "k56d7316c8cd6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl removes trailing commas before closing braces."
+    },
+    {
+     "key": "k76f606778426",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl removes trailing commas before closing braces."
+    },
+    {
+     "key": "kc0e277afcbaf",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "also strips commas before closing brackets, which the request did not ask."
+    },
+    {
+     "key": "kcf0a1d1d4a44",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl removes trailing commas before closing braces."
+    }
+   ]
+  },
+  {
+   "case": "cfa9505602cc6",
+   "verdicts": [
+    {
+     "key": "k5a960dd0a4c3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk detects three identical consecutive lines."
+    },
+    {
+     "key": "k784e2ff09e90",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk detects three identical consecutive lines."
+    },
+    {
+     "key": "k9732ac6911e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk detects three identical consecutive lines."
+    },
+    {
+     "key": "kae5deb195f72",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk detects three identical consecutive lines."
+    },
+    {
+     "key": "kdf97a0942697",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk detects three identical consecutive lines."
+    }
+   ]
+  },
+  {
+   "case": "cc49047e5a0a8",
+   "verdicts": [
+    {
+     "key": "k80e593eb8319",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "current is treated as a shell variable, not the symlink path."
+    },
+    {
+     "key": "k95286abaccb8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat %z on the symlink reports the link text length."
+    },
+    {
+     "key": "k9535a4f5ea8c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat %z on the symlink reports the link text length."
+    }
+   ]
+  },
+  {
+   "case": "c4611fb33c504",
+   "verdicts": [
+    {
+     "key": "k70ee4c0464ae",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers build and uname -r."
+    },
+    {
+     "key": "k85f7dac19c0d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers build and uname -r."
+    },
+    {
+     "key": "k89a8c9086a31",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers build and uname -r."
+    },
+    {
+     "key": "k99d4f1088de6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers build and uname -r."
+    }
+   ]
+  },
+  {
+   "case": "cfb67d1e15127",
+   "verdicts": [
+    {
+     "key": "k103b8aa7fd2f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or sort prints the min and max."
+    },
+    {
+     "key": "k3f55836068fd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or sort prints the min and max."
+    },
+    {
+     "key": "k6e4a3a52d4d1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or sort prints the min and max."
+    },
+    {
+     "key": "k852b0dabd5c4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or sort prints the min and max."
+    }
+   ]
+  },
+  {
+   "case": "ce684cb673fed",
+   "verdicts": [
+    {
+     "key": "k1016a622dc2a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "openssl -checkend 604800."
+    },
+    {
+     "key": "k23aeb1f66204",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "openssl -checkend 604800."
+    }
+   ]
+  },
+  {
+   "case": "c380672ba814c",
+   "verdicts": [
+    {
+     "key": "k1b4dbe5b909b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plist array read as a list."
+    },
+    {
+     "key": "k7c25176ff8fb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plist array read as a list."
+    },
+    {
+     "key": "k843c4879c140",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "plutil raw on an array prints the element count, not the strings."
+    },
+    {
+     "key": "k8b63a2a8e267",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plist array read as a list."
+    },
+    {
+     "key": "kb70b7c9a5318",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plist array read as a list."
+    }
+   ]
+  },
+  {
+   "case": "c6c6db53ee224",
+   "verdicts": [
+    {
+     "key": "k16beb63acb5d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -extract Logging json."
+    }
+   ]
+  },
+  {
+   "case": "c08b0c46c16a8",
+   "verdicts": [
+    {
+     "key": "k7e540c6de450",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kill sends TERM by default."
+    }
+   ]
+  },
+  {
+   "case": "c6dbdd15c1e03",
+   "verdicts": [
+    {
+     "key": "k345f2f0913fe",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mode bits checked for other-write."
+    },
+    {
+     "key": "k467bccd0e46c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mode bits checked for other-write."
+    },
+    {
+     "key": "k85afaf0d8b0d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mode bits checked for other-write."
+    },
+    {
+     "key": "kdd391088f702",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mode bits checked for other-write."
+    }
+   ]
+  },
+  {
+   "case": "c8985e14fe6fe",
+   "verdicts": [
+    {
+     "key": "k2d3fea5f0e7e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "cd into docs and link ../v2."
+    }
+   ]
+  },
+  {
+   "case": "c5c8803a052d2",
+   "verdicts": [
+    {
+     "key": "kc3e51b5e28d7",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    }
+   ]
+  },
+  {
+   "case": "ccaf4bd584608",
+   "verdicts": [
+    {
+     "key": "k3be095d0f08c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler Metal Support line."
+    },
+    {
+     "key": "k3e4f7c160e62",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "this machine reports Metal Support, not Metal Family Supported."
+    },
+    {
+     "key": "k5e19f3314d2c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler Metal Support line."
+    },
+    {
+     "key": "kcd3c6e13860a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler Metal Support line."
+    },
+    {
+     "key": "kf04ad5228520",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler Metal Support line."
+    }
+   ]
+  },
+  {
+   "case": "cce94757238bc",
+   "verdicts": [
+    {
+     "key": "k3fcbb197776c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -convert xml1 to stdout."
+    }
+   ]
+  },
+  {
+   "case": "c5b7993918f16",
+   "verdicts": [
+    {
+     "key": "k2befb2ac0bbd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "networksetup -getwebproxy."
+    }
+   ]
+  },
+  {
+   "case": "ca9cd1e4aa754",
+   "verdicts": [
+    {
+     "key": "k0e48f0f88452",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo reports the channel layout."
+    },
+    {
+     "key": "k269706bb2f9d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo reports the channel layout."
+    },
+    {
+     "key": "k7cb98f09af73",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo reports the channel layout."
+    }
+   ]
+  },
+  {
+   "case": "c6e23dd381a64",
+   "verdicts": [
+    {
+     "key": "k4ade6fe2cec5",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "privacy manifests live in Contents/Resources, not Contents."
+    },
+    {
+     "key": "k6d5a1df0ffee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -lint on the manifest."
+    },
+    {
+     "key": "ka97a9bc06268",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -lint on the manifest."
+    }
+   ]
+  },
+  {
+   "case": "ce833693b61da",
+   "verdicts": [
+    {
+     "key": "kbf7a73448af2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls kMDItemCameraMake."
+    }
+   ]
+  },
+  {
+   "case": "c4226b6f9653e",
+   "verdicts": [
+    {
+     "key": "k2a5fee5d8303",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign Runtime Version line."
+    },
+    {
+     "key": "k97d6f2df0299",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign Runtime Version line."
+    },
+    {
+     "key": "kb70f9d905076",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign Runtime Version line."
+    },
+    {
+     "key": "ke45ff70b1bb2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign Runtime Version line."
+    },
+    {
+     "key": "ke6fbe7b5b9c6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign Runtime Version line."
+    }
+   ]
+  },
+  {
+   "case": "ccfb6c7a30942",
+   "verdicts": [
+    {
+     "key": "k94863c00f9a8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "route get for the address."
+    }
+   ]
+  },
+  {
+   "case": "c0be91315c8c4",
+   "verdicts": [
+    {
+     "key": "k0df36d8b564d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "test -x on the directory and the file."
+    },
+    {
+     "key": "k1a2f0096bf7d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "test -x on the directory and the file."
+    },
+    {
+     "key": "k20c96afbf9e3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "test -x on the directory and the file."
+    }
+   ]
+  },
+  {
+   "case": "ccf50b88f3002",
+   "verdicts": [
+    {
+     "key": "k20eefd07224f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind stereo bitrate query."
+    },
+    {
+     "key": "k6e9d867ae315",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind stereo bitrate query."
+    },
+    {
+     "key": "kacf6d18875e2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind stereo bitrate query."
+    },
+    {
+     "key": "kf196fd9480d6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind stereo bitrate query."
+    }
+   ]
+  },
+  {
+   "case": "c85f2e8fbb373",
+   "verdicts": [
+    {
+     "key": "k1739f3066702",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find setuid/setgid modes."
+    },
+    {
+     "key": "k796731bc7778",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find setuid/setgid modes."
+    },
+    {
+     "key": "k7e1deb51b7ea",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find setuid/setgid modes."
+    }
+   ]
+  },
+  {
+   "case": "c8678e8b7f331",
+   "verdicts": [
+    {
+     "key": "k8183f7d6663b",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "hdiutil info uses dev-entry, not dev-node, so no device is printed."
+    },
+    {
+     "key": "k8fb8e48832f2",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "hdiutil info has no -image option."
+    }
+   ]
+  },
+  {
+   "case": "cec1d5fe07f81",
+   "verdicts": [
+    {
+     "key": "k25aeb4d5ce05",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl HTML::Entities conversion in place."
+    },
+    {
+     "key": "k518cb121b7b7",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    },
+    {
+     "key": "kb296ce17fa80",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    },
+    {
+     "key": "kfb19b7ad0113",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "prints the converted text but does not convert excerpt.txt."
+    }
+   ]
+  },
+  {
+   "case": "c48ee36f4743e",
+   "verdicts": [
+    {
+     "key": "k1acabf755278",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips dimensions reduced by gcd to an aspect ratio."
+    },
+    {
+     "key": "k7e8a9da76486",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips dimensions reduced by gcd to an aspect ratio."
+    },
+    {
+     "key": "ka56eb6edbb99",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips dimensions reduced by gcd to an aspect ratio."
+    },
+    {
+     "key": "kae3946633e44",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips dimensions reduced by gcd to an aspect ratio."
+    },
+    {
+     "key": "kbb542692ff4d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips dimensions reduced by gcd to an aspect ratio."
+    }
+   ]
+  },
+  {
+   "case": "ce0c5e771602a",
+   "verdicts": [
+    {
+     "key": "kffe61f1148fe",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ping -c 3 -i 1."
+    }
+   ]
+  },
+  {
+   "case": "ce4a911bfe718",
+   "verdicts": [
+    {
+     "key": "k5d1040246e8d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find names with two dots."
+    },
+    {
+     "key": "k89e911045c69",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find names with two dots."
+    },
+    {
+     "key": "keb4dec83fb06",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find names with two dots."
+    }
+   ]
+  },
+  {
+   "case": "cec87e16f7a65",
+   "verdicts": [
+    {
+     "key": "k5bdbcb741a58",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy array printed, sorted, unique."
+    },
+    {
+     "key": "k67e316e716e8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy array printed, sorted, unique."
+    },
+    {
+     "key": "k85474b3d0435",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy array printed, sorted, unique."
+    },
+    {
+     "key": "kb71783e0c827",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy array printed, sorted, unique."
+    },
+    {
+     "key": "kfbf89cfb5043",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy array printed, sorted, unique."
+    }
+   ]
+  },
+  {
+   "case": "cc876d971f17e",
+   "verdicts": [
+    {
+     "key": "k71e18a899405",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stty size prints rows and columns."
+    }
+   ]
+  },
+  {
+   "case": "ce0f17e7af47f",
+   "verdicts": [
+    {
+     "key": "ke1c2556228d7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil isexcluded reports the exclusion state."
+    }
+   ]
+  },
+  {
+   "case": "c638af8a04ddd",
+   "verdicts": [
+    {
+     "key": "kd40fafd841cc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind tag and audio query."
+    }
+   ]
+  },
+  {
+   "case": "cd26855dcf967",
+   "verdicts": [
+    {
+     "key": "k079c6f04d2fb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset lowpowermode per power source."
+    },
+    {
+     "key": "kac8d2bde2973",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset lowpowermode per power source."
+    },
+    {
+     "key": "kcd506c133523",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset lowpowermode per power source."
+    }
+   ]
+  },
+  {
+   "case": "c0681955aae3c",
+   "verdicts": [
+    {
+     "key": "k4f8c51f6a0d7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size then sort increasing."
+    },
+    {
+     "key": "k5af3c905c10f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size then sort increasing."
+    },
+    {
+     "key": "kc1d194c23002",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size then sort increasing."
+    },
+    {
+     "key": "kf944a882e81e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size then sort increasing."
+    }
+   ]
+  },
+  {
+   "case": "ce1ec9d2b8c0e",
+   "verdicts": [
+    {
+     "key": "k4b1eb2e33cd8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder alias file created in shortcuts/."
+    },
+    {
+     "key": "k8530021026f3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder alias file created in shortcuts/."
+    },
+    {
+     "key": "kab7a2651e2ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder alias file created in shortcuts/."
+    },
+    {
+     "key": "kc106982b430a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder alias file created in shortcuts/."
+    },
+    {
+     "key": "kf8ea2c59746b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder alias file created in shortcuts/."
+    }
+   ]
+  },
+  {
+   "case": "ca06234409e5d",
+   "verdicts": [
+    {
+     "key": "k346e23e23066",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df local capacity totals."
+    },
+    {
+     "key": "k52129843af44",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df local capacity totals."
+    },
+    {
+     "key": "k584826f88a7c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df local capacity totals."
+    },
+    {
+     "key": "k6dd5eb5cc5c1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df local capacity totals."
+    },
+    {
+     "key": "k9f4641965ce3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df local capacity totals."
+    }
+   ]
+  },
+  {
+   "case": "c5cbddb3dc97d",
+   "verdicts": [
+    {
+     "key": "k08eb3f89ecdd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date +%V prints the ISO week."
+    }
+   ]
+  },
+  {
+   "case": "caa3a5c816f9b",
+   "verdicts": [
+    {
+     "key": "kabbc9bd7abcf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ping -c 2."
+    }
+   ]
+  },
+  {
+   "case": "c4b1f253ddc11",
+   "verdicts": [
+    {
+     "key": "k417a38149eb5",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "kMDItemOrientation is numeric; 1 means portrait, not the string."
+    },
+    {
+     "key": "k769d7fdf5f0f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same numeric field compared with a string."
+    },
+    {
+     "key": "k7b79b573b10c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kMDItemOrientation is numeric, 1 means portrait."
+    },
+    {
+     "key": "kb67056a0f3e3",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same numeric field compared with a string."
+    }
+   ]
+  },
+  {
+   "case": "c13876e505c08",
+   "verdicts": [
+    {
+     "key": "k07bad75f2554",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dd conv=notrunc keeps trailing bytes."
+    }
+   ]
+  },
+  {
+   "case": "c0396ecde1885",
+   "verdicts": [
+    {
+     "key": "k3edee3c27556",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "hdiutil attach uses -readonly, not -read-only."
+    },
+    {
+     "key": "k4a458e8af603",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil attach -readonly -nobrowse."
+    },
+    {
+     "key": "kbee85a515570",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil attach -readonly -nobrowse."
+    },
+    {
+     "key": "kc13b36b77a58",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "same invalid -read-only option."
+    }
+   ]
+  },
+  {
+   "case": "ce904f0c1dc60",
+   "verdicts": [
+    {
+     "key": "k4849c52fa883",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "open -a Preview."
+    }
+   ]
+  },
+  {
+   "case": "c2ba32f6f305a",
+   "verdicts": [
+    {
+     "key": "k33d5ea4a1caa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Volume Role."
+    },
+    {
+     "key": "k3a290f4ee0f0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Volume Role."
+    },
+    {
+     "key": "kda0a8d36cb8b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Volume Role."
+    },
+    {
+     "key": "kdcbe46e0e507",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Volume Role."
+    },
+    {
+     "key": "kdd1174ba1075",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Volume Role."
+    }
+   ]
+  },
+  {
+   "case": "c52aeb1c6cedd",
+   "verdicts": [
+    {
+     "key": "k8a5353fea2cc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil case-sensitivity fields."
+    },
+    {
+     "key": "k9891669aa17a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil case-sensitivity fields."
+    },
+    {
+     "key": "kb36393a07bbb",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil info does not print a \"case sensitivity\" line."
+    },
+    {
+     "key": "kd3eaa94e3029",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil case-sensitivity fields."
+    },
+    {
+     "key": "ke2afa6b70ce9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil case-sensitivity fields."
+    }
+   ]
+  },
+  {
+   "case": "c85bf5f63986c",
+   "verdicts": [
+    {
+     "key": "keab7382f2dff",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df -h for the filesystem."
+    }
+   ]
+  },
+  {
+   "case": "c3d77626c67d6",
+   "verdicts": [
+    {
+     "key": "kc879635c259f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find -mindepth 1 -maxdepth 1 with du."
+    }
+   ]
+  }
+ ]
+}
