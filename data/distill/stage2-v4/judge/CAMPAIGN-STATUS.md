@@ -4,7 +4,7 @@ Runbook: [protocol.md](protocol.md). Rubric: [../LABEL.md](../LABEL.md). Machine
 [campaign-20261021-r3.json](campaign-20261021-r3.json), with r2 kept for the stop history.
 Prior revisions are archived under [superseded/](superseded/).
 
-**Status: pass 1 in progress. `b00`–`b11` accepted (2,754 candidate verdicts); `b12`–`b22`
+**Status: pass 1 in progress. `b00`–`b12` accepted (2,991 candidate verdicts); `b13`–`b22`
 pending. No confirm, no build, no training.**
 
 ## Completed
@@ -36,6 +36,8 @@ pending. No confirm, no build, no training.**
   232 verdicts, 190 correct / 42 incorrect; `ct0031`, `ct0032` and `ct0056` matched.
 - **`b11` accepted 2026-10-22** by the main-session judge (`dsh-main-20261022-b11-a1`):
   228 verdicts, 197 correct / 31 incorrect; `ct0035`, `ct0052` and `ct0038` matched.
+- **`b12` accepted 2026-10-22** by the main-session judge (`dsh-main-20261022-b12-a1`):
+  237 verdicts, 208 correct / 29 incorrect; `ct0050`, `ct0044` and `ct0037` matched.
 - **Live controls adjudicated** before `b05` as a pilot gate:
   [control-adjudication-r3-20261021.json](control-adjudication-r3-20261021.json) —
   52 live controls, 51 verified, 1 contested (`ct0018`, in `b06`; its "incorrect"
@@ -82,7 +84,7 @@ error, not "100% verified".
 
 ## Remaining
 
-- `b12`–`b22`: 11 batches, ~2,500 candidates. The contested-control exemption is now
+- `b13`–`b22`: 10 batches, ~2,300 candidates. The contested-control exemption is now
   wired into both the confirm and the build (`--adjudication`).
 - Then the deterministic 20% confirm, the build, the 30-row human spot check, the
   quality report and the byte-identical rebuild.
