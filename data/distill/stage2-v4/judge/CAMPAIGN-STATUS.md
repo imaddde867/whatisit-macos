@@ -4,8 +4,9 @@ Runbook: [protocol.md](protocol.md). Rubric: [../LABEL.md](../LABEL.md). Machine
 [campaign-20261021-r3.json](campaign-20261021-r3.json), with r2 kept for the stop history.
 Prior revisions are archived under [superseded/](superseded/).
 
-**Status: pass 1 in progress. `b00`–`b21` accepted (5,006 candidate verdicts); `b22`
-pending. No confirm, no build, no training.**
+**Status: pass 1 complete. `b00`–`b22` accepted (5,176 candidate verdicts, 23/23
+batches, every control matched). The pass-2 confirm has not been judged yet; no
+build, no training.**
 
 ## Completed
 
@@ -56,6 +57,9 @@ pending. No confirm, no build, no training.**
   216 verdicts, 189 correct / 27 incorrect; `ct0046`, `ct0034` and `ct0039` matched.
 - **`b21` accepted 2026-10-22** by the main-session judge (`dsh-main-20261022-b21-a1`):
   214 verdicts, 195 correct / 19 incorrect; `ct0011`, `ct0063` and `ct0029` matched.
+- **`b22` accepted 2026-10-22** by the main-session judge (`dsh-main-20261022-b22-a1`):
+  170 verdicts, 158 correct / 12 incorrect; `ct0062`, `ct0021` and `ct0027` matched.
+  This completes pass 1: 23/23 batches, 5,176 candidate verdicts.
 - **Live controls adjudicated** before `b05` as a pilot gate:
   [control-adjudication-r3-20261021.json](control-adjudication-r3-20261021.json) —
   52 live controls, 51 verified, 1 contested (`ct0018`, in `b06`; its "incorrect"
@@ -102,8 +106,8 @@ error, not "100% verified".
 
 ## Remaining
 
-- `b22`: 1 batch, ~170 candidates. The contested-control exemption is now
-  wired into both the confirm and the build (`--adjudication`).
+- **Pass 2 (confirm)** has not started. The deterministic 20% confirm sample still has
+  to be drawn and judged, then the dataset built and spot-checked.
 - Then the deterministic 20% confirm, the build, the 30-row human spot check, the
   quality report and the byte-identical rebuild.
 
