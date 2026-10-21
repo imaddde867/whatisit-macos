@@ -1,0 +1,1839 @@
+{
+ "batch": "b11",
+ "judge": "dsh-main-20261022-b11-a1",
+ "cases": [
+  {
+   "case": "cc56117df7f47",
+   "verdicts": [
+    {
+     "key": "k4e8d1aa812c7",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "%B is the birth time, not the block size, so the product is meaningless."
+    },
+    {
+     "key": "k6737ce2bccb4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Allocated blocks times 512, or Spotlight physical size."
+    },
+    {
+     "key": "k9ff72e6f9d1c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Allocated blocks times 512, or Spotlight physical size."
+    },
+    {
+     "key": "kd8f50ceee93a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Allocated blocks times 512, or Spotlight physical size."
+    }
+   ]
+  },
+  {
+   "case": "ca313895092ac",
+   "verdicts": [
+    {
+     "key": "k139b0e8f195c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "cp incoming/. copies contents."
+    }
+   ]
+  },
+  {
+   "case": "c9884aff87bd8",
+   "verdicts": [
+    {
+     "key": "k5986ca43d4a2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk dedupe preserving order."
+    }
+   ]
+  },
+  {
+   "case": "c26720a0dd525",
+   "verdicts": [
+    {
+     "key": "k8928b2bbf4f8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig through 8.8.8.8 with comments and stats."
+    }
+   ]
+  },
+  {
+   "case": "ce09ad62c0690",
+   "verdicts": [
+    {
+     "key": "ke3105f7ae581",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size modulo 4096."
+    },
+    {
+     "key": "ke39730fe0524",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size modulo 4096."
+    }
+   ]
+  },
+  {
+   "case": "c9b8af2e25b2d",
+   "verdicts": [
+    {
+     "key": "k0caba612ddb6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips 180-degree rotation to a new file."
+    },
+    {
+     "key": "k45cc79b0d05c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips 180-degree rotation to a new file."
+    },
+    {
+     "key": "kc3a94cbc4e42",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips 180-degree rotation to a new file."
+    },
+    {
+     "key": "kf0509f451112",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips 180-degree rotation to a new file."
+    }
+   ]
+  },
+  {
+   "case": "c45e7dab0ab63",
+   "verdicts": [
+    {
+     "key": "k3554a439ed65",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information or ioreg XML output."
+    },
+    {
+     "key": "k5a0f2d6fe362",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information or ioreg XML output."
+    },
+    {
+     "key": "k81c715ea49d4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information or ioreg XML output."
+    },
+    {
+     "key": "keb12208d3854",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information or ioreg XML output."
+    }
+   ]
+  },
+  {
+   "case": "c4ec64eaa7de8",
+   "verdicts": [
+    {
+     "key": "k694bf6327000",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the last Sleep line is an assertion, not the sleep transition."
+    },
+    {
+     "key": "k85265f78fbab",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: tail of Sleep returns an assertion line."
+    },
+    {
+     "key": "k9b19862a37b3",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: assertions also contain Sleep, so the tail is not the transition."
+    },
+    {
+     "key": "k9c2b2afc9cb7",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: assertions match the filter."
+    },
+    {
+     "key": "kf3a12e8372b0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset log tail of the Entering Sleep transition."
+    }
+   ]
+  },
+  {
+   "case": "ca342ce5a6cf1",
+   "verdicts": [
+    {
+     "key": "k1af4c580cfe0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil isexcluded."
+    },
+    {
+     "key": "k2b350b6be366",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil isexcluded."
+    },
+    {
+     "key": "k33e7e97713db",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "tmutil has isexcluded, not excluded."
+    },
+    {
+     "key": "k3a08f4faa0c6",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "same invalid tmutil excluded verb."
+    }
+   ]
+  },
+  {
+   "case": "c27b9e34cea33",
+   "verdicts": [
+    {
+     "key": "k9563fade52c9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -i inodes."
+    }
+   ]
+  },
+  {
+   "case": "cd3e11d2294d9",
+   "verdicts": [
+    {
+     "key": "k048266f068e5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v build date extraction."
+    },
+    {
+     "key": "k793fc5791d38",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v build date extraction."
+    },
+    {
+     "key": "k911fc2e40c78",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v build date extraction."
+    },
+    {
+     "key": "ka782068819d4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v build date extraction."
+    },
+    {
+     "key": "kf7b17c52ee28",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v build date extraction."
+    }
+   ]
+  },
+  {
+   "case": "c8f9578a28745",
+   "verdicts": [
+    {
+     "key": "k0c2b792f8d1a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find counts immediate subfolders."
+    },
+    {
+     "key": "k47de76b639f7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find counts immediate subfolders."
+    }
+   ]
+  },
+  {
+   "case": "cf9989ed81a20",
+   "verdicts": [
+    {
+     "key": "k947a90f497dd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls album."
+    }
+   ]
+  },
+  {
+   "case": "c79f337ddab41",
+   "verdicts": [
+    {
+     "key": "k030766cc3f51",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JSON filter for result.ok false."
+    },
+    {
+     "key": "k1e42a113a04e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JSON filter for result.ok false."
+    },
+    {
+     "key": "k2a59c1c0f8c1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JSON filter for result.ok false."
+    },
+    {
+     "key": "kb2800611a97b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JSON filter for result.ok false."
+    }
+   ]
+  },
+  {
+   "case": "c118e7dd4f711",
+   "verdicts": [
+    {
+     "key": "ke52695a516a7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil verifyDisk."
+    },
+    {
+     "key": "kf7ab1ab66bb1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil verifyDisk."
+    },
+    {
+     "key": "kfed2692417ea",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "diskutil has no verifyPartitionMap verb; verifyDisk verifies the map."
+    }
+   ]
+  },
+  {
+   "case": "c9d9357f50f55",
+   "verdicts": [
+    {
+     "key": "k185b1fa01a3a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du ignore node_modules."
+    }
+   ]
+  },
+  {
+   "case": "c4e3a3368f8bf",
+   "verdicts": [
+    {
+     "key": "kd722805fbfee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -rn -f inet."
+    }
+   ]
+  },
+  {
+   "case": "c101f41f6f882",
+   "verdicts": [
+    {
+     "key": "k5ad5080e0dbc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find atime filter."
+    }
+   ]
+  },
+  {
+   "case": "c3e68b2d636e1",
+   "verdicts": [
+    {
+     "key": "k284bbfdad5bd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips central crop."
+    }
+   ]
+  },
+  {
+   "case": "c2b1cfc16cdab",
+   "verdicts": [
+    {
+     "key": "kabb033a6b4aa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -le ACL entries."
+    }
+   ]
+  },
+  {
+   "case": "c4b62c7fe2c8f",
+   "verdicts": [
+    {
+     "key": "k4a3ad7c29617",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl physical and logical CPU."
+    },
+    {
+     "key": "k7a9fd7ede59d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl physical and logical CPU."
+    }
+   ]
+  },
+  {
+   "case": "cd3052841445c",
+   "verdicts": [
+    {
+     "key": "k88dcabdee161",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "cp -i asks first."
+    }
+   ]
+  },
+  {
+   "case": "cb4d50f1b6119",
+   "verdicts": [
+    {
+     "key": "k9ae332f1ff67",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "prints PIDs only, so grep python never matches."
+    }
+   ]
+  },
+  {
+   "case": "ca946419ae6a8",
+   "verdicts": [
+    {
+     "key": "k3a9828d25569",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat %b blocks."
+    }
+   ]
+  },
+  {
+   "case": "c551f34c893e7",
+   "verdicts": [
+    {
+     "key": "k05df615988c2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil snapshot dates."
+    },
+    {
+     "key": "k29b569f61f18",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil snapshot dates."
+    },
+    {
+     "key": "kb8f966c379f9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil snapshot dates."
+    },
+    {
+     "key": "kdf5e210f9bf7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil snapshot dates."
+    },
+    {
+     "key": "ke1e4072548e4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil snapshot dates."
+    }
+   ]
+  },
+  {
+   "case": "c5f1b9610670b",
+   "verdicts": [
+    {
+     "key": "k5356e2c86d4d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "text after the final colon."
+    },
+    {
+     "key": "k8d464e1d0de1",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "prints the after-colon text of every line, not the final one."
+    },
+    {
+     "key": "k9fdb68728ed6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "text after the final colon."
+    },
+    {
+     "key": "ka8be09115f75",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: every line, not the final colon message."
+    },
+    {
+     "key": "kc44bf8fc3821",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: every line, not the final colon message."
+    }
+   ]
+  },
+  {
+   "case": "c091716791249",
+   "verdicts": [
+    {
+     "key": "kae318464c219",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind blank title."
+    }
+   ]
+  },
+  {
+   "case": "cb014d20e1fe9",
+   "verdicts": [
+    {
+     "key": "k4c04cf18d90d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo duration."
+    }
+   ]
+  },
+  {
+   "case": "cc78e09a1b78e",
+   "verdicts": [
+    {
+     "key": "kaecc08b20f0f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler secure virtual memory."
+    }
+   ]
+  },
+  {
+   "case": "c3bafc46d4610",
+   "verdicts": [
+    {
+     "key": "k0177fcff9017",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "top -l 1 reports cumulative CPU since boot, not a current snapshot."
+    },
+    {
+     "key": "k14df5f308c7a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "top process counts and CPU usage."
+    },
+    {
+     "key": "k1ab7725df8cf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "top process counts and CPU usage."
+    },
+    {
+     "key": "k4bf32c1c9a3b",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: top -l 1 CPU usage is cumulative."
+    },
+    {
+     "key": "k5566dceeaf41",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "top process counts and CPU usage."
+    }
+   ]
+  },
+  {
+   "case": "c7c83e5994e13",
+   "verdicts": [
+    {
+     "key": "k03eb075ccf80",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind page count."
+    }
+   ]
+  },
+  {
+   "case": "cf1dd810e64b1",
+   "verdicts": [
+    {
+     "key": "k1db8094ad524",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xattr quarantine check."
+    },
+    {
+     "key": "k40ec0f790d57",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xattr quarantine check."
+    },
+    {
+     "key": "kbe432927470e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xattr quarantine check."
+    },
+    {
+     "key": "kf518e6b202ca",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xattr quarantine check."
+    }
+   ]
+  },
+  {
+   "case": "c097cb3b7efdf",
+   "verdicts": [
+    {
+     "key": "k226e700ad359",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil imageinfo encryption fields."
+    },
+    {
+     "key": "k3fedc553e0c1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil imageinfo encryption fields."
+    },
+    {
+     "key": "k68bf45157a2c",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "imageinfo has no -noprompt option (verified unknown option)."
+    }
+   ]
+  },
+  {
+   "case": "c59b4abb08b8a",
+   "verdicts": [
+    {
+     "key": "k448c244e8539",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "checkip extraction."
+    }
+   ]
+  },
+  {
+   "case": "ce2f5a11b4ad7",
+   "verdicts": [
+    {
+     "key": "k1dd026bca269",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync exclude."
+    },
+    {
+     "key": "k643f6fdf384e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync exclude."
+    },
+    {
+     "key": "k9b944f9b7621",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync exclude."
+    },
+    {
+     "key": "kea3154037eb6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync exclude."
+    }
+   ]
+  },
+  {
+   "case": "cb26f20239182",
+   "verdicts": [
+    {
+     "key": "k735d9386dfb3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig +time=2 +tries=1."
+    },
+    {
+     "key": "ka19f1bcae2d0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig +time=2 +tries=1."
+    },
+    {
+     "key": "kbbeead0fa993",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig +time=2 +tries=1."
+    }
+   ]
+  },
+  {
+   "case": "c9ab943d97a11",
+   "verdicts": [
+    {
+     "key": "ka0beed41dcd4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chmod owner and group execute."
+    }
+   ]
+  },
+  {
+   "case": "c5817dcf8a395",
+   "verdicts": [
+    {
+     "key": "k0323e3e48fb7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl model and machine."
+    },
+    {
+     "key": "k0b33dcc8b452",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl model and machine."
+    }
+   ]
+  },
+  {
+   "case": "ce52292c36008",
+   "verdicts": [
+    {
+     "key": "k2bbf91708e70",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git diff --ignore-all-space."
+    }
+   ]
+  },
+  {
+   "case": "ceb498df2913e",
+   "verdicts": [
+    {
+     "key": "k3d268f479c47",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl kern.num_files."
+    },
+    {
+     "key": "k566bc71948e3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl kern.num_files."
+    },
+    {
+     "key": "k957957d49d25",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl kern.num_files."
+    }
+   ]
+  },
+  {
+   "case": "c4c9f63f8c626",
+   "verdicts": [
+    {
+     "key": "k2394e89198f4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "timestamp before kernel:."
+    },
+    {
+     "key": "k6e1342b31dfc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "timestamp before kernel:."
+    },
+    {
+     "key": "k93a98ffe3f65",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "timestamp before kernel:."
+    }
+   ]
+  },
+  {
+   "case": "ccf21ce235233",
+   "verdicts": [
+    {
+     "key": "k189a126cb8ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "broken symlinks under shortcuts/."
+    },
+    {
+     "key": "k4dc378f562a1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "broken symlinks under shortcuts/."
+    },
+    {
+     "key": "kc7bf841d4d18",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "broken symlinks under shortcuts/."
+    },
+    {
+     "key": "kc7f6a0dcb0cc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "broken symlinks under shortcuts/."
+    }
+   ]
+  },
+  {
+   "case": "c8e316505d967",
+   "verdicts": [
+    {
+     "key": "k2c6406723d25",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -s -p ip fragmentation."
+    },
+    {
+     "key": "k3627dd65516d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -s -p ip fragmentation."
+    },
+    {
+     "key": "k597075b27c53",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -s -p ip fragmentation."
+    },
+    {
+     "key": "k75a96d534059",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -s -p ip fragmentation."
+    },
+    {
+     "key": "kdce142b40a24",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat -s -p ip fragmentation."
+    }
+   ]
+  },
+  {
+   "case": "cfcd398f4a152",
+   "verdicts": [
+    {
+     "key": "kcfb4f531dff9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed removes the prefix."
+    }
+   ]
+  },
+  {
+   "case": "c2520cf59a2fd",
+   "verdicts": [
+    {
+     "key": "k07adc79e80af",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "hw.optional.aes does not exist on Apple Silicon."
+    },
+    {
+     "key": "k0e7cb86f7820",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl FEAT_AES."
+    },
+    {
+     "key": "k11444b5a7c8c",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "machdep.cpu.features does not exist, so it wrongly reports no AES."
+    },
+    {
+     "key": "k891a94bfec3e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl FEAT_AES."
+    },
+    {
+     "key": "ke7994c6b8e75",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl FEAT_AES."
+    }
+   ]
+  },
+  {
+   "case": "c6c7be14dcfce",
+   "verdicts": [
+    {
+     "key": "k142f6676c85e",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "the attribute is kMDItemExposureTimeSeconds, not kMDItemExposureTime."
+    },
+    {
+     "key": "k1c108a932527",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind exposure time."
+    },
+    {
+     "key": "k7eabdc7590a9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind exposure time."
+    },
+    {
+     "key": "kd96c4907ab52",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind exposure time."
+    },
+    {
+     "key": "kdc0288d6e71c",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the unquoted public.image value makes the query invalid."
+    }
+   ]
+  },
+  {
+   "case": "c924c2b51f5c4",
+   "verdicts": [
+    {
+     "key": "k4d795bdc0974",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps pgid."
+    }
+   ]
+  },
+  {
+   "case": "cb83e97b67dad",
+   "verdicts": [
+    {
+     "key": "k015dba24cd7a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder extension hidden false."
+    },
+    {
+     "key": "k47861fa2cf20",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "SetFile -a E sets the hidden-extension bit instead of clearing it."
+    },
+    {
+     "key": "k863f7538a398",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder extension hidden false."
+    },
+    {
+     "key": "k9bccc77d04ed",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder extension hidden false."
+    }
+   ]
+  },
+  {
+   "case": "c1041ccd044c7",
+   "verdicts": [
+    {
+     "key": "k481eb1d189af",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chflags nohidden."
+    },
+    {
+     "key": "kac1956d7fbde",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "chflags has no nhidden flag; it is nohidden."
+    }
+   ]
+  },
+  {
+   "case": "c6430aede5e94",
+   "verdicts": [
+    {
+     "key": "k87806b5f2cc1",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "mdls does not render tag color suffixes in parentheses."
+    },
+    {
+     "key": "kd2f2e8e5e82b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder tag color suffixes."
+    },
+    {
+     "key": "kd3a951a48330",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder tag color suffixes."
+    }
+   ]
+  },
+  {
+   "case": "cf441d495d345",
+   "verdicts": [
+    {
+     "key": "k660ed5eb54ad",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil apfs listSnapshots."
+    }
+   ]
+  },
+  {
+   "case": "c93061226c04c",
+   "verdicts": [
+    {
+     "key": "k828b47756e1a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "locale -k LC_TIME."
+    }
+   ]
+  },
+  {
+   "case": "ce9dc9183859a",
+   "verdicts": [
+    {
+     "key": "k847526ed2a12",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig +short A."
+    }
+   ]
+  },
+  {
+   "case": "cee41100ff280",
+   "verdicts": [
+    {
+     "key": "k22b713dbae16",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep OS version keys."
+    },
+    {
+     "key": "k24f4e3ae232d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep OS version keys."
+    },
+    {
+     "key": "k8a8f96dd01ea",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep OS version keys."
+    },
+    {
+     "key": "ka62842127ccd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep OS version keys."
+    }
+   ]
+  },
+  {
+   "case": "c3877760ee8db",
+   "verdicts": [
+    {
+     "key": "k01be6aa671fe",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du two levels down."
+    }
+   ]
+  },
+  {
+   "case": "cb230fb53c397",
+   "verdicts": [
+    {
+     "key": "k044df8b6fbc0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy document types."
+    },
+    {
+     "key": "k584e12d9c8a8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy document types."
+    },
+    {
+     "key": "k62ce05791822",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy document types."
+    },
+    {
+     "key": "k78398bd3801a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy document types."
+    }
+   ]
+  },
+  {
+   "case": "cf72e74b5d3fc",
+   "verdicts": [
+    {
+     "key": "k8a8a4d85c313",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git remote get-url."
+    }
+   ]
+  },
+  {
+   "case": "cc2196fb4b4c6",
+   "verdicts": [
+    {
+     "key": "k0618ec822a1b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "default PDF handler bundle id."
+    },
+    {
+     "key": "kcacc7c7be30a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "default PDF handler bundle id."
+    }
+   ]
+  },
+  {
+   "case": "c364f41856e1b",
+   "verdicts": [
+    {
+     "key": "k03cae65913af",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep Label values."
+    },
+    {
+     "key": "k7b149517bec3",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    },
+    {
+     "key": "ke53b639ad2a7",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    }
+   ]
+  },
+  {
+   "case": "c6a6dd271e2cb",
+   "verdicts": [
+    {
+     "key": "kc73cd1978f9d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pbcopy empty clears the clipboard."
+    }
+   ]
+  },
+  {
+   "case": "ce29125d9f894",
+   "verdicts": [
+    {
+     "key": "k6d2f964e0763",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil convert to UDRO."
+    }
+   ]
+  },
+  {
+   "case": "ce4dd9faee86e",
+   "verdicts": [
+    {
+     "key": "k0e1beb8ee7ef",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults Finder keys."
+    },
+    {
+     "key": "k26c80f7baea8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults Finder keys."
+    },
+    {
+     "key": "k68e91f69d92e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults Finder keys."
+    },
+    {
+     "key": "kcaecc642b0ac",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults Finder keys."
+    },
+    {
+     "key": "kee99fe1b4d4f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults Finder keys."
+    }
+   ]
+  },
+  {
+   "case": "c12b46cec8435",
+   "verdicts": [
+    {
+     "key": "kdba753ad832d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed removes the first character."
+    }
+   ]
+  },
+  {
+   "case": "c931f26a39ea2",
+   "verdicts": [
+    {
+     "key": "k7495980b261d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat inode comparison."
+    }
+   ]
+  },
+  {
+   "case": "c524fe9134d21",
+   "verdicts": [
+    {
+     "key": "k88128edb45b3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl strips ANSI colors."
+    }
+   ]
+  },
+  {
+   "case": "cf8a4f01f07a1",
+   "verdicts": [
+    {
+     "key": "k15dd56f433ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "locale -a."
+    }
+   ]
+  },
+  {
+   "case": "cdd870cca34fb",
+   "verdicts": [
+    {
+     "key": "kfa980a4e819e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk sums the last field."
+    }
+   ]
+  },
+  {
+   "case": "cd4c8f97b2640",
+   "verdicts": [
+    {
+     "key": "k9e0abcb9e809",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "jobs."
+    }
+   ]
+  },
+  {
+   "case": "cd9f460f2952c",
+   "verdicts": [
+    {
+     "key": "k6c6342d1ae21",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler XML to a file."
+    }
+   ]
+  },
+  {
+   "case": "c3faf98a87237",
+   "verdicts": [
+    {
+     "key": "k14301fe7e7bc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size sum."
+    },
+    {
+     "key": "k5ecf497bf517",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size sum."
+    },
+    {
+     "key": "ke13dadfa921e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size sum."
+    },
+    {
+     "key": "keb2ae85939a8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size sum."
+    }
+   ]
+  },
+  {
+   "case": "cc06ead2f3443",
+   "verdicts": [
+    {
+     "key": "k0d3306a3ce04",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil strings to lines."
+    },
+    {
+     "key": "k43f17942a2bd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil strings to lines."
+    },
+    {
+     "key": "ka4ec96572cd3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil strings to lines."
+    }
+   ]
+  },
+  {
+   "case": "c831049db56a9",
+   "verdicts": [
+    {
+     "key": "k8061d2460e41",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat logical sizes without following links."
+    },
+    {
+     "key": "kc4418507130f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat logical sizes without following links."
+    },
+    {
+     "key": "ke9428e03a3db",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat logical sizes without following links."
+    }
+   ]
+  },
+  {
+   "case": "c5fda7c8adebd",
+   "verdicts": [
+    {
+     "key": "k01ee27e80689",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls/du apparent vs allocated."
+    },
+    {
+     "key": "k28feb8f6c97a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls/du apparent vs allocated."
+    },
+    {
+     "key": "k5eebd304b9e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls/du apparent vs allocated."
+    },
+    {
+     "key": "k7f45f6e59a09",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls/du apparent vs allocated."
+    },
+    {
+     "key": "kab2cbdb36229",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls/du apparent vs allocated."
+    }
+   ]
+  },
+  {
+   "case": "c4aa8291be7e5",
+   "verdicts": [
+    {
+     "key": "kc1ff89b121a3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep IPv4 addresses."
+    }
+   ]
+  },
+  {
+   "case": "ca57fa595e5e3",
+   "verdicts": [
+    {
+     "key": "k957a6e67367d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "openssl req subject."
+    }
+   ]
+  },
+  {
+   "case": "c0786bd36db52",
+   "verdicts": [
+    {
+     "key": "k8baf7408a4bb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "python3 --version."
+    }
+   ]
+  },
+  {
+   "case": "ca1c08185161a",
+   "verdicts": [
+    {
+     "key": "k04b6bb9537cf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "commas between lines."
+    },
+    {
+     "key": "k2070265e235e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "commas between lines."
+    },
+    {
+     "key": "k99f62f94cf71",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "commas between lines."
+    },
+    {
+     "key": "kdfd9a7757068",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "commas between lines."
+    }
+   ]
+  },
+  {
+   "case": "cf1ab856d7c8f",
+   "verdicts": [
+    {
+     "key": "k63dfe5ab1cc6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps -t tty."
+    }
+   ]
+  },
+  {
+   "case": "c6436952bb42b",
+   "verdicts": [
+    {
+     "key": "k14e298528147",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v/-a."
+    },
+    {
+     "key": "k178d40602510",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uname -v/-a."
+    }
+   ]
+  },
+  {
+   "case": "c70168cd6c1de",
+   "verdicts": [
+    {
+     "key": "k9a62803859d9",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "lsof -iTCP:8080 also selects clients and the header is passed to kill."
+    }
+   ]
+  },
+  {
+   "case": "c607ee957b228",
+   "verdicts": [
+    {
+     "key": "k26fdd70eaaae",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler firmware version."
+    },
+    {
+     "key": "k528217c868b1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler firmware version."
+    },
+    {
+     "key": "k54574cd730b6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler firmware version."
+    },
+    {
+     "key": "k6af088c4454a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler firmware version."
+    },
+    {
+     "key": "k79549d582c25",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler firmware version."
+    }
+   ]
+  },
+  {
+   "case": "cd447c68b4725",
+   "verdicts": [
+    {
+     "key": "k219e04ec182d",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "xattr -p adds a newline, so wc -c reports one byte too many."
+    },
+    {
+     "key": "k24b74d80a9f1",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same off-by-one: the trailing newline is counted."
+    },
+    {
+     "key": "k4b86dbbaf3e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat named fork size."
+    },
+    {
+     "key": "k56823ab448c5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat named fork size."
+    },
+    {
+     "key": "kd56e810a0af1",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "stat %Z is the file size, not the resource-fork size."
+    }
+   ]
+  },
+  {
+   "case": "c239a43489953",
+   "verdicts": [
+    {
+     "key": "k2ff678b9a8c3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "duplicate words removed."
+    },
+    {
+     "key": "k383dc721e927",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "duplicate words removed."
+    },
+    {
+     "key": "k529158fa5125",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "duplicate words removed."
+    },
+    {
+     "key": "ka2f84c3f7ae5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "duplicate words removed."
+    },
+    {
+     "key": "kf3cf2bb15d13",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "duplicate words removed."
+    }
+   ]
+  },
+  {
+   "case": "c4dceebfe725e",
+   "verdicts": [
+    {
+     "key": "kfbb821559e03",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "socketfilterfw app blocked."
+    }
+   ]
+  },
+  {
+   "case": "ca8e895617912",
+   "verdicts": [
+    {
+     "key": "k1aecc1414595",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "stat -F cannot be combined with a format (verified error)."
+    },
+    {
+     "key": "k29b4017f7a70",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat link mtime."
+    },
+    {
+     "key": "k743f5e576349",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat link mtime."
+    },
+    {
+     "key": "ke2556ff1b298",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "stat -l cannot be combined with a format (verified error)."
+    }
+   ]
+  },
+  {
+   "case": "c5f9d38234046",
+   "verdicts": [
+    {
+     "key": "k0931a998491a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "screencapture display 2."
+    },
+    {
+     "key": "ke3315fae6dad",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "screencapture display 2."
+    },
+    {
+     "key": "kf52e26a9add2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "screencapture display 2."
+    }
+   ]
+  },
+  {
+   "case": "c26c4f29ee42b",
+   "verdicts": [
+    {
+     "key": "k46c4e952fc69",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign extract certificates."
+    },
+    {
+     "key": "kd2279d8c2177",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign extract certificates."
+    }
+   ]
+  },
+  {
+   "case": "c0c7d418a2a69",
+   "verdicts": [
+    {
+     "key": "k0b255c77727a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers fields."
+    },
+    {
+     "key": "k1d6d209a1bda",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers fields."
+    },
+    {
+     "key": "kbaf9e27a3411",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers fields."
+    },
+    {
+     "key": "kd8cc5b485283",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers fields."
+    }
+   ]
+  },
+  {
+   "case": "cbd28b615064d",
+   "verdicts": [
+    {
+     "key": "k46afaf385f9d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat ICMP stats."
+    }
+   ]
+  },
+  {
+   "case": "c4ac413c5c677",
+   "verdicts": [
+    {
+     "key": "k0436b6d5c587",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof established IPv6."
+    },
+    {
+     "key": "k4fe793369ae2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof established IPv6."
+    },
+    {
+     "key": "k9e05061218e6",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "lsof -i 6 with a space treats 6 as a file name."
+    },
+    {
+     "key": "k9e88a3b6aa1b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof established IPv6."
+    },
+    {
+     "key": "kced3a67b827b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof established IPv6."
+    }
+   ]
+  },
+  {
+   "case": "c61ea1deccd39",
+   "verdicts": [
+    {
+     "key": "k740adaa9a6aa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo checksum."
+    }
+   ]
+  },
+  {
+   "case": "c23dd5937111f",
+   "verdicts": [
+    {
+     "key": "k1c47329e7976",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl CPU feature flags."
+    },
+    {
+     "key": "k6b7c0b986595",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl CPU feature flags."
+    },
+    {
+     "key": "k93e28c37f0ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl CPU feature flags."
+    }
+   ]
+  },
+  {
+   "case": "c2b40cc5b7a90",
+   "verdicts": [
+    {
+     "key": "k11397e567176",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log lines by hour."
+    },
+    {
+     "key": "k1328581dbce0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log lines by hour."
+    },
+    {
+     "key": "k2a20a6b6d926",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log lines by hour."
+    },
+    {
+     "key": "k36e845c99557",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log lines by hour."
+    },
+    {
+     "key": "kc4696795b9a0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log lines by hour."
+    }
+   ]
+  }
+ ]
+}
