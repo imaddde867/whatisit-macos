@@ -1,6 +1,8 @@
 import sys
 import unittest
+from unittest.mock import patch
 
+from whatisit_macos import maclint
 from whatisit_macos.maclint import problems, unrequested_deletion
 
 GOOD = ["command -v python3", "hdiutil attach -readonly -nobrowse d.iso", "launchctl print gui/$(id -u)", "sysctl -n hw.memsize", "du -h -d 1 . | sort -h", "lsof -nP -iTCP:8080 -sTCP:LISTEN", "sed -i '' 's/a/b/' f",
@@ -42,6 +44,37 @@ class MacLintTests(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertTrue(unrequested_deletion(command, request))
 
+
+
+class DevicePathLintTests(unittest.TestCase):
+    def test_disk_device_paths_do_not_depend_on_attachment_state(self):
+        commands = (
+            'diskutil unmountDisk /dev/disk4',
+            'diskutil mount readOnly /dev/disk4s1',
+            'hdiutil detach /dev/disk5',
+            'mount -o ro /dev/rdisk12s3 mountpoint',
+        )
+        with patch.object(maclint.shutil, 'which', return_value='/usr/bin/tool'), \
+                patch.object(maclint, '_man_text', return_value=''), \
+                patch.object(maclint.os.path, 'exists', return_value=False) as exists:
+            for command in commands:
+                with self.subTest(command=command):
+                    self.assertEqual(problems(command), [])
+            exists.assert_not_called()
+
+    def test_other_system_paths_still_require_existence(self):
+        commands = (
+            'cat /dev/not-a-disk',
+            'cat /dev/disk4-extra',
+            'cat /dev/disk4s1/child',
+            'cat /var/log/missing.log',
+        )
+        with patch.object(maclint.shutil, 'which', return_value='/usr/bin/tool'), \
+                patch.object(maclint, '_man_text', return_value=''), \
+                patch.object(maclint.os.path, 'exists', return_value=False):
+            for command in commands:
+                with self.subTest(command=command):
+                    self.assertTrue(problems(command))
 
 if __name__ == '__main__':
     unittest.main()
