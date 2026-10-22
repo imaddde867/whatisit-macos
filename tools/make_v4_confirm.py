@@ -50,14 +50,16 @@ def _prepare_out(path):
 
 
 def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
-                  sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None, validate=None):
+                  sample=0.2, seed=13, batch_size=90, effective=None, pool_dir=None,
+                  validate=None, adjudication=None):
     if effective is None:
         from score_teacher_eval import effective_command as effective
     from build_verified_dataset import (QUARANTINE_PATHS, ROOT, canonical_sha256,
                                         expected_confirm_batches, hash_json_files,
                                         load_batches, load_verdicts, sample_record,
                                         selected_items, sha256_file, validate_command,
-                                        validation_fingerprint, verify_validation, verify_population)
+                                        validation_fingerprint, verify_validation, verify_population,
+                                        load_adjudication)
     validate = validate or validate_command
     keymap_path = Path(keymap_path)
     pool_dir = Path(pool_dir) if pool_dir is not None else keymap_path.parent
@@ -93,9 +95,14 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
     corpus = {row['id']: row for row in read_jsonl(ROOT / 'data/corpus/requests.jsonl')}
     v3 = read_jsonl(Path(v3_requests_path).with_name('train.jsonl'))
     verify_population(keymap, pool_manifest, corpus, raw, v3, v3_requests, effective, validate)
+    contested = set()
+    if adjudication is not None:
+        contested = load_adjudication(adjudication, controls_map,
+                                      expected_artifacts['controls_map'])
     verdicts = load_verdicts(verdict_dir, pool_batches, keymap=keymap,
                              controls=controls_map,
-                             require_keys=set(keymap) | set(controls_map))
+                             require_keys=set(keymap) | set(controls_map),
+                             contested=contested)
     selected = selected_items(keymap, verdicts, raw, v3_requests, effective, validate)
     expected_batches, picked = expected_confirm_batches(selected, sample, seed, batch_size)
     _prepare_out(out_dir)
@@ -115,6 +122,7 @@ def build_confirm(keymap_path, raw_path, v3_requests_path, verdict_dir, out_dir,
             'v3_requests': sha256_file(v3_requests_path),
             'pass1_verdicts': canonical_sha256(verdicts),
             'pass1_verdict_files': hash_json_files(verdict_dir, pool_batches),
+            'control_adjudication': sha256_file(Path(adjudication)) if adjudication else None,
             'quarantine_ids': sha256_file(quarantine_paths['quarantine_ids']),
             'roihu_full_quarantine_ids': sha256_file(
                 quarantine_paths['roihu_full_quarantine_ids']),
@@ -137,11 +145,12 @@ def main():
     parser.add_argument('--seed', type=int, default=13)
     parser.add_argument('--batch-size', type=int, default=90)
     parser.add_argument('--pool-dir', type=Path, default=None)
+    parser.add_argument('--adjudication', type=Path, default=None)
     args = parser.parse_args()
     manifest = build_confirm(args.keymap, args.raw_samples, args.v3_requests,
                              args.verdict_dir, args.out_dir, sample=args.sample,
                              seed=args.seed, batch_size=args.batch_size,
-                             pool_dir=args.pool_dir)
+                             pool_dir=args.pool_dir, adjudication=args.adjudication)
     print(json.dumps(manifest, indent=2))
     return 0
 

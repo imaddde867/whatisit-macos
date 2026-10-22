@@ -1,0 +1,595 @@
+{
+  "inputs_sha256": {
+    "corpus": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+    "raw_samples": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd",
+    "v3_train": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+    "v3_requests": "b537b7550fc988924ecd86bf7e31f8cb27f7895e94b4de883674e0c86c0e8932",
+    "controls": "2daac90c0c4f7436a61a8e228e7b6f782adfdc25f44a21de1ab229e2d9690d25"
+  },
+  "counts": {
+    "v3_rows": 1149,
+    "v3_items": 902,
+    "v3_candidates": 902,
+    "no_majority_considered": 1398,
+    "no_majority_with_candidates": 1275,
+    "excluded_candidates": 19,
+    "items": 2177,
+    "candidates": 5640,
+    "batches": 25,
+    "controls_injected": 60,
+    "controls_total": 60
+  },
+  "batch_size": 90,
+  "excluded_candidates": [
+    {
+      "rid": "r00608",
+      "command": "top -l 1 -n 0"
+    },
+    {
+      "rid": "r00983",
+      "command": "top -l 0 -s 1 -pid 4200"
+    },
+    {
+      "rid": "r01592",
+      "command": "top -l 1 -pid 4200 -stats pid,command,csw"
+    },
+    {
+      "rid": "r01592",
+      "command": "top -l 1 -pid 4200 -stats pid,csw"
+    },
+    {
+      "rid": "r01592",
+      "command": "top -l 1 -stats pid,command,csw -pid 4200"
+    },
+    {
+      "rid": "r01944",
+      "command": "top -l 1 -n 15"
+    },
+    {
+      "rid": "r02105",
+      "command": "top -l 5"
+    },
+    {
+      "rid": "r02179",
+      "command": "top -l 2 -s 10 -n 0"
+    },
+    {
+      "rid": "r02183",
+      "command": "top -l 1 -n 0 -stats pid,command,faults"
+    },
+    {
+      "rid": "r02183",
+      "command": "top -l 1 -n 0 -stats pid,command,page_faults"
+    },
+    {
+      "rid": "r02183",
+      "command": "top -l 1 -stats pid,command,faults"
+    },
+    {
+      "rid": "r02183",
+      "command": "top -l 1 -stats pid,command,page_f"
+    },
+    {
+      "rid": "r02201",
+      "command": "top -l 1 -pid 4200 -stats pid,command,cpu,mem,io"
+    },
+    {
+      "rid": "r02201",
+      "command": "top -l 1 -pid 4200 -stats pid,command,pageins,pageouts"
+    },
+    {
+      "rid": "r02201",
+      "command": "top -l 1 -pid 4200 -stats pid,command,read,write"
+    },
+    {
+      "rid": "r02201",
+      "command": "top -l 1 -pid 4200 -stats pid,command,read_bytes,written_bytes"
+    },
+    {
+      "rid": "r02450",
+      "command": "top -l 1 -o cpu"
+    },
+    {
+      "rid": "r02450",
+      "command": "top -l 1 -o cpu -n 1"
+    },
+    {
+      "rid": "r02450",
+      "command": "top -l 1 -o cpu -n 20"
+    }
+  ],
+  "warnings": [
+    {
+      "rid": "r00014",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00025",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00094",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00120",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00145",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00179",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00188",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00196",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00206",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00218",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00255",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00339",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00343",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00366",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00390",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00421",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00428",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00463",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00489",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00505",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00518",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00546",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00575",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00585",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00610",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00654",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00662",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00668",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00669",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00677",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00687",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00709",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00714",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00727",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00744",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00747",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00752",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00775",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00784",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00827",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00849",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00881",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00906",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00920",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r00959",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01012",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01078",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01086",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01124",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01127",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01129",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01136",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01145",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01195",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01222",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01225",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01341",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01357",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01426",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01428",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01439",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01481",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01491",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01508",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01519",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01521",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01530",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01535",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01536",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01542",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01566",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01568",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01580",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01583",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01593",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01633",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01643",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01647",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01670",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01692",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01707",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01725",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01735",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01740",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01825",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01870",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01899",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01908",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01921",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r01944",
+      "reason": "all_candidates_excluded"
+    },
+    {
+      "rid": "r02022",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02050",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02055",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02071",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02085",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02105",
+      "reason": "all_candidates_excluded"
+    },
+    {
+      "rid": "r02116",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02123",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02147",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02181",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02183",
+      "reason": "all_candidates_excluded"
+    },
+    {
+      "rid": "r02186",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02192",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02209",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02225",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02239",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02242",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02244",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02257",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02300",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02324",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02345",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02350",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02359",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02371",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02387",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02410",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02415",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02450",
+      "reason": "all_candidates_excluded"
+    },
+    {
+      "rid": "r02470",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02471",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02476",
+      "reason": "no_candidates"
+    },
+    {
+      "rid": "r02500",
+      "reason": "no_candidates"
+    }
+  ]
+}

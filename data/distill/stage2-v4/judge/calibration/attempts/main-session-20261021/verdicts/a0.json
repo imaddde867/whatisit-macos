@@ -1,0 +1,412 @@
+{
+ "batch": "a0",
+ "judge": "dsh-main-20261021-a1",
+ "cases": [
+  {
+   "case": "c9340b58fa349",
+   "verdicts": [
+    {
+     "key": "kd91e9a2aa07d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat -f%z on the file/..namedfork/rsrc path reports the fork byte count."
+    },
+    {
+     "key": "k9f877a6f9e3e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "xattr -x -p hex-dumps the fork; strip 0x, count hex digits, divide by two."
+    },
+    {
+     "key": "k00d7801bc83f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "ls -l@ prints attribute sizes space-separated, never name=size, so grep matches nothing."
+    },
+    {
+     "key": "ke49c31062da8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same stat, with a 0 fallback when the fork is absent."
+    }
+   ]
+  },
+  {
+   "case": "c28b7c09cb283",
+   "verdicts": [
+    {
+     "key": "kf91c7f1b264e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chmod 0750 sets exactly user rwx, group rx, other none on the file only."
+    }
+   ]
+  },
+  {
+   "case": "cd909fbf2a24d",
+   "verdicts": [
+    {
+     "key": "kdc24475c2664",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "diskutil apfs has no listContainers verb; the documented verb is list."
+    }
+   ]
+  },
+  {
+   "case": "c657905202f27",
+   "verdicts": [
+    {
+     "key": "k1096ad71d2e2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset -g batt names AC Power when the adapter is connected."
+    },
+    {
+     "key": "k464c9e608e22",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Matches the Now drawing line and tests AC Power in it."
+    },
+    {
+     "key": "k94a2da3e9a4a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same AC Power test with a verbose answer."
+    },
+    {
+     "key": "k489b0f5b80a7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same AC Power test with a verbose answer."
+    },
+    {
+     "key": "k660212b9c8e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same AC Power test with a verbose answer."
+    }
+   ]
+  },
+  {
+   "case": "c4ec20b75085d",
+   "verdicts": [
+    {
+     "key": "k5875b7c04ed8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kMDItemFocalLength is the correct Spotlight attribute."
+    },
+    {
+     "key": "k0fec1103eade",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "kMDIFocalLength is not a Spotlight attribute; mdls prints nothing."
+    },
+    {
+     "key": "k1036689bd769",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Correct attribute, raw output."
+    }
+   ]
+  },
+  {
+   "case": "c65eed228cf7e",
+   "verdicts": [
+    {
+     "key": "kc22f5234a4bf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "--http1.1 forces HTTP/1.1 and normal TLS verification is unchanged."
+    }
+   ]
+  },
+  {
+   "case": "c66fa0cf5d201",
+   "verdicts": [
+    {
+     "key": "k92762ecf9e47",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "uptime newline becomes a space, then date continues on the same line."
+    }
+   ]
+  },
+  {
+   "case": "cd5032eb0a820",
+   "verdicts": [
+    {
+     "key": "k13f22b97122a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Valid keywords; tail drops the header."
+    },
+    {
+     "key": "k55e94abef1f5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "The = suffix suppresses each keyword header."
+    },
+    {
+     "key": "k638048fcd960",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Valid keywords; tail drops the header."
+    },
+    {
+     "key": "kdb17a3956319",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "-h repeats the header per page, so headings are still printed."
+    },
+    {
+     "key": "kaec2f5e9d8fa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pcpu is the %cpu keyword alias; = suppresses the header."
+    }
+   ]
+  },
+  {
+   "case": "cc26e26ab217c",
+   "verdicts": [
+    {
+     "key": "k0f1fc2a4da25",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "-a -d w selects the file and write-mode descriptors."
+    },
+    {
+     "key": "k971c564ceeca",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "w and u descriptors both have write access."
+    },
+    {
+     "key": "kcceffabb234b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Keeps header plus descriptors whose mode ends in w or u."
+    },
+    {
+     "key": "k5a276fc6cac5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Parses field output and prints pid/command for write-mode descriptors."
+    }
+   ]
+  },
+  {
+   "case": "c1a1418a216df",
+   "verdicts": [
+    {
+     "key": "k4731ceefaa34",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil latestbackup prints the latest completed backup path."
+    }
+   ]
+  },
+  {
+   "case": "c801603dc7f03",
+   "verdicts": [
+    {
+     "key": "k4ce5ef1b9338",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "df -k reports 1024-byte blocks."
+    }
+   ]
+  },
+  {
+   "case": "cc5321b4e8d08",
+   "verdicts": [
+    {
+     "key": "kaf425a8b0755",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Maps x/y columns from the header and compares them."
+    },
+    {
+     "key": "kcb3abe2f2783",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Maps x/y, prints the header, compares the mapped columns."
+    },
+    {
+     "key": "k67f28ba51e76",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Assumes x,y are the first two tab columns and compares them."
+    },
+    {
+     "key": "k021e9ea323d9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Same tab-separated column comparison."
+    }
+   ]
+  },
+  {
+   "case": "c351addb7b2b1",
+   "verdicts": [
+    {
+     "key": "kbdb59744d425",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "who -u reports idle time per login session."
+    },
+    {
+     "key": "k3d620f54ac55",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "who -a is -bTu, so it includes idle time."
+    },
+    {
+     "key": "kda4c2a932f7d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "w prints login sessions with an IDLE column."
+    }
+   ]
+  },
+  {
+   "case": "c6ce905787d60",
+   "verdicts": [
+    {
+     "key": "k8859089cabd9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lo0 flags include UP; the test prints up."
+    },
+    {
+     "key": "ka65897327125",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "lo0 prints no status line, so the test always answers down."
+    },
+    {
+     "key": "ka9c9ba31aedc",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "Same missing status line on loopback."
+    },
+    {
+     "key": "k83e633d8edf4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "<UP appears in the lo0 flags."
+    }
+   ]
+  },
+  {
+   "case": "c91d5a7cdda1c",
+   "verdicts": [
+    {
+     "key": "ka2d8f05ce7a5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "kill -l lists the shell signal names."
+    }
+   ]
+  },
+  {
+   "case": "cf597af0fe2df",
+   "verdicts": [
+    {
+     "key": "k09a3946cb4ef",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "%p mode, %Su owner, %z bytes, %n name, tab separated."
+    },
+    {
+     "key": "k89f7b8549fb9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "%Sp symbolic mode, %t tabs, %Su owner, %z bytes, %N name."
+    }
+   ]
+  },
+  {
+   "case": "c8df8b5851f03",
+   "verdicts": [
+    {
+     "key": "k05aeea1a2325",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "top has no cmpr stat field; the compressed-memory field is cmprs."
+    },
+    {
+     "key": "k6b3660616063",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "top has no cmem stat field; the compressed-memory field is cmprs."
+    }
+   ]
+  },
+  {
+   "case": "c19cc0288edd4",
+   "verdicts": [
+    {
+     "key": "k3758f20f17c6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "nc -z tests the TCP port without sending payload."
+    }
+   ]
+  },
+  {
+   "case": "c37c99156d87a",
+   "verdicts": [
+    {
+     "key": "k02e21776c081",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Recursive find, chmod go-r on every matching regular file."
+    },
+    {
+     "key": "kd9dfed01141c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Top-level matching files lose group and other read."
+    },
+    {
+     "key": "ka9d27fbd5ee3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Recursive find, chmod go-r on every matching regular file."
+    }
+   ]
+  },
+  {
+   "case": "c8f5b73b8d70e",
+   "verdicts": [
+    {
+     "key": "k26e2281bcb51",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy accepts a top-level key without the colon."
+    },
+    {
+     "key": "k95c5f4d2d896",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Explicit :CFBundleExecutable path prints the value."
+    },
+    {
+     "key": "kc5b93886175b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil -extract prints the raw top-level value."
+    },
+    {
+     "key": "kab4251d7219e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "defaults read accepts the plist path without the extension."
+    }
+   ]
+  }
+ ]
+}

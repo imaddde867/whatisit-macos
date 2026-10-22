@@ -1,0 +1,540 @@
+{
+ "revision": "20261021-r3",
+ "rule": "A live control keeps its expected label unless hard evidence on stock macOS shows the label is wrong; when the request is ambiguous or the behaviour cannot be established, the control is contested and excluded from the per-batch gate but still requires a verdict.",
+ "basis": "Judged from the frozen request/command with man pages and read-only probes on this Mac; no campaign verdict used.",
+ "inputs_sha256": {
+  "controls.jsonl": "d3274ff7dfbf2d3db40b19eb23188ed3820cd87c22a6a8ac4ca5971d95afe61a",
+  "controls-map.json": "4e8976b6cba7372f2bbfdee7182ba2dc6d09cc1007fcb094f9c7c188963a8d1f",
+  "pool/manifest.json": "55e37d9e26b2d4a609fe1abcd0531cf9620c13d3ce97fe207ced2329930fa2b2"
+ },
+ "counts": {
+  "live": 52,
+  "verified": 51,
+  "contested": 1
+ },
+ "contested_keys": [
+  "kb499110b0a02"
+ ],
+ "controls": [
+  {
+   "key": "kbe754eb4f487",
+   "origin_key": "ct0002",
+   "batch": "b06",
+   "expected": "incorrect",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "command": "find -name \"*.DS_Store\" | xargs rm -rf",
+   "decision": "verified",
+   "rationale": "BSD find needs a path before the expression; verified it exits with \"illegal option -- n\"."
+  },
+  {
+   "key": "kb44692254890",
+   "origin_key": "ct0003",
+   "batch": "b09",
+   "expected": "incorrect",
+   "request": "show notes.txt in all caps",
+   "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)",
+   "decision": "verified",
+   "rationale": "echo with command substitution collapses line breaks and spacing."
+  },
+  {
+   "key": "k1e06c6a12061",
+   "origin_key": "ct0004",
+   "batch": "b19",
+   "expected": "incorrect",
+   "request": "take a screenshot and save it as shot.png",
+   "command": "screencapture -P -T 0 shot.png",
+   "decision": "verified",
+   "rationale": "-P opens the capture in Preview, an unrequested side effect."
+  },
+  {
+   "key": "k5ee24c560fda",
+   "origin_key": "ct0005",
+   "batch": "b15",
+   "expected": "incorrect",
+   "request": "Show entries marked ERROR or WARN in app.log.",
+   "command": "grep -E 'ERROR|WARN' ~/app.log",
+   "decision": "verified",
+   "rationale": "Reads ~/app.log, not the local app.log the request names."
+  },
+  {
+   "key": "k8475a320092f",
+   "origin_key": "ct0006",
+   "batch": "b14",
+   "expected": "incorrect",
+   "request": "how many files are in this folder?",
+   "command": "find . -type f | wc -l",
+   "decision": "verified",
+   "rationale": "Recursively counts every file under the folder, not files in this folder; newline-delimited paths also overcount."
+  },
+  {
+   "key": "kedccfb2c4f6d",
+   "origin_key": "ct0008",
+   "batch": "b14",
+   "expected": "incorrect",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "command": "find -name '*.DS_Store' -exec rm {} +",
+   "decision": "verified",
+   "rationale": "Same missing starting path; the command errors before deleting anything."
+  },
+  {
+   "key": "k73923be3f851",
+   "origin_key": "ct0009",
+   "batch": "b18",
+   "expected": "incorrect",
+   "request": "Inspect MyApp.app's signing identity and signature details.",
+   "command": "codesign -d MyApp.app",
+   "decision": "verified",
+   "rationale": "Plain codesign -d omits the signing authority; only -dvv shows the identity, so the request is only half answered."
+  },
+  {
+   "key": "k8d1886e018ca",
+   "origin_key": "ct0011",
+   "batch": "b21",
+   "expected": "incorrect",
+   "request": "Count the lines containing ERROR in the local app.log.",
+   "command": "grep -c ERROR local/app.log",
+   "decision": "verified",
+   "rationale": "Reads local/app.log (a subdirectory), not the local app.log the request names."
+  },
+  {
+   "key": "k23b89fbca194",
+   "origin_key": "ct0012",
+   "batch": "b19",
+   "expected": "incorrect",
+   "request": "show notes.txt in all caps",
+   "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')",
+   "decision": "verified",
+   "rationale": "Command substitution collapses line breaks and echo collapses spacing, so the file is not shown as-is."
+  },
+  {
+   "key": "ke429725097ca",
+   "origin_key": "ct0016",
+   "batch": "b08",
+   "expected": "incorrect",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+   "decision": "verified",
+   "rationale": "Same -iUDP/-sTCP:LISTEN contradiction; awk prints the command column, not the PID or address."
+  },
+  {
+   "key": "k54425aad3ebb",
+   "origin_key": "ct0017",
+   "batch": "b17",
+   "expected": "incorrect",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill",
+   "decision": "verified",
+   "rationale": "lsof -iTCP:8080 without -sTCP:LISTEN also selects established connections, and the header token is passed to kill."
+  },
+  {
+   "key": "kb499110b0a02",
+   "origin_key": "ct0018",
+   "batch": "b06",
+   "expected": "incorrect",
+   "request": "do i have node installed",
+   "command": "if [[ -z $(which node) ]]; then echo \"no\"; else echo \"yes\"; fi",
+   "decision": "contested",
+   "rationale": "The if/which test answers the question correctly on this shell; the historical incorrect expectation is unsupported."
+  },
+  {
+   "key": "kd7942dffb099",
+   "origin_key": "ct0020",
+   "batch": "b07",
+   "expected": "incorrect",
+   "request": "can I reach google.com? just try a few times",
+   "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408",
+   "decision": "verified",
+   "rationale": "No retry; a single request cannot satisfy \"try a few times\"."
+  },
+  {
+   "key": "kf25a6a3f6a5b",
+   "origin_key": "ct0021",
+   "batch": "b22",
+   "expected": "incorrect",
+   "request": "put all the jpgs in this folder into a new folder called photos",
+   "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv {} photos/ +",
+   "decision": "verified",
+   "rationale": "Same invalid -exec + form; verified that nothing is moved."
+  },
+  {
+   "key": "ka5da1004423c",
+   "origin_key": "ct0022",
+   "batch": "b05",
+   "expected": "incorrect",
+   "request": "how big is the project folder in total",
+   "command": "du -sh project_folder",
+   "decision": "verified",
+   "rationale": "Same invented project_folder operand."
+  },
+  {
+   "key": "k4cc356a65f0d",
+   "origin_key": "ct0023",
+   "batch": "b08",
+   "expected": "incorrect",
+   "request": "list apps in /Applications with chrome in the name",
+   "command": "find /Applications -name \"*Chrome*\"",
+   "decision": "verified",
+   "rationale": "Matches every path containing Chrome, including non-app files and helpers, and is case-sensitive."
+  },
+  {
+   "key": "k1d242bc53e9d",
+   "origin_key": "ct0024",
+   "batch": "b05",
+   "expected": "incorrect",
+   "request": "find the 10 biggest files inside Documents",
+   "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+   "decision": "verified",
+   "rationale": "du -s on the glob reports per-entry totals including directories, so the ranking is not the biggest files."
+  },
+  {
+   "key": "kf9374d99dc8b",
+   "origin_key": "ct0025",
+   "batch": "b15",
+   "expected": "incorrect",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+   "decision": "verified",
+   "rationale": "Same -iUDP/-sTCP:LISTEN contradiction; awk prints the command column."
+  },
+  {
+   "key": "ke20aaf4a8279",
+   "origin_key": "ct0026",
+   "batch": "b13",
+   "expected": "incorrect",
+   "request": "put all the jpgs in this folder into a new folder called photos",
+   "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv -- {} photos/ +",
+   "decision": "verified",
+   "rationale": "BSD find rejects -exec ... {} photos/ + because {} is not the last argument before + (verified)."
+  },
+  {
+   "key": "k794a0acc41f2",
+   "origin_key": "ct0027",
+   "batch": "b22",
+   "expected": "incorrect",
+   "request": "show notes.txt in all caps",
+   "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\"",
+   "decision": "verified",
+   "rationale": "Command substitution collapses line breaks, so the output is not notes.txt in caps."
+  },
+  {
+   "key": "k9b5c3c7c4e41",
+   "origin_key": "ct0028",
+   "batch": "b09",
+   "expected": "incorrect",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -i :8080 | awk '{print $2}' | xargs kill",
+   "decision": "verified",
+   "rationale": "Same over-broad lsof selection without the LISTEN restriction; the header token is passed to kill."
+  },
+  {
+   "key": "k26a897615366",
+   "origin_key": "ct0029",
+   "batch": "b21",
+   "expected": "incorrect",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u",
+   "decision": "verified",
+   "rationale": "Combines -iUDP with -sTCP:LISTEN, which cannot match UDP; the awk also reads the FD column, not the address field."
+  },
+  {
+   "key": "k7d729ae85dcb",
+   "origin_key": "ct0030",
+   "batch": "b18",
+   "expected": "incorrect",
+   "request": "copy report.pdf into my downloads folder",
+   "command": "mkdir -p ~/Downloads/report && cp report.pdf ~/Downloads/report",
+   "decision": "verified",
+   "rationale": "Copies into ~/Downloads/report, an unrequested subfolder, instead of ~/Downloads."
+  },
+  {
+   "key": "kacb34b811e93",
+   "origin_key": "ct0031",
+   "batch": "b10",
+   "expected": "incorrect",
+   "request": "what's eating the space in my Downloads folder? biggest first",
+   "command": "du -sh Downloads/* | sort -rh",
+   "decision": "verified",
+   "rationale": "\"Downloads\" is relative to the working directory, not the user's ~/Downloads."
+  },
+  {
+   "key": "k679ff54292f3",
+   "origin_key": "ct0032",
+   "batch": "b10",
+   "expected": "incorrect",
+   "request": "show notes.txt in all caps",
+   "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+   "decision": "verified",
+   "rationale": "Prints the literal text \"SHOW NOTES.TXT\", not the file contents."
+  },
+  {
+   "key": "kc381277e5b8c",
+   "origin_key": "ct0033",
+   "batch": "b16",
+   "expected": "incorrect",
+   "request": "i need a copy of the whole project folder called project-copy",
+   "command": "mkdir project-copy && cp -R project project-copy",
+   "decision": "verified",
+   "rationale": "With the destination directory pre-created, cp -R nests project inside project-copy (verified)."
+  },
+  {
+   "key": "kc065cde2a631",
+   "origin_key": "ct0034",
+   "batch": "b20",
+   "expected": "incorrect",
+   "request": "take a screenshot and save it as shot.png",
+   "command": "screencapture -c shot.png",
+   "decision": "verified",
+   "rationale": "-c forces the capture to the clipboard, so shot.png is not saved."
+  },
+  {
+   "key": "k9a62803859d9",
+   "origin_key": "ct0035",
+   "batch": "b11",
+   "expected": "incorrect",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill",
+   "decision": "verified",
+   "rationale": "Same lsof selection; +M changes portmapper handling, not the over-broad process set."
+  },
+  {
+   "key": "kddb4923526dc",
+   "origin_key": "ct0036",
+   "batch": "b17",
+   "expected": "incorrect",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill",
+   "decision": "verified",
+   "rationale": "Filters column six for TCP, but TYPE is column five, so nothing is printed and nothing is killed."
+  },
+  {
+   "key": "k5a88ecd76e7b",
+   "origin_key": "ct0037",
+   "batch": "b12",
+   "expected": "incorrect",
+   "request": "can I reach google.com? just try a few times",
+   "command": "curl -sSf https://www.google.com || true",
+   "decision": "verified",
+   "rationale": "No retry; the request asks to try a few times."
+  },
+  {
+   "key": "k9ae332f1ff67",
+   "origin_key": "ct0038",
+   "batch": "b11",
+   "expected": "incorrect",
+   "request": "list my running python processes",
+   "command": "ps -axo pid= | grep python",
+   "decision": "verified",
+   "rationale": "ps -axo pid= prints PIDs only, so grep python never matches."
+  },
+  {
+   "key": "k4f061739708b",
+   "origin_key": "ct0039",
+   "batch": "b20",
+   "expected": "incorrect",
+   "request": "how big is the project folder in total",
+   "command": "du -hs project_folder",
+   "decision": "verified",
+   "rationale": "The request does not name project_folder; the operand is invented rather than derived."
+  },
+  {
+   "key": "kc6cc0ae2056f",
+   "origin_key": "ct0041",
+   "batch": "b09",
+   "expected": "correct",
+   "request": "Print only field three from colon-delimited input.txt.",
+   "command": "cat input.txt | cut -d: -f3",
+   "decision": "verified",
+   "rationale": "cut -d: -f3 prints only field three; the useless cat is harmless."
+  },
+  {
+   "key": "k7e92284dde10",
+   "origin_key": "ct0042",
+   "batch": "b14",
+   "expected": "correct",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -cEi 'TODO' notes.txt",
+   "decision": "verified",
+   "rationale": "Same as ct0061; option order only."
+  },
+  {
+   "key": "k0978c531a572",
+   "origin_key": "ct0043",
+   "batch": "b07",
+   "expected": "correct",
+   "request": "top 5 processes by memory",
+   "command": "ps -eo pmem,comm | sort -rn | head -n 5",
+   "decision": "verified",
+   "rationale": "sorts the numeric memory column descending; the non-numeric header sorts last, so top five are processes."
+  },
+  {
+   "key": "k858e5a05ac97",
+   "origin_key": "ct0044",
+   "batch": "b12",
+   "expected": "correct",
+   "request": "today's date as YYYY-MM-DD",
+   "command": "date +\"%Y-%m-%d\"",
+   "decision": "verified",
+   "rationale": "date +%Y-%m-%d prints today in that format."
+  },
+  {
+   "key": "k5ba7c8fd0d77",
+   "origin_key": "ct0045",
+   "batch": "b18",
+   "expected": "correct",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\"",
+   "decision": "verified",
+   "rationale": "ps -p returns success iff the PID exists; no signal is sent."
+  },
+  {
+   "key": "k9a61fe93bf72",
+   "origin_key": "ct0046",
+   "batch": "b20",
+   "expected": "correct",
+   "request": "Print the Ethernet hardware address for interface en0.",
+   "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'",
+   "decision": "verified",
+   "rationale": "The -Eo pattern extracts exactly the ether address from en0 (verified against this Mac)."
+  },
+  {
+   "key": "k9f704d345f79",
+   "origin_key": "ct0047",
+   "batch": "b08",
+   "expected": "correct",
+   "request": "hey how do I see what power source I'm on and the battery percent",
+   "command": "system_profiler SPPowerDataType",
+   "decision": "verified",
+   "rationale": "system_profiler SPPowerDataType reports the power source and battery charge."
+  },
+  {
+   "key": "k2d85c2e9ca35",
+   "origin_key": "ct0048",
+   "batch": "b19",
+   "expected": "correct",
+   "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist.",
+   "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist",
+   "decision": "verified",
+   "rationale": "Print :CFBundleIdentifier reads the nested key correctly."
+  },
+  {
+   "key": "k8573b2d0cf55",
+   "origin_key": "ct0049",
+   "batch": "b16",
+   "expected": "correct",
+   "request": "show the first 20 lines of app.log",
+   "command": "tail -n +1 app.log | head -n 20",
+   "decision": "verified",
+   "rationale": "tail -n +1 | head -n 20 prints the first 20 lines."
+  },
+  {
+   "key": "k3aebfe0530e0",
+   "origin_key": "ct0050",
+   "batch": "b12",
+   "expected": "correct",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -ciE 'TODO' notes.txt",
+   "decision": "verified",
+   "rationale": "Same as ct0061; -E does not change a literal pattern."
+  },
+  {
+   "key": "k448c244e8539",
+   "origin_key": "ct0052",
+   "batch": "b11",
+   "expected": "correct",
+   "request": "what is my public ip",
+   "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'",
+   "decision": "verified",
+   "rationale": "checkip.dyndns.org responded on this Mac; the pattern extracts the address."
+  },
+  {
+   "key": "ke8212daaee4c",
+   "origin_key": "ct0054",
+   "batch": "b06",
+   "expected": "correct",
+   "request": "Print lines 3 through 7 of notes.txt, without changing it.",
+   "command": "head -n 7 notes.txt | tail -n +3",
+   "decision": "verified",
+   "rationale": "head -n 7 piped into tail -n +3 prints lines 3 through 7 and does not modify the file."
+  },
+  {
+   "key": "ke87abf07df87",
+   "origin_key": "ct0056",
+   "batch": "b10",
+   "expected": "correct",
+   "request": "What path would this zsh session use if I typed python3?",
+   "command": "which python3",
+   "decision": "verified",
+   "rationale": "zsh which reports the path the session would use for python3."
+  },
+  {
+   "key": "ke09507eea6d9",
+   "origin_key": "ct0057",
+   "batch": "b05",
+   "expected": "correct",
+   "request": "top 5 processes by memory",
+   "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+   "decision": "verified",
+   "rationale": "sorts the numeric rss column descending; the header sorts last, so top five are processes."
+  },
+  {
+   "key": "k9170df8303b9",
+   "origin_key": "ct0059",
+   "batch": "b15",
+   "expected": "correct",
+   "request": "what is my public ip",
+   "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'",
+   "decision": "verified",
+   "rationale": "checkip.dyndns.org responded; stripping letters and punctuation leaves the address digits."
+  },
+  {
+   "key": "k3a2b46da1306",
+   "origin_key": "ct0060",
+   "batch": "b17",
+   "expected": "correct",
+   "request": "Print that Info.plist as JSON, without rewriting it.",
+   "command": "plutil -convert json -o - Info.plist",
+   "decision": "verified",
+   "rationale": "plutil -convert json -o - writes JSON to stdout and leaves the plist untouched."
+  },
+  {
+   "key": "k03863092053d",
+   "origin_key": "ct0061",
+   "batch": "b16",
+   "expected": "correct",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -ci 'TODO' notes.txt",
+   "decision": "verified",
+   "rationale": "grep -ci counts matching lines case-insensitively for a literal string; no regex metacharacters in TODO."
+  },
+  {
+   "key": "kc3093d1d9f23",
+   "origin_key": "ct0062",
+   "batch": "b22",
+   "expected": "correct",
+   "request": "Show the macOS filesystem flags on report.pdf.",
+   "command": "stat -f \"%Sf\" report.pdf",
+   "decision": "verified",
+   "rationale": "stat %Sf prints the filesystem flags field (verified; prints \"-\" on this filesystem)."
+  },
+  {
+   "key": "kd45ce090ee60",
+   "origin_key": "ct0063",
+   "batch": "b21",
+   "expected": "correct",
+   "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+   "command": "mount | awk '$3 ~ /^\\/Volumes\\//'",
+   "decision": "verified",
+   "rationale": "On macOS mount, field three is the mount point (verified); the awk filters /Volumes/."
+  },
+  {
+   "key": "kca952c245123",
+   "origin_key": "ct0065",
+   "batch": "b13",
+   "expected": "correct",
+   "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source.",
+   "command": "sips --rotate 90 photo.jpg --out rotated.jpg",
+   "decision": "verified",
+   "rationale": "sips --rotate 90 writes the rotated image to --out; the source is preserved."
+  }
+ ]
+}

@@ -1,0 +1,149 @@
+{
+  "batch": "cal-controls",
+  "judge": "dsh-judge-cal-controls-a2",
+  "cases": [
+    {
+      "case": "cc33c16decdf1",
+      "verdicts": [
+        {
+          "key": "kc33c16decdf1",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "lsof -p needs a comma-separated PID set; pgrep -d ' ' supplies spaces, so extra PIDs become file operands."
+        }
+      ]
+    },
+    {
+      "case": "cb1ee9d0f7685",
+      "verdicts": [
+        {
+          "key": "kb1ee9d0f7685",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -axo comm= prints process command names; grep keeps the lines containing python."
+        }
+      ]
+    },
+    {
+      "case": "c3888209f9d8d",
+      "verdicts": [
+        {
+          "key": "k3888209f9d8d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -p exits nonzero when the PID is absent; no signal is sent."
+        }
+      ]
+    },
+    {
+      "case": "c5229bce577d5",
+      "verdicts": [
+        {
+          "key": "k5229bce577d5",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "-P opens the capture in a Preview window, an unrequested app launch, besides saving shot.png."
+        }
+      ]
+    },
+    {
+      "case": "c473b8e22e090",
+      "verdicts": [
+        {
+          "key": "k473b8e22e090",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires a starting path; without one it errors instead of deleting anything."
+        }
+      ]
+    },
+    {
+      "case": "cf0f3516eca55",
+      "verdicts": [
+        {
+          "key": "kf0f3516eca55",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "sort -u removes duplicate lines first, so uniq -c reports a count of 1 for every line."
+        }
+      ]
+    },
+    {
+      "case": "c89de0398f504",
+      "verdicts": [
+        {
+          "key": "k89de0398f504",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Creates photos first, then moves every .jpg found under the current tree into it."
+        }
+      ]
+    },
+    {
+      "case": "c26d0007fb52f",
+      "verdicts": [
+        {
+          "key": "k26d0007fb52f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Writes sed output to a temporary file and renames it over notes.txt; change is saved."
+        }
+      ]
+    },
+    {
+      "case": "cfadf81351405",
+      "verdicts": [
+        {
+          "key": "kfadf81351405",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches directory names containing Chrome under /Applications, including the .app bundles."
+        }
+      ]
+    },
+    {
+      "case": "cd40ba8dcc386",
+      "verdicts": [
+        {
+          "key": "kd40ba8dcc386",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "-maxdepth 1 limits the search to direct files, excluding subfolder files that may be biggest."
+        }
+      ]
+    },
+    {
+      "case": "c6c64f6b2af35",
+      "verdicts": [
+        {
+          "key": "k6c64f6b2af35",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "rss is resident memory in KB; numeric reverse sort ranks the largest first."
+        }
+      ]
+    },
+    {
+      "case": "c4bba56587dcf",
+      "verdicts": [
+        {
+          "key": "k4bba56587dcf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "vm_stat's first line gives page size; its eighth whitespace field is the byte count."
+        }
+      ]
+    },
+    {
+      "case": "ce2daa749d4df",
+      "verdicts": [
+        {
+          "key": "ke2daa749d4df",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "getconf PAGESIZE maps to sysconf _SC_PAGESIZE, the system page size in bytes."
+        }
+      ]
+    }
+  ]
+}

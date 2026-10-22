@@ -1,0 +1,389 @@
+{
+  "batch": "d02",
+  "items": [
+    {
+      "case": "cd3d54ee2f44c",
+      "request": "Show whether disk4 is removable media.",
+      "candidates": [
+        {
+          "key": "k011af1726a59",
+          "command": "diskutil info /dev/disk4 | grep -i \"Removable Media\""
+        },
+        {
+          "key": "k36d4036fbde5",
+          "command": "diskutil info disk4 | grep -i 'Removable Media'"
+        },
+        {
+          "key": "k6cd0b25d0c5c",
+          "command": "diskutil info disk4 | grep -i \"Removable\""
+        },
+        {
+          "key": "k9c3df9e5c90f",
+          "command": "diskutil info disk4 | grep -i 'Removable'"
+        },
+        {
+          "key": "kae7a8d91c167",
+          "command": "diskutil info disk4 | grep -i \"Removable Media\""
+        }
+      ]
+    },
+    {
+      "case": "c38a33c25cb80",
+      "request": "Report the current mount status of disk4s1 without trying to mount it.",
+      "candidates": [
+        {
+          "key": "k0163ea408e9c",
+          "command": "mount | grep -q '/dev/disk4s1' && echo mounted || echo not mounted"
+        },
+        {
+          "key": "k96740357dd5a",
+          "command": "diskutil info disk4s1"
+        },
+        {
+          "key": "ka1e0aa945382",
+          "command": "diskutil info disk4s1 | grep -E '^(Mounted|Mount Point):' || echo 'Not mounted'"
+        },
+        {
+          "key": "kb0f41ce2a051",
+          "command": "diskutil info disk4s1 2>/dev/null | grep -E '^ *Mounted|^ *Mount Point' || echo 'disk4s1 not found'"
+        }
+      ]
+    },
+    {
+      "case": "c941e4b4ace0c",
+      "request": "mount disk4s1 at existing empty folder mountpoint read only",
+      "candidates": [
+        {
+          "key": "k1709bb7d560b",
+          "command": "mount -o ro /dev/disk4s1 mountpoint"
+        }
+      ]
+    },
+    {
+      "case": "caabbfa39aa52",
+      "request": "Can you tell whether disk4 uses GPT or an older partition scheme?",
+      "candidates": [
+        {
+          "key": "k18d35fa2f2b9",
+          "command": "diskutil info disk4 | grep -i 'Partition Map Type'"
+        },
+        {
+          "key": "k3d676ba8a892",
+          "command": "diskutil info disk4 | grep \"Partition Map Type\""
+        },
+        {
+          "key": "k752b1eac0157",
+          "command": "diskutil info /dev/disk4 | grep -i 'Partition Map Type'"
+        },
+        {
+          "key": "kcd9dda517d63",
+          "command": "diskutil info disk4 | grep 'Partition Map Type'"
+        }
+      ]
+    },
+    {
+      "case": "c6d938ae74ca3",
+      "request": "Find names containing a literal square bracket in samples/.",
+      "candidates": [
+        {
+          "key": "k1ab45f9f180f",
+          "command": "find samples/ '(' -name '*[[]*' -o -name '*[]]*' ')' -print"
+        },
+        {
+          "key": "kb43946fe86f4",
+          "command": "find samples/ -name '*[[]*'"
+        },
+        {
+          "key": "kc08c2dfefcd5",
+          "command": "find samples/ -name '*\\[*' -print"
+        },
+        {
+          "key": "kcf7b1bbd75b6",
+          "command": "find samples/ -name '*[][]*'"
+        },
+        {
+          "key": "kf920481123a5",
+          "command": "find samples/ \\( -name '*\\[*' -o -name '*\\]*' \\) -print"
+        }
+      ]
+    },
+    {
+      "case": "c215a89e1a557",
+      "request": "show disk4s1s partition offset pls",
+      "candidates": [
+        {
+          "key": "k1b30b1917bfc",
+          "command": "diskutil info /dev/disk4s1 | grep -i offset"
+        },
+        {
+          "key": "k2c0e568694cc",
+          "command": "diskutil info disk4s1s | grep -i offset"
+        },
+        {
+          "key": "k56463f734e2d",
+          "command": "diskutil info disk4s1s | grep -i 'Partition Offset' || echo 'No Partition Offset found'"
+        },
+        {
+          "key": "ke713bf407c56",
+          "command": "diskutil info disk4s1s | grep -i 'Partition Offset'"
+        }
+      ]
+    },
+    {
+      "case": "c91892905be81",
+      "request": "Inspect disk4's partition map without changing it.",
+      "candidates": [
+        {
+          "key": "k205989476636",
+          "command": "diskutil info /dev/disk4"
+        },
+        {
+          "key": "k544dccce47f5",
+          "command": "diskutil partitionMap show /dev/disk4"
+        },
+        {
+          "key": "k5f7d44087b97",
+          "command": "diskutil partitionMap disk4"
+        },
+        {
+          "key": "kbc1c02479c03",
+          "command": "diskutil partitionMap show disk4"
+        }
+      ]
+    },
+    {
+      "case": "c384ba5798de6",
+      "request": "Please check whether Tool.app has the get-task-allow entitlement.",
+      "candidates": [
+        {
+          "key": "k34a644f60b22",
+          "command": "codesign -d --entitlements - Tool.app 2>/dev/null | grep -A1 '<key>get-task-allow</key>' | grep -q '<true' && echo true || echo false"
+        },
+        {
+          "key": "k4092c297aded",
+          "command": "codesign -d --entitlements - Tool.app 2>/dev/null | tr -d '[:space:]' | grep -qF '<key>get-task-allow</key><true/>' && echo yes || echo no"
+        },
+        {
+          "key": "k5ece063a04e0",
+          "command": "codesign -d --entitlements :- Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo yes || echo no"
+        },
+        {
+          "key": "k93fe9be97bee",
+          "command": "codesign -d --entitlements - Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo \"yes\" || echo \"no\""
+        },
+        {
+          "key": "kfcf44566dddb",
+          "command": "codesign -d --entitlements :- Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo 'Tool.app has the get-task-allow entitlement' || echo 'Tool.app does not have the get-task-allow entitlement'"
+        }
+      ]
+    },
+    {
+      "case": "cbac58183ad07",
+      "request": "I want to mount the existing unmounted volume disk4s1 read-only.",
+      "candidates": [
+        {
+          "key": "k6cf3c50162c0",
+          "command": "diskutil mount readOnly /dev/disk4s1"
+        },
+        {
+          "key": "k703306779576",
+          "command": "diskutil mount -mountOptions readOnly /dev/disk4s1"
+        },
+        {
+          "key": "kf74926f32a0b",
+          "command": "diskutil mount -mountOptions readOnly disk4s1"
+        }
+      ]
+    },
+    {
+      "case": "ca9e3e1708301",
+      "request": "Can you list disk4's partitions as a machine-readable property list?",
+      "candidates": [
+        {
+          "key": "k7788b73b7054",
+          "command": "diskutil list disk4 -plist"
+        },
+        {
+          "key": "kbdb98557702d",
+          "command": "/usr/sbin/diskutil list -plist /dev/disk4"
+        },
+        {
+          "key": "kf1dede78dabe",
+          "command": "diskutil list -plist disk4"
+        }
+      ]
+    },
+    {
+      "case": "c0ccfd3e19c98",
+      "request": "show filesystem use for mounts backed by /dev/disk4",
+      "candidates": [
+        {
+          "key": "k817e9983fb62",
+          "command": "df -h | awk 'NR==1 || $1 ~ \"^/dev/disk4([^0-9]|$)\"'"
+        },
+        {
+          "key": "k8bb6c378d610",
+          "command": "df -h | awk 'NR==1 || $1 ~ \"(^|/)disk4([^0-9]|$)\"'"
+        },
+        {
+          "key": "ka44df65204e3",
+          "command": "df -hP | awk 'NR==1 || /^\\/dev\\/disk4[^0-9]/'"
+        },
+        {
+          "key": "kba17caf21a7b",
+          "command": "df -h | grep -E '^Filesystem|^/dev/disk4s|^/dev/disk4[[:space:]]'"
+        },
+        {
+          "key": "kfbc4affb0a53",
+          "command": "df -h | grep -E '^(/dev/disk4([^0-9]|$)|Filesystem)'"
+        }
+      ]
+    },
+    {
+      "case": "c118e7dd4f711",
+      "request": "Please verify the partition map on disk4 without attempting repairs.",
+      "candidates": [
+        {
+          "key": "ke52695a516a7",
+          "command": "diskutil verifyDisk /dev/disk4"
+        },
+        {
+          "key": "kf7ab1ab66bb1",
+          "command": "diskutil verifyDisk disk4"
+        },
+        {
+          "key": "kfed2692417ea",
+          "command": "diskutil verifyPartitionMap disk4"
+        }
+      ]
+    },
+    {
+      "case": "c3f6eab2b90a0",
+      "request": "Please unmount all volumes of external disk4 normally, without forcing them.",
+      "candidates": [
+        {
+          "key": "ke54859887523",
+          "command": "diskutil unmountDisk /dev/disk4"
+        }
+      ]
+    },
+    {
+      "case": "cf4500bd9d45c",
+      "request": "Can you detach the disk-image device /dev/disk5 normally, without forcing it?",
+      "candidates": [
+        {
+          "key": "kf1d58940e6a5",
+          "command": "hdiutil detach /dev/disk5"
+        }
+      ]
+    },
+    {
+      "case": "c813b69163a74",
+      "request": "List signpost names from mac-activities.json, an exported macOS activity array.",
+      "candidates": [
+        {
+          "key": "k2696ddc4e999",
+          "command": "osascript -l JavaScript -e 'ObjC.import(\"Foundation\"); var d=$.NSData.alloc.initWithContentsOfFile(\"mac-activities.json\"); var s=$.NSString.alloc.initWithDataEncoding(d,$.NSUTF8StringEncoding).js; var a=JSON.parse(s); function names(v){ if(Array.isArray(v)) return v.flatMap(names); if(typeof v==\"string\") return v?[v]:[]; if(v&&typeof v==\"object\") return typeof v.name==\"string\"?[v.name]:Object.values(v).flatMap(names); return[]; } function f(o){ if(Array.isArray(o)) return o.flatMap(f); if(o&&typeof o==\"object\") return Object.entries(o).flatMap(function(e){ return e[0]==\"signpost\"?names(e[1]):f(e[1]); }); return[]; } Array.from(new Set(f(a))).join(\"\\n\")'"
+        },
+        {
+          "key": "k3afc5fc18df3",
+          "command": "grep -oE '\"signpost(_name|Name)\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' mac-activities.json | sed -E 's/.*:[[:space:]]*\"([^\"]*)\"/\\1/' | sort -u"
+        },
+        {
+          "key": "k7cc080fa5004",
+          "command": "tr -d '\\n' < mac-activities.json | grep -oE '\"(signpost_name|signpost)\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | cut -d'\"' -f4 | sort -u"
+        },
+        {
+          "key": "kf7cc31cd87b1",
+          "command": "python3 -c 'import json; d=json.load(open(\"mac-activities.json\")); keys={\"signpost_name\",\"signpostname\"}; out={v for x in d if isinstance(x,dict) for k,v in x.items() if str(k).lower() in keys and isinstance(v,str) and v}; print(\"\\n\".join(sorted(out or {x for x in d if isinstance(x,str) and x} or {v for x in d if isinstance(x,dict) for k,v in x.items() if str(k).lower()==\"name\" and isinstance(v,str) and v})))'"
+        }
+      ]
+    },
+    {
+      "case": "cc221124920ec",
+      "request": "Report how many files in ~/Library/ColorSync/Profiles have nonempty resource forks.",
+      "candidates": [
+        {
+          "key": "kc39b659bd32d",
+          "command": "find ~/Library/ColorSync/Profiles -maxdepth 1 -type f -exec stat -f '%z' '{}'/..namedfork/rsrc \\; 2>/dev/null | awk '$1 > 0' | wc -l"
+        },
+        {
+          "key": "kca1882a84765",
+          "command": "find ~/Library/ColorSync/Profiles -maxdepth 1 -type f -exec stat -f '%z' \"{}/..namedfork/rsrc\" \\; 2>/dev/null | awk '$1>0 {c++} END {print c+0}'"
+        }
+      ]
+    },
+    {
+      "case": "c6cd68352628c",
+      "request": "Could you read the Finder window bounds for its frontmost window?",
+      "candidates": [
+        {
+          "key": "kfec051f00919",
+          "command": "osascript -e 'tell application \"Finder\" to get bounds of front window'"
+        }
+      ]
+    },
+    {
+      "case": "ca8188664bd35",
+      "request": "Report the inode change time of ~/Library/Logs/MyApp in Unix seconds using macOS stat.",
+      "candidates": [
+        {
+          "key": "k318b469c7a4f",
+          "command": "stat -f %c ~/Library/Logs/MyApp"
+        }
+      ]
+    },
+    {
+      "case": "c5271ac83c103",
+      "request": "Please pad the lines in codes.txt to eight characters with leading zeros.",
+      "candidates": [
+        {
+          "key": "k23ce61fa599d",
+          "command": "awk '{while(length($0)<8) $0=\"0\"$0; print}' codes.txt"
+        },
+        {
+          "key": "k2d9ab267add1",
+          "command": "awk '{while (length($0)<8) $0=\"0\"$0; print}' codes.txt > codes.txt.tmp && mv codes.txt.tmp codes.txt"
+        },
+        {
+          "key": "k724cc49df6de",
+          "command": "awk '{ while (length($0) < 8) $0 = \"0\" $0; print }' codes.txt > codes.txt.tmp && mv codes.txt.tmp codes.txt"
+        },
+        {
+          "key": "kc7ce39f80fe5",
+          "command": "sed -E -i '' ':a; s/^.{0,7}$/0&/; ta' codes.txt"
+        },
+        {
+          "key": "kec252295fdbb",
+          "command": "awk '{while(length($0)<8)$0=\"0\"$0; print}' codes.txt > codes.txt.tmp && mv codes.txt.tmp codes.txt"
+        }
+      ]
+    },
+    {
+      "case": "c64567459ab38",
+      "request": "can u show the last exit status of user launch agent com.example.MyApp",
+      "candidates": [
+        {
+          "key": "k012fa103a485",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp | grep -i 'last exit'"
+        },
+        {
+          "key": "k2a7b0dfce760",
+          "command": "launchctl list com.example.MyApp | grep -i LastExitStatus"
+        },
+        {
+          "key": "kab3554d8c35b",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp | grep -Ei 'last exit code|LastExitStatus'"
+        },
+        {
+          "key": "ke9ea44e04f5c",
+          "command": "launchctl list com.example.MyApp"
+        },
+        {
+          "key": "kedd69882334e",
+          "command": "launchctl list com.example.MyApp | grep LastExitStatus"
+        }
+      ]
+    }
+  ]
+}

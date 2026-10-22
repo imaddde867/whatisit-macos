@@ -1,0 +1,721 @@
+{
+  "batch": "semantic65",
+  "judge": "gpt-6.1-sol-medium-semantic65-20261020-a1",
+  "cases": [
+    {
+      "case": "cbcdb6b0a4482",
+      "verdicts": [
+        {
+          "key": "k03863092053d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "TODO contains no regex metacharacters; grep counts matching lines case-insensitively."
+        }
+      ]
+    },
+    {
+      "case": "cde18321a9a04",
+      "verdicts": [
+        {
+          "key": "k06efcc042c1f",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "The -P option additionally opens Preview, an unrequested application side effect."
+        }
+      ]
+    },
+    {
+      "case": "c007cf831d9a8",
+      "verdicts": [
+        {
+          "key": "k0978c531a572",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stock ps supports -e and pmem; descending numeric sorting selects five largest memory percentages."
+        }
+      ]
+    },
+    {
+      "case": "c8c2790874cdb",
+      "verdicts": [
+        {
+          "key": "k0ce5f7f1aeaa",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Searches Python files in the current directory and prefixes matching lines with their line numbers."
+        }
+      ]
+    },
+    {
+      "case": "cc1508f7ff753",
+      "verdicts": [
+        {
+          "key": "k1357b28a3c4b",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "lsof lists open files; its PID list requires commas, whereas pgrep emits space-separated IDs."
+        }
+      ]
+    },
+    {
+      "case": "c4963304ef391",
+      "verdicts": [
+        {
+          "key": "k1976b4677cf0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists all processes, sorts resident memory numerically descending, and displays five entries."
+        }
+      ]
+    },
+    {
+      "case": "ca8771bae11dd",
+      "verdicts": [
+        {
+          "key": "k1e06c6a12061",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "The -P option opens Preview in addition to saving the screenshot."
+        }
+      ]
+    },
+    {
+      "case": "cb924b915b118",
+      "verdicts": [
+        {
+          "key": "k1e729d9da640",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Matches arbitrary Chrome-named directories, including framework directories inside app bundles, rather than restricting results to apps."
+        }
+      ]
+    },
+    {
+      "case": "c51c5b723e08a",
+      "verdicts": [
+        {
+          "key": "k2197c8db4e5f",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires an explicit starting path; none is supplied."
+        }
+      ]
+    },
+    {
+      "case": "cec23613767ee",
+      "verdicts": [
+        {
+          "key": "k23b89fbca194",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Unquoted command substitution splits whitespace; echo collapses line breaks and spacing from the file."
+        }
+      ]
+    },
+    {
+      "case": "c1bff404f4e03",
+      "verdicts": [
+        {
+          "key": "k242c4403055c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "sort -u removes duplicates before uniq counts, so every reported count becomes one."
+        }
+      ]
+    },
+    {
+      "case": "c846950e26d1f",
+      "verdicts": [
+        {
+          "key": "k26a897615366",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "The awk filter tests file descriptors for address-like syntax and prints only PIDs, omitting requested numeric addresses."
+        }
+      ]
+    },
+    {
+      "case": "c6ecff2cd2416",
+      "verdicts": [
+        {
+          "key": "k2c17228dde29",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Need BACKUP filesystem-specific diskutil output labels; its man page does not establish an Available Space field."
+        }
+      ]
+    },
+    {
+      "case": "c53c1d11417f3",
+      "verdicts": [
+        {
+          "key": "k2d85c2e9ca35",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy Print reads the requested string at its bundle Info.plist key without modifying it."
+        }
+      ]
+    },
+    {
+      "case": "cdaf707248c5b",
+      "verdicts": [
+        {
+          "key": "k325a94c0693f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Global sed substitution produces replacement contents; successful output is moved over notes.txt."
+        }
+      ]
+    },
+    {
+      "case": "c4206d39c4472",
+      "verdicts": [
+        {
+          "key": "k340afdbe4f24",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects UDP sockets and suppresses hostname resolution, retaining process information and numeric network addresses."
+        }
+      ]
+    },
+    {
+      "case": "c97cbaa3e8e7d",
+      "verdicts": [
+        {
+          "key": "k3a2b46da1306",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil converts to JSON on stdout through -o -, preserving the source file."
+        }
+      ]
+    },
+    {
+      "case": "c54ac23bb1193",
+      "verdicts": [
+        {
+          "key": "k3b3e1d433eed",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Need to know whether en0 is configured with the local address the user wants."
+        }
+      ]
+    },
+    {
+      "case": "c878dbbe6e9ee",
+      "verdicts": [
+        {
+          "key": "k3f9e9323750a",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "ps -a includes other users; filtering command paths does not restrict results to the requesting user."
+        }
+      ]
+    },
+    {
+      "case": "c59b4abb08b8a",
+      "verdicts": [
+        {
+          "key": "k448c244e8539",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries a public address service and extracts dotted IPv4 addresses from its response."
+        }
+      ]
+    },
+    {
+      "case": "cac32df4c832e",
+      "verdicts": [
+        {
+          "key": "k4cc356a65f0d",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Finds every Chrome-named filesystem entry, including framework directories and files, without restricting matches to apps."
+        }
+      ]
+    },
+    {
+      "case": "ca74446f1f4b5",
+      "verdicts": [
+        {
+          "key": "k54425aad3ebb",
+          "verdict": "incorrect",
+          "category": "unsafe",
+          "evidence": "The socket selector also matches remote port 8080, potentially terminating local clients unrelated to the local service."
+        }
+      ]
+    },
+    {
+      "case": "ce9d3129f104d",
+      "verdicts": [
+        {
+          "key": "k5a88ecd76e7b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Makes one HTTP request; the user requested a few attempts."
+        }
+      ]
+    },
+    {
+      "case": "c3a585d2a5460",
+      "verdicts": [
+        {
+          "key": "k5ba7c8fd0d77",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps checks PID existence through its exit status without delivering a signal."
+        }
+      ]
+    },
+    {
+      "case": "c3fdb229449c6",
+      "verdicts": [
+        {
+          "key": "k5ee24c560fda",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Reads ~/app.log instead of the requested app.log in the current directory."
+        }
+      ]
+    },
+    {
+      "case": "ca1ebc89bac02",
+      "verdicts": [
+        {
+          "key": "k6388b4e39edb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The eighth whitespace-separated field of the vm_stat banner is the page size in bytes."
+        }
+      ]
+    },
+    {
+      "case": "c4bd9d4d374ea",
+      "verdicts": [
+        {
+          "key": "k73923be3f851",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Display without verbosity omits signing authority and signature details; identity inspection requires verbose output."
+        }
+      ]
+    },
+    {
+      "case": "c2d3c751c6324",
+      "verdicts": [
+        {
+          "key": "k794a0acc41f2",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "tr accepts character sets, not a filename operand; notes.txt must be provided on standard input."
+        }
+      ]
+    },
+    {
+      "case": "c02c1a081f22b",
+      "verdicts": [
+        {
+          "key": "k7ea8d3c1ed8e",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "The -maxdepth 1 limit excludes files within Documents subdirectories from the largest-file search."
+        }
+      ]
+    },
+    {
+      "case": "c6fb36b124a94",
+      "verdicts": [
+        {
+          "key": "k83b06502d354",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays local IPv4 addresses from all interfaces, including loopback; additional local addresses are harmless verbosity."
+        }
+      ]
+    },
+    {
+      "case": "c5e08d5312f4c",
+      "verdicts": [
+        {
+          "key": "k8475a320092f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively enumerates regular files under the current folder and counts their output lines."
+        }
+      ]
+    },
+    {
+      "case": "c4cee0265b9b9",
+      "verdicts": [
+        {
+          "key": "k8573b2d0cf55",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tail starts at the first line; head prints the first twenty lines."
+        }
+      ]
+    },
+    {
+      "case": "ccd69b9b34b7f",
+      "verdicts": [
+        {
+          "key": "k858e5a05ac97",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "date formats the current local date with year, month, and day separated by hyphens."
+        }
+      ]
+    },
+    {
+      "case": "c8141a485453f",
+      "verdicts": [
+        {
+          "key": "k8d1886e018ca",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The adjective local does not specify a local/ directory; this reads local/app.log instead of app.log."
+        }
+      ]
+    },
+    {
+      "case": "c4b515ab27948",
+      "verdicts": [
+        {
+          "key": "k9170df8303b9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The service reports an IPv4 address in simple HTML; sed removes the surrounding letters, tags, and spaces."
+        }
+      ]
+    },
+    {
+      "case": "c174468a673aa",
+      "verdicts": [
+        {
+          "key": "k91e23461ad3e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports whether ps finds the PID without sending any signal."
+        }
+      ]
+    },
+    {
+      "case": "cdcb38fac09ff",
+      "verdicts": [
+        {
+          "key": "k9a61fe93bf72",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the colon-separated hexadecimal Ethernet address displayed for en0."
+        }
+      ]
+    },
+    {
+      "case": "c70168cd6c1de",
+      "verdicts": [
+        {
+          "key": "k9a62803859d9",
+          "verdict": "incorrect",
+          "category": "unsafe",
+          "evidence": "The TCP selector includes connections to remote port 8080, potentially killing unrelated local client processes."
+        }
+      ]
+    },
+    {
+      "case": "cf1cc2f0b85a8",
+      "verdicts": [
+        {
+          "key": "k9b5c3c7c4e41",
+          "verdict": "incorrect",
+          "category": "unsafe",
+          "evidence": "The port selector includes remote endpoints, potentially terminating clients rather than only processes using local port 8080."
+        }
+      ]
+    },
+    {
+      "case": "c0b09161a529f",
+      "verdicts": [
+        {
+          "key": "k9f704d345f79",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The power report includes battery charge percentage and AC charger connection information; the additional detail is harmless."
+        }
+      ]
+    },
+    {
+      "case": "c977bf2522a5c",
+      "verdicts": [
+        {
+          "key": "ka14a7bb01c67",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "grep matches substrings such as invoices, without enforcing the requested word invoice."
+        }
+      ]
+    },
+    {
+      "case": "cbdb068cfc0b7",
+      "verdicts": [
+        {
+          "key": "ka27e1b851527",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists local IPv4 and IPv6 interface addresses; including multiple local addresses is harmless additional output."
+        }
+      ]
+    },
+    {
+      "case": "c024c38520e63",
+      "verdicts": [
+        {
+          "key": "ka5da1004423c",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Need the actual project directory pathname; the request does not establish that it is named project_folder."
+        }
+      ]
+    },
+    {
+      "case": "c2d9df7035bc5",
+      "verdicts": [
+        {
+          "key": "kab5ef4c52eb8",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Recursive find moves JPGs from subdirectories too, flattening their paths into photos."
+        }
+      ]
+    },
+    {
+      "case": "c06577bd23397",
+      "verdicts": [
+        {
+          "key": "kacb34b811e93",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Downloads/* is relative to the current directory, not necessarily the user Downloads folder at ~/Downloads."
+        }
+      ]
+    },
+    {
+      "case": "cf00e67bc214c",
+      "verdicts": [
+        {
+          "key": "kb499110b0a02",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "In zsh, which prints a not-found message to stdout, making the condition report yes when Node is absent."
+        }
+      ]
+    },
+    {
+      "case": "c29ea217e3860",
+      "verdicts": [
+        {
+          "key": "kbe754eb4f487",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires a starting path; this omits it. The xargs pipeline also mishandles whitespace."
+        }
+      ]
+    },
+    {
+      "case": "c5c3518e7514e",
+      "verdicts": [
+        {
+          "key": "kc065cde2a631",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "The -c option forces output to the clipboard instead of saving shot.png."
+        }
+      ]
+    },
+    {
+      "case": "ca0ff80771225",
+      "verdicts": [
+        {
+          "key": "kc3093d1d9f23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD stat formats the file flags as their symbolic string with %Sf."
+        }
+      ]
+    },
+    {
+      "case": "c2ef2a3e8d165",
+      "verdicts": [
+        {
+          "key": "kc381277e5b8c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Creating the destination first makes cp place the project inside project-copy/project, adding an unintended directory level."
+        }
+      ]
+    },
+    {
+      "case": "c32aa2b6b21f1",
+      "verdicts": [
+        {
+          "key": "kc6cc0ae2056f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "cut uses colon as delimiter and outputs field three; the extra cat is harmless."
+        }
+      ]
+    },
+    {
+      "case": "c432bb634947e",
+      "verdicts": [
+        {
+          "key": "kca952c245123",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sips rotates clockwise by ninety degrees and writes the separate output file, preserving the source."
+        }
+      ]
+    },
+    {
+      "case": "c5d55cf367f77",
+      "verdicts": [
+        {
+          "key": "kcf98cd67d97f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "grep selects substring matches such as invoices rather than requiring the word invoice."
+        }
+      ]
+    },
+    {
+      "case": "ca2bb2eedd031",
+      "verdicts": [
+        {
+          "key": "kd45ce090ee60",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters mounted filesystem records whose mount-point field begins with /Volumes/."
+        }
+      ]
+    },
+    {
+      "case": "c4e21edb25426",
+      "verdicts": [
+        {
+          "key": "kd53eb9a8ead4",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Need BACKUP filesystem-specific output labels; diskutil documentation does not establish a Total Space Available field."
+        }
+      ]
+    },
+    {
+      "case": "c07cce4a8bfb8",
+      "verdicts": [
+        {
+          "key": "kd7942dffb099",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Performs only one HTTP attempt; the requested few attempts are missing."
+        }
+      ]
+    },
+    {
+      "case": "c4b86e2823b90",
+      "verdicts": [
+        {
+          "key": "kd7b1908944ff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "getconf exposes sysconf PAGESIZE, the system page size in bytes."
+        }
+      ]
+    },
+    {
+      "case": "cfaa6cc6b83b4",
+      "verdicts": [
+        {
+          "key": "ke09507eea6d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sorts all processes by resident memory descending and outputs five process records."
+        }
+      ]
+    },
+    {
+      "case": "c04be7f58eac0",
+      "verdicts": [
+        {
+          "key": "ke20aaf4a8279",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires {} immediately before +; the intervening photos/ operand makes this -exec form invalid."
+        }
+      ]
+    },
+    {
+      "case": "c7fd4a6d296ad",
+      "verdicts": [
+        {
+          "key": "ke8212daaee4c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "head limits input to seven lines; tail starts at line three without modifying notes.txt."
+        }
+      ]
+    },
+    {
+      "case": "c40928b6df1b3",
+      "verdicts": [
+        {
+          "key": "ke87abf07df87",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The zsh which builtin reports how the current session resolves python3."
+        }
+      ]
+    },
+    {
+      "case": "c6fb54622c503",
+      "verdicts": [
+        {
+          "key": "kedccfb2c4f6d",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires a starting path and this command supplies none."
+        }
+      ]
+    },
+    {
+      "case": "c7a65fd717957",
+      "verdicts": [
+        {
+          "key": "kf219d735103a",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "Need validation of public.app as an application UTI and query case matching; mdfind man pages omit these semantics."
+        }
+      ]
+    },
+    {
+      "case": "c1a546aeff0b4",
+      "verdicts": [
+        {
+          "key": "kf25a6a3f6a5b",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "The batched -exec form requires {} directly before +, not a destination operand after {}."
+        }
+      ]
+    },
+    {
+      "case": "ca05676812661",
+      "verdicts": [
+        {
+          "key": "kf558cd108f09",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Interactive screencapture lets the user select a screenshot and saves the PNG as shot.png."
+        }
+      ]
+    }
+  ]
+}

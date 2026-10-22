@@ -1,0 +1,1503 @@
+{
+  "batch": "b01",
+  "items": [
+    {
+      "case": "r00102",
+      "request": "Please print eventMessage fields from mac-unified.ndjson as JSON strings, preserving escaped tabs and newlines.",
+      "candidates": [
+        {
+          "key": "x0233",
+          "command": "perl -lne 'while (/\"eventMessage\":\"((?:[^\"\\\\]|\\\\.)*)\"/g) { print \"\\\"$1\\\"\" }' mac-unified.ndjson"
+        },
+        {
+          "key": "x0234",
+          "command": "python3 -c \"import json; [print(json.dumps(o['eventMessage'], ensure_ascii=False)) for o in map(json.loads, (l for l in open('mac-unified.ndjson') if l.strip())) if 'eventMessage' in o]\""
+        },
+        {
+          "key": "x0235",
+          "command": "python3 -c 'import json,sys; [print(json.dumps(json.loads(l).get(\"eventMessage\"), ensure_ascii=False)) for l in sys.stdin if l.strip()]' < mac-unified.ndjson"
+        }
+      ]
+    },
+    {
+      "case": "r00104",
+      "request": "show lines present in both a.txt and b.txt even if unsroted",
+      "candidates": [
+        {
+          "key": "x0236",
+          "command": "comm -12 <(sort a.txt) <(sort b.txt)"
+        }
+      ]
+    },
+    {
+      "case": "r00106",
+      "request": "show current autopoweroff delay no modifying it",
+      "candidates": [
+        {
+          "key": "x0237",
+          "command": "pmset -g | grep autopoweroff"
+        }
+      ]
+    },
+    {
+      "case": "r00107",
+      "request": "Decode the data field in payload.plist and write its bytes to payload.bin on macOS.",
+      "candidates": [
+        {
+          "key": "x0238",
+          "command": "plutil -extract data raw -o - payload.plist | base64 -D > payload.bin"
+        }
+      ]
+    },
+    {
+      "case": "r00108",
+      "request": "Number only nonempty lines in chapter.txt.",
+      "candidates": [
+        {
+          "key": "x0239",
+          "command": "awk 'length($0) { print ++n, $0 }' chapter.txt"
+        },
+        {
+          "key": "x0240",
+          "command": "awk 'length($0) { printf \"%d\\t%s\\n\", ++n, $0 }' chapter.txt"
+        },
+        {
+          "key": "x0241",
+          "command": "awk 'length($0) {printf \"%d\\t%s\\n\", ++n, $0; next} {print}' chapter.txt"
+        },
+        {
+          "key": "x0242",
+          "command": "awk 'length($0) {printf \"%d\\t%s\\n\", ++n, $0}' chapter.txt"
+        },
+        {
+          "key": "x0243",
+          "command": "nl -b t chapter.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00109",
+      "request": "replace nonbreaking spaces in mac-export.txt with normal spces",
+      "candidates": [
+        {
+          "key": "x0244",
+          "command": "perl -i -pe 's/\\xc2\\xa0/ /g' mac-export.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00110",
+      "request": "Report per-disk transactions per second over three one-second intervals on macOS.",
+      "candidates": [
+        {
+          "key": "x0245",
+          "command": "iostat -d -w 1 3"
+        },
+        {
+          "key": "x0246",
+          "command": "iostat -d 1 3"
+        }
+      ]
+    },
+    {
+      "case": "r00113",
+      "request": "Change data.txt to mode 0640.",
+      "candidates": [
+        {
+          "key": "x0247",
+          "command": "chmod 0640 data.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00114",
+      "request": "I'd like the battery's cycle count and health condition in the same report.",
+      "candidates": [
+        {
+          "key": "x0248",
+          "command": "system_profiler SPPowerDataType | awk '/Cycle Count/{c=$NF} /Condition/{h=$NF} END{printf \"Cycle Count: %s, Health Condition: %s\\n\", c, h}'"
+        },
+        {
+          "key": "x0249",
+          "command": "system_profiler SPPowerDataType | grep -E \"Cycle Count|Condition\""
+        },
+        {
+          "key": "x0250",
+          "command": "system_profiler SPPowerDataType | grep -E 'Cycle Count:|Condition:'"
+        },
+        {
+          "key": "x0251",
+          "command": "system_profiler SPPowerDataType | grep -E 'Cycle Count|Condition'"
+        }
+      ]
+    },
+    {
+      "case": "r00115",
+      "request": "I need to set the access time of archived.txt to match reference.txt, preserving its modification time.",
+      "candidates": [
+        {
+          "key": "x0252",
+          "command": "touch -a -r reference.txt archived.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00116",
+      "request": "I want to fetch https://example.org/ using IPv4 only.",
+      "candidates": [
+        {
+          "key": "x0253",
+          "command": "curl -4 https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "r00117",
+      "request": "how many redirects did https://example.org/ follow",
+      "candidates": [
+        {
+          "key": "x0254",
+          "command": "curl -LsS -o /dev/null -w '%{num_redirects}' https://example.org/"
+        },
+        {
+          "key": "x0255",
+          "command": "curl -s -L -o /dev/null -w '%{num_redirects}\\n' https://example.org/"
+        },
+        {
+          "key": "x0256",
+          "command": "curl -s -o /dev/null -w '%{num_redirects}\\n' -L https://example.org/"
+        },
+        {
+          "key": "x0257",
+          "command": "curl -sL -o /dev/null -w '%{num_redirects}\\n' https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "r00118",
+      "request": "Show where link-one ultimately points when links chain together.",
+      "candidates": [
+        {
+          "key": "x0258",
+          "command": "readlink -f link-one"
+        }
+      ]
+    },
+    {
+      "case": "r00119",
+      "request": "Find my processes that have run longer than a day.",
+      "candidates": [
+        {
+          "key": "x0259",
+          "command": "ps -U $(id -u) -o pid=,etime=,command= | awk '$2 ~ /^[0-9]+-/'"
+        },
+        {
+          "key": "x0260",
+          "command": "ps -o pid,etime,command -u \"$(id -un)\" | awk '$2 ~ /^[0-9]+-/ {print}'"
+        },
+        {
+          "key": "x0261",
+          "command": "ps -u \"$USER\" -o etime=,pid=,comm= | awk '{ split($1,a,\"-\"); if (a[2]) { split(a[2],b,\":\"); secs = a[1]*86400 + b[1]*3600 + b[2]*60 + b[3]; if (secs > 86400) print $0 } }'"
+        },
+        {
+          "key": "x0262",
+          "command": "ps -u \"$USER\" -o pid,etime,command | awk 'NR==1 || $2 ~ /-/'"
+        },
+        {
+          "key": "x0263",
+          "command": "ps -u \"$USER\" -o pid,etime,command | awk 'NR>1 { n=split($2, p, \"-\"); if (n==2) { days=p[1]; split(p[2], t, \":\"); if (days+0 > 1 || (days+0 == 1 && (t[1]+0 > 0 || t[2]+0 > 0 || t[3]+0 > 0))) print } else { split($2, t, \":\"); if (t[1]+0 > 24 || (t[1]+0 == 24 && (t[2]+0 > 0 || t[3]+0 > 0))) print } }'"
+        }
+      ]
+    },
+    {
+      "case": "r00121",
+      "request": "Can you display the system's per-domain DNS resolver configuration?",
+      "candidates": [
+        {
+          "key": "x0264",
+          "command": "find /etc/resolver -maxdepth 1 -type f -exec sh -c 'for f; do echo \"$f\"; cat \"$f\"; done' _ {} + 2>/dev/null"
+        },
+        {
+          "key": "x0265",
+          "command": "if [ -d /etc/resolver ]; then echo '/etc/resolver:'; ls -l /etc/resolver; find /etc/resolver -maxdepth 1 -type f -print -exec cat {} +; else echo '/etc/resolver does not exist'; fi"
+        },
+        {
+          "key": "x0266",
+          "command": "if [ -d /etc/resolver ]; then ls -l /etc/resolver; find /etc/resolver -maxdepth 1 -type f -exec sh -c 'echo $1; cat $1' _ {} \\;; else echo 'No /etc/resolver directory'; fi"
+        },
+        {
+          "key": "x0267",
+          "command": "ls -la /etc/resolver && find /etc/resolver -maxdepth 1 -type f -exec cat {} +"
+        },
+        {
+          "key": "x0268",
+          "command": "scutil --dns"
+        }
+      ]
+    },
+    {
+      "case": "r00122",
+      "request": "Print the RunAtLoad and KeepAlive values from agent.plist as a two-row table.",
+      "candidates": [
+        {
+          "key": "x0269",
+          "command": "printf '%s\\t%s\\n' RunAtLoad \"$(/usr/libexec/PlistBuddy -c 'Print :RunAtLoad' agent.plist 2>/dev/null || echo missing)\" KeepAlive \"$(/usr/libexec/PlistBuddy -c 'Print :KeepAlive' agent.plist 2>/dev/null || echo missing)\" | column -t"
+        },
+        {
+          "key": "x0270",
+          "command": "printf 'RunAtLoad\\t%s\\nKeepAlive\\t%s\\n' \"$(/usr/libexec/PlistBuddy -c 'Print :RunAtLoad' agent.plist 2>/dev/null || echo '(missing)')\" \"$(/usr/libexec/PlistBuddy -c 'Print :KeepAlive' agent.plist 2>/dev/null || echo '(missing)')\" | column -t -s $'\\t'"
+        },
+        {
+          "key": "x0271",
+          "command": "printf 'RunAtLoad\\t%s\\nKeepAlive\\t%s\\n' \"$(/usr/libexec/PlistBuddy -c 'Print :RunAtLoad' agent.plist 2>/dev/null || echo Not Set)\" \"$(/usr/libexec/PlistBuddy -c 'Print :KeepAlive' agent.plist 2>/dev/null || echo Not Set)\""
+        },
+        {
+          "key": "x0272",
+          "command": "printf 'RunAtLoad\\t%s\\nKeepAlive\\t%s\\n' \"$(/usr/libexec/PlistBuddy -c 'Print :RunAtLoad' agent.plist 2>/dev/null)\" \"$(/usr/libexec/PlistBuddy -c 'Print :KeepAlive' agent.plist 2>/dev/null)\""
+        },
+        {
+          "key": "x0273",
+          "command": "printf 'RunAtLoad\\t%s\\nKeepAlive\\t%s\\n' \"$(plutil -extract RunAtLoad raw agent.plist 2>/dev/null)\" \"$(plutil -extract KeepAlive raw agent.plist 2>/dev/null)\""
+        }
+      ]
+    },
+    {
+      "case": "r00123",
+      "request": "Find all regular files under sources/ that lack a final newline.",
+      "candidates": [
+        {
+          "key": "x0274",
+          "command": "find sources/ -type f -exec sh -c 'for f do if tail -c 1 \"$f\" | LC_ALL=C grep -q \"^$\"; then :; else printf \"%s\\n\" \"$f\"; fi; done' _ {} +"
+        },
+        {
+          "key": "x0275",
+          "command": "find sources/ -type f -exec sh -c 'for f in \"$@\"; do if ! tail -c 1 \"$f\" | od -An -tx1 | grep -q -F \"0a\"; then printf \"%s\\n\" \"$f\"; fi; done' _ {} +"
+        },
+        {
+          "key": "x0276",
+          "command": "find sources/ -type f -exec sh -c 'for f; do [ \"$(tail -c 1 \"$f\" | od -An -t x1 | tr -d \"[:space:]\")\" != 0a ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x0277",
+          "command": "find sources/ -type f -exec sh -c 'for f; do [ \"$(tail -c 1 \"$f\" | wc -l | tr -d \"[:space:]\")\" = \"0\" ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x0278",
+          "command": "find sources/ -type f -exec sh -c 'for f; do [ \"$(tail -c 1 -- \"$f\" | od -An -tx1 | tr -d \" \\n\")\" != \"0a\" ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        }
+      ]
+    },
+    {
+      "case": "r00124",
+      "request": "sort my proceses by nice value",
+      "candidates": [
+        {
+          "key": "x0279",
+          "command": "ps -U \"$(id -un)\" -o pid,ppid,user,nice,command | sort -k4,4n"
+        },
+        {
+          "key": "x0280",
+          "command": "ps -ax -o ni=,pid=,comm= | sort -k1,1n -k2,2n"
+        },
+        {
+          "key": "x0281",
+          "command": "ps -axo pid,nice,command | sort -k2,2n -k1,1n"
+        },
+        {
+          "key": "x0282",
+          "command": "ps -u \"$(id -un)\" -o pid=,nice=,command= | sort -k2,2n"
+        },
+        {
+          "key": "x0283",
+          "command": "ps -u $(id -u) -o nice=,pid=,command= | sort -n"
+        }
+      ]
+    },
+    {
+      "case": "r00125",
+      "request": "I need a remote file only if it is newer than my existing report.pdf at https://example.org/report.pdf.",
+      "candidates": [
+        {
+          "key": "x0284",
+          "command": "curl --time-cond report.pdf -O https://example.org/report.pdf"
+        },
+        {
+          "key": "x0285",
+          "command": "curl -f --time-cond report.pdf -o report.pdf https://example.org/report.pdf"
+        },
+        {
+          "key": "x0286",
+          "command": "curl -f -z report.pdf -o report.pdf https://example.org/report.pdf"
+        },
+        {
+          "key": "x0287",
+          "command": "curl -fL -z report.pdf --remote-time -o report.pdf https://example.org/report.pdf"
+        }
+      ]
+    },
+    {
+      "case": "r00127",
+      "request": "show whether the clipboard contains a PNG image",
+      "candidates": [
+        {
+          "key": "x0288",
+          "command": "osascript -e 'clipboard info' | grep -q 'PNGf' && echo yes || echo no"
+        }
+      ]
+    },
+    {
+      "case": "r00128",
+      "request": "find images indexed with color profile Adobe RGB in image-tests/",
+      "candidates": [
+        {
+          "key": "x0289",
+          "command": "mdfind \"kMDItemContentTypeTree == 'public.image' && kMDItemProfileName == 'Adobe RGB*'\" -onlyin image-tests"
+        },
+        {
+          "key": "x0290",
+          "command": "mdfind -onlyin image-tests/ 'kMDItemColorProfile == \"Adobe RGB*\" && kMDItemContentTypeTree == \"public.image\"'"
+        },
+        {
+          "key": "x0291",
+          "command": "mdfind -onlyin image-tests/ 'kMDItemColorProfile == \"Adobe*RGB*\" && kMDItemContentTypeTree == \"public.image\"'"
+        },
+        {
+          "key": "x0292",
+          "command": "mdfind -onlyin image-tests/ 'kMDItemContentTypeTree == \"public.image\" && kMDItemColorProfile == \"Adobe RGB*\"'"
+        },
+        {
+          "key": "x0293",
+          "command": "mdfind -onlyin image-tests/ 'kMDItemContentTypeTree == \"public.image\" && kMDItemProfileName == \"Adobe RGB\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00129",
+      "request": "spotlight find files with the blue finder label in ~/Desktop/test-labels",
+      "candidates": [
+        {
+          "key": "x0294",
+          "command": "mdfind -onlyin ~/Desktop/test-labels 'kMDItemFinderLabel == 5'"
+        }
+      ]
+    },
+    {
+      "case": "r9002",
+      "request": "delete every .DS_Store file in this folder and everything under it",
+      "candidates": [
+        {
+          "key": "x5641",
+          "command": "find -name \"*.DS_Store\" | xargs rm -rf"
+        }
+      ]
+    },
+    {
+      "case": "r00130",
+      "request": "Show whether config.txt is owned by my current account.",
+      "candidates": [
+        {
+          "key": "x0295",
+          "command": "[ \"$(stat -f '%Su' config.txt 2>/dev/null)\" = \"$(id -un)\" ] && echo \"yes\" || echo \"no\""
+        },
+        {
+          "key": "x0296",
+          "command": "[ \"$(stat -f '%Su' config.txt 2>/dev/null)\" = \"$(id -un)\" ] && echo yes || echo no"
+        },
+        {
+          "key": "x0297",
+          "command": "[ -O config.txt ] && echo yes || echo no"
+        },
+        {
+          "key": "x0298",
+          "command": "test -O config.txt && echo yes || echo no"
+        }
+      ]
+    },
+    {
+      "case": "r00132",
+      "request": "read the boolean NSSupportsAutomaticGraphicsSwitching from MyApp.app metadata",
+      "candidates": [
+        {
+          "key": "x0299",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :NSSupportsAutomaticGraphicsSwitching\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "x0300",
+          "command": "defaults read MyApp.app/Contents/Info NSSupportsAutomaticGraphicsSwitching"
+        },
+        {
+          "key": "x0301",
+          "command": "plutil -extract NSSupportsAutomaticGraphicsSwitching raw -o - MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "x0302",
+          "command": "plutil -extract NSSupportsAutomaticGraphicsSwitching raw MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00133",
+      "request": "show the URL of the active Safari tab",
+      "candidates": [
+        {
+          "key": "x0303",
+          "command": "osascript -e 'tell application \"Safari\" to get URL of current tab of front window'"
+        }
+      ]
+    },
+    {
+      "case": "r00134",
+      "request": "Find indexed items inside metadata-tests/ whose kMDItemKeywords array contains both alpha and beta.",
+      "candidates": [
+        {
+          "key": "x0304",
+          "command": "mdfind -onlyin metadata-tests/ 'kMDItemKeywords == \"alpha\" && kMDItemKeywords == \"beta\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00136",
+      "request": "Display the filesystem identifier and optimal transfer block size for /Volumes/WORK.",
+      "candidates": [
+        {
+          "key": "x0305",
+          "command": "diskutil info /Volumes/WORK | grep -E 'Filesystem Identifier|Optimal Transfer Size'"
+        },
+        {
+          "key": "x0306",
+          "command": "stat -f \"%i %k\" /Volumes/WORK"
+        },
+        {
+          "key": "x0307",
+          "command": "stat -f 'Filesystem ID: %d, Optimal Block Size: %k' /Volumes/WORK"
+        }
+      ]
+    },
+    {
+      "case": "r00137",
+      "request": "show the total expanded size of backup.tar",
+      "candidates": [
+        {
+          "key": "x0308",
+          "command": "tar -tvf backup.tar | awk 'BEGIN{s=0} {s+=$5} END{print s}'"
+        },
+        {
+          "key": "x0309",
+          "command": "tar -tvf backup.tar | awk '{s+=$5} END {print s+0}'"
+        },
+        {
+          "key": "x0310",
+          "command": "tar -tvf backup.tar | awk '{total+=$5} END{print total+0}'"
+        },
+        {
+          "key": "x0311",
+          "command": "tar -xOf backup.tar | wc -c"
+        }
+      ]
+    },
+    {
+      "case": "r00138",
+      "request": "Extract CFBundleName from MyApp.app/Contents/Info.plist as plain text.",
+      "candidates": [
+        {
+          "key": "x0312",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleName\" MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00139",
+      "request": "Report the CPU percentage, resident memory, and elapsed time for PID 4200, without headings.",
+      "candidates": [
+        {
+          "key": "x0313",
+          "command": "ps -h -p 4200 -o %cpu,rss,etime"
+        },
+        {
+          "key": "x0314",
+          "command": "ps -o %cpu,rss,etime -p 4200 | tail -n +2"
+        },
+        {
+          "key": "x0315",
+          "command": "ps -o pcpu=,rss=,etime= -p 4200"
+        },
+        {
+          "key": "x0316",
+          "command": "ps -p 4200 -o %cpu,rss,etime | tail -n +2"
+        },
+        {
+          "key": "x0317",
+          "command": "ps -p 4200 -o %cpu=,rss=,etime="
+        }
+      ]
+    },
+    {
+      "case": "r00140",
+      "request": "Report the indexed focal length of camera-test.jpg.",
+      "candidates": [
+        {
+          "key": "x0318",
+          "command": "mdls -name kMDIFocalLength -raw camera-test.jpg"
+        },
+        {
+          "key": "x0319",
+          "command": "mdls -name kMDItemFocalLength -raw camera-test.jpg"
+        },
+        {
+          "key": "x0320",
+          "command": "mdls -name kMDItemFocalLength camera-test.jpg"
+        }
+      ]
+    },
+    {
+      "case": "r00141",
+      "request": "strip digits from each line in labels.txt and just diplay",
+      "candidates": [
+        {
+          "key": "x0321",
+          "command": "sed 's/[0-9]//g' labels.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00142",
+      "request": "I want to read the download timestamp metadata for downloads/setup.dmg",
+      "candidates": [
+        {
+          "key": "x0322",
+          "command": "mdls -name kMDItemDownloadedDate downloads/setup.dmg"
+        }
+      ]
+    },
+    {
+      "case": "r00143",
+      "request": "List the immediate entries in ~/Library/Logs without hidden ones.",
+      "candidates": [
+        {
+          "key": "x0323",
+          "command": "ls -1 ~/Library/Logs"
+        }
+      ]
+    },
+    {
+      "case": "r00144",
+      "request": "lowercase just the first col of users.tsv into users-clean.tsv",
+      "candidates": [
+        {
+          "key": "x0324",
+          "command": "awk 'BEGIN{OFS=\"\\t\"}{i=index($0,\"\\t\"); if(i) printf \"%s%s\\n\", tolower(substr($0,1,i-1)), substr($0,i); else printf \"%s\\n\", tolower($0)}' users.tsv > users-clean.tsv"
+        },
+        {
+          "key": "x0325",
+          "command": "awk -F '\\t' -v OFS='\\t' '{ $1 = tolower($1); print }' users.tsv > users-clean.tsv"
+        },
+        {
+          "key": "x0326",
+          "command": "awk -F'\\t' 'BEGIN{OFS=\"\\t\"} { $1=tolower($1); print }' users.tsv > users-clean.tsv"
+        },
+        {
+          "key": "x0327",
+          "command": "awk -F'\\t' -v OFS='\\t' '{ $1 = tolower($1); print }' users.tsv > users-clean.tsv"
+        },
+        {
+          "key": "x0328",
+          "command": "awk -F'\\t' -v OFS='\\t' '{ $1=tolower($1); print }' users.tsv > users-clean.tsv"
+        }
+      ]
+    },
+    {
+      "case": "r00146",
+      "request": "show apfs volumes with their capacity consumed",
+      "candidates": [
+        {
+          "key": "x0329",
+          "command": "diskutil apfs list"
+        },
+        {
+          "key": "x0330",
+          "command": "diskutil apfs list | grep -E 'Volume disk|Capacity Consumed'"
+        }
+      ]
+    },
+    {
+      "case": "r00147",
+      "request": "Please flip image.png horizontally into flipped.png without modifying image.png.",
+      "candidates": [
+        {
+          "key": "x0331",
+          "command": "/bin/cp image.png flipped.png && sips -f horizontal flipped.png"
+        },
+        {
+          "key": "x0332",
+          "command": "sips -f horizontal image.png --out flipped.png"
+        }
+      ]
+    },
+    {
+      "case": "r00148",
+      "request": "show the loaded job matching com.example.MyApp",
+      "candidates": [
+        {
+          "key": "x0333",
+          "command": "launchctl list | grep com.example.MyApp"
+        }
+      ]
+    },
+    {
+      "case": "r00149",
+      "request": "Can you produce JSON system information for hardware and software only, excluding other report types?",
+      "candidates": [
+        {
+          "key": "x0334",
+          "command": "system_profiler -json SPHardwareDataType SPSoftwareDataType"
+        }
+      ]
+    },
+    {
+      "case": "r00150",
+      "request": "Can you turn binary-metadata.plist into indented JSON in metadata.json?",
+      "candidates": [
+        {
+          "key": "x0335",
+          "command": "plutil -convert json -o - binary-metadata.plist | /usr/bin/python3 -m json.tool --indent 2 > metadata.json"
+        },
+        {
+          "key": "x0336",
+          "command": "plutil -convert json -o metadata.json binary-metadata.plist"
+        },
+        {
+          "key": "x0337",
+          "command": "plutil -convert json -o metadata.json binary-metadata.plist && python3 -m json.tool --indent 2 metadata.json > metadata.json.tmp && mv metadata.json.tmp metadata.json"
+        },
+        {
+          "key": "x0338",
+          "command": "plutil -convert json -pretty -o metadata.json binary-metadata.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00151",
+      "request": "Can you save spoken Hello there in greeting.aiff using the Mac's default voice?",
+      "candidates": [
+        {
+          "key": "x0339",
+          "command": "say -o greeting.aiff \"Hello there\""
+        }
+      ]
+    },
+    {
+      "case": "r00152",
+      "request": "find my preferred Python interpreter with no project constraints",
+      "candidates": [
+        {
+          "key": "x0340",
+          "command": "command -v python3"
+        },
+        {
+          "key": "x0341",
+          "command": "command -v python3 || command -v python"
+        }
+      ]
+    },
+    {
+      "case": "r00153",
+      "request": "Show interface statistics including dropped packets.",
+      "candidates": [
+        {
+          "key": "x0342",
+          "command": "netstat -i"
+        },
+        {
+          "key": "x0343",
+          "command": "netstat -i -d"
+        },
+        {
+          "key": "x0344",
+          "command": "netstat -ib"
+        }
+      ]
+    },
+    {
+      "case": "r00154",
+      "request": "extract text before the first equals in vars.txt pls",
+      "candidates": [
+        {
+          "key": "x0345",
+          "command": "cut -d= -f1 vars.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00155",
+      "request": "Can you total up just the immediate files inside project/, leaving subdirectories out?",
+      "candidates": [
+        {
+          "key": "x0346",
+          "command": "find project -maxdepth 1 -type f -exec stat -f '%z' {} + | awk '{s+=$1} END {print s+0}'"
+        },
+        {
+          "key": "x0347",
+          "command": "find project -maxdepth 1 -type f -exec stat -f%z {} + | awk '{s+=$1} END {print s+0}'"
+        },
+        {
+          "key": "x0348",
+          "command": "find project/ -maxdepth 1 -type f -exec stat -f \"%z\" {} + 2>/dev/null | awk '{s+=$1} END {print s+0}'"
+        },
+        {
+          "key": "x0349",
+          "command": "find project/ -maxdepth 1 -type f -exec stat -f %z {} + | awk 'BEGIN{s=0}{s+=$1}END{print s}'"
+        }
+      ]
+    },
+    {
+      "case": "r9027",
+      "request": "show notes.txt in all caps",
+      "candidates": [
+        {
+          "key": "x5666",
+          "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\""
+        }
+      ]
+    },
+    {
+      "case": "r00156",
+      "request": "Report audio devices marked as the default system-effects output.",
+      "candidates": [
+        {
+          "key": "x0350",
+          "command": "system_profiler SPAudioDataType | awk '/^        .+:$/ {name=$0} /Default System Output Device: Yes/ {print substr(name, 9, length(name)-9)}'"
+        },
+        {
+          "key": "x0351",
+          "command": "system_profiler SPAudioDataType | awk '/^        [^ ].*:[[:space:]]*$/ { name=$0; sub(/^[[:space:]]+/, \"\", name); sub(/:[[:space:]]*$/, \"\", name) } /Default System Output Device: Yes/ { print name }'"
+        },
+        {
+          "key": "x0352",
+          "command": "system_profiler SPAudioDataType | awk '/^  [^[:space:]].*:[[:space:]]*$/{device=$0; sub(/:[[:space:]]*$/, x, device); sub(/^[[:space:]]+/, x, device)} /Default System Effects Output Device: Yes/{print device}'"
+        },
+        {
+          "key": "x0353",
+          "command": "system_profiler SPAudioDataType | awk '/^[[:space:]]+Devices:[[:space:]]*$/{d=1;next} d && /^[[:space:]]+[^:]+:[[:space:]]*$/{name=$0; sub(/^[[:space:]]+/,\"\",name); sub(/:$/,\"\",name)} d && /^[[:space:]]+Default System Effects Output Device:[[:space:]]*Yes[[:space:]]*$/{print name}'"
+        }
+      ]
+    },
+    {
+      "case": "r00157",
+      "request": "Fetch https://example.org/ using HTTP/1.1 and retain normal certificate validation.",
+      "candidates": [
+        {
+          "key": "x0354",
+          "command": "curl --http1.1 https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "r00158",
+      "request": "In the current Git repository, show only staged changes under the project/ subdirectory.",
+      "candidates": [
+        {
+          "key": "x0355",
+          "command": "git diff --cached -- project/"
+        }
+      ]
+    },
+    {
+      "case": "r00159",
+      "request": "check whether FileVault reports encryption enabled",
+      "candidates": [
+        {
+          "key": "x0356",
+          "command": "fdesetup status | grep -q 'FileVault is On' && echo enabled || echo disabled"
+        }
+      ]
+    },
+    {
+      "case": "r00161",
+      "request": "Can you tell which active power assertions carry a timeout?",
+      "candidates": [
+        {
+          "key": "x0357",
+          "command": "pmset -g assertions | awk '/pid .*named:/{a=$0} /Timeout will fire/{if(!seen[a]++) print a}'"
+        },
+        {
+          "key": "x0358",
+          "command": "pmset -g assertions | grep -E 'Timeout[[:space:]]*=[[:space:]]*[1-9][0-9]*|Timeout will fire in [1-9]'"
+        },
+        {
+          "key": "x0359",
+          "command": "pmset -g assertions | grep -E 'pid .*Timeout: [0-9]+'"
+        },
+        {
+          "key": "x0360",
+          "command": "pmset -g assertions | grep -i 'timeout'"
+        }
+      ]
+    },
+    {
+      "case": "r00162",
+      "request": "Please show my current login session entry, including its terminal.",
+      "candidates": [
+        {
+          "key": "x0361",
+          "command": "who -m"
+        }
+      ]
+    },
+    {
+      "case": "r00163",
+      "request": "Can you show whether automatic restart after a power failure is currently configured?",
+      "candidates": [
+        {
+          "key": "x0362",
+          "command": "pmset -g | grep -i autorestart"
+        },
+        {
+          "key": "x0363",
+          "command": "pmset -g | grep -i autorestart || echo \"autorestart setting not found\""
+        },
+        {
+          "key": "x0364",
+          "command": "pmset -g | grep -i autorestart || echo 'automatic restart after power failure not configured'"
+        },
+        {
+          "key": "x0365",
+          "command": "pmset -g | grep autorestart"
+        },
+        {
+          "key": "x0366",
+          "command": "pmset -g | grep autorestart || echo autorestart not configured"
+        }
+      ]
+    },
+    {
+      "case": "r00164",
+      "request": "Could you show the path of the file selected in Finder?",
+      "candidates": [
+        {
+          "key": "x0367",
+          "command": "osascript -e 'tell application \"Finder\" to POSIX path of (item 1 of (get selection) as alias)'"
+        },
+        {
+          "key": "x0368",
+          "command": "osascript -e 'tell application \"Finder\" to get POSIX path of ((item 1 of selection) as alias)'"
+        },
+        {
+          "key": "x0369",
+          "command": "osascript -e 'tell application \"Finder\" to get POSIX path of (item 1 of (get selection))'"
+        },
+        {
+          "key": "x0370",
+          "command": "osascript -e 'tell application \"Finder\" to get POSIX path of (item 1 of (selection as alias list))'"
+        },
+        {
+          "key": "x0371",
+          "command": "osascript -e 'tell application \"Finder\" to set t to (selection as list)' -e 'if t is {} then set p to \"\" else set p to POSIX path of (item 1 of t)' -e 'p'"
+        }
+      ]
+    },
+    {
+      "case": "r00166",
+      "request": "Report the auto-proxy discovery setting for the Ethernet service.",
+      "candidates": [
+        {
+          "key": "x0372",
+          "command": "networksetup -getproxyautodiscovery Ethernet"
+        }
+      ]
+    },
+    {
+      "case": "r00167",
+      "request": "show ethernet service dns addreses on mac",
+      "candidates": [
+        {
+          "key": "x0373",
+          "command": "networksetup -getdnsservers \"Ethernet\""
+        }
+      ]
+    },
+    {
+      "case": "r00168",
+      "request": "Find IPv6 TCP listeners owned by my user.",
+      "candidates": [
+        {
+          "key": "x0374",
+          "command": "lsof -nP -a -iTCP6 -sTCP:LISTEN -u \"$(id -un)\""
+        },
+        {
+          "key": "x0375",
+          "command": "lsof -nP -i 6TCP -sTCP:LISTEN -u \"$(id -un)\""
+        },
+        {
+          "key": "x0376",
+          "command": "lsof -nP -i6 -iTCP -sTCP:LISTEN -a -u \"$(id -un)\""
+        },
+        {
+          "key": "x0377",
+          "command": "lsof -nP -i6 -sTCP:LISTEN -a -u \"$(whoami)\""
+        },
+        {
+          "key": "x0378",
+          "command": "lsof -nP -iTCP6 -sTCP:LISTEN -a -u $(whoami)"
+        }
+      ]
+    },
+    {
+      "case": "r00169",
+      "request": "Could you print the MAC addresses for all hardware network ports on this Mac?",
+      "candidates": [
+        {
+          "key": "x0379",
+          "command": "networksetup -listallhardwareports"
+        }
+      ]
+    },
+    {
+      "case": "r00170",
+      "request": "Can you fetch https://example.org/ while limiting transfer speed to 100 KiB per second?",
+      "candidates": [
+        {
+          "key": "x0380",
+          "command": "curl --limit-rate 102400 https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "r00171",
+      "request": "Create a named pipe called event.pipe.",
+      "candidates": [
+        {
+          "key": "x0381",
+          "command": "mkfifo event.pipe"
+        }
+      ]
+    },
+    {
+      "case": "r00172",
+      "request": "I'd like to test whether UDP packets can be sent to my own test listener at 127.0.0.1:9999 using the text hello.",
+      "candidates": [
+        {
+          "key": "x0382",
+          "command": "printf 'hello' | nc -u -w 1 127.0.0.1 9999"
+        }
+      ]
+    },
+    {
+      "case": "r00173",
+      "request": "find files ending .sqlite or .db under test-data/ plz",
+      "candidates": [
+        {
+          "key": "x0383",
+          "command": "find test-data -type f \\( -name \"*.sqlite\" -o -name \"*.db\" \\)"
+        },
+        {
+          "key": "x0384",
+          "command": "find test-data/ -type f '(' -name '*.sqlite' -o -name '*.db' ')'"
+        },
+        {
+          "key": "x0385",
+          "command": "find test-data/ -type f \\( -iname '*.sqlite' -o -iname '*.db' \\)"
+        },
+        {
+          "key": "x0386",
+          "command": "find test-data/ -type f \\( -name '*.sqlite' -o -name '*.db' \\)"
+        },
+        {
+          "key": "x0387",
+          "command": "find test-data/ \\( -name '*.sqlite' -o -name '*.db' \\) -type f"
+        }
+      ]
+    },
+    {
+      "case": "r00174",
+      "request": "Display kernel shared-memory size limits without modifying them.",
+      "candidates": [
+        {
+          "key": "x0388",
+          "command": "sysctl -a | grep '^kern\\.ipc\\.shm'"
+        }
+      ]
+    },
+    {
+      "case": "r00175",
+      "request": "Please locate files inside metrics/ with more than a million lines.",
+      "candidates": [
+        {
+          "key": "x0389",
+          "command": "find metrics/ -type f -exec awk 'FNR > 1000000 { print FILENAME; exit }' {} \\;"
+        },
+        {
+          "key": "x0390",
+          "command": "find metrics/ -type f -exec sh -c 'for f in \"$@\"; do n=$(wc -l < \"$f\"); if [ \"$n\" -gt 1000000 ]; then printf \"%s\\n\" \"$f\"; fi; done' sh {} +"
+        },
+        {
+          "key": "x0391",
+          "command": "find metrics/ -type f -exec sh -c 'for f; do lines=$(wc -l < \"$f\"); [ \"$lines\" -gt 1000000 ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x0392",
+          "command": "find metrics/ -type f -exec sh -c 'for f; do n=$(wc -l < \"$f\"); [ \"$n\" -gt 1000000 ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        }
+      ]
+    },
+    {
+      "case": "r00176",
+      "request": "Find .csv files missing the required header name,value in tables/.",
+      "candidates": [
+        {
+          "key": "x0393",
+          "command": "find tables -type f -name '*.csv' -exec sh -c 'for f; do head -n 1 \"$f\" | tr -d \"\\r\" | grep -q \"^name,value$\" || printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x0394",
+          "command": "find tables -type f -name '*.csv' -exec sh -c 'for f; do head -n1 \"$f\" | grep -qx \"name,value\" || printf \"%s\\n\" \"$f\"; done' sh {} +"
+        },
+        {
+          "key": "x0395",
+          "command": "find tables -type f -name '*.csv' -exec sh -c 'for f; do head -n1 \"$f\" | tr -d \"\\r\" | grep -qx \"name,value\" || printf \"%s\\n\" \"$f\"; done' sh {} +"
+        },
+        {
+          "key": "x0396",
+          "command": "find tables/ -type f -name '*.csv' -exec sh -c 'for f; do if ! head -n 1 \"$f\" | tr -d \"\\r\" | grep -qx \"name,value\"; then printf \"%s\\n\" \"$f\"; fi; done' sh {} +"
+        },
+        {
+          "key": "x0397",
+          "command": "find tables/ -type f -name '*.csv' -exec sh -c 'head -n 1 \"$1\" | grep -qx \"name,value\" || printf \"%s\\n\" \"$1\"' _ {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "r00177",
+      "request": "show the type of the Dock icon size preference",
+      "candidates": [
+        {
+          "key": "x0398",
+          "command": "defaults read-type com.apple.dock tilesize"
+        }
+      ]
+    },
+    {
+      "case": "r00180",
+      "request": "count warning level messages in unified-log.ndjson plese",
+      "candidates": [
+        {
+          "key": "x0399",
+          "command": "awk '/\"level\"[[:space:]]*:[[:space:]]*\"warning\"/ {count++} END {print count+0}' unified-log.ndjson"
+        },
+        {
+          "key": "x0400",
+          "command": "grep -Eic '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson"
+        },
+        {
+          "key": "x0401",
+          "command": "grep -Eic '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson || true"
+        },
+        {
+          "key": "x0402",
+          "command": "grep -c '\"level\":[[:space:]]*\"warning\"' unified-log.ndjson"
+        },
+        {
+          "key": "x0403",
+          "command": "grep -ciE '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson"
+        }
+      ]
+    },
+    {
+      "case": "r00181",
+      "request": "Print the hardware model identifier.",
+      "candidates": [
+        {
+          "key": "x0404",
+          "command": "sysctl -n hw.model"
+        }
+      ]
+    },
+    {
+      "case": "r9052",
+      "request": "what is my public ip",
+      "candidates": [
+        {
+          "key": "x5691",
+          "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'"
+        }
+      ]
+    },
+    {
+      "case": "r00182",
+      "request": "In the current Git repository, stage only project/README.md.",
+      "candidates": [
+        {
+          "key": "x0405",
+          "command": "git add project/README.md"
+        }
+      ]
+    },
+    {
+      "case": "r00183",
+      "request": "Wait for my background job number 1 to finish.",
+      "candidates": [
+        {
+          "key": "x0406",
+          "command": "wait %1"
+        }
+      ]
+    },
+    {
+      "case": "r00184",
+      "request": "Use TCP for an example.org DNS lookup.",
+      "candidates": [
+        {
+          "key": "x0407",
+          "command": "dig +tcp example.org"
+        }
+      ]
+    },
+    {
+      "case": "r00185",
+      "request": "show acl and bsd flags on ~/Library/Containers/com.example.MyApp",
+      "candidates": [
+        {
+          "key": "x0408",
+          "command": "ls -ldeO ~/Library/Containers/com.example.MyApp"
+        }
+      ]
+    },
+    {
+      "case": "r00186",
+      "request": "I'd like the physical sector size of disk4.",
+      "candidates": [
+        {
+          "key": "x0409",
+          "command": "diskutil info disk4 | awk '/Physical (Block|Sector) Size/ {print $4}'"
+        },
+        {
+          "key": "x0410",
+          "command": "diskutil info disk4 | awk -F': +' '/Physical Sector Size/{print $2; exit}'"
+        },
+        {
+          "key": "x0411",
+          "command": "diskutil info disk4 | grep \"Physical Sector Size\""
+        },
+        {
+          "key": "x0412",
+          "command": "diskutil info disk4 | grep -F 'Sector Size (Physical):' | awk '{print $4}'"
+        }
+      ]
+    },
+    {
+      "case": "r00187",
+      "request": "Find directories in project/ occupying over 1 GiB.",
+      "candidates": [
+        {
+          "key": "x0413",
+          "command": "du -k project/ | awk '$1 > 1048576' | sed -E 's/^[^[:space:]]+[[:space:]]+//' | awk '$0 != \"project/\" && $0 != \"project\"'"
+        },
+        {
+          "key": "x0414",
+          "command": "find project/ -mindepth 1 -maxdepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576' | cut -f2-"
+        },
+        {
+          "key": "x0415",
+          "command": "find project/ -mindepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576 { sub(/^[0-9]+[[:space:]]+/, \"\"); print }'"
+        },
+        {
+          "key": "x0416",
+          "command": "find project/ -mindepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576' | cut -f2-"
+        },
+        {
+          "key": "x0417",
+          "command": "find project/ -type d -exec du -sk {} + | awk '$1 > 1048576'"
+        }
+      ]
+    },
+    {
+      "case": "r00189",
+      "request": "Read disk-I/O counters once using the built-in Mac utility.",
+      "candidates": [
+        {
+          "key": "x0418",
+          "command": "iostat -d"
+        }
+      ]
+    },
+    {
+      "case": "r00190",
+      "request": "Please list the direct children of /System/Applications/Utilities with full absolute paths.",
+      "candidates": [
+        {
+          "key": "x0419",
+          "command": "find /System/Applications/Utilities -mindepth 1 -maxdepth 1 -print"
+        }
+      ]
+    },
+    {
+      "case": "r00191",
+      "request": "print uptime and the current local clock on one line",
+      "candidates": [
+        {
+          "key": "x0420",
+          "command": "echo \"$(uptime) $(date)\""
+        },
+        {
+          "key": "x0421",
+          "command": "echo \"$(uptime) | $(date '+%Y-%m-%d %H:%M:%S %Z')\""
+        },
+        {
+          "key": "x0422",
+          "command": "printf '%s %s\\n' \"$(uptime)\" \"$(date '+%Y-%m-%d %H:%M:%S %Z')\""
+        },
+        {
+          "key": "x0423",
+          "command": "printf '%s %s\\n' \"$(uptime)\" \"$(date)\""
+        },
+        {
+          "key": "x0424",
+          "command": "uptime | tr '\\n' ' '; date"
+        }
+      ]
+    },
+    {
+      "case": "r00192",
+      "request": "convrt certs/leaf.der into a PEM copy named leaf.pem",
+      "candidates": [
+        {
+          "key": "x0425",
+          "command": "openssl x509 -inform der -in certs/leaf.der -out leaf.pem"
+        }
+      ]
+    },
+    {
+      "case": "r00193",
+      "request": "Please show the installed voices for English on this Mac.",
+      "candidates": [
+        {
+          "key": "x0426",
+          "command": "say -v '?' | awk '$2 ~ /^en/ {print}'"
+        },
+        {
+          "key": "x0427",
+          "command": "say -v '?' | awk 'tolower($2) ~ /^en([-_]|$)/ {print}'"
+        },
+        {
+          "key": "x0428",
+          "command": "say -v '?' | grep -E '[[:space:]]en([-_][[:alnum:]]+)?[[:space:]]+#'"
+        },
+        {
+          "key": "x0429",
+          "command": "say -v '?' | grep -E '[[:space:]]en[-_][A-Z][A-Z]([[:space:]]|$)'"
+        }
+      ]
+    },
+    {
+      "case": "r00194",
+      "request": "Replace literal CR escape sequences with actual newlines in mac-console-export.txt.",
+      "candidates": [
+        {
+          "key": "x0430",
+          "command": "awk '{gsub(/\\\\r/, \"\\n\"); print}' mac-console-export.txt > mac-console-export.txt.tmp && mv mac-console-export.txt.tmp mac-console-export.txt"
+        },
+        {
+          "key": "x0431",
+          "command": "perl -i -0777 -pe 's/\\\\r/\\n/g' mac-console-export.txt"
+        },
+        {
+          "key": "x0432",
+          "command": "perl -i -pe 's/\\\\r/\\n/g' mac-console-export.txt"
+        },
+        {
+          "key": "x0433",
+          "command": "perl -pi -e 's/\\\\r/\\n/g' mac-console-export.txt"
+        },
+        {
+          "key": "x0434",
+          "command": "sed -i '' 's/\\\\r/\\n/g' mac-console-export.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00195",
+      "request": "list untracked files in project/",
+      "candidates": [
+        {
+          "key": "x0435",
+          "command": "git ls-files --others --exclude-standard -- project/"
+        }
+      ]
+    },
+    {
+      "case": "r00197",
+      "request": "Print duplicate UUID fields from unified-log.ndjson with occurrence counts.",
+      "candidates": [
+        {
+          "key": "x0436",
+          "command": "grep -E -o -i '\"(uuid|UUID)\"[[:space:]]*:[[:space:]]*\"[^\"]+\"' unified-log.ndjson | sed 's/.*\"\\([^\"]*\\)\"$/\\1/' | sort | uniq -c | awk '$1 > 1 {print $1, $2}' | sort -nr"
+        },
+        {
+          "key": "x0437",
+          "command": "grep -oE '\"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\"' unified-log.ndjson | tr -d '\"' | sort | uniq -c | awk '$1 > 1 {print $1, $2}'"
+        },
+        {
+          "key": "x0438",
+          "command": "grep -oE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' unified-log.ndjson | sort | uniq -c | awk '$1 > 1 {print $1, $2}'"
+        },
+        {
+          "key": "x0439",
+          "command": "grep -oiE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' unified-log.ndjson | tr '[:upper:]' '[:lower:]' | sort | uniq -c | awk '$1 > 1'"
+        }
+      ]
+    },
+    {
+      "case": "r00198",
+      "request": "List open deleted files on /Volumes/WORK that may account for disk-space discrepancies.",
+      "candidates": [
+        {
+          "key": "x0440",
+          "command": "lsof +L1 /Volumes/WORK"
+        },
+        {
+          "key": "x0441",
+          "command": "lsof +L1 | grep -E '/Volumes/WORK(/|$)'"
+        },
+        {
+          "key": "x0442",
+          "command": "lsof +L1 | grep -F '/Volumes/WORK' | grep -F '(deleted)'"
+        },
+        {
+          "key": "x0443",
+          "command": "lsof -n -P 2>/dev/null | grep -F ' /Volumes/WORK/' | grep -F '(deleted)'"
+        },
+        {
+          "key": "x0444",
+          "command": "lsof -nP +L1 | grep '/Volumes/WORK'"
+        }
+      ]
+    },
+    {
+      "case": "r00199",
+      "request": "Append nothing to session.log but update its timestamps.",
+      "candidates": [
+        {
+          "key": "x0445",
+          "command": "touch session.log"
+        }
+      ]
+    },
+    {
+      "case": "r00201",
+      "request": "which mounted filesystems use hfs on this mac",
+      "candidates": [
+        {
+          "key": "x0446",
+          "command": "df -t hfs"
+        },
+        {
+          "key": "x0447",
+          "command": "mount | grep -E ' \\(hfs(,|\\))'"
+        },
+        {
+          "key": "x0448",
+          "command": "mount | grep -E '\\((hfs|hfsplus)(,|\\))'"
+        },
+        {
+          "key": "x0449",
+          "command": "mount | grep -E '\\(hfs(,|\\))'"
+        }
+      ]
+    },
+    {
+      "case": "r00202",
+      "request": "Can you read the status of the macOS VPN service named Lab VPN and then exit?",
+      "candidates": [
+        {
+          "key": "x0450",
+          "command": "scutil --nc status \"Lab VPN\""
+        }
+      ]
+    },
+    {
+      "case": "r00203",
+      "request": "copy project/ to backup/ with metadata preserved and print each path as it is copied",
+      "candidates": [
+        {
+          "key": "x0451",
+          "command": "cp -Rp -v project/ backup/"
+        }
+      ]
+    },
+    {
+      "case": "r00204",
+      "request": "Report how many visible processes have parent PID 1.",
+      "candidates": [
+        {
+          "key": "x0452",
+          "command": "ps -A -o ppid= -x | awk '$1 == 1 {n++} END {print n+0}'"
+        },
+        {
+          "key": "x0453",
+          "command": "ps -Ao ppid | awk '$1 == 1 {n++} END {print n+0}'"
+        },
+        {
+          "key": "x0454",
+          "command": "ps -axo ppid= | awk '$1==1 {c++} END {print c+0}'"
+        },
+        {
+          "key": "x0455",
+          "command": "ps -e -o ppid= | awk '$1==1 {c++} END {print c+0}'"
+        }
+      ]
+    },
+    {
+      "case": "r00207",
+      "request": "I want to list URL schemes registered in Browser.app's bundle metadata",
+      "candidates": [
+        {
+          "key": "x0456",
+          "command": "/usr/libexec/PlistBuddy -c 'Print :CFBundleURLTypes:*:CFBundleURLSchemes:*' Browser.app/Contents/Info.plist"
+        },
+        {
+          "key": "x0457",
+          "command": "mdls -name kMDItemCFBundleURLTypes Browser.app"
+        },
+        {
+          "key": "x0458",
+          "command": "plutil -extract CFBundleURLTypes raw Browser.app/Contents/Info.plist | sed -n '/CFBundleURLSchemes/,/;/p' | grep -o '\"[^\"]*\"' | tr -d '\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00208",
+      "request": "Join wrapped lines in message.txt into one paragraph.",
+      "candidates": [
+        {
+          "key": "x0459",
+          "command": "awk 'NR>1{printf \" \"} {printf \"%s\", $0} END{print \"\"}' message.txt"
+        },
+        {
+          "key": "x0460",
+          "command": "awk '{gsub(/[ \\t]+$/, \"\"); printf \"%s%s\", (NR==1 ? \"\" : \" \"), $0} END{print \"\"}' message.txt"
+        },
+        {
+          "key": "x0461",
+          "command": "paste -s -d ' ' message.txt"
+        },
+        {
+          "key": "x0462",
+          "command": "paste -sd ' ' message.txt"
+        },
+        {
+          "key": "x0463",
+          "command": "sed 's/^[[:space:]]*//;s/[[:space:]]*$//' message.txt | grep -v '^$' | paste -s -d ' '"
+        }
+      ]
+    },
+    {
+      "case": "r00209",
+      "request": "show the second item of the servers array in project/Config.plist",
+      "candidates": [
+        {
+          "key": "x0464",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :servers:1\" project/Config.plist"
+        }
+      ]
+    }
+  ]
+}

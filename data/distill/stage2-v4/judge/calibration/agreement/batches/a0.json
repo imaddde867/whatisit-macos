@@ -1,0 +1,345 @@
+{
+ "batch": "a0",
+ "items": [
+  {
+   "case": "ca7f59a43e745",
+   "request": "I want a symbolic link named notes-link to notes.md that uses an absolute target path.",
+   "candidates": [
+    {
+     "key": "kf48db2d38a6e",
+     "command": "ln -s \"$(pwd)/notes.md\" notes-link"
+    }
+   ]
+  },
+  {
+   "case": "cd2039e724f65",
+   "request": "Print timestamps and process identifiers for fault records in mac-unified.ndjson.",
+   "candidates": [
+    {
+     "key": "k7c58727dbf07",
+     "command": "awk '/\"fault\"/ { t=\"\"; if (match($0,/\"timestamp\":[[:space:]]*(\"[^\"]*\"|[0-9.]+)/)) { s=substr($0,RSTART,RLENGTH); sub(/^\"timestamp\":[[:space:]]*/,\"\",s); sub(/^\"/,\"\",s); sub(/\"$/,\"\",s); t=s } p=\"\"; if (match($0,/\"pid\":[[:space:]]*(\"[^\"]*\"|[0-9]+)/)) { s=substr($0,RSTART,RLENGTH); sub(/^\"pid\":[[:space:]]*/,\"\",s); sub(/^\"/,\"\",s); sub(/\"$/,\"\",s); p=s } else if (match($0,/\"processIdentifier\":[[:space:]]*(\"[^\"]*\"|[0-9]+)/)) { s=substr($0,RSTART,RLENGTH); sub(/^\"processIdentifier\":[[:space:]]*/,\"\",s); sub(/^\"/,\"\",s); sub(/\"$/,\"\",s); p=s } if (t != \"\" && p != \"\") print t \"\\t\" p }' mac-unified.ndjson"
+    }
+   ]
+  },
+  {
+   "case": "cf3860d55dbf3",
+   "request": "Display the assertion history for the next ten seconds, then terminate the observer.",
+   "candidates": [
+    {
+     "key": "k992623916b55",
+     "command": "log stream --predicate 'subsystem == \"com.apple.powerd\" AND category == \"assertions\"' --timeout 10"
+    }
+   ]
+  },
+  {
+   "case": "c30c3aff72033",
+   "request": "Calculate the average of the numbers in temperatures.txt.",
+   "candidates": [
+    {
+     "key": "k5086aa219c50",
+     "command": "awk '{for(i=1;i<=NF;i++) if ($i ~ /^-?[0-9]+(\\.[0-9]+)?$/) {sum+=$i; n++}} END {if (n) print sum/n}' temperatures.txt"
+    },
+    {
+     "key": "k6aba8718a709",
+     "command": "awk 'NF {sum+=$1; n++} END {if (n) print sum/n}' temperatures.txt"
+    },
+    {
+     "key": "k22cfb8ba1eeb",
+     "command": "awk '{for(i=1;i<=NF;i++) if($i ~ /^[-+]?[0-9]*[.]?[0-9]+$/) {s+=$i; n++}} END {if(n) print s/n}' temperatures.txt"
+    },
+    {
+     "key": "kfc71117d0870",
+     "command": "awk '{sum+=$1; n++} END {if (n) print sum/n; else print 0}' temperatures.txt"
+    },
+    {
+     "key": "k5648832b900a",
+     "command": "awk 'NF {for(i=1;i<=NF;i++) {sum+=$i; n++}} END {if (n) print sum/n}' temperatures.txt"
+    }
+   ]
+  },
+  {
+   "case": "c3ae027a1a417",
+   "request": "Find directories in project/ occupying over 1 GiB.",
+   "candidates": [
+    {
+     "key": "k6c5a70cee71b",
+     "command": "find project/ -mindepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576 { sub(/^[0-9]+[[:space:]]+/, \"\"); print }'"
+    },
+    {
+     "key": "k03e92aae905c",
+     "command": "find project/ -mindepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576' | cut -f2-"
+    },
+    {
+     "key": "k0014b2eee721",
+     "command": "find project/ -mindepth 1 -maxdepth 1 -type d -exec du -sk {} + | awk '$1 > 1048576' | cut -f2-"
+    },
+    {
+     "key": "kb04196041f8b",
+     "command": "du -k project/ | awk '$1 > 1048576' | sed -E 's/^[^[:space:]]+[[:space:]]+//' | awk '$0 != \"project/\" && $0 != \"project\"'"
+    },
+    {
+     "key": "kce3ee859999c",
+     "command": "find project/ -type d -exec du -sk {} + | awk '$1 > 1048576'"
+    }
+   ]
+  },
+  {
+   "case": "c6b022594f3d2",
+   "request": "extract text before the first equals in vars.txt pls",
+   "candidates": [
+    {
+     "key": "k3637b95906aa",
+     "command": "cut -d= -f1 vars.txt"
+    }
+   ]
+  },
+  {
+   "case": "ce6c6c60acfd2",
+   "request": "find images indexed with color profile Adobe RGB in image-tests/",
+   "candidates": [
+    {
+     "key": "k32f8b507beba",
+     "command": "mdfind \"kMDItemContentTypeTree == 'public.image' && kMDItemProfileName == 'Adobe RGB*'\" -onlyin image-tests"
+    },
+    {
+     "key": "k7b6cc6bff661",
+     "command": "mdfind -onlyin image-tests/ 'kMDItemColorProfile == \"Adobe RGB*\" && kMDItemContentTypeTree == \"public.image\"'"
+    },
+    {
+     "key": "k5379e76d178c",
+     "command": "mdfind -onlyin image-tests/ 'kMDItemContentTypeTree == \"public.image\" && kMDItemProfileName == \"Adobe RGB\"'"
+    },
+    {
+     "key": "k46f9a45031c2",
+     "command": "mdfind -onlyin image-tests/ 'kMDItemColorProfile == \"Adobe*RGB*\" && kMDItemContentTypeTree == \"public.image\"'"
+    },
+    {
+     "key": "kd8ba5076f4a0",
+     "command": "mdfind -onlyin image-tests/ 'kMDItemContentTypeTree == \"public.image\" && kMDItemColorProfile == \"Adobe RGB*\"'"
+    }
+   ]
+  },
+  {
+   "case": "cd7209dc72ec8",
+   "request": "Create a named pipe called event.pipe.",
+   "candidates": [
+    {
+     "key": "kc46412bc0fdb",
+     "command": "mkfifo event.pipe"
+    }
+   ]
+  },
+  {
+   "case": "ceaad488d4266",
+   "request": "I need the longest filename length among the immediate entries in test-names/.",
+   "candidates": [
+    {
+     "key": "k081b8b546f87",
+     "command": "perl -e 'opendir my $d, \"test-names\" or die; my $m=0; while (my $n = readdir $d) { next if $n eq \".\" || $n eq \"..\"; my $l = length $n; $m = $l if $l > $m; } print $m, \"\\n\";'"
+    },
+    {
+     "key": "k6ecf223c0ec2",
+     "command": "find test-names -mindepth 1 -maxdepth 1 -print0 | perl -0ne 'BEGIN{$m=0} s{.*/}{}; $m=length($_) if length($_)>$m; END{print \"$m\\n\"}'"
+    }
+   ]
+  },
+  {
+   "case": "c116efc3b5008",
+   "request": "Find indexed documents whose keywords include testing in document-tests/.",
+   "candidates": [
+    {
+     "key": "k72cc36636f5f",
+     "command": "mdfind -onlyin document-tests/ 'kMDItemKeywords == \"*testing*\"'"
+    },
+    {
+     "key": "k0b9e1afdba82",
+     "command": "mdfind -onlyin document-tests/ \"kMDItemKeywords == '*testing*'\""
+    },
+    {
+     "key": "k0f3cc584ea37",
+     "command": "mdfind -onlyin document-tests/ 'kMDItemKeyword == \"testing\"'"
+    }
+   ]
+  },
+  {
+   "case": "ce64fc9840283",
+   "request": "Read the battery condition reported by System Information.",
+   "candidates": [
+    {
+     "key": "k8996c763d7ad",
+     "command": "system_profiler SPPowerDataType | awk -F': ' '/Condition:/ {print $2; exit}'"
+    },
+    {
+     "key": "k7c295c5be162",
+     "command": "system_profiler SPPowerDataType | grep 'Condition:'"
+    },
+    {
+     "key": "ka9dc178453e9",
+     "command": "system_profiler SPPowerDataType | sed -n 's/^[[:space:]]*Condition:[[:space:]]*//p' | head -n 1"
+    }
+   ]
+  },
+  {
+   "case": "c2afaf65667fa",
+   "request": "Display each top-level entry in /Volumes/WORK with its usage measured in KiB.",
+   "candidates": [
+    {
+     "key": "k0c6fa177cd35",
+     "command": "find /Volumes/WORK -mindepth 1 -maxdepth 1 -exec du -k -s {} +"
+    },
+    {
+     "key": "k40717d29e17f",
+     "command": "find /Volumes/WORK -mindepth 1 -maxdepth 1 -exec du -sk {} +"
+    },
+    {
+     "key": "k53afd1494bc0",
+     "command": "du -k -d 1 /Volumes/WORK | sed '$d'"
+    },
+    {
+     "key": "ka4f7da98d600",
+     "command": "du -k -d 1 /Volumes/WORK | awk '$2 != \"/Volumes/WORK\"'"
+    }
+   ]
+  },
+  {
+   "case": "ca8a25bfbd9a3",
+   "request": "I need the Finder label index for report.pdf, as a number.",
+   "candidates": [
+    {
+     "key": "ke7b0171c6d4a",
+     "command": "mdls -name kMDItemFinderLabel -raw report.pdf | awk 'match($0,/[0-9]+/) {print substr($0,RSTART,RLENGTH); f=1; exit} END {if (!f) print 0}'"
+    },
+    {
+     "key": "k9ec500123882",
+     "command": "mdls -name kMDItemFSLabel -raw report.pdf"
+    }
+   ]
+  },
+  {
+   "case": "cf4fc9fec52b0",
+   "request": "Show the physical stores backing APFS container disk3.",
+   "candidates": [
+    {
+     "key": "k8f86fb0afd02",
+     "command": "diskutil apfs listPhysicalStores disk3"
+    }
+   ]
+  },
+  {
+   "case": "c1f174bcebf75",
+   "request": "show the launch-services application category declared by Viewer.app",
+   "candidates": [
+    {
+     "key": "kb0c8b54e480d",
+     "command": "plutil -extract LSApplicationCategoryType raw Viewer.app/Contents/Info.plist"
+    }
+   ]
+  },
+  {
+   "case": "c3ade5d8e21a8",
+   "request": "I need lines matching version followed by three digits in configs/, with the filename shown.",
+   "candidates": [
+    {
+     "key": "k212e3db40f7b",
+     "command": "grep -RHE 'version[0-9]{3}' configs/"
+    },
+    {
+     "key": "kdf4dec488ebf",
+     "command": "grep -H -r -E 'version[0-9]{3}' configs/"
+    },
+    {
+     "key": "k3591886d1d9c",
+     "command": "grep -RH -E 'version[0-9]{3}' configs/"
+    },
+    {
+     "key": "k80badfb67f25",
+     "command": "grep -rEH 'version[0-9]{3}' configs/"
+    },
+    {
+     "key": "kd59a3699bddd",
+     "command": "grep -rH 'version[0-9]\\{3\\}' configs/"
+    }
+   ]
+  },
+  {
+   "case": "c0337913f55a0",
+   "request": "Extract eventMessage values from mac-logs.json, a macOS unified-log JSON array.",
+   "candidates": [
+    {
+     "key": "k5698ae5433a9",
+     "command": "python3 -c 'import json; print(json.dumps([e[\"eventMessage\"] for e in json.load(open(\"mac-logs.json\")) if \"eventMessage\" in e]))'"
+    },
+    {
+     "key": "k3b2d85da19b5",
+     "command": "osascript -l JavaScript -e 'ObjC.import(\"Foundation\"); var d = $.NSData.dataWithContentsOfFile(\"mac-logs.json\"); var s = $.NSString.alloc.initWithDataEncoding(d, 4).js; JSON.parse(s).map(e => e ? e.eventMessage : undefined).filter(v => v !== undefined).map(v => typeof v === \"string\" ? v : JSON.stringify(v)).join(\"\\n\")'"
+    },
+    {
+     "key": "k425e64878587",
+     "command": "osascript -l JavaScript -e 'ObjC.import(\"Foundation\"); var s = ObjC.unwrap($.NSString.stringWithContentsOfFileEncodingError(\"mac-logs.json\", $.NSUTF8StringEncoding, null)); JSON.parse(s).map(function(e){return typeof e.eventMessage === \"string\" ? e.eventMessage : JSON.stringify(e.eventMessage)}).filter(function(v){return v !== undefined}).join(\"\\n\")'"
+    },
+    {
+     "key": "k43247d5fe781",
+     "command": "osascript -l JavaScript -e 'ObjC.import(\"Foundation\"); var p = $.NSFileManager.defaultManager.currentDirectoryPath.js + \"/mac-logs.json\"; var s = $.NSString.stringWithContentsOfFileEncodingError(p, 4, null).js; JSON.parse(s).map(function(x){return x.eventMessage}).filter(function(v){return v !== undefined}).join(\"\\n\")'"
+    }
+   ]
+  },
+  {
+   "case": "c3f9c148368e0",
+   "request": "Inspect encryption users on APFS volume disk3s1.",
+   "candidates": [
+    {
+     "key": "k093f64d72682",
+     "command": "diskutil apfs listUsers disk3s1"
+    }
+   ]
+  },
+  {
+   "case": "c9567d8ccd8c4",
+   "request": "would you find out whether /System/Applications/Notes.app has an ad-hoc signature",
+   "candidates": [
+    {
+     "key": "kce2e48c823d2",
+     "command": "codesign --display --verbose=4 /System/Applications/Notes.app 2>&1 | grep -qE 'flags=.*adhoc|Signature=adhoc' && echo ad-hoc || echo not-ad-hoc"
+    },
+    {
+     "key": "k3a6f839c97b8",
+     "command": "codesign -dvvv /System/Applications/Notes.app 2>&1 | grep -q 'Signature=adhoc' && echo ad-hoc || echo not-ad-hoc"
+    },
+    {
+     "key": "k952cb46e08ec",
+     "command": "codesign -dv --verbose=4 /System/Applications/Notes.app 2>&1 | grep -q 'adhoc' && echo 'ad-hoc' || echo 'not ad-hoc'"
+    },
+    {
+     "key": "kdd2e4a6f32c2",
+     "command": "codesign -dv --verbose=4 /System/Applications/Notes.app 2>&1 | grep -qi 'Signature=adhoc' && echo yes || echo no"
+    }
+   ]
+  },
+  {
+   "case": "cb121b0c4e860",
+   "request": "Show whether the macOS disk utility considers disk4 writable.",
+   "candidates": [
+    {
+     "key": "k16f5a77febd1",
+     "command": "diskutil info disk4 | grep -Ei 'read[- ]only'"
+    },
+    {
+     "key": "ka81ae814a1f6",
+     "command": "diskutil info disk4 | grep -Ei 'Writable|Read[- ]Only'"
+    },
+    {
+     "key": "k62df3848e1d6",
+     "command": "diskutil info disk4 | grep -qE 'Read-Only:[[:space:]]*No' && echo writable || echo 'not writable'"
+    },
+    {
+     "key": "k6dab0b5c00d5",
+     "command": "diskutil info disk4 | grep -i 'Writable'"
+    },
+    {
+     "key": "k420e79d15642",
+     "command": "diskutil info disk4 | awk '/Read-Only Media/ {print ($NF == \"No\" ? \"Writable: Yes\" : \"Writable: No\")}'"
+    }
+   ]
+  }
+ ]
+}

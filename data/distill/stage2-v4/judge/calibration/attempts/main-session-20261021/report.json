@@ -1,0 +1,42 @@
+{
+ "judge": "dsh-main-20261021-a1",
+ "total": 103,
+ "accepted_incorrect": 34,
+ "accepted_correct": 69,
+ "agree": 81,
+ "false_accepts": 17,
+ "false_rejects": 5,
+ "unsure": 0,
+ "bar": {
+  "agreement_required": 93,
+  "false_accept_max": 2,
+  "unsure_max": 2
+ },
+ "pass": false,
+ "false_accept_keys": [
+  "k09a3946cb4ef",
+  "k0f1fc2a4da25",
+  "k2bd7d437a8aa",
+  "k4731ceefaa34",
+  "k5a276fc6cac5",
+  "k61acf8869781",
+  "k62f789e8913d",
+  "k7a961acb994b",
+  "k88aea93a5606",
+  "k8903658f89c9",
+  "k8f8c68673b18",
+  "k971c564ceeca",
+  "kcc71b7a733bb",
+  "kcceffabb234b",
+  "kd9dfed01141c",
+  "kf456305c335b",
+  "kf5bcf43cbf8a"
+ ],
+ "false_reject_keys": [
+  "k1b10d16996eb",
+  "k3aedfb6ac812",
+  "k5d29dddf2c24",
+  "k632e876bb994",
+  "kd75ba7de0ce2"
+ ]
+}

@@ -1,0 +1,333 @@
+{
+ "batch": "a1",
+ "items": [
+  {
+   "case": "ca7b3720fd4bf",
+   "request": "inspect the associated-domains entitlement in Client.app",
+   "candidates": [
+    {
+     "key": "kc1b4ab10555b",
+     "command": "codesign -d --entitlements - Client.app 2>/dev/null | plutil -extract associated-domains xml1 -o /dev/stdout /dev/stdin"
+    },
+    {
+     "key": "k7c0183c70073",
+     "command": "codesign -d --entitlements :- Client.app | plutil -p /dev/stdin | awk '/com.apple.developer.associated-domains/{p=1} p{print} p && /^ *} *$|^ *] *$/{exit}'"
+    },
+    {
+     "key": "kf5bcf43cbf8a",
+     "command": "codesign -d --entitlements :- Client.app | grep -A 100 com.apple.developer.associated-domains"
+    },
+    {
+     "key": "k2bd7d437a8aa",
+     "command": "codesign -d --entitlements :- Client.app 2>/dev/null | plutil -p - | grep -A 10 'com.apple.developer.associated-domains'"
+    }
+   ]
+  },
+  {
+   "case": "c4af7900d848d",
+   "request": "Display the ISO week-year and week number corresponding to 2025-12-31.",
+   "candidates": [
+    {
+     "key": "k486256acaccf",
+     "command": "date -j -f \"%Y-%m-%d\" \"2025-12-31\" \"+%G-W%V\""
+    }
+   ]
+  },
+  {
+   "case": "c5523f004188e",
+   "request": "Show the value of LANG only.",
+   "candidates": [
+    {
+     "key": "k08495f9054eb",
+     "command": "printf '%s\\n' \"$LANG\""
+    }
+   ]
+  },
+  {
+   "case": "c60dc734b0a96",
+   "request": "Show the free inode count on the filesystem containing work/.",
+   "candidates": [
+    {
+     "key": "kc7cf180439b4",
+     "command": "df -i work/ | awk 'NR==1 {for(i=1;i<=NF;i++) if($i==\"ifree\") c=i} NR==2 {print $c}'"
+    },
+    {
+     "key": "k4dbcfc83b5be",
+     "command": "df -i work/ | awk 'NR==2 {print $6}'"
+    },
+    {
+     "key": "kacaf82c128c1",
+     "command": "df -i work/ | awk 'NR==2 {print $7}'"
+    },
+    {
+     "key": "ke5ff73e961ba",
+     "command": "df -i work/ | awk 'NR==1 {for(i=1;i<=NF;i++) if($i ~ /^ifree/) c=i} NR==2 {print $c}'"
+    },
+    {
+     "key": "k551257655d54",
+     "command": "df -i work/ | awk 'NR==2 {print $4}'"
+    }
+   ]
+  },
+  {
+   "case": "c1715cdcf90cf",
+   "request": "Append nothing to session.log but update its timestamps.",
+   "candidates": [
+    {
+     "key": "k5df07a8d8cce",
+     "command": "touch session.log"
+    }
+   ]
+  },
+  {
+   "case": "c4fc964aec11f",
+   "request": "Please show the installed voices for English on this Mac.",
+   "candidates": [
+    {
+     "key": "k88aea93a5606",
+     "command": "say -v '?' | awk '$2 ~ /^en/ {print}'"
+    },
+    {
+     "key": "k2bc5e3b22504",
+     "command": "say -v '?' | grep -E '[[:space:]]en[-_][A-Z][A-Z]([[:space:]]|$)'"
+    },
+    {
+     "key": "k61acf8869781",
+     "command": "say -v '?' | awk 'tolower($2) ~ /^en([-_]|$)/ {print}'"
+    },
+    {
+     "key": "k298dfe14860c",
+     "command": "say -v '?' | grep -E '[[:space:]]en([-_][[:alnum:]]+)?[[:space:]]+#'"
+    }
+   ]
+  },
+  {
+   "case": "c433da48bde5d",
+   "request": "show whether the clipboard contains a PNG image",
+   "candidates": [
+    {
+     "key": "k2d7d228db664",
+     "command": "osascript -e 'clipboard info' | grep -q 'PNGf' && echo yes || echo no"
+    }
+   ]
+  },
+  {
+   "case": "c85c1af5eb72a",
+   "request": "Display the filesystem identifier and optimal transfer block size for /Volumes/WORK.",
+   "candidates": [
+    {
+     "key": "kc6ec0a656423",
+     "command": "diskutil info /Volumes/WORK | grep -E 'Filesystem Identifier|Optimal Transfer Size'"
+    },
+    {
+     "key": "kc9dba350e76b",
+     "command": "stat -f 'Filesystem ID: %d, Optimal Block Size: %k' /Volumes/WORK"
+    },
+    {
+     "key": "k161e46d76d02",
+     "command": "stat -f \"%i %k\" /Volumes/WORK"
+    }
+   ]
+  },
+  {
+   "case": "c6929d6104241",
+   "request": "Count nonblank lines in paragraphs.txt.",
+   "candidates": [
+    {
+     "key": "kfbdab3b4e09a",
+     "command": "grep -c '[^[:space:]]' paragraphs.txt"
+    }
+   ]
+  },
+  {
+   "case": "c1f442b5ffe7b",
+   "request": "show the recorded submodule revisions in project/",
+   "candidates": [
+    {
+     "key": "k8903658f89c9",
+     "command": "git submodule status --cached -- project/"
+    }
+   ]
+  },
+  {
+   "case": "c04aa94e7bcb5",
+   "request": "Print lines in ranges.txt between the first START marker and the next STOP marker, excluding the markers.",
+   "candidates": [
+    {
+     "key": "k62f789e8913d",
+     "command": "awk '/START/{flag=1; next} flag && /STOP/{exit} flag' ranges.txt"
+    },
+    {
+     "key": "k53c9fc27a30e",
+     "command": "awk '/START/ && !p {p=1; next} /STOP/ && p {exit} p' ranges.txt"
+    },
+    {
+     "key": "kebefdfed0afb",
+     "command": "awk '/START/ && !s {s=1; next} s && /STOP/ {exit} s' ranges.txt"
+    },
+    {
+     "key": "k8f8c68673b18",
+     "command": "awk '/START/{f=1; next} f && /STOP/{exit} f' ranges.txt"
+    },
+    {
+     "key": "kcc71b7a733bb",
+     "command": "awk '/START/{flag=1; next} /STOP/{if(flag) exit} flag' ranges.txt"
+    }
+   ]
+  },
+  {
+   "case": "cc344d2f0d361",
+   "request": "list only directory entries stored in backup.tar",
+   "candidates": [
+    {
+     "key": "k910d34a7478b",
+     "command": "tar -tf backup.tar | grep '/$'"
+    }
+   ]
+  },
+  {
+   "case": "ccc2757925e27",
+   "request": "Please check whether Tool.app has the get-task-allow entitlement.",
+   "candidates": [
+    {
+     "key": "k56ed2a1a1ffd",
+     "command": "codesign -d --entitlements - Tool.app 2>/dev/null | grep -A1 '<key>get-task-allow</key>' | grep -q '<true' && echo true || echo false"
+    },
+    {
+     "key": "k930c8a63b482",
+     "command": "codesign -d --entitlements - Tool.app 2>/dev/null | tr -d '[:space:]' | grep -qF '<key>get-task-allow</key><true/>' && echo yes || echo no"
+    },
+    {
+     "key": "k3aedfb6ac812",
+     "command": "codesign -d --entitlements :- Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo yes || echo no"
+    },
+    {
+     "key": "k1b10d16996eb",
+     "command": "codesign -d --entitlements - Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo \"yes\" || echo \"no\""
+    },
+    {
+     "key": "kd75ba7de0ce2",
+     "command": "codesign -d --entitlements :- Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo 'Tool.app has the get-task-allow entitlement' || echo 'Tool.app does not have the get-task-allow entitlement'"
+    }
+   ]
+  },
+  {
+   "case": "ccc65f24cb4b0",
+   "request": "Find names containing a literal square bracket in samples/.",
+   "candidates": [
+    {
+     "key": "k93edad547c88",
+     "command": "find samples/ '(' -name '*[[]*' -o -name '*[]]*' ')' -print"
+    },
+    {
+     "key": "k5d29dddf2c24",
+     "command": "find samples/ -name '*[[]*'"
+    },
+    {
+     "key": "k632e876bb994",
+     "command": "find samples/ -name '*\\[*' -print"
+    },
+    {
+     "key": "kd738f5ffc1fa",
+     "command": "find samples/ -name '*[][]*'"
+    },
+    {
+     "key": "k3345b5783158",
+     "command": "find samples/ \\( -name '*\\[*' -o -name '*\\]*' \\) -print"
+    }
+   ]
+  },
+  {
+   "case": "cce59ffb84bde",
+   "request": "List folder names in ~/Library/Application Scripts.",
+   "candidates": [
+    {
+     "key": "k8600a3109897",
+     "command": "find ~/Library/Application Scripts -mindepth 1 -maxdepth 1 -type d -exec basename {} \\;"
+    },
+    {
+     "key": "k6445bfeaf45e",
+     "command": "find ~/Library/Application\\ Scripts -maxdepth 1 -mindepth 1 -type d -exec basename {} \\; 2>/dev/null"
+    }
+   ]
+  },
+  {
+   "case": "cfcb4c274bc08",
+   "request": "Show the folder identifier Finder uses for ~/Downloads.",
+   "candidates": [
+    {
+     "key": "k8d11c7f07ae2",
+     "command": "osascript -e 'tell application \"Finder\" to get id of (path to downloads folder)'"
+    },
+    {
+     "key": "k4250524256bd",
+     "command": "mdls -name _kMDItemUUID ~/Downloads"
+    }
+   ]
+  },
+  {
+   "case": "c42da630efd2a",
+   "request": "List USB devices and their bus topology.",
+   "candidates": [
+    {
+     "key": "k1c45546dacc8",
+     "command": "system_profiler SPUSBDataType"
+    }
+   ]
+  },
+  {
+   "case": "c18f5eb705983",
+   "request": "need arp cache for en0 only",
+   "candidates": [
+    {
+     "key": "k59b3f0ec6515",
+     "command": "arp -a | awk '/ on en0( |$)/'"
+    },
+    {
+     "key": "kae55ea7073e8",
+     "command": "arp -a -i en0"
+    },
+    {
+     "key": "k8214c902bf2f",
+     "command": "arp -a | grep -E ' on en0( |$)'"
+    },
+    {
+     "key": "k7a961acb994b",
+     "command": "arp -a | grep en0"
+    }
+   ]
+  },
+  {
+   "case": "ce1a919375960",
+   "request": "I want to inspect only TCP sockets owned by the exact process name MyApp.",
+   "candidates": [
+    {
+     "key": "kf0341bd841e9",
+     "command": "lsof -i TCP -a -c '/^MyApp$/'"
+    }
+   ]
+  },
+  {
+   "case": "c9bef6a742731",
+   "request": "Print only the values of RecentFiles from ~/Library/Preferences/com.example.MyApp.plist.",
+   "candidates": [
+    {
+     "key": "kf456305c335b",
+     "command": "plutil -extract RecentFiles xml1 -o - ~/Library/Preferences/com.example.MyApp.plist | sed -n 's|.*<string>\\(.*\\)</string>.*|\\1|p'"
+    },
+    {
+     "key": "k13e407a6271f",
+     "command": "plutil -extract RecentFiles raw ~/Library/Preferences/com.example.MyApp.plist"
+    },
+    {
+     "key": "k6c303f0b14ad",
+     "command": "plutil -extract RecentFiles xml1 -o - ~/Library/Preferences/com.example.MyApp.plist | xmllint --xpath '//string/text()' -"
+    },
+    {
+     "key": "kaaa2262c15b0",
+     "command": "plutil -extract RecentFiles raw -o - ~/Library/Preferences/com.example.MyApp.plist"
+    }
+   ]
+  }
+ ]
+}

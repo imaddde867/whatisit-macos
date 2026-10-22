@@ -1,0 +1,1992 @@
+{
+  "eligibility_rule": "Every control must match its exact request/command source item and have both historical passes agree with expected.",
+  "eligible_unused": {
+    "correct": [
+      "x0271",
+      "x0310",
+      "x0322",
+      "x0347",
+      "x0360",
+      "x0373",
+      "x0384",
+      "x0401",
+      "x0427",
+      "x0494",
+      "x0515",
+      "x0518",
+      "x0521",
+      "x0523",
+      "x0525",
+      "x0533",
+      "x0535",
+      "x0541",
+      "x0542",
+      "x0553",
+      "x0554",
+      "x0555",
+      "x0557",
+      "x0559",
+      "x0560",
+      "x0585",
+      "x0587",
+      "x0589",
+      "x0594",
+      "x0614",
+      "x0617",
+      "x0633",
+      "x0635",
+      "x0636",
+      "x0645",
+      "x0660",
+      "x0662",
+      "x0663",
+      "x0664",
+      "x0665",
+      "x0666",
+      "x0667",
+      "x0668",
+      "x0682",
+      "x0684",
+      "x0687",
+      "x0688",
+      "x0706",
+      "x0707",
+      "x0708",
+      "x0709",
+      "x0710",
+      "x0711",
+      "x0712",
+      "x0715",
+      "x0742",
+      "x0747",
+      "x0754"
+    ],
+    "incorrect": [
+      "x0154",
+      "x0164",
+      "x0166",
+      "x0171",
+      "x0172",
+      "x0183",
+      "x0200",
+      "x0218",
+      "x0232",
+      "x0235",
+      "x0237",
+      "x0244",
+      "x0266",
+      "x0315",
+      "x0335",
+      "x0346",
+      "x0355",
+      "x0363",
+      "x0404",
+      "x0412",
+      "x0417",
+      "x0418",
+      "x0429",
+      "x0431",
+      "x0434",
+      "x0436",
+      "x0465",
+      "x0466",
+      "x0468",
+      "x0495",
+      "x0498",
+      "x0504",
+      "x0506",
+      "x0538",
+      "x0575",
+      "x0675"
+    ]
+  },
+  "historical_sha256": {
+    "docs/eval-audit/items.json": "63534144d066c99e2e610f15fb4d30b504e488021c1583c9bee90450c2a960c4",
+    "docs/eval-audit/pass1-sonnet/b00.json": "781a3f54420c21e8386bf0cdd31c666589a740e8b6bfb62298cab515a4e085b5",
+    "docs/eval-audit/pass1-sonnet/b01.json": "b8037f9af22d0b2df6c528021c7729a0e0445b157dadf1bce66f9a51a9142223",
+    "docs/eval-audit/pass1-sonnet/b02.json": "b155ef0628501cd0e543b13055130bec4d2b00b04d7bcdb74390c9b8675700b1",
+    "docs/eval-audit/pass1-sonnet/b03.json": "24c3b6b01f7fef9624d2413094726462ea5439835372548a3db92f725c2b027e",
+    "docs/eval-audit/pass1-sonnet/b04.json": "aa5cc5aa289ccb58bed7a554dc444cf7f1ff2dd0e96aa5bdbd9085b3761384c0",
+    "docs/eval-audit/pass1-sonnet/b05.json": "f46cba6e333a8a11345f96313a17c27c97918fe637b75413bf2ee6f8a5125bbf",
+    "docs/eval-audit/pass1-sonnet/b06.json": "b98fb2ba9de2c82ca2fb7d138fe14a7133e22687691b60546ac2395d407c8bbf",
+    "docs/eval-audit/pass1-sonnet/b07.json": "c17e2784e2c64fa687547564f323eabb06774b22ce1cd3ec4de59ff4050ff3e7",
+    "docs/eval-audit/pass1-sonnet/b08.json": "2c4fab330a2123134b4623b1da49f139a75becb585f1ca7d4a9748ba14d40bdf",
+    "docs/eval-audit/pass1-sonnet/b09.json": "7a2c0305a08e49d891595f71c150035f923b0832e2dac6749aba942da9069e03",
+    "docs/eval-audit/pass2-opus/r0.json": "a1f461e17a28cf8dedbf43d1dd00cebb1fe27dbdfd84470378fe80333585d81e",
+    "docs/eval-audit/pass2-opus/r1.json": "8d96bb3373205321e0d088d8c6aecc9f1566577db82020358bce4d3c5a684799",
+    "docs/eval-audit/pass2-opus/r2.json": "f22f1389647865d73bebe6e089f39b47af9232e2555a2b1957cec1dc1222d5d9",
+    "docs/eval-audit/pass2-opus/r3.json": "5b5d89db3152799f62301a9ecac99610a4054b47016c615c29c8057818b02227"
+  },
+  "new_controls_sha256": "e916254e5e9545c857c633728855e8fb93962c4e60202410f9f2222e89eb42a4",
+  "original_controls_sha256": "182f26b0aece2b0b3913da0c5c50f2240d078031b096efb504edc08c59155ba3",
+  "reason": "Uniform historical agreement rule avoids outcome-driven replacement. Both observed control failures occurred on disputed controls.",
+  "replacements": [
+    {
+      "control": "ct0001",
+      "new": {
+        "case": "CTL-01",
+        "command": "sort -u names.txt | uniq -c",
+        "expected": "incorrect",
+        "key": "ct0001",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e020 x0154 incorrect (pass1 b06 incorrect)",
+        "request": "show me each unique line in names.txt and how many times it appears",
+        "source": "docs/eval-audit/items.json#x0154"
+      },
+      "old": {
+        "case": "CTL-01",
+        "command": "pmset -g capabilities",
+        "expected": "incorrect",
+        "key": "ct0001",
+        "request": "Which power-management features does this Mac support?",
+        "source": "docs/eval-audit/items.json#x0547"
+      },
+      "pass1": {
+        "case": "e020",
+        "category": "wrong_output",
+        "key": "x0154",
+        "note": "sort -u removes duplicates first, so every count is 1",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e020",
+        "category": "wrong_output",
+        "key": "x0154",
+        "note": "sort -u dedupes first, so uniq -c reports count 1 for every line.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0007",
+      "new": {
+        "case": "CTL-07",
+        "command": "find /Applications -type d -name '*Chrome*'",
+        "expected": "incorrect",
+        "key": "ct0007",
+        "provenance": "docs/eval-audit/pass2-opus/r3.json e034 x0164 incorrect (pass1 b03 incorrect)",
+        "request": "list apps in /Applications with chrome in the name",
+        "source": "docs/eval-audit/items.json#x0164"
+      },
+      "old": {
+        "case": "CTL-07",
+        "command": "zip -r MyApp.app.zip MyApp.app/",
+        "expected": "incorrect",
+        "key": "ct0007",
+        "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+        "source": "docs/eval-audit/items.json#x0257"
+      },
+      "pass1": {
+        "case": "e034",
+        "category": "missed_constraint",
+        "key": "x0164",
+        "note": "Recursive and case-sensitive; lists bundle internals, misses lowercase.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e034",
+        "category": "wrong_output",
+        "key": "x0164",
+        "note": "Recurses into bundle, lists framework dirs etc., not just apps.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0017",
+      "new": {
+        "case": "CTL-17",
+        "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill",
+        "expected": "incorrect",
+        "key": "ct0017",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0166 incorrect (pass1 b04 incorrect)",
+        "request": "kill whatever is running on port 8080",
+        "source": "docs/eval-audit/items.json#x0166"
+      },
+      "old": {
+        "case": "CTL-17",
+        "command": "hdiutil makehybrid -o ~/Desktop/project.dmg ~/project/",
+        "expected": "incorrect",
+        "key": "ct0017",
+        "request": "make a disk image of the project folder",
+        "source": "docs/eval-audit/items.json#x0180"
+      },
+      "pass1": {
+        "case": "e036",
+        "category": "wrong_operand",
+        "key": "x0166",
+        "note": "awk prints header PID too; kill errors on it",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e036",
+        "category": "wrong_output",
+        "key": "x0166",
+        "note": "Header PID reaches kill first; /bin/kill aborts on illegal process id (verified, exit 2), kills nothing.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0019",
+      "new": {
+        "case": "CTL-19",
+        "command": "ps -axo comm= | grep python",
+        "expected": "incorrect",
+        "key": "ct0019",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e042 x0171 incorrect (pass1 b09 incorrect)",
+        "request": "list my running python processes",
+        "source": "docs/eval-audit/items.json#x0171"
+      },
+      "old": {
+        "case": "CTL-19",
+        "command": "zip -r MyApp.app.zip MyApp.app",
+        "expected": "incorrect",
+        "key": "ct0019",
+        "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+        "source": "docs/eval-audit/items.json#x0462"
+      },
+      "pass1": {
+        "case": "e042",
+        "category": "wrong_output",
+        "key": "x0171",
+        "note": "Only command names, no pid; case-sensitive misses Python",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e042",
+        "category": "wrong_output",
+        "key": "x0171",
+        "note": "comm= names only, no PIDs; case-sensitive grep misses Python.app/Python3.framework processes.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0024",
+      "new": {
+        "case": "CTL-24",
+        "command": "ifconfig en0 | grep inet | awk '{print $2}'",
+        "expected": "incorrect",
+        "key": "ct0024",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e043 x0172 incorrect (pass1 b05 incorrect)",
+        "request": "what's my local ip address",
+        "source": "docs/eval-audit/items.json#x0172"
+      },
+      "old": {
+        "case": "CTL-24",
+        "command": "ifconfig -a | grep -E '^[a-z0-9]+:|status: active|inet |inet6 |netmask '; route -n get default 2>/dev/null || true",
+        "expected": "incorrect",
+        "key": "ct0024",
+        "request": "Show macOS active network information and reachability interfaces.",
+        "source": "docs/eval-audit/items.json#x0539"
+      },
+      "pass1": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0172",
+        "note": "Prints IPv4 plus inet6 addresses, multiple lines.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0172",
+        "note": "grep inet keeps en0 inet6 lines, printed before IPv4; first line is fe80 link-local",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0025",
+      "new": {
+        "case": "CTL-25",
+        "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+        "expected": "incorrect",
+        "key": "ct0025",
+        "provenance": "docs/eval-audit/pass2-opus/r3.json e058 x0183 incorrect (pass1 b02 incorrect)",
+        "request": "how much free space is left on my external drive named BACKUP",
+        "source": "docs/eval-audit/items.json#x0183"
+      },
+      "old": {
+        "case": "CTL-25",
+        "command": "hdiutil attach -nobrowse disk.iso",
+        "expected": "incorrect",
+        "key": "ct0025",
+        "request": "Mount disk.iso read-only without opening it in Finder.",
+        "source": "docs/eval-audit/items.json#x0309"
+      },
+      "pass1": {
+        "case": "e058",
+        "category": "hallucinated_flag",
+        "key": "x0183",
+        "note": "No 'Total Space Available' field in diskutil info.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e058",
+        "category": "wrong_output",
+        "key": "x0183",
+        "note": "No 'Total Space Available' field in diskutil info; grep empty.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0029",
+      "new": {
+        "case": "CTL-29",
+        "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u",
+        "expected": "incorrect",
+        "key": "ct0029",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0200 incorrect (pass1 b03 incorrect)",
+        "request": "Which processes have UDP sockets open? Give numeric addresses.",
+        "source": "docs/eval-audit/items.json#x0200"
+      },
+      "old": {
+        "case": "CTL-29",
+        "command": "/usr/bin/uname -m | /usr/bin/grep -q '^arm64$' && /usr/bin/file -b /usr/bin/true | /usr/bin/grep -q arm64 && /usr/bin/true && echo yes || echo no",
+        "expected": "incorrect",
+        "key": "ct0029",
+        "request": "Can an arm64-native command run successfully on this Apple Silicon Mac?",
+        "source": "docs/eval-audit/items.json#x0592"
+      },
+      "pass1": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0200",
+        "note": "Awk on FD column never matches; prints nothing.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m028",
+        "category": "wrong_output",
+        "key": "x0200",
+        "note": "awk tests $4 (FD column like 23u), never matches :port; prints nothing",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0033",
+      "new": {
+        "case": "CTL-33",
+        "command": "mkdir project-copy && cp -R project project-copy",
+        "expected": "incorrect",
+        "key": "ct0033",
+        "provenance": "docs/eval-audit/pass2-opus/r2.json e006 x0218 incorrect (pass1 b04 incorrect)",
+        "request": "i need a copy of the whole project folder called project-copy",
+        "source": "docs/eval-audit/items.json#x0218"
+      },
+      "old": {
+        "case": "CTL-33",
+        "command": "zip -r MyApp.zip MyApp.app",
+        "expected": "incorrect",
+        "key": "ct0033",
+        "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+        "source": "docs/eval-audit/items.json#x0846"
+      },
+      "pass1": {
+        "case": "e006",
+        "category": "wrong_output",
+        "key": "x0218",
+        "note": "Nests copy at project-copy/project",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e006",
+        "category": "wrong_output",
+        "key": "x0218",
+        "note": "mkdir first makes cp -R put source at project-copy/project, not a copy named project-copy",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0035",
+      "new": {
+        "case": "CTL-35",
+        "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill",
+        "expected": "incorrect",
+        "key": "ct0035",
+        "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0232 incorrect (pass1 b04 incorrect)",
+        "request": "kill whatever is running on port 8080",
+        "source": "docs/eval-audit/items.json#x0232"
+      },
+      "old": {
+        "case": "CTL-35",
+        "command": "find . -type f -ctime 0",
+        "expected": "incorrect",
+        "key": "ct0035",
+        "request": "files in this folder i changed in the last day",
+        "source": "docs/eval-audit/items.json#x0397"
+      },
+      "pass1": {
+        "case": "e036",
+        "category": "wrong_operand",
+        "key": "x0232",
+        "note": "awk prints header PID too; kill errors on it",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e036",
+        "category": "wrong_output",
+        "key": "x0232",
+        "note": "Same header bug: kill aborts at 'PID' (verified exit 2); +M portmapper flag irrelevant.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0039",
+      "new": {
+        "case": "CTL-39",
+        "command": "ifconfig | grep inet | awk '{print $2}' | sed 's/addr://'",
+        "expected": "incorrect",
+        "key": "ct0039",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e043 x0235 incorrect (pass1 b05 incorrect)",
+        "request": "what's my local ip address",
+        "source": "docs/eval-audit/items.json#x0235"
+      },
+      "old": {
+        "case": "CTL-39",
+        "command": "which -a python3",
+        "expected": "incorrect",
+        "key": "ct0039",
+        "request": "What path would this zsh session use if I typed python3?",
+        "source": "docs/eval-audit/items.json#x0135"
+      },
+      "pass1": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0235",
+        "note": "Includes loopback and IPv6 addresses for all interfaces.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0235",
+        "note": "lists all inet and inet6 addresses incl. 127.0.0.1, ::1, link-locals for every interface",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      }
+    },
+    {
+      "control": "ct0053",
+      "new": {
+        "case": "CTL-53",
+        "command": "getconf PAGESIZE",
+        "expected": "correct",
+        "key": "ct0053",
+        "provenance": "docs/eval-audit/pass2-opus/r3.json m044 x0541 correct (pass1 b07 correct)",
+        "request": "How many bytes are in a virtual-memory page on this Mac?",
+        "source": "docs/eval-audit/items.json#x0541"
+      },
+      "old": {
+        "case": "CTL-53",
+        "command": "diskutil info / | grep -i smart",
+        "expected": "correct",
+        "key": "ct0053",
+        "request": "is the SMART status of my internal drive ok",
+        "source": "docs/eval-audit/items.json#x0181"
+      },
+      "pass1": {
+        "case": "m044",
+        "category": null,
+        "key": "x0541",
+        "note": "getconf PAGESIZE valid on macOS",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m044",
+        "category": null,
+        "key": "x0541",
+        "note": "/usr/bin/getconf exists, PAGESIZE in binary strings; sysconf page size.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      }
+    },
+    {
+      "control": "ct0057",
+      "new": {
+        "case": "CTL-57",
+        "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+        "expected": "correct",
+        "key": "ct0057",
+        "provenance": "docs/eval-audit/pass2-opus/r1.json e037 x0271 correct (pass1 b01 correct)",
+        "request": "top 5 processes by memory",
+        "source": "docs/eval-audit/items.json#x0271"
+      },
+      "old": {
+        "case": "CTL-57",
+        "command": "find . -type f -name '*.DS_Store' -exec rm {} +",
+        "expected": "correct",
+        "key": "ct0057",
+        "request": "delete every .DS_Store file in this folder and everything under it",
+        "source": "docs/eval-audit/items.json#x0223"
+      },
+      "pass1": {
+        "case": "e037",
+        "category": null,
+        "key": "x0271",
+        "note": "Sorts by RSS desc; header sorts last.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e037",
+        "category": null,
+        "key": "x0271",
+        "note": "man ps: -e = -A; rss,pid,user,command valid keywords; numeric sort on rss",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      }
+    }
+  ],
+  "restart_rule": "Archive complete original campaign; rebuild pool and start all pass-1 sessions fresh. No old verdict reuse. No additional control changes in the replacement campaign; later judge failures require fresh rejudgment, never tuning controls.",
+  "review": [
+    {
+      "control": "ct0001",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m056",
+        "category": null,
+        "key": "x0547",
+        "note": "pmset -g capabilities lists supported features.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m056",
+        "category": "hallucinated_flag",
+        "key": "x0547",
+        "note": "pmset man only '-g cap'; exact-match args ('capzzz' -> unhandled argument), no 'capabilities' string.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0547"
+    },
+    {
+      "control": "ct0002",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e014",
+        "category": "unsafe",
+        "key": "x0052",
+        "note": "Wildcard overmatch, xargs breaks on spaces, rm -rf",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e014",
+        "category": "linux_syntax",
+        "key": "x0052",
+        "note": "man find SYNOPSIS: 'find ... path ... [expression]'; BSD find requires path; also unsafe xargs on spaces",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0052"
+    },
+    {
+      "control": "ct0003",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m028",
+        "category": "missed_constraint",
+        "key": "x0011",
+        "note": "Missing -P; ports shown as service names.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m028",
+        "category": "missed_constraint",
+        "key": "x0011",
+        "note": "lacks -P; man: -P inhibits port-number-to-name conversion, ports shown as names",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0011"
+    },
+    {
+      "control": "ct0004",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e076",
+        "category": "missed_constraint",
+        "key": "x0101",
+        "note": "-P opens Preview; -T 0 delay extra",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e076",
+        "category": "other",
+        "key": "x0101",
+        "note": "man screencapture: -P opens picture in Preview window; unrequested side effect",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0101"
+    },
+    {
+      "control": "ct0005",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m014",
+        "category": "wrong_operand",
+        "key": "x0006",
+        "note": "Uses ~/app.log instead of app.log",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m014",
+        "category": "wrong_operand",
+        "key": "x0006",
+        "note": "reads ~/app.log instead of app.log in current directory",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0006"
+    },
+    {
+      "control": "ct0006",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e005",
+        "category": "wrong_operand",
+        "key": "x0045",
+        "note": "Recursive; counts files in subfolders too.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e005",
+        "category": "wrong_output",
+        "key": "x0045",
+        "note": "find . -type f recurses into subfolders; counts nested files, not items in this folder",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0045"
+    },
+    {
+      "control": "ct0007",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m084",
+        "category": null,
+        "key": "x0257",
+        "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "unsure"
+      },
+      "pass2": {
+        "case": "m084",
+        "category": "wrong_tool",
+        "key": "x0257",
+        "note": "zip man: resource fork support 'expected in next zip release'; not preserved.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0257"
+    },
+    {
+      "control": "ct0008",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e014",
+        "category": "missed_constraint",
+        "key": "x0151",
+        "note": "'*.DS_Store' also matches names like foo.DS_Store",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e014",
+        "category": "linux_syntax",
+        "key": "x0151",
+        "note": "BSD find SYNOPSIS requires path operand; 'find -name' fails with illegal option",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0151"
+    },
+    {
+      "control": "ct0009",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m060",
+        "category": "wrong_output",
+        "key": "x0123",
+        "note": "-d without -v prints little, no identity details",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m060",
+        "category": "missed_constraint",
+        "key": "x0123",
+        "note": "man codesign -d: more output needs verbosity; bare -d prints only Executable=, no Authority/identity.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0123"
+    },
+    {
+      "control": "ct0010",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e076",
+        "category": "missed_constraint",
+        "key": "x0192",
+        "note": "-P also opens Preview, extra side effect",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e076",
+        "category": "other",
+        "key": "x0192",
+        "note": "man screencapture: -P opens taken picture in Preview; unrequested side effect",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0192"
+    },
+    {
+      "control": "ct0011",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m072",
+        "category": "wrong_operand",
+        "key": "x0126",
+        "note": "Path local/app.log not app.log.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "m072",
+        "category": "wrong_operand",
+        "key": "x0126",
+        "note": "'local' means current dir; path local/app.log is wrong file.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0126"
+    },
+    {
+      "control": "ct0012",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0063",
+        "note": "Unquoted echo $(...) collapses newlines/whitespace and globs.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e025",
+        "category": "wrong_output",
+        "key": "x0063",
+        "note": "zshexpn: unquoted $(...) split on IFS; echo collapses newlines into one line",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0063"
+    },
+    {
+      "control": "ct0013",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e042",
+        "category": "wrong_output",
+        "key": "x0296",
+        "note": "lsof lists open files; space-separated pids invalid for -p",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e042",
+        "category": "wrong_tool",
+        "key": "x0296",
+        "note": "Lists open files not processes; zsh no word-split, -p gets space-joined pids (lsof wants commas).",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0296"
+    },
+    {
+      "control": "ct0014",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e014",
+        "category": "missed_constraint",
+        "key": "x0264",
+        "note": "'*.DS_Store' matches extra files",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e014",
+        "category": "linux_syntax",
+        "key": "x0264",
+        "note": "BSD find SYNOPSIS requires path operand; 'find -type' errors on macOS",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0264"
+    },
+    {
+      "control": "ct0015",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e007",
+        "category": "missed_constraint",
+        "key": "x0146",
+        "note": "Recurses into subfolders, not just this folder",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e007",
+        "category": "missed_constraint",
+        "key": "x0146",
+        "note": "No -maxdepth: recurses into subfolders (and photos/ itself), not just this folder.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0146"
+    },
+    {
+      "control": "ct0016",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e076",
+        "category": "missed_constraint",
+        "key": "x0302",
+        "note": "interactive selection, not plain screenshot",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e076",
+        "category": "other",
+        "key": "x0302",
+        "note": "man screencapture: -i interactive selection; waits for user, escape cancels; not a plain screenshot",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0302"
+    },
+    {
+      "control": "ct0017",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e055",
+        "category": null,
+        "key": "x0180",
+        "note": "makehybrid creates optical-style image, assumes ~/project",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "unsure"
+      },
+      "pass2": {
+        "case": "e055",
+        "category": "wrong_operand",
+        "key": "x0180",
+        "note": "Assumes ~/project; makehybrid makes ISO/hybrid data-disc image (man) not standard dmg; writes to Desktop.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0180"
+    },
+    {
+      "control": "ct0018",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e030",
+        "category": "other",
+        "key": "x0068",
+        "note": "zsh builtin which prints 'node not found' to stdout; always yes.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e030",
+        "category": "wrong_output",
+        "key": "x0068",
+        "note": "zsh which writes 'not found' to stdout (zshbuiltins whence), so -z fails; always says yes.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0068"
+    },
+    {
+      "control": "ct0019",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m084",
+        "category": null,
+        "key": "x0462",
+        "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "unsure"
+      },
+      "pass2": {
+        "case": "m084",
+        "category": "wrong_tool",
+        "key": "x0462",
+        "note": "Info-ZIP drops resource forks/xattrs per man; need ditto --sequesterRsrc.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0462"
+    },
+    {
+      "control": "ct0020",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e045",
+        "category": "missed_constraint",
+        "key": "x0174",
+        "note": "Single curl attempt.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e045",
+        "category": "missed_constraint",
+        "key": "x0174",
+        "note": "Single attempt; failure prints 000 then bogus 408.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0174"
+    },
+    {
+      "control": "ct0021",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e007",
+        "category": "other",
+        "key": "x0604",
+        "note": "'{} photos/ +' invalid for find -exec +",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e007",
+        "category": "other",
+        "key": "x0604",
+        "note": "BSD find needs {} right before +; /usr/bin/find errors 'no terminating \";\" or \"+\"'.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0604"
+    },
+    {
+      "control": "ct0022",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e052",
+        "category": "wrong_operand",
+        "key": "x0240",
+        "note": "placeholder folder name project_folder",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e052",
+        "category": "wrong_operand",
+        "key": "x0240",
+        "note": "folder named project_folder; request/reference folder is project",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0240"
+    },
+    {
+      "control": "ct0023",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e034",
+        "category": "missed_constraint",
+        "key": "x0070",
+        "note": "Recursive, case-sensitive; lists nested files.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e034",
+        "category": "wrong_output",
+        "key": "x0070",
+        "note": "Recurses into Google Chrome.app bundle, dumps internal files; case-sensitive.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0070"
+    },
+    {
+      "control": "ct0024",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m040",
+        "category": null,
+        "key": "x0539",
+        "note": "Shows active interfaces, addresses and default route.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m040",
+        "category": "wrong_tool",
+        "key": "x0539",
+        "note": "ifconfig/route don't show reachability/primary-interface info; scutil --nwi does",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0539"
+    },
+    {
+      "control": "ct0025",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m086",
+        "category": null,
+        "key": "x0309",
+        "note": "ISO mounts read-only inherently; -nobrowse satisfies the ask.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m086",
+        "category": "missed_constraint",
+        "key": "x0309",
+        "note": "Omits -readonly (man hdiutil attach: force device read-only); explicit constraint not enforced.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0309"
+    },
+    {
+      "control": "ct0026",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e007",
+        "category": "other",
+        "key": "x0607",
+        "note": "BSD find: '+' must directly follow {}; 'photos/ +' errors",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e007",
+        "category": "other",
+        "key": "x0607",
+        "note": "Same: '{} photos/ +' rejected by BSD find ('no terminating'); nothing moved.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0607"
+    },
+    {
+      "control": "ct0027",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e025",
+        "category": "wrong_tool",
+        "key": "x0293",
+        "note": "tr does not accept file operands; errors.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e025",
+        "category": "wrong_operand",
+        "key": "x0293",
+        "note": "man tr SYNOPSIS: tr string1 string2 only; no file operand, usage error",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0293"
+    },
+    {
+      "control": "ct0028",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e036",
+        "category": "wrong_operand",
+        "key": "x0072",
+        "note": "awk prints header PID too; kill errors on it",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e036",
+        "category": "wrong_output",
+        "key": "x0072",
+        "note": "Header 'PID' passed first; /bin/kill -0 PID test: 'illegal process id', exits 2 before other pids.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0072"
+    },
+    {
+      "control": "ct0029",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m100",
+        "category": null,
+        "key": "x0592",
+        "note": "Checks arm64 host and slice, runs true",
+        "path": "docs/eval-audit/pass1-sonnet/b04.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m100",
+        "category": "wrong_tool",
+        "key": "x0592",
+        "note": "Heuristic, never forces arm64; under Rosetta shell uname -m is x86_64, falsely says no.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0592"
+    },
+    {
+      "control": "ct0030",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e033",
+        "category": "missed_constraint",
+        "key": "x0332",
+        "note": "not recursive; misses subdirectory py files",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e033",
+        "category": "missed_constraint",
+        "key": "x0332",
+        "note": "*.py only top-level, misses nested python files; zsh errors if none match",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0332"
+    },
+    {
+      "control": "ct0031",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e051",
+        "category": "wrong_operand",
+        "key": "x0298",
+        "note": "Relative Downloads/* only works from home.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e051",
+        "category": "wrong_operand",
+        "key": "x0298",
+        "note": "relative 'Downloads/*' only works if cwd is $HOME; should be ~/Downloads",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0298"
+    },
+    {
+      "control": "ct0032",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0078",
+        "note": "Includes 127.0.0.1 and every interface address.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e043",
+        "category": "wrong_output",
+        "key": "x0078",
+        "note": "dumps every interface's IPv4 including 127.0.0.1 (lo0 listed first); misleading",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0078"
+    },
+    {
+      "control": "ct0033",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m084",
+        "category": null,
+        "key": "x0846",
+        "note": "Apple zip stores resource forks by default; xattr/Finder metadata fidelity unclear",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "unsure"
+      },
+      "pass2": {
+        "case": "m084",
+        "category": "wrong_tool",
+        "key": "x0846",
+        "note": "Info-ZIP drops resource forks/Finder metadata per man.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0846"
+    },
+    {
+      "control": "ct0034",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e076",
+        "category": "wrong_output",
+        "key": "x0342",
+        "note": "-c sends to clipboard, not file",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e076",
+        "category": "missed_constraint",
+        "key": "x0342",
+        "note": "man screencapture: -c forces capture to clipboard; shot.png not saved",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0342"
+    },
+    {
+      "control": "ct0035",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e031",
+        "category": null,
+        "key": "x0397",
+        "note": "ctime within 24h; approximates changed",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e031",
+        "category": "wrong_operand",
+        "key": "x0397",
+        "note": "man find: -ctime n rounds up to full 24h, so -ctime 0 matches ~nothing; also ctime not mtime.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0397"
+    },
+    {
+      "control": "ct0036",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e058",
+        "category": "hallucinated_flag",
+        "key": "x0087",
+        "note": "Modern diskutil info lacks 'Available Space' line; likely empty output.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e058",
+        "category": "wrong_output",
+        "key": "x0087",
+        "note": "diskutil strings: fields are 'Volume/Container Free Space'; no 'Available Space', grep empty.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0087"
+    },
+    {
+      "control": "ct0037",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e045",
+        "category": "missed_constraint",
+        "key": "x0352",
+        "note": "Single attempt, dumps HTML.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e045",
+        "category": "missed_constraint",
+        "key": "x0352",
+        "note": "One attempt only, dumps HTML; || true masks outcome.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0352"
+    },
+    {
+      "control": "ct0038",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e034",
+        "category": "hallucinated_flag",
+        "key": "x0398",
+        "note": "public.app is not a content type; case-sensitive.",
+        "path": "docs/eval-audit/pass1-sonnet/b03.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e034",
+        "category": "wrong_operand",
+        "key": "x0398",
+        "note": "mdls: tree has com.apple.application, no public.app; '*chrome*' lacks c modifier (mdfind man cdw).",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0398"
+    },
+    {
+      "control": "ct0039",
+      "eligible": false,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "m098",
+        "category": null,
+        "key": "x0135",
+        "note": "First line is path used; extras harmless",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m098",
+        "category": "wrong_output",
+        "key": "x0135",
+        "note": "-a lists every match; does not single out the one zsh would use.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0135"
+    },
+    {
+      "control": "ct0040",
+      "eligible": true,
+      "expected": "incorrect",
+      "pass1": {
+        "case": "e057",
+        "category": "wrong_operand",
+        "key": "x0403",
+        "note": "-maxdepth 1 limits to top-level files only.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e057",
+        "category": "missed_constraint",
+        "key": "x0403",
+        "note": "-maxdepth 1 skips files in subfolders of Documents",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "incorrect"
+      },
+      "source_key": "x0403"
+    },
+    {
+      "control": "ct0041",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m016",
+        "category": null,
+        "key": "x0007",
+        "note": "Useless cat fine.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m016",
+        "category": null,
+        "key": "x0007",
+        "note": "cut -d: -f3 prints field 3; man: delimiterless lines pass through unmodified (edge)",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0007"
+    },
+    {
+      "control": "ct0042",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e029",
+        "category": null,
+        "key": "x0067",
+        "note": "recursive find grep -l",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e029",
+        "category": null,
+        "key": "x0067",
+        "note": "recursive find + grep -l per file lists matching files; -l per man 'only names of files'",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0067"
+    },
+    {
+      "control": "ct0043",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e037",
+        "category": null,
+        "key": "x0073",
+        "note": "Sorted by pmem desc.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e037",
+        "category": null,
+        "key": "x0073",
+        "note": "man ps: -e identical to -A (legacy -e only in legacy mode); pmem alias of %mem; header sorts last",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0073"
+    },
+    {
+      "control": "ct0044",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e062",
+        "category": null,
+        "key": "x0090",
+        "note": "Standard, quoted format.",
+        "path": "docs/eval-audit/pass1-sonnet/b05.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e062",
+        "category": null,
+        "key": "x0090",
+        "note": "date +\"%Y-%m-%d\" prints YYYY-MM-DD",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0090"
+    },
+    {
+      "control": "ct0045",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m032",
+        "category": null,
+        "key": "x0113",
+        "note": "Valid and meets request.",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m032",
+        "category": null,
+        "key": "x0113",
+        "note": "ps -p sends no signal; BSD ps exits 1 when no process matched.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0113"
+    },
+    {
+      "control": "ct0046",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m038",
+        "category": null,
+        "key": "x0115",
+        "note": "extracts MAC via ERE",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m038",
+        "category": null,
+        "key": "x0115",
+        "note": "grep -Eo MAC pattern extracts the en0 ether address; IPv6 groups won't match",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0115"
+    },
+    {
+      "control": "ct0047",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m050",
+        "category": null,
+        "key": "x0119",
+        "note": "Power data includes charge % and current power source; verbose.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m050",
+        "category": null,
+        "key": "x0119",
+        "note": "Shows AC Charger Connected and State of Charge (%); verbose (not in man; behaviour-based)",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0119"
+    },
+    {
+      "control": "ct0048",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m062",
+        "category": null,
+        "key": "x0124",
+        "note": "PlistBuddy Print",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m062",
+        "category": null,
+        "key": "x0124",
+        "note": "man PlistBuddy: Print [entry], entries like :CFBundleShortVersionString; correct",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0124"
+    },
+    {
+      "control": "ct0049",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e015",
+        "category": null,
+        "key": "x0152",
+        "note": "Prints first 20 lines.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e015",
+        "category": null,
+        "key": "x0152",
+        "note": "tail -n +1 passes whole file; head -n 20 prints first 20 lines",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0152"
+    },
+    {
+      "control": "ct0050",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e029",
+        "category": null,
+        "key": "x0160",
+        "note": "recursive",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e029",
+        "category": null,
+        "key": "x0160",
+        "note": "recursive find -exec grep -l {} + lists matching files",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0160"
+    },
+    {
+      "control": "ct0051",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e037",
+        "category": null,
+        "key": "x0167",
+        "note": "Sorted by RSS desc.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e037",
+        "category": null,
+        "key": "x0167",
+        "note": "man ps: rss, comm keywords valid; -ax all procs; sort -nr top 5",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0167"
+    },
+    {
+      "control": "ct0052",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e044",
+        "category": null,
+        "key": "x0173",
+        "note": "Extracts IPv4.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e044",
+        "category": null,
+        "key": "x0173",
+        "note": "checkip.dyndns.org returns IP in HTML; grep -Eo extracts IPv4",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0173"
+    },
+    {
+      "control": "ct0053",
+      "eligible": false,
+      "expected": "correct",
+      "pass1": {
+        "case": "e056",
+        "category": "wrong_operand",
+        "key": "x0181",
+        "note": "/ is synthesized APFS volume; SMART typically Not Supported",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e056",
+        "category": null,
+        "key": "x0181",
+        "note": "man diskutil DEVICES: mount point accepted; SMART Status line in output (not in man; behaviour-based)",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0181"
+    },
+    {
+      "control": "ct0054",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m010",
+        "category": null,
+        "key": "x0195",
+        "note": "Lines 3-7 via head|tail",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m010",
+        "category": null,
+        "key": "x0195",
+        "note": "head -n 7 then tail -n +3 yields lines 3-7, read-only.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0195"
+    },
+    {
+      "control": "ct0055",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m032",
+        "category": null,
+        "key": "x0202",
+        "note": "Valid and meets request.",
+        "path": "docs/eval-audit/pass1-sonnet/b08.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m032",
+        "category": null,
+        "key": "x0202",
+        "note": "ps -p existence check, no signal; success/failure output.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0202"
+    },
+    {
+      "control": "ct0056",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m098",
+        "category": null,
+        "key": "x0216",
+        "note": "zsh which shows resolved path",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m098",
+        "category": null,
+        "key": "x0216",
+        "note": "zsh builtin which = whence -c, shows what zsh resolves.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0216"
+    },
+    {
+      "control": "ct0057",
+      "eligible": false,
+      "expected": "correct",
+      "pass1": {
+        "case": "e014",
+        "category": "missed_constraint",
+        "key": "x0223",
+        "note": "'*.DS_Store' matches extra files",
+        "path": "docs/eval-audit/pass1-sonnet/b00.json",
+        "verdict": "incorrect"
+      },
+      "pass2": {
+        "case": "e014",
+        "category": null,
+        "key": "x0223",
+        "note": "man fnmatch: leading periods regular unless FNM_PERIOD; *.DS_Store matches .DS_Store; path given",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0223"
+    },
+    {
+      "control": "ct0058",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e018",
+        "category": null,
+        "key": "x0224",
+        "note": "Temp file then mv replaces original",
+        "path": "docs/eval-audit/pass1-sonnet/b09.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e018",
+        "category": null,
+        "key": "x0224",
+        "note": "Temp file then mv back; file ends up edited in place, no leftover.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0224"
+    },
+    {
+      "control": "ct0059",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "e044",
+        "category": null,
+        "key": "x0236",
+        "note": "Strips to digits and dots.",
+        "path": "docs/eval-audit/pass1-sonnet/b01.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "e044",
+        "category": null,
+        "key": "x0236",
+        "note": "sed strips letters, tags, spaces, colons leaving bare IPv4",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0236"
+    },
+    {
+      "control": "ct0060",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m096",
+        "category": null,
+        "key": "x0261",
+        "note": "plutil -convert json -o - prints JSON to stdout, no rewrite.",
+        "path": "docs/eval-audit/pass1-sonnet/b02.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m096",
+        "category": null,
+        "key": "x0261",
+        "note": "plutil man: -o - outputs to stdout, json format; source unchanged",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0261"
+    },
+    {
+      "control": "ct0061",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m012",
+        "category": null,
+        "key": "x0283",
+        "note": "TODO has no metachars; case-insensitive count",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m012",
+        "category": null,
+        "key": "x0283",
+        "note": "man grep -c count, -i ignore-case; TODO has no metachars so identical to -F.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0283"
+    },
+    {
+      "control": "ct0062",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m009",
+        "category": null,
+        "key": "x0509",
+        "note": "%Sf shows flags",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m009",
+        "category": null,
+        "key": "x0509",
+        "note": "stat man: f 'Display the flags of file as in ls -lTdo', S string form",
+        "path": "docs/eval-audit/pass2-opus/r2.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0509"
+    },
+    {
+      "control": "ct0063",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m024",
+        "category": null,
+        "key": "x0520",
+        "note": "field 3 is mount point; prefix match correct",
+        "path": "docs/eval-audit/pass1-sonnet/b06.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m024",
+        "category": null,
+        "key": "x0520",
+        "note": "mount lines 'dev on /Volumes/X (...)'; $3 is mount point start, regex anchors /Volumes/.",
+        "path": "docs/eval-audit/pass2-opus/r0.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0520"
+    },
+    {
+      "control": "ct0064",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m044",
+        "category": null,
+        "key": "x0540",
+        "note": "Header line field 8 is page size",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m044",
+        "category": null,
+        "key": "x0540",
+        "note": "vm_stat header 'Mach Virtual Memory Statistics: (page size of %llu bytes)'; $8 is number.",
+        "path": "docs/eval-audit/pass2-opus/r3.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0540"
+    },
+    {
+      "control": "ct0065",
+      "eligible": true,
+      "expected": "correct",
+      "pass1": {
+        "case": "m076",
+        "category": null,
+        "key": "x0571",
+        "note": "--rotate is long form of -r",
+        "path": "docs/eval-audit/pass1-sonnet/b07.json",
+        "verdict": "correct"
+      },
+      "pass2": {
+        "case": "m076",
+        "category": null,
+        "key": "x0571",
+        "note": "man sips: --rotate degreesCW, --out file; source preserved",
+        "path": "docs/eval-audit/pass2-opus/r1.json",
+        "verdict": "correct"
+      },
+      "source_key": "x0571"
+    }
+  ],
+  "selection_rule": "Preserve positions, case/key and polarity. Reserve previously proposed x0541 for ct0053. For other ineligible controls in ascending control-key order, choose lowest unused eligible source key of same polarity; skip duplicate source or request/command pairs. Retain all eligible controls byte-for-byte.",
+  "status": "12 replacements selected under pre-registered rule; all 65 controls meet consensus"
+}

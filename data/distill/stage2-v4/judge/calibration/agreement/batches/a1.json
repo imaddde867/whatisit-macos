@@ -1,0 +1,353 @@
+{
+ "batch": "a1",
+ "items": [
+  {
+   "case": "cdf5a9fea09df",
+   "request": "Report the APFS container reference for disk3s1.",
+   "candidates": [
+    {
+     "key": "k1473d24cdcdb",
+     "command": "diskutil info disk3s1 | awk '/APFS Container Reference/ {print $NF}'"
+    }
+   ]
+  },
+  {
+   "case": "c8c268b285c13",
+   "request": "show the clipboard as plain text",
+   "candidates": [
+    {
+     "key": "kf8627d004f02",
+     "command": "pbpaste"
+    }
+   ]
+  },
+  {
+   "case": "cf53568909594",
+   "request": "validate the stapled notarization ticket attached to Utility.app",
+   "candidates": [
+    {
+     "key": "kefa66a75d700",
+     "command": "spctl --assess --type execute Utility.app"
+    },
+    {
+     "key": "k100f46174755",
+     "command": "stapler validate Utility.app"
+    }
+   ]
+  },
+  {
+   "case": "c7e24f1aaaf55",
+   "request": "Extract NSDocumentClass values from MyApp.app/Contents/Info.plist.",
+   "candidates": [
+    {
+     "key": "k00928c2cd520",
+     "command": "plutil -extract NSDocumentClass xml1 MyApp.app/Contents/Info.plist | grep -o '<string>[^<]*</string>' | sed -e 's|<string>||' -e 's|</string>||'"
+    },
+    {
+     "key": "k5ea1bf3f9797",
+     "command": "plutil -p MyApp.app/Contents/Info.plist | awk -F'\"' '/NSDocumentClass/ {print $4}'"
+    },
+    {
+     "key": "k76f69f653d3b",
+     "command": "plutil -p MyApp.app/Contents/Info.plist | sed -n 's/.*\"NSDocumentClass\" = \"\\(.*\\)\";/\\1/p'"
+    },
+    {
+     "key": "k072a6c27bdfb",
+     "command": "plutil -p MyApp.app/Contents/Info.plist | grep -Eo '\"NSDocumentClass\"[[:space:]]*=>[[:space:]]*\"[^\"]*\"' | cut -d'\"' -f4"
+    }
+   ]
+  },
+  {
+   "case": "c31d2a3af4606",
+   "request": "count warning level messages in unified-log.ndjson plese",
+   "candidates": [
+    {
+     "key": "k279081e38c1d",
+     "command": "awk '/\"level\"[[:space:]]*:[[:space:]]*\"warning\"/ {count++} END {print count+0}' unified-log.ndjson"
+    },
+    {
+     "key": "k28a586a04f3f",
+     "command": "grep -ciE '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson"
+    },
+    {
+     "key": "kde29c6d0a487",
+     "command": "grep -c '\"level\":[[:space:]]*\"warning\"' unified-log.ndjson"
+    },
+    {
+     "key": "kabc5db25389b",
+     "command": "grep -Eic '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson || true"
+    },
+    {
+     "key": "k492ef99a16a6",
+     "command": "grep -Eic '\"level\"[[:space:]]*:[[:space:]]*\"warning\"' unified-log.ndjson"
+    }
+   ]
+  },
+  {
+   "case": "cf195bab35e99",
+   "request": "show the second item of the servers array in project/Config.plist",
+   "candidates": [
+    {
+     "key": "kcf821d464725",
+     "command": "/usr/libexec/PlistBuddy -c \"Print :servers:1\" project/Config.plist"
+    }
+   ]
+  },
+  {
+   "case": "cd8b92d3d0409",
+   "request": "show acl and bsd flags on ~/Library/Containers/com.example.MyApp",
+   "candidates": [
+    {
+     "key": "k26fe8e4cd089",
+     "command": "ls -ldeO ~/Library/Containers/com.example.MyApp"
+    }
+   ]
+  },
+  {
+   "case": "c709acd4fb998",
+   "request": "Print duplicate UUID fields from unified-log.ndjson with occurrence counts.",
+   "candidates": [
+    {
+     "key": "kcc527d863d94",
+     "command": "grep -oE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' unified-log.ndjson | sort | uniq -c | awk '$1 > 1 {print $1, $2}'"
+    },
+    {
+     "key": "ke14a56fde8f9",
+     "command": "grep -oE '\"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\"' unified-log.ndjson | tr -d '\"' | sort | uniq -c | awk '$1 > 1 {print $1, $2}'"
+    },
+    {
+     "key": "k96c5081b2820",
+     "command": "grep -E -o -i '\"(uuid|UUID)\"[[:space:]]*:[[:space:]]*\"[^\"]+\"' unified-log.ndjson | sed 's/.*\"\\([^\"]*\\)\"$/\\1/' | sort | uniq -c | awk '$1 > 1 {print $1, $2}' | sort -nr"
+    },
+    {
+     "key": "k3ccaed041b99",
+     "command": "grep -oiE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' unified-log.ndjson | tr '[:upper:]' '[:lower:]' | sort | uniq -c | awk '$1 > 1'"
+    }
+   ]
+  },
+  {
+   "case": "c9a7f8c57e84c",
+   "request": "Spotlight-find video clips with codec H.264 under ~/Movies/test-set.",
+   "candidates": [
+    {
+     "key": "k1d9afda44015",
+     "command": "mdfind -onlyin ~/Movies/test-set 'kMDItemCodecs == \"H.264\" && kMDItemContentType == \"public.movie\"'"
+    },
+    {
+     "key": "k3c6153901d70",
+     "command": "mdfind -onlyin ~/Movies/test-set 'kMDItemCodecs == \"H.264\" && kMDItemContentTypeTree == \"public.movie\"'"
+    },
+    {
+     "key": "k1ee1578693d8",
+     "command": "mdfind -onlyin \"$HOME/Movies/test-set\" 'kMDItemContentTypeTree == \"public.movie\" && kMDItemCodecs == \"*H.264*\"'"
+    }
+   ]
+  },
+  {
+   "case": "c4c3a57cc4111",
+   "request": "does disk4s1 have a volume uuid show it",
+   "candidates": [
+    {
+     "key": "ka8ee390fd245",
+     "command": "diskutil info disk4s1 | grep \"Volume UUID\""
+    },
+    {
+     "key": "k4d97341db2f9",
+     "command": "diskutil info disk4s1 | grep -i \"Volume UUID\""
+    },
+    {
+     "key": "k51e64183d24f",
+     "command": "diskutil info disk4s1 | grep 'Volume UUID:' || echo 'No volume UUID'"
+    },
+    {
+     "key": "kcf46d7dd3de0",
+     "command": "diskutil info disk4s1 | grep -i 'Volume UUID' || echo 'No Volume UUID found'"
+    }
+   ]
+  },
+  {
+   "case": "c5dd94cfdfd7a",
+   "request": "List TCP connections in CLOSE_WAIT state.",
+   "candidates": [
+    {
+     "key": "k45ea26d5efeb",
+     "command": "netstat -an -p tcp | awk '$6 == \"CLOSE_WAIT\"'"
+    },
+    {
+     "key": "k2b48e2a17d15",
+     "command": "netstat -an -p tcp | grep CLOSE_WAIT"
+    },
+    {
+     "key": "k97e4199a6393",
+     "command": "netstat -an | grep '^tcp' | grep CLOSE_WAIT"
+    },
+    {
+     "key": "kfd75c96a426f",
+     "command": "lsof -nP -iTCP -sTCP:CLOSE_WAIT"
+    },
+    {
+     "key": "k0756216d7644",
+     "command": "lsof -iTCP -sTCP:CLOSE_WAIT"
+    }
+   ]
+  },
+  {
+   "case": "c8f51b15a798a",
+   "request": "Please show the number of open Terminal windows.",
+   "candidates": [
+    {
+     "key": "ke5ae060c92f8",
+     "command": "osascript -e 'if application \"Terminal\" is running then' -e 'tell application \"Terminal\" to count windows' -e 'else' -e '0' -e 'end if'"
+    },
+    {
+     "key": "k504e57e730e7",
+     "command": "osascript -e 'tell application \"Terminal\" to count windows'"
+    },
+    {
+     "key": "kc64c28501a23",
+     "command": "pgrep -x Terminal >/dev/null && osascript -e 'tell application \"Terminal\" to count windows' || echo 0"
+    },
+    {
+     "key": "k2cc4bab0acfc",
+     "command": "osascript -e 'tell application \"System Events\" to count windows of every process whose name is \"Terminal\"'"
+    }
+   ]
+  },
+  {
+   "case": "c6d3026931d87",
+   "request": "Show Finder's locked property for final.pdf.",
+   "candidates": [
+    {
+     "key": "k007b76ce5f18",
+     "command": "osascript -e 'on run argv' -e 'set f to (POSIX file (item 1 of argv)) as alias' -e 'tell application \"Finder\" to get locked of file f' -e 'end run' \"$(pwd)/final.pdf\""
+    },
+    {
+     "key": "k99a13cdb75ce",
+     "command": "osascript -e 'tell application \"Finder\" to get locked of (POSIX file ((do shell script \"pwd\") & \"/final.pdf\") as alias)'"
+    },
+    {
+     "key": "k7fa35b4d6f2f",
+     "command": "mdls -name kMDItemLocked final.pdf"
+    },
+    {
+     "key": "k883674e46167",
+     "command": "GetFileInfo -a final.pdf | grep -qw locked && echo true || echo false"
+    },
+    {
+     "key": "k918797c10c6d",
+     "command": "osascript -e 'set cwd to do shell script \"pwd\"' -e 'tell application \"Finder\" to get locked of (file \"final.pdf\" of folder (POSIX file cwd as alias))'"
+    }
+   ]
+  },
+  {
+   "case": "cac6cde288cf8",
+   "request": "Please retrieve https://example.org/ with a connection timeout of three seconds.",
+   "candidates": [
+    {
+     "key": "k308499684fcc",
+     "command": "curl --connect-timeout 3 https://example.org/"
+    }
+   ]
+  },
+  {
+   "case": "c68dacb757d52",
+   "request": "Show the total size of each immediate folder in assets/.",
+   "candidates": [
+    {
+     "key": "k1ef97a80b6a5",
+     "command": "find assets -mindepth 1 -maxdepth 1 -type d -exec du -sh {} +"
+    }
+   ]
+  },
+  {
+   "case": "c3770668b1526",
+   "request": "what filesystem block size does project live on",
+   "candidates": [
+    {
+     "key": "k728164f8424c",
+     "command": "stat -f \"%b\" project"
+    },
+    {
+     "key": "k9f2969153061",
+     "command": "stat -f \"%b\" ."
+    },
+    {
+     "key": "kd1e442011ac0",
+     "command": "stat -f '%o' ."
+    },
+    {
+     "key": "k78da2aae4840",
+     "command": "stat -f '%s' project 2>/dev/null || stat -f '%s' ."
+    }
+   ]
+  },
+  {
+   "case": "c817dd935a52b",
+   "request": "show the file type of report.pdf",
+   "candidates": [
+    {
+     "key": "kc09b187e1b63",
+     "command": "file report.pdf"
+    }
+   ]
+  },
+  {
+   "case": "cd134e7948af5",
+   "request": "Trace DNS delegation for example.org.",
+   "candidates": [
+    {
+     "key": "k3838942ebd81",
+     "command": "dig +trace example.org"
+    }
+   ]
+  },
+  {
+   "case": "cad597460498f",
+   "request": "Identify the current user's processes with files open on device /dev/disk4s1.",
+   "candidates": [
+    {
+     "key": "k3f6e3e566388",
+     "command": "lsof -u $(whoami) /dev/disk4s1"
+    },
+    {
+     "key": "k2af914e98b9e",
+     "command": "lsof -a -u \"$(whoami)\" +d /dev/disk4s1"
+    },
+    {
+     "key": "kc5a5c58b5647",
+     "command": "lsof -u \"$USER\" +f -- /dev/disk4s1"
+    },
+    {
+     "key": "k7e4d2ed131f7",
+     "command": "lsof -u \"$(id -un)\" +d /dev/disk4s1"
+    }
+   ]
+  },
+  {
+   "case": "cc1fcb76a9e6c",
+   "request": "Show the battery's instantaneous current reading.",
+   "candidates": [
+    {
+     "key": "k1bfe80c26bf6",
+     "command": "ioreg -rc AppleSmartBattery | grep -E 'InstantaneousCurrent|Amperage'"
+    },
+    {
+     "key": "k9d289c7ba462",
+     "command": "ioreg -rn AppleSmartBattery | grep -i \"InstantAmperage\""
+    },
+    {
+     "key": "k6f22bb44845b",
+     "command": "ioreg -rn AppleSmartBattery | awk '/\"InstantaneousCurrent\" =/ {gsub(/;/, \"\", $3); print $3; found=1; exit} /\"Amperage\" =/ {gsub(/;/, \"\", $3); a=$3} END {if (!found && a != \"\") print a}'"
+    },
+    {
+     "key": "k448a1d90987a",
+     "command": "ioreg -rn AppleSmartBattery -w 0 | grep -E 'Amperage' || system_profiler SPPowerDataType | grep -i 'Amperage'"
+    },
+    {
+     "key": "k6a3d164fb7b7",
+     "command": "ioreg -rn AppleSmartBattery | grep -E '\"(InstantAmperage|Amperage)\"'"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1809 @@
+{
+ "batch": "b14",
+ "judge": "dsh-main-20261022-b14-a1",
+ "cases": [
+  {
+   "case": "cb71362d39a01",
+   "verdicts": [
+    {
+     "key": "k4f42806f6740",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mount table lookup for the mount point."
+    },
+    {
+     "key": "k5582159b68b3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mount table lookup for the mount point."
+    },
+    {
+     "key": "k56cc4b50bff3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mount table lookup for the mount point."
+    },
+    {
+     "key": "k777e9999c7fc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mount table lookup for the mount point."
+    },
+    {
+     "key": "ka5a1b012f75e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mount table lookup for the mount point."
+    }
+   ]
+  },
+  {
+   "case": "c5191fffeb537",
+   "verdicts": [
+    {
+     "key": "k5a39eab86271",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information Thunderbolt network entries."
+    },
+    {
+     "key": "k5e8b58faf0c6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information Thunderbolt network entries."
+    },
+    {
+     "key": "kb3550f686ca3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information Thunderbolt network entries."
+    },
+    {
+     "key": "ke333bb473a53",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information Thunderbolt network entries."
+    },
+    {
+     "key": "kf222e52e2f2b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information Thunderbolt network entries."
+    }
+   ]
+  },
+  {
+   "case": "cbdcd0f66f015",
+   "verdicts": [
+    {
+     "key": "k065070d253e5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "iconv UTF-16 to UTF-8."
+    }
+   ]
+  },
+  {
+   "case": "c14e26f3ada4c",
+   "verdicts": [
+    {
+     "key": "k0c4b6c16b711",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "tr does not accept file operands; it errors."
+    },
+    {
+     "key": "k13434f3e1205",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed/tr replaces literal backslashes."
+    },
+    {
+     "key": "k188b3e6a75ae",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed/tr replaces literal backslashes."
+    },
+    {
+     "key": "k87018c635e9e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed/tr replaces literal backslashes."
+    }
+   ]
+  },
+  {
+   "case": "c93a4f481249a",
+   "verdicts": [
+    {
+     "key": "k278f4dc1b72c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl timing fields."
+    },
+    {
+     "key": "k68001d12aae0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl timing fields."
+    },
+    {
+     "key": "k799ba068a532",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl timing fields."
+    },
+    {
+     "key": "kd69922a6e33f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl timing fields."
+    }
+   ]
+  },
+  {
+   "case": "c54dea87dc59a",
+   "verdicts": [
+    {
+     "key": "k6ae64dbc0931",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "traceroute -m 12."
+    }
+   ]
+  },
+  {
+   "case": "c19ebcdcf9d89",
+   "verdicts": [
+    {
+     "key": "k62307b359ec7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps -ww untruncated args."
+    }
+   ]
+  },
+  {
+   "case": "cb26c83d69ff5",
+   "verdicts": [
+    {
+     "key": "kfe36b37f676c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil raw ProductVersion."
+    }
+   ]
+  },
+  {
+   "case": "c9a3946ce4ca3",
+   "verdicts": [
+    {
+     "key": "k8f66d11f725a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tr tab to newline."
+    }
+   ]
+  },
+  {
+   "case": "cb658f974d362",
+   "verdicts": [
+    {
+     "key": "k1ae5796e2fa3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sort by the last comma field."
+    }
+   ]
+  },
+  {
+   "case": "c199183a219fc",
+   "verdicts": [
+    {
+     "key": "k2b1756c01c7e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "DerivedData project names."
+    },
+    {
+     "key": "k46e853d1a451",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "DerivedData project names."
+    },
+    {
+     "key": "k8eda5340a6df",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "DerivedData project names."
+    },
+    {
+     "key": "kee35f3fe284a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "DerivedData project names."
+    }
+   ]
+  },
+  {
+   "case": "c883d2fea04b4",
+   "verdicts": [
+    {
+     "key": "k399ccca5c9d3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl SSL verification lines."
+    },
+    {
+     "key": "k5c817fa5cfd0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl SSL verification lines."
+    },
+    {
+     "key": "k839da9b9fe83",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl SSL verification lines."
+    },
+    {
+     "key": "ka18240774b40",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl SSL verification lines."
+    },
+    {
+     "key": "kd3be4538deb9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl SSL verification lines."
+    }
+   ]
+  },
+  {
+   "case": "c501c30e5c397",
+   "verdicts": [
+    {
+     "key": "kb00db2a3d6fa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -lOR recursive flags."
+    }
+   ]
+  },
+  {
+   "case": "c51e3cf77f502",
+   "verdicts": [
+    {
+     "key": "k8e9bc61d38e4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find broken symlinks without following."
+    },
+    {
+     "key": "kf155e2714791",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find broken symlinks without following."
+    }
+   ]
+  },
+  {
+   "case": "c4c3fe2e3d4f9",
+   "verdicts": [
+    {
+     "key": "k2608fac22a72",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "hdiutil detach takes a device or mount point, not the dmg path."
+    },
+    {
+     "key": "kdf4253e49e03",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "same: detach takes a device, and forcing is unrequested."
+    }
+   ]
+  },
+  {
+   "case": "ca44369c521fd",
+   "verdicts": [
+    {
+     "key": "k6d41f92cdcb1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find .tar.gz files."
+    }
+   ]
+  },
+  {
+   "case": "c8101e1bacf36",
+   "verdicts": [
+    {
+     "key": "k75c5519077b9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "openssl x509 -pubkey."
+    }
+   ]
+  },
+  {
+   "case": "c39d153173b4f",
+   "verdicts": [
+    {
+     "key": "k6dc56d715d3c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Terminal default settings."
+    }
+   ]
+  },
+  {
+   "case": "c2a77751526d9",
+   "verdicts": [
+    {
+     "key": "kb0f2d0eba07c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "networksetup bypass domains."
+    }
+   ]
+  },
+  {
+   "case": "c5d10a2d3d268",
+   "verdicts": [
+    {
+     "key": "k3fbe90f9727a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "fmt -w 72."
+    }
+   ]
+  },
+  {
+   "case": "ca92eecbc5596",
+   "verdicts": [
+    {
+     "key": "k7d8faf9f1b90",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "zip excluding hidden entries."
+    },
+    {
+     "key": "k858f7d264b25",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "zip excluding hidden entries."
+    },
+    {
+     "key": "k9c8cce7a420b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "zip excluding hidden entries."
+    },
+    {
+     "key": "k9cc5fd0447d4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "zip excluding hidden entries."
+    },
+    {
+     "key": "kf35e367d2086",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "zip excluding hidden entries."
+    }
+   ]
+  },
+  {
+   "case": "cc6df7ff1f086",
+   "verdicts": [
+    {
+     "key": "k28d37e677a6c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "locale monetary symbols."
+    }
+   ]
+  },
+  {
+   "case": "c719e601c6232",
+   "verdicts": [
+    {
+     "key": "k6653abb14e0a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "vm_stat compressor pages."
+    },
+    {
+     "key": "k8299421ffe00",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "vm_stat compressor pages."
+    },
+    {
+     "key": "k9f8828136843",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "vm_stat compressor pages."
+    }
+   ]
+  },
+  {
+   "case": "c0ee076b14199",
+   "verdicts": [
+    {
+     "key": "k073edb68a79f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps counts root processes."
+    },
+    {
+     "key": "k22f3aa283513",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps counts root processes."
+    },
+    {
+     "key": "k40de6f9f3aff",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps counts root processes."
+    },
+    {
+     "key": "k888eb162a3ad",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps counts root processes."
+    }
+   ]
+  },
+  {
+   "case": "c35402b25e8fc",
+   "verdicts": [
+    {
+     "key": "kc0592e25dce7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "64-bit capability sysctl."
+    }
+   ]
+  },
+  {
+   "case": "c6c725c04bf6f",
+   "verdicts": [
+    {
+     "key": "k01cebbd8605a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git log --diff-filter=A."
+    },
+    {
+     "key": "k4a81251857a0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git log --diff-filter=A."
+    },
+    {
+     "key": "k4ee67469eba7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git log --diff-filter=A."
+    },
+    {
+     "key": "kbb2579b36bce",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git log --diff-filter=A."
+    }
+   ]
+  },
+  {
+   "case": "c7bce6a46ddc7",
+   "verdicts": [
+    {
+     "key": "k4ccef8f83fb4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date -v-1d."
+    }
+   ]
+  },
+  {
+   "case": "c122addc90ec0",
+   "verdicts": [
+    {
+     "key": "k333308a77dbc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chmod dirs 0755."
+    },
+    {
+     "key": "k93486cd1a681",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chmod dirs 0755."
+    },
+    {
+     "key": "kd986ec81ffe6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chmod dirs 0755."
+    }
+   ]
+  },
+  {
+   "case": "cb985516a4707",
+   "verdicts": [
+    {
+     "key": "k0cbdef9b37be",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "NDJSON to JSON array."
+    },
+    {
+     "key": "k1c02ce968dd3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "NDJSON to JSON array."
+    },
+    {
+     "key": "k8514d6f65881",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "NDJSON to JSON array."
+    },
+    {
+     "key": "k940a6de63d51",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "NDJSON to JSON array."
+    },
+    {
+     "key": "kbdb5c3793995",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "NDJSON to JSON array."
+    }
+   ]
+  },
+  {
+   "case": "cd9de3c9e1221",
+   "verdicts": [
+    {
+     "key": "k1e0c83b40d01",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl --http2."
+    },
+    {
+     "key": "k24171ceed80b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl --http2."
+    },
+    {
+     "key": "k4968fe42468e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl --http2."
+    },
+    {
+     "key": "k7ca259e0c3f6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl --http2."
+    }
+   ]
+  },
+  {
+   "case": "ca777d590a281",
+   "verdicts": [
+    {
+     "key": "k016649073c7f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps nice > 0."
+    },
+    {
+     "key": "k1421a1ad6e86",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps nice > 0."
+    },
+    {
+     "key": "k4b5676d72c64",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps nice > 0."
+    },
+    {
+     "key": "kdcbff881ad7e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps nice > 0."
+    },
+    {
+     "key": "kf992d3bcddb8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps nice > 0."
+    }
+   ]
+  },
+  {
+   "case": "cbbf8d4f10258",
+   "verdicts": [
+    {
+     "key": "k06f46c5026e6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log stream assertion filter."
+    },
+    {
+     "key": "k311edeeccd55",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "log stream assertion filter."
+    }
+   ]
+  },
+  {
+   "case": "c479cad47458f",
+   "verdicts": [
+    {
+     "key": "k9482f4d11960",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep merge conflict markers."
+    },
+    {
+     "key": "ka7a3922779da",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep merge conflict markers."
+    },
+    {
+     "key": "kd030f623213f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep merge conflict markers."
+    }
+   ]
+  },
+  {
+   "case": "c6e39074426b2",
+   "verdicts": [
+    {
+     "key": "k833461204c5f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls per file."
+    }
+   ]
+  },
+  {
+   "case": "ce0f47a9e3534",
+   "verdicts": [
+    {
+     "key": "k0f2eddd49d33",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find bundled plug-ins."
+    },
+    {
+     "key": "k2f9956b2ad1c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find bundled plug-ins."
+    },
+    {
+     "key": "k5055e6aaccb2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find bundled plug-ins."
+    },
+    {
+     "key": "k9226c4e3843d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find bundled plug-ins."
+    }
+   ]
+  },
+  {
+   "case": "cdb5b1baeb2b0",
+   "verdicts": [
+    {
+     "key": "kc4c2987f0a65",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync directory-only."
+    }
+   ]
+  },
+  {
+   "case": "cd5ca22e2b56e",
+   "verdicts": [
+    {
+     "key": "k1377b8de7412",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo partitions."
+    },
+    {
+     "key": "k8da88fb51575",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo partitions."
+    },
+    {
+     "key": "kbd784134af04",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo partitions."
+    },
+    {
+     "key": "kcc0f829dfd40",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "imageinfo has no Partition Layout section."
+    },
+    {
+     "key": "kdd9a64d9eb90",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "imageinfo partitions."
+    }
+   ]
+  },
+  {
+   "case": "cf2462a015449",
+   "verdicts": [
+    {
+     "key": "k457ef766dc4a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unique extensions."
+    },
+    {
+     "key": "k4799a21f56da",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unique extensions."
+    },
+    {
+     "key": "k4e9656f197d8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unique extensions."
+    },
+    {
+     "key": "kb6af3b12d66e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unique extensions."
+    }
+   ]
+  },
+  {
+   "case": "ca836a9a3f32c",
+   "verdicts": [
+    {
+     "key": "k9c60873e4b52",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil development region."
+    }
+   ]
+  },
+  {
+   "case": "c600961ace4e1",
+   "verdicts": [
+    {
+     "key": "k0447ba4233ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil encryption fields."
+    },
+    {
+     "key": "k56d3be650dd8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil encryption fields."
+    },
+    {
+     "key": "k617a4855af84",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil encryption fields."
+    },
+    {
+     "key": "kd6ce7b213f70",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil indents its fields, so the anchored grep always says not encrypted."
+    }
+   ]
+  },
+  {
+   "case": "c46bc1f5ebeb3",
+   "verdicts": [
+    {
+     "key": "k0cda41115966",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "vmmap regions."
+    }
+   ]
+  },
+  {
+   "case": "ca5cbfd07b0d3",
+   "verdicts": [
+    {
+     "key": "k18440003aeb9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Device Location."
+    },
+    {
+     "key": "k3cb2b05829b9",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "there is no bus field in diskutil info."
+    },
+    {
+     "key": "k732761053655",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "there is no Bus Path field; the field is Device Location."
+    },
+    {
+     "key": "k85bff86af558",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Device Location."
+    },
+    {
+     "key": "k86193f7069d5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil Device Location."
+    }
+   ]
+  },
+  {
+   "case": "c5a4d5c188556",
+   "verdicts": [
+    {
+     "key": "kdf98df20f050",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sysctl l2cachesize."
+    }
+   ]
+  },
+  {
+   "case": "cac07bcc4d7b0",
+   "verdicts": [
+    {
+     "key": "k8c0f75c7bccd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "git diff --name-only since tag."
+    }
+   ]
+  },
+  {
+   "case": "c8c3739fa43f2",
+   "verdicts": [
+    {
+     "key": "k0c2474491913",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find -type f count."
+    }
+   ]
+  },
+  {
+   "case": "cfbe755b768f2",
+   "verdicts": [
+    {
+     "key": "k0573d5af6803",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "USB power fields."
+    },
+    {
+     "key": "k454d4b066c29",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "USB power fields."
+    },
+    {
+     "key": "ka8a72547efa7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "USB power fields."
+    },
+    {
+     "key": "kd177b8f46f6a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "USB power fields."
+    }
+   ]
+  },
+  {
+   "case": "c6b2c5692092f",
+   "verdicts": [
+    {
+     "key": "k068a4ac9fba1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat lo0 Ipkts."
+    },
+    {
+     "key": "k34c628dccd25",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "column five is Ierrs, not Ipkts."
+    },
+    {
+     "key": "k4c3936a9d38a",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same off-by-one column."
+    },
+    {
+     "key": "k8625c40b8db6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat lo0 Ipkts."
+    },
+    {
+     "key": "kc5b70a4ef48c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat lo0 Ipkts."
+    }
+   ]
+  },
+  {
+   "case": "cd5378da09c90",
+   "verdicts": [
+    {
+     "key": "ke3fcc685ea91",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mkdir + mv app."
+    }
+   ]
+  },
+  {
+   "case": "cb44a56c7d7ac",
+   "verdicts": [
+    {
+     "key": "k08c0c7f0f2f1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat logical sizes."
+    },
+    {
+     "key": "k59508edfa507",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "du -A reports allocated sizes, not logical bytes."
+    },
+    {
+     "key": "kef2e18809bfb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat logical sizes."
+    },
+    {
+     "key": "kf41f5ed5a687",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "prints per-file sizes, not a total."
+    }
+   ]
+  },
+  {
+   "case": "cdb3e36dfcdd9",
+   "verdicts": [
+    {
+     "key": "k004719c62794",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du hidden entries."
+    },
+    {
+     "key": "kdb1169f72eaf",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du hidden entries."
+    },
+    {
+     "key": "kec9bae51d474",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du hidden entries."
+    }
+   ]
+  },
+  {
+   "case": "cd81c905f438d",
+   "verdicts": [
+    {
+     "key": "ke66d80fbf6b3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "listSnapshots -plist."
+    }
+   ]
+  },
+  {
+   "case": "ca5a3ef6f760f",
+   "verdicts": [
+    {
+     "key": "k2adf5d6c3893",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and blocks."
+    },
+    {
+     "key": "k42820775aa8d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and blocks."
+    },
+    {
+     "key": "k7f4111dcface",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and blocks."
+    },
+    {
+     "key": "kc919be6cb8f4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and blocks."
+    },
+    {
+     "key": "kcc5f2b2b5642",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat birth and blocks."
+    }
+   ]
+  },
+  {
+   "case": "caf9216eb9c36",
+   "verdicts": [
+    {
+     "key": "k719bf88cee20",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "top csw."
+    }
+   ]
+  },
+  {
+   "case": "cb8fab55a34a9",
+   "verdicts": [
+    {
+     "key": "k267ffea31122",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "public.download-package is not a declared UTI on this Mac."
+    },
+    {
+     "key": "ka3d8a74780ef",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "same non-existent UTI."
+    },
+    {
+     "key": "kd955e847d3b2",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "same non-existent UTI."
+    },
+    {
+     "key": "ke1524fd5e092",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "com.apple.download-package is not a declared UTI here."
+    }
+   ]
+  },
+  {
+   "case": "c0c2886df8bc8",
+   "verdicts": [
+    {
+     "key": "k083b52f03466",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof REG count."
+    },
+    {
+     "key": "k093ba20facb0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof REG count."
+    },
+    {
+     "key": "k3fc4c4d1b610",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof REG count."
+    },
+    {
+     "key": "kadd040230e23",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof REG count."
+    },
+    {
+     "key": "ke22298402a2b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof REG count."
+    }
+   ]
+  },
+  {
+   "case": "cdb4d58804c0c",
+   "verdicts": [
+    {
+     "key": "k1a4bc23dec0a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "launch agent working directory."
+    },
+    {
+     "key": "k677b7bfbaa2e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "launch agent working directory."
+    },
+    {
+     "key": "k97f9dc4549da",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "launch agent working directory."
+    },
+    {
+     "key": "ka5119fe412ee",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "launch agent working directory."
+    },
+    {
+     "key": "kc936dda530cb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "launch agent working directory."
+    }
+   ]
+  },
+  {
+   "case": "c4926d56f3aba",
+   "verdicts": [
+    {
+     "key": "k671dd8494afc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "openssl purpose."
+    }
+   ]
+  },
+  {
+   "case": "cfcb15d510f77",
+   "verdicts": [
+    {
+     "key": "kec1a39a76315",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl User-Agent."
+    }
+   ]
+  },
+  {
+   "case": "c395055c9f477",
+   "verdicts": [
+    {
+     "key": "k1f638ee2f1a3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls bitrate and channels."
+    },
+    {
+     "key": "k2ccc559c6373",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "afinfo prints bit rate, not Indexed bit rate."
+    }
+   ]
+  },
+  {
+   "case": "c792b9b7d9bce",
+   "verdicts": [
+    {
+     "key": "k19b92ddc0939",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "row comparison."
+    },
+    {
+     "key": "k91a47ad82b01",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "row comparison."
+    },
+    {
+     "key": "kef361da12667",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "row comparison."
+    },
+    {
+     "key": "kfa96a8d86207",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "row comparison."
+    }
+   ]
+  },
+  {
+   "case": "c854fd7fa07e9",
+   "verdicts": [
+    {
+     "key": "k599b05b3ddf9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "scutil --nc status."
+    }
+   ]
+  },
+  {
+   "case": "cb63f6a264238",
+   "verdicts": [
+    {
+     "key": "k47d955be1430",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil copyright."
+    },
+    {
+     "key": "k9148dfef0d26",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil copyright."
+    },
+    {
+     "key": "kdf11c429ee1d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil copyright."
+    }
+   ]
+  },
+  {
+   "case": "cbc58b6a1b317",
+   "verdicts": [
+    {
+     "key": "k8971962841a9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep nonempty category."
+    },
+    {
+     "key": "k9e8efb10bd98",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep nonempty category."
+    },
+    {
+     "key": "kd89e7c8f62eb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep nonempty category."
+    }
+   ]
+  },
+  {
+   "case": "cef64769c3eb6",
+   "verdicts": [
+    {
+     "key": "k7e92284dde10",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "grep -cEi TODO."
+    }
+   ]
+  },
+  {
+   "case": "c6de077e5502a",
+   "verdicts": [
+    {
+     "key": "k7cfef06ebc44",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find trailing dot."
+    }
+   ]
+  },
+  {
+   "case": "c0625607ac993",
+   "verdicts": [
+    {
+     "key": "k7e22aa3e7280",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find depth-3 cache."
+    }
+   ]
+  },
+  {
+   "case": "c6fb54622c503",
+   "verdicts": [
+    {
+     "key": "kedccfb2c4f6d",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "BSD find needs a path before the expression; the command errors."
+    }
+   ]
+  },
+  {
+   "case": "c749551301a9b",
+   "verdicts": [
+    {
+     "key": "k0328d0dfd901",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "the attribute is kMDItemFSIsExtensionHidden, not kMDItemFinderExtensionHidden."
+    }
+   ]
+  },
+  {
+   "case": "c8f46a437007f",
+   "verdicts": [
+    {
+     "key": "ka029deb90c7e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls content creation date."
+    }
+   ]
+  },
+  {
+   "case": "c185163380707",
+   "verdicts": [
+    {
+     "key": "k439f58d8f7cd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "processImagePath unique."
+    },
+    {
+     "key": "k452d7a17c9c4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "processImagePath unique."
+    },
+    {
+     "key": "k5ed0f563b563",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "processImagePath unique."
+    },
+    {
+     "key": "kc65d7b93dd7e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "processImagePath unique."
+    },
+    {
+     "key": "kffca2a83d64e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "processImagePath unique."
+    }
+   ]
+  },
+  {
+   "case": "cbd5e300f9289",
+   "verdicts": [
+    {
+     "key": "k17d3f38c7a85",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "pmset -g shows settings, not assertions."
+    },
+    {
+     "key": "k8440a84dbc6f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset assertions."
+    }
+   ]
+  },
+  {
+   "case": "caef4a8f06e4f",
+   "verdicts": [
+    {
+     "key": "k4786ac1c2dc4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date -v+48H."
+    }
+   ]
+  },
+  {
+   "case": "c42b49b4e7f0b",
+   "verdicts": [
+    {
+     "key": "k484e064eb8fe",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder window names."
+    }
+   ]
+  },
+  {
+   "case": "c717c246ea1bc",
+   "verdicts": [
+    {
+     "key": "ke2eb79ef7224",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "du ignore .git."
+    }
+   ]
+  },
+  {
+   "case": "c5e08d5312f4c",
+   "verdicts": [
+    {
+     "key": "k8475a320092f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "recursively counts every file, not files in this folder; newline-delimited paths also overcount."
+    }
+   ]
+  },
+  {
+   "case": "c2d08d3db96b1",
+   "verdicts": [
+    {
+     "key": "k7646a75fd6f6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk fields 3-5."
+    }
+   ]
+  },
+  {
+   "case": "c03297818a4ca",
+   "verdicts": [
+    {
+     "key": "k07bcf0ba49dc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "audio input devices."
+    },
+    {
+     "key": "k5f43a7c5fda4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "audio input devices."
+    },
+    {
+     "key": "k7e4f0d4f594c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "audio input devices."
+    },
+    {
+     "key": "k85098907fcf7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "audio input devices."
+    },
+    {
+     "key": "kc0cb6406ab10",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "audio input devices."
+    }
+   ]
+  },
+  {
+   "case": "caba7c6327eb5",
+   "verdicts": [
+    {
+     "key": "k45954b681072",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "split id:name."
+    },
+    {
+     "key": "k7c498b5488aa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "split id:name."
+    },
+    {
+     "key": "k9d8b1476edaa",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "split id:name."
+    },
+    {
+     "key": "kcb933858a5a7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "split id:name."
+    },
+    {
+     "key": "kef5f212cbb6b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "split id:name."
+    }
+   ]
+  },
+  {
+   "case": "c26be7bb8a21e",
+   "verdicts": [
+    {
+     "key": "k61ae9a78b4ab",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "firewall global state."
+    },
+    {
+     "key": "kee242da84d53",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "firewall global state."
+    }
+   ]
+  },
+  {
+   "case": "c422b3a577ebf",
+   "verdicts": [
+    {
+     "key": "kd58947c37f0f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "vm_stat wired pages."
+    }
+   ]
+  },
+  {
+   "case": "c74f6645e59ef",
+   "verdicts": [
+    {
+     "key": "k20804b698187",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "inet6 default routes."
+    },
+    {
+     "key": "k6eedbeebaa1b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "inet6 default routes."
+    },
+    {
+     "key": "ka722db0e6b60",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "inet6 default routes."
+    },
+    {
+     "key": "kb7751e43dfb4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "inet6 default routes."
+    }
+   ]
+  },
+  {
+   "case": "cc63b0cc63bfd",
+   "verdicts": [
+    {
+     "key": "k679029f1ad72",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "netstat icmp6 stats."
+    }
+   ]
+  },
+  {
+   "case": "c8845f5540210",
+   "verdicts": [
+    {
+     "key": "k9679c405f598",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat uid/gid."
+    }
+   ]
+  },
+  {
+   "case": "ce0b90d80a776",
+   "verdicts": [
+    {
+     "key": "k3acd166601b6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "copy preserving xattrs."
+    },
+    {
+     "key": "k8627552ede0b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "copy preserving xattrs."
+    },
+    {
+     "key": "ka8fdddf66cd6",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "cp -X explicitly does not copy extended attributes."
+    },
+    {
+     "key": "kde93d0081aee",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: -X prevents xattr copying."
+    },
+    {
+     "key": "kf577b5f45ab0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "copy preserving xattrs."
+    }
+   ]
+  },
+  {
+   "case": "c48a1374c8e88",
+   "verdicts": [
+    {
+     "key": "k0f6363a4f08d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date -v-60d."
+    }
+   ]
+  },
+  {
+   "case": "c979be54b3f1e",
+   "verdicts": [
+    {
+     "key": "k57a8bdd2a65c",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "jq is not part of the stock macOS environment."
+    },
+    {
+     "key": "k93f7fa985919",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JXA unescape strings."
+    }
+   ]
+  },
+  {
+   "case": "ccff2d3a7f636",
+   "verdicts": [
+    {
+     "key": "k15c7cb8bd43b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "en0 error counters."
+    },
+    {
+     "key": "k3e29f75d2bbe",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "en0 error counters."
+    },
+    {
+     "key": "k962a7dc637b9",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "ifconfig -v does not print a dropped counter."
+    },
+    {
+     "key": "ka5df4eec22c3",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the last field is Coll, not drops."
+    },
+    {
+     "key": "kf6d7eff91361",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: prints Coll."
+    }
+   ]
+  },
+  {
+   "case": "c6d305a2e6edb",
+   "verdicts": [
+    {
+     "key": "k99fdb1b2d404",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler software."
+    }
+   ]
+  },
+  {
+   "case": "cdb5759a81092",
+   "verdicts": [
+    {
+     "key": "k7db500db7f27",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl --compressed."
+    }
+   ]
+  },
+  {
+   "case": "cef0772f4289f",
+   "verdicts": [
+    {
+     "key": "k78f65707ad08",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rsync exclude dotfiles."
+    }
+   ]
+  },
+  {
+   "case": "c4ac61afbbdeb",
+   "verdicts": [
+    {
+     "key": "k372159f9f9f0",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "prints finished only if the job exits successfully."
+    },
+    {
+     "key": "k8496267cf1d5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "wait then echo."
+    }
+   ]
+  },
+  {
+   "case": "cb8370d6dcf80",
+   "verdicts": [
+    {
+     "key": "kfd77a17abea9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "relative path."
+    }
+   ]
+  },
+  {
+   "case": "c70042895bf8f",
+   "verdicts": [
+    {
+     "key": "kd664056ce029",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "nc with stdin."
+    }
+   ]
+  }
+ ]
+}

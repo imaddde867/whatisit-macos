@@ -1,0 +1,448 @@
+{
+  "batch": "a1",
+  "judge": "dsh-judge-a1-a2",
+  "cases": [
+    {
+      "case": "cdf5a9fea09df",
+      "verdicts": [
+        {
+          "key": "k1473d24cdcdb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil info prints the APFS Container Reference line; $NF is the container."
+        }
+      ]
+    },
+    {
+      "case": "c8c268b285c13",
+      "verdicts": [
+        {
+          "key": "kf8627d004f02",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pbpaste writes the clipboard's plain-text content to stdout."
+        }
+      ]
+    },
+    {
+      "case": "cf53568909594",
+      "verdicts": [
+        {
+          "key": "kefa66a75d700",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "spctl assesses Gatekeeper execution policy; it does not validate the stapled ticket contents."
+        },
+        {
+          "key": "k100f46174755",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stapler validate checks the ticket stapled to an app bundle."
+        }
+      ]
+    },
+    {
+      "case": "c7e24f1aaaf55",
+      "verdicts": [
+        {
+          "key": "k00928c2cd520",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "NSDocumentClass is nested under CFBundleDocumentTypes, so plutil -extract NSDocumentClass finds no top-level key."
+        },
+        {
+          "key": "k5ea1bf3f9797",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -p prints \"NSDocumentClass\" => \"value\"; the fourth quote-separated field is the value."
+        },
+        {
+          "key": "k76f69f653d3b",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "plutil -p prints '=>' with no trailing semicolon, so this sed pattern never matches."
+        },
+        {
+          "key": "k072a6c27bdfb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -o captures the \"NSDocumentClass\" => \"value\" match; cut field 4 is the value."
+        }
+      ]
+    },
+    {
+      "case": "c31d2a3af4606",
+      "verdicts": [
+        {
+          "key": "k279081e38c1d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk counts lines whose level field is warning and prints the total."
+        },
+        {
+          "key": "k28a586a04f3f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -c counts lines whose level is warning, case-insensitively."
+        },
+        {
+          "key": "kde29c6d0a487",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -c counts lines containing \"level\":\"warning\"."
+        },
+        {
+          "key": "kabc5db25389b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -c prints the warning-line count; || true only masks the exit status."
+        },
+        {
+          "key": "k492ef99a16a6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -c prints the number of warning-level lines."
+        }
+      ]
+    },
+    {
+      "case": "cf195bab35e99",
+      "verdicts": [
+        {
+          "key": "kcf821d464725",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy array indexes are zero-based, so :servers:1 is the second item."
+        }
+      ]
+    },
+    {
+      "case": "cd8b92d3d0409",
+      "verdicts": [
+        {
+          "key": "k26fe8e4cd089",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "-l long output with -e ACLs and -O file flags on the container path."
+        }
+      ]
+    },
+    {
+      "case": "c709acd4fb998",
+      "verdicts": [
+        {
+          "key": "kcc527d863d94",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "extracts UUIDs, sorts and counts, then prints only counts above one."
+        },
+        {
+          "key": "ke14a56fde8f9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "extracts quoted UUIDs, counts duplicates with uniq -c, awk keeps counts above one."
+        },
+        {
+          "key": "k96c5081b2820",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "extracts uuid field values, counts duplicates, and prints count plus value."
+        },
+        {
+          "key": "k3ccaed041b99",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lowercased UUIDs counted by uniq -c; awk keeps those occurring more than once."
+        }
+      ]
+    },
+    {
+      "case": "c9a7f8c57e84c",
+      "verdicts": [
+        {
+          "key": "k1d9afda44015",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDItemContentType is the concrete UTI, not public.movie, so real movie files do not match."
+        },
+        {
+          "key": "k3c6153901d70",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ContentTypeTree matches public.movie and kMDItemCodecs equals H.264."
+        },
+        {
+          "key": "k1ee1578693d8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ContentTypeTree query plus wildcard H.264 codec match; mdfind supports wildcards."
+        }
+      ]
+    },
+    {
+      "case": "c4c3a57cc4111",
+      "verdicts": [
+        {
+          "key": "ka8ee390fd245",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep shows diskutil's Volume UUID line."
+        },
+        {
+          "key": "k4d97341db2f9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "case-insensitive grep shows the Volume UUID line."
+        },
+        {
+          "key": "k51e64183d24f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "shows the Volume UUID line, else a no-UUID message."
+        },
+        {
+          "key": "kcf46d7dd3de0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "shows the Volume UUID line, else 'No Volume UUID found'."
+        }
+      ]
+    },
+    {
+      "case": "c5dd94cfdfd7a",
+      "verdicts": [
+        {
+          "key": "k45ea26d5efeb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk keeps TCP socket lines whose sixth field (state) is CLOSE_WAIT."
+        },
+        {
+          "key": "k2b48e2a17d15",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep keeps TCP socket lines containing CLOSE_WAIT."
+        },
+        {
+          "key": "k97e4199a6393",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "netstat -an, keep tcp lines, then CLOSE_WAIT."
+        },
+        {
+          "key": "kfd75c96a426f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -iTCP -sTCP:CLOSE_WAIT lists TCP sockets in that state."
+        },
+        {
+          "key": "k0756216d7644",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -iTCP -sTCP:CLOSE_WAIT; only host/port resolution differs."
+        }
+      ]
+    },
+    {
+      "case": "c8f51b15a798a",
+      "verdicts": [
+        {
+          "key": "ke5ae060c92f8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "checks Terminal is running before counting; prints 0 when closed."
+        },
+        {
+          "key": "k504e57e730e7",
+          "verdict": "incorrect",
+          "category": "other",
+          "evidence": "Telling Terminal to count windows launches it if closed, opening a window instead of returning 0."
+        },
+        {
+          "key": "kc64c28501a23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep guards the count; echoes 0 when Terminal isn't running."
+        },
+        {
+          "key": "k2cc4bab0acfc",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "System Events window counting needs Accessibility permission and returns nothing when Terminal is closed."
+        }
+      ]
+    },
+    {
+      "case": "c6d3026931d87",
+      "verdicts": [
+        {
+          "key": "k007b76ce5f18",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "passes the absolute path and asks Finder for the file's locked property."
+        },
+        {
+          "key": "k99a13cdb75ce",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "builds an absolute alias from pwd and gets Finder's locked property."
+        },
+        {
+          "key": "k7fa35b4d6f2f",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "No kMDItemLocked Spotlight attribute; mdls prints (null), not Finder's locked flag."
+        },
+        {
+          "key": "k883674e46167",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "GetFileInfo -a prints attribute letters (uppercase when set), never the word 'locked'; always false."
+        },
+        {
+          "key": "k918797c10c6d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finder file reference built from pwd; gets the locked property."
+        }
+      ]
+    },
+    {
+      "case": "cac6cde288cf8",
+      "verdicts": [
+        {
+          "key": "k308499684fcc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "--connect-timeout 3 sets a three-second connection timeout."
+        }
+      ]
+    },
+    {
+      "case": "c68dacb757d52",
+      "verdicts": [
+        {
+          "key": "k1ef97a80b6a5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find selects immediate subdirectories; du -sh reports each total."
+        }
+      ]
+    },
+    {
+      "case": "c3770668b1526",
+      "verdicts": [
+        {
+          "key": "k728164f8424c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "%b is st_blocks (blocks allocated), not the filesystem block size (%k)."
+        },
+        {
+          "key": "k9f2969153061",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "%b prints allocated block count for '.', not the filesystem block size."
+        },
+        {
+          "key": "kd1e442011ac0",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "%o is not a stat format field; stat reports an invalid format."
+        },
+        {
+          "key": "k78da2aae4840",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "%s is not a stat format field; both stat invocations fail."
+        }
+      ]
+    },
+    {
+      "case": "c817dd935a52b",
+      "verdicts": [
+        {
+          "key": "kc09b187e1b63",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "file reports the file type from its contents."
+        }
+      ]
+    },
+    {
+      "case": "cd134e7948af5",
+      "verdicts": [
+        {
+          "key": "k3838942ebd81",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "dig +trace follows the delegation path from the root servers."
+        }
+      ]
+    },
+    {
+      "case": "cad597460498f",
+      "verdicts": [
+        {
+          "key": "k3f6e3e566388",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "No -a: -u and the path are ORed, so all the user's open files are listed."
+        },
+        {
+          "key": "k2af914e98b9e",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "+d searches a directory; /dev/disk4s1 is a device node, not a directory."
+        },
+        {
+          "key": "kc5a5c58b5647",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "No -a, so -u and the path are ORed; +f also forces filesystem interpretation."
+        },
+        {
+          "key": "k7e4d2ed131f7",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "+d expects a directory; /dev/disk4s1 is a device node."
+        }
+      ]
+    },
+    {
+      "case": "cc1fcb76a9e6c",
+      "verdicts": [
+        {
+          "key": "k1bfe80c26bf6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep shows the Amperage/InstantAmperage lines, including the instantaneous current."
+        },
+        {
+          "key": "k9d289c7ba462",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep shows the InstantAmperage reading."
+        },
+        {
+          "key": "k6f22bb44845b",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "No InstantaneousCurrent key exists, so it prints average Amperage, not instantaneous current."
+        },
+        {
+          "key": "k448a1d90987a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "prints the Amperage lines including InstantAmperage; fallback is unused."
+        },
+        {
+          "key": "k6a3d164fb7b7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "matches the exact InstantAmperage and Amperage keys, showing the instantaneous reading."
+        }
+      ]
+    }
+  ]
+}

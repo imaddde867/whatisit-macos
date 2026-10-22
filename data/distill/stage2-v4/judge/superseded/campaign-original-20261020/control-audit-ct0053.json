@@ -1,0 +1,55 @@
+{
+  "conclusion": "Cannot establish expected-correct semantics for all supported modern macOS configurations by static evidence; do not weaken gate or retry until expected answer is obtained. Historical review disagreement makes this a poor mandatory control.",
+  "control": "ct0053",
+  "evidence": {
+    "candidate_execution": "none",
+    "local_manual": "diskutil(8) info accepts whole disk/partition and mount-point operands; DEVICES distinguishes synthesized APFS volumes and physical stores; no guarantee that / reports backing-drive SMART",
+    "original_pass1": {
+      "key": "x0181",
+      "note": "/ is synthesized APFS volume; SMART typically Not Supported",
+      "path": "docs/eval-audit/pass1-sonnet/b07.json",
+      "verdict": "incorrect"
+    },
+    "original_pass2": {
+      "key": "x0181",
+      "note": "mount point accepted; SMART output behavior asserted, not established by man page",
+      "path": "docs/eval-audit/pass2-opus/r1.json",
+      "verdict": "correct"
+    },
+    "primary_claim": "information depends on selected item type; SMART is a possible property",
+    "primary_url": "https://support.apple.com/en-ie/guide/disk-utility/dskutl1005/mac"
+  },
+  "no_changes_to_controls_or_pool": true,
+  "opaque_key": "kbba777e5cbfa",
+  "original": {
+    "case": "CTL-53",
+    "command": "diskutil info / | grep -i smart",
+    "expected": "correct",
+    "key": "ct0053",
+    "request": "is the SMART status of my internal drive ok",
+    "source": "docs/eval-audit/items.json#x0181"
+  },
+  "proposed_replacement": {
+    "case": "CTL-53",
+    "command": "getconf PAGESIZE",
+    "expected": "correct",
+    "key": "ct0053",
+    "provenance": "docs/eval-audit/pass1-sonnet/b07.json x0541 correct; docs/eval-audit/pass2-opus/r3.json x0541 correct",
+    "request": "How many bytes are in a virtual-memory page on this Mac?",
+    "source": "docs/eval-audit/items.json#x0541"
+  },
+  "replacement_checks": [
+    "Unused source and request/command pair",
+    "Both prior independent audit passes correct",
+    "Stock /usr/bin/getconf exists",
+    "getconf(1) system variable syntax and sysconf(3) _SC_PAGESIZE bytes documented"
+  ],
+  "required_if_approved": [
+    "Preserve frozen pool/verdicts/confirmation artifacts intact",
+    "Change only ct0053 contents and applicable runbook/provenance notes",
+    "Freeze new controls/protocol/input hashes and regenerate pool",
+    "Fresh pass-1 sessions for all batches per protocol; never reuse old verdicts",
+    "Repeat pool reproducibility check"
+  ],
+  "status": "audit complete; control unsuitable as unambiguous positive; remediation awaiting user approval"
+}

@@ -1,0 +1,437 @@
+{
+  "d00": {
+    "cases": [
+      {
+        "batch": "b03",
+        "case": "c5eda7a802881",
+        "group": "v3_kept",
+        "rid": "r00377",
+        "target": "readlink shortcut"
+      },
+      {
+        "batch": "b04",
+        "case": "c238dd8af50e3",
+        "group": "no_majority",
+        "rid": "r00503",
+        "target": "rm -f documents.zip && zip documents.zip report.pdf notes.txt"
+      },
+      {
+        "batch": "b00",
+        "case": "c60993fd2dd0e",
+        "group": "no_majority",
+        "rid": "r00054",
+        "target": "defaults read project/Config debug >/dev/null 2>&1 && echo exists || echo missing"
+      },
+      {
+        "batch": "b04",
+        "case": "ce89000206956",
+        "group": "v3_kept",
+        "rid": "r00465",
+        "target": "diskutil apfs listVolumeGroups disk3"
+      },
+      {
+        "batch": "b03",
+        "case": "cc0317ae82ce8",
+        "group": "v3_kept",
+        "rid": "r00384",
+        "target": "system_profiler SPPCIDataType"
+      },
+      {
+        "batch": "b02",
+        "case": "c33a515245814",
+        "group": "v3_kept",
+        "rid": "r00239",
+        "target": "zipinfo -1 project.zip | awk '/\\/$/{c++} END{print c+0}'"
+      },
+      {
+        "batch": "b04",
+        "case": "cbb8cf0c59026",
+        "group": "no_majority",
+        "rid": "r00462",
+        "target": "lsof -p 4200 -F ft | awk '/^f/{fd=substr($0,2)} /^t(IPv4|IPv6|unix|sock)/ && fd ~ /^[0-9]+$/ {print fd}' | sort -nu"
+      },
+      {
+        "batch": "b00",
+        "case": "c96015361dc53",
+        "group": "v3_kept",
+        "rid": "r00045",
+        "target": "zip -r MyApp.zip MyApp.app -x \"MyApp.app/Contents/Resources/Examples/*\" \"MyApp.app/Contents/Resources/Examples\""
+      },
+      {
+        "batch": "b00",
+        "case": "cf8555b27ea75",
+        "group": "v3_kept",
+        "rid": "r00089",
+        "target": "tail -r steps.txt"
+      },
+      {
+        "batch": "b02",
+        "case": "c35c0e4e3ba22",
+        "group": "v3_kept",
+        "rid": "r00254",
+        "target": "find project -maxdepth 1 -type f -exec zip -j flat-project.zip {} +"
+      },
+      {
+        "batch": "b02",
+        "case": "c35f52dd16b28",
+        "group": "no_majority",
+        "rid": "r00304",
+        "target": "mdfind -onlyin language-tests/ 'kMDItemLanguages == \"fr\"'"
+      },
+      {
+        "batch": "b00",
+        "case": "c4673513bb383",
+        "group": "no_majority",
+        "rid": "r00005",
+        "target": "df -h -t apfs"
+      },
+      {
+        "batch": "b03",
+        "case": "c4c9f08ab9019",
+        "group": "no_majority",
+        "rid": "r00353",
+        "target": "plutil -convert json -o InfoPlist.strings.json InfoPlist.strings"
+      },
+      {
+        "batch": "b02",
+        "case": "c77f75662c9af",
+        "group": "v3_kept",
+        "rid": "r00307",
+        "target": "networksetup -getproxybypassdomains Wi-Fi"
+      },
+      {
+        "batch": "b04",
+        "case": "cd36fbffc2423",
+        "group": "v3_kept",
+        "rid": "r00453",
+        "target": "lsof -nP -iTCP:5432 -sTCP:LISTEN | grep -E '(127\\.0\\.0\\.1|\\[::1\\]):5432'"
+      },
+      {
+        "batch": "b03",
+        "case": "cb6ce544f8329",
+        "group": "v3_kept",
+        "rid": "r00341",
+        "target": "lsof -p 4200 -a -d 1"
+      },
+      {
+        "batch": "b02",
+        "case": "ce8d278fb7322",
+        "group": "no_majority",
+        "rid": "r00264",
+        "target": "find /Volumes/WORK -mindepth 1 -maxdepth 1 -exec du -sk {} +"
+      },
+      {
+        "batch": "b01",
+        "case": "c3afa9c5a7ad8",
+        "group": "no_majority",
+        "rid": "r00146",
+        "target": "diskutil apfs list"
+      },
+      {
+        "batch": "b00",
+        "case": "c2cf897a2ee7f",
+        "group": "v3_kept",
+        "rid": "r00030",
+        "target": "date +%Y-%m-%dT%H:%M:%S%z"
+      },
+      {
+        "batch": "b01",
+        "case": "c76262403e76a",
+        "group": "v3_kept",
+        "rid": "r00166",
+        "target": "networksetup -getproxyautodiscovery Ethernet"
+      }
+    ],
+    "n_candidates": 39
+  },
+  "d01": {
+    "cases": [
+      {
+        "batch": "b08",
+        "case": "ce2a643762c08",
+        "group": "v3_kept",
+        "rid": "r00980",
+        "target": "mdls -name kMDItemFinderComment -raw notes.md"
+      },
+      {
+        "batch": "b06",
+        "case": "c36e031be9be1",
+        "group": "no_majority",
+        "rid": "r00715",
+        "target": "cd project/ && git commit --allow-empty -m \"Start work\""
+      },
+      {
+        "batch": "b17",
+        "case": "c4dabfceb01fe",
+        "group": "no_majority",
+        "rid": "r01973",
+        "target": "pmset -g custom | grep -E 'Power:|disksleep'"
+      },
+      {
+        "batch": "b14",
+        "case": "cdb3e36dfcdd9",
+        "group": "no_majority",
+        "rid": "r01589",
+        "target": "find project/ -mindepth 1 -maxdepth 1 -exec du -sh {} +"
+      },
+      {
+        "batch": "b11",
+        "case": "cf9989ed81a20",
+        "group": "v3_kept",
+        "rid": "r01262",
+        "target": "mdls -name kMDItemAlbum -raw song.m4a"
+      },
+      {
+        "batch": "b14",
+        "case": "c4926d56f3aba",
+        "group": "v3_kept",
+        "rid": "r01634",
+        "target": "openssl x509 -in certs/test.pem -noout -purpose"
+      },
+      {
+        "batch": "b21",
+        "case": "cbf26387f6ba7",
+        "group": "no_majority",
+        "rid": "r02426",
+        "target": "unzip -Z1 project.zip | grep -v '/$' | wc -l"
+      },
+      {
+        "batch": "b08",
+        "case": "c2be72fe478a1",
+        "group": "no_majority",
+        "rid": "r00930",
+        "target": "osascript -e 'tell application \"Finder\" to get extension hidden of (POSIX file \"template.txt\" as alias)'"
+      },
+      {
+        "batch": "b05",
+        "case": "cd1e1f32f6108",
+        "group": "no_majority",
+        "rid": "r00630",
+        "target": "openssl x509 -in certs/service.pem -noout -text | grep 'Public Key Algorithm'"
+      },
+      {
+        "batch": "b20",
+        "case": "cde629701dc73",
+        "group": "no_majority",
+        "rid": "r02309",
+        "target": "lsof -u $(whoami) | awk '$5==\"FIFO\"'"
+      },
+      {
+        "batch": "b11",
+        "case": "cd4c8f97b2640",
+        "group": "no_majority",
+        "rid": "r01207",
+        "target": "jobs"
+      },
+      {
+        "batch": "b19",
+        "case": "ce956384f2aa3",
+        "group": "no_majority",
+        "rid": "r02158",
+        "target": "awk '{l=tolower($0); r=\"\"; for(i=length(l);i>0;i--) r=r substr(l,i,1)} l==r && l!=\"\"' words.txt"
+      },
+      {
+        "batch": "b08",
+        "case": "ceeac5c41d38e",
+        "group": "v3_kept",
+        "rid": "r00941",
+        "target": "tmutil listlocalsnapshots /Volumes/WORK"
+      },
+      {
+        "batch": "b20",
+        "case": "cd6df5e2ba8b1",
+        "group": "no_majority",
+        "rid": "r02254",
+        "target": "du -sh project/"
+      },
+      {
+        "batch": "b22",
+        "case": "c77571d10cde7",
+        "group": "v3_kept",
+        "rid": "r02447",
+        "target": "netstat -rn | grep en0"
+      },
+      {
+        "batch": "b22",
+        "case": "cf5113cdbfcf9",
+        "group": "v3_kept",
+        "rid": "r02502",
+        "target": "say -r 120 -f report.txt"
+      },
+      {
+        "batch": "b06",
+        "case": "c81950d86dee9",
+        "group": "v3_kept",
+        "rid": "r00700",
+        "target": "xxd -r bytes.txt > bytes.bin"
+      },
+      {
+        "batch": "b16",
+        "case": "c35ed5a7ae723",
+        "group": "no_majority",
+        "rid": "r01830",
+        "target": "osascript -e \"tell application \\\"Finder\\\" to set comment of file (POSIX file \\\"$(pwd -P)/report.pdf\\\") to \\\"Approved\\\"\""
+      },
+      {
+        "batch": "b07",
+        "case": "cb411435e0667",
+        "group": "no_majority",
+        "rid": "r00828",
+        "target": "ps -A -o pid= | wc -l"
+      },
+      {
+        "batch": "b06",
+        "case": "ce736edd872f3",
+        "group": "no_majority",
+        "rid": "r00694",
+        "target": "system_profiler SPHardwareDataType | grep -v Serial"
+      }
+    ],
+    "n_candidates": 54
+  },
+  "d02": {
+    "cases": [
+      {
+        "batch": "b04",
+        "case": "cd3d54ee2f44c",
+        "group": "no_majority",
+        "rid": "r00500",
+        "target": "diskutil info disk4 | grep -i \"Removable\""
+      },
+      {
+        "batch": "b05",
+        "case": "c38a33c25cb80",
+        "group": "no_majority",
+        "rid": "r00547",
+        "target": "diskutil info disk4s1"
+      },
+      {
+        "batch": "b13",
+        "case": "c941e4b4ace0c",
+        "group": "no_majority",
+        "rid": "r01481",
+        "target": "mount -o ro /dev/disk4s1 mountpoint"
+      },
+      {
+        "batch": "b16",
+        "case": "caabbfa39aa52",
+        "group": "no_majority",
+        "rid": "r01768",
+        "target": "diskutil info disk4 | grep \"Partition Map Type\""
+      },
+      {
+        "batch": "b03",
+        "case": "c6d938ae74ca3",
+        "group": "no_majority",
+        "rid": "r00382",
+        "target": "find samples/ -name '*[[]*'"
+      },
+      {
+        "batch": "b05",
+        "case": "c215a89e1a557",
+        "group": "no_majority",
+        "rid": "r00637",
+        "target": "diskutil info disk4s1s | grep -i offset"
+      },
+      {
+        "batch": "b19",
+        "case": "c91892905be81",
+        "group": "no_majority",
+        "rid": "r02144",
+        "target": "diskutil info /dev/disk4"
+      },
+      {
+        "batch": "b03",
+        "case": "c384ba5798de6",
+        "group": "no_majority",
+        "rid": "r00400",
+        "target": "codesign -d --entitlements :- Tool.app 2>/dev/null | grep -q 'get-task-allow' && echo yes || echo no"
+      },
+      {
+        "batch": "b10",
+        "case": "cbac58183ad07",
+        "group": "no_majority",
+        "rid": "r01171",
+        "target": "diskutil mount readOnly /dev/disk4s1"
+      },
+      {
+        "batch": "b19",
+        "case": "ca9e3e1708301",
+        "group": "no_majority",
+        "rid": "r02142",
+        "target": "diskutil list disk4 -plist"
+      },
+      {
+        "batch": "b13",
+        "case": "c0ccfd3e19c98",
+        "group": "no_majority",
+        "rid": "r01488",
+        "target": "df -hP | awk 'NR==1 || /^\\/dev\\/disk4[^0-9]/'"
+      },
+      {
+        "batch": "b11",
+        "case": "c118e7dd4f711",
+        "group": "no_majority",
+        "rid": "r01314",
+        "target": "diskutil verifyDisk disk4"
+      },
+      {
+        "batch": "b06",
+        "case": "c3f6eab2b90a0",
+        "group": "no_majority",
+        "rid": "r00752",
+        "target": "diskutil unmountDisk /dev/disk4"
+      },
+      {
+        "batch": "b22",
+        "case": "cf4500bd9d45c",
+        "group": "no_majority",
+        "rid": "r02500",
+        "target": "hdiutil detach /dev/disk5"
+      },
+      {
+        "batch": "b22",
+        "case": "c813b69163a74",
+        "group": "no_majority",
+        "rid": "r02448",
+        "target": "tr -d '\\n' < mac-activities.json | grep -oE '\"(signpost_name|signpost)\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | cut -d'\"' -f4 | sort -u"
+      },
+      {
+        "batch": "b03",
+        "case": "cc221124920ec",
+        "group": "no_majority",
+        "rid": "r00391",
+        "target": "find ~/Library/ColorSync/Profiles -maxdepth 1 -type f -exec stat -f '%z' '{}'/..namedfork/rsrc \\; 2>/dev/null | awk '$1 > 0' | wc -l"
+      },
+      {
+        "batch": "b20",
+        "case": "c6cd68352628c",
+        "group": "v3_kept",
+        "rid": "r02252",
+        "target": "osascript -e 'tell application \"Finder\" to get bounds of front window'"
+      },
+      {
+        "batch": "b12",
+        "case": "ca8188664bd35",
+        "group": "v3_kept",
+        "rid": "r01380",
+        "target": "stat -f %c ~/Library/Logs/MyApp"
+      },
+      {
+        "batch": "b05",
+        "case": "c5271ac83c103",
+        "group": "no_majority",
+        "rid": "r00612",
+        "target": "sed -E -i '' ':a; s/^.{0,7}$/0&/; ta' codes.txt"
+      },
+      {
+        "batch": "b21",
+        "case": "c64567459ab38",
+        "group": "no_majority",
+        "rid": "r02383",
+        "target": "launchctl list com.example.MyApp"
+      }
+    ],
+    "n_candidates": 66
+  }
+}

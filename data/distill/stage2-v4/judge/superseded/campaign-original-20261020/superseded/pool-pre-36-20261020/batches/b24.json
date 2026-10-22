@@ -1,0 +1,195 @@
+{
+  "batch": "b24",
+  "items": [
+    {
+      "case": "s2add003",
+      "request": "Count the lines in this file.\nExplicit inputs: {\"path\": \"meeting notes.txt\"}",
+      "candidates": [
+        {
+          "key": "x5623",
+          "command": "wc -l 'meeting notes.txt'"
+        }
+      ]
+    },
+    {
+      "case": "s2add008",
+      "request": "Find lines containing TODO in this file and show their line numbers.\nExplicit inputs: {\"path\": \"src/tasks.txt\"}",
+      "candidates": [
+        {
+          "key": "x5624",
+          "command": "grep -n TODO src/tasks.txt"
+        }
+      ]
+    },
+    {
+      "case": "s2add009",
+      "request": "Find lines containing TODO in this file and show their line numbers.\nExplicit inputs: {\"path\": \"task list.txt\"}",
+      "candidates": [
+        {
+          "key": "x5625",
+          "command": "grep -n TODO 'task list.txt'"
+        }
+      ]
+    },
+    {
+      "case": "s2add011",
+      "request": "Sort the lines in this text file.\nExplicit inputs: {\"path\": \"names.txt\"}",
+      "candidates": [
+        {
+          "key": "x5626",
+          "command": "sort names.txt"
+        }
+      ]
+    },
+    {
+      "case": "s2add012",
+      "request": "Sort the lines in this text file.\nExplicit inputs: {\"path\": \"-names.txt\"}",
+      "candidates": [
+        {
+          "key": "x5627",
+          "command": "sort ./-names.txt"
+        }
+      ]
+    },
+    {
+      "case": "r9025",
+      "request": "Mount disk.iso read-only without opening it in Finder.",
+      "candidates": [
+        {
+          "key": "x5664",
+          "command": "hdiutil attach -nobrowse disk.iso"
+        }
+      ]
+    },
+    {
+      "case": "s2add014",
+      "request": "Calculate the SHA-256 checksum of this file.\nExplicit inputs: {\"path\": \"installer.pkg\"}",
+      "candidates": [
+        {
+          "key": "x5628",
+          "command": "shasum -a 256 installer.pkg"
+        }
+      ]
+    },
+    {
+      "case": "s2add015",
+      "request": "Calculate the SHA-256 checksum of this file.\nExplicit inputs: {\"path\": \"release candidate.pkg\"}",
+      "candidates": [
+        {
+          "key": "x5629",
+          "command": "shasum -a 256 'release candidate.pkg'"
+        }
+      ]
+    },
+    {
+      "case": "s2add020",
+      "request": "Print the target stored in this symbolic link.\nExplicit inputs: {\"path\": \"latest\"}",
+      "candidates": [
+        {
+          "key": "x5630",
+          "command": "readlink latest"
+        }
+      ]
+    },
+    {
+      "case": "s2add021",
+      "request": "Print the target stored in this symbolic link.\nExplicit inputs: {\"path\": \"shortcuts/current build\"}",
+      "candidates": [
+        {
+          "key": "x5631",
+          "command": "readlink 'shortcuts/current build'"
+        }
+      ]
+    },
+    {
+      "case": "s2add023",
+      "request": "List regular files recursively inside this folder.\nExplicit inputs: {\"path\": \"assets\"}",
+      "candidates": [
+        {
+          "key": "x5632",
+          "command": "find assets -type f"
+        }
+      ]
+    },
+    {
+      "case": "s2add024",
+      "request": "List regular files recursively inside this folder.\nExplicit inputs: {\"path\": \"Project Files\"}",
+      "candidates": [
+        {
+          "key": "x5633",
+          "command": "find 'Project Files' -type f"
+        }
+      ]
+    },
+    {
+      "case": "r9050",
+      "request": "which files in this folder contain the word invoice",
+      "candidates": [
+        {
+          "key": "x5689",
+          "command": "find . -type f -exec grep -l 'invoice' {} +"
+        }
+      ]
+    },
+    {
+      "case": "s2add026",
+      "request": "Show the total disk usage of this folder in KiB.\nExplicit inputs: {\"path\": \"cache\"}",
+      "candidates": [
+        {
+          "key": "x5634",
+          "command": "du -sk cache"
+        }
+      ]
+    },
+    {
+      "case": "s2add027",
+      "request": "Show the total disk usage of this folder in KiB.\nExplicit inputs: {\"path\": \"-cache\"}",
+      "candidates": [
+        {
+          "key": "x5635",
+          "command": "du -sk ./-cache"
+        }
+      ]
+    },
+    {
+      "case": "s2add032",
+      "request": "Show the macOS file flags on this file.\nExplicit inputs: {\"path\": \"document.txt\"}",
+      "candidates": [
+        {
+          "key": "x5636",
+          "command": "ls -ldO document.txt"
+        }
+      ]
+    },
+    {
+      "case": "s2add033",
+      "request": "Show the macOS file flags on this file.\nExplicit inputs: {\"path\": \"My Documents/final.txt\"}",
+      "candidates": [
+        {
+          "key": "x5637",
+          "command": "ls -ldO 'My Documents/final.txt'"
+        }
+      ]
+    },
+    {
+      "case": "s2add035",
+      "request": "List the extended attributes and values on this file.\nExplicit inputs: {\"path\": \"photo.jpg\"}",
+      "candidates": [
+        {
+          "key": "x5638",
+          "command": "xattr -l photo.jpg"
+        }
+      ]
+    },
+    {
+      "case": "s2add036",
+      "request": "List the extended attributes and values on this file.\nExplicit inputs: {\"path\": \"-photo.jpg\"}",
+      "candidates": [
+        {
+          "key": "x5639",
+          "command": "xattr -l ./-photo.jpg"
+        }
+      ]
+    }
+  ]
+}

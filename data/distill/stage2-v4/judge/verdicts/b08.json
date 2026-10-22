@@ -1,0 +1,1713 @@
+{
+ "batch": "b08",
+ "judge": "dsh-main-20261022-b08-a1",
+ "cases": [
+  {
+   "case": "c00cc7445f183",
+   "verdicts": [
+    {
+     "key": "k26d060d693ec",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil prints Protocol, not Connection Protocol."
+    },
+    {
+     "key": "k963842a4ffc0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil info reports the Protocol field."
+    },
+    {
+     "key": "kb544c65e72db",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: Connection Protocol does not exist."
+    },
+    {
+     "key": "kbef32d131d3e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil info reports the Protocol field."
+    },
+    {
+     "key": "kd4497c33954c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diskutil info reports the Protocol field."
+    }
+   ]
+  },
+  {
+   "case": "c71873d132829",
+   "verdicts": [
+    {
+     "key": "k51c5d3f49c96",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil license prints the embedded agreement."
+    }
+   ]
+  },
+  {
+   "case": "c4210d2922c89",
+   "verdicts": [
+    {
+     "key": "kec022b953997",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find counts files and folders separately."
+    }
+   ]
+  },
+  {
+   "case": "c6d1aaa216a2e",
+   "verdicts": [
+    {
+     "key": "ke0ac657c40b7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "memory_pressure reports the current pressure."
+    }
+   ]
+  },
+  {
+   "case": "c486420e441e1",
+   "verdicts": [
+    {
+     "key": "k28fa463698c7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or grep extracts the first five eventMessage values."
+    },
+    {
+     "key": "k3bec4eecf682",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or grep extracts the first five eventMessage values."
+    },
+    {
+     "key": "kd4ce4480de14",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk or grep extracts the first five eventMessage values."
+    }
+   ]
+  },
+  {
+   "case": "ce5841dc5b753",
+   "verdicts": [
+    {
+     "key": "k23266f9b2a8f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder view mode of the front window."
+    }
+   ]
+  },
+  {
+   "case": "c8e523487a3a4",
+   "verdicts": [
+    {
+     "key": "k972106bac013",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "diff -y with a 100-column width."
+    }
+   ]
+  },
+  {
+   "case": "c08f0bb1d67a1",
+   "verdicts": [
+    {
+     "key": "k5416ca5db694",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "move only when the destination does not exist."
+    },
+    {
+     "key": "k6bd3207d4d21",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "move only when the destination does not exist."
+    },
+    {
+     "key": "kd5bd57c4b390",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "move only when the destination does not exist."
+    },
+    {
+     "key": "kdd1f52074063",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "move only when the destination does not exist."
+    }
+   ]
+  },
+  {
+   "case": "c91df69498d73",
+   "verdicts": [
+    {
+     "key": "k8670a612fac3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy reads the boolean."
+    }
+   ]
+  },
+  {
+   "case": "c00039629cedd",
+   "verdicts": [
+    {
+     "key": "ke711ed7b43bd",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "Finder has no package kind property; package is a class, not a property."
+    }
+   ]
+  },
+  {
+   "case": "c5e6cfcb82431",
+   "verdicts": [
+    {
+     "key": "k0f612739e43a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Terminal tab names."
+    }
+   ]
+  },
+  {
+   "case": "c4c6fbabf08f1",
+   "verdicts": [
+    {
+     "key": "k000c376f2628",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig +short CAA."
+    }
+   ]
+  },
+  {
+   "case": "c2be72fe478a1",
+   "verdicts": [
+    {
+     "key": "k572f2a0b569b",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "raw FinderInfo bytes are not the extension-hidden boolean."
+    },
+    {
+     "key": "k8e62cf3c1e3d",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "od dumps the FinderInfo bytes, not the boolean."
+    },
+    {
+     "key": "ka4c03c905f7e",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "hex dump of FinderInfo, not the extension-hidden value."
+    },
+    {
+     "key": "ke86d71adec3f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder extension-hidden property."
+    }
+   ]
+  },
+  {
+   "case": "cdf0a8145e2ca",
+   "verdicts": [
+    {
+     "key": "k335fff70f0af",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "Supported PHY Modes appears before Current Network Information, so it is never printed."
+    },
+    {
+     "key": "k546c86fd7dc4",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "no Supported Wireless Standards line exists; the standards are not shown."
+    },
+    {
+     "key": "k566005f5bf72",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: Supported Wireless Standards does not exist in this output."
+    },
+    {
+     "key": "kd608da9b58c0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information channel and PHY modes."
+    },
+    {
+     "key": "kfd3f6186a66a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information channel and PHY modes."
+    }
+   ]
+  },
+  {
+   "case": "c0b09161a529f",
+   "verdicts": [
+    {
+     "key": "k9f704d345f79",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "system_profiler SPPowerDataType reports source and percentage."
+    }
+   ]
+  },
+  {
+   "case": "c9f3122e6be0e",
+   "verdicts": [
+    {
+     "key": "k43f5b4b8cc8a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "shasum -a 256."
+    }
+   ]
+  },
+  {
+   "case": "ca37d282967bd",
+   "verdicts": [
+    {
+     "key": "k13dcb5a1e755",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unzip -t tests the archive."
+    }
+   ]
+  },
+  {
+   "case": "c5af254239d97",
+   "verdicts": [
+    {
+     "key": "k039ecf18fa5d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dd writes 256 zero bytes."
+    }
+   ]
+  },
+  {
+   "case": "cf10b9049d86b",
+   "verdicts": [
+    {
+     "key": "kb5cd94cc9057",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy CFBundleIconFile."
+    }
+   ]
+  },
+  {
+   "case": "c8dd6396916a4",
+   "verdicts": [
+    {
+     "key": "kb86630f5e193",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sed strips the leading plus."
+    }
+   ]
+  },
+  {
+   "case": "c7481f542cc72",
+   "verdicts": [
+    {
+     "key": "k26ffe1e53bbb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps table with a state column."
+    },
+    {
+     "key": "k52649e9afbdb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps table with a state column."
+    },
+    {
+     "key": "k5550a4d1f666",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps table with a state column."
+    },
+    {
+     "key": "kdbb38006ca95",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps table with a state column."
+    }
+   ]
+  },
+  {
+   "case": "ce28ce09ce88d",
+   "verdicts": [
+    {
+     "key": "k0050c12feb98",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl or sed escapes quotes and slashes."
+    },
+    {
+     "key": "k4e7975e29f5d",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "escapes quotes but not slashes."
+    },
+    {
+     "key": "k69530a0848a0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "perl or sed escapes quotes and slashes."
+    },
+    {
+     "key": "kf62f431f1cfe",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "prints the escaped text but does not rewrite strings.txt."
+    }
+   ]
+  },
+  {
+   "case": "c2852e1d90cf7",
+   "verdicts": [
+    {
+     "key": "k74c6d4e78a59",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "TextEdit RichText default."
+    }
+   ]
+  },
+  {
+   "case": "c1ff4504e98fa",
+   "verdicts": [
+    {
+     "key": "k205f2fd09cdd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign entitlements grep."
+    },
+    {
+     "key": "k7aea6bda008e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign entitlements grep."
+    },
+    {
+     "key": "k978f4adca8f6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign entitlements grep."
+    },
+    {
+     "key": "ka6acd72b21ca",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "codesign entitlements grep."
+    }
+   ]
+  },
+  {
+   "case": "cda23a6f93c78",
+   "verdicts": [
+    {
+     "key": "k2980d2098624",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset assertions shows the assertion state."
+    },
+    {
+     "key": "k82851c496318",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset assertions shows the assertion state."
+    },
+    {
+     "key": "ka0596a2d3c9c",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "no UserActivity line exists; the assertion is UserIsActive."
+    },
+    {
+     "key": "kd7fe1d1d7e6c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset assertions shows the assertion state."
+    }
+   ]
+  },
+  {
+   "case": "cf47916c3e80e",
+   "verdicts": [
+    {
+     "key": "kdefd1a84b573",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder selection item name."
+    }
+   ]
+  },
+  {
+   "case": "c4c8e448defa1",
+   "verdicts": [
+    {
+     "key": "k3a0ea7b23e55",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "without -a the user and link-count selections are ORed."
+    },
+    {
+     "key": "k3c1e7dafd17e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof -a combines user and link-count selection."
+    },
+    {
+     "key": "k5fcf9d097013",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same missing -a, so all user files are listed."
+    },
+    {
+     "key": "k628b73cb1e03",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same missing -a."
+    },
+    {
+     "key": "kf34a64a666f6",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same missing -a."
+    }
+   ]
+  },
+  {
+   "case": "cd46f09901bce",
+   "verdicts": [
+    {
+     "key": "k5c88fdcd699c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps rss for the PID."
+    }
+   ]
+  },
+  {
+   "case": "cb50955d19c60",
+   "verdicts": [
+    {
+     "key": "k283afe7bf945",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pkgutil --check-signature."
+    }
+   ]
+  },
+  {
+   "case": "c043c23909c02",
+   "verdicts": [
+    {
+     "key": "k1ddc82ac0e94",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls kMDItemRecordingYear."
+    }
+   ]
+  },
+  {
+   "case": "c60c51a32d289",
+   "verdicts": [
+    {
+     "key": "kcbc72c6a90f8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder front window name."
+    }
+   ]
+  },
+  {
+   "case": "cf9f2e1072f97",
+   "verdicts": [
+    {
+     "key": "k4a7a5dfc696c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    },
+    {
+     "key": "k6c6b8ea7b2e1",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    },
+    {
+     "key": "k7fedb3a960b3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    },
+    {
+     "key": "ked4124584fc3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    }
+   ]
+  },
+  {
+   "case": "c441423ff93bc",
+   "verdicts": [
+    {
+     "key": "k0cef3bedcaf3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk common prefix."
+    },
+    {
+     "key": "k21204140ec41",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk common prefix."
+    },
+    {
+     "key": "kbf4a81d7eba8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk common prefix."
+    },
+    {
+     "key": "kea6a20e19ba4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk common prefix."
+    },
+    {
+     "key": "kff67f548a781",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk common prefix."
+    }
+   ]
+  },
+  {
+   "case": "c13d66422d6c8",
+   "verdicts": [
+    {
+     "key": "k4abbffdb2588",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "afinfo prints \"bit rate\" with a space, so grep bitrate misses it."
+    },
+    {
+     "key": "k4f2c3255eaff",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo bit rate line."
+    },
+    {
+     "key": "k6f2528ee2024",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo bit rate line."
+    },
+    {
+     "key": "kad3dfd887d87",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "afinfo bit rate line."
+    }
+   ]
+  },
+  {
+   "case": "ceeac5c41d38e",
+   "verdicts": [
+    {
+     "key": "k920765387864",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "tmutil listlocalsnapshots."
+    }
+   ]
+  },
+  {
+   "case": "c7817a898dd49",
+   "verdicts": [
+    {
+     "key": "k8a07c1867669",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sips orientation."
+    }
+   ]
+  },
+  {
+   "case": "c864796ed9383",
+   "verdicts": [
+    {
+     "key": "k5b53e16ea558",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "nc opens the TCP connection."
+    }
+   ]
+  },
+  {
+   "case": "c0ecd0d0e2b46",
+   "verdicts": [
+    {
+     "key": "k3b8f2d0c0fcd",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk integer validation."
+    },
+    {
+     "key": "k4b607c1f70f2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk integer validation."
+    },
+    {
+     "key": "k6771176982c6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk integer validation."
+    },
+    {
+     "key": "kdc7a8a9a8337",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk integer validation."
+    }
+   ]
+  },
+  {
+   "case": "c6c07c1c68df2",
+   "verdicts": [
+    {
+     "key": "k8591b6f6a1ba",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil to XML on stdout."
+    }
+   ]
+  },
+  {
+   "case": "c273b20967d72",
+   "verdicts": [
+    {
+     "key": "ka53ec2d97b08",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind folder query."
+    }
+   ]
+  },
+  {
+   "case": "ce2a643762c08",
+   "verdicts": [
+    {
+     "key": "kcd3db900a403",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls Finder comment."
+    }
+   ]
+  },
+  {
+   "case": "cfcbe0ee3a709",
+   "verdicts": [
+    {
+     "key": "k79fc58249db2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps -M thread lines counted."
+    },
+    {
+     "key": "k9ec1236509db",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps -M thread lines counted."
+    }
+   ]
+  },
+  {
+   "case": "c60d486387d4c",
+   "verdicts": [
+    {
+     "key": "kc104a57eb627",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find depth 3 files."
+    }
+   ]
+  },
+  {
+   "case": "c849da3f6f02f",
+   "verdicts": [
+    {
+     "key": "k4fa4b0336824",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "curl -C - resumes."
+    }
+   ]
+  },
+  {
+   "case": "c008ef2367fd1",
+   "verdicts": [
+    {
+     "key": "k57ece0fecac7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "iostat -w 5 -c 3."
+    }
+   ]
+  },
+  {
+   "case": "c104f65754d6b",
+   "verdicts": [
+    {
+     "key": "k117c340c25cc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder ShowStatusBar default."
+    },
+    {
+     "key": "k6a4b5d50b1d8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder ShowStatusBar default."
+    },
+    {
+     "key": "kd2b897fe70d1",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "the Finder property is statusbar visible, not status bar visible."
+    }
+   ]
+  },
+  {
+   "case": "c47b597313438",
+   "verdicts": [
+    {
+     "key": "k0e23eef0ce7f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the imageinfo field is lowercase image-encrypted, so /Encry/ misses it."
+    },
+    {
+     "key": "k8875d3b28665",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil isencrypted or the image-encrypted field."
+    },
+    {
+     "key": "kb5937aff6af0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil isencrypted or the image-encrypted field."
+    },
+    {
+     "key": "kb64e68e08367",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "no line starts with Encrypted:; the field is image-encrypted."
+    },
+    {
+     "key": "kecd2954a4c1d",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "matches image-encrypted for both true and false, so it always says encrypted."
+    }
+   ]
+  },
+  {
+   "case": "cef16362fd8f3",
+   "verdicts": [
+    {
+     "key": "k32bc44552ea5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat modification seconds."
+    },
+    {
+     "key": "k3fb9bbb43444",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat modification seconds."
+    },
+    {
+     "key": "k4bcfb373cb62",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat modification seconds."
+    },
+    {
+     "key": "kc3e64ff41f81",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat modification seconds."
+    }
+   ]
+  },
+  {
+   "case": "ca26c5c78d6cd",
+   "verdicts": [
+    {
+     "key": "k3005eedf86b8",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the man page section stops before the keyword list; ps -L lists the fields."
+    },
+    {
+     "key": "k731eaf2742dc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ps -L lists the keywords."
+    }
+   ]
+  },
+  {
+   "case": "c08cdc347995e",
+   "verdicts": [
+    {
+     "key": "k9ba859e7e98e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "scutil --get LocalHostName."
+    }
+   ]
+  },
+  {
+   "case": "cd6b5833e2b65",
+   "verdicts": [
+    {
+     "key": "k2281d73ac87f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "dig answers only."
+    }
+   ]
+  },
+  {
+   "case": "c408f9a2e0054",
+   "verdicts": [
+    {
+     "key": "kf4ff683fe61f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof +D lists open files under the directory."
+    }
+   ]
+  },
+  {
+   "case": "ccfdd76df1282",
+   "verdicts": [
+    {
+     "key": "k3e76909dfe57",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information audio devices."
+    },
+    {
+     "key": "k5ed1bf17d1b3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information audio devices."
+    },
+    {
+     "key": "ka93b8fa74962",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information audio devices."
+    },
+    {
+     "key": "kaecf2049140e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information audio devices."
+    },
+    {
+     "key": "kdfdf440fd215",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information audio devices."
+    }
+   ]
+  },
+  {
+   "case": "c87d1c26aa4c6",
+   "verdicts": [
+    {
+     "key": "k07461f3a56c2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder trash count."
+    },
+    {
+     "key": "k5f552c7f6299",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder trash count."
+    },
+    {
+     "key": "k8341e2bc01d8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder trash count."
+    },
+    {
+     "key": "ke3b661bbb594",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder trash count."
+    }
+   ]
+  },
+  {
+   "case": "c628a0b60704e",
+   "verdicts": [
+    {
+     "key": "k171f50963fdc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy nested URL schemes."
+    },
+    {
+     "key": "k1833efdbb71e",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "CFBundleURLSchemes is nested inside CFBundleURLTypes, not top level."
+    },
+    {
+     "key": "k591acdfd5ecf",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "json1 is not a plutil format and the key is nested."
+    },
+    {
+     "key": "k9a8e60eca429",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "top-level key does not exist in Info.plist."
+    },
+    {
+     "key": "ke5b3394dac09",
+     "verdict": "incorrect",
+     "category": "wrong_operand",
+     "evidence": "defaults reads a top-level key that does not exist."
+    }
+   ]
+  },
+  {
+   "case": "c9af8fb16afae",
+   "verdicts": [
+    {
+     "key": "kb6a96493a566",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk prints ten lines from CHECKPOINT."
+    },
+    {
+     "key": "kbee928e950f6",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk prints ten lines from CHECKPOINT."
+    },
+    {
+     "key": "kc8746d1d2dfc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk prints ten lines from CHECKPOINT."
+    },
+    {
+     "key": "kca4f60e4e33a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk prints ten lines from CHECKPOINT."
+    },
+    {
+     "key": "kd745d476996e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "awk prints ten lines from CHECKPOINT."
+    }
+   ]
+  },
+  {
+   "case": "c473777c5f2e3",
+   "verdicts": [
+    {
+     "key": "k1c5edcc2b586",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mkdir with the quoted name."
+    }
+   ]
+  },
+  {
+   "case": "c1f70d45da011",
+   "verdicts": [
+    {
+     "key": "k4c1e28e91f7b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "file prints the Mach-O type."
+    },
+    {
+     "key": "kb21b25e4e703",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "file prints the Mach-O type."
+    }
+   ]
+  },
+  {
+   "case": "c6fe399b23c72",
+   "verdicts": [
+    {
+     "key": "kd086906dd1fc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder disks names and POSIX paths."
+    }
+   ]
+  },
+  {
+   "case": "c8b6a65718eca",
+   "verdicts": [
+    {
+     "key": "kba3aabc61ac9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "hdiutil checksum."
+    }
+   ]
+  },
+  {
+   "case": "c4888c4f6396a",
+   "verdicts": [
+    {
+     "key": "k0011614c68a9",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "kMDItemAvailableAttributeNames is not an attribute."
+    },
+    {
+     "key": "k068d942ffaa5",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls output attribute names."
+    },
+    {
+     "key": "k140c92171c0c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls output attribute names."
+    },
+    {
+     "key": "k304b9a9d2454",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdls output attribute names."
+    },
+    {
+     "key": "k3bdd85d3a9b0",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "mdls does not accept * and prints \"* = (null)\"."
+    }
+   ]
+  },
+  {
+   "case": "c269239d5e0b2",
+   "verdicts": [
+    {
+     "key": "k468926b109e9",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date computes the last day of the month."
+    },
+    {
+     "key": "k8a284ade800e",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "date computes the last day of the month."
+    }
+   ]
+  },
+  {
+   "case": "c8bfc57e50f2b",
+   "verdicts": [
+    {
+     "key": "k064e63ec7020",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find provisioning profiles in the bundle."
+    },
+    {
+     "key": "k2d4dc8855756",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find provisioning profiles in the bundle."
+    },
+    {
+     "key": "k7c4d965990e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find provisioning profiles in the bundle."
+    },
+    {
+     "key": "kb44e48b3dbc2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find provisioning profiles in the bundle."
+    },
+    {
+     "key": "kc67c78f77e61",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "find provisioning profiles in the bundle."
+    }
+   ]
+  },
+  {
+   "case": "c1bc71adb3075",
+   "verdicts": [
+    {
+     "key": "k36df0bacd660",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "chflags nouchg clears the immutable flag."
+    }
+   ]
+  },
+  {
+   "case": "c3c9299db2d57",
+   "verdicts": [
+    {
+     "key": "k5682ca60ac0e",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "pmset -g sched output has no maintenance word, so nothing is shown."
+    },
+    {
+     "key": "ka6474ef8bc07",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "the log says request=Maintenance/MaintenanceWake, not scheduled maintenance."
+    },
+    {
+     "key": "kc6edd398dc1a",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "lists every wake event, not only maintenance wakes."
+    },
+    {
+     "key": "kc783a53b4580",
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "same: every wake event."
+    },
+    {
+     "key": "kee24ef466b85",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "pmset -g sched has no Maintenance section."
+    }
+   ]
+  },
+  {
+   "case": "cc5185a6b152d",
+   "verdicts": [
+    {
+     "key": "k4d717b440bef",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -lO shows the BSD flags."
+    },
+    {
+     "key": "k706f79c86eae",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "stat %Sf is the filesystem flags field, not the BSD opaque flag."
+    },
+    {
+     "key": "k779649c16b5c",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -lO shows the BSD flags."
+    },
+    {
+     "key": "k7884bca27cd8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ls -lO shows the BSD flags."
+    }
+   ]
+  },
+  {
+   "case": "cdde5f2b1f172",
+   "verdicts": [
+    {
+     "key": "k1f34e6553db0",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "this hdiutil has no license verb."
+    },
+    {
+     "key": "k2f1b5ce3ce34",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "same: no license verb."
+    },
+    {
+     "key": "k99824b4f8e4f",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "imageinfo -format takes no value; dump is read as a second image."
+    },
+    {
+     "key": "ka68908af6738",
+     "verdict": "incorrect",
+     "category": "hallucinated_flag",
+     "evidence": "same: no license verb, and -print is not an option."
+    }
+   ]
+  },
+  {
+   "case": "cac32df4c832e",
+   "verdicts": [
+    {
+     "key": "k4cc356a65f0d",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "matches every path containing Chrome, including non-app files and helpers, and is case-sensitive."
+    }
+   ]
+  },
+  {
+   "case": "cf93183b6dcb9",
+   "verdicts": [
+    {
+     "key": "k4d159a61c96a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "ifconfig inet6 filter."
+    }
+   ]
+  },
+  {
+   "case": "cffc3fc80d565",
+   "verdicts": [
+    {
+     "key": "k4d26aee7762b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "PlistBuddy LSMinimumSystemVersion."
+    }
+   ]
+  },
+  {
+   "case": "c3af8bfd9c6e7",
+   "verdicts": [
+    {
+     "key": "k1332981f80e7",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size summed."
+    },
+    {
+     "key": "k30c8c718f804",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size summed."
+    },
+    {
+     "key": "k5a5b6e73f5ed",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size summed."
+    },
+    {
+     "key": "k5f4d7e73a008",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size summed."
+    },
+    {
+     "key": "k81293949cd8b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat size summed."
+    }
+   ]
+  },
+  {
+   "case": "c85bc4a3c090c",
+   "verdicts": [
+    {
+     "key": "k00fdfff301d8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "security find-certificate."
+    }
+   ]
+  },
+  {
+   "case": "cbf64d29ff7a4",
+   "verdicts": [
+    {
+     "key": "k1a5eed01a856",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "vmmap -summary has no Mach ports line in this macOS."
+    },
+    {
+     "key": "k331f713fe7b6",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same: vmmap -summary does not report Mach ports."
+    },
+    {
+     "key": "kb1b2ab77213f",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "same, and Mach ports summary does not exist."
+    }
+   ]
+  },
+  {
+   "case": "ceb1b8f1d5f66",
+   "verdicts": [
+    {
+     "key": "kca19277132c2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Events running applications."
+    }
+   ]
+  },
+  {
+   "case": "cdfecf0d35d10",
+   "verdicts": [
+    {
+     "key": "kb6f5eb4280c8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "traceroute -n -m 8."
+    }
+   ]
+  },
+  {
+   "case": "c8b6118375928",
+   "verdicts": [
+    {
+     "key": "kdb41c76c8df2",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "symbolic-ref detects a detached HEAD."
+    }
+   ]
+  },
+  {
+   "case": "c5b39bde91b91",
+   "verdicts": [
+    {
+     "key": "kebe98622e84b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "rev-list detects unmerged commits."
+    }
+   ]
+  },
+  {
+   "case": "c5c074626ae3a",
+   "verdicts": [
+    {
+     "key": "k58140feb9e37",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "stat %A prints numeric permissions."
+    }
+   ]
+  },
+  {
+   "case": "cd8abaca7414d",
+   "verdicts": [
+    {
+     "key": "k47b6976c9f97",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder label index."
+    },
+    {
+     "key": "k5176a991c72d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder label index."
+    },
+    {
+     "key": "ka6ffb4817f22",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder label index."
+    },
+    {
+     "key": "kf4d3987c53fc",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "Finder label index."
+    }
+   ]
+  },
+  {
+   "case": "c7481c7534e2c",
+   "verdicts": [
+    {
+     "key": "ke4a4b2bd0eb3",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    },
+    {
+     "key": "kf6e92e699fce",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "System Information resolutions."
+    }
+   ]
+  },
+  {
+   "case": "ca1a09a843265",
+   "verdicts": [
+    {
+     "key": "kac069b5ecb79",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "lsof cwd path."
+    }
+   ]
+  },
+  {
+   "case": "ce3440085c6a9",
+   "verdicts": [
+    {
+     "key": "k2e415ee5f4eb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sort -V version sort."
+    }
+   ]
+  },
+  {
+   "case": "ca89a1c83854d",
+   "verdicts": [
+    {
+     "key": "ke429725097ca",
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "-iUDP conflicts with -sTCP:LISTEN and the awk reads the command column."
+    }
+   ]
+  },
+  {
+   "case": "c665ab2d328d5",
+   "verdicts": [
+    {
+     "key": "kb6d2734c8465",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil json to stdout."
+    },
+    {
+     "key": "kf50f2190ab66",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "plutil json to stdout."
+    }
+   ]
+  },
+  {
+   "case": "c586583f5bd9d",
+   "verdicts": [
+    {
+     "key": "k185cabd475f8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unlink or rm removes the link only."
+    },
+    {
+     "key": "k24d4c26c8b28",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unlink or rm removes the link only."
+    },
+    {
+     "key": "kb9a3a0c6d07d",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "unlink or rm removes the link only."
+    }
+   ]
+  },
+  {
+   "case": "c69f935c9ad90",
+   "verdicts": [
+    {
+     "key": "k1f91737f772a",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset shows womp."
+    },
+    {
+     "key": "kb2ed1a09cf09",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset shows womp."
+    },
+    {
+     "key": "kbfc992954853",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "systemsetup requires administrator access as typed."
+    },
+    {
+     "key": "kf1d29949984f",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "pmset shows womp."
+    }
+   ]
+  },
+  {
+   "case": "ce9c1a40f092d",
+   "verdicts": [
+    {
+     "key": "kb568d011e1d4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "umask 0077."
+    }
+   ]
+  },
+  {
+   "case": "c1aa42a20dbef",
+   "verdicts": [
+    {
+     "key": "k26fe070f7b91",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "frontmost application process."
+    }
+   ]
+  },
+  {
+   "case": "c17b96aed2736",
+   "verdicts": [
+    {
+     "key": "k61125117c074",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind TIFF queries."
+    },
+    {
+     "key": "k71d0386faeae",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind TIFF queries."
+    },
+    {
+     "key": "kd14ef1f1dfc4",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind TIFF queries."
+    },
+    {
+     "key": "kdbb61aa95a62",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mdfind TIFF queries."
+    }
+   ]
+  },
+  {
+   "case": "c7c207cfcef35",
+   "verdicts": [
+    {
+     "key": "k332bf4e6bb71",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers values on one line."
+    },
+    {
+     "key": "k40e89f774995",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers values on one line."
+    },
+    {
+     "key": "k70ac9319029b",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers values on one line."
+    },
+    {
+     "key": "k72ce69a04eeb",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "sw_vers values on one line."
+    }
+   ]
+  },
+  {
+   "case": "c69385d82c692",
+   "verdicts": [
+    {
+     "key": "kb3f010c7b7c0",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "mkdir -p both directories."
+    }
+   ]
+  },
+  {
+   "case": "c9837a06ef599",
+   "verdicts": [
+    {
+     "key": "k150a6abb4946",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "JXA rewrites the JSON with indentation."
+    },
+    {
+     "key": "k4632135c27a8",
+     "verdict": "incorrect",
+     "category": "wrong_tool",
+     "evidence": "python3 is not part of the stock macOS environment."
+    }
+   ]
+  },
+  {
+   "case": "cf56dac99b718",
+   "verdicts": [
+    {
+     "key": "k27a62d55bfc8",
+     "verdict": "correct",
+     "category": null,
+     "evidence": "clang -print-target-triple."
+    }
+   ]
+  }
+ ]
+}

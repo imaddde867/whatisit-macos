@@ -262,7 +262,7 @@ class Campaign:
         write_verdicts(self.pool_batches, out, verdict_for, judge)
         return out
 
-    def make_confirm(self, out_dir=None, sample=1.0, seed=13, batch_size=90):
+    def make_confirm(self, out_dir=None, sample=1.0, seed=13, batch_size=90, adjudication=None):
         out = Path(out_dir) if out_dir is not None else self.confirm_dir
         with patch.object(build_verified_dataset, 'ROOT', self.root):
             self.confirm_manifest = make_v4_confirm.build_confirm(
@@ -270,7 +270,8 @@ class Campaign:
                 self.root / 'data/teacher/roihu_full_raw_samples.jsonl',
                 self.root / 'data/distill/stage2-v3/requests.jsonl',
                 self.verdict_dir, out, sample=sample, seed=seed, batch_size=batch_size,
-                effective=stub_effective, pool_dir=self.pool, validate=self.validate)
+                effective=stub_effective, pool_dir=self.pool, validate=self.validate,
+                adjudication=adjudication)
         return self.confirm_manifest
 
     def write_pass2(self, confirm_dir=None, directory=None, overrides=None,
@@ -287,7 +288,7 @@ class Campaign:
         return out
 
     def build_verified(self, out_dir, pass1=None, confirm=None, pass2=None,
-                       sample=1.0, seed=13):
+                       sample=1.0, seed=13, adjudication=None):
         fake = types.ModuleType('score_teacher_eval')
         fake.effective_command = stub_effective
         with patch.object(build_verified_dataset, 'ROOT', self.root), \
@@ -298,4 +299,5 @@ class Campaign:
                 Path(pass1) if pass1 is not None else self.verdict_dir,
                 Path(confirm) if confirm is not None else self.confirm_dir,
                 Path(pass2) if pass2 is not None else self.confirm_verdict_dir,
-                out_dir, pool_dir=self.pool, sample=sample, seed=seed)
+                out_dir, pool_dir=self.pool, sample=sample, seed=seed,
+                adjudication=adjudication)

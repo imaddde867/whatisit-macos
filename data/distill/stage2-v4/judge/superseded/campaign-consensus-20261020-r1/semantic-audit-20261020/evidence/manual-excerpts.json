@@ -1,0 +1,76 @@
+{
+  "du": [
+    {
+      "line": 56,
+      "text": "     -h      \u201cHuman-readable\u201d output.  Use unit suffixes: Byte, Kilobyte,\n             Megabyte, Gigabyte, Terabyte and Petabyte based on powers of\n             1024.\n\n     -k      Display block counts in 1024-byte (1 kiB) blocks."
+    },
+    {
+      "line": 78,
+      "text": "     -s      Display an entry for each specified file.  (Equivalent to -d 0)\n\n     --si    \u201cHuman-readable\u201d output.  Use unit suffixes: Byte, Kilobyte,\n             Megabyte, Gigabyte, Terabyte and Petabyte based on powers of\n             1000."
+    }
+  ],
+  "find": [
+    {
+      "line": 413,
+      "text": "     -print  This primary always evaluates to true.  It prints the pathname of\n             the current file to standard output.  If none of -exec, -ls,\n             -print, -print0, or -ok is specified, the given expression shall\n             be effectively replaced by ( given expression ) -print.\n"
+    },
+    {
+      "line": 457,
+      "text": "     -type t\n             True if the file is of the specified type.  Possible file types\n             are as follows:\n\n             b       block special"
+    }
+  ],
+  "grep": [
+    {
+      "line": 15,
+      "text": "     match one or more patterns.  By default, a pattern matches an input line\n     if the regular expression (RE) in the pattern matches the input line\n     without its trailing newline.  An empty expression matches every line.\n     Each input line that matches at least one of the patterns is written to\n     the standard output."
+    },
+    {
+      "line": 181,
+      "text": "     -n, --line-number\n             Each output line is preceded by its relative line number in the\n             file, starting at line 1.  The line number counter is reset for\n             each file processed.  This option is ignored if -c, -L, -l, or -q\n             is specified."
+    },
+    {
+      "line": 228,
+      "text": "     -w, --word-regexp\n             The expression is searched for as a word (as if surrounded by\n             \u2018[[:<:]]\u2019 and \u2018[[:>:]]\u2019; see re_format(7)).  This option has no\n             effect if -x is also specified.\n"
+    }
+  ],
+  "ifconfig": [
+    {
+      "line": 581,
+      "text": "     limits this to interfaces that are up.  When no arguments are given, -a\n     is implied.\n\n     The -l flag may be used to list all available interfaces on the system,\n     with no other additional information.  Use of this flag is mutually"
+    }
+  ],
+  "lsof": [
+    {
+      "line": 96,
+      "text": "     -n options, or it might represent the n field identifier character\n     following the -F option.  When ambiguity is possible, start a new option\n     with a `-' character - e.g., ``-F -n''.  If the next option is a file\n     name, follow the possibly ambiguous option with ``--'' - e.g., ``-F --\n     name''."
+    },
+    {
+      "line": 661,
+      "text": "     -n   inhibits the conversion of network numbers to host names for network\n          files.  Inhibiting conversion may make lsof run faster.  It is also\n          useful when host name lookup is not working properly.\n\n     -N   selects the listing of NFS files."
+    },
+    {
+      "line": 721,
+      "text": "     -P   inhibits the conversion of port numbers to port names for network\n          files.  Inhibiting the conversion may make lsof run a little faster.\n          It is also useful when port name lookup is not working properly.\n\n     +|-r [t[m<fmt>]]"
+    }
+  ],
+  "screencapture": [
+    {
+      "line": 23,
+      "text": "     -i      Capture screen interactively, by selection or window.  The\n             control key will cause the screenshot to go to the clipboard.\n             The space key will toggle between mouse selection and window\n             selection modes.  The escape key will cancel the interactive\n             screenshot."
+    },
+    {
+      "line": 53,
+      "text": "     -t      <format> Image format to create, default is png (other options\n             include pdf, jpg, tiff and other formats).\n\n     -T      <seconds> Take the picture after a delay of <seconds>, default is\n             5."
+    }
+  ],
+  "wc": [
+    {
+      "line": 12,
+      "text": "     standard output.  A line is defined as a string of characters delimited\n     by a \u27e8newline\u27e9 character.  Characters beyond the final \u27e8newline\u27e9\n     character will not be included in the line count.\n\n     A word is defined as a string of characters delimited by white space"
+    },
+    {
+      "line": 37,
+      "text": "     -l      The number of lines in each input file is written to the standard\n             output.\n\n     -m      The number of characters in each input file is written to the\n             standard output.  If the current locale does not support"
+    }
+  ]
+}

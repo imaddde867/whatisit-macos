@@ -1,0 +1,1810 @@
+{
+  "batch": "b01",
+  "judge": "gpt-6.1-sol-medium-r2-p1-20261020-b01-a1",
+  "cases": [
+    {
+      "case": "c13581b3b76cb",
+      "verdicts": [
+        {
+          "key": "k21458741e9f7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the repository submodule declarations."
+        },
+        {
+          "key": "k35da3a0d38a2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists submodule paths and revisions, including uninitialized declarations."
+        }
+      ]
+    },
+    {
+      "case": "cff7c97adbb53",
+      "verdicts": [
+        {
+          "key": "k811ea4df9ca6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks FileVault reported on status and prints enabled or disabled."
+        }
+      ]
+    },
+    {
+      "case": "cbb8182132855",
+      "verdicts": [
+        {
+          "key": "k54b1757519c7",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder label 5 is yellow; blue is label 4."
+        }
+      ]
+    },
+    {
+      "case": "c1e88c098e5b1",
+      "verdicts": [
+        {
+          "key": "k388ef68b47d7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Trims line edges, omits blank lines, and joins remaining text with spaces."
+        },
+        {
+          "key": "k58c4edf93485",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Joins input lines with spaces into one output paragraph."
+        },
+        {
+          "key": "kc270f2b78634",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Serial paste joins all lines using spaces."
+        },
+        {
+          "key": "kdacb6fefa291",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Removes trailing whitespace and joins lines with spaces."
+        },
+        {
+          "key": "ke12149bd3fbe",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Serial paste joins all lines using spaces."
+        }
+      ]
+    },
+    {
+      "case": "c6d869453833e",
+      "verdicts": [
+        {
+          "key": "kf7a1e96081e2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The who manual defines -m as the current terminal login entry."
+        }
+      ]
+    },
+    {
+      "case": "c4afc11af0502",
+      "verdicts": [
+        {
+          "key": "k313335ec2df9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects zero available blocks and prints filesystem names."
+        },
+        {
+          "key": "k458661bbed49",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints filesystem records with zero available blocks."
+        },
+        {
+          "key": "k5a8972ad9430",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints filesystem records with zero available blocks."
+        },
+        {
+          "key": "k6312ef436321",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "On macOS df includes inode columns; field six is not the mount path."
+        },
+        {
+          "key": "k7d57b2cea4b4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints filesystem identifiers and final mount fields for zero available blocks."
+        }
+      ]
+    },
+    {
+      "case": "c77b813bd4ba7",
+      "verdicts": [
+        {
+          "key": "kbbe553e97c8b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads DNS addresses configured for the named Ethernet service."
+        }
+      ]
+    },
+    {
+      "case": "c86de9b86481f",
+      "verdicts": [
+        {
+          "key": "k056d47686ffd",
+          "verdict": "incorrect",
+          "category": "should_abstain",
+          "evidence": "Interpreter preference is unspecified; PATH lookup does not establish the user preference."
+        },
+        {
+          "key": "kf13f3e213bce",
+          "verdict": "incorrect",
+          "category": "should_abstain",
+          "evidence": "Interpreter preference is unspecified; choosing python3 assumes a preference."
+        }
+      ]
+    },
+    {
+      "case": "c44a2754d33fb",
+      "verdicts": [
+        {
+          "key": "k6017be248951",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums BSD stat byte sizes for immediate regular files only."
+        },
+        {
+          "key": "kb89d282495b6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums BSD stat byte sizes for immediate regular files only."
+        },
+        {
+          "key": "kbcf6277215ac",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums BSD stat byte sizes for immediate regular files only."
+        },
+        {
+          "key": "kf26e572065bc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums BSD stat byte sizes for immediate regular files only."
+        }
+      ]
+    },
+    {
+      "case": "c9951e5e3be70",
+      "verdicts": [
+        {
+          "key": "k42e4b7968887",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The hardware-port listing includes each port ethernet address."
+        }
+      ]
+    },
+    {
+      "case": "cae83f7f83ab5",
+      "verdicts": [
+        {
+          "key": "kc7cd83222c91",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the hardware model sysctl value without a label."
+        }
+      ]
+    },
+    {
+      "case": "c60c3335013f1",
+      "verdicts": [
+        {
+          "key": "k37864bd9fbb4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sends hello over UDP to the loopback test listener."
+        }
+      ]
+    },
+    {
+      "case": "c7621b3c74b53",
+      "verdicts": [
+        {
+          "key": "kddb7d87a5c76",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays one device I/O statistics report without a repeat interval."
+        }
+      ]
+    },
+    {
+      "case": "c3afa9c5a7ad8",
+      "verdicts": [
+        {
+          "key": "k2490a3af6419",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists APFS volumes and their capacity consumption."
+        },
+        {
+          "key": "kcbaebfee40ec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Retains APFS volume identifiers and capacity-consumed lines."
+        }
+      ]
+    },
+    {
+      "case": "cfb755b2c4e3e",
+      "verdicts": [
+        {
+          "key": "keab8db7929e0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists immediate directory entries while omitting dot-prefixed names."
+        }
+      ]
+    },
+    {
+      "case": "c24e3fe0c05a3",
+      "verdicts": [
+        {
+          "key": "k42575a174c4a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "macOS lsof does not reliably append the Linux deleted marker; this filter loses unlinked files."
+        },
+        {
+          "key": "k71d168421dd6",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "lsof selections are ORed; without -a this includes other filesystems and linked files."
+        },
+        {
+          "key": "k94f03b2628d0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects unlinked open files and filters the requested volume path."
+        },
+        {
+          "key": "kacb247cfb3d1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects unlinked open files and matches the requested volume path boundary."
+        },
+        {
+          "key": "kd9eae46118ee",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Filtering for a deleted suffix loses macOS unlinked files without that suffix."
+        }
+      ]
+    },
+    {
+      "case": "c08a168871892",
+      "verdicts": [
+        {
+          "key": "k3623c615297c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "macOS df documents -t with an argument as a deprecated filesystem-type selector."
+        },
+        {
+          "key": "k66adff7649a9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches hfs in mount filesystem-type parentheses."
+        },
+        {
+          "key": "k7b3fa1ca8c16",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches HFS filesystem types in mounted-filesystem records."
+        },
+        {
+          "key": "k8abf9c07eaa7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches hfs in mount filesystem-type parentheses."
+        }
+      ]
+    },
+    {
+      "case": "c3152cc475306",
+      "verdicts": [
+        {
+          "key": "ka72c10eb6ad9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Saves speech to AIFF and leaves voice selection at its default."
+        }
+      ]
+    },
+    {
+      "case": "cf05d4e399311",
+      "verdicts": [
+        {
+          "key": "k70800dcea407",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Copies recursively, preserves metadata with -p, and reports copied paths with -v."
+        }
+      ]
+    },
+    {
+      "case": "cf569b365042c",
+      "verdicts": [
+        {
+          "key": "k07b5ad5dbdb1",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Drops empty lines instead of leaving them unnumbered in the output."
+        },
+        {
+          "key": "k379665e021a9",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Drops empty lines instead of leaving them unnumbered in the output."
+        },
+        {
+          "key": "k3f80bf6963ae",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Numbers nonempty body lines and preserves empty lines."
+        },
+        {
+          "key": "kaa11df9f0964",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Numbers nonempty lines and prints empty lines unchanged."
+        },
+        {
+          "key": "kc6d1c2442ed2",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Drops empty lines instead of leaving them unnumbered in the output."
+        }
+      ]
+    },
+    {
+      "case": "c80a206f24c74",
+      "verdicts": [
+        {
+          "key": "k2d489181c455",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Using only the last field truncates multiword health conditions such as Service Recommended."
+        },
+        {
+          "key": "k315ae36a4ff6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints both battery cycle-count and condition lines from one power report."
+        },
+        {
+          "key": "k7b0e54dbc1b0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints both battery cycle-count and condition lines from one power report."
+        },
+        {
+          "key": "k8fb9eefe4370",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints both battery cycle-count and condition lines from one power report."
+        }
+      ]
+    },
+    {
+      "case": "c3f327c4dee1e",
+      "verdicts": [
+        {
+          "key": "k0e3a37686f92",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses the existing file modification time for a conditional download to the same filename."
+        },
+        {
+          "key": "k7407eec74962",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requests a download conditional on the existing file modification time."
+        },
+        {
+          "key": "k8698dccd75c1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses the existing file modification time and retains the URL basename."
+        },
+        {
+          "key": "kae299e9c715a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requests a download conditional on the existing file modification time."
+        }
+      ]
+    },
+    {
+      "case": "cc7307d8686b4",
+      "verdicts": [
+        {
+          "key": "k454ddd831f3f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Queries image content types and Adobe RGB profile-name prefixes within image-tests."
+        },
+        {
+          "key": "k7f5652df1d9a",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Spotlight uses kMDItemProfileName for image color profiles, not kMDItemColorProfile."
+        },
+        {
+          "key": "k96cafb2296e1",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Exact Adobe RGB excludes standard Adobe RGB (1998) profile names."
+        },
+        {
+          "key": "kc82d923e2b78",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Spotlight uses kMDItemProfileName for image color profiles, not kMDItemColorProfile."
+        },
+        {
+          "key": "kdaf373db14c8",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Spotlight uses kMDItemProfileName for image color profiles, not kMDItemColorProfile."
+        }
+      ]
+    },
+    {
+      "case": "c077aa5217a7b",
+      "verdicts": [
+        {
+          "key": "k0d05321ac74e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively searches INI files for lines beginning with timeout=."
+        },
+        {
+          "key": "k23c347dd414b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively searches INI files and prints matching filenames and line numbers."
+        },
+        {
+          "key": "kbb4aa313d5b1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Finds INI paths and prints lines beginning with timeout=."
+        }
+      ]
+    },
+    {
+      "case": "caa505947b642",
+      "verdicts": [
+        {
+          "key": "kbc8bcd3d2fa4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces UTF-8 nonbreaking-space byte sequences in place."
+        }
+      ]
+    },
+    {
+      "case": "c76553095ac64",
+      "verdicts": [
+        {
+          "key": "k100370be7b9d",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "The netstat manual requires -d to include dropped packet counts."
+        },
+        {
+          "key": "k204050762ae9",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "The netstat manual requires -d to include dropped packet counts."
+        },
+        {
+          "key": "k66f96a391ea6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Enables interface statistics and dropped-packet counts."
+        }
+      ]
+    },
+    {
+      "case": "cd3988e7c040d",
+      "verdicts": [
+        {
+          "key": "kc1a288e1b6bb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Limits find to direct children and emits their absolute paths."
+        }
+      ]
+    },
+    {
+      "case": "c36ab573c5882",
+      "verdicts": [
+        {
+          "key": "k6c5edf6064a0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the indexed focal-length attribute."
+        },
+        {
+          "key": "ka81e0e9bc6ea",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "kMDIFocalLength is not the focal-length metadata key; kMDItemFocalLength is required."
+        },
+        {
+          "key": "kd29d780ef735",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the indexed focal-length attribute as raw output."
+        }
+      ]
+    },
+    {
+      "case": "cc84bbc7562d5",
+      "verdicts": [
+        {
+          "key": "k92f2114746d3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases the first tab-separated column and retains the remainder."
+        },
+        {
+          "key": "k9e1027a0a14b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases only the first tab-delimited field and writes tab-separated output."
+        },
+        {
+          "key": "ka695f6d9cf23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases only the first tab-delimited field and writes tab-separated output."
+        },
+        {
+          "key": "kd8c8910fbc33",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases only the first tab-delimited field and writes tab-separated output."
+        },
+        {
+          "key": "ke6f2ff459f5b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lowercases only the first tab-delimited field and writes tab-separated output."
+        }
+      ]
+    },
+    {
+      "case": "c9b95027ecb19",
+      "verdicts": [
+        {
+          "key": "k3c33bf472c82",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy arrays are zero-indexed, so index 1 selects the second item."
+        }
+      ]
+    },
+    {
+      "case": "cb16a26dd74b5",
+      "verdicts": [
+        {
+          "key": "k6ae5d9fd3e17",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the named VPN connection status without interactive monitoring."
+        }
+      ]
+    },
+    {
+      "case": "cc5d657954a2e",
+      "verdicts": [
+        {
+          "key": "kc6f9e7ad5f06",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces the uptime newline with a space, then prints local date and time."
+        }
+      ]
+    },
+    {
+      "case": "ce814b8e19b4f",
+      "verdicts": [
+        {
+          "key": "k054cab27c69e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Subday elapsed times use minutes:seconds; interpreting the first component as hours admits short processes."
+        },
+        {
+          "key": "k43bfa842ea82",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Converts day-prefixed elapsed time to seconds and selects values strictly above 86400."
+        },
+        {
+          "key": "k556a667dce26",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Day-prefix matching also includes exactly one day, which is not longer than a day."
+        },
+        {
+          "key": "k695c745081e2",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Day-prefix matching also includes exactly one day, which is not longer than a day."
+        },
+        {
+          "key": "kc62e68cb3cf7",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Day-prefix matching also includes exactly one day, which is not longer than a day."
+        }
+      ]
+    },
+    {
+      "case": "cc1856e0a48f2",
+      "verdicts": [
+        {
+          "key": "k152db5d185ea",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums the sizes in verbose BSD tar listings."
+        },
+        {
+          "key": "kb352ba2471ec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Streams expanded file contents to stdout and counts their bytes without extracting to disk."
+        },
+        {
+          "key": "kbe0b941c8a87",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums the sizes in verbose BSD tar listings."
+        },
+        {
+          "key": "keed782298ce5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sums the sizes in verbose BSD tar listings."
+        }
+      ]
+    },
+    {
+      "case": "ca3a6e29e5903",
+      "verdicts": [
+        {
+          "key": "k6ac7201984ad",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Stages only the specified README path."
+        }
+      ]
+    },
+    {
+      "case": "cdafbeab1faad",
+      "verdicts": [
+        {
+          "key": "k32fce3d65e3c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Counts every UUID-shaped substring, including values outside UUID fields."
+        },
+        {
+          "key": "k3e2c565789fe",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Counts UUID-shaped quoted strings without selecting UUID fields."
+        },
+        {
+          "key": "k98dfb8b444eb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts UUID field values and prints duplicates with occurrence counts."
+        },
+        {
+          "key": "kefdc477f7773",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Counts all UUID-shaped substrings rather than UUID fields specifically."
+        }
+      ]
+    },
+    {
+      "case": "c90000f8d8537",
+      "verdicts": [
+        {
+          "key": "kb1931bf09e56",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Forces IPv4 for the HTTPS fetch."
+        }
+      ]
+    },
+    {
+      "case": "c75540a5e2d25",
+      "verdicts": [
+        {
+          "key": "k07f6a4fd09f3",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder selection elements are object references; POSIX path conversion needs an alias coercion."
+        },
+        {
+          "key": "k700173aaa983",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Coerces the Finder selection to aliases and prints the first selected path."
+        },
+        {
+          "key": "kac232dbe82dd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Coerces the selected Finder item to an alias before POSIX conversion."
+        },
+        {
+          "key": "kd8935ec5eb53",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Finder selection elements are object references; POSIX path conversion needs an alias coercion."
+        },
+        {
+          "key": "ke355978d29a4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Coerces the selected Finder item to an alias before POSIX conversion."
+        }
+      ]
+    },
+    {
+      "case": "c6ddc01529e9b",
+      "verdicts": [
+        {
+          "key": "k1b932e8392eb",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Multiple -i selectors are ORed, so IPv4 TCP listeners can also match."
+        },
+        {
+          "key": "k26a5cf583fef",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "lsof internet addresses require version before protocol: 6TCP, not TCP6."
+        },
+        {
+          "key": "k5f6d701b61a5",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "lsof internet addresses require version before protocol: 6TCP, not TCP6."
+        },
+        {
+          "key": "kcf306850ee88",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Without -a the user selector is ORed with network selection, admitting unrelated files."
+        },
+        {
+          "key": "kf54a0f4568e4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Intersects IPv6 sockets, TCP listening state, and the current user."
+        }
+      ]
+    },
+    {
+      "case": "c83a1efdf3099",
+      "verdicts": [
+        {
+          "key": "k8d7f3363eeec",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Multiword voice names shift the locale beyond field two, omitting English voices."
+        },
+        {
+          "key": "kcbff1d6b7e3d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches English locale tokens regardless of spaces in voice names."
+        },
+        {
+          "key": "kdfc346f98932",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Multiword voice names shift the locale beyond field two, omitting English voices."
+        },
+        {
+          "key": "kf2706d8ef9e0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Matches English locale tokens immediately before the voice comment."
+        }
+      ]
+    },
+    {
+      "case": "ca2bacf461efa",
+      "verdicts": [
+        {
+          "key": "k348cc872d996",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts all visible process records whose parent PID equals 1."
+        },
+        {
+          "key": "k64441ce65f91",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts all visible process records whose parent PID equals 1."
+        },
+        {
+          "key": "k8a2e199878d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts all visible process records whose parent PID equals 1."
+        },
+        {
+          "key": "k9c0b8bdb355b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts all visible process records whose parent PID equals 1."
+        }
+      ]
+    },
+    {
+      "case": "c74e6a163773f",
+      "verdicts": [
+        {
+          "key": "k9eaf27d6ee9c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Only reads static resolver files, omitting dynamic per-domain system resolver configuration."
+        },
+        {
+          "key": "kdc1b5c36e3d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays the system DNS resolver configuration, including supplemental domain resolvers."
+        }
+      ]
+    },
+    {
+      "case": "c4d8bc48fd60e",
+      "verdicts": [
+        {
+          "key": "k175bc22c4f93",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The system profiler field is Default System Output Device, not Default System Effects Output Device."
+        },
+        {
+          "key": "k729f9c9d7d9e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints device headings associated with Default System Output Device: Yes."
+        },
+        {
+          "key": "ke6cff6779754",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints device headings associated with Default System Output Device: Yes."
+        },
+        {
+          "key": "kfcf1a40e599d",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Uses a nonexistent effects-output field and a device-heading indentation that does not match the report."
+        }
+      ]
+    },
+    {
+      "case": "c24f28a2c7249",
+      "verdicts": [
+        {
+          "key": "k445237967a90",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Measures recursive subdirectories and prints those exceeding 1048576 KiB."
+        },
+        {
+          "key": "k48e46edefd5c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Measures recursive subdirectories and prints those exceeding 1048576 KiB."
+        },
+        {
+          "key": "k758b214fa855",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Maximum depth one omits larger directories nested farther inside project."
+        },
+        {
+          "key": "k81b475042470",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Filters recursive directory usage above one GiB and excludes the root directory itself."
+        },
+        {
+          "key": "kfb489e6e06ba",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reports directory usage exceeding one GiB throughout project."
+        }
+      ]
+    },
+    {
+      "case": "c76262403e76a",
+      "verdicts": [
+        {
+          "key": "k47292bc0cace",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads automatic proxy discovery for the Ethernet network service."
+        }
+      ]
+    },
+    {
+      "case": "cc31a2b023798",
+      "verdicts": [
+        {
+          "key": "k3b5d8d36758d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Displays lines after removing all ASCII digits."
+        }
+      ]
+    },
+    {
+      "case": "c712e2eb520d2",
+      "verdicts": [
+        {
+          "key": "k2863b0cf4fc8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The local readlink manual documents -f recursive canonicalization through symlinks."
+        }
+      ]
+    },
+    {
+      "case": "cef36431dfdea",
+      "verdicts": [
+        {
+          "key": "k49121ae516f1",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil info does not provide the requested stat filesystem identifier and optimal transfer block fields."
+        },
+        {
+          "key": "k7e7cdbcf5e42",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD stat reports filesystem device identifier with %d and optimal I/O block size with %k."
+        },
+        {
+          "key": "ke98a1f25d4bf",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "The stat %i specifier is an inode number, not a filesystem identifier."
+        }
+      ]
+    },
+    {
+      "case": "ca8a0056642a8",
+      "verdicts": [
+        {
+          "key": "k3815c6c22254",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces literal backslash-r sequences with newline bytes in place."
+        },
+        {
+          "key": "k789a9a207b68",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces literal backslash-r sequences with newline bytes in place."
+        },
+        {
+          "key": "k8e119e5b571e",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD sed replacement backslash-n does not insert an actual newline."
+        },
+        {
+          "key": "kdd567ef32e02",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces literal backslash-r sequences and installs the transformed file."
+        },
+        {
+          "key": "kebda4a00711c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Replaces literal backslash-r sequences with newline bytes in place."
+        }
+      ]
+    },
+    {
+      "case": "cbd729e60bb50",
+      "verdicts": [
+        {
+          "key": "kc1f570f3e29f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the requested application plist key."
+        }
+      ]
+    },
+    {
+      "case": "cc1508f7ff753",
+      "verdicts": [
+        {
+          "key": "k1357b28a3c4b",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Lists open files instead of processes and does not restrict pgrep to the current user."
+        }
+      ]
+    },
+    {
+      "case": "cc2ac9a3febe7",
+      "verdicts": [
+        {
+          "key": "k421b192331e1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the requested boolean application metadata value."
+        },
+        {
+          "key": "k576d1c35a41b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the boolean as raw text to stdout by default."
+        },
+        {
+          "key": "k96dc2155ddad",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The defaults manual permits filepath domains but does not establish whether this relative path is resolved as a file."
+        },
+        {
+          "key": "kd492f5869d07",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Extracts the boolean as raw text explicitly to stdout."
+        }
+      ]
+    },
+    {
+      "case": "cead179c19308",
+      "verdicts": [
+        {
+          "key": "k6c65383a8fa7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively finds regular files with either requested suffix."
+        },
+        {
+          "key": "k73be2ad8cb3c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively finds regular files with either requested suffix."
+        },
+        {
+          "key": "kccd277e542b6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively finds regular files with either requested suffix."
+        },
+        {
+          "key": "kcdc78483d44d",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Case-insensitive matching also returns suffixes such as .SQLITE and .DB."
+        },
+        {
+          "key": "kde5f1a942f8b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Recursively finds regular files with either requested suffix."
+        }
+      ]
+    },
+    {
+      "case": "cd34d9088ce8f",
+      "verdicts": [
+        {
+          "key": "ke1e7895c8083",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks each file independently and reports it on reading line 1000001."
+        }
+      ]
+    },
+    {
+      "case": "c950d1a8ff31c",
+      "verdicts": [
+        {
+          "key": "kb3a7fcc2be8e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Creates the three sibling directories with the requested mode."
+        }
+      ]
+    },
+    {
+      "case": "c8d31fea217c2",
+      "verdicts": [
+        {
+          "key": "ke4436a374053",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Restricts the staged diff to the project path."
+        }
+      ]
+    },
+    {
+      "case": "c2651ced53550",
+      "verdicts": [
+        {
+          "key": "k1f4c311bf0fe",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads DER input and writes the default PEM certificate format to leaf.pem."
+        }
+      ]
+    },
+    {
+      "case": "c2f0bc6149921",
+      "verdicts": [
+        {
+          "key": "kba213b43541b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Limits transfer speed to 102400 bytes per second, equivalent to 100 KiB."
+        }
+      ]
+    },
+    {
+      "case": "c20e95a2f9eb8",
+      "verdicts": [
+        {
+          "key": "k747d54a14796",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads sysctls and selects kernel shared-memory limits."
+        }
+      ]
+    },
+    {
+      "case": "cbfa1d7a03b4e",
+      "verdicts": [
+        {
+          "key": "k3e1cbc4c5da2",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Python is not guaranteed on stock macOS and the request does not imply Python tooling."
+        },
+        {
+          "key": "k9844bb0ad7de",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "Python is not guaranteed on stock macOS and the request does not imply Python tooling."
+        },
+        {
+          "key": "k987cc95a6d5a",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "plutil uses -r for indented JSON; -pretty is not a supported option."
+        },
+        {
+          "key": "ka51b274ebec0",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "JSON conversion without -r produces compact output rather than indented JSON."
+        }
+      ]
+    },
+    {
+      "case": "c814d7307f77a",
+      "verdicts": [
+        {
+          "key": "k9d979260ae8d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the stored type of the Dock tilesize preference."
+        }
+      ]
+    },
+    {
+      "case": "c24fdf1b4339c",
+      "verdicts": [
+        {
+          "key": "k3cb70066b006",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts lines containing a warning level field and prints zero when absent."
+        },
+        {
+          "key": "k6147f3425706",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts warning-level lines, accepting whitespace around the colon."
+        },
+        {
+          "key": "k6cb42c1dc322",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Does not allow valid JSON whitespace between the level key and colon."
+        },
+        {
+          "key": "k83088e8e03c2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts warning-level lines and accepts the zero-match grep exit status."
+        },
+        {
+          "key": "kb66989c90d6a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Counts warning-level lines, accepting whitespace around the colon."
+        }
+      ]
+    },
+    {
+      "case": "c9884bce54f95",
+      "verdicts": [
+        {
+          "key": "k7ab448d1a8ec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Forces HTTP/1.1 and retains default TLS certificate verification."
+        }
+      ]
+    },
+    {
+      "case": "cb2e2fbc11ac3",
+      "verdicts": [
+        {
+          "key": "k91883d246ab4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the indexed download-date attribute for the specified disk image."
+        }
+      ]
+    },
+    {
+      "case": "ce5c0776fbd99",
+      "verdicts": [
+        {
+          "key": "k0d6494f0743d",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The diskutil manual does not document physical-sector output field names; the Physical Sector Size match cannot be verified."
+        },
+        {
+          "key": "k3a862f7af7b3",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The diskutil manual does not document physical-sector output field names; the Physical Sector Size match cannot be verified."
+        },
+        {
+          "key": "k601922a44e40",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The diskutil manual does not document physical-sector output field names or whether either matched field exists."
+        },
+        {
+          "key": "k85aa54d66480",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The diskutil manual does not document a Sector Size (Physical) output field."
+        },
+        {
+          "key": "kbeb0dd8bbf73",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The diskutil manual does not document physical-sector output field names; the Physical Sector Size match cannot be verified."
+        }
+      ]
+    },
+    {
+      "case": "c2cff46e42d55",
+      "verdicts": [
+        {
+          "key": "k3cb52b2ece62",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Updates timestamps without appending content."
+        }
+      ]
+    },
+    {
+      "case": "ce10a2b3f9ab1",
+      "verdicts": [
+        {
+          "key": "kbbbba13d9a02",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the URL of the current tab in the front Safari window."
+        }
+      ]
+    },
+    {
+      "case": "c82a8ea8a5e9a",
+      "verdicts": [
+        {
+          "key": "k23b810fd4167",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists untracked, nonignored files restricted to project."
+        }
+      ]
+    },
+    {
+      "case": "ca210f74b05b2",
+      "verdicts": [
+        {
+          "key": "k271386a354a9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Checks clipboard format information for the PNGf image format and prints yes or no."
+        }
+      ]
+    },
+    {
+      "case": "c9f4fdf03a105",
+      "verdicts": [
+        {
+          "key": "kec8392399959",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the first equals-delimited field from each line."
+        }
+      ]
+    },
+    {
+      "case": "cd724b01ad529",
+      "verdicts": [
+        {
+          "key": "k3e7c18d256b8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Creates the requested FIFO filesystem entry."
+        }
+      ]
+    },
+    {
+      "case": "c0499e3f05231",
+      "verdicts": [
+        {
+          "key": "k10475270f963",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Uses dig TCP transport for the example.org DNS query."
+        }
+      ]
+    },
+    {
+      "case": "c84648b9c34fc",
+      "verdicts": [
+        {
+          "key": "k49cdc08e1c55",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Timeout details appear on separate lines, so requiring pid and Timeout together misses assertions."
+        },
+        {
+          "key": "k76cfc6f5301d",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Prints timeout details without identifying which assertion owns each timeout."
+        },
+        {
+          "key": "kcc7d51fbaf7b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Prints timeout details without the corresponding assertion identification."
+        },
+        {
+          "key": "kda57bc9df494",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Associates timeout detail lines with the preceding named process assertion."
+        }
+      ]
+    },
+    {
+      "case": "cd2a04dd8ce86",
+      "verdicts": [
+        {
+          "key": "kbfe6a3adfb7d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists the directory itself with ACL entries and BSD flags."
+        }
+      ]
+    },
+    {
+      "case": "c26596d69e5ca",
+      "verdicts": [
+        {
+          "key": "k007525dc284f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Prints the CFBundleName value directly as text."
+        }
+      ]
+    },
+    {
+      "case": "c3fc2fa55f04b",
+      "verdicts": [
+        {
+          "key": "k093e25e36811",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the current user processes and sorts numerically by nice value."
+        },
+        {
+          "key": "k41a061f29b83",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the current real user processes and sorts by the nice column."
+        },
+        {
+          "key": "k9f132fa77e7b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Selects every process instead of only the current user processes."
+        },
+        {
+          "key": "kc4876816619c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the current user processes and sorts numerically by nice value."
+        },
+        {
+          "key": "kc9d40a9cbc00",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Selects every process instead of only the current user processes."
+        }
+      ]
+    },
+    {
+      "case": "c0de41d32ea8a",
+      "verdicts": [
+        {
+          "key": "k256740f8256b",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "PlistBuddy array paths require numeric indexes and do not support wildcard star components."
+        },
+        {
+          "key": "k3d375ee66d8e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Raw plutil extraction of an array outputs its element count, not nested scheme metadata."
+        },
+        {
+          "key": "ke2fbef163fac",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "URL scheme declarations are plist CFBundleURLTypes entries, not kMDItemCFBundleURLTypes metadata."
+        }
+      ]
+    },
+    {
+      "case": "c5eff119219cb",
+      "verdicts": [
+        {
+          "key": "k4022105125e1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Lists loaded launch jobs and selects lines matching the requested label."
+        }
+      ]
+    },
+    {
+      "case": "c4054eb502d54",
+      "verdicts": [
+        {
+          "key": "kbaa2a2742bc4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requests only hardware and software report types in JSON format."
+        }
+      ]
+    },
+    {
+      "case": "cfe841d7c290f",
+      "verdicts": [
+        {
+          "key": "k16c3c70d779b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The ownership test checks whether the effective user owns the file."
+        },
+        {
+          "key": "k518926c4f7fc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "The ownership test checks whether the effective user owns the file."
+        }
+      ]
+    },
+    {
+      "case": "c8197ce7ceb18",
+      "verdicts": [
+        {
+          "key": "k6688a5630cc1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Waits for shell job number one to complete."
+        }
+      ]
+    },
+    {
+      "case": "c4b86e2823b90",
+      "verdicts": [
+        {
+          "key": "kd7b1908944ff",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the system virtual-memory page size in bytes."
+        }
+      ]
+    },
+    {
+      "case": "c1529d7b1ceea",
+      "verdicts": [
+        {
+          "key": "k791f51e850ea",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The iostat manual documents flag-based interval and count, but does not establish behavior of numeric positional operands."
+        },
+        {
+          "key": "k934d0d01e4ea",
+          "verdict": "unsure",
+          "category": null,
+          "evidence": "The iostat manual does not establish whether positional 3 is a repetition count or a drive operand."
+        }
+      ]
+    },
+    {
+      "case": "cbdd6dc2d7d80",
+      "verdicts": [
+        {
+          "key": "k5b48165898be",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Copies only reference access time and preserves archived.txt modification time."
+        }
+      ]
+    },
+    {
+      "case": "c1979d7ef954d",
+      "verdicts": [
+        {
+          "key": "k150d6c2a4ffc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the current autorestart power setting."
+        },
+        {
+          "key": "k1dc3799c1ac3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads autorestart and reports when the setting is absent."
+        },
+        {
+          "key": "k354dd2e4fbb7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads autorestart and reports when the setting is absent."
+        },
+        {
+          "key": "k61e16ae95fb8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads autorestart and reports when the setting is absent."
+        },
+        {
+          "key": "ka84ab1d1f7c7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Reads the current autorestart power setting."
+        }
+      ]
+    },
+    {
+      "case": "c53e260f86d33",
+      "verdicts": [
+        {
+          "key": "k08097b745368",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Copies the source before flipping the copy horizontally."
+        },
+        {
+          "key": "kbe2057272afe",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Writes the horizontally flipped image to a separate output path."
+        }
+      ]
+    },
+    {
+      "case": "ccb8eb550d046",
+      "verdicts": [
+        {
+          "key": "k2b6dc03ddeb8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the requested process columns and removes their header."
+        },
+        {
+          "key": "k4add81a91ee1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the requested columns with empty headings."
+        },
+        {
+          "key": "k742d9c694afd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the requested process columns and removes their header."
+        },
+        {
+          "key": "k8ed99b118bc3",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "BSD ps -h repeats headings; it does not suppress them."
+        },
+        {
+          "key": "kfa367fbcff06",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Selects the requested columns with empty headings."
+        }
+      ]
+    },
+    {
+      "case": "caeec97c28baf",
+      "verdicts": [
+        {
+          "key": "k17a0e74381bf",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Includes drafts itself, so an immutable root alone incorrectly answers yes for files inside it."
+        },
+        {
+          "key": "k18df874ed973",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "An unprefixed flags test requires an exact flag match, missing uchg combined with other flags."
+        },
+        {
+          "key": "k8ac367826c60",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Includes drafts itself, so an immutable root alone incorrectly answers yes for files inside it."
+        },
+        {
+          "key": "k9881f70fc19c",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "An unprefixed flags test requires an exact flag match, missing uchg combined with other flags."
+        },
+        {
+          "key": "ka8332f5e9b0b",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "An unprefixed flags test requires an exact flag match, missing uchg combined with other flags."
+        }
+      ]
+    },
+    {
+      "case": "c4823117fe7a3",
+      "verdicts": [
+        {
+          "key": "k2919bd3fce1d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Follows redirects and prints the completed transfer redirect count."
+        },
+        {
+          "key": "k62c3e7c75527",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Follows redirects and prints the completed transfer redirect count."
+        },
+        {
+          "key": "ka74f73342a9a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Follows redirects and prints the completed transfer redirect count."
+        },
+        {
+          "key": "kbbfeb5b6e1cf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Follows redirects and prints the completed transfer redirect count."
+        }
+      ]
+    },
+    {
+      "case": "c8cbcf307dce5",
+      "verdicts": [
+        {
+          "key": "kca3cc2404dca",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Sets the requested octal file permission mode."
+        }
+      ]
+    },
+    {
+      "case": "cdca94523bcf3",
+      "verdicts": [
+        {
+          "key": "k371e8a3e4bad",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes the square root of mean squared deviations using population denominator n."
+        },
+        {
+          "key": "k6227a566ef5b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes population variance from first and second moments and takes its square root."
+        },
+        {
+          "key": "k71bdd063933d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes the square root of mean squared deviations using population denominator n."
+        },
+        {
+          "key": "k87198d040af6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes population variance from first and second moments and takes its square root."
+        },
+        {
+          "key": "kb231e63c3dbd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Computes population variance from first and second moments and takes its square root."
+        }
+      ]
+    },
+    {
+      "case": "c96c1e967a1ea",
+      "verdicts": [
+        {
+          "key": "k619dd653c6c1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "Requires both keyword equality predicates within the specified Spotlight search directory."
+        }
+      ]
+    }
+  ]
+}

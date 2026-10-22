@@ -1,0 +1,24 @@
+{
+  "limitations": [
+    "Snapshots are observations, not a filesystem freeze",
+    "Does not replace full policy/environment/population checks at confirmation and build"
+  ],
+  "paths": {
+    "/dev/console": true,
+    "/dev/disk": false,
+    "/dev/disk4": true,
+    "/dev/disk4s1": true,
+    "/dev/disk4s1s": false,
+    "/dev/disk5": true,
+    "/dev/null": true,
+    "/dev/stdin": true,
+    "/dev/stdout": true,
+    "/etc/resolv.conf": true,
+    "/etc/resolver": true,
+    "/usr/local/Caskroom": false,
+    "/usr/local/Cellar": false,
+    "/usr/local/bin/brew": false
+  },
+  "pool_manifest_sha256": "55e37d9e26b2d4a609fe1abcd0531cf9620c13d3ce97fe207ced2329930fa2b2",
+  "purpose": "Director preflight for literal system paths consulted by maclint; does not change validation or guarantee future stability"
+}

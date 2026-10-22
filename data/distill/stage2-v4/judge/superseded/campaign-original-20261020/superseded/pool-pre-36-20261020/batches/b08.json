@@ -1,0 +1,1419 @@
+{
+  "batch": "b08",
+  "items": [
+    {
+      "case": "r00832",
+      "request": "I need the supported GPU Metal feature set from the graphics report.",
+      "candidates": [
+        {
+          "key": "x1938",
+          "command": "system_profiler SPDisplaysDataType | awk -F': ' '/Metal (Support|Feature Set)/ {print $2}'"
+        },
+        {
+          "key": "x1939",
+          "command": "system_profiler SPDisplaysDataType | awk -F': ' '/Metal (Support|Feature Set)/{print $2; exit}'"
+        },
+        {
+          "key": "x1940",
+          "command": "system_profiler SPDisplaysDataType | grep -Ei 'Metal (Feature Set|Support|Family Supported)'"
+        },
+        {
+          "key": "x1941",
+          "command": "system_profiler SPDisplaysDataType | grep -iE 'Metal Feature Set|Metal Support'"
+        },
+        {
+          "key": "x1942",
+          "command": "system_profiler SPDisplaysDataType | sed -n 's/.*Metal Family Supported: //p'"
+        }
+      ]
+    },
+    {
+      "case": "r00833",
+      "request": "Can you count how many lines of ~/Library/Logs/MyApp/output.log end in a literal backslash?",
+      "candidates": [
+        {
+          "key": "x1943",
+          "command": "grep -c '\\\\$' ~/Library/Logs/MyApp/output.log"
+        }
+      ]
+    },
+    {
+      "case": "r00834",
+      "request": "symlink docs/latest to ../v2 from inside docs pls",
+      "candidates": [
+        {
+          "key": "x1944",
+          "command": "cd docs && ln -s ../v2 latest"
+        }
+      ]
+    },
+    {
+      "case": "r00835",
+      "request": "Please remove trailing commas before closing braces in test-json.txt into repaired.json.",
+      "candidates": [
+        {
+          "key": "x1945",
+          "command": "perl -0777 -pe 's/,(?=[[:space:]]*})//g' test-json.txt > repaired.json"
+        },
+        {
+          "key": "x1946",
+          "command": "perl -0777 -pe 's/,\\s*}/}/g' test-json.txt > repaired.json"
+        },
+        {
+          "key": "x1947",
+          "command": "perl -0pe 's/,(?=\\s*})//g' test-json.txt > repaired.json"
+        },
+        {
+          "key": "x1948",
+          "command": "perl -0pe 's/,\\s*([}\\]])/$1/g' test-json.txt > repaired.json"
+        }
+      ]
+    },
+    {
+      "case": "r00836",
+      "request": "find names with two dots in them under upload/ plese",
+      "candidates": [
+        {
+          "key": "x1949",
+          "command": "find upload -name '*.*.*'"
+        },
+        {
+          "key": "x1950",
+          "command": "find upload/ -name '*.*.*'"
+        },
+        {
+          "key": "x1951",
+          "command": "find upload/ -name '*.*.*' ! -name '*.*.*.*'"
+        }
+      ]
+    },
+    {
+      "case": "r00838",
+      "request": "Can you show the allocated disk space for every item in /Volumes/WORK, including hidden items?",
+      "candidates": [
+        {
+          "key": "x1952",
+          "command": "find /Volumes/WORK -maxdepth 1 -mindepth 1 -exec du -sh {} +"
+        }
+      ]
+    },
+    {
+      "case": "r00839",
+      "request": "get string array from ~/Library/Preferences/com.example.MyApp.plist key SearchPaths",
+      "candidates": [
+        {
+          "key": "x1953",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :SearchPaths\" ~/Library/Preferences/com.example.MyApp.plist"
+        },
+        {
+          "key": "x1954",
+          "command": "defaults read ~/Library/Preferences/com.example.MyApp SearchPaths"
+        },
+        {
+          "key": "x1955",
+          "command": "defaults read ~/Library/Preferences/com.example.MyApp.plist SearchPaths"
+        },
+        {
+          "key": "x1956",
+          "command": "plutil -extract SearchPaths json -o - ~/Library/Preferences/com.example.MyApp.plist"
+        },
+        {
+          "key": "x1957",
+          "command": "plutil -extract SearchPaths raw ~/Library/Preferences/com.example.MyApp.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00840",
+      "request": "check whether install.pkg has a valid stapled notarization ticket",
+      "candidates": [
+        {
+          "key": "x1958",
+          "command": "stapler validate install.pkg"
+        }
+      ]
+    },
+    {
+      "case": "r00841",
+      "request": "I want to know which mounted device was created from backup.dmg.",
+      "candidates": [
+        {
+          "key": "x1959",
+          "command": "hdiutil info -image backup.dmg | awk 'index($1, \"/dev/disk\") == 1 && index($0, \"/Volumes\") {print $1}'"
+        },
+        {
+          "key": "x1960",
+          "command": "hdiutil info | awk '/image-path.*backup[.]dmg/{f=1; dev=\"\"} f && /dev-node/{dev=$3} f && /mount-point/{print dev; exit}'"
+        }
+      ]
+    },
+    {
+      "case": "r00842",
+      "request": "Show terminal rows and columns.",
+      "candidates": [
+        {
+          "key": "x1961",
+          "command": "stty size"
+        }
+      ]
+    },
+    {
+      "case": "r00843",
+      "request": "Find immediate entries in fixtures/ whose filenames contain a newline character.",
+      "candidates": [
+        {
+          "key": "x1962",
+          "command": "find fixtures/ -maxdepth 1 -mindepth 1 -name $'*\\n*'"
+        },
+        {
+          "key": "x1963",
+          "command": "find fixtures/ -maxdepth 1 -mindepth 1 -name $'*\\n*' -print0"
+        },
+        {
+          "key": "x1964",
+          "command": "find fixtures/ -maxdepth 1 -name $'*\\n*' -exec /usr/bin/printf '%s\\0' {} +"
+        },
+        {
+          "key": "x1965",
+          "command": "find fixtures/ -mindepth 1 -maxdepth 1 -name $'*\\n*'"
+        },
+        {
+          "key": "x1966",
+          "command": "find fixtures/ -mindepth 1 -maxdepth 1 -name $'*\\n*' -print0"
+        }
+      ]
+    },
+    {
+      "case": "r00844",
+      "request": "Find indexed audio with a sample rate of 48000 Hz in audio-tests/.",
+      "candidates": [
+        {
+          "key": "x1967",
+          "command": "mdfind -onlyin audio-tests/ 'kMDItemAudioSampleRate == 48000'"
+        }
+      ]
+    },
+    {
+      "case": "r00845",
+      "request": "Please search indexed filenames for a literal question mark in test-names/.",
+      "candidates": [
+        {
+          "key": "x1968",
+          "command": "mdfind -onlyin test-names/ 'kMDItemFSName == \"*\\?*\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00846",
+      "request": "find indexed stereo audio above 192 kbps in audio-tests/",
+      "candidates": [
+        {
+          "key": "x1969",
+          "command": "mdfind -onlyin \"$(pwd)/audio-tests/\" \"kMDItemContentTypeTree == 'public.audio' && kMDItemAudioChannelCount == 2 && kMDItemAudioBitRate > 192000\""
+        },
+        {
+          "key": "x1970",
+          "command": "mdfind -onlyin audio-tests/ \"kMDItemContentTypeTree == 'public.audio' && kMDItemAudioChannelCount == 2 && kMDItemAudioBitRate > 192000\""
+        },
+        {
+          "key": "x1971",
+          "command": "mdfind -onlyin audio-tests/ 'kMDItemContentTypeTree == \"public.audio\" && kMDItemAudioBitRate > 192000 && kMDItemAudioChannelCount == 2'"
+        },
+        {
+          "key": "x1972",
+          "command": "mdfind -onlyin audio-tests/ 'kMDItemContentTypeTree == \"public.audio\" && kMDItemAudioChannelCount == 2 && kMDItemAudioBitRate > 192000'"
+        }
+      ]
+    },
+    {
+      "case": "r00847",
+      "request": "List every network interface name.",
+      "candidates": [
+        {
+          "key": "x1973",
+          "command": "ifconfig -l"
+        }
+      ]
+    },
+    {
+      "case": "r00850",
+      "request": "Please show whether this volume is excluded from Time Machine backups.\nExplicit inputs: {\"path\": \"/Volumes/WORK\"}",
+      "candidates": [
+        {
+          "key": "x1974",
+          "command": "tmutil isexcluded /Volumes/WORK"
+        }
+      ]
+    },
+    {
+      "case": "r00852",
+      "request": "I need files in fixtures/ whose creation time is later than their modification time on this Mac.",
+      "candidates": [
+        {
+          "key": "x1975",
+          "command": "find fixtures/ -type f -exec sh -c 'for f; do b=$(stat -f %B \"$f\"); m=$(stat -f %m \"$f\"); [ -n \"$b\" ] && [ -n \"$m\" ] && [ \"$b\" -gt \"$m\" ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x1976",
+          "command": "find fixtures/ -type f -exec stat -f \"%B %m %N\" {} + | awk '{b=$1; m=$2; sub(/^[0-9]+ [0-9]+ /, \"\"); if (b > m) print}'"
+        },
+        {
+          "key": "x1977",
+          "command": "find fixtures/ -type f -exec stat -f '%B %m %N' {} + | awk '$1 > $2 { print substr($0, length($1)+length($2)+3) }'"
+        },
+        {
+          "key": "x1978",
+          "command": "find fixtures/ -type f -exec stat -f '%B %m %N' {} + | awk '$1 > $2 {print substr($0, length($1)+length($2)+3)}'"
+        },
+        {
+          "key": "x1979",
+          "command": "find fixtures/ -type f -exec stat -f '%B %m %N' {} + | awk '($1+0 > $2+0) { print substr($0, length($1) + length($2) + 3) }'"
+        }
+      ]
+    },
+    {
+      "case": "r00853",
+      "request": "Please preserve the creation dates when copying mockups/ to mockups-backup/ on macOS.",
+      "candidates": [
+        {
+          "key": "x1980",
+          "command": "ditto mockups mockups-backup"
+        },
+        {
+          "key": "x1981",
+          "command": "ditto mockups/ mockups-backup/"
+        },
+        {
+          "key": "x1982",
+          "command": "mkdir -p mockups-backup/ && ditto mockups/ mockups-backup/"
+        }
+      ]
+    },
+    {
+      "case": "r00854",
+      "request": "Please show the patch from the last commit in project/.",
+      "candidates": [
+        {
+          "key": "x1983",
+          "command": "git -C project show HEAD"
+        },
+        {
+          "key": "x1984",
+          "command": "git -C project/ show HEAD"
+        },
+        {
+          "key": "x1985",
+          "command": "git -C project/ show HEAD -p"
+        }
+      ]
+    },
+    {
+      "case": "r00855",
+      "request": "Find the outbound interface used for example.com.",
+      "candidates": [
+        {
+          "key": "x1986",
+          "command": "route get example.com | awk '/interface:/ {print $2}'"
+        }
+      ]
+    },
+    {
+      "case": "r00856",
+      "request": "show indexed camera make for sample-photo.jpg on this mac",
+      "candidates": [
+        {
+          "key": "x1987",
+          "command": "mdls -name kMDItemCameraMake sample-photo.jpg"
+        }
+      ]
+    },
+    {
+      "case": "r00857",
+      "request": "Show the manually configured search domains for Wi-Fi.",
+      "candidates": [
+        {
+          "key": "x1988",
+          "command": "networksetup -getsearchdomains Wi-Fi"
+        }
+      ]
+    },
+    {
+      "case": "r9009",
+      "request": "Inspect MyApp.app's signing identity and signature details.",
+      "candidates": [
+        {
+          "key": "x5648",
+          "command": "codesign -d MyApp.app"
+        }
+      ]
+    },
+    {
+      "case": "r00858",
+      "request": "open image.png in Preview without changing defaults",
+      "candidates": [
+        {
+          "key": "x1989",
+          "command": "open -a Preview image.png"
+        }
+      ]
+    },
+    {
+      "case": "r00859",
+      "request": "show the path to the active Java home",
+      "candidates": [
+        {
+          "key": "x1990",
+          "command": "/usr/libexec/java_home"
+        }
+      ]
+    },
+    {
+      "case": "r00860",
+      "request": "Print the minimum and maximum from numbers.txt.",
+      "candidates": [
+        {
+          "key": "x1991",
+          "command": "awk 'BEGIN{f=0} {for(i=1;i<=NF;i++){v=$i+0; if(!f){min=max=v; f=1} else {if(v<min)min=v; if(v>max)max=v}}} END{if(f) print min, max}' numbers.txt"
+        },
+        {
+          "key": "x1992",
+          "command": "awk 'NR==1 {min=max=$1} {if ($1<min) min=$1; if ($1>max) max=$1} END {print min, max}' numbers.txt"
+        },
+        {
+          "key": "x1993",
+          "command": "awk 'NR==1{min=max=$1} {if($1<min)min=$1; if($1>max)max=$1} END{print min, max}' numbers.txt"
+        },
+        {
+          "key": "x1994",
+          "command": "sort -n numbers.txt | sed -n '1p;$p'"
+        }
+      ]
+    },
+    {
+      "case": "r00861",
+      "request": "Replace the first literal draft with final on each line of ~/Library/Logs/MyApp/test.log, printing only.",
+      "candidates": [
+        {
+          "key": "x1995",
+          "command": "sed 's/draft/final/' ~/Library/Logs/MyApp/test.log"
+        }
+      ]
+    },
+    {
+      "case": "r00862",
+      "request": "Spotlight-search audio files tagged Work in ~/Downloads.",
+      "candidates": [
+        {
+          "key": "x1996",
+          "command": "mdfind -onlyin ~/Downloads 'kMDItemUserTags == \"Work\" && kMDItemContentTypeTree == \"public.audio\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00863",
+      "request": "I want files Spotlight thinks are presentations in ~/Desktop/slides.",
+      "candidates": [
+        {
+          "key": "x1997",
+          "command": "mdfind -onlyin ~/Desktop/slides 'kMDItemContentTypeTree == \"public.presentation\"'"
+        }
+      ]
+    },
+    {
+      "case": "r00864",
+      "request": "I want to see whether a macOS update installation is currently recorded in the software-update history.",
+      "candidates": [
+        {
+          "key": "x1998",
+          "command": "/usr/sbin/softwareupdate --history"
+        }
+      ]
+    },
+    {
+      "case": "r00865",
+      "request": "sum only positive numbers in balances.txt pls",
+      "candidates": [
+        {
+          "key": "x1999",
+          "command": "awk 'BEGIN{s=0} {for(i=1;i<=NF;i++) if ($i+0>0) s+=$i} END {print s}' balances.txt"
+        },
+        {
+          "key": "x2000",
+          "command": "awk '{for(i=1;i<=NF;i++) if ($i+0 > 0) s += $i} END {print s+0}' balances.txt"
+        },
+        {
+          "key": "x2001",
+          "command": "awk '{for(i=1;i<=NF;i++) if ($i+0 > 0) sum += $i} END {print sum+0}' balances.txt"
+        },
+        {
+          "key": "x2002",
+          "command": "awk '{for(i=1;i<=NF;i++) if ($i>0) s+=$i} END {print s+0}' balances.txt"
+        },
+        {
+          "key": "x2003",
+          "command": "awk '{for(i=1;i<=NF;i++) if($i+0>0) s+=$i} END {print s+0}' balances.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00867",
+      "request": "Ask 1.1.1.1 to resolve example.org.",
+      "candidates": [
+        {
+          "key": "x2004",
+          "command": "dig @1.1.1.1 example.org"
+        }
+      ]
+    },
+    {
+      "case": "r00868",
+      "request": "Report the physical size of disk4.",
+      "candidates": [
+        {
+          "key": "x2005",
+          "command": "diskutil info disk4 | grep 'Disk Size'"
+        }
+      ]
+    },
+    {
+      "case": "r00869",
+      "request": "List all Spotlight metadata attribute names available for clip.mov.",
+      "candidates": [
+        {
+          "key": "x2006",
+          "command": "mdls -name '*' clip.mov"
+        },
+        {
+          "key": "x2007",
+          "command": "mdls -name kMDItemAvailableAttributeNames clip.mov"
+        },
+        {
+          "key": "x2008",
+          "command": "mdls clip.mov | awk '$1 ~ /^kMDItem/ {print $1}'"
+        },
+        {
+          "key": "x2009",
+          "command": "mdls clip.mov | awk -F'[ ]*=' '/^kMDItem[A-Za-z0-9_]*[ ]*=/ {print $1}' | sort -u"
+        },
+        {
+          "key": "x2010",
+          "command": "mdls clip.mov | sed -n 's/^[[:space:]]*\\(kMDItem[A-Za-z0-9_]*\\)[[:space:]]*=.*/\\1/p'"
+        }
+      ]
+    },
+    {
+      "case": "r00870",
+      "request": "Move audio/ under media/ without replacing an existing folder.",
+      "candidates": [
+        {
+          "key": "x2011",
+          "command": "if [ -d audio ] && [ ! -e media/audio ] && [ ! -L media/audio ]; then mkdir -p media && mv -n audio media/; fi"
+        },
+        {
+          "key": "x2012",
+          "command": "mkdir -p media && [ ! -e media/audio ] && mv audio/ media/"
+        },
+        {
+          "key": "x2013",
+          "command": "mkdir -p media && mv -n audio media/"
+        },
+        {
+          "key": "x2014",
+          "command": "mv -n audio media/"
+        },
+        {
+          "key": "x2015",
+          "command": "test -d audio/ && test ! -e media/audio && test ! -L media/audio && mkdir -p media && mv audio/ media/"
+        }
+      ]
+    },
+    {
+      "case": "r00872",
+      "request": "Can you list names and POSIX paths of the disks Finder currently exposes?",
+      "candidates": [
+        {
+          "key": "x2016",
+          "command": "osascript -e 'tell application \"Finder\" to get {name, POSIX path} of every disk'"
+        }
+      ]
+    },
+    {
+      "case": "r00873",
+      "request": "I'd like to know whether project/ is a package according to Finder.",
+      "candidates": [
+        {
+          "key": "x2017",
+          "command": "if test -d project/ && stat -f '%Sf' project/ 2>/dev/null | grep -q package; then echo yes; else echo no; fi"
+        },
+        {
+          "key": "x2018",
+          "command": "osascript -e 'on run argv' -e 'tell application \"Finder\" to get package kind of (POSIX file (item 1 of argv) as alias)' -e 'end run' -- \"$(pwd)/project/\""
+        }
+      ]
+    },
+    {
+      "case": "r00874",
+      "request": "Print the number of days in the current month.",
+      "candidates": [
+        {
+          "key": "x2019",
+          "command": "date -v1d -v+1m -v-1d +%d | awk '{print $1+0}'"
+        },
+        {
+          "key": "x2020",
+          "command": "date -v1d -v+1m -v-1d +%d | sed 's/^0//'"
+        },
+        {
+          "key": "x2021",
+          "command": "printf '%d\\n' \"$(date -v1d -v+1m -v-1d '+%d')\""
+        }
+      ]
+    },
+    {
+      "case": "r00878",
+      "request": "Report available audio output devices.",
+      "candidates": [
+        {
+          "key": "x2022",
+          "command": "system_profiler SPAudioDataType"
+        },
+        {
+          "key": "x2023",
+          "command": "system_profiler SPAudioDataType | awk '/^        [^[:space:]].*:[[:space:]]*$/{name=$0} /Output Channels: *[1-9]/{if (name) {print name; name=0}}' | sed -E 's/^[[:space:]]+//; s/[[:space:]]*:[[:space:]]*$//'"
+        },
+        {
+          "key": "x2024",
+          "command": "system_profiler SPAudioDataType | awk '/^ +.*:[[:space:]]*$/{name=$0; sub(/^ +/, \"\", name); sub(/[[:space:]]+$/, \"\", name)} /Output Channels/{print name}'"
+        },
+        {
+          "key": "x2025",
+          "command": "system_profiler SPAudioDataType | awk '/^[[:space:]]+.*:[[:space:]]*$/{name=$0} /Output Channels:[[:space:]]*[1-9]/{print name}' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*:$//' | sort -u"
+        },
+        {
+          "key": "x2026",
+          "command": "system_profiler SPAudioDataType | awk '/^[[:space:]]+[^:]+:[[:space:]]*$/ {name=$0} /Output Channels:[[:space:]]*[1-9]/ {if (name) print name}' | sed 's/^[[:space:]]*//; s/[[:space:]]*:[[:space:]]*$//'"
+        }
+      ]
+    },
+    {
+      "case": "r00879",
+      "request": "list paths from names/ with shell quoting so spaces arnt ambiguous",
+      "candidates": [
+        {
+          "key": "x2027",
+          "command": "find names/ -exec zsh -c 'for f; do print -r -- ${(q)f}; done' _ {} +"
+        },
+        {
+          "key": "x2028",
+          "command": "find names/ -maxdepth 1 -mindepth 1 -print0 | xargs -0 zsh -c 'for p in \"$@\"; do print -r -- ${(q)p}; done' _"
+        },
+        {
+          "key": "x2029",
+          "command": "find names/ -mindepth 1 -exec zsh -c 'for f in \"$@\"; do print -r -- \"${(q)f}\"; done' _ {} +"
+        },
+        {
+          "key": "x2030",
+          "command": "find names/ -mindepth 1 -exec zsh -c 'for f; do print -r -l -- ${(q)f}; done' _ {} +"
+        }
+      ]
+    },
+    {
+      "case": "r00880",
+      "request": "Sort version strings in releases.txt by version number.",
+      "candidates": [
+        {
+          "key": "x2031",
+          "command": "sort -V releases.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00882",
+      "request": "Can you show the current Wi-Fi channel and supported wireless standards from System Information?",
+      "candidates": [
+        {
+          "key": "x2032",
+          "command": "system_profiler SPAirPortDataType | awk '/Current Network Information:/ {f=1} f && /Channel:/ {print} f && /Supported PHY Modes:/ {print; exit}'"
+        },
+        {
+          "key": "x2033",
+          "command": "system_profiler SPAirPortDataType | awk '/Current Network Information:/{cur=1} cur && /Channel:/{print; cur=0} /Other Local Wi-Fi Networks:/{cur=0} /Supported Wireless Standards:/{print; if ($0 !~ /802[.]11/) {getline; print}}'"
+        },
+        {
+          "key": "x2034",
+          "command": "system_profiler SPAirPortDataType | awk '/Supported PHY Modes/{print} /Current Network Information/{f=1} f && /^[[:space:]]*Channel:/{print; exit}'"
+        },
+        {
+          "key": "x2035",
+          "command": "system_profiler SPAirPortDataType | awk '/Supported PHY Modes:/{print} /Current Network Information:/{f=1} f && /Channel:/{print; exit}'"
+        },
+        {
+          "key": "x2036",
+          "command": "system_profiler SPAirPortDataType | grep -E 'Channel:|Supported Wireless Standards:'"
+        }
+      ]
+    },
+    {
+      "case": "r00883",
+      "request": "Please show the active application name on this Mac.",
+      "candidates": [
+        {
+          "key": "x2037",
+          "command": "osascript -e 'tell application \"System Events\" to get name of first application process whose frontmost is true'"
+        }
+      ]
+    },
+    {
+      "case": "r00884",
+      "request": "would you search for embedded provisioning profiles in Demo.app",
+      "candidates": [
+        {
+          "key": "x2038",
+          "command": "find Demo.app -name \"*.mobileprovision\""
+        },
+        {
+          "key": "x2039",
+          "command": "find Demo.app -name '*.mobileprovision' -print -o -name '*.provisionprofile' -print"
+        },
+        {
+          "key": "x2040",
+          "command": "find Demo.app -name embedded.mobileprovision"
+        },
+        {
+          "key": "x2041",
+          "command": "find Demo.app -type f -name '*.mobileprovision'"
+        },
+        {
+          "key": "x2042",
+          "command": "find Demo.app -type f \\( -name '*.provisionprofile' -o -name '*.mobileprovision' \\)"
+        }
+      ]
+    },
+    {
+      "case": "r00885",
+      "request": "Show PID 4200's resident memory in KiB.",
+      "candidates": [
+        {
+          "key": "x2043",
+          "command": "ps -o rss= -p 4200"
+        }
+      ]
+    },
+    {
+      "case": "r00886",
+      "request": "Print the common prefix of all lines in identifiers.txt.",
+      "candidates": [
+        {
+          "key": "x2044",
+          "command": "awk 'NR==1 {p=$0; next} {n = length(p) < length($0) ? length(p) : length($0); i = 1; while (i <= n && substr(p, i, 1) == substr($0, i, 1)) i++; p = substr(p, 1, i - 1); if (length(p) == 0) exit} END {print p}' identifiers.txt"
+        },
+        {
+          "key": "x2045",
+          "command": "awk 'NR==1 {p=$0; next} {n=length(p); if (length($0)<n) n=length($0); if (n==0) {p=\"\"; next} for (i=1; i<=n; i++) if (substr(p,i,1)!=substr($0,i,1)) {p=substr(p,1,i-1); break}} END {if (NR) print p}' identifiers.txt"
+        },
+        {
+          "key": "x2046",
+          "command": "awk 'NR==1{p=$0; next}{n=length(p); if(n>length($0)) n=length($0); while(n>0 && substr(p,1,n)!=substr($0,1,n)) n--; p=substr(p,1,n)} END{print p}' identifiers.txt"
+        },
+        {
+          "key": "x2047",
+          "command": "awk 'NR==1{p=$0; next}{while(p!=\"\" && substr($0,1,length(p))!=p) p=substr(p,1,length(p)-1)}END{print p}' identifiers.txt"
+        },
+        {
+          "key": "x2048",
+          "command": "awk 'NR==1{p=$0} NR>1{while(p!=\"\"&&index($0,p)!=1)p=substr(p,1,length(p)-1)} END{if(NR)print p}' identifiers.txt"
+        }
+      ]
+    },
+    {
+      "case": "r9034",
+      "request": "take a screenshot and save it as shot.png",
+      "candidates": [
+        {
+          "key": "x5673",
+          "command": "screencapture -c shot.png"
+        }
+      ]
+    },
+    {
+      "case": "r00889",
+      "request": "Show IPv6 addresses assigned to en0.",
+      "candidates": [
+        {
+          "key": "x2049",
+          "command": "ifconfig en0 inet6"
+        }
+      ]
+    },
+    {
+      "case": "r00890",
+      "request": "plz show whether Finder displays status bars",
+      "candidates": [
+        {
+          "key": "x2050",
+          "command": "defaults read com.apple.finder ShowStatusBar 2>/dev/null | grep -q '^1$' && echo yes || echo no"
+        },
+        {
+          "key": "x2051",
+          "command": "defaults read com.apple.finder ShowStatusBar 2>/dev/null || echo 1"
+        },
+        {
+          "key": "x2052",
+          "command": "osascript -e 'tell application \"Finder\" to get status bar visible'"
+        }
+      ]
+    },
+    {
+      "case": "r00891",
+      "request": "Show all process states in a compact table.",
+      "candidates": [
+        {
+          "key": "x2053",
+          "command": "ps -A -o pid,stat,comm"
+        },
+        {
+          "key": "x2054",
+          "command": "ps -axo pid,stat,comm"
+        },
+        {
+          "key": "x2055",
+          "command": "ps -axo state,pid,comm"
+        },
+        {
+          "key": "x2056",
+          "command": "ps -eo pid,ppid,user,stat,%cpu,%mem,comm"
+        }
+      ]
+    },
+    {
+      "case": "r00892",
+      "request": "pls show the app icon filename in MyApp.app/Contents/Info.plist",
+      "candidates": [
+        {
+          "key": "x2057",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIconFile\" MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00893",
+      "request": "could u show the name of the frontmost Finder window",
+      "candidates": [
+        {
+          "key": "x2058",
+          "command": "osascript -e 'tell application \"Finder\" to get name of front window'"
+        }
+      ]
+    },
+    {
+      "case": "r00894",
+      "request": "Please print ten lines beginning at the first line containing CHECKPOINT in history.txt.",
+      "candidates": [
+        {
+          "key": "x2059",
+          "command": "awk '/CHECKPOINT/ && !f {f=1} f {print; if (++n==10) exit}' history.txt"
+        },
+        {
+          "key": "x2060",
+          "command": "awk '/CHECKPOINT/ {flag=1} flag {print; if (++n == 10) exit}' history.txt"
+        },
+        {
+          "key": "x2061",
+          "command": "awk '/CHECKPOINT/{f=1} f' history.txt | head -10"
+        },
+        {
+          "key": "x2062",
+          "command": "awk '/CHECKPOINT/{found=1} found{print; c++} c==10{exit}' history.txt"
+        },
+        {
+          "key": "x2063",
+          "command": "awk '/CHECKPOINT/{found=1} found{print; if(++n==10) exit}' history.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00895",
+      "request": "Please connect interactively to my test TCP service at 127.0.0.1:9000.",
+      "candidates": [
+        {
+          "key": "x2064",
+          "command": "nc 127.0.0.1 9000"
+        }
+      ]
+    },
+    {
+      "case": "r00896",
+      "request": "show permissions on .env.example numercially",
+      "candidates": [
+        {
+          "key": "x2065",
+          "command": "stat -f '%A' .env.example"
+        }
+      ]
+    },
+    {
+      "case": "r00897",
+      "request": "Please print the software license text recorded in backup.dmg if the image contains one.",
+      "candidates": [
+        {
+          "key": "x2066",
+          "command": "hdiutil license backup.dmg 2>/dev/null || true"
+        }
+      ]
+    },
+    {
+      "case": "r00898",
+      "request": "Report display pixel dimensions separately from the logical user-interface resolution.",
+      "candidates": [
+        {
+          "key": "x2067",
+          "command": "system_profiler SPDisplaysDataType | awk '/Resolution:/ {print \"Pixel dimensions: \" $2 \" x \" $4} /UI Looks like:/ {print \"Logical UI resolution: \" $4 \" x \" $6}'"
+        },
+        {
+          "key": "x2068",
+          "command": "system_profiler SPDisplaysDataType | awk '/Resolution:/{print \"Pixel dimensions:\", $2, $3, $4} /UI Looks like:/{print \"Logical UI resolution:\", $4, $5, $6}'"
+        }
+      ]
+    },
+    {
+      "case": "r00900",
+      "request": "can you help me calculate the SHA-256 digest of release.dmg for comparison",
+      "candidates": [
+        {
+          "key": "x2069",
+          "command": "shasum -a 256 release.dmg"
+        }
+      ]
+    },
+    {
+      "case": "r00901",
+      "request": "I want to count regular files and folders separately in the immediate contents of work/.",
+      "candidates": [
+        {
+          "key": "x2070",
+          "command": "files=$(find work -mindepth 1 -maxdepth 1 -type f | wc -l | tr -d ' '); dirs=$(find work -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' '); echo \"files=$files dirs=$dirs\""
+        },
+        {
+          "key": "x2071",
+          "command": "find work/ -maxdepth 1 -mindepth 1 -type f | wc -l | awk '{print \"files:\", $1}'; find work/ -maxdepth 1 -mindepth 1 -type d | wc -l | awk '{print \"folders:\", $1}'"
+        },
+        {
+          "key": "x2072",
+          "command": "printf 'files: %d\\nfolders: %d\\n' $(find work/ -mindepth 1 -maxdepth 1 -type f | wc -l) $(find work/ -mindepth 1 -maxdepth 1 -type d | wc -l)"
+        },
+        {
+          "key": "x2073",
+          "command": "printf 'files: %s\\ndirs: %s\\n' \"$(find work -mindepth 1 -maxdepth 1 -type f | wc -l | tr -d ' ')\" \"$(find work -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')\""
+        }
+      ]
+    },
+    {
+      "case": "r00903",
+      "request": "I need to unlock draft.pdf in Finder so I can edit it later.",
+      "candidates": [
+        {
+          "key": "x2074",
+          "command": "chflags nouchg draft.pdf"
+        }
+      ]
+    },
+    {
+      "case": "r00904",
+      "request": "Can you create a 256-byte binary file named zeros.bin filled entirely with zero bytes?",
+      "candidates": [
+        {
+          "key": "x2075",
+          "command": "dd if=/dev/zero of=zeros.bin bs=1 count=256"
+        }
+      ]
+    },
+    {
+      "case": "r00905",
+      "request": "Rename each .jpeg suffix in photos/ to .jpg.",
+      "candidates": [
+        {
+          "key": "x2076",
+          "command": "find photos -maxdepth 1 -type f -name '*.jpeg' -exec sh -c 'for f; do mv \"$f\" \"${f%.jpeg}.jpg\"; done' _ {} +"
+        },
+        {
+          "key": "x2077",
+          "command": "find photos -maxdepth 1 -type f -name '*.jpeg' -exec sh -c 'for f; do mv -- \"$f\" \"${f%.jpeg}.jpg\"; done' _ {} +"
+        },
+        {
+          "key": "x2078",
+          "command": "for f in photos/*.jpeg(N); do mv \"$f\" \"${f%.jpeg}.jpg\"; done"
+        },
+        {
+          "key": "x2079",
+          "command": "for f in photos/*.jpeg(N); do mv -- \"$f\" \"${f%.jpeg}.jpg\"; done"
+        }
+      ]
+    },
+    {
+      "case": "r00907",
+      "request": "Please make a folder named project drafts, with the space in the name.",
+      "candidates": [
+        {
+          "key": "x2080",
+          "command": "mkdir \"project drafts\""
+        }
+      ]
+    },
+    {
+      "case": "r00908",
+      "request": "Strip a leading + sign from numbers.txt into unsigned.txt.",
+      "candidates": [
+        {
+          "key": "x2081",
+          "command": "sed 's/^+//' numbers.txt > unsigned.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00909",
+      "request": "list certificates named Example Test CA in teh system keychain without exporting keys",
+      "candidates": [
+        {
+          "key": "x2082",
+          "command": "security find-certificate -a -c \"Example Test CA\" /Library/Keychains/System.keychain"
+        }
+      ]
+    },
+    {
+      "case": "r00910",
+      "request": "Can you show the Mach-O file type of MyApp.app/Contents/MacOS/MyApp?",
+      "candidates": [
+        {
+          "key": "x2083",
+          "command": "file -b MyApp.app/Contents/MacOS/MyApp"
+        },
+        {
+          "key": "x2084",
+          "command": "file MyApp.app/Contents/MacOS/MyApp"
+        }
+      ]
+    },
+    {
+      "case": "r00911",
+      "request": "I want indexed PNG images taken during 2024 inside ~/Pictures/test-set.",
+      "candidates": [
+        {
+          "key": "x2085",
+          "command": "find ~/Pictures/test-set -type f -iname '*.png' -exec sh -c 'for f; do [ \"$(od -An -tx1 -j25 -N1 \"$f\" | tr -d \" \")\" = 03 ] || continue; d=$(mdls -name kMDItemContentCreationDate -raw \"$f\" 2>/dev/null); case \"$d\" in 2024*) printf \"%s\\n\" \"$f\"; continue;; \"\"|\"(null)\") ;; *) continue;; esac; [ \"$(stat -f \"%SB\" -t \"%Y\" \"$f\" 2>/dev/null)\" = 2024 ] || [ \"$(stat -f \"%Sm\" -t \"%Y\" \"$f\" 2>/dev/null)\" = 2024 ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x2086",
+          "command": "find ~/Pictures/test-set -type f -iname '*.png' -exec sh -c 'for f; do [ \"$(stat -f \"%SB\" -t \"%Y\" \"$f\")\" = 2024 ] && [ \"$(od -An -tu1 -j25 -N1 \"$f\" | tr -d \" \")\" = 3 ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x2087",
+          "command": "find ~/Pictures/test-set -type f -iname '*.png' -exec sh -c 'for f; do y=$(mdls -name kMDItemContentCreationDate -raw \"$f\" 2>/dev/null | cut -d\"-\" -f1); [ \"$y\" = 2024 ] || y=$(stat -f \"%Sm\" -t \"%Y\" \"$f\"); [ \"$y\" = 2024 ] && (sips -g pixelFormat \"$f\" 2>/dev/null | grep -q indexed || file -b \"$f\" | grep -q indexed) && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        },
+        {
+          "key": "x2088",
+          "command": "find ~/Pictures/test-set -type f -iname '*.png' -exec sh -c 'for f; do y=$(stat -f %SB -t %Y \"$f\"); b=$(od -An -tu1 -j25 -N1 \"$f\" | tr -d \" \"); [ \"$y\" = 2024 ] && [ \"$b\" = 3 ] && printf \"%s\\n\" \"$f\"; done; exit 0' _ {} +"
+        },
+        {
+          "key": "x2089",
+          "command": "find ~/Pictures/test-set -type f -iname '*.png' -newermt '2024-01-01' ! -newermt '2025-01-01' -exec sh -c 'file \"$1\" | grep -Eiq \"palette|indexed\" && printf \"%s\\n\" \"$1\"' _ {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "r00912",
+      "request": "Inspect backup.dmg's embedded software license agreement.",
+      "candidates": [
+        {
+          "key": "x2090",
+          "command": "hdiutil imageinfo -format dump backup.dmg"
+        },
+        {
+          "key": "x2091",
+          "command": "hdiutil license -p backup.dmg"
+        },
+        {
+          "key": "x2092",
+          "command": "hdiutil license -print backup.dmg"
+        },
+        {
+          "key": "x2093",
+          "command": "hdiutil license backup.dmg"
+        }
+      ]
+    },
+    {
+      "case": "r00913",
+      "request": "Can you show the names of the tabs in the front Terminal window?",
+      "candidates": [
+        {
+          "key": "x2094",
+          "command": "osascript -e 'tell application \"Terminal\" to get name of tabs of front window'"
+        }
+      ]
+    },
+    {
+      "case": "r9059",
+      "request": "what is my public ip",
+      "candidates": [
+        {
+          "key": "x5698",
+          "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'"
+        }
+      ]
+    },
+    {
+      "case": "r00914",
+      "request": "show the names of running applications on this Mac",
+      "candidates": [
+        {
+          "key": "x2095",
+          "command": "osascript -e 'tell application \"System Events\" to get name of every process whose background only is false'"
+        }
+      ]
+    },
+    {
+      "case": "r00915",
+      "request": "Please remove the link named latest without touching the folder it points to.",
+      "candidates": [
+        {
+          "key": "x2096",
+          "command": "rm latest"
+        },
+        {
+          "key": "x2097",
+          "command": "test -L latest && rm -f latest"
+        },
+        {
+          "key": "x2098",
+          "command": "unlink latest"
+        }
+      ]
+    },
+    {
+      "case": "r00916",
+      "request": "Can you check whether every line in values.txt is an integer?",
+      "candidates": [
+        {
+          "key": "x2099",
+          "command": "LC_ALL=C awk 'BEGIN{ok=1} {sub(/\\r$/,\"\")} !/^[+-]?[0-9]+$/{ok=0; exit} END{print ok?\"yes\":\"no\"}' values.txt"
+        },
+        {
+          "key": "x2100",
+          "command": "awk 'BEGIN{ok=1} !/^[[:space:]]*[-+]?[0-9]+[[:space:]]*$/{ok=0; exit} END{print (ok ? \"yes\" : \"no\"); exit !ok}' values.txt"
+        },
+        {
+          "key": "x2101",
+          "command": "awk 'BEGIN{ok=1} $0 !~ /^[[:space:]]*[+-]?[0-9]+[[:space:]]*$/ {ok=0; exit} END{if (ok) {print \"all integers\"; exit 0} else {print \"not all integers\"; exit 1}}' values.txt"
+        },
+        {
+          "key": "x2102",
+          "command": "test -f values.txt && awk 'BEGIN { ok = 1 } $0 !~ /^[+-]?[0-9]+$/ { ok = 0 } END { exit (ok ? 0 : 1) }' values.txt && echo yes || echo no"
+        }
+      ]
+    },
+    {
+      "case": "r00917",
+      "request": "I want to extract the CFBundleURLSchemes array from MyApp.app's Info.plist.",
+      "candidates": [
+        {
+          "key": "x2103",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleURLSchemes\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "x2104",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleURLTypes:0:CFBundleURLSchemes\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "x2105",
+          "command": "defaults read MyApp.app/Contents/Info.plist CFBundleURLSchemes"
+        },
+        {
+          "key": "x2106",
+          "command": "plutil -extract CFBundleURLSchemes json1 MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "x2107",
+          "command": "plutil -extract CFBundleURLSchemes xml1 -o - MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00918",
+      "request": "Can you show the DNS answers for example.org without query timing and server details?",
+      "candidates": [
+        {
+          "key": "x2108",
+          "command": "dig +noall +answer example.org"
+        }
+      ]
+    },
+    {
+      "case": "r00919",
+      "request": "Please show the orientation recorded in this image.\nExplicit inputs: {\"path\": \"photo.heic\"}",
+      "candidates": [
+        {
+          "key": "x2109",
+          "command": "sips -g orientation photo.heic"
+        }
+      ]
+    },
+    {
+      "case": "r00921",
+      "request": "Find .png files exactly two folder levels below assets/.",
+      "candidates": [
+        {
+          "key": "x2110",
+          "command": "find assets -mindepth 3 -maxdepth 3 -type f -name '*.png'"
+        }
+      ]
+    },
+    {
+      "case": "r00922",
+      "request": "Please check the CAA records published for example.org.",
+      "candidates": [
+        {
+          "key": "x2111",
+          "command": "dig +short CAA example.org"
+        }
+      ]
+    },
+    {
+      "case": "r00923",
+      "request": "Show scheduled maintenance wake events only.",
+      "candidates": [
+        {
+          "key": "x2112",
+          "command": "pmset -g log | grep -iE \"wake.*scheduled maintenance|scheduled maintenance.*wake\""
+        },
+        {
+          "key": "x2113",
+          "command": "pmset -g sched | awk '/Maintenance:/{f=1; next} /^[^ ]/{f=0} f && /\\[wake\\]/{print}'"
+        },
+        {
+          "key": "x2114",
+          "command": "pmset -g sched | grep 'wake at'"
+        },
+        {
+          "key": "x2115",
+          "command": "pmset -g sched | grep -i '^[[:space:]]*wake'"
+        },
+        {
+          "key": "x2116",
+          "command": "pmset -g sched | grep -i wake | grep -i maintenance"
+        }
+      ]
+    },
+    {
+      "case": "r00924",
+      "request": "Read the computer's Bonjour local hostname.",
+      "candidates": [
+        {
+          "key": "x2117",
+          "command": "scutil --get LocalHostName"
+        }
+      ]
+    },
+    {
+      "case": "r00925",
+      "request": "Report the BSD opaque flag state of bundle-test/ without changing it.",
+      "candidates": [
+        {
+          "key": "x2118",
+          "command": "LC_ALL=C ls -ldO bundle-test/ | awk '{print $5}'"
+        },
+        {
+          "key": "x2119",
+          "command": "ls -ldO bundle-test/"
+        },
+        {
+          "key": "x2120",
+          "command": "ls -ldO bundle-test/ | grep -qw opaque && echo opaque || echo not-opaque"
+        },
+        {
+          "key": "x2121",
+          "command": "stat -f '%Sf' bundle-test/ | grep -q opaque && echo 'opaque: set' || echo 'opaque: unset'"
+        }
+      ]
+    },
+    {
+      "case": "r00926",
+      "request": "Convert ~/Library/Preferences/com.example.MyApp.plist to JSON on stdout.",
+      "candidates": [
+        {
+          "key": "x2122",
+          "command": "plutil -convert json -o - \"$HOME/Library/Preferences/com.example.MyApp.plist\""
+        },
+        {
+          "key": "x2123",
+          "command": "plutil -convert json -o - ~/Library/Preferences/com.example.MyApp.plist"
+        }
+      ]
+    },
+    {
+      "case": "r00927",
+      "request": "escape double quotes and slashes in strings.txt for json plese",
+      "candidates": [
+        {
+          "key": "x2124",
+          "command": "perl -i -pe 's/([\"\\/])/\\\\$1/g' strings.txt"
+        },
+        {
+          "key": "x2125",
+          "command": "sed 's/\\\\/\\\\\\\\/g; s/\"/\\\\\"/g; s|/|\\\\/|g' strings.txt"
+        },
+        {
+          "key": "x2126",
+          "command": "sed -i '' -e 's/\\\\/\\\\\\\\/g' -e 's/\"/\\\\\"/g' strings.txt"
+        },
+        {
+          "key": "x2127",
+          "command": "sed -i .bak 's|\\\\|\\\\\\\\|g; s|\"|\\\\\"|g; s|/|\\\\/|g' strings.txt"
+        }
+      ]
+    },
+    {
+      "case": "r00928",
+      "request": "I want to check archive.pkg for a valid installer signature",
+      "candidates": [
+        {
+          "key": "x2128",
+          "command": "pkgutil --check-signature archive.pkg"
+        }
+      ]
+    },
+    {
+      "case": "r00929",
+      "request": "I need to know whether macOS reports any memory pressure at the moment.",
+      "candidates": [
+        {
+          "key": "x2129",
+          "command": "memory_pressure"
+        }
+      ]
+    },
+    {
+      "case": "r00930",
+      "request": "finder thinks template.txt has hidden extention can you show that value",
+      "candidates": [
+        {
+          "key": "x2130",
+          "command": "osascript -e 'tell application \"Finder\" to get extension hidden of (POSIX file \"template.txt\" as alias)'"
+        },
+        {
+          "key": "x2131",
+          "command": "xattr -p com.apple.FinderInfo template.txt | od -An -tx1 -v"
+        },
+        {
+          "key": "x2132",
+          "command": "xattr -px com.apple.FinderInfo template.txt"
+        },
+        {
+          "key": "x2133",
+          "command": "xattr -px com.apple.FinderInfo template.txt | cut -c17-20"
+        }
+      ]
+    },
+    {
+      "case": "r00931",
+      "request": "Can you give me the full macOS release and build on one line for a bug report?",
+      "candidates": [
+        {
+          "key": "x2134",
+          "command": "sw_vers | paste -sd' ' -"
+        }
+      ]
+    },
+    {
+      "case": "r00932",
+      "request": "Perform a numeric traceroute to 192.0.2.1 with a maximum of eight hops.",
+      "candidates": [
+        {
+          "key": "x2135",
+          "command": "traceroute -n -m 8 192.0.2.1"
+        }
+      ]
+    },
+    {
+      "case": "r00934",
+      "request": "Please show which direct entries in ~/Library/Application Support/MyApp have the hidden BSD flag.",
+      "candidates": [
+        {
+          "key": "x2136",
+          "command": "LC_ALL=C find \"$HOME/Library/Application Support/MyApp\" -maxdepth 1 -mindepth 1 -exec /bin/ls -ldO {} + | awk '$5 ~ /(^|,)hidden(,|$)/'"
+        },
+        {
+          "key": "x2137",
+          "command": "find \"$HOME/Library/Application Support/MyApp\" -maxdepth 1 -mindepth 1 -flags hidden -print"
+        },
+        {
+          "key": "x2138",
+          "command": "find \"$HOME/Library/Application Support/MyApp\" -mindepth 1 -maxdepth 1 -flags +hidden"
+        },
+        {
+          "key": "x2139",
+          "command": "find \"$HOME/Library/Application Support/MyApp\" -mindepth 1 -maxdepth 1 -flags +hidden -print"
+        },
+        {
+          "key": "x2140",
+          "command": "find \"$HOME/Library/Application Support/MyApp\" -mindepth 1 -maxdepth 1 -flags hidden -print"
+        }
+      ]
+    },
+    {
+      "case": "r00935",
+      "request": "Set a 0077 creation mask for new files in the current shell session only.",
+      "candidates": [
+        {
+          "key": "x2141",
+          "command": "umask 0077"
+        }
+      ]
+    },
+    {
+      "case": "r00936",
+      "request": "Can you show a list of supported output fields for the BSD process-listing tool on my Mac?",
+      "candidates": [
+        {
+          "key": "x2142",
+          "command": "man ps | col -b | awk '/^[[:space:]]+-o format/{f=1; print; next} /^[[:space:]]+-[pO][[:space:]]/{if(f) exit} f'"
+        },
+        {
+          "key": "x2143",
+          "command": "ps -L"
+        }
+      ]
+    },
+    {
+      "case": "r00937",
+      "request": "Find files under timestamps/ with a modification time equal to reference.dat at the filesystem's precision.",
+      "candidates": [
+        {
+          "key": "x2144",
+          "command": "ref=$(stat -f %Fm reference.dat) && export ref && find timestamps/ -type f -exec sh -c 'for f; do [ \"$(stat -f %Fm \"$f\")\" = \"$ref\" ] && printf \"%s\\n\" \"$f\"; done' _ {} +"
+        }
+      ]
+    },
+    {
+      "case": "r00938",
+      "request": "display the app sandbox flag in the signature of /System/Applications/Preview.app",
+      "candidates": [
+        {
+          "key": "x2145",
+          "command": "codesign -d --entitlements - /System/Applications/Preview.app 2>&1 | grep -A 1 'com.apple.security.app-sandbox'"
+        },
+        {
+          "key": "x2146",
+          "command": "codesign -d --entitlements - /System/Applications/Preview.app 2>/dev/null | plutil -p /dev/stdin | grep 'com.apple.security.app-sandbox'"
+        },
+        {
+          "key": "x2147",
+          "command": "codesign -d --entitlements :- /System/Applications/Preview.app 2>/dev/null | plutil -p - | grep 'com.apple.security.app-sandbox'"
+        },
+        {
+          "key": "x2148",
+          "command": "codesign -d --entitlements :- /System/Applications/Preview.app | grep -A 1 com.apple.security.app-sandbox"
+        }
+      ]
+    }
+  ]
+}

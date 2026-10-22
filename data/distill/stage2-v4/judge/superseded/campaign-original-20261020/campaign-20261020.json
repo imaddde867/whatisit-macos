@@ -1,0 +1,101 @@
+{
+  "accepted_pass1": {
+    "b00": "a0aae1230a21c537892863485bde2b834ccc10462e0616c6197bde6576b4bf2c",
+    "b02": "dc50d2bbd7da45e81b76c94b396635beb7bb40f10da06e3824911ce47c22e560",
+    "b03": "e722c69feb8e1410ec103cef4c5bde0d2f76d6081cd9e4c3417b9f25b97caaeb"
+  },
+  "archive": "data/distill/stage2-v4/judge/superseded/pool-pre-36-20261020",
+  "b01_retry_a2_status": "interrupted to conserve budget pending disputed-control remediation; no accepted retry",
+  "build_output_plan": "data/distill/stage2-v4/verified (fresh directory; runbook root contains LABEL.md/judge and builder rejects nonempty output)",
+  "commit": "d2bce9fb042e9bf521e18dd948f9b8206065dc91",
+  "continuation_authorization": "User: Let's go with that I'm ready",
+  "control_audit": "data/distill/stage2-v4/judge/control-audit-ct0053.json",
+  "failed_batches": [
+    {
+      "attempt": 1,
+      "batch": "b01",
+      "reason": "control kbba777e5cbfa expected correct; judged incorrect",
+      "superseded_verdict": "data/distill/stage2-v4/judge/superseded/b01-p1-sol-medium-a1.json"
+    }
+  ],
+  "issue": 36,
+  "judging_plan": {
+    "budget_note": "User explicitly prohibited Astra to conserve token budget; validate first pass-1 batch before wider dispatch.",
+    "human_gate": "at least 30 retained command/abstention rows; pending",
+    "pass1": "gpt-6.1-sol, medium reasoning; fresh context per batch (initial high-reasoning pilot superseded)",
+    "pass2": "gpt-6.1-sol, medium reasoning; fresh context per batch; independent of pass 1",
+    "safety": "static inspection and local man pages only; no candidate execution"
+  },
+  "pilot_gate": {
+    "batch": "b00",
+    "reason": "control k0106f4e333b3 expected 'incorrect', judge said 'unsure'; re-judge the batch with a fresh judge",
+    "status": "failed",
+    "superseded_verdict": "data/distill/stage2-v4/judge/superseded/b00-p1-sol-high-a1.json"
+  },
+  "pilot_verdict_sha256": "a66a73d8490621e677c51bab03d3c72312991a3d065281bf52b444c0e037c58c",
+  "pool_counts": {
+    "batches": 23,
+    "candidates": 5093,
+    "controls_correct": 25,
+    "controls_incorrect": 40,
+    "controls_injected": 65,
+    "controls_total": 65,
+    "excluded_candidates": 1270,
+    "items": 2058,
+    "no_majority_considered": 1398,
+    "no_majority_with_candidates": 1193,
+    "v3_candidates": 865,
+    "v3_items": 865,
+    "v3_policy_rejected": 37,
+    "v3_rows": 1149
+  },
+  "pool_manifest_sha256": "d6e3d047565b4c10b2a0ebb590c2e4c0c5c1b4a9ef995f88641a406eec94a2b4",
+  "pool_reproducibility": {
+    "files": 27,
+    "repeat_directory": "/tmp/whatisit-36-pool-repeat-20261020",
+    "result": "byte-identical"
+  },
+  "preflight": {
+    "command": "PATH=/usr/bin:/bin:/usr/sbin:/sbin PYTHONPATH=src:tools ~/.local/pipx/venvs/whatisit/bin/python -m unittest discover -s tests -v",
+    "execution": "host access; sandbox blocks sysctl/ps",
+    "result": "Ran 257 tests; OK (skipped=1: pinned CUDA assets unavailable)"
+  },
+  "retry_authorization": "User: Do it again cleanly on Sol medium",
+  "retry_gate": {
+    "batch": "b00",
+    "controls": 3,
+    "coverage": 233,
+    "judge": "gpt-6.1-sol-medium-p1-20261020-b00-a2",
+    "status": "passed"
+  },
+  "retry_verdict_sha256": "a0aae1230a21c537892863485bde2b834ccc10462e0616c6197bde6576b4bf2c",
+  "sha256": {
+    "data/corpus/requests.jsonl": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+    "data/distill/stage2-v3/requests.jsonl": "b537b7550fc988924ecd86bf7e31f8cb27f7895e94b4de883674e0c86c0e8932",
+    "data/distill/stage2-v3/train.jsonl": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+    "data/distill/stage2-v4/LABEL.md": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+    "data/distill/stage2-v4/judge/controls.jsonl": "182f26b0aece2b0b3913da0c5c50f2240d078031b096efb504edc08c59155ba3",
+    "data/distill/stage2-v4/judge/protocol.md": "3c51872a3b299b8176e63e9cbe3e979b7016c0501c3e348381e5ec606b489d4f",
+    "data/teacher/roihu_full_raw_samples.jsonl": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd"
+  },
+  "status": "awaiting approval of documented control replacement; no judges running",
+  "validation": {
+    "code_sha256": {
+      "src/whatisit_macos/maclint.py": "a62de486e1b42c21a9a8d2311f2cb0765a1a4218918276fd4e82298e9319f0b9",
+      "src/whatisit_macos/shell.py": "862b712d6aeec948ca64a652dfc469971d48200ce0bbc55aac5f0da925520afd",
+      "tools/build_distill_dataset.py": "168dc41685da56a9dccc513e2775e167bf972d5abc542dc6be39804d15f779c6",
+      "tools/repair_distill_dataset.py": "667ef8d39e86e2d4f74d4c0a3da637a444fb8147ff2ffa4ec7eca10588c839f0",
+      "upstream_safety": "012f8ce882a7272a36ade26dfbee3542810e49ee42922f2515334b58db08a1f9"
+    },
+    "path_sha256": "6e53700166cb62101d9bcf4d31401a4b4b295fc410cfc38566d929087f94483b",
+    "platform": [
+      "Darwin",
+      "27.0.0"
+    ],
+    "python": [
+      3,
+      14
+    ],
+    "whatisit_version": "0.4.0"
+  }
+}
