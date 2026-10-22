@@ -14,6 +14,7 @@ BUILTINS = {':', 'cd', 'killall', 'echo', 'for', 'do', 'done', 'if', 'then', 'fi
             'read', 'test', '[', 'printf', 'true', 'false', 'set', 'unset', 'alias', 'source', '.'}
 NO_FLAG_CHECK = {'zsh', 'bash', 'sh', 'dash', 'ksh', 'perl', 'python', 'python3', 'ruby', 'node'}  # option sets live in other man pages
 SYSTEM_PATHS = ('/proc/', '/sys/', '/etc/', '/var/log/', '/usr/', '/dev/')
+DISK_NODE = re.compile(r'/dev/r?disk[0-9]+(?:s[0-9]+)?')
 
 
 @functools.lru_cache(maxsize=None)
@@ -93,7 +94,9 @@ def problems(command: str) -> list[str]:
             found.append(f'{cmd}: not installed on macOS')
             continue
         for arg in segment[1:]:
-            if arg.startswith(SYSTEM_PATHS) and not re.search(r'[*?\[{$]', arg) and not os.path.exists(arg):
+            # Removable disk numbers are transient: lint syntax, not attachment state.
+            if (arg.startswith(SYSTEM_PATHS) and not re.search(r'[*?\[{$]', arg)
+                    and not DISK_NODE.fullmatch(arg) and not os.path.exists(arg)):
                 found.append(f'{arg}: path does not exist on macOS')
         if cmd == 'ps':
             known = _ps_known()
