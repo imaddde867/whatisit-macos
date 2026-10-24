@@ -20,7 +20,7 @@ English request -> one copy-paste macOS command, from a small local model (1.5B,
 1. `tools/build_v4_pool.py`: blind pool, keymap and controls from corpus, teacher samples, v3 and `docs/eval-audit`.
 2. Pass-1 judging against `data/distill/stage2-v4/LABEL.md`.
 3. `tools/make_v4_confirm.py`: 20% confirm sample, then pass-2 judging.
-4. `tools/build_verified_dataset.py <keymap> <verdicts> <confirm> <confirm-verdicts> <out> [--controls f]`.
+4. `tools/build_verified_dataset.py <keymap> <verdicts> <confirm> <confirm-verdicts> <out>` (`--controls` lands with the campaign branch, commit `aff43c0`).
 
 The pool hash-binds `data/corpus`, `data/teacher`, `data/distill/stage2-v3`, the quarantine id files and the code in `src/`, `tools/build_distill_dataset.py` and `tools/repair_distill_dataset.py`. Do not edit those mid-campaign.
 
@@ -38,4 +38,4 @@ Finish v4 rebuild pass 1 (b04-b22), then pass 2, the build, and the human review
 
 ## Archive
 
-Removed experiment records (Learning64 diagnostic) live at tag `archive/pre-cleanup-20261024`; restore with `git checkout archive/pre-cleanup-20261024 -- <path>`.
+Removed experiment records (Learning64 diagnostic) live at `1d5096b` on main (local tag `archive/pre-cleanup-20261024`); restore with `git checkout 1d5096b -- <path>`.
