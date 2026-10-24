@@ -1,0 +1,596 @@
+{
+  "k03863092053d": {
+    "case": "cbcdb6b0a4482",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0283",
+    "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+    "command": "grep -ci 'TODO' notes.txt",
+    "origin_case": "CTL-61",
+    "origin_key": "ct0061",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0283 correct (pass1 b07 correct)"
+  },
+  "k06efcc042c1f": {
+    "case": "cde18321a9a04",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0192",
+    "request": "take a screenshot and save it as shot.png",
+    "command": "screencapture -P shot.png",
+    "origin_case": "CTL-10",
+    "origin_key": "ct0010"
+  },
+  "k0978c531a572": {
+    "case": "c007cf831d9a8",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0073",
+    "request": "top 5 processes by memory",
+    "command": "ps -eo pmem,comm | sort -rn | head -n 5",
+    "origin_case": "CTL-43",
+    "origin_key": "ct0043"
+  },
+  "k1357b28a3c4b": {
+    "case": "cc1508f7ff753",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0296",
+    "request": "list my running python processes",
+    "command": "lsof -p $(pgrep -d ' ' python)",
+    "origin_case": "CTL-13",
+    "origin_key": "ct0013"
+  },
+  "k1976b4677cf0": {
+    "case": "c4963304ef391",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0167",
+    "request": "top 5 processes by memory",
+    "command": "ps -axo rss,comm | sort -nr | head -n 5",
+    "origin_case": "CTL-51",
+    "origin_key": "ct0051"
+  },
+  "k1d242bc53e9d": {
+    "case": "c63c10a577778",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0355",
+    "request": "find the 10 biggest files inside Documents",
+    "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+    "origin_case": "CTL-24",
+    "origin_key": "ct0024",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json e057 x0355 incorrect (pass1 b02 incorrect)"
+  },
+  "k1e06c6a12061": {
+    "case": "ca8771bae11dd",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0101",
+    "request": "take a screenshot and save it as shot.png",
+    "command": "screencapture -P -T 0 shot.png",
+    "origin_case": "CTL-04",
+    "origin_key": "ct0004"
+  },
+  "k1e729d9da640": {
+    "case": "cb924b915b118",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0164",
+    "request": "list apps in /Applications with chrome in the name",
+    "command": "find /Applications -type d -name '*Chrome*'",
+    "origin_case": "CTL-07",
+    "origin_key": "ct0007",
+    "provenance": "docs/eval-audit/pass2-opus/r3.json e034 x0164 incorrect (pass1 b03 incorrect)"
+  },
+  "k2197c8db4e5f": {
+    "case": "c51c5b723e08a",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0264",
+    "request": "delete every .DS_Store file in this folder and everything under it",
+    "command": "find -type f -name '*.DS_Store' -exec rm {} +",
+    "origin_case": "CTL-14",
+    "origin_key": "ct0014"
+  },
+  "k23b89fbca194": {
+    "case": "cec23613767ee",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0063",
+    "request": "show notes.txt in all caps",
+    "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')",
+    "origin_case": "CTL-12",
+    "origin_key": "ct0012"
+  },
+  "k242c4403055c": {
+    "case": "c1bff404f4e03",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0154",
+    "request": "show me each unique line in names.txt and how many times it appears",
+    "command": "sort -u names.txt | uniq -c",
+    "origin_case": "CTL-01",
+    "origin_key": "ct0001",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e020 x0154 incorrect (pass1 b06 incorrect)"
+  },
+  "k24a70b4dce05": {
+    "case": "ce508786541a2",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0846",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.zip MyApp.app",
+    "origin_case": "CTL-34",
+    "origin_key": "ct0034"
+  },
+  "k26a897615366": {
+    "case": "c846950e26d1f",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0200",
+    "request": "Which processes have UDP sockets open? Give numeric addresses.",
+    "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u",
+    "origin_case": "CTL-29",
+    "origin_key": "ct0029",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0200 incorrect (pass1 b03 incorrect)"
+  },
+  "k2c778b64b46a": {
+    "case": "c9cc34f255e80",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0257",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.app.zip MyApp.app/",
+    "origin_case": "CTL-22",
+    "origin_key": "ct0022"
+  },
+  "k2d7f563936ee": {
+    "case": "cd7ca071910cc",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0801",
+    "request": "Print the Ethernet hardware address for interface en0.",
+    "command": "ip link show en0",
+    "origin_case": "CTL-21",
+    "origin_key": "ct0021",
+    "provenance": "docs/eval-audit/final.json#x0801 incorrect (v4 control audit 20261022)"
+  },
+  "k2d85c2e9ca35": {
+    "case": "c53c1d11417f3",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0124",
+    "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist.",
+    "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist",
+    "origin_case": "CTL-48",
+    "origin_key": "ct0048"
+  },
+  "k325a94c0693f": {
+    "case": "cdaf707248c5b",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0224",
+    "request": "replace every foo with bar in notes.txt, save the change in the file",
+    "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt",
+    "origin_case": "CTL-58",
+    "origin_key": "ct0058"
+  },
+  "k3a2b46da1306": {
+    "case": "c97cbaa3e8e7d",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0261",
+    "request": "Print that Info.plist as JSON, without rewriting it.",
+    "command": "plutil -convert json -o - Info.plist",
+    "origin_case": "CTL-60",
+    "origin_key": "ct0060"
+  },
+  "k3aebfe0530e0": {
+    "case": "cc0281eccc177",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0384",
+    "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+    "command": "grep -ciE 'TODO' notes.txt",
+    "origin_case": "CTL-50",
+    "origin_key": "ct0050",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0384 correct (pass1 b07 correct)"
+  },
+  "k448c244e8539": {
+    "case": "c59b4abb08b8a",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0173",
+    "request": "what is my public ip",
+    "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'",
+    "origin_case": "CTL-52",
+    "origin_key": "ct0052"
+  },
+  "k54425aad3ebb": {
+    "case": "ca74446f1f4b5",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0166",
+    "request": "kill whatever is running on port 8080",
+    "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill",
+    "origin_case": "CTL-17",
+    "origin_key": "ct0017",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0166 incorrect (pass1 b04 incorrect)"
+  },
+  "k5a88ecd76e7b": {
+    "case": "ce9d3129f104d",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0352",
+    "request": "can I reach google.com? just try a few times",
+    "command": "curl -sSf https://www.google.com || true",
+    "origin_case": "CTL-37",
+    "origin_key": "ct0037"
+  },
+  "k5ba7c8fd0d77": {
+    "case": "c3a585d2a5460",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0113",
+    "request": "Test whether PID 1234 exists without sending it a real signal.",
+    "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\"",
+    "origin_case": "CTL-45",
+    "origin_key": "ct0045"
+  },
+  "k5cca957c6963": {
+    "case": "c579a86126ada",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0844",
+    "request": "List the filenames inside backup.tar without extracting.",
+    "command": "tar -xf backup.tar",
+    "origin_case": "CTL-31",
+    "origin_key": "ct0031",
+    "provenance": "docs/eval-audit/final.json#x0844 incorrect (v4 control audit 20261022)"
+  },
+  "k5ee24c560fda": {
+    "case": "c3fdb229449c6",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0006",
+    "request": "Show entries marked ERROR or WARN in app.log.",
+    "command": "grep -E 'ERROR|WARN' ~/app.log",
+    "origin_case": "CTL-05",
+    "origin_key": "ct0005"
+  },
+  "k5f82cbc134ae": {
+    "case": "c8870b41b1d96",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0468",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep 'Available Free Space'",
+    "origin_case": "CTL-23",
+    "origin_key": "ct0023"
+  },
+  "k6388b4e39edb": {
+    "case": "ca1ebc89bac02",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0540",
+    "request": "How many bytes are in a virtual-memory page on this Mac?",
+    "command": "vm_stat | awk 'NR==1{print $8}'",
+    "origin_case": "CTL-64",
+    "origin_key": "ct0064",
+    "provenance": "docs/eval-audit/pass2-opus/r3.json m044 x0540 correct (pass1 b07 correct)"
+  },
+  "k679ff54292f3": {
+    "case": "cb564cde26bb0",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0431",
+    "request": "show notes.txt in all caps",
+    "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+    "origin_case": "CTL-32",
+    "origin_key": "ct0032",
+    "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0431 incorrect (pass1 b01 incorrect)"
+  },
+  "k727be1c4937b": {
+    "case": "c645562cbb5ae",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0782",
+    "request": "How much space is used and available on the startup filesystem?",
+    "command": "free -h",
+    "origin_case": "CTL-26",
+    "origin_key": "ct0026",
+    "provenance": "docs/eval-audit/final.json#x0782 incorrect (v4 control audit 20261022)"
+  },
+  "k756971720c1c": {
+    "case": "c057cfda56e34",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0087",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+    "origin_case": "CTL-06",
+    "origin_key": "ct0006"
+  },
+  "k7756c4fadcdd": {
+    "case": "cf9d1569ff045",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0418",
+    "request": "can I reach google.com? just try a few times",
+    "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'http://www.google.com/' 2>/dev/null || echo 408",
+    "origin_case": "CTL-30",
+    "origin_key": "ct0030"
+  },
+  "k794a0acc41f2": {
+    "case": "c2d3c751c6324",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0293",
+    "request": "show notes.txt in all caps",
+    "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\"",
+    "origin_case": "CTL-27",
+    "origin_key": "ct0027"
+  },
+  "k7dc7e9e9b293": {
+    "case": "c9cb97af8efaf",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0183",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+    "origin_case": "CTL-15",
+    "origin_key": "ct0015"
+  },
+  "k7e92284dde10": {
+    "case": "cef64769c3eb6",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0360",
+    "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+    "command": "grep -cEi 'TODO' notes.txt",
+    "origin_case": "CTL-42",
+    "origin_key": "ct0042",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0360 correct (pass1 b07 correct)"
+  },
+  "k8573b2d0cf55": {
+    "case": "c4cee0265b9b9",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0152",
+    "request": "show the first 20 lines of app.log",
+    "command": "tail -n +1 app.log | head -n 20",
+    "origin_case": "CTL-49",
+    "origin_key": "ct0049"
+  },
+  "k858e5a05ac97": {
+    "case": "ccd69b9b34b7f",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0090",
+    "request": "today's date as YYYY-MM-DD",
+    "command": "date +\"%Y-%m-%d\"",
+    "origin_case": "CTL-44",
+    "origin_key": "ct0044"
+  },
+  "k9170df8303b9": {
+    "case": "c4b515ab27948",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0236",
+    "request": "what is my public ip",
+    "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'",
+    "origin_case": "CTL-59",
+    "origin_key": "ct0059"
+  },
+  "k91e23461ad3e": {
+    "case": "c174468a673aa",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0202",
+    "request": "Test whether PID 1234 exists without sending it a real signal.",
+    "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure",
+    "origin_case": "CTL-55",
+    "origin_key": "ct0055"
+  },
+  "k9a61fe93bf72": {
+    "case": "cdcb38fac09ff",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0115",
+    "request": "Print the Ethernet hardware address for interface en0.",
+    "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'",
+    "origin_case": "CTL-46",
+    "origin_key": "ct0046"
+  },
+  "k9a62803859d9": {
+    "case": "c70168cd6c1de",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0232",
+    "request": "kill whatever is running on port 8080",
+    "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill",
+    "origin_case": "CTL-35",
+    "origin_key": "ct0035",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0232 incorrect (pass1 b04 incorrect)"
+  },
+  "k9ae332f1ff67": {
+    "case": "cb4d50f1b6119",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0465",
+    "request": "list my running python processes",
+    "command": "ps -axo pid= | grep python",
+    "origin_case": "CTL-38",
+    "origin_key": "ct0038",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e042 x0465 incorrect (pass1 b09 incorrect)"
+  },
+  "k9b5c3c7c4e41": {
+    "case": "cf1cc2f0b85a8",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0072",
+    "request": "kill whatever is running on port 8080",
+    "command": "lsof -i :8080 | awk '{print $2}' | xargs kill",
+    "origin_case": "CTL-28",
+    "origin_key": "ct0028"
+  },
+  "k9f704d345f79": {
+    "case": "c0b09161a529f",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0119",
+    "request": "hey how do I see what power source I'm on and the battery percent",
+    "command": "system_profiler SPPowerDataType",
+    "origin_case": "CTL-47",
+    "origin_key": "ct0047"
+  },
+  "kb44692254890": {
+    "case": "c3da699e273d4",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0266",
+    "request": "show notes.txt in all caps",
+    "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)",
+    "origin_case": "CTL-03",
+    "origin_key": "ct0003",
+    "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0266 incorrect (pass1 b01 incorrect)"
+  },
+  "kb59f362c7e76": {
+    "case": "cf9ee64897fe1",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0498",
+    "request": "Which processes have UDP sockets open? Give numeric addresses.",
+    "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /[0-9]+/ {print $1}'",
+    "origin_case": "CTL-19",
+    "origin_key": "ct0019"
+  },
+  "kb98d6089b4b0": {
+    "case": "c73e92b26d9e6",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0795",
+    "request": "Test whether PID 1234 exists without sending it a real signal.",
+    "command": "kill -9 1234",
+    "origin_case": "CTL-40",
+    "origin_key": "ct0040",
+    "provenance": "docs/eval-audit/final.json#x0795 incorrect (v4 control audit 20261022)"
+  },
+  "kbe754eb4f487": {
+    "case": "c29ea217e3860",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0052",
+    "request": "delete every .DS_Store file in this folder and everything under it",
+    "command": "find -name \"*.DS_Store\" | xargs rm -rf",
+    "origin_case": "CTL-02",
+    "origin_key": "ct0002"
+  },
+  "kc3093d1d9f23": {
+    "case": "ca0ff80771225",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0509",
+    "request": "Show the macOS filesystem flags on report.pdf.",
+    "command": "stat -f \"%Sf\" report.pdf",
+    "origin_case": "CTL-62",
+    "origin_key": "ct0062",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json m009 x0509 correct (pass1 b06 correct)"
+  },
+  "kc381277e5b8c": {
+    "case": "c2ef2a3e8d165",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0218",
+    "request": "i need a copy of the whole project folder called project-copy",
+    "command": "mkdir project-copy && cp -R project project-copy",
+    "origin_case": "CTL-33",
+    "origin_key": "ct0033",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json e006 x0218 incorrect (pass1 b04 incorrect)"
+  },
+  "kc6cc0ae2056f": {
+    "case": "c32aa2b6b21f1",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0007",
+    "request": "Print only field three from colon-delimited input.txt.",
+    "command": "cat input.txt | cut -d: -f3",
+    "origin_case": "CTL-41",
+    "origin_key": "ct0041"
+  },
+  "kc975b1925ba3": {
+    "case": "c69e8acaa8143",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0462",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.app.zip MyApp.app",
+    "origin_case": "CTL-39",
+    "origin_key": "ct0039"
+  },
+  "kca952c245123": {
+    "case": "c432bb634947e",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0571",
+    "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source.",
+    "command": "sips --rotate 90 photo.jpg --out rotated.jpg",
+    "origin_case": "CTL-65",
+    "origin_key": "ct0065",
+    "provenance": "docs/eval-audit/pass2-opus/r1.json m076 x0571 correct (pass1 b07 correct)"
+  },
+  "kd45ce090ee60": {
+    "case": "ca2bb2eedd031",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0520",
+    "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+    "command": "mount | awk '$3 ~ /^\\/Volumes\\//'",
+    "origin_case": "CTL-63",
+    "origin_key": "ct0063",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json m024 x0520 correct (pass1 b06 correct)"
+  },
+  "kd7942dffb099": {
+    "case": "c07cce4a8bfb8",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0174",
+    "request": "can I reach google.com? just try a few times",
+    "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408",
+    "origin_case": "CTL-20",
+    "origin_key": "ct0020"
+  },
+  "kd7b1908944ff": {
+    "case": "c4b86e2823b90",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0541",
+    "request": "How many bytes are in a virtual-memory page on this Mac?",
+    "command": "getconf PAGESIZE",
+    "origin_case": "CTL-53",
+    "origin_key": "ct0053",
+    "provenance": "docs/eval-audit/pass2-opus/r3.json m044 x0541 correct (pass1 b07 correct)"
+  },
+  "kddb4923526dc": {
+    "case": "cfc30266883b9",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0434",
+    "request": "kill whatever is running on port 8080",
+    "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill",
+    "origin_case": "CTL-36",
+    "origin_key": "ct0036",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0434 incorrect (pass1 b04 incorrect)"
+  },
+  "ke09507eea6d9": {
+    "case": "cfaa6cc6b83b4",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0271",
+    "request": "top 5 processes by memory",
+    "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+    "origin_case": "CTL-57",
+    "origin_key": "ct0057",
+    "provenance": "docs/eval-audit/pass2-opus/r1.json e037 x0271 correct (pass1 b01 correct)"
+  },
+  "ke429725097ca": {
+    "case": "ca89a1c83854d",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0346",
+    "request": "Which processes have UDP sockets open? Give numeric addresses.",
+    "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+    "origin_case": "CTL-16",
+    "origin_key": "ct0016",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0346 incorrect (pass1 b03 incorrect)"
+  },
+  "ke4eca005b656": {
+    "case": "ccaae910c629c",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0315",
+    "request": "do i have node installed",
+    "command": "command -v node > /dev/null 2>&1 || echo \"no\" || echo \"yes\"",
+    "origin_case": "CTL-18",
+    "origin_key": "ct0018",
+    "provenance": "docs/eval-audit/final.json#x0315 incorrect (v4 control audit 20261022)"
+  },
+  "ke8212daaee4c": {
+    "case": "c7fd4a6d296ad",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0195",
+    "request": "Print lines 3 through 7 of notes.txt, without changing it.",
+    "command": "head -n 7 notes.txt | tail -n +3",
+    "origin_case": "CTL-54",
+    "origin_key": "ct0054"
+  },
+  "ke87abf07df87": {
+    "case": "c40928b6df1b3",
+    "expected": "correct",
+    "source": "docs/eval-audit/items.json#x0216",
+    "request": "What path would this zsh session use if I typed python3?",
+    "command": "which python3",
+    "origin_case": "CTL-56",
+    "origin_key": "ct0056"
+  },
+  "kedccfb2c4f6d": {
+    "case": "c6fb54622c503",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0151",
+    "request": "delete every .DS_Store file in this folder and everything under it",
+    "command": "find -name '*.DS_Store' -exec rm {} +",
+    "origin_case": "CTL-08",
+    "origin_key": "ct0008"
+  },
+  "kf9374d99dc8b": {
+    "case": "c837c17ff896b",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0363",
+    "request": "Which processes have UDP sockets open? Give numeric addresses.",
+    "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+    "origin_case": "CTL-25",
+    "origin_key": "ct0025",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0363 incorrect (pass1 b03 incorrect)"
+  }
+}

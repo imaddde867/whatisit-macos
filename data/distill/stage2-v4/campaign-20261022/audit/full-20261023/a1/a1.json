@@ -1,0 +1,237 @@
+{
+  "batch": "a1",
+  "judge": "ctl-audit-20261023-a1",
+  "cases": [
+    {
+      "case": "c795bf65c2fbd",
+      "verdicts": [
+        {
+          "key": "k0077c798f8a1",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Unquoted command substitution word-splits; echo joins lines with spaces and interprets backslashes."
+        }
+      ]
+    },
+    {
+      "case": "cb9325e0912d4",
+      "verdicts": [
+        {
+          "key": "kf47fc56740e4",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "$4 is FD, not address; -sTCP:LISTEN leaves UDP empty; no PIDs or addresses printed."
+        }
+      ]
+    },
+    {
+      "case": "cc5cb4d6360c5",
+      "verdicts": [
+        {
+          "key": "k02edb1568415",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD date accepts +%Y-%m-%d and prints today's date in the required format."
+        }
+      ]
+    },
+    {
+      "case": "c282c78c7d253",
+      "verdicts": [
+        {
+          "key": "k458f61f18f5e",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "du -s lists only top-level entries and directory totals, not the ten largest files recursively."
+        }
+      ]
+    },
+    {
+      "case": "c0db6839f94d5",
+      "verdicts": [
+        {
+          "key": "kede8c94b6f64",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires a path; leading -name is an illegal option, so nothing is found."
+        }
+      ]
+    },
+    {
+      "case": "c7670500e100b",
+      "verdicts": [
+        {
+          "key": "k6547648a1d77",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil prints Volume/Container Free Space, not 'Available Space'; grep matches nothing."
+        }
+      ]
+    },
+    {
+      "case": "c2ccbc6784f6e",
+      "verdicts": [
+        {
+          "key": "ka78548ef9815",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps -e equals -A on macOS; RSS is first field, sorted numerically, head takes five."
+        }
+      ]
+    },
+    {
+      "case": "ceb99031a2877",
+      "verdicts": [
+        {
+          "key": "kac808c63f36c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "zsh which reports the path python3 would resolve to in this session."
+        }
+      ]
+    },
+    {
+      "case": "c52511df9fdb2",
+      "verdicts": [
+        {
+          "key": "kd34cfab23714",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "$6 is DEVICE, not TYPE; the TCP filter never matches, so no PID is killed."
+        }
+      ]
+    },
+    {
+      "case": "c3c9c46c28333",
+      "verdicts": [
+        {
+          "key": "k67d3184f3833",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "mkdir makes the destination exist, so cp creates project-copy/project instead of the copy itself."
+        }
+      ]
+    },
+    {
+      "case": "c3a37f68b5305",
+      "verdicts": [
+        {
+          "key": "k8748e663e4fa",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Header 'PID' reaches /bin/kill, which exits on illegal process id; nothing is killed."
+        }
+      ]
+    },
+    {
+      "case": "ce8e1bb7b2021",
+      "verdicts": [
+        {
+          "key": "k52df3364a5d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD cut accepts -d: -f3 and prints only the third colon-delimited field."
+        }
+      ]
+    },
+    {
+      "case": "c38a4b97f95fc",
+      "verdicts": [
+        {
+          "key": "kb036c14135ad",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "When node exists nothing prints; the yes branch is unreachable after echo no succeeds."
+        }
+      ]
+    },
+    {
+      "case": "c0d99366db547",
+      "verdicts": [
+        {
+          "key": "k0f822c8205dc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "macOS mount prints device on mountpoint, so $3 is the /Volumes/ path."
+        }
+      ]
+    },
+    {
+      "case": "c80a16f8568af",
+      "verdicts": [
+        {
+          "key": "kceb5db473911",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -convert json -o - writes JSON to stdout without rewriting the source plist."
+        }
+      ]
+    },
+    {
+      "case": "cce63f26267a0",
+      "verdicts": [
+        {
+          "key": "k9c7bd4fa9df2",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "macOS zip man says resource forks are unsupported; forks and Finder metadata are lost."
+        }
+      ]
+    },
+    {
+      "case": "c0c06a744a6d0",
+      "verdicts": [
+        {
+          "key": "k5c02a7da62f3",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil labels are Volume Free Space/Container Free Space; this grep matches nothing."
+        }
+      ]
+    },
+    {
+      "case": "ce9937384190c",
+      "verdicts": [
+        {
+          "key": "k8a0ef2b2cb46",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Unfiltered header 'PID' is passed to /bin/kill, which aborts; no process is killed."
+        }
+      ]
+    },
+    {
+      "case": "c62f9f4675e35",
+      "verdicts": [
+        {
+          "key": "ka75a0011f44f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "macOS zip cannot store resource forks or Finder metadata; preservation requirement is missed."
+        }
+      ]
+    },
+    {
+      "case": "c55a3cd167ce2",
+      "verdicts": [
+        {
+          "key": "k9dc32ec60811",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy exists in /usr/libexec; Print :CFBundleIdentifier returns the string."
+        }
+      ]
+    },
+    {
+      "case": "cd694b02297e7",
+      "verdicts": [
+        {
+          "key": "k71745adddcb3",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "BSD find requires a path; leading -name is an illegal option, so no deletion occurs."
+        }
+      ]
+    }
+  ]
+}

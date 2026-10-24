@@ -1,0 +1,304 @@
+{
+ "k126cfdc5397a": {
+  "case": "c35f4c1e1888c",
+  "command": "arch -arm64 /usr/bin/env bash -c '[[ $OSTYPE == darwin ]] && [[ $(uname -m) == arm64 ]] && echo yes || echo no'",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "bash $OSTYPE is 'darwin26' (verified), never == darwin, so always prints no.",
+   "verdict": "incorrect"
+  },
+  "request": "Can an arm64-native command run successfully on this Apple Silicon Mac?",
+  "source": "docs/eval-audit/items.json#x0488"
+ },
+ "k17e7c76e57a4": {
+  "case": "cbb0724e17579",
+  "command": "top -l 2 -n 0 -stats pid,command,cpu | awk 'NF == 3 && $2 ~ /Finder$/ && $3 ~ /^[0-9.]+%?$/ {last=$3} END {print last}'",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_operand",
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "top man: -n nprocs 'only display up to nprocs processes'; -n 0 shows none, empty output.",
+   "verdict": "incorrect"
+  },
+  "request": "how much cpu is Finder using",
+  "source": "docs/eval-audit/items.json#x0675"
+ },
+ "k212c26186b78": {
+  "case": "c8e82f981c85f",
+  "command": "pgrep -x \"Google Chrome\" >/dev/null && echo yes || echo no",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r2.json",
+   "note": "pgrep -x exact name; yes/no answer",
+   "verdict": "correct"
+  },
+  "request": "is Google Chrome running right now",
+  "source": "docs/eval-audit/items.json#x0668"
+ },
+ "k29ed1872427f": {
+  "case": "cac7de99dcf6d",
+  "command": "log show --predicate 'process == \"kernel\"' --last 2m",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "log show synopsis has --predicate and --last num[m]; kernel last 2m.",
+   "verdict": "correct"
+  },
+  "request": "Show unified-log messages emitted by the kernel over the last two minutes.",
+  "source": "docs/eval-audit/items.json#x0559"
+ },
+ "k2a83b5c26be1": {
+  "case": "cc3f8dbe1590b",
+  "command": "pmset -g batt | grep 'Battery State' | cut -d':' -f2",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r2.json",
+   "note": "pmset -g batt has no 'Battery State' line (not in binary strings); prints nothing",
+   "verdict": "incorrect"
+  },
+  "request": "is my battry charging right now",
+  "source": "docs/eval-audit/items.json#x0412"
+ },
+ "k33bb4ae5190f": {
+  "case": "cb7fed91db28f",
+  "command": "diskutil eject BACKUP",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "diskutil man DEVICES: 'A volume name, e.g. Untitled' accepted as device.",
+   "verdict": "correct"
+  },
+  "request": "eject the usb drive called BACKUP",
+  "source": "docs/eval-audit/items.json#x0718"
+ },
+ "k3603c271bfdb": {
+  "case": "cd9fcf57d2444",
+  "command": "printf '\\n*.log\\n' >> .gitignore",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "Appends *.log line to .gitignore; leading newline guards missing trailing newline.",
+   "verdict": "correct"
+  },
+  "request": "make git ignore all .log files",
+  "source": "docs/eval-audit/items.json#x0754"
+ },
+ "k43b5302d7324": {
+  "case": "c6030655aedec",
+  "command": "ps -axww -o pid=,command= | awk 'index($0, \"Finder.app/Contents/MacOS/Finder\") {print}'",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r1.json",
+   "note": "awk's own command line contains 'Finder.app/Contents/MacOS/Finder', so awk matches itself",
+   "verdict": "incorrect"
+  },
+  "request": "Find running Finder PIDs and their command lines.",
+  "source": "docs/eval-audit/items.json#x0524"
+ },
+ "k4519b74a356a": {
+  "case": "c36aac79e2f1e",
+  "command": "sysctl -n hw.model hw.machine",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "hw.model = model identifier (e.g. Mac14,2), hw.machine = arm64; chip is machdep.cpu.brand_string.",
+   "verdict": "incorrect"
+  },
+  "request": "what model of mac and chip is this",
+  "source": "docs/eval-audit/items.json#x0244"
+ },
+ "k4966323839bf": {
+  "case": "ce3a95866917b",
+  "command": "/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" MyApp.app/Contents/Info.plist",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r1.json",
+   "note": "man shows only :Key form; colonless top-level key works (not documented in man; behaviour-based)",
+   "verdict": "correct"
+  },
+  "request": "Read MyApp.app's short user-facing version from its Info.plist.",
+  "source": "docs/eval-audit/items.json#x0594"
+ },
+ "k49bba38d1eb1": {
+  "case": "c3f9895bd728c",
+  "command": "say \"Build finished\"",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "Same as reference, capitalization irrelevant to speech.",
+   "verdict": "correct"
+  },
+  "request": "make my mac say build finished out loud",
+  "source": "docs/eval-audit/items.json#x0747"
+ },
+ "k4a1cb7598bf1": {
+  "case": "cf9aa747bf4a0",
+  "command": "ps -axww -o pid=,args= | grep '[F]inder[.]app/Contents/MacOS/Finder'",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r1.json",
+   "note": "[F]inder grep trick avoids self-match; man ps: args = command and arguments",
+   "verdict": "correct"
+  },
+  "request": "Find running Finder PIDs and their command lines.",
+  "source": "docs/eval-audit/items.json#x0525"
+ },
+ "k4cbe1a3bea57": {
+  "case": "c6e73e3996a34",
+  "command": "pmset -g capabilities",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "hallucinated_flag",
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "pmset man only '-g cap'; exact-match args ('capzzz' -> unhandled argument), no 'capabilities' string.",
+   "verdict": "incorrect"
+  },
+  "request": "Which power-management features does this Mac support?",
+  "source": "docs/eval-audit/items.json#x0547"
+ },
+ "k53a8b67315c2": {
+  "case": "cd26b0dfdf486",
+  "command": "sysctl vm.swappiness",
+  "director_evidence": "macOS sysctl has no vm.swappiness OID (verified: unknown oid), and swappiness is a Linux kernel parameter; the question asks for the VM page size, which is hw.pagesize (16384 bytes on this host).",
+  "expected": "incorrect",
+  "request": "How many bytes are in a virtual-memory page on this Mac?",
+  "source": "docs/eval-audit/items.json#x0807"
+ },
+ "k781dd0c08345": {
+  "case": "c9db7b7f8480f",
+  "command": "defaults export com.apple.Finder - | plutil -convert xml1 -o - -",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r1.json",
+   "note": "man defaults: export domain - gives XML; plutil reads stdin '-'; capital F resolves on case-insensitive APFS",
+   "verdict": "correct"
+  },
+  "request": "Dump my Finder preference domain as XML to stdout.",
+  "source": "docs/eval-audit/items.json#x0584"
+ },
+ "k85b22edfd328": {
+  "case": "c2c7204345540",
+  "command": "find . -type f -ctime 0",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_operand",
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "man find: -ctime n rounds up to full 24h, so -ctime 0 matches ~nothing; also ctime not mtime.",
+   "verdict": "incorrect"
+  },
+  "request": "files in this folder i changed in the last day",
+  "source": "docs/eval-audit/items.json#x0397"
+ },
+ "k901bf1999eca": {
+  "case": "c7e307f47084a",
+  "command": "which -a python3",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "-a lists every match; does not single out the one zsh would use.",
+   "verdict": "incorrect"
+  },
+  "request": "What path would this zsh session use if I typed python3?",
+  "source": "docs/eval-audit/items.json#x0135"
+ },
+ "k9122a1e6d99c": {
+  "case": "cd4c0b24c7859",
+  "command": "grep \"ERROR|WARN\" app.log",
+  "director_evidence": "The pattern ERROR|WARN is a basic regular expression; without -E (or \\|) grep treats | literally, so it searches for the literal string \"ERROR|WARN\" and matches neither ERROR nor WARN. Reference uses grep -E.",
+  "expected": "incorrect",
+  "request": "Show entries marked ERROR or WARN in app.log.",
+  "source": "docs/eval-audit/items.json#x0776"
+ },
+ "ka976020e8398": {
+  "case": "c51092950dd0a",
+  "command": "ls -S | head -n 5",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "missed_constraint",
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "man ls -S sorts all entries: includes directories, skips dotfiles, shows no sizes; not files-only.",
+   "verdict": "incorrect"
+  },
+  "request": "list the 5 biggets files in this folder",
+  "source": "docs/eval-audit/items.json#x0490"
+ },
+ "kbc5ff43ad949": {
+  "case": "cbf9908728ab5",
+  "command": "find \"$HOME\" -type f -name 'budget.xlsx' 2>/dev/null",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r1.json",
+   "note": "find $HOME -name budget.xlsx locates file in home; slower than mdfind but valid BSD find",
+   "verdict": "correct"
+  },
+  "request": "where is budget.xlsx on my mac",
+  "source": "docs/eval-audit/items.json#x0645"
+ },
+ "kd400a670012f": {
+  "case": "c907c2efb0999",
+  "command": "afinfo track.m4a | grep -E 'Data format:|Duration:'",
+  "expected": "incorrect",
+  "pass2": {
+   "category": "wrong_output",
+   "file": "docs/eval-audit/pass2-opus/r2.json",
+   "note": "afinfo prints lowercase 'estimated duration:'; case-sensitive 'Duration:' drops duration",
+   "verdict": "incorrect"
+  },
+  "request": "Show the codec, sample rate, and duration of track.m4a.",
+  "source": "docs/eval-audit/items.json#x0575"
+ },
+ "kda8b5fbc3b33": {
+  "case": "ccd4f8f564865",
+  "command": "diskutil apfs listSnapshots $(diskutil info -plist / | plutil -extract DeviceIdentifier raw -)",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r3.json",
+   "note": "plutil man: -extract keypath raw prints string; resolves same device '/' would.",
+   "verdict": "correct"
+  },
+  "request": "List APFS snapshots for the startup volume.",
+  "source": "docs/eval-audit/items.json#x0518"
+ },
+ "ke26bad254cb8": {
+  "case": "cc95a76496b98",
+  "command": "osascript -e 'tell application \"System Events\" to get volume settings'",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r2.json",
+   "note": "get volume settings (Standard Additions) works inside System Events tell",
+   "verdict": "correct"
+  },
+  "request": "Ask AppleScript for current input, output, and alert volume settings.",
+  "source": "docs/eval-audit/items.json#x0557"
+ },
+ "kfbcd3ee46682": {
+  "case": "cd48fb5118599",
+  "command": "find . -maxdepth 1 -type f -exec du -k {} + | sort -nr | head -5",
+  "expected": "correct",
+  "pass2": {
+   "category": null,
+   "file": "docs/eval-audit/pass2-opus/r0.json",
+   "note": "find -maxdepth/-type f, man du -k 1KiB blocks; sort -nr top 5 regular files by size.",
+   "verdict": "correct"
+  },
+  "request": "list the 5 biggets files in this folder",
+  "source": "docs/eval-audit/items.json#x0614"
+ }
+}

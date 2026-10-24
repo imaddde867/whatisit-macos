@@ -1,0 +1,39 @@
+{
+ "artifacts_sha256": {
+  "batch.json": "5f3a6b0a088bf2591cdf70b47743bfb75c643583f364f7d6f58b0e8ceeed3eb4",
+  "key.json": "e3f6ac01df923051bb045dcae12865138eca764a56f44081a032241a25f4bb30",
+  "prompt.md": "ffa615fded0c1afdbeaa7230d333530760b2cdbd54d57a1238cbf9090990317f"
+ },
+ "blindness": "The batch carries only opaque case/key ids, requests and commands. Expected labels exist only in key.json. The judge reads only LABEL.md, batch.json and this prompt.",
+ "derivation": "case = c + sha256(seed|case|source)[:12]; key = k + sha256(seed|key|source|command)[:12]; items shuffled with random.Random(seed). Sources and expected values are frozen in key.json.",
+ "limitations": [
+  "This is model qualification, not human certification.",
+  "The 24 cases are audited eval items; passing is necessary, not proof of universal correctness."
+ ],
+ "pass_bar": {
+  "exact_required": 24,
+  "exact_total": 24,
+  "false_accepts_max": 0,
+  "false_rejects_max": 0,
+  "rule": "A verdict passes only if all 24 verdicts equal key.json expected values. Any incorrect/correct mismatch or unsure fails the calibration; the set and bar are not edited after a verdict is read.",
+  "unsure_max": 0
+ },
+ "purpose": "Pre-registered qualification of a fresh blind judge before the 23-batch stage2-v4 pass-1 campaign.",
+ "revision": "20261022",
+ "seed": "v4-judge-calibration-20261022",
+ "set": {
+  "correct": 12,
+  "incorrect": 12,
+  "total": 24
+ },
+ "sources": {
+  "items": "docs/eval-audit/items.json#x####",
+  "items_sha256": "63534144d066c99e2e610f15fb4d30b504e488021c1583c9bee90450c2a960c4",
+  "pass2_files_sha256": {
+   "docs/eval-audit/pass2-opus/r0.json": "a1f461e17a28cf8dedbf43d1dd00cebb1fe27dbdfd84470378fe80333585d81e",
+   "docs/eval-audit/pass2-opus/r1.json": "8d96bb3373205321e0d088d8c6aecc9f1566577db82020358bce4d3c5a684799",
+   "docs/eval-audit/pass2-opus/r2.json": "f22f1389647865d73bebe6e089f39b47af9232e2555a2b1957cec1dc1222d5d9",
+   "docs/eval-audit/pass2-opus/r3.json": "5b5d89db3152799f62301a9ecac99610a4054b47016c615c29c8057818b02227"
+  }
+ }
+}

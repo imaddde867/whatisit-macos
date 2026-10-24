@@ -1,0 +1,14 @@
+{
+ "agent_session_id": "ses_e9b3617ebffe6nypcuGqA3DEQi",
+ "attempt": "20261022-a1",
+ "batch_sha256": "5f3a6b0a088bf2591cdf70b47743bfb75c643583f364f7d6f58b0e8ceeed3eb4",
+ "completed_at": "2026-10-22T21:15:55+03:00",
+ "judge_label": "cal-20261022-a1",
+ "key_sha256": "e3f6ac01df923051bb045dcae12865138eca764a56f44081a032241a25f4bb30",
+ "manifest_sha256": "47759059915bc6d669167834f354bdaf5b26846029b0c79ac1dd29eed2caa08b",
+ "note": "Fresh subagent session; read only the rubric, blind batch and prompt. No candidate command executed.",
+ "prompt_sha256": "a96aaa92243bdb8abdb7337d9276aad4ec2a94beabb105192e9b1901eccbb7fb",
+ "result": true,
+ "started_at": "2026-10-22T21:05:10+03:00",
+ "verdict_sha256": "e7b9882eacf48b5674f949f044df4bf827e7ec43cf017e09e52d47bce526852f"
+}

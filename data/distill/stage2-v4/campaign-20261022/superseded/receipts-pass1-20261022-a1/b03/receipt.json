@@ -1,0 +1,32 @@
+{
+ "agent_session_id": "ses_e97ef0c33ffe7Eo8G7E9x3v70U",
+ "attempt": "a1",
+ "batch": "b03",
+ "batch_sha256": "c47fff416a782efaa9c63b5991b64477cadac091bb80df5e31e9f81fa77428c7",
+ "cases": 93,
+ "control_check": "pass",
+ "controls": 3,
+ "failed_sessions": [
+  {
+   "error": "Free usage limit reached before a verdict was produced.",
+   "result": "infrastructure_failure",
+   "session_id": "ses_e9b282103fferfCXadSne21Ppn"
+  },
+  {
+   "error": "TLS certificate error before a verdict was produced.",
+   "result": "infrastructure_failure",
+   "session_id": "ses_e98897425ffefdDyHgGsd3vzrF"
+  }
+ ],
+ "judge_label": "p1-20261022-b03-a1",
+ "keys": 235,
+ "note": "Fresh subagent process; read only the named rubric, batch and prompt; no candidate command executed.",
+ "prompt_sha256": "e88ecd0cb4b3dad5541089c2922e2a416ccd962d6e337b0a7a54d3ded5e3af04",
+ "schema_check": "pass",
+ "status": "accepted",
+ "verdict_sha256": "b03494261089c200c837ac946b6a96c9cb45cc0cbf6badcc5f6afa79e0f9ac49",
+ "verdicts": {
+  "correct": 168,
+  "incorrect": 67
+ }
+}

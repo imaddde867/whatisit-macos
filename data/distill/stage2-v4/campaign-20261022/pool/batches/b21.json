@@ -1,0 +1,1409 @@
+{
+  "batch": "b21",
+  "items": [
+    {
+      "case": "c7d3e60b24842",
+      "request": "I'd like the minimum LSMinimumSystemVersion across plist files in the test folder app-plists/.",
+      "candidates": [
+        {
+          "key": "k4340f62209e5",
+          "command": "find app-plists/ -name '*.plist' -exec plutil -extract LSMinimumSystemVersion raw -o - {} \\; 2>/dev/null | awk 'function cmp(a,b, x,y,i,an,bn,xi,yi){split(a,x,\".\");split(b,y,\".\");an=length(x);bn=length(y);for(i=1;i<=an||i<=bn;i++){xi=(i<=an?x[i]+0:0);yi=(i<=bn?y[i]+0:0);if(xi<yi)return -1;if(xi>yi)return 1}return 0} {if(min==\"\"||cmp($0,min)<0)min=$0} END{if(min!=\"\")print min}'"
+        },
+        {
+          "key": "k5b1a18ea825f",
+          "command": "find app-plists/ -type f -iname '*.plist' -exec /usr/libexec/PlistBuddy -c 'Print :LSMinimumSystemVersion' {} \\; 2>/dev/null | grep -E '^[0-9]+(\\.[0-9]+)*$' | awk -F. '{key=\"\"; for(i=1;i<=NF;i++) key=key sprintf(\"%010d\", $i); print key \" \" $0}' | sort | head -n1 | cut -d' ' -f2-"
+        },
+        {
+          "key": "kbf898e895bf0",
+          "command": "find app-plists/ -type f -name '*.plist' -exec /usr/libexec/PlistBuddy -c 'Print :LSMinimumSystemVersion' {} \\; 2>/dev/null | awk -F. '{if(!got){got=1; min=$0; for(i=1;i<=10;i++)m[i]=$i} else {for(i=1;i<=10;i++){if($i+0<m[i]+0){min=$0; for(j=1;j<=10;j++)m[j]=$j; break} if($i+0>m[i]+0) break}} END{if(got)print min}'"
+        },
+        {
+          "key": "kd97a04f3e388",
+          "command": "find app-plists/ -type f -name '*.plist' -exec /usr/libexec/PlistBuddy -c 'Print :LSMinimumSystemVersion' {} \\; 2>/dev/null | grep -E '^[0-9]+(\\.[0-9]+)*$' | LC_ALL=C sort -V | head -n 1"
+        },
+        {
+          "key": "kf794b9219371",
+          "command": "find app-plists -type f -name '*.plist' -print0 | xargs -0 -I{} /usr/libexec/PlistBuddy -c 'Print :LSMinimumSystemVersion' {} 2>/dev/null | awk -F. 'NF { a=$1+0; b=$2+0; c=$3+0; if (n++ == 0 || a < ma || (a == ma && b < mb) || (a == ma && b == mb && c < mc)) { ma=a; mb=b; mc=c; min=$0 } } END { if (n) print min }'"
+        }
+      ]
+    },
+    {
+      "case": "c2135e89c3183",
+      "request": "Count events per process in unified-log.ndjson.",
+      "candidates": [
+        {
+          "key": "k0ae4af7f7c1d",
+          "command": "awk 'match($0, /\"process\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/) {s=substr($0,RSTART,RLENGTH); sub(/^\"process\"[[:space:]]*:[[:space:]]*\"/,\"\",s); sub(/\"$/,\"\",s); c[s]++} END {for (p in c) printf \"%d\\t%s\\n\", c[p], p}' unified-log.ndjson | sort -nr"
+        },
+        {
+          "key": "k271c8227f2f2",
+          "command": "grep -o '\"process\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' unified-log.ndjson | cut -d'\"' -f4 | sort | uniq -c | sort -nr"
+        },
+        {
+          "key": "k3d493a2db0cd",
+          "command": "sed -n 's/.*\"process\"[[:space:]]*:[[:space:]]*\"\\([^\"]*\\)\".*/\\1/p' unified-log.ndjson | sort | uniq -c"
+        },
+        {
+          "key": "k6581a7b3f6bd",
+          "command": "python3 -c 'import json; [print((lambda d: d.get(\"process\") or d.get(\"processName\") or d.get(\"processPath\") or d.get(\"processID\") or \"unknown\")(json.loads(l))) for l in open(\"unified-log.ndjson\") if l.strip()]' | sort | uniq -c | sort -nr"
+        },
+        {
+          "key": "kcd56d54f1ab0",
+          "command": "awk 'match($0, /\"process\":\"[^\"]*\"/) {v=substr($0, RSTART+11, RLENGTH-12); if(v!=\"\") c[v]++} END{for(p in c) printf \"%d\\t%s\\n\", c[p], p}' unified-log.ndjson | sort -nr"
+        }
+      ]
+    },
+    {
+      "case": "cae3082549e74",
+      "request": "List mounted filesystem device names only.",
+      "candidates": [
+        {
+          "key": "k2c64e7430d25",
+          "command": "mount | awk '$1 ~ /^\\/dev\\// {print $1}'"
+        },
+        {
+          "key": "k88ecf240eb70",
+          "command": "mount | awk '{print $1}'"
+        },
+        {
+          "key": "kc78334c1a70d",
+          "command": "mount | grep '^/dev' | awk '{print $1}'"
+        },
+        {
+          "key": "kdc1495e37411",
+          "command": "mount | grep '^/dev/' | cut -d' ' -f1 | sort -u"
+        },
+        {
+          "key": "kf290e40804fb",
+          "command": "df -P | grep -E '^(/dev/|devfs )' | awk '{print $1}'"
+        }
+      ]
+    },
+    {
+      "case": "c04194c38733d",
+      "request": "Compare battery maximum capacity with its design capacity.",
+      "candidates": [
+        {
+          "key": "k4f2ba6246356",
+          "command": "ioreg -rc AppleSmartBattery -w0 | awk '/\"DesignCapacity\" =/ {gsub(/[^0-9]/,\"\",$3); d=$3} /\"MaxCapacity\" =/ {gsub(/[^0-9]/,\"\",$3); m=$3} END {if (d==\"\") d=0; if (m==\"\") m=0; d=d+0; m=m+0; printf \"DesignCapacity=%s MaxCapacity=%s MaxOfDesign=%.1f%%\\n\", d, m, (d ? m*100/d : 0)}'"
+        },
+        {
+          "key": "k5d4ed65d85af",
+          "command": "ioreg -rc AppleSmartBattery | awk -F'[ \"=,]+' '{if($2==\"DesignCapacity\")d=$3; else if($2==\"MaxCapacity\")m=$3; else if($2==\"AppleRawMaxCapacity\")r=$3} END{max=m?m:r; if(d+0 && max+0) printf \"DesignCapacity=%s MaxCapacity=%s (%.1f%% of design)\\n\", d, max, max/d*100; else print \"Could not read battery capacity values\"}'"
+        },
+        {
+          "key": "k974d5365dfa8",
+          "command": "ioreg -rn AppleSmartBattery | awk '{k=$1; gsub(/[^A-Za-z0-9]/, \"\", k); if (k == \"DesignCapacity\") {v=$3; gsub(/[^0-9]/, \"\", v); d=v+0} if (k == \"MaxCapacity\") {v=$3; gsub(/[^0-9]/, \"\", v); m=v+0}} END {if (d > 0 && m > 0) printf \"Design Capacity: %d mAh\\nMaximum Capacity: %d mAh\\nDifference: %d mAh\\nMaximum as percentage of Design: %.2f%%\\n\", d, m, d-m, m*100/d; else print \"Battery DesignCapacity/MaxCapacity not found\"}'"
+        },
+        {
+          "key": "kd339a465cde8",
+          "command": "ioreg -rn AppleSmartBattery | awk -F'[ =]+' '/\"MaxCapacity\"/{max=$3} /\"DesignCapacity\"/{des=$3} END{if (max && des>0) printf \"Maximum capacity: %s mAh, Design capacity: %s mAh, Health: %.1f%%\\n\", max, des, max/des*100; else print \"Battery capacity info unavailable\"}'"
+        },
+        {
+          "key": "ke682c3b22a09",
+          "command": "ioreg -rn AppleSmartBattery | awk '/\"MaxCapacity\"/{gsub(/[^0-9]/,\"\"); max=$0} /\"DesignCapacity\"/{gsub(/[^0-9]/,\"\"); des=$0} END{if(max!=\"\" && des!=\"\" && des+0>0) printf \"MaxCapacity=%s DesignCapacity=%s Ratio=%.1f%%\\n\", max, des, (max/des)*100; else print \"No battery data\"}'"
+        }
+      ]
+    },
+    {
+      "case": "c50647e9c4d4b",
+      "request": "Can you display the data volume associated with the current system APFS volume group?",
+      "candidates": [
+        {
+          "key": "k63278074e8b4",
+          "command": "diskutil info / | grep -m1 'Volume Group Data Volume'"
+        },
+        {
+          "key": "k6e592d9b7fc1",
+          "command": "diskutil info /System/Volumes/Data"
+        },
+        {
+          "key": "kd7effd823276",
+          "command": "diskutil info -plist / | plutil -extract APFSVolumeGroupDataVolumeName raw -"
+        }
+      ]
+    },
+    {
+      "case": "c63c6cf023038",
+      "request": "Continue stopped shell job 2 in the background.",
+      "candidates": [
+        {
+          "key": "kb9a398101179",
+          "command": "bg %2"
+        }
+      ]
+    },
+    {
+      "case": "c0f7d2ac41f47",
+      "request": "read the Finder preference for keeping folders first when sorting by name",
+      "candidates": [
+        {
+          "key": "kb11f92af0fbe",
+          "command": "defaults read com.apple.finder _FXSortFoldersFirst"
+        }
+      ]
+    },
+    {
+      "case": "ce35135af72cc",
+      "request": "show the default app registered for PDF files on this Mac",
+      "candidates": [
+        {
+          "key": "k601ee574f74f",
+          "command": "defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers 2>/dev/null | grep -i -A 20 -E 'LSHandlerContentType.*pdf|LSHandlerExtension.*pdf' | grep -i 'LSHandlerRole' | head -1 | grep . || defaults read \"/System/Library/CoreServices/Default Applications\" 2>/dev/null | grep -i pdf | head -1"
+        },
+        {
+          "key": "k76f3e1898d8b",
+          "command": "defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers 2>/dev/null | grep -B3 -A3 'com.adobe.pdf' || echo 'No explicit PDF handler found; macOS default is Preview (com.apple.Preview)'"
+        },
+        {
+          "key": "k955590332a67",
+          "command": "defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers 2>/dev/null | grep -F -B 2 -A 2 'public.pdf' || /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | awk '/activity:.*public[.]pdf/{f=1} f && /handler:/{print; exit}'"
+        },
+        {
+          "key": "kb380355125f9",
+          "command": "defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers 2>/dev/null | grep -A 5 -B 5 -E 'LSHandlerContentType[[:space:]]*=[[:space:]]*.(public\\.pdf|com\\.adobe\\.pdf).'"
+        },
+        {
+          "key": "kb8b08ca0eb66",
+          "command": "osascript -e 'tell application \"Finder\" to get name of (default application for file type \"PDF \")'"
+        }
+      ]
+    },
+    {
+      "case": "cc844f0e57480",
+      "request": "Find files containing an empty line followed by a comment under snippets/.",
+      "candidates": [
+        {
+          "key": "k010d690cded5",
+          "command": "find snippets/ -type f -exec awk 'BEGIN{e=0} /^[[:space:]]*$/{e=1; next} e && /^[[:space:]]*(#|\\/\\/|\\/\\*|<!--)/ {print FILENAME; exit} {e=0}' {} ';'"
+        },
+        {
+          "key": "kcf76e04f9b7e",
+          "command": "find snippets/ -type f -exec awk 'FNR==1{seen=0; prev=0} !seen && prev && /^[[:space:]]*#/ { print FILENAME; seen=1 } 1 { prev = /^[[:space:]]*$/ ? 1 : 0 }' {} +"
+        },
+        {
+          "key": "kd8a331d5e511",
+          "command": "find snippets/ -type f -exec awk 'FNR==1 {b=0; p=0} !p { if (b && /^[[:space:]]*(#|\\/\\/|\\/\\*|<!--)/) { print FILENAME; p=1 } b=($0 ~ /^[[:space:]]*$/) }' {} + | sort -u"
+        },
+        {
+          "key": "kf3b75ce97a3a",
+          "command": "find snippets -type f -exec awk 'FNR==1 {prev=\"x\"} prev ~ /^[[:space:]]*$/ { line=$0; sub(/^[[:space:]]+/, \"\", line); if (substr(line,1,1)==\"#\" || substr(line,1,2)==\"//\" || substr(line,1,2)==\"--\" || substr(line,1,2)==\"/*\") { if (!seen[FILENAME]) {print FILENAME; seen[FILENAME]=1} } } {prev=$0}' {} +"
+        }
+      ]
+    },
+    {
+      "case": "c49d13d1e088b",
+      "request": "Print the current working directory from the shell variable.",
+      "candidates": [
+        {
+          "key": "k4ea1debd6acf",
+          "command": "echo \"$PWD\""
+        }
+      ]
+    },
+    {
+      "case": "c3e85acd626c8",
+      "request": "show how many characters of text are on the clipboard",
+      "candidates": [
+        {
+          "key": "k12fd96a15f7c",
+          "command": "pbpaste | wc -m"
+        },
+        {
+          "key": "kffcf4c67081a",
+          "command": "pbpaste | LC_ALL=en_US.UTF-8 wc -m | tr -d ' '"
+        }
+      ]
+    },
+    {
+      "case": "c527075f28fc9",
+      "request": "I'd like the process information for PIDs 4200 and 4201 in one table.",
+      "candidates": [
+        {
+          "key": "k0b7e86865115",
+          "command": "ps -p 4200,4201 -o pid,ppid,user,%cpu,%mem,stat,etime,command"
+        },
+        {
+          "key": "k5ea8d94c721c",
+          "command": "ps -o pid,ppid,user,%cpu,%mem,stat,etime,command -p 4200,4201"
+        },
+        {
+          "key": "k6f242d71e041",
+          "command": "ps -p 4200,4201"
+        },
+        {
+          "key": "k7ce1a7a2007c",
+          "command": "ps -p 4200,4201 -o pid,ppid,user,%cpu,%mem,stat,start,time,command"
+        },
+        {
+          "key": "ka716d214646b",
+          "command": "ps -o pid,ppid,user,%cpu,%mem,etime,command -p 4200,4201"
+        }
+      ]
+    },
+    {
+      "case": "cbee36f7c7aae",
+      "request": "Can you ask the resolver at 1.1.1.1 for example.org's MX records?",
+      "candidates": [
+        {
+          "key": "kc95324fa2ff7",
+          "command": "dig @1.1.1.1 example.org MX"
+        }
+      ]
+    },
+    {
+      "case": "cacb5ef22998e",
+      "request": "Please open ~/Downloads in Finder without activating Finder.",
+      "candidates": [
+        {
+          "key": "k4547486fe505",
+          "command": "open -g ~/Downloads"
+        }
+      ]
+    },
+    {
+      "case": "cedec1a0778ed",
+      "request": "Display packet counters for en0.",
+      "candidates": [
+        {
+          "key": "k08161839644e",
+          "command": "netstat -i en0"
+        },
+        {
+          "key": "k2a7280f7a811",
+          "command": "netstat -ibn -I en0"
+        },
+        {
+          "key": "k345d67516ddf",
+          "command": "netstat -ibn en0"
+        },
+        {
+          "key": "k94727cad7b18",
+          "command": "netstat -I en0"
+        }
+      ]
+    },
+    {
+      "case": "caed07379dd9c",
+      "request": "Report the effective group ID associated with process 4200.",
+      "candidates": [
+        {
+          "key": "k3619387b84bf",
+          "command": "ps -p 4200 -o gid="
+        }
+      ]
+    },
+    {
+      "case": "c086abc6a668b",
+      "request": "Find indexed files whose where-from URL contains example.com in download-tests/.",
+      "candidates": [
+        {
+          "key": "k9e25359d35eb",
+          "command": "mdfind -onlyin download-tests/ 'kMDItemWhereFroms == \"*example.com*\"'"
+        }
+      ]
+    },
+    {
+      "case": "c4b88d327609a",
+      "request": "Display the file kind recognized by macOS for sample.dat.",
+      "candidates": [
+        {
+          "key": "k5897e43ac30e",
+          "command": "mdls -name kMDItemKind -raw sample.dat"
+        },
+        {
+          "key": "ka6cf6e810da1",
+          "command": "mdls -name kMDItemKind sample.dat"
+        }
+      ]
+    },
+    {
+      "case": "c829ae3dacd0a",
+      "request": "spotlight find files modified after 2025-07-01 in ~/Downloads/samples",
+      "candidates": [
+        {
+          "key": "k013c507e3cec",
+          "command": "mdfind -onlyin ~/Downloads/samples 'kMDItemFSContentChangeDate > $time.iso(2025-07-01T00:00:00)'"
+        },
+        {
+          "key": "k347bcbdd47e7",
+          "command": "mdfind -onlyin ~/Downloads/samples 'kMDItemFSContentChangeDate >= $date.2025-07-01'"
+        },
+        {
+          "key": "k8b95f775e74d",
+          "command": "mdfind -onlyin ~/Downloads/samples 'kMDItemFSContentChangeDate >= $time.iso(2025-07-01T00:00:00Z)'"
+        },
+        {
+          "key": "k9f5059a1edcc",
+          "command": "mdfind -onlyin ~/Downloads/samples 'kMDItemContentModificationDate > \"2025-07-01\" && kMDItemContentType != \"public.folder\"'"
+        },
+        {
+          "key": "kd64104812cd8",
+          "command": "mdfind -onlyin ~/Downloads/samples 'kMDItemFSContentChangeDate >= $date(2025-07-01) && kMDItemContentType != \"public.folder\"'"
+        }
+      ]
+    },
+    {
+      "case": "c4dd028eebba3",
+      "request": "list launch agents stored in ~/Library/LaunchAgents",
+      "candidates": [
+        {
+          "key": "k365dba7dab54",
+          "command": "ls -1 ~/Library/LaunchAgents"
+        }
+      ]
+    },
+    {
+      "case": "c15f8657d7e47",
+      "request": "I need the response body from https://example.org/ without the download progress meter.",
+      "candidates": [
+        {
+          "key": "k207cbb0e2f64",
+          "command": "curl -s https://example.org/"
+        }
+      ]
+    },
+    {
+      "case": "c76d9e5aacf81",
+      "request": "show real user id for pid 4200 plz",
+      "candidates": [
+        {
+          "key": "kc55b9cdcd04a",
+          "command": "ps -o ruid= -p 4200"
+        }
+      ]
+    },
+    {
+      "case": "c0730fdb8cad6",
+      "request": "who is logged into the console right now on mac",
+      "candidates": [
+        {
+          "key": "k80a375301911",
+          "command": "stat -f '%Su' /dev/console"
+        }
+      ]
+    },
+    {
+      "case": "cabf856db738d",
+      "request": "I'd like to reject duplicate values in column one of ids.csv and show their row numbers.",
+      "candidates": [
+        {
+          "key": "k3bb227585c75",
+          "command": "awk -F, 'seen[$1]++ {print NR}' ids.csv"
+        }
+      ]
+    },
+    {
+      "case": "c34db90e6d96c",
+      "request": "Find regular files in logs/ whose modification times are older than their access times.",
+      "candidates": [
+        {
+          "key": "k278a0b43db40",
+          "command": "find logs/ -type f -print0 | perl -0ne '@s=stat($_); print \"$_\\n\" if $s[8] > $s[9];'"
+        },
+        {
+          "key": "kb52d3616d25b",
+          "command": "find logs/ -type f -exec perl -e 'for $f (@ARGV) { @s = stat($f); next unless @s; print \"$f\\n\" if $s[9] < $s[8]; }' {} +"
+        },
+        {
+          "key": "kfab07d1f355a",
+          "command": "find logs/ -type f -exec stat -f '%m %a %N' {} + | awk '$1 < $2 { match($0, /^[^ ]+ [^ ]+ /); print substr($0, RSTART + RLENGTH) }'"
+        }
+      ]
+    },
+    {
+      "case": "cfb70c36d0a21",
+      "request": "show the file sizes stored in backup.tar",
+      "candidates": [
+        {
+          "key": "k241a74b20825",
+          "command": "tar -tvf backup.tar"
+        }
+      ]
+    },
+    {
+      "case": "c6b7e5c036093",
+      "request": "extract only report.pdf from project.zip",
+      "candidates": [
+        {
+          "key": "kde8abe0661bd",
+          "command": "unzip project.zip report.pdf"
+        }
+      ]
+    },
+    {
+      "case": "c43c6716ca139",
+      "request": "pls resample photo.heic to a JPEG copy called thumbnail.jpg with width 200 and matching aspect ratio",
+      "candidates": [
+        {
+          "key": "k7098440094ac",
+          "command": "sips -s format jpeg --resampleWidth 200 photo.heic --out thumbnail.jpg"
+        }
+      ]
+    },
+    {
+      "case": "c4fd69ed312d7",
+      "request": "Please show the original filename stored in notes.txt.gz.",
+      "candidates": [
+        {
+          "key": "k4797bd14520a",
+          "command": "gzip -l notes.txt.gz"
+        },
+        {
+          "key": "k49e31482148e",
+          "command": "gzip -l notes.txt.gz | sed -n '2s/^[^%]*%[[:space:]]*//p'"
+        },
+        {
+          "key": "k53ea5a59ef01",
+          "command": "gzip -l notes.txt.gz | sed -n 's/^[^%]*%[[:space:]]*//p' | head -n 1"
+        },
+        {
+          "key": "kb14f9e7f314e",
+          "command": "gzip -l notes.txt.gz | awk 'NR>1{print $4}'"
+        }
+      ]
+    },
+    {
+      "case": "c6e6a07125a34",
+      "request": "Display memory-slot configuration as JSON using the built-in system profiler.",
+      "candidates": [
+        {
+          "key": "ke3b86a5829b8",
+          "command": "system_profiler SPMemoryDataType -json"
+        }
+      ]
+    },
+    {
+      "case": "ce7984f441d2a",
+      "request": "Please show all plist strings containing a newline in multiline.plist on macOS.",
+      "candidates": [
+        {
+          "key": "k1d55722c0614",
+          "command": "plutil -convert xml1 -o - multiline.plist | awk 'BEGIN{RS=\"</string>\"; ORS=\"\\n\"} { if (match($0, /<string>/)) { v=substr($0, RSTART+RLENGTH); gsub(/&#10;/, \"\\n\", v); gsub(/&#xA;/, \"\\n\", v); gsub(/&#xa;/, \"\\n\", v); if (index(v, \"\\n\")) print v } }'"
+        },
+        {
+          "key": "k441a145adb91",
+          "command": "plutil -convert xml1 -o - multiline.plist | awk 'BEGIN{RS=\"</string>\"} { p=index($0,\"<string>\"); if(p){ s=substr($0,p+8); if(index(s,\"\\n\")||index(s,\"\\r\")) print s } }'"
+        }
+      ]
+    },
+    {
+      "case": "cafe60bce7b38",
+      "request": "read teh minimum supported macOS version from Helper.app",
+      "candidates": [
+        {
+          "key": "k961cff98663f",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :LSMinimumSystemVersion\" Helper.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "c1044191afdbc",
+      "request": "Encode sample.bin as one base64 line.",
+      "candidates": [
+        {
+          "key": "k1eb51d22abfb",
+          "command": "base64 < sample.bin | tr -d '\\n'"
+        },
+        {
+          "key": "k38f3501868c6",
+          "command": "base64 -i sample.bin -b 0"
+        },
+        {
+          "key": "ka1c7a7a60cc0",
+          "command": "base64 -i sample.bin | tr -d '\\n'"
+        },
+        {
+          "key": "ke15995507709",
+          "command": "openssl base64 -A -in sample.bin"
+        }
+      ]
+    },
+    {
+      "case": "c472e47ccb344",
+      "request": "Sort processes by resident memory ascending and display the first twenty entries.",
+      "candidates": [
+        {
+          "key": "k083efe45c137",
+          "command": "ps -axo rss,pid,comm | tail -n +2 | sort -n | head -20"
+        },
+        {
+          "key": "k0fde8f80770d",
+          "command": "ps -axo rss=,pid=,comm= | sort -n | head -n 20"
+        },
+        {
+          "key": "k1dd33c81a7dc",
+          "command": "ps -axo pid=,rss=,comm= | sort -nk2 | head -20"
+        },
+        {
+          "key": "k31a69b457a0f",
+          "command": "ps axo rss=,pid=,comm= | sort -n | head -20"
+        },
+        {
+          "key": "kf02409c157f3",
+          "command": "ps -A -o rss=,pid=,comm= | sort -n | head -20"
+        }
+      ]
+    },
+    {
+      "case": "cc4b96c508b4a",
+      "request": "Please find symbolic links in examples/ whose stored targets begin with a slash.",
+      "candidates": [
+        {
+          "key": "k16afa5d8689f",
+          "command": "find examples/ -type l -lname '/*'"
+        },
+        {
+          "key": "k23a6976b6f71",
+          "command": "find examples/ -type l -lname '/*' -print"
+        }
+      ]
+    },
+    {
+      "case": "c87a12c9c441c",
+      "request": "Extract the hour from each timestamp in schedule.tsv.",
+      "candidates": [
+        {
+          "key": "k85abdd86b854",
+          "command": "awk -F'\\t' '{print substr($1,12,2)}' schedule.tsv"
+        },
+        {
+          "key": "kf40b6804e6a6",
+          "command": "awk -F'\\t' '{for(i=1;i<=NF;i++) if (match($i, /[0-9][0-9]?:[0-9][0-9]/)) { if (substr($i, RSTART+1, 1) ~ /[0-9]/) print substr($i, RSTART, 2); else print substr($i, RSTART, 1); break } }' schedule.tsv"
+        },
+        {
+          "key": "kfb0046c2f422",
+          "command": "awk '{ line=\" \" $0; while (match(line, /[^0-9:](0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/)) { print substr(line, RSTART+1, RLENGTH-4); line=substr(line, RSTART+RLENGTH) } }' schedule.tsv"
+        }
+      ]
+    },
+    {
+      "case": "c2525438c9608",
+      "request": "lookup txt records for _dmarc.example.org pls",
+      "candidates": [
+        {
+          "key": "k69496a43af3f",
+          "command": "dig +short TXT _dmarc.example.org"
+        }
+      ]
+    },
+    {
+      "case": "c1b5fc5b18778",
+      "request": "list executable dependencies of Tool.app/Contents/MacOS/Tool",
+      "candidates": [
+        {
+          "key": "k16ca1536f612",
+          "command": "otool -L Tool.app/Contents/MacOS/Tool"
+        }
+      ]
+    },
+    {
+      "case": "c5349adf039be",
+      "request": "Output Finder tag names from tags.plist without their stored newline and color-number suffix.",
+      "candidates": [
+        {
+          "key": "k16a94c55eb6b",
+          "command": "plutil -p tags.plist | awk -F'\"' '/\\\\n[0-9]+/ { name=$2; sub(/\\\\n[0-9]+$/, \"\", name); if (!seen[name]++) print name }'"
+        },
+        {
+          "key": "k24f9c011357e",
+          "command": "plutil -convert json -o - tags.plist | grep -oE '\"[^\"]*\\\\n[0-9]+\"' | sed -E 's/^\"(.*)\\\\n[0-9]+\"$/\\1/'"
+        },
+        {
+          "key": "k917c96ed4796",
+          "command": "plutil -convert xml1 -o - tags.plist | awk 'BEGIN{RS=\"</string>\"} {i=index($0,\"<string>\"); if(i){s=substr($0,i+8); sub(/\\n[0-9]+$/,\"\",s); print s}}'"
+        },
+        {
+          "key": "k98834c9c0c89",
+          "command": "plutil -convert json -o - tags.plist | grep -oE '\"[^\"]*\\\\n[0-9]+\"' | sed -E 's/\"(.*)\\\\n[0-9]+\"/\\1/'"
+        }
+      ]
+    },
+    {
+      "case": "c63ca3b90c48d",
+      "request": "Remove all extended attributes from the named test copy sample-copy.bin.",
+      "candidates": [
+        {
+          "key": "k38404ad34b61",
+          "command": "xattr -c sample-copy.bin"
+        }
+      ]
+    },
+    {
+      "case": "c174baeb7ae85",
+      "request": "list recent Xcode archives in ~/Library/Developer/Xcode/Archives",
+      "candidates": [
+        {
+          "key": "k232654739db3",
+          "command": "find ~/Library/Developer/Xcode/Archives -maxdepth 3 -type d -name '*.xcarchive' -exec stat -f '%Sm %N' -t '%Y-%m-%d %H:%M:%S' {} + | sort -r | head -n 10"
+        },
+        {
+          "key": "k29248ee6db45",
+          "command": "ls -lt ~/Library/Developer/Xcode/Archives"
+        },
+        {
+          "key": "k325250063d60",
+          "command": "find ~/Library/Developer/Xcode/Archives -maxdepth 3 -name '*.xcarchive' -exec ls -ldt {} + | head -n 10"
+        },
+        {
+          "key": "k5733f9a764b0",
+          "command": "find ~/Library/Developer/Xcode/Archives -type d -name '*.xcarchive' -prune -exec stat -f '%m %Sm %N' -t '%Y-%m-%dT%H:%M:%S' {} + | sort -rn | head -n 10 | cut -d' ' -f2-"
+        },
+        {
+          "key": "ka5772121efe8",
+          "command": "find ~/Library/Developer/Xcode/Archives -maxdepth 2 -name '*.xcarchive' -exec stat -f '%m %N' {} + 2>/dev/null | sort -nr | cut -d' ' -f2- | head"
+        }
+      ]
+    },
+    {
+      "case": "c2ef2a3e8d165",
+      "request": "i need a copy of the whole project folder called project-copy",
+      "candidates": [
+        {
+          "key": "kc381277e5b8c",
+          "command": "mkdir project-copy && cp -R project project-copy"
+        }
+      ]
+    },
+    {
+      "case": "c6c693ce7babc",
+      "request": "show only unstaged changes in project/",
+      "candidates": [
+        {
+          "key": "kb7243e719303",
+          "command": "git diff -- project/"
+        }
+      ]
+    },
+    {
+      "case": "c5642cfc765ed",
+      "request": "Can you show Python's platform tag on this Mac?",
+      "candidates": [
+        {
+          "key": "k75148b915b7c",
+          "command": "python3 -c 'import sysconfig; print(sysconfig.get_platform())'"
+        }
+      ]
+    },
+    {
+      "case": "cca1dd4e569e5",
+      "request": "Could you show the value type of key debug in project/Config.plist?",
+      "candidates": [
+        {
+          "key": "k1f3b0fbac8b8",
+          "command": "plutil -print-type debug project/Config.plist"
+        },
+        {
+          "key": "ka49bc4cb1ca1",
+          "command": "plutil -type debug project/Config.plist"
+        },
+        {
+          "key": "ka66965879347",
+          "command": "/usr/libexec/PlistBuddy -c \"Print Type :debug\" project/Config.plist"
+        },
+        {
+          "key": "kfa8f96598a3f",
+          "command": "defaults read-type \"$(pwd)/project/Config.plist\" debug 2>/dev/null || defaults read-type \"$(pwd)/project/Config\" debug"
+        },
+        {
+          "key": "kff35d6132c02",
+          "command": "/usr/libexec/PlistBuddy -c 'Print Type :debug' project/Config.plist"
+        }
+      ]
+    },
+    {
+      "case": "c0db49c868fcf",
+      "request": "Sort immediate subfolders of assets/ by allocated size.",
+      "candidates": [
+        {
+          "key": "k06b0466b042d",
+          "command": "find assets/ -mindepth 1 -maxdepth 1 -type d -exec du -s {} + | sort -nr"
+        },
+        {
+          "key": "k1e3f1f324c31",
+          "command": "find assets -mindepth 1 -maxdepth 1 -type d -exec du -sk {} + | sort -nr"
+        },
+        {
+          "key": "k62d152f5c99d",
+          "command": "find assets/ -mindepth 1 -maxdepth 1 -type d -exec du -hs {} + | sort -h"
+        },
+        {
+          "key": "keb8e812d6b1c",
+          "command": "find assets/ -mindepth 1 -maxdepth 1 -type d -exec du -sk {} + | sort -nr"
+        }
+      ]
+    },
+    {
+      "case": "c6efdfa86d3f6",
+      "request": "Measure project/ while following symbolic links.",
+      "candidates": [
+        {
+          "key": "k3d22b609ba1e",
+          "command": "du -sh -L project/"
+        }
+      ]
+    },
+    {
+      "case": "cc238ca6a22f6",
+      "request": "List unreadable regular files inside input/.",
+      "candidates": [
+        {
+          "key": "k136366d3ae85",
+          "command": "find input/ -type f ! -exec test -r {} \\; -print"
+        },
+        {
+          "key": "k41c1a2a117f9",
+          "command": "find input/ -type f '!' -exec test -r {} \\; -print"
+        }
+      ]
+    },
+    {
+      "case": "c1fece0111daa",
+      "request": "Show the configured maximum vnode count.",
+      "candidates": [
+        {
+          "key": "k43c9264d4261",
+          "command": "sysctl kern.maxvnodes"
+        }
+      ]
+    },
+    {
+      "case": "ca666c55a85d0",
+      "request": "Please show what commit tag v1.0 points to in project/.",
+      "candidates": [
+        {
+          "key": "kc13541baa7c0",
+          "command": "git -C project rev-parse 'v1.0^{commit}'"
+        }
+      ]
+    },
+    {
+      "case": "cbf26387f6ba7",
+      "request": "show how many files are in project.zip",
+      "candidates": [
+        {
+          "key": "k269788bbc5a9",
+          "command": "zipinfo -1 project.zip | grep -v '/$' | wc -l"
+        },
+        {
+          "key": "kb89d9f33bb58",
+          "command": "unzip -Z1 project.zip | grep -v '/$' | wc -l"
+        },
+        {
+          "key": "ked46f322d80f",
+          "command": "unzip -l project.zip | awk 'END {if (NR) print $2}'"
+        },
+        {
+          "key": "kfaa0f7b7cd49",
+          "command": "zipinfo -1 project.zip | wc -l"
+        }
+      ]
+    },
+    {
+      "case": "c530f70f1fbba",
+      "request": "I'd like the list of immediate folder names in ~/Library/Containers.",
+      "candidates": [
+        {
+          "key": "k11a3f24e4128",
+          "command": "find ~/Library/Containers -mindepth 1 -maxdepth 1 -type d -exec basename {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "c71214b537324",
+      "request": "Inspect DHCP option 15, the domain-name option, for interface en0.",
+      "candidates": [
+        {
+          "key": "kd4e2a8d9c57b",
+          "command": "ipconfig getoption en0 domain_name"
+        }
+      ]
+    },
+    {
+      "case": "c9b0f77a9689a",
+      "request": "Show the current terminal device path.",
+      "candidates": [
+        {
+          "key": "k8a8868845607",
+          "command": "tty"
+        }
+      ]
+    },
+    {
+      "case": "c8b0dbd8c395a",
+      "request": "Report the number of hard links and allocated blocks for data.bin.",
+      "candidates": [
+        {
+          "key": "ka900c26ab764",
+          "command": "stat -f \"%l %b\" data.bin"
+        }
+      ]
+    },
+    {
+      "case": "c798696044dc3",
+      "request": "Could you resize image.png to 800 pixels wide into resized.png, preserving the aspect ratio and original?",
+      "candidates": [
+        {
+          "key": "k5b2c875b4d51",
+          "command": "sips --resampleWidth 800 image.png --out resized.png"
+        }
+      ]
+    },
+    {
+      "case": "c70d6a4b55f71",
+      "request": "Show mount options for /Volumes/WORK.",
+      "candidates": [
+        {
+          "key": "k4d9ce0e7bb26",
+          "command": "diskutil info /Volumes/WORK | grep 'Mount Options'"
+        },
+        {
+          "key": "k966fd83bede9",
+          "command": "mount | sed -n 's|^.* on /Volumes/WORK (\\(.*\\))$|\\1|p'"
+        },
+        {
+          "key": "kf32ca68f5a15",
+          "command": "mount | awk '$3 == \"/Volumes/WORK\"'"
+        },
+        {
+          "key": "kf35b22f61108",
+          "command": "mount | grep -F ' on /Volumes/WORK '"
+        }
+      ]
+    },
+    {
+      "case": "c7823e132d263",
+      "request": "can u show the process ID of user launch agent com.example.MyApp",
+      "candidates": [
+        {
+          "key": "k31bd6fa73799",
+          "command": "launchctl list | awk '$3 == \"com.example.MyApp\" {print $1}'"
+        },
+        {
+          "key": "kbb2bf7309320",
+          "command": "launchctl list | awk '$3==\"com.example.MyApp\"{print $1}'"
+        },
+        {
+          "key": "kc3ba4a8e1190",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp | awk '/^pid = /{print $3}'"
+        },
+        {
+          "key": "kc81ed0887c13",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp 2>/dev/null | awk 'tolower($0) ~ /^[[:space:]]*pid[[:space:]]*=/ {match($0, /[0-9]+/); print substr($0, RSTART, RLENGTH); exit}'"
+        }
+      ]
+    },
+    {
+      "case": "cd987b88b7507",
+      "request": "Show power-management sleep and wake counters.",
+      "candidates": [
+        {
+          "key": "k171dcbed642f",
+          "command": "pmset -g log | awk '$4==\"Sleep\" {s++} $4==\"Wake\" || $4==\"DarkWake\" {w++} END {print \"Sleep:\", s+0; print \"Wake:\", w+0}'"
+        },
+        {
+          "key": "k72e650a9c01d",
+          "command": "pmset -g log | awk '$4 ~ /^(Sleep|Wake|DarkWake)$/ {print $4}' | sort | uniq -c"
+        },
+        {
+          "key": "k87dd1ce2bb85",
+          "command": "ioreg -n IOPMrootDomain -r | grep -E '\"(Sleep|Wake) Count\"'"
+        },
+        {
+          "key": "k95c06be46a83",
+          "command": "pmset -g pmstats"
+        },
+        {
+          "key": "kdfd1b4a190a0",
+          "command": "ioreg -n IOPMrootDomain -r -k PowerManagementCounters"
+        }
+      ]
+    },
+    {
+      "case": "cec75ae240c90",
+      "request": "inspect teh keychain access groups of LoginDemo.app",
+      "candidates": [
+        {
+          "key": "k1cd31b2b4c38",
+          "command": "codesign -d --entitlements :- LoginDemo.app | grep -A 10 keychain-access-groups"
+        },
+        {
+          "key": "k1ec693521b51",
+          "command": "codesign -d --entitlements :- LoginDemo.app 2>/dev/null | grep -A 5 keychain-access-groups"
+        },
+        {
+          "key": "k455538d79069",
+          "command": "codesign -d --entitlements :- LoginDemo.app | plutil -p - | grep -A 20 'keychain-access-groups'"
+        },
+        {
+          "key": "k53f3e0e43999",
+          "command": "codesign -d --entitlements - LoginDemo.app | grep -A 100 -- keychain-access-groups || codesign -d --entitlements - LoginDemo.app"
+        },
+        {
+          "key": "kc5ccb33b84fb",
+          "command": "codesign -d --entitlements :- LoginDemo.app 2>&1 | grep -A 50 keychain-access-groups"
+        }
+      ]
+    },
+    {
+      "case": "ce3386b6c1dc6",
+      "request": "Show the BSD nodump flag on this directory.\nExplicit inputs: {\"path\": \"backup-test/\"}",
+      "candidates": [
+        {
+          "key": "k69cf85fd8ebe",
+          "command": "ls -ldO backup-test/"
+        }
+      ]
+    },
+    {
+      "case": "cc5f00e43aaac",
+      "request": "pls show whether origin has a fetch URL and a push URL in project/",
+      "candidates": [
+        {
+          "key": "k6d23a258e227",
+          "command": "git -C project remote show origin"
+        },
+        {
+          "key": "k9bc177c54728",
+          "command": "git -C project/ remote show origin | grep -E 'Fetch URL|Push URL'"
+        }
+      ]
+    },
+    {
+      "case": "c356945e18957",
+      "request": "Extract the final diagnostic line from each test file under ~/Library/Logs/MyApp.",
+      "candidates": [
+        {
+          "key": "k4d9db89eb847",
+          "command": "find ~/Library/Logs/MyApp -type f -name '*test*' -exec awk 'tolower($0) ~ /diagnostic/ {line=$0} END {if (line != \"\") print FILENAME \": \" line}' {} \\;"
+        },
+        {
+          "key": "k8d037bbb5420",
+          "command": "find ~/Library/Logs/MyApp -type f -name '*test*' -exec awk 'BEGIN{OFS=\"\\t\"} {last=$0} END {if (NR) print FILENAME, last}' {} \\;"
+        }
+      ]
+    },
+    {
+      "case": "c84e45f695384",
+      "request": "Display filesystem usage in 512-byte blocks.",
+      "candidates": [
+        {
+          "key": "k785354c8f2aa",
+          "command": "df -b"
+        }
+      ]
+    },
+    {
+      "case": "c9aaf3e90d9bc",
+      "request": "Please show System Integrity Protection status without altering it.",
+      "candidates": [
+        {
+          "key": "kc923860fbdba",
+          "command": "csrutil status"
+        }
+      ]
+    },
+    {
+      "case": "c2734202600b3",
+      "request": "determine whether Safari.app is registered with Launch Services",
+      "candidates": [
+        {
+          "key": "k0194d1ce62b6",
+          "command": "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep -q '/System/Applications/Safari.app' && echo registered || echo not registered"
+        },
+        {
+          "key": "k245ff373ced6",
+          "command": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump | grep -Fq 'Safari.app' && echo registered || echo not registered"
+        },
+        {
+          "key": "k79972f95532f",
+          "command": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump | grep -qF '/Safari.app' && echo registered || echo not registered"
+        },
+        {
+          "key": "k80a6b9ec300b",
+          "command": "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump | grep -qF 'com.apple.Safari' && echo registered || echo not registered"
+        },
+        {
+          "key": "kc5de09241c3d",
+          "command": "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep -qi 'path:.*Safari\\.app' && echo registered || echo not registered"
+        }
+      ]
+    },
+    {
+      "case": "c71b301543667",
+      "request": "Remove all permissions for other users from private-notes.txt.",
+      "candidates": [
+        {
+          "key": "kc5141dae4f82",
+          "command": "chmod o-rwx private-notes.txt"
+        }
+      ]
+    },
+    {
+      "case": "ca095c835c186",
+      "request": "I want to know whether /Volumes/WORK is mounted read-only or read-write.",
+      "candidates": [
+        {
+          "key": "k0ae8e0e99b5c",
+          "command": "mount | awk 'index($0, \" /Volumes/WORK (\") > 0 {print (/read-only/ ? \"read-only\" : \"read-write\"); found=1} END {if (!found) print \"not mounted\"}'"
+        },
+        {
+          "key": "k3a072f593aa4",
+          "command": "mount | awk '$3 == \"/Volumes/WORK\" { print ($0 ~ /read-only/ ? \"read-only\" : \"read-write\"); found=1 } END { if (!found) print \"not mounted\" }'"
+        },
+        {
+          "key": "k91be916e7c39",
+          "command": "mount | awk '$3 == \"/Volumes/WORK\" {print ($0 ~ /read-only/) ? \"read-only\" : \"read-write\"; found=1} END {if (!found) print \"not mounted\"}'"
+        },
+        {
+          "key": "kf27ed37cbe2f",
+          "command": "mount | awk '$3 == \"/Volumes/WORK\" {if ($0 ~ /read-only/) print \"read-only\"; else print \"read-write\"; found=1} END {if (!found) print \"not mounted\"}'"
+        },
+        {
+          "key": "kfaeca69e5a1f",
+          "command": "mount | awk '$3 == \"/Volumes/WORK\" {print ($0 ~ /read-only|(^|[,( ])ro([,)]|[ ]|$)/) ? \"read-only\" : \"read-write\"; found=1} END {if (!found) print \"not mounted\"}'"
+        }
+      ]
+    },
+    {
+      "case": "cc6c41cf1e1f6",
+      "request": "Could you create project-backup.tar.gz from project/ while preserving relative paths?",
+      "candidates": [
+        {
+          "key": "k6c768a06cf23",
+          "command": "tar -czf project-backup.tar.gz project/"
+        }
+      ]
+    },
+    {
+      "case": "c89c563e36328",
+      "request": "I want all files in scans/ whose filenames begin with a digit.",
+      "candidates": [
+        {
+          "key": "k59d10497a32a",
+          "command": "find scans/ -maxdepth 1 -type f -name '[0-9]*'"
+        }
+      ]
+    },
+    {
+      "case": "c7faddc49ac5c",
+      "request": "Resolve example.org through the macOS system resolver and display only returned IPv4 addresses.",
+      "candidates": [
+        {
+          "key": "k2a63c0bf877e",
+          "command": "dscacheutil -q host -a name example.org | awk '/^ip_address: / {print $2}'"
+        },
+        {
+          "key": "k3e71620de0ed",
+          "command": "dscacheutil -q host -a name example.org | awk '/ip_address/ {for (i=2; i<=NF; i++) if ($i ~ /^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$/) print $i}'"
+        },
+        {
+          "key": "k51461cff8235",
+          "command": "dscacheutil -q host -a name example.org | awk '/^ip_address: [0-9.]+$/{print $2}'"
+        },
+        {
+          "key": "k7f87f770b275",
+          "command": "dscacheutil -q host -a name example.org | awk '/^ip_address:/ && $2 ~ /^[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+$/ {print $2}'"
+        },
+        {
+          "key": "kc9763112fcae",
+          "command": "dscacheutil -q host -a name example.org | awk '/^ip_address:[[:space:]]+[0-9.]+$/ {print $2}'"
+        }
+      ]
+    },
+    {
+      "case": "cf9dd66ee2e8c",
+      "request": "plz convert backup.dmg to compressed-backup.dmg while retaining the original image",
+      "candidates": [
+        {
+          "key": "k281030d7d6d5",
+          "command": "hdiutil convert backup.dmg -format UDZO -o compressed-backup.dmg"
+        }
+      ]
+    },
+    {
+      "case": "c26ab99af5fad",
+      "request": "Read the SOCKS proxy settings for Wi-Fi.",
+      "candidates": [
+        {
+          "key": "k7c9fd149bba1",
+          "command": "networksetup -getsocksfirewallproxy Wi-Fi"
+        }
+      ]
+    },
+    {
+      "case": "c3eb4b880424f",
+      "request": "Could you show how much space archives use in ~/Downloads?",
+      "candidates": [
+        {
+          "key": "k0a44419c2c4d",
+          "command": "find ~/Downloads -type f \\( -iname '*.zip' -o -iname '*.tar' -o -iname '*.gz' -o -iname '*.tgz' -o -iname '*.bz2' -o -iname '*.tbz2' -o -iname '*.xz' -o -iname '*.txz' -o -iname '*.7z' -o -iname '*.rar' \\) -exec du -sk {} + | awk '{s+=$1} END{print s \" KB\"}'"
+        },
+        {
+          "key": "k35fad3cd3310",
+          "command": "find ~/Downloads -type f \\( -iname '*.zip' -o -iname '*.tar' -o -iname '*.tgz' -o -iname '*.gz' -o -iname '*.bz2' -o -iname '*.xz' -o -iname '*.7z' -o -iname '*.rar' -o -iname '*.iso' \\) -exec stat -f %z {} + | awk '{s += $1} END {printf \"%.2f MB\\n\", s / 1048576}'"
+        },
+        {
+          "key": "k56415365325d",
+          "command": "find ~/Downloads -type f \\( -iname '*.zip' -o -iname '*.tar' -o -iname '*.tar.*' -o -iname '*.tgz' -o -iname '*.gz' -o -iname '*.bz2' -o -iname '*.xz' -o -iname '*.7z' -o -iname '*.rar' -o -iname '*.dmg' -o -iname '*.iso' \\) -exec du -k {} + 2>/dev/null | awk '{s+=$1} END {printf \"%.1fM\\n\", s/1024}'"
+        },
+        {
+          "key": "kc80f43cab51d",
+          "command": "find ~/Downloads -maxdepth 1 -type f \\( -iname '*.zip' -o -iname '*.tar' -o -iname '*.tgz' -o -iname '*.gz' -o -iname '*.bz2' -o -iname '*.xz' -o -iname '*.7z' -o -iname '*.rar' -o -iname '*.zst' -o -iname '*.lz4' -o -iname '*.lz' -o -iname '*.lzma' -o -iname '*.z' \\) -exec du -k {} + 2>/dev/null | awk '{s+=$1} END{printf \"%.1f MB\\n\", s/1024}'"
+        },
+        {
+          "key": "kdd79d6802ca2",
+          "command": "find ~/Downloads -type f \\( -iname '*.zip' -o -iname '*.tar' -o -iname '*.tgz' -o -iname '*.tbz2' -o -iname '*.txz' -o -iname '*.gz' -o -iname '*.bz2' -o -iname '*.xz' -o -iname '*.7z' -o -iname '*.rar' -o -iname '*.zst' -o -iname '*.lz4' -o -iname '*.lz' -o -iname '*.lzma' -o -iname '*.cpio' -o -iname '*.tar.gz' -o -iname '*.tar.bz2' -o -iname '*.tar.xz' -o -iname '*.tar.zst' \\) -exec du -ch {} + 2>/dev/null | awk 'END{print NR ? $0 : \"0.0K\"}'"
+        }
+      ]
+    },
+    {
+      "case": "c6d86e50e79ff",
+      "request": "show checksums of both data and resorce forks of legacy.dat on macos",
+      "candidates": [
+        {
+          "key": "k5806e6cdd980",
+          "command": "md5 legacy.dat legacy.dat/..namedfork/rsrc"
+        },
+        {
+          "key": "k67e2d8505474",
+          "command": "echo data:; md5 legacy.dat; echo resource:; md5 legacy.dat/..namedfork/rsrc"
+        }
+      ]
+    },
+    {
+      "case": "cf31769cd440d",
+      "request": "Please show the display name in MyApp.app/Contents/Info.plist.",
+      "candidates": [
+        {
+          "key": "k35ce06e925f9",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleDisplayName\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "ka4c024ade614",
+          "command": "/usr/libexec/PlistBuddy -c \"Print CFBundleDisplayName\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "kc43df85a8f0d",
+          "command": "/usr/libexec/PlistBuddy -c \"Print CFBundleDisplayName\" MyApp.app/Contents/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c \"Print CFBundleName\" MyApp.app/Contents/Info.plist"
+        },
+        {
+          "key": "kd5e63a60a28a",
+          "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleDisplayName\" MyApp.app/Contents/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c \"Print :CFBundleName\" MyApp.app/Contents/Info.plist"
+        }
+      ]
+    },
+    {
+      "case": "cb674b2bc3cd1",
+      "request": "Determine the ordinal day of year for 2028-12-31.",
+      "candidates": [
+        {
+          "key": "k56925d8d28cc",
+          "command": "date -j -f \"%Y-%m-%d\" \"2028-12-31\" \"+%j\""
+        }
+      ]
+    },
+    {
+      "case": "cb8b95477507d",
+      "request": "Show duplicate preference keys in the text file preferences-keys.txt.",
+      "candidates": [
+        {
+          "key": "k0fde3750e800",
+          "command": "sort preferences-keys.txt | uniq -d"
+        }
+      ]
+    },
+    {
+      "case": "cebbe869291e6",
+      "request": "Print the local resolver configuration file.",
+      "candidates": [
+        {
+          "key": "kf3b8d1520acb",
+          "command": "cat /etc/resolv.conf"
+        }
+      ]
+    },
+    {
+      "case": "c64567459ab38",
+      "request": "can u show the last exit status of user launch agent com.example.MyApp",
+      "candidates": [
+        {
+          "key": "k012fa103a485",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp | grep -i 'last exit'"
+        },
+        {
+          "key": "k2a7b0dfce760",
+          "command": "launchctl list com.example.MyApp | grep -i LastExitStatus"
+        },
+        {
+          "key": "kab3554d8c35b",
+          "command": "launchctl print gui/$(id -u)/com.example.MyApp | grep -Ei 'last exit code|LastExitStatus'"
+        },
+        {
+          "key": "ke9ea44e04f5c",
+          "command": "launchctl list com.example.MyApp"
+        },
+        {
+          "key": "kedd69882334e",
+          "command": "launchctl list com.example.MyApp | grep LastExitStatus"
+        }
+      ]
+    },
+    {
+      "case": "c67d8076e566a",
+      "request": "Please show whether Homebrew is installed on this Mac.",
+      "candidates": [
+        {
+          "key": "k54c73b787ca3",
+          "command": "command -v brew >/dev/null 2>&1 || test -x /opt/homebrew/bin/brew || test -x /usr/local/bin/brew && echo \"Homebrew is installed\" || echo \"Homebrew is not installed\""
+        },
+        {
+          "key": "k6a0c152342be",
+          "command": "command -v brew >/dev/null 2>&1 && echo installed || echo not installed"
+        }
+      ]
+    },
+    {
+      "case": "c7b2e9995baae",
+      "request": "Show report.pdf's file ID using BSD stat.",
+      "candidates": [
+        {
+          "key": "k40f5109af5a4",
+          "command": "stat -f \"%i\" report.pdf"
+        }
+      ]
+    },
+    {
+      "case": "c399961d10bbe",
+      "request": "how much space does project/.git/objects take up",
+      "candidates": [
+        {
+          "key": "kd4aeb1b23efa",
+          "command": "du -sh project/.git/objects"
+        }
+      ]
+    },
+    {
+      "case": "cc25d39824334",
+      "request": "I need the reverse DNS name for IPv6 address 2001:db8::1.",
+      "candidates": [
+        {
+          "key": "k4a34401498dc",
+          "command": "dig +short -x 2001:db8::1"
+        },
+        {
+          "key": "kcf5e5a6c06c7",
+          "command": "dig -x 2001:db8::1 +short"
+        },
+        {
+          "key": "kf0ecf5a97f2e",
+          "command": "echo 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa"
+        }
+      ]
+    },
+    {
+      "case": "c77e3f2839999",
+      "request": "Show Wi-Fi's automatic proxy configuration URL.",
+      "candidates": [
+        {
+          "key": "kc8719ab083dd",
+          "command": "networksetup -getautoproxyurl Wi-Fi"
+        }
+      ]
+    },
+    {
+      "case": "c3c845895ee51",
+      "request": "Could you apply the newest stash to project/ without dropping it?",
+      "candidates": [
+        {
+          "key": "kc424910d92ce",
+          "command": "git -C project/ stash apply 'stash@{0}'"
+        }
+      ]
+    },
+    {
+      "case": "c2f08af8fadb4",
+      "request": "List current terminal settings in a form that can be restored later, without applying changes.",
+      "candidates": [
+        {
+          "key": "k0624630ec1e8",
+          "command": "stty -g"
+        }
+      ]
+    },
+    {
+      "case": "ca2bb2eedd031",
+      "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+      "candidates": [
+        {
+          "key": "kd45ce090ee60",
+          "command": "mount | awk '$3 ~ /^\\/Volumes\\//'"
+        }
+      ]
+    },
+    {
+      "case": "c0e987d865657",
+      "request": "Find Finder aliases directly inside ~/Desktop/shortcuts.",
+      "candidates": [
+        {
+          "key": "ka2c7b6f10be4",
+          "command": "find ~/Desktop/shortcuts -maxdepth 1 -type f -name '*.alias'"
+        }
+      ]
+    },
+    {
+      "case": "cc56640ec22b2",
+      "request": "read powernap setting for charger and battery no changes",
+      "candidates": [
+        {
+          "key": "k7fb252ac81c5",
+          "command": "pmset -g custom"
+        },
+        {
+          "key": "kb7009867c1e3",
+          "command": "pmset -g custom | grep -E 'AC Power|Battery Power|powernap'"
+        },
+        {
+          "key": "kf0713d8c08b2",
+          "command": "pmset -g custom | grep -E '^(AC|Battery) Power:|powernap'"
+        }
+      ]
+    },
+    {
+      "case": "ce811a6751fdd",
+      "request": "Please show whether backup.tar contains symbolic links.",
+      "candidates": [
+        {
+          "key": "k1818fdc05baf",
+          "command": "tar -tvf backup.tar | grep '^l' || echo 'no symbolic links'"
+        },
+        {
+          "key": "k1f60cc7ca3ac",
+          "command": "tar -tvf backup.tar | grep '^l' && echo 'Contains symbolic links' || echo 'No symbolic links'"
+        },
+        {
+          "key": "ka470ade1d57b",
+          "command": "tar -tvf backup.tar | grep -E '^l' || echo 'no symbolic links'"
+        },
+        {
+          "key": "kad6a6c59680c",
+          "command": "tar tvf backup.tar | grep -q '^l' && echo yes || echo no"
+        },
+        {
+          "key": "ke18e6f5db54f",
+          "command": "tar tvf backup.tar | awk '$1 ~ /^l/ {print; found=1} END {if (!found) print \"no symbolic links\"}'"
+        }
+      ]
+    },
+    {
+      "case": "cfd2c2ebce462",
+      "request": "Create a relative symlink from current to releases/latest/.",
+      "candidates": [
+        {
+          "key": "k2067cfe72768",
+          "command": "ln -s releases/latest current"
+        }
+      ]
+    }
+  ]
+}

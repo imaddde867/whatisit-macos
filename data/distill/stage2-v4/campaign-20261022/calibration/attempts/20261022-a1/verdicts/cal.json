@@ -1,0 +1,270 @@
+{
+  "batch": "cal",
+  "judge": "cal-20261022-a1",
+  "cases": [
+    {
+      "case": "ccd4f8f564865",
+      "verdicts": [
+        {
+          "key": "kda8b5fbc3b33",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil info plist exposes DeviceIdentifier; listSnapshots accepts that snapshot device."
+        }
+      ]
+    },
+    {
+      "case": "c6e73e3996a34",
+      "verdicts": [
+        {
+          "key": "k4cbe1a3bea57",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "man pmset lists only '-g cap'; 'capabilities' is not a valid getter."
+        }
+      ]
+    },
+    {
+      "case": "c3f9895bd728c",
+      "verdicts": [
+        {
+          "key": "k49bba38d1eb1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "say speaks the requested phrase on stock macOS."
+        }
+      ]
+    },
+    {
+      "case": "cac7de99dcf6d",
+      "verdicts": [
+        {
+          "key": "k29ed1872427f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log show accepts --last 2m and process == kernel for kernel messages."
+        }
+      ]
+    },
+    {
+      "case": "cd48fb5118599",
+      "verdicts": [
+        {
+          "key": "kfbcd3ee46682",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find restricts to regular files here; du -k | sort -nr | head -5 gives top five."
+        }
+      ]
+    },
+    {
+      "case": "c9db7b7f8480f",
+      "verdicts": [
+        {
+          "key": "k781dd0c08345",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "defaults export domain - writes XML to stdout; plutil re-encodes stdin to stdout."
+        }
+      ]
+    },
+    {
+      "case": "cb7fed91db28f",
+      "verdicts": [
+        {
+          "key": "k33bb4ae5190f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil DEVICES allows a volume name like BACKUP for eject."
+        }
+      ]
+    },
+    {
+      "case": "c35f4c1e1888c",
+      "verdicts": [
+        {
+          "key": "k126cfdc5397a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "$OSTYPE is darwinNN.x, so exact == darwin fails and the command prints no."
+        }
+      ]
+    },
+    {
+      "case": "c51092950dd0a",
+      "verdicts": [
+        {
+          "key": "ka976020e8398",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "ls -S lists directories too and skips dotfiles, so not five biggest files."
+        }
+      ]
+    },
+    {
+      "case": "cd4c0b24c7859",
+      "verdicts": [
+        {
+          "key": "k9122a1e6d99c",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "grep without -E treats | literally, searching the literal string ERROR|WARN."
+        }
+      ]
+    },
+    {
+      "case": "cbb0724e17579",
+      "verdicts": [
+        {
+          "key": "k17e7c76e57a4",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "top -n 0 shows zero process rows, so awk never finds Finder."
+        }
+      ]
+    },
+    {
+      "case": "ce3a95866917b",
+      "verdicts": [
+        {
+          "key": "k4966323839bf",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy Print reads CFBundleShortVersionString from the supplied Info.plist."
+        }
+      ]
+    },
+    {
+      "case": "cf9aa747bf4a0",
+      "verdicts": [
+        {
+          "key": "k4a1cb7598bf1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps outputs PID and args; the bracket pattern avoids matching grep itself."
+        }
+      ]
+    },
+    {
+      "case": "cc95a76496b98",
+      "verdicts": [
+        {
+          "key": "ke26bad254cb8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "System Events returns input, output, and alert volume settings."
+        }
+      ]
+    },
+    {
+      "case": "cbf9908728ab5",
+      "verdicts": [
+        {
+          "key": "kbc5ff43ad949",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find under $HOME locates regular files named budget.xlsx and suppresses errors."
+        }
+      ]
+    },
+    {
+      "case": "c8e82f981c85f",
+      "verdicts": [
+        {
+          "key": "k212c26186b78",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep -x matches the exact process name Google Chrome and prints yes or no."
+        }
+      ]
+    },
+    {
+      "case": "cd26b0dfdf486",
+      "verdicts": [
+        {
+          "key": "k53a8b67315c2",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "vm.swappiness is Linux-only; macOS exposes the page size as hw.pagesize."
+        }
+      ]
+    },
+    {
+      "case": "cc3f8dbe1590b",
+      "verdicts": [
+        {
+          "key": "k2a83b5c26be1",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "pmset -g batt has no 'Battery State' line, so grep produces no output."
+        }
+      ]
+    },
+    {
+      "case": "cd9fcf57d2444",
+      "verdicts": [
+        {
+          "key": "k3603c271bfdb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "printf appends *.log to .gitignore, creating the file if absent."
+        }
+      ]
+    },
+    {
+      "case": "c907c2efb0999",
+      "verdicts": [
+        {
+          "key": "kd400a670012f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "afinfo prints lowercase 'estimated duration:', so Duration: never matches and duration is omitted."
+        }
+      ]
+    },
+    {
+      "case": "c2c7204345540",
+      "verdicts": [
+        {
+          "key": "k85b22edfd328",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "-ctime is status-change time, not modification; find also recurses beyond this folder."
+        }
+      ]
+    },
+    {
+      "case": "c6030655aedec",
+      "verdicts": [
+        {
+          "key": "k43b5302d7324",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "awk's own argv contains the Finder path, so it prints its own process line."
+        }
+      ]
+    },
+    {
+      "case": "c7e307f47084a",
+      "verdicts": [
+        {
+          "key": "k901bf1999eca",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "which -a lists every python3 in PATH, not the single path zsh would use."
+        }
+      ]
+    },
+    {
+      "case": "c36aac79e2f1e",
+      "verdicts": [
+        {
+          "key": "k4519b74a356a",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "hw.machine prints arm64 architecture, not the chip model (machdep.cpu.brand_string)."
+        }
+      ]
+    }
+  ]
+}

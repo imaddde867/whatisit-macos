@@ -1,0 +1,225 @@
+{
+ "batch": "a0",
+ "items": [
+  {
+   "case": "c2957b0cf3d0a",
+   "request": "List the filenames inside backup.tar without extracting.",
+   "candidates": [
+    {
+     "key": "k4a9ff8e5a9fc",
+     "command": "tar -xf backup.tar"
+    }
+   ]
+  },
+  {
+   "case": "c9c953054a128",
+   "request": "what is my public ip",
+   "candidates": [
+    {
+     "key": "kf56fe10d60c6",
+     "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'"
+    }
+   ]
+  },
+  {
+   "case": "c8a2515293355",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "candidates": [
+    {
+     "key": "kca67332e5755",
+     "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\""
+    }
+   ]
+  },
+  {
+   "case": "c46d0e7f0f8f6",
+   "request": "show notes.txt in all caps",
+   "candidates": [
+    {
+     "key": "k7c3d1b311389",
+     "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)"
+    }
+   ]
+  },
+  {
+   "case": "ccff0e216afba",
+   "request": "hey how do I see what power source I'm on and the battery percent",
+   "candidates": [
+    {
+     "key": "k18774d219f74",
+     "command": "system_profiler SPPowerDataType"
+    }
+   ]
+  },
+  {
+   "case": "c6bb2b2879e96",
+   "request": "Print the Ethernet hardware address for interface en0.",
+   "candidates": [
+    {
+     "key": "k522b83ecefa6",
+     "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'"
+    }
+   ]
+  },
+  {
+   "case": "c05ed17642836",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "candidates": [
+    {
+     "key": "kd6737123f72c",
+     "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /[0-9]+/ {print $1}'"
+    }
+   ]
+  },
+  {
+   "case": "cddae0d175a8a",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "candidates": [
+    {
+     "key": "k563cd93bd066",
+     "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'"
+    }
+   ]
+  },
+  {
+   "case": "cb685621c673c",
+   "request": "kill whatever is running on port 8080",
+   "candidates": [
+    {
+     "key": "kb93b44911987",
+     "command": "lsof -i :8080 | awk '{print $2}' | xargs kill"
+    }
+   ]
+  },
+  {
+   "case": "c58e09c63cd6c",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "candidates": [
+    {
+     "key": "kb0da4f2ecd86",
+     "command": "find -type f -name '*.DS_Store' -exec rm {} +"
+    }
+   ]
+  },
+  {
+   "case": "c76ff7f8a9b52",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "candidates": [
+    {
+     "key": "kc37dceebedd6",
+     "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'"
+    }
+   ]
+  },
+  {
+   "case": "c81367aa394d9",
+   "request": "list my running python processes",
+   "candidates": [
+    {
+     "key": "ke9e444ef962a",
+     "command": "lsof -p $(pgrep -d ' ' python)"
+    }
+   ]
+  },
+  {
+   "case": "ccf684a59dfcb",
+   "request": "list my running python processes",
+   "candidates": [
+    {
+     "key": "k5f3833788d3d",
+     "command": "ps -axo pid= | grep python"
+    }
+   ]
+  },
+  {
+   "case": "ccbd82ea8a19b",
+   "request": "Print the Ethernet hardware address for interface en0.",
+   "candidates": [
+    {
+     "key": "k83bbdc3e983b",
+     "command": "ip link show en0"
+    }
+   ]
+  },
+  {
+   "case": "c3271df57fa7b",
+   "request": "Show the macOS filesystem flags on report.pdf.",
+   "candidates": [
+    {
+     "key": "k614e0714815e",
+     "command": "stat -f \"%Sf\" report.pdf"
+    }
+   ]
+  },
+  {
+   "case": "c65eacc797bfe",
+   "request": "Inspect MyApp.app's signing identity and signature details.",
+   "candidates": [
+    {
+     "key": "k97caade55a48",
+     "command": "codesign -d MyApp.app"
+    }
+   ]
+  },
+  {
+   "case": "cf4358fa34ca8",
+   "request": "top 5 processes by memory",
+   "candidates": [
+    {
+     "key": "kf6fc0b7de1de",
+     "command": "ps -eo pmem,comm | sort -rn | head -n 5"
+    }
+   ]
+  },
+  {
+   "case": "c8ae82fbdcbca",
+   "request": "show me each unique line in names.txt and how many times it appears",
+   "candidates": [
+    {
+     "key": "k0a2417b4bd2b",
+     "command": "sort -u names.txt | uniq -c"
+    }
+   ]
+  },
+  {
+   "case": "c7ffd27b4e508",
+   "request": "replace every foo with bar in notes.txt, save the change in the file",
+   "candidates": [
+    {
+     "key": "kba98538c24e4",
+     "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt"
+    }
+   ]
+  },
+  {
+   "case": "c6d1d32f53b48",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "candidates": [
+    {
+     "key": "k0f3caca930fe",
+     "command": "vm_stat | awk 'NR==1{print $8}'"
+    }
+   ]
+  },
+  {
+   "case": "cac19c915ba8e",
+   "request": "what is my public ip",
+   "candidates": [
+    {
+     "key": "kd9a009036472",
+     "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'"
+    }
+   ]
+  },
+  {
+   "case": "c60be24a87a13",
+   "request": "take a screenshot and save it as shot.png",
+   "candidates": [
+    {
+     "key": "k4c45ada2ce6b",
+     "command": "screencapture -P -T 0 shot.png"
+    }
+   ]
+  }
+ ]
+}

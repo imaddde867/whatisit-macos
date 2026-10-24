@@ -1,0 +1,14 @@
+# Blind control audit
+
+Read only:
+- `data/distill/stage2-v4/LABEL.md`
+- `data/distill/stage2-v4/campaign-20261022/audit/controls-20261023/batch.json`
+
+Do not read any other file, especially not `key.json`, `controls.jsonl`, `controls-audit.json`, `pool/`, `verdicts/` or `docs/eval-audit/`.
+
+Judge every candidate against the rubric. Static analysis only: man pages and tool existence checks are allowed. NEVER execute a candidate command or any part of it; never write, delete, move, kill, change settings, or touch the network.
+
+Write exactly one verdict file to `data/distill/stage2-v4/campaign-20261022/audit/controls-20261023/verdicts/audit.json`:
+{"batch": "audit", "judge": "ctl-audit-20261023-a1", "cases": [{"case": "<case>", "verdicts": [{"key": "<key>", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short>"}]}]}
+
+Cover every key exactly once. Category is a rubric category for incorrect, null otherwise. Validate with python3 json.load and count. Reply only with batch, key count, verdict counts.

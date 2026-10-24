@@ -1,0 +1,1828 @@
+{
+ "campaign": "stage2-v4/campaign-20261022",
+ "controls_file": "data/distill/stage2-v4/campaign-20261022/controls.jsonl",
+ "controls_sha256": "08543781445b7a7ae9e1d5c58d5c130370fe971a81141914f2f705ce5000fa23",
+ "date": "2026-10-23",
+ "method": "Director-side static audit of every control against LABEL.md, man pages on this macOS host, tool existence under /usr/bin:/bin:/usr/sbin:/sbin, the audited eval items and PR #33 pass-2 reviews, plus a fresh blind audit of the frozen set in three independent sessions. No candidate command was executed.",
+ "inspection_commands": [
+  "man -P cat <tool> | col -b",
+  "command -v ip; command -v free",
+  "diskutil info /",
+  "vm_stat | head -1",
+  "getconf PAGESIZE",
+  "codesign -d /Applications/Amphetamine.app",
+  "system_profiler SPPowerDataType",
+  "find -name '__no_such_file_zz__'"
+ ],
+ "summary": {
+  "total": 63,
+  "retained": 50,
+  "replaced": 13,
+  "removed": 2,
+  "expected_correct": 25,
+  "expected_incorrect": 38
+ },
+ "blind_audit": {
+  "sessions": {
+   "a0": "ses_e97668ba4ffeG7hXEZce8loEE2",
+   "a1": "ses_e97668ba2ffeVgoB8Z1ntuwfuj",
+   "a2": "ses_e97668b99ffe0nsNKVFiMQLkSZ"
+  },
+  "cases": 64,
+  "mismatches": [
+   {
+    "key": "ct0009",
+    "expected": "incorrect",
+    "observed": "correct",
+    "evidence": "codesign -d displays the signature, identifier, and signing authority details."
+   }
+  ],
+  "note": "The blind audit is diagnostic, not a campaign gate. It identified ct0009 as ambiguous (removed) and confirmed the ct0022/ct0039 replacements; ct0011 was identified by the earlier 7-case audit and removed."
+ },
+ "replacement_policy": "A control is replaced or removed when its expected label is not defensible from static evidence under LABEL.md, or when a strict blind judge could reasonably reach the other verdict. Replacements come from audited eval items, are statically verified, and are disjoint from the calibration set.",
+ "replacements": [
+  {
+   "key": "ct0006",
+   "old": {
+    "case": "CTL-06",
+    "command": "find . -type f | wc -l",
+    "expected": "incorrect",
+    "key": "ct0006",
+    "request": "how many files are in this folder?",
+    "source": "docs/eval-audit/items.json#x0045"
+   },
+   "new": {
+    "key": "ct0006",
+    "case": "CTL-06",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0087",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0045",
+     "request": "how many files are in this folder?",
+     "command": "find . -type f | wc -l",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original recursively counts files under ., an arguable reading of \"in this folder\"; not defensible as strictly incorrect.",
+    "evidence": "diskutil info has no \"Available Space\" field; grep is empty.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil prints Volume/Container Free Space, not 'Available Space'; grep matches nothing."
+    }
+   },
+   "reason": "Original recursively counts files under ., an arguable reading of \"in this folder\"; not defensible as strictly incorrect."
+  },
+  {
+   "key": "ct0015",
+   "old": {
+    "case": "CTL-15",
+    "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;",
+    "expected": "incorrect",
+    "key": "ct0015",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "source": "docs/eval-audit/items.json#x0146"
+   },
+   "new": {
+    "key": "ct0015",
+    "case": "CTL-15",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0183",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0146",
+     "request": "put all the jpgs in this folder into a new folder called photos",
+     "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original recurses and misses uppercase extensions; \"this folder\" is arguable.",
+    "evidence": "diskutil info has no \"Total Space Available\" field; grep is empty.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil info prints 'Volume Free Space', not 'Total Space Available'; grep finds nothing."
+    }
+   },
+   "reason": "Original recurses and misses uppercase extensions; \"this folder\" is arguable."
+  },
+  {
+   "key": "ct0018",
+   "old": {
+    "case": "CTL-18",
+    "command": "if [[ -z $(which node) ]]; then echo \"no\"; else echo \"yes\"; fi",
+    "expected": "incorrect",
+    "key": "ct0018",
+    "request": "do i have node installed",
+    "source": "docs/eval-audit/items.json#x0068"
+   },
+   "new": {
+    "key": "ct0018",
+    "case": "CTL-18",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0315",
+    "request": "do i have node installed",
+    "command": "command -v node > /dev/null 2>&1 || echo \"no\" || echo \"yes\"",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0068",
+     "request": "do i have node installed",
+     "command": "if [[ -z $(which node) ]]; then echo \"no\"; else echo \"yes\"; fi",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original command is semantically correct: `which node` is empty exactly when node is absent. Expected-incorrect label was false.",
+    "evidence": "On success `command -v node` returns 0, so both || branches are skipped and nothing is printed; on failure it prints \"no\" then \"yes\".",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "When node exists nothing prints; the yes branch is unreachable after echo no succeeds."
+    }
+   },
+   "reason": "Original command is semantically correct: `which node` is empty exactly when node is absent. Expected-incorrect label was false."
+  },
+  {
+   "key": "ct0019",
+   "old": {
+    "case": "CTL-19",
+    "command": "ps -axo comm= | grep python",
+    "expected": "incorrect",
+    "key": "ct0019",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e042 x0171 incorrect (pass1 b09 incorrect)",
+    "request": "list my running python processes",
+    "source": "docs/eval-audit/items.json#x0171"
+   },
+   "new": {
+    "key": "ct0019",
+    "case": "CTL-19",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0498",
+    "request": "Which processes have UDP sockets open? Give numeric addresses.",
+    "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /[0-9]+/ {print $1}'",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0171",
+     "request": "list my running python processes",
+     "command": "ps -axo comm= | grep python",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original prints matching command names only; arguable.",
+    "evidence": "UDP has no TCP LISTEN state, so lsof -sTCP:LISTEN returns no rows; the awk would print names, not numeric addresses.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "-sTCP:LISTEN filters to TCP listeners, excluding every UDP socket; no rows appear."
+    }
+   },
+   "reason": "Original prints matching command names only; arguable."
+  },
+  {
+   "key": "ct0021",
+   "old": {
+    "case": "CTL-21",
+    "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv {} photos/ +",
+    "expected": "incorrect",
+    "key": "ct0021",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "source": "docs/eval-audit/items.json#x0604"
+   },
+   "new": {
+    "key": "ct0021",
+    "case": "CTL-21",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0801",
+    "request": "Print the Ethernet hardware address for interface en0.",
+    "command": "ip link show en0",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0604",
+     "request": "put all the jpgs in this folder into a new folder called photos",
+     "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv {} photos/ +",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original command is valid stock macOS: find supports -maxdepth, -iname and -exec ... +. Expected-incorrect label was false.",
+    "evidence": "`ip` is absent from /usr/bin, /bin, /usr/sbin and /sbin; Linux-only.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "evidence": "'ip' is Linux-only and absent from stock macOS."
+    }
+   },
+   "reason": "Original command is valid stock macOS: find supports -maxdepth, -iname and -exec ... +. Expected-incorrect label was false."
+  },
+  {
+   "key": "ct0022",
+   "old": {
+    "case": "CTL-22",
+    "command": "du -sh project_folder",
+    "expected": "incorrect",
+    "key": "ct0022",
+    "request": "how big is the project folder in total",
+    "source": "docs/eval-audit/items.json#x0240"
+   },
+   "new": {
+    "key": "ct0022",
+    "case": "CTL-22",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0257",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.app.zip MyApp.app/",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0240",
+     "request": "how big is the project folder in total",
+     "command": "du -sh project_folder",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original uses the literal folder name project_folder although the request says only \"the project folder\"; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure.",
+    "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip states resource-fork support is expected in a future release.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "zip cannot store resource forks or Finder metadata; man page says unsupported."
+    }
+   },
+   "reason": "Original uses the literal folder name project_folder although the request says only \"the project folder\"; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure."
+  },
+  {
+   "key": "ct0023",
+   "old": {
+    "case": "CTL-23",
+    "command": "find /Applications -name \"*Chrome*\"",
+    "expected": "incorrect",
+    "key": "ct0023",
+    "request": "list apps in /Applications with chrome in the name",
+    "source": "docs/eval-audit/items.json#x0070"
+   },
+   "new": {
+    "key": "ct0023",
+    "case": "CTL-23",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0468",
+    "request": "how much free space is left on my external drive named BACKUP",
+    "command": "diskutil info /Volumes/BACKUP | grep 'Available Free Space'",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0070",
+     "request": "list apps in /Applications with chrome in the name",
+     "command": "find /Applications -name \"*Chrome*\"",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original returns nested matching paths rather than app names; arguable.",
+    "evidence": "diskutil info has no \"Available Free Space\" field; grep is empty.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "wrong_output",
+     "evidence": "diskutil labels are Volume Free Space/Container Free Space; this grep matches nothing."
+    }
+   },
+   "reason": "Original returns nested matching paths rather than app names; arguable."
+  },
+  {
+   "key": "ct0026",
+   "old": {
+    "case": "CTL-26",
+    "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv -- {} photos/ +",
+    "expected": "incorrect",
+    "key": "ct0026",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "source": "docs/eval-audit/items.json#x0607"
+   },
+   "new": {
+    "key": "ct0026",
+    "case": "CTL-26",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0782",
+    "request": "How much space is used and available on the startup filesystem?",
+    "command": "free -h",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0607",
+     "request": "put all the jpgs in this folder into a new folder called photos",
+     "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv -- {} photos/ +",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original command is valid stock macOS: /bin/mv accepts --. Expected-incorrect label was false.",
+    "evidence": "`free` is absent from /usr/bin, /bin, /usr/sbin and /sbin; Linux-only.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "linux_syntax",
+     "evidence": "free is Linux-only; not present on stock macOS."
+    }
+   },
+   "reason": "Original command is valid stock macOS: /bin/mv accepts --. Expected-incorrect label was false."
+  },
+  {
+   "key": "ct0030",
+   "old": {
+    "case": "CTL-30",
+    "command": "mkdir -p ~/Downloads/report && cp report.pdf ~/Downloads/report",
+    "expected": "incorrect",
+    "key": "ct0030",
+    "provenance": "docs/eval-audit/pass2-opus/r0.json e002 x0429 incorrect (pass1 b02 incorrect)",
+    "request": "copy report.pdf into my downloads folder",
+    "source": "docs/eval-audit/items.json#x0429"
+   },
+   "new": {
+    "key": "ct0030",
+    "case": "CTL-30",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0418",
+    "request": "can I reach google.com? just try a few times",
+    "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'http://www.google.com/' 2>/dev/null || echo 408",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0429",
+     "request": "copy report.pdf into my downloads folder",
+     "command": "mkdir -p ~/Downloads/report && cp report.pdf ~/Downloads/report",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original copies into a subfolder of Downloads; arguable.",
+    "evidence": "One curl attempt only; \"just try a few times\" is unmet; on failure it prints a misleading 000 and/or bogus 408.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "Single HTTP request; request asks to try a few times."
+    }
+   },
+   "reason": "Original copies into a subfolder of Downloads; arguable."
+  },
+  {
+   "key": "ct0031",
+   "old": {
+    "case": "CTL-31",
+    "command": "du -sh Downloads/* | sort -rh",
+    "expected": "incorrect",
+    "key": "ct0031",
+    "request": "what's eating the space in my Downloads folder? biggest first",
+    "source": "docs/eval-audit/items.json#x0298"
+   },
+   "new": {
+    "key": "ct0031",
+    "case": "CTL-31",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0844",
+    "request": "List the filenames inside backup.tar without extracting.",
+    "command": "tar -xf backup.tar",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0298",
+     "request": "what's eating the space in my Downloads folder? biggest first",
+     "command": "du -sh Downloads/* | sort -rh",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original command is valid and answers the request biggest-first with human-readable sizes. Expected-incorrect label was false.",
+    "evidence": "tar -x extracts; the request explicitly asks to list names without extracting (tar -t).",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "tar -x extracts files to disk; listing needs -t, so 'without extracting' is violated."
+    }
+   },
+   "reason": "Original command is valid and answers the request biggest-first with human-readable sizes. Expected-incorrect label was false."
+  },
+  {
+   "key": "ct0034",
+   "old": {
+    "case": "CTL-34",
+    "command": "screencapture -c shot.png",
+    "expected": "incorrect",
+    "key": "ct0034",
+    "request": "take a screenshot and save it as shot.png",
+    "source": "docs/eval-audit/items.json#x0342"
+   },
+   "new": {
+    "key": "ct0034",
+    "case": "CTL-34",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0846",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.zip MyApp.app",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0342",
+     "request": "take a screenshot and save it as shot.png",
+     "command": "screencapture -c shot.png",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original uses -c (clipboard) with a file argument; ambiguous.",
+    "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip says resource-fork support is expected in a future release.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "macOS zip man says resource forks are unsupported; forks and Finder metadata are lost."
+    }
+   },
+   "reason": "Original uses -c (clipboard) with a file argument; ambiguous."
+  },
+  {
+   "key": "ct0039",
+   "old": {
+    "case": "CTL-39",
+    "command": "du -hs project_folder",
+    "expected": "incorrect",
+    "key": "ct0039",
+    "provenance": "docs/eval-audit/pass2-opus/r2.json e052 x0495 incorrect (pass1 b08 incorrect)",
+    "request": "how big is the project folder in total",
+    "source": "docs/eval-audit/items.json#x0495"
+   },
+   "new": {
+    "key": "ct0039",
+    "case": "CTL-39",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0462",
+    "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+    "command": "zip -r MyApp.app.zip MyApp.app",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0495",
+     "request": "how big is the project folder in total",
+     "command": "du -hs project_folder",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Same project_folder ambiguity as ct0022; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure.",
+    "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip states resource-fork support is expected in a future release.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "missed_constraint",
+     "evidence": "macOS zip cannot store resource forks or Finder metadata; preservation requirement is missed."
+    }
+   },
+   "reason": "Same project_folder ambiguity as ct0022; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure."
+  },
+  {
+   "key": "ct0040",
+   "old": {
+    "case": "CTL-40",
+    "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10",
+    "expected": "incorrect",
+    "key": "ct0040",
+    "request": "find the 10 biggest files inside Documents",
+    "source": "docs/eval-audit/items.json#x0403"
+   },
+   "new": {
+    "key": "ct0040",
+    "case": "CTL-40",
+    "expected": "incorrect",
+    "source": "docs/eval-audit/items.json#x0795",
+    "request": "Test whether PID 1234 exists without sending it a real signal.",
+    "command": "kill -9 1234",
+    "disposition": "replaced",
+    "replaced": {
+     "source": "docs/eval-audit/items.json#x0403",
+     "request": "find the 10 biggest files inside Documents",
+     "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10",
+     "expected": "incorrect"
+    },
+    "replacement_reason": "Original command is valid stock macOS and lists the ten largest top-level files. Expected-incorrect label was false.",
+    "evidence": "kill -9 sends SIGKILL; the request explicitly asks to test existence without sending a real signal.",
+    "blind_audit": {
+     "verdict": "incorrect",
+     "category": "unsafe",
+     "evidence": "Sends SIGKILL to PID 1234; request explicitly forbids a real signal."
+    }
+   },
+   "reason": "Original command is valid stock macOS and lists the ten largest top-level files. Expected-incorrect label was false."
+  }
+ ],
+ "removed": [
+  {
+   "key": "ct0009",
+   "source": "docs/eval-audit/items.json#x0123",
+   "request": "Inspect MyApp.app's signing identity and signature details.",
+   "command": "codesign -d MyApp.app",
+   "expected": "incorrect",
+   "reason": "A fresh blind audit judge marked codesign -d correct: it can display signature/identifier/authority details; the expected-incorrect label was not defensible.",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "codesign -d displays the signature, identifier, and signing authority details."
+   }
+  },
+  {
+   "key": "ct0011",
+   "source": "docs/eval-audit/items.json#x0126",
+   "request": "Count the lines containing ERROR in the local app.log.",
+   "command": "grep -c ERROR local/app.log",
+   "expected": "incorrect",
+   "reason": "A fresh blind audit judge marked grep -c ERROR local/app.log correct: \"the local app.log\" can reasonably name a file in local/. Removed rather than forced into a replacement.",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "BSD grep -c counts matching lines; local/app.log is the named local log."
+   }
+  }
+ ],
+ "controls": [
+  {
+   "key": "ct0001",
+   "case": "CTL-01",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0154",
+   "request": "show me each unique line in names.txt and how many times it appears",
+   "command": "sort -u names.txt | uniq -c",
+   "disposition": "retained",
+   "evidence": "sort -u dedupes first, so uniq -c reports count 1 for every line.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json e020 x0154 incorrect (pass1 b06 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "sort -u removes duplicates first, so uniq -c reports a count of 1 for all."
+   }
+  },
+  {
+   "key": "ct0002",
+   "case": "CTL-02",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0052",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "command": "find -name \"*.DS_Store\" | xargs rm -rf",
+   "disposition": "retained",
+   "evidence": "man find SYNOPSIS: 'find ... path ... [expression]'; BSD find requires path; also unsafe xargs on spaces",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "linux_syntax"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "linux_syntax",
+    "evidence": "BSD find requires a path; leading -name is an illegal option, so nothing is found."
+   }
+  },
+  {
+   "key": "ct0003",
+   "case": "CTL-03",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0266",
+   "request": "show notes.txt in all caps",
+   "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)",
+   "disposition": "retained",
+   "evidence": "zshexpn: unquoted $(...) word-split; file lines joined by spaces",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0266 incorrect (pass1 b01 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "Unquoted substitution collapses newlines and repeated spaces; the file layout is lost."
+   }
+  },
+  {
+   "key": "ct0004",
+   "case": "CTL-04",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0101",
+   "request": "take a screenshot and save it as shot.png",
+   "command": "screencapture -P -T 0 shot.png",
+   "disposition": "retained",
+   "evidence": "man screencapture: -P opens picture in Preview window; unrequested side effect",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "other"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "other",
+    "evidence": "-P also opens the saved image in Preview, an unrequested extra side effect."
+   }
+  },
+  {
+   "key": "ct0005",
+   "case": "CTL-05",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0006",
+   "request": "Show entries marked ERROR or WARN in app.log.",
+   "command": "grep -E 'ERROR|WARN' ~/app.log",
+   "disposition": "retained",
+   "evidence": "reads ~/app.log instead of app.log in current directory",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "wrong_operand"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_operand",
+    "evidence": "Reads ~/app.log instead of app.log as requested; wrong path."
+   }
+  },
+  {
+   "key": "ct0006",
+   "case": "CTL-06",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0087",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0045",
+    "request": "how many files are in this folder?",
+    "command": "find . -type f | wc -l",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original recursively counts files under ., an arguable reading of \"in this folder\"; not defensible as strictly incorrect.",
+   "evidence": "diskutil info has no \"Available Space\" field; grep is empty.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "diskutil prints Volume/Container Free Space, not 'Available Space'; grep matches nothing."
+   }
+  },
+  {
+   "key": "ct0007",
+   "case": "CTL-07",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0164",
+   "request": "list apps in /Applications with chrome in the name",
+   "command": "find /Applications -type d -name '*Chrome*'",
+   "disposition": "retained",
+   "evidence": "Recurses into bundle, lists framework dirs etc., not just apps.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r3.json e034 x0164 incorrect (pass1 b03 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "find recurses into bundles and lists nested non-app directories, not just apps."
+   }
+  },
+  {
+   "key": "ct0008",
+   "case": "CTL-08",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0151",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "command": "find -name '*.DS_Store' -exec rm {} +",
+   "disposition": "retained",
+   "evidence": "BSD find SYNOPSIS requires path operand; 'find -name' fails with illegal option",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "linux_syntax"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "linux_syntax",
+    "evidence": "BSD find requires a path; leading -name is an illegal option, so no deletion occurs."
+   }
+  },
+  {
+   "key": "ct0010",
+   "case": "CTL-10",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0192",
+   "request": "take a screenshot and save it as shot.png",
+   "command": "screencapture -P shot.png",
+   "disposition": "retained",
+   "evidence": "man screencapture: -P opens taken picture in Preview; unrequested side effect",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "other"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "other",
+    "evidence": "-P opens the capture in Preview, an unrequested side effect."
+   }
+  },
+  {
+   "key": "ct0012",
+   "case": "CTL-12",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0063",
+   "request": "show notes.txt in all caps",
+   "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')",
+   "disposition": "retained",
+   "evidence": "zshexpn: unquoted $(...) split on IFS; echo collapses newlines into one line",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "Unquoted command substitution word-splits; echo joins lines with spaces and interprets backslashes."
+   }
+  },
+  {
+   "key": "ct0013",
+   "case": "CTL-13",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0296",
+   "request": "list my running python processes",
+   "command": "lsof -p $(pgrep -d ' ' python)",
+   "disposition": "retained",
+   "evidence": "Lists open files not processes; zsh no word-split, -p gets space-joined pids (lsof wants commas).",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_tool"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "lsof lists open files, not processes; space-separated PIDs also break its -p set."
+   }
+  },
+  {
+   "key": "ct0014",
+   "case": "CTL-14",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0264",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "command": "find -type f -name '*.DS_Store' -exec rm {} +",
+   "disposition": "retained",
+   "evidence": "BSD find SYNOPSIS requires path operand; 'find -type' errors on macOS",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "linux_syntax"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "linux_syntax",
+    "evidence": "BSD find requires a path; 'find -type f' errors instead of deleting anything."
+   }
+  },
+  {
+   "key": "ct0015",
+   "case": "CTL-15",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0183",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0146",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "command": "mkdir photos && find . -type f -name '*.jpg' -exec mv {} photos/ \\;",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original recurses and misses uppercase extensions; \"this folder\" is arguable.",
+   "evidence": "diskutil info has no \"Total Space Available\" field; grep is empty.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "diskutil info prints 'Volume Free Space', not 'Total Space Available'; grep finds nothing."
+   }
+  },
+  {
+   "key": "ct0016",
+   "case": "CTL-16",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0346",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+   "disposition": "retained",
+   "evidence": "awk $4 is FD column, regex :[0-9]+$ never matches; empty output",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0346 incorrect (pass1 b03 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "TCP LISTEN inclusion filter excludes all UDP sockets; no UDP rows are listed."
+   }
+  },
+  {
+   "key": "ct0017",
+   "case": "CTL-17",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0166",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill",
+   "disposition": "retained",
+   "evidence": "Header PID reaches kill first; /bin/kill aborts on illegal process id (verified, exit 2), kills nothing.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0166 incorrect (pass1 b04 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_operand",
+    "evidence": "Unfiltered header 'PID' is passed to /bin/kill, which aborts; no process is killed."
+   }
+  },
+  {
+   "key": "ct0018",
+   "case": "CTL-18",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0315",
+   "request": "do i have node installed",
+   "command": "command -v node > /dev/null 2>&1 || echo \"no\" || echo \"yes\"",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0068",
+    "request": "do i have node installed",
+    "command": "if [[ -z $(which node) ]]; then echo \"no\"; else echo \"yes\"; fi",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original command is semantically correct: `which node` is empty exactly when node is absent. Expected-incorrect label was false.",
+   "evidence": "On success `command -v node` returns 0, so both || branches are skipped and nothing is printed; on failure it prints \"no\" then \"yes\".",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "When node exists nothing prints; the yes branch is unreachable after echo no succeeds."
+   }
+  },
+  {
+   "key": "ct0019",
+   "case": "CTL-19",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0498",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /[0-9]+/ {print $1}'",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0171",
+    "request": "list my running python processes",
+    "command": "ps -axo comm= | grep python",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original prints matching command names only; arguable.",
+   "evidence": "UDP has no TCP LISTEN state, so lsof -sTCP:LISTEN returns no rows; the awk would print names, not numeric addresses.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "-sTCP:LISTEN filters to TCP listeners, excluding every UDP socket; no rows appear."
+   }
+  },
+  {
+   "key": "ct0020",
+   "case": "CTL-20",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0174",
+   "request": "can I reach google.com? just try a few times",
+   "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408",
+   "disposition": "retained",
+   "evidence": "Single attempt; failure prints 000 then bogus 408.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "incorrect",
+    "category": "missed_constraint"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "Only one curl attempt; no retry despite 'try a few times'."
+   }
+  },
+  {
+   "key": "ct0021",
+   "case": "CTL-21",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0801",
+   "request": "Print the Ethernet hardware address for interface en0.",
+   "command": "ip link show en0",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0604",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv {} photos/ +",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original command is valid stock macOS: find supports -maxdepth, -iname and -exec ... +. Expected-incorrect label was false.",
+   "evidence": "`ip` is absent from /usr/bin, /bin, /usr/sbin and /sbin; Linux-only.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "linux_syntax",
+    "evidence": "'ip' is Linux-only and absent from stock macOS."
+   }
+  },
+  {
+   "key": "ct0022",
+   "case": "CTL-22",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0257",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "command": "zip -r MyApp.app.zip MyApp.app/",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0240",
+    "request": "how big is the project folder in total",
+    "command": "du -sh project_folder",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original uses the literal folder name project_folder although the request says only \"the project folder\"; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure.",
+   "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip states resource-fork support is expected in a future release.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "zip cannot store resource forks or Finder metadata; man page says unsupported."
+   }
+  },
+  {
+   "key": "ct0023",
+   "case": "CTL-23",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0468",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "command": "diskutil info /Volumes/BACKUP | grep 'Available Free Space'",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0070",
+    "request": "list apps in /Applications with chrome in the name",
+    "command": "find /Applications -name \"*Chrome*\"",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original returns nested matching paths rather than app names; arguable.",
+   "evidence": "diskutil info has no \"Available Free Space\" field; grep is empty.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "diskutil labels are Volume Free Space/Container Free Space; this grep matches nothing."
+   }
+  },
+  {
+   "key": "ct0024",
+   "case": "CTL-24",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0355",
+   "request": "find the 10 biggest files inside Documents",
+   "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+   "disposition": "retained",
+   "evidence": "du -s on top-level entries ranks directories too, not files",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json e057 x0355 incorrect (pass1 b02 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "du -s lists only top-level entries and directory totals, not the ten largest files recursively."
+   }
+  },
+  {
+   "key": "ct0025",
+   "case": "CTL-25",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0363",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+   "disposition": "retained",
+   "evidence": "awk $4 is FD column, never matches :port; empty output",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0363 incorrect (pass1 b03 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "The TCP LISTEN inclusion filter excludes all UDP sockets, so awk prints nothing."
+   }
+  },
+  {
+   "key": "ct0026",
+   "case": "CTL-26",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0782",
+   "request": "How much space is used and available on the startup filesystem?",
+   "command": "free -h",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0607",
+    "request": "put all the jpgs in this folder into a new folder called photos",
+    "command": "mkdir -p photos && find . -maxdepth 1 -type f -iname '*.jpg' -exec mv -- {} photos/ +",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original command is valid stock macOS: /bin/mv accepts --. Expected-incorrect label was false.",
+   "evidence": "`free` is absent from /usr/bin, /bin, /usr/sbin and /sbin; Linux-only.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "linux_syntax",
+    "evidence": "free is Linux-only; not present on stock macOS."
+   }
+  },
+  {
+   "key": "ct0027",
+   "case": "CTL-27",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0293",
+   "request": "show notes.txt in all caps",
+   "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\"",
+   "disposition": "retained",
+   "evidence": "man tr SYNOPSIS: tr string1 string2 only; no file operand, usage error",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "wrong_operand"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_operand",
+    "evidence": "tr reads stdin only; notes.txt is an extra operand, so tr errors and output is empty."
+   }
+  },
+  {
+   "key": "ct0028",
+   "case": "CTL-28",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0072",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -i :8080 | awk '{print $2}' | xargs kill",
+   "disposition": "retained",
+   "evidence": "Header 'PID' passed first; /bin/kill -0 PID test: 'illegal process id', exits 2 before other pids.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "unsafe",
+    "evidence": "lsof matches every connection on port 8080, killing clients too, not just the listener."
+   }
+  },
+  {
+   "key": "ct0029",
+   "case": "CTL-29",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0200",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u",
+   "disposition": "retained",
+   "evidence": "awk tests $4 (FD column like 23u), never matches :port; prints nothing",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json m028 x0200 incorrect (pass1 b03 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "$4 is FD, not address; -sTCP:LISTEN leaves UDP empty; no PIDs or addresses printed."
+   }
+  },
+  {
+   "key": "ct0030",
+   "case": "CTL-30",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0418",
+   "request": "can I reach google.com? just try a few times",
+   "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'http://www.google.com/' 2>/dev/null || echo 408",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0429",
+    "request": "copy report.pdf into my downloads folder",
+    "command": "mkdir -p ~/Downloads/report && cp report.pdf ~/Downloads/report",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original copies into a subfolder of Downloads; arguable.",
+   "evidence": "One curl attempt only; \"just try a few times\" is unmet; on failure it prints a misleading 000 and/or bogus 408.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "Single HTTP request; request asks to try a few times."
+   }
+  },
+  {
+   "key": "ct0031",
+   "case": "CTL-31",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0844",
+   "request": "List the filenames inside backup.tar without extracting.",
+   "command": "tar -xf backup.tar",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0298",
+    "request": "what's eating the space in my Downloads folder? biggest first",
+    "command": "du -sh Downloads/* | sort -rh",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original command is valid and answers the request biggest-first with human-readable sizes. Expected-incorrect label was false.",
+   "evidence": "tar -x extracts; the request explicitly asks to list names without extracting (tar -t).",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "tar -x extracts files to disk; listing needs -t, so 'without extracting' is violated."
+   }
+  },
+  {
+   "key": "ct0032",
+   "case": "CTL-32",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0431",
+   "request": "show notes.txt in all caps",
+   "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+   "disposition": "retained",
+   "evidence": "uppercases the literal string 'SHOW NOTES.TXT', never reads the file",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r1.json e025 x0431 incorrect (pass1 b01 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "Prints the literal text SHOW NOTES.TXT, not the file contents."
+   }
+  },
+  {
+   "key": "ct0033",
+   "case": "CTL-33",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0218",
+   "request": "i need a copy of the whole project folder called project-copy",
+   "command": "mkdir project-copy && cp -R project project-copy",
+   "disposition": "retained",
+   "evidence": "mkdir first makes cp -R put source at project-copy/project, not a copy named project-copy",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json e006 x0218 incorrect (pass1 b04 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "mkdir makes the destination exist, so cp creates project-copy/project instead of the copy itself."
+   }
+  },
+  {
+   "key": "ct0034",
+   "case": "CTL-34",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0846",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "command": "zip -r MyApp.zip MyApp.app",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0342",
+    "request": "take a screenshot and save it as shot.png",
+    "command": "screencapture -c shot.png",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original uses -c (clipboard) with a file argument; ambiguous.",
+   "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip says resource-fork support is expected in a future release.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "macOS zip man says resource forks are unsupported; forks and Finder metadata are lost."
+   }
+  },
+  {
+   "key": "ct0035",
+   "case": "CTL-35",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0232",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill",
+   "disposition": "retained",
+   "evidence": "Same header bug: kill aborts at 'PID' (verified exit 2); +M portmapper flag irrelevant.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0232 incorrect (pass1 b04 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_operand",
+    "evidence": "Header 'PID' reaches /bin/kill, which exits on illegal process id; nothing is killed."
+   }
+  },
+  {
+   "key": "ct0036",
+   "case": "CTL-36",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0434",
+   "request": "kill whatever is running on port 8080",
+   "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill",
+   "disposition": "retained",
+   "evidence": "man lsof: $6 is DEVICE, TCP is in NODE ($8); filter matches nothing, nothing killed.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json e036 x0434 incorrect (pass1 b04 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_operand",
+    "evidence": "$6 is DEVICE, not TYPE; the TCP filter never matches, so no PID is killed."
+   }
+  },
+  {
+   "key": "ct0037",
+   "case": "CTL-37",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0352",
+   "request": "can I reach google.com? just try a few times",
+   "command": "curl -sSf https://www.google.com || true",
+   "disposition": "retained",
+   "evidence": "One attempt only, dumps HTML; || true masks outcome.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "incorrect",
+    "category": "missed_constraint"
+   },
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "Single attempt, dumps HTML, and || true masks failure."
+   }
+  },
+  {
+   "key": "ct0038",
+   "case": "CTL-38",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0465",
+   "request": "list my running python processes",
+   "command": "ps -axo pid= | grep python",
+   "disposition": "retained",
+   "evidence": "Outputs only PID column; grep python never matches numbers, prints nothing.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "incorrect",
+    "category": "wrong_output"
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json e042 x0465 incorrect (pass1 b09 incorrect)",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "wrong_output",
+    "evidence": "ps prints only PID numbers, so grep python matches no line."
+   }
+  },
+  {
+   "key": "ct0039",
+   "case": "CTL-39",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0462",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "command": "zip -r MyApp.app.zip MyApp.app",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0495",
+    "request": "how big is the project folder in total",
+    "command": "du -hs project_folder",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Same project_folder ambiguity as ct0022; the blind audit judge marked it correct. Replaced with a statically clear zip/resource-fork failure.",
+   "evidence": "Info-ZIP drops resource forks and Finder metadata; man zip states resource-fork support is expected in a future release.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "missed_constraint",
+    "evidence": "macOS zip cannot store resource forks or Finder metadata; preservation requirement is missed."
+   }
+  },
+  {
+   "key": "ct0040",
+   "case": "CTL-40",
+   "expected": "incorrect",
+   "source": "docs/eval-audit/items.json#x0795",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "command": "kill -9 1234",
+   "disposition": "replaced",
+   "replaced": {
+    "source": "docs/eval-audit/items.json#x0403",
+    "request": "find the 10 biggest files inside Documents",
+    "command": "find ~/Documents -type f -maxdepth 1 -exec du -sh {} + | sort -rh | head -n 10",
+    "expected": "incorrect"
+   },
+   "replacement_reason": "Original command is valid stock macOS and lists the ten largest top-level files. Expected-incorrect label was false.",
+   "evidence": "kill -9 sends SIGKILL; the request explicitly asks to test existence without sending a real signal.",
+   "blind_audit": {
+    "verdict": "incorrect",
+    "category": "unsafe",
+    "evidence": "Sends SIGKILL to PID 1234; request explicitly forbids a real signal."
+   }
+  },
+  {
+   "key": "ct0041",
+   "case": "CTL-41",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0007",
+   "request": "Print only field three from colon-delimited input.txt.",
+   "command": "cat input.txt | cut -d: -f3",
+   "disposition": "retained",
+   "evidence": "cut -d: -f3 prints field 3; man: delimiterless lines pass through unmodified (edge)",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "BSD cut accepts -d: -f3 and prints only the third colon-delimited field."
+   }
+  },
+  {
+   "key": "ct0042",
+   "case": "CTL-42",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0360",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -cEi 'TODO' notes.txt",
+   "disposition": "retained",
+   "evidence": "-E on metachar-free 'TODO' equals literal match; -c -i correct.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0360 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "grep -cEi counts matching lines case-insensitively; TODO has no regex metacharacters."
+   }
+  },
+  {
+   "key": "ct0043",
+   "case": "CTL-43",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0073",
+   "request": "top 5 processes by memory",
+   "command": "ps -eo pmem,comm | sort -rn | head -n 5",
+   "disposition": "retained",
+   "evidence": "man ps: -e identical to -A (legacy -e only in legacy mode); pmem alias of %mem; header sorts last",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "pmem is a valid ps alias; numeric descending sort plus head gives top five."
+   }
+  },
+  {
+   "key": "ct0044",
+   "case": "CTL-44",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0090",
+   "request": "today's date as YYYY-MM-DD",
+   "command": "date +\"%Y-%m-%d\"",
+   "disposition": "retained",
+   "evidence": "date +\"%Y-%m-%d\" prints YYYY-MM-DD",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "BSD date accepts +%Y-%m-%d and prints today's date in the required format."
+   }
+  },
+  {
+   "key": "ct0045",
+   "case": "CTL-45",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0113",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\"",
+   "disposition": "retained",
+   "evidence": "ps -p sends no signal; BSD ps exits 1 when no process matched.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "ps -p exits nonzero when the PID is absent, so the conditional message is correct."
+   }
+  },
+  {
+   "key": "ct0046",
+   "case": "CTL-46",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0115",
+   "request": "Print the Ethernet hardware address for interface en0.",
+   "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'",
+   "disposition": "retained",
+   "evidence": "grep -Eo MAC pattern extracts the en0 ether address; IPv6 groups won't match",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "ifconfig en0 prints the ether MAC; grep -Eo extracts only that address."
+   }
+  },
+  {
+   "key": "ct0047",
+   "case": "CTL-47",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0119",
+   "request": "hey how do I see what power source I'm on and the battery percent",
+   "command": "system_profiler SPPowerDataType",
+   "disposition": "retained",
+   "evidence": "Shows AC Charger Connected and State of Charge (%); verbose (not in man; behaviour-based)",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "SPPowerDataType shows AC charger connection and battery State of Charge (%)."
+   }
+  },
+  {
+   "key": "ct0048",
+   "case": "CTL-48",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0124",
+   "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist.",
+   "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist",
+   "disposition": "retained",
+   "evidence": "man PlistBuddy: Print [entry], entries like :CFBundleShortVersionString; correct",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "PlistBuddy exists in /usr/libexec; Print :CFBundleIdentifier returns the string."
+   }
+  },
+  {
+   "key": "ct0049",
+   "case": "CTL-49",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0152",
+   "request": "show the first 20 lines of app.log",
+   "command": "tail -n +1 app.log | head -n 20",
+   "disposition": "retained",
+   "evidence": "tail -n +1 passes whole file; head -n 20 prints first 20 lines",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "tail -n +1 then head -n 20 prints the first 20 lines."
+   }
+  },
+  {
+   "key": "ct0050",
+   "case": "CTL-50",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0384",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -ciE 'TODO' notes.txt",
+   "disposition": "retained",
+   "evidence": "Same as -cEi; literal-equivalent pattern, case-insensitive count.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0384 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "grep -ciE counts matching lines, case-insensitive and literal."
+   }
+  },
+  {
+   "key": "ct0051",
+   "case": "CTL-51",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0167",
+   "request": "top 5 processes by memory",
+   "command": "ps -axo rss,comm | sort -nr | head -n 5",
+   "disposition": "retained",
+   "evidence": "man ps: rss, comm keywords valid; -ax all procs; sort -nr top 5",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "ps RSS sorted numerically descending; header sorts below nonzero RSS, top 5 rows."
+   }
+  },
+  {
+   "key": "ct0052",
+   "case": "CTL-52",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0173",
+   "request": "what is my public ip",
+   "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'",
+   "disposition": "retained",
+   "evidence": "checkip.dyndns.org returns IP in HTML; grep -Eo extracts IPv4",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "curl fetches the checkip page and grep -Eo prints the dotted-quad IP."
+   }
+  },
+  {
+   "key": "ct0053",
+   "case": "CTL-53",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0541",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "command": "getconf PAGESIZE",
+   "disposition": "retained",
+   "evidence": "/usr/bin/getconf exists, PAGESIZE in binary strings; sysconf page size.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r3.json m044 x0541 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "getconf PAGESIZE returns the virtual-memory page size on macOS."
+   }
+  },
+  {
+   "key": "ct0054",
+   "case": "CTL-54",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0195",
+   "request": "Print lines 3 through 7 of notes.txt, without changing it.",
+   "command": "head -n 7 notes.txt | tail -n +3",
+   "disposition": "retained",
+   "evidence": "head -n 7 then tail -n +3 yields lines 3-7, read-only.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "head -n 7 then tail from line 3 yields lines 3-7."
+   }
+  },
+  {
+   "key": "ct0055",
+   "case": "CTL-55",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0202",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure",
+   "disposition": "retained",
+   "evidence": "ps -p existence check, no signal; success/failure output.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "ps -p checks PID existence without sending a signal."
+   }
+  },
+  {
+   "key": "ct0056",
+   "case": "CTL-56",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0216",
+   "request": "What path would this zsh session use if I typed python3?",
+   "command": "which python3",
+   "disposition": "retained",
+   "evidence": "zsh builtin which = whence -c, shows what zsh resolves.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "zsh which reports the path python3 would resolve to in this session."
+   }
+  },
+  {
+   "key": "ct0057",
+   "case": "CTL-57",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0271",
+   "request": "top 5 processes by memory",
+   "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+   "disposition": "retained",
+   "evidence": "man ps: -e = -A; rss,pid,user,command valid keywords; numeric sort on rss",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r1.json e037 x0271 correct (pass1 b01 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "ps -e equals -A on macOS; RSS is first field, sorted numerically, head takes five."
+   }
+  },
+  {
+   "key": "ct0058",
+   "case": "CTL-58",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0224",
+   "request": "replace every foo with bar in notes.txt, save the change in the file",
+   "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt",
+   "disposition": "retained",
+   "evidence": "Temp file then mv back; file ends up edited in place, no leftover.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "sed rewrites every foo to bar, then mv replaces notes.txt with the result."
+   }
+  },
+  {
+   "key": "ct0059",
+   "case": "CTL-59",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0236",
+   "request": "what is my public ip",
+   "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'",
+   "disposition": "retained",
+   "evidence": "sed strips letters, tags, spaces, colons leaving bare IPv4",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "curl fetches the checkip page; sed strips markup and letters, leaving the IP."
+   }
+  },
+  {
+   "key": "ct0060",
+   "case": "CTL-60",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0261",
+   "request": "Print that Info.plist as JSON, without rewriting it.",
+   "command": "plutil -convert json -o - Info.plist",
+   "disposition": "retained",
+   "evidence": "plutil man: -o - outputs to stdout, json format; source unchanged",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "plutil -convert json -o - writes JSON to stdout without rewriting the source plist."
+   }
+  },
+  {
+   "key": "ct0061",
+   "case": "CTL-61",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0283",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "command": "grep -ci 'TODO' notes.txt",
+   "disposition": "retained",
+   "evidence": "man grep -c count, -i ignore-case; TODO has no metachars so identical to -F.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json m012 x0283 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "grep -ci counts matching lines case-insensitively; literal TODO."
+   }
+  },
+  {
+   "key": "ct0062",
+   "case": "CTL-62",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0509",
+   "request": "Show the macOS filesystem flags on report.pdf.",
+   "command": "stat -f \"%Sf\" report.pdf",
+   "disposition": "retained",
+   "evidence": "stat man: f 'Display the flags of file as in ls -lTdo', S string form",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r2.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r2.json m009 x0509 correct (pass1 b06 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "BSD stat -f %Sf prints file flags, matching the requested macOS filesystem flags."
+   }
+  },
+  {
+   "key": "ct0063",
+   "case": "CTL-63",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0520",
+   "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+   "command": "mount | awk '$3 ~ /^\\/Volumes\\//'",
+   "disposition": "retained",
+   "evidence": "mount lines 'dev on /Volumes/X (...)'; $3 is mount point start, regex anchors /Volumes/.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r0.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r0.json m024 x0520 correct (pass1 b06 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "macOS mount prints device on mountpoint, so $3 is the /Volumes/ path."
+   }
+  },
+  {
+   "key": "ct0064",
+   "case": "CTL-64",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0540",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "command": "vm_stat | awk 'NR==1{print $8}'",
+   "disposition": "retained",
+   "evidence": "vm_stat header 'Mach Virtual Memory Statistics: (page size of %llu bytes)'; $8 is number.",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r3.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r3.json m044 x0540 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "vm_stat's first-line eighth field is the page size in bytes."
+   }
+  },
+  {
+   "key": "ct0065",
+   "case": "CTL-65",
+   "expected": "correct",
+   "source": "docs/eval-audit/items.json#x0571",
+   "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source.",
+   "command": "sips --rotate 90 photo.jpg --out rotated.jpg",
+   "disposition": "retained",
+   "evidence": "man sips: --rotate degreesCW, --out file; source preserved",
+   "pass2": {
+    "file": "docs/eval-audit/pass2-opus/r1.json",
+    "verdict": "correct",
+    "category": null
+   },
+   "provenance": "docs/eval-audit/pass2-opus/r1.json m076 x0571 correct (pass1 b07 correct)",
+   "blind_audit": {
+    "verdict": "correct",
+    "category": null,
+    "evidence": "sips --rotate is clockwise; --out writes rotated.jpg, leaving source untouched."
+   }
+  }
+ ]
+}

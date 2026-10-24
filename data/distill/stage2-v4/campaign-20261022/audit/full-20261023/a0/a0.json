@@ -1,0 +1,138 @@
+{
+  "batch": "a0",
+  "judge": "ctl-audit-20261023-a0",
+  "cases": [
+    {
+      "case": "c2957b0cf3d0a",
+      "verdicts": [
+        {"key": "k4a9ff8e5a9fc", "verdict": "incorrect", "category": "missed_constraint", "evidence": "tar -x extracts files to disk; listing needs -t, so 'without extracting' is violated."}
+      ]
+    },
+    {
+      "case": "c9c953054a128",
+      "verdicts": [
+        {"key": "kf56fe10d60c6", "verdict": "correct", "category": null, "evidence": "curl fetches the checkip page and grep -Eo prints the dotted-quad IP."}
+      ]
+    },
+    {
+      "case": "c8a2515293355",
+      "verdicts": [
+        {"key": "kca67332e5755", "verdict": "correct", "category": null, "evidence": "ps -p exits nonzero when the PID is absent, so the conditional message is correct."}
+      ]
+    },
+    {
+      "case": "c46d0e7f0f8f6",
+      "verdicts": [
+        {"key": "k7c3d1b311389", "verdict": "incorrect", "category": "wrong_output", "evidence": "Unquoted substitution collapses newlines and repeated spaces; the file layout is lost."}
+      ]
+    },
+    {
+      "case": "ccff0e216afba",
+      "verdicts": [
+        {"key": "k18774d219f74", "verdict": "correct", "category": null, "evidence": "SPPowerDataType shows AC charger connection and battery State of Charge (%)."}
+      ]
+    },
+    {
+      "case": "c6bb2b2879e96",
+      "verdicts": [
+        {"key": "k522b83ecefa6", "verdict": "correct", "category": null, "evidence": "ifconfig en0 prints the ether MAC; grep -Eo extracts only that address."}
+      ]
+    },
+    {
+      "case": "c05ed17642836",
+      "verdicts": [
+        {"key": "kd6737123f72c", "verdict": "incorrect", "category": "wrong_output", "evidence": "-sTCP:LISTEN filters to TCP listeners, excluding every UDP socket; no rows appear."}
+      ]
+    },
+    {
+      "case": "cddae0d175a8a",
+      "verdicts": [
+        {"key": "k563cd93bd066", "verdict": "incorrect", "category": "wrong_output", "evidence": "The TCP LISTEN inclusion filter excludes all UDP sockets, so awk prints nothing."}
+      ]
+    },
+    {
+      "case": "cb685621c673c",
+      "verdicts": [
+        {"key": "kb93b44911987", "verdict": "incorrect", "category": "unsafe", "evidence": "lsof matches every connection on port 8080, killing clients too, not just the listener."}
+      ]
+    },
+    {
+      "case": "c58e09c63cd6c",
+      "verdicts": [
+        {"key": "kb0da4f2ecd86", "verdict": "incorrect", "category": "linux_syntax", "evidence": "BSD find requires a path; 'find -type f' errors instead of deleting anything."}
+      ]
+    },
+    {
+      "case": "c76ff7f8a9b52",
+      "verdicts": [
+        {"key": "kc37dceebedd6", "verdict": "incorrect", "category": "wrong_output", "evidence": "TCP LISTEN inclusion filter excludes all UDP sockets; no UDP rows are listed."}
+      ]
+    },
+    {
+      "case": "c81367aa394d9",
+      "verdicts": [
+        {"key": "ke9e444ef962a", "verdict": "incorrect", "category": "wrong_output", "evidence": "lsof lists open files, not processes; space-separated PIDs also break its -p set."}
+      ]
+    },
+    {
+      "case": "ccf684a59dfcb",
+      "verdicts": [
+        {"key": "k5f3833788d3d", "verdict": "incorrect", "category": "wrong_output", "evidence": "ps prints only PID numbers, so grep python matches no line."}
+      ]
+    },
+    {
+      "case": "ccbd82ea8a19b",
+      "verdicts": [
+        {"key": "k83bbdc3e983b", "verdict": "incorrect", "category": "linux_syntax", "evidence": "'ip' is Linux-only and absent from stock macOS."}
+      ]
+    },
+    {
+      "case": "c3271df57fa7b",
+      "verdicts": [
+        {"key": "k614e0714815e", "verdict": "correct", "category": null, "evidence": "BSD stat -f %Sf prints file flags, matching the requested macOS filesystem flags."}
+      ]
+    },
+    {
+      "case": "c65eacc797bfe",
+      "verdicts": [
+        {"key": "k97caade55a48", "verdict": "correct", "category": null, "evidence": "codesign -d displays the signature, identifier, and signing authority details."}
+      ]
+    },
+    {
+      "case": "cf4358fa34ca8",
+      "verdicts": [
+        {"key": "kf6fc0b7de1de", "verdict": "correct", "category": null, "evidence": "pmem is a valid ps alias; numeric descending sort plus head gives top five."}
+      ]
+    },
+    {
+      "case": "c8ae82fbdcbca",
+      "verdicts": [
+        {"key": "k0a2417b4bd2b", "verdict": "incorrect", "category": "wrong_output", "evidence": "sort -u removes duplicates first, so uniq -c reports a count of 1 for all."}
+      ]
+    },
+    {
+      "case": "c7ffd27b4e508",
+      "verdicts": [
+        {"key": "kba98538c24e4", "verdict": "correct", "category": null, "evidence": "sed rewrites every foo to bar, then mv replaces notes.txt with the result."}
+      ]
+    },
+    {
+      "case": "c6d1d32f53b48",
+      "verdicts": [
+        {"key": "k0f3caca930fe", "verdict": "correct", "category": null, "evidence": "vm_stat's first-line eighth field is the page size in bytes."}
+      ]
+    },
+    {
+      "case": "cac19c915ba8e",
+      "verdicts": [
+        {"key": "kd9a009036472", "verdict": "correct", "category": null, "evidence": "curl fetches the checkip page; sed strips markup and letters, leaving the IP."}
+      ]
+    },
+    {
+      "case": "c60be24a87a13",
+      "verdicts": [
+        {"key": "k4c45ada2ce6b", "verdict": "incorrect", "category": "other", "evidence": "-P also opens the saved image in Preview, an unrequested extra side effect."}
+      ]
+    }
+  ]
+}

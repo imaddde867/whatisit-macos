@@ -1,0 +1,167 @@
+{
+  "campaign": "stage2-v4/campaign-20261022",
+  "created_at": "2026-10-22T21:19:26+03:00",
+  "branch": "campaign/v4-verified-rebuild-20261022",
+  "base_commit": "1d5096b653c88211c7d1a89ab549875033039227",
+  "objective": "Rebuild the stage2-v4 verified dataset with corrected controls, a pre-registered calibration, genuine blind pass-1/pass-2 model judging, and fail-closed leakage/policy gates.",
+  "scope": {
+    "in_scope": [
+      "pool regeneration",
+      "blind pass 1",
+      "independent 20% pass 2",
+      "verified dataset build",
+      "leakage analysis",
+      "tests",
+      "human review packet",
+      "qualification report"
+    ],
+    "out_of_scope": [
+      "training",
+      "promotion",
+      "auto-merge",
+      "human certification by an AI"
+    ]
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": [
+      "Darwin",
+      "27.0.0"
+    ],
+    "whatisit_version": "0.4.0",
+    "path_sha256": "6e53700166cb62101d9bcf4d31401a4b4b295fc410cfc38566d929087f94483b",
+    "validation_fingerprint": {
+      "code_sha256": {
+        "src/whatisit_macos/maclint.py": "19eabdfed51554c0bb2141cebf38b516a26124524434aa599c643f7005673c43",
+        "src/whatisit_macos/shell.py": "862b712d6aeec948ca64a652dfc469971d48200ce0bbc55aac5f0da925520afd",
+        "tools/build_distill_dataset.py": "168dc41685da56a9dccc513e2775e167bf972d5abc542dc6be39804d15f779c6",
+        "tools/repair_distill_dataset.py": "667ef8d39e86e2d4f74d4c0a3da637a444fb8147ff2ffa4ec7eca10588c839f0",
+        "upstream_safety": "012f8ce882a7272a36ade26dfbee3542810e49ee42922f2515334b58db08a1f9"
+      },
+      "path_sha256": "6e53700166cb62101d9bcf4d31401a4b4b295fc410cfc38566d929087f94483b",
+      "platform": [
+        "Darwin",
+        "27.0.0"
+      ],
+      "python": [
+        3,
+        12
+      ],
+      "whatisit_version": "0.4.0"
+    }
+  },
+  "inputs_sha256": {
+    "data/corpus/requests.jsonl": "5577a8b501cdcee38ae659ffad46088bde49f97ab73a49626dc9812f6b28d782",
+    "data/teacher/roihu_full_raw_samples.jsonl": "f441332f08ad3655877a1ece27595b518c0a197744bf278cd054a25a235ea4bd",
+    "data/distill/stage2-v3/train.jsonl": "c8f9661db1cadf79d81c58f0fd8f0628ad3461c61c0a5f97c6b20f195ec06550",
+    "data/distill/stage2-v3/requests.jsonl": "b537b7550fc988924ecd86bf7e31f8cb27f7895e94b4de883674e0c86c0e8932",
+    "data/distill/quarantine_ids.txt": "bc620fb73c077347911fbfccd3571860e7537c35282255612daa73e191ceebaa",
+    "data/distill/roihu_full_quarantine_ids.txt": "b8ea12675e7d8b1e8fca058ee27886219d55a61af4baace4967241a66cd7ba2f",
+    "eval/dev.jsonl": "d225c3e0f41cf70be9f8e2d7eed6a3002dae82f826d02346f99ebf99abad6c2a",
+    "eval/everyday.jsonl": "d479a23a30ff67962dd046ed254ee073deb81274d9106e9c297ccb72cdf0af07",
+    "eval/frozen.jsonl": "d31547cc9c098da92a1b2ba8f243842cc34cc9505f0abc0e53d726a83f821042",
+    "eval/heldout.jsonl": "e62750fbf9ab4bf7799395992c57c798aacdfe217abdc8a05b7e25e2dfa52a8a",
+    "data/distill/stage2-v4/LABEL.md": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22",
+    "data/distill/stage2-v4/judge/protocol.md": "3c51872a3b299b8176e63e9cbe3e979b7016c0501c3e348381e5ec606b489d4f"
+  },
+  "tooling_sha256": {
+    "tools/build_v4_pool.py": "8c524bfe1b39df1e64334f0d9860ba32339a02fc9025df51e8510035aeabfb2a",
+    "tools/make_v4_confirm.py": "ef78665a28cd35f46a29dbad4fbd69788562bfe02f9bcd19980d22ddc8f14890",
+    "tools/build_verified_dataset.py": "19038cb7500eda5381c59a9b1c3237ebecb3988ada49b6d0e4e331b97287f395",
+    "tools/repair_distill_dataset.py": "667ef8d39e86e2d4f74d4c0a3da637a444fb8147ff2ffa4ec7eca10588c839f0",
+    "src/whatisit_macos/maclint.py": "19eabdfed51554c0bb2141cebf38b516a26124524434aa599c643f7005673c43",
+    "src/whatisit_macos/shell.py": "862b712d6aeec948ca64a652dfc469971d48200ce0bbc55aac5f0da925520afd"
+  },
+  "controls": {
+    "path": "data/distill/stage2-v4/campaign-20261022/controls.jsonl",
+    "sha256": "08543781445b7a7ae9e1d5c58d5c130370fe971a81141914f2f705ce5000fa23",
+    "audit": "data/distill/stage2-v4/campaign-20261022/controls-audit.json",
+    "audit_sha256": "94498897201decab8fdcd16342713e1eb021521746134025cd9ad9b0e8aed1ff",
+    "total": 63,
+    "correct": 25,
+    "incorrect": 38,
+    "replaced": 13,
+    "removed": 2
+  },
+  "calibration": {
+    "path": "data/distill/stage2-v4/campaign-20261022/calibration",
+    "manifest_sha256": "47759059915bc6d669167834f354bdaf5b26846029b0c79ac1dd29eed2caa08b",
+    "batch_sha256": "5f3a6b0a088bf2591cdf70b47743bfb75c643583f364f7d6f58b0e8ceeed3eb4",
+    "key_sha256": "e3f6ac01df923051bb045dcae12865138eca764a56f44081a032241a25f4bb30",
+    "result": "PASS 24/24 exact; 0 false accepts, 0 false rejects, 0 unsure",
+    "judge_label": "cal-20261022-a1",
+    "agent_session_id": "ses_e9b3617ebffe6nypcuGqA3DEQi",
+    "receipt_sha256": "34e0a49b694a6041b53db036a7a11b7acb8beda5fafa3cf46a5936e47bd42cdd"
+  },
+  "pool": {
+    "path": "data/distill/stage2-v4/campaign-20261022/pool",
+    "manifest_sha256": "702e3267cb356a9763e310646c6e879817681e934e1047f66da56c24727c77b3",
+    "aggregate_sha256": "c37fa8aba34ca719bcb2ed78d8f998676fda53a8ab29ca9d598037712723fd52",
+    "files": 27,
+    "counts": {
+      "batches": 23,
+      "candidates": 5111,
+      "controls_correct": 25,
+      "controls_incorrect": 38,
+      "controls_injected": 63,
+      "controls_total": 63,
+      "excluded_candidates": 1252,
+      "items": 2062,
+      "no_majority_considered": 1398,
+      "no_majority_with_candidates": 1197,
+      "v3_candidates": 865,
+      "v3_items": 865,
+      "v3_policy_rejected": 37,
+      "v3_rows": 1149
+    },
+    "batch_size": 90,
+    "controls_per_batch": 3,
+    "control_seed": 13,
+    "batches": 23,
+    "reproducibility": "Built twice into independent directories with the same inputs and environment; all files byte-identical."
+  },
+  "judging": {
+    "rubric": {
+      "path": "data/distill/stage2-v4/LABEL.md",
+      "sha256": "aa533cdfb5bcd7d99b12a1edd41bf9c7b25fa1b3a05155603ee3533a89d7fb22"
+    },
+    "protocol": {
+      "path": "data/distill/stage2-v4/judge/protocol.md",
+      "sha256": "3c51872a3b299b8176e63e9cbe3e979b7016c0501c3e348381e5ec606b489d4f"
+    },
+    "pass1": "23 batches b00-b22; one fresh agent session per batch; judge label p1-20261022-bXX-aN; only rubric and that batch are readable.",
+    "pass2": "deterministic 20% sample via tools/make_v4_confirm.py --sample 0.2 --seed 13; one fresh session per confirm batch; pass-2 session must differ from the pass-1 session for every overlapping case.",
+    "independence": "Session ids, not labels, are the independence unit; labels are stable aliases mapped to real session ids in receipts.",
+    "static_only": "Judges may inspect man pages and tool existence; they must never execute a candidate command or any part of it, and must not write/delete/move/kill/network."
+  },
+  "retry_policy": {
+    "max_attempts_per_batch_per_pass": 2,
+    "triggers": [
+      "malformed or incomplete verdict schema",
+      "missing/extra/duplicate key",
+      "control mismatch",
+      "unsure on a control"
+    ],
+    "action": "Discard the attempt from the active verdict path, preserve it under superseded/, and re-judge the whole batch with a fresh session and a new attempt suffix.",
+    "exhaustion": "If the second attempt also fails, stop the campaign as BLOCKED; never weaken a control, drop a key, or edit a verdict.",
+    "partial_files": "A failed attempt leaves no partial verdict in the active directory."
+  },
+  "pass_bar": {
+    "calibration": "24/24 exact, 0 false accepts/rejects, 0 unsure (met)",
+    "pass1": "every batch schema-valid, full key coverage, every injected control matches; no session reuse across batches",
+    "pass2": "confirm sample exactly recomputes; every confirm case covered; pass-2 session differs per overlapping case; every selected label confirmed correct or it is dropped",
+    "build": "builder verifies all digests, controls, session independence, sample, and quarantine; output must rebuild byte-identically",
+    "leakage": "hard leakage rows dropped; review findings recorded; no unrecorded eval overlap",
+    "human": "READY requires at least 30 retained examples actually reviewed by a human plus signed-off review packet; otherwise HUMAN_REVIEW_PENDING",
+    "tests": "full unittest suite passes"
+  },
+  "status": "IN_PROGRESS",
+  "status_note": "No READY claim is possible without genuine human review and sign-off.",
+  "history": [
+    {
+      "round": "20261022-a1",
+      "status": "superseded",
+      "reason": "Blind control audit found ct0009, ct0011, ct0022 and ct0039 were not blind-gradeable; controls were corrected and the pool was rebuilt. All round-1 batch verdicts are preserved under superseded/ and are not used."
+    }
+  ]
+}

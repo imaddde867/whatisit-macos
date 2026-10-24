@@ -1,0 +1,1893 @@
+{
+  "batch": "b05",
+  "judge": "p1-20261022-b05-a1",
+  "cases": [
+    {
+      "case": "c13f47aa3ed2b",
+      "verdicts": [
+        {
+          "key": "k1e6fc7f81bd0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "launchctl list prints a header; tail +2 drops it, wc counts loaded agents."
+        }
+      ]
+    },
+    {
+      "case": "c5f2d3820a739",
+      "verdicts": [
+        {
+          "key": "k7362e956e905",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps exposes stat/state; awk filters zombie (Z) entries; headers cannot match."
+        },
+        {
+          "key": "kb45ed9479e42",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps exposes stat/state; awk filters zombie (Z) entries; headers cannot match."
+        },
+        {
+          "key": "kc9a90a0ee706",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps exposes stat/state; awk filters zombie (Z) entries; headers cannot match."
+        },
+        {
+          "key": "ke4097bfe2f05",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps exposes stat/state; awk filters zombie (Z) entries; headers cannot match."
+        },
+        {
+          "key": "kfaf7b1497e71",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps exposes stat/state; awk filters zombie (Z) entries; headers cannot match."
+        }
+      ]
+    },
+    {
+      "case": "c38a33c25cb80",
+      "verdicts": [
+        {
+          "key": "k0163ea408e9c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount/diskutil report mount status read-only; no mount attempt."
+        },
+        {
+          "key": "k96740357dd5a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount/diskutil report mount status read-only; no mount attempt."
+        },
+        {
+          "key": "ka1e0aa945382",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "diskutil info indents its fields, so ^(Mounted|Mount Point): never matches; always prints Not mounted."
+        },
+        {
+          "key": "kb0f41ce2a051",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount/diskutil report mount status read-only; no mount attempt."
+        }
+      ]
+    },
+    {
+      "case": "cd1e1f32f6108",
+      "verdicts": [
+        {
+          "key": "k0353d6dfd749",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "openssl x509 -text exposes Public Key Algorithm; grep/sed extracts it."
+        },
+        {
+          "key": "k47c4c9e344fd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "openssl x509 -text exposes Public Key Algorithm; grep/sed extracts it."
+        },
+        {
+          "key": "k6a33c2a320c3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "openssl x509 -text exposes Public Key Algorithm; grep/sed extracts it."
+        },
+        {
+          "key": "k9a25734e6a6f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "openssl x509 -text exposes Public Key Algorithm; grep/sed extracts it."
+        }
+      ]
+    },
+    {
+      "case": "cd72ea7f3a087",
+      "verdicts": [
+        {
+          "key": "k1d4573afe401",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -listallhardwareports pairs Hardware Port with Device en1."
+        },
+        {
+          "key": "k736deb5903e4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -listallhardwareports pairs Hardware Port with Device en1."
+        },
+        {
+          "key": "k7ce99f6ce36e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -listallhardwareports pairs Hardware Port with Device en1."
+        },
+        {
+          "key": "k96b1d9169b0a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -listallhardwareports pairs Hardware Port with Device en1."
+        },
+        {
+          "key": "kc7ff8e1c0417",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -listallhardwareports pairs Hardware Port with Device en1."
+        }
+      ]
+    },
+    {
+      "case": "c776a3ffab339",
+      "verdicts": [
+        {
+          "key": "k2d97e0b7c603",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sysctl reads hw.l3cachesize; missing key is suppressed per request."
+        }
+      ]
+    },
+    {
+      "case": "c650d1c1d8a49",
+      "verdicts": [
+        {
+          "key": "k11e6af4d8018",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 import check returns yes/no, suppressing traceback."
+        },
+        {
+          "key": "k39de51570611",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 import check returns yes/no, suppressing traceback."
+        },
+        {
+          "key": "k88f051e83ead",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 import check returns yes/no, suppressing traceback."
+        },
+        {
+          "key": "kc77546a7265c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 import check returns yes/no, suppressing traceback."
+        }
+      ]
+    },
+    {
+      "case": "c591000e2cb68",
+      "verdicts": [
+        {
+          "key": "k0c4c04eea583",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "hdiutil info has no mount-point or backing-store-path fields; awk prints nothing."
+        },
+        {
+          "key": "k46e9d5cece53",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Looks for backing-store and mount-point keys that hdiutil info does not emit."
+        },
+        {
+          "key": "k4c00f617ee37",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plain hdiutil info lists attached images with their image-path backing files."
+        },
+        {
+          "key": "k5ba35161ed15",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Assumes image-path/backing-store/mount-point field names absent from hdiutil info."
+        }
+      ]
+    },
+    {
+      "case": "c70c8e74a9ab9",
+      "verdicts": [
+        {
+          "key": "k4d7f7d82e879",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls -name prints the two requested attributes as separate entries."
+        },
+        {
+          "key": "k9691e230fd5e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls -name prints the two requested attributes as separate entries."
+        },
+        {
+          "key": "kf270370dbfc5",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "mdls pads keys with spaces, so the a[kMDItemFSName] lookup misses; prints empty."
+        }
+      ]
+    },
+    {
+      "case": "c6d84e6f16590",
+      "verdicts": [
+        {
+          "key": "k28c394595dd7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tar -cjf writes bzip2 archive from project/."
+        }
+      ]
+    },
+    {
+      "case": "c591d7849683e",
+      "verdicts": [
+        {
+          "key": "k1faf50e215ce",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -extract Windows json outputs the nested array as JSON."
+        },
+        {
+          "key": "k57b38f9c1abd",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "json1 is not a plutil format; only json/xml1/binary1/raw are valid."
+        },
+        {
+          "key": "k6ebdf8f276ed",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -extract Windows json outputs the nested array as JSON."
+        },
+        {
+          "key": "kb9d95dbdbf21",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil -extract Windows json outputs the nested array as JSON."
+        }
+      ]
+    },
+    {
+      "case": "c5271ac83c103",
+      "verdicts": [
+        {
+          "key": "k23ce61fa599d",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Pads only to stdout; codes.txt is never written."
+        },
+        {
+          "key": "k2d9ab267add1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk/sed zero-pads to eight characters and writes the file back."
+        },
+        {
+          "key": "k724cc49df6de",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk/sed zero-pads to eight characters and writes the file back."
+        },
+        {
+          "key": "kc7ce39f80fe5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk/sed zero-pads to eight characters and writes the file back."
+        },
+        {
+          "key": "kec252295fdbb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk/sed zero-pads to eight characters and writes the file back."
+        }
+      ]
+    },
+    {
+      "case": "cf33a9d2c2922",
+      "verdicts": [
+        {
+          "key": "kef9f16dc53d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "otool -l lists LC_RPATH load commands and their paths."
+        }
+      ]
+    },
+    {
+      "case": "c3d94317b8460",
+      "verdicts": [
+        {
+          "key": "k0cfa4da8df25",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -q over plutil -p output detects NSLocation*UsageDescription."
+        },
+        {
+          "key": "k53417b94bb1f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -q over plutil -p output detects NSLocation*UsageDescription."
+        },
+        {
+          "key": "kaebee0102b77",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -q over plutil -p output detects NSLocation*UsageDescription."
+        }
+      ]
+    },
+    {
+      "case": "cc7cec8dc6763",
+      "verdicts": [
+        {
+          "key": "k79fce27ac5a8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field mode filtered to t=REG prints regular-file paths."
+        },
+        {
+          "key": "kaab180cdd454",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field mode filtered to t=REG prints regular-file paths."
+        },
+        {
+          "key": "kc250a35a2f32",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field mode filtered to t=REG prints regular-file paths."
+        },
+        {
+          "key": "kd6816b6cd30d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field mode filtered to t=REG prints regular-file paths."
+        },
+        {
+          "key": "ke38489d4c9b2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field mode filtered to t=REG prints regular-file paths."
+        }
+      ]
+    },
+    {
+      "case": "ccb549977fe27",
+      "verdicts": [
+        {
+          "key": "k3fdaf24fe2f6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "git log -- project/README.md lists commits touching that file."
+        }
+      ]
+    },
+    {
+      "case": "c17122e2c5e49",
+      "verdicts": [
+        {
+          "key": "k3ee34ab19853",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk compares per-file field counts and prints inconsistent CSV files."
+        },
+        {
+          "key": "k848a845eca29",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk compares per-file field counts and prints inconsistent CSV files."
+        }
+      ]
+    },
+    {
+      "case": "c1bb15ed36905",
+      "verdicts": [
+        {
+          "key": "k0f9f403ca994",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed/grep/awk extract the battery current Voltage value."
+        },
+        {
+          "key": "k6328c89fe7ba",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "/Voltage/ also matches DesignVoltage, so a non-current voltage is printed too."
+        },
+        {
+          "key": "kb75c03dfa46c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed/grep/awk extract the battery current Voltage value."
+        },
+        {
+          "key": "kdc4431b4e591",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed/grep/awk extract the battery current Voltage value."
+        },
+        {
+          "key": "kf567664a3f42",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed/grep/awk extract the battery current Voltage value."
+        }
+      ]
+    },
+    {
+      "case": "cc44158cc3961",
+      "verdicts": [
+        {
+          "key": "kb89f0feda3c2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "screencapture -i saves the selected rectangle to the given path."
+        }
+      ]
+    },
+    {
+      "case": "cf3acb7757cfb",
+      "verdicts": [
+        {
+          "key": "k031bc5bf3977",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sysctl prints hw.memsize and hw.usermem separately."
+        }
+      ]
+    },
+    {
+      "case": "c6c7464cf40a2",
+      "verdicts": [
+        {
+          "key": "k033e01c3c37b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diff -qr emits Files ... differ lines for same-name differing files."
+        }
+      ]
+    },
+    {
+      "case": "c63c10a577778",
+      "verdicts": [
+        {
+          "key": "k1d242bc53e9d",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "du -s on Documents/* ranks top-level entries and directories, not the biggest files."
+        }
+      ]
+    },
+    {
+      "case": "c90fb73d28a8a",
+      "verdicts": [
+        {
+          "key": "kba3862177bee",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "git diff --shortstat -- project/ summarizes inserted/deleted lines."
+        }
+      ]
+    },
+    {
+      "case": "c215a89e1a557",
+      "verdicts": [
+        {
+          "key": "k1b30b1917bfc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "diskutil info on /dev/disk4s1 greps the Partition Offset field."
+        },
+        {
+          "key": "k2c0e568694cc",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "disk4s1s is not a device; the possessive trailing s must be dropped."
+        },
+        {
+          "key": "k56463f734e2d",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "disk4s1s is invalid, so grep fails and the echo masks the error."
+        },
+        {
+          "key": "ke713bf407c56",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "disk4s1s is not a disk device, so grep prints nothing."
+        }
+      ]
+    },
+    {
+      "case": "c0471f3569025",
+      "verdicts": [
+        {
+          "key": "k40ea4cc520fe",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdfind queries kMDItemFinderComment with review wildcard under Downloads."
+        },
+        {
+          "key": "k54eba35c1f7d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdfind queries kMDItemFinderComment with review wildcard under Downloads."
+        },
+        {
+          "key": "kaca376be4f77",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdfind queries kMDItemFinderComment with review wildcard under Downloads."
+        }
+      ]
+    },
+    {
+      "case": "c74a624e7cd7d",
+      "verdicts": [
+        {
+          "key": "k08ae456fe3fb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk starts a new part file at each session-start marker line."
+        },
+        {
+          "key": "k4a89e5b8cb7d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk starts a new part file at each session-start marker line."
+        },
+        {
+          "key": "kfdaabab6a22f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk starts a new part file at each session-start marker line."
+        }
+      ]
+    },
+    {
+      "case": "ca4118ed46641",
+      "verdicts": [
+        {
+          "key": "kba97013cc1f6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed trims spaces at both ends and writes trimmed.txt."
+        }
+      ]
+    },
+    {
+      "case": "c19bcec1e0aa0",
+      "verdicts": [
+        {
+          "key": "k38b3569284b7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk reads the Build version line and prints field 3 or $NF."
+        },
+        {
+          "key": "k6fdc21105b13",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk reads the Build version line and prints field 3 or $NF."
+        },
+        {
+          "key": "k7a78db9c73df",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "NR==2 field 2 is the word version; the build number is field 3/$NF."
+        },
+        {
+          "key": "ka76958934419",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk reads the Build version line and prints field 3 or $NF."
+        },
+        {
+          "key": "kce08f621aa8b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk reads the Build version line and prints field 3 or $NF."
+        }
+      ]
+    },
+    {
+      "case": "cdcfa077b45c6",
+      "verdicts": [
+        {
+          "key": "k6a8ae28b4bca",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "file -b detects Mach-O slices; arm64 presence rules out Intel-only."
+        },
+        {
+          "key": "kb4e6dfa8c747",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "LSArchitecturePriority is not a Mach-O architecture test; file/otool is needed."
+        }
+      ]
+    },
+    {
+      "case": "c4f606c9d8711",
+      "verdicts": [
+        {
+          "key": "k3d2e66e2f16e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -P applied to type l entries measures the links themselves."
+        },
+        {
+          "key": "k4ab2d4a46050",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "stat %z gives the symlink target-string length, not allocated storage blocks."
+        },
+        {
+          "key": "k8bb38f50d6d0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -P applied to type l entries measures the links themselves."
+        }
+      ]
+    },
+    {
+      "case": "cde3a31b75ced",
+      "verdicts": [
+        {
+          "key": "k19cc809fd461",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log JSON processImagePath values are reduced to basenames."
+        },
+        {
+          "key": "k1d7e31641164",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log JSON processImagePath values are reduced to basenames."
+        },
+        {
+          "key": "k4f0e25782002",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log JSON processImagePath values are reduced to basenames."
+        },
+        {
+          "key": "k879cacbb431c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log JSON processImagePath values are reduced to basenames."
+        },
+        {
+          "key": "ka895f7be1bcc",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "log JSON processImagePath values are reduced to basenames."
+        }
+      ]
+    },
+    {
+      "case": "cce6ef6ca6bb1",
+      "verdicts": [
+        {
+          "key": "k6c2cc830f76c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "top -l 1 -n 0 suppresses the process list, leaving memory summary."
+        },
+        {
+          "key": "kd3c5da356e28",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "top -l 1 -n 0 suppresses the process list, leaving memory summary."
+        }
+      ]
+    },
+    {
+      "case": "c88c7a42afd2f",
+      "verdicts": [
+        {
+          "key": "k40d0e45f9016",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "scutil --nc list shows VPN services and their status."
+        }
+      ]
+    },
+    {
+      "case": "cb552100426e5",
+      "verdicts": [
+        {
+          "key": "kc2794f57f96d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find -type f restricts chmod g+r to regular files."
+        }
+      ]
+    },
+    {
+      "case": "c0d81ec72c441",
+      "verdicts": [
+        {
+          "key": "kb8f01dc6b353",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls prints the Spotlight kMDItemContentType value."
+        }
+      ]
+    },
+    {
+      "case": "cccbcb2f13176",
+      "verdicts": [
+        {
+          "key": "k3fcc96d310b2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat %b sums allocated blocks of direct regular files."
+        },
+        {
+          "key": "k40039ff2331c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat %b sums allocated blocks of direct regular files."
+        },
+        {
+          "key": "k43ae51a06c86",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat %b sums allocated blocks of direct regular files."
+        },
+        {
+          "key": "k7e6494e653de",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat %b sums allocated blocks of direct regular files."
+        },
+        {
+          "key": "kb029741eb63c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat %b sums allocated blocks of direct regular files."
+        }
+      ]
+    },
+    {
+      "case": "c89982cf48256",
+      "verdicts": [
+        {
+          "key": "k0005253522fa",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xattr -p reads com.apple.provenance and tolerates absence."
+        },
+        {
+          "key": "k0aaba3962c13",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xattr -p reads com.apple.provenance and tolerates absence."
+        },
+        {
+          "key": "k64428abebc7b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xattr -p reads com.apple.provenance and tolerates absence."
+        }
+      ]
+    },
+    {
+      "case": "ca4857d514c3b",
+      "verdicts": [
+        {
+          "key": "ka7c455215b6e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "curl -sI HEADs the URL; grep keeps Content-Length."
+        }
+      ]
+    },
+    {
+      "case": "cf6ff2003d61a",
+      "verdicts": [
+        {
+          "key": "kfbecd2243cad",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tar -tvf lists owner/group columns; sort -u dedupes pairs."
+        }
+      ]
+    },
+    {
+      "case": "c43477aeac7bb",
+      "verdicts": [
+        {
+          "key": "k018834dcb74e",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "uname -p reports processor family, not the running shell architecture."
+        }
+      ]
+    },
+    {
+      "case": "c024c38520e63",
+      "verdicts": [
+        {
+          "key": "ka5da1004423c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -sh reports total allocated size for project_folder."
+        }
+      ]
+    },
+    {
+      "case": "cda9ed5707da1",
+      "verdicts": [
+        {
+          "key": "k47d411b65701",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk detects group changes and prints first and last record."
+        },
+        {
+          "key": "k9fdbd003702a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk detects group changes and prints first and last record."
+        },
+        {
+          "key": "kb5207fee7e00",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk detects group changes and prints first and last record."
+        },
+        {
+          "key": "kb5804f19b419",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk detects group changes and prints first and last record."
+        },
+        {
+          "key": "kbd71f3e954b9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk detects group changes and prints first and last record."
+        }
+      ]
+    },
+    {
+      "case": "c759e2d566943",
+      "verdicts": [
+        {
+          "key": "k0ac32b857b75",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find scans standard provisioning-profile directories for profiles."
+        },
+        {
+          "key": "k20bd44aa363c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find scans standard provisioning-profile directories for profiles."
+        }
+      ]
+    },
+    {
+      "case": "c9a4eaac6e95c",
+      "verdicts": [
+        {
+          "key": "k24bb3507bcde",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field output for PID 4200 emits machine-readable fd records."
+        },
+        {
+          "key": "k91bb84daa379",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field output for PID 4200 emits machine-readable fd records."
+        },
+        {
+          "key": "kaf3626609c0f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field output for PID 4200 emits machine-readable fd records."
+        },
+        {
+          "key": "kd344cb45ac90",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof field output for PID 4200 emits machine-readable fd records."
+        }
+      ]
+    },
+    {
+      "case": "ce16c23f5d569",
+      "verdicts": [
+        {
+          "key": "k628e98833f07",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "date -u -r converts the epoch seconds to UTC."
+        }
+      ]
+    },
+    {
+      "case": "c4def587dfb0c",
+      "verdicts": [
+        {
+          "key": "k320f61ba81e6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil XML/-p parsing extracts integer LabelColor values."
+        },
+        {
+          "key": "k77410a1499f8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil XML/-p parsing extracts integer LabelColor values."
+        },
+        {
+          "key": "ka4520a216c07",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil XML/-p parsing extracts integer LabelColor values."
+        },
+        {
+          "key": "kd9652065428d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil XML/-p parsing extracts integer LabelColor values."
+        }
+      ]
+    },
+    {
+      "case": "c189f32a515e9",
+      "verdicts": [
+        {
+          "key": "k2ff802d49a33",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -p 4200 filtered for deleted markers or unlinked (+L1)."
+        },
+        {
+          "key": "k5e9cd80218ad",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -p 4200 filtered for deleted markers or unlinked (+L1)."
+        },
+        {
+          "key": "k6e1c3e81f3a4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -p 4200 filtered for deleted markers or unlinked (+L1)."
+        },
+        {
+          "key": "k98c294308113",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -p 4200 filtered for deleted markers or unlinked (+L1)."
+        }
+      ]
+    },
+    {
+      "case": "cea85b21e1586",
+      "verdicts": [
+        {
+          "key": "kc9e37e17281e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "openssl x509 -serial prints the certificate serial number."
+        }
+      ]
+    },
+    {
+      "case": "cd50bdb792ec7",
+      "verdicts": [
+        {
+          "key": "k3e9b1f0ac630",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "xattr uses -s for no-dereference; -h prints help and exits."
+        },
+        {
+          "key": "k4745f761d0db",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "xattr -h prints help instead of listing attributes."
+        },
+        {
+          "key": "kc9a075619351",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "xattr -h prints help; -x is not no-dereference."
+        },
+        {
+          "key": "kf7f90481ed38",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "xattr -lh includes -h, which prints help."
+        }
+      ]
+    },
+    {
+      "case": "cdb53d5628434",
+      "verdicts": [
+        {
+          "key": "k5c2c42fc0884",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "macOS ps has no nthr keyword (Linux-only)."
+        },
+        {
+          "key": "k659e3b452120",
+          "verdict": "incorrect",
+          "category": "linux_syntax",
+          "evidence": "macOS ps has no thcount keyword (Linux/FreeBSD-only)."
+        }
+      ]
+    },
+    {
+      "case": "c6e442fa793a9",
+      "verdicts": [
+        {
+          "key": "k847a9b24d975",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ln -s with a quoted source creates the named symlink."
+        }
+      ]
+    },
+    {
+      "case": "c18a8126a0626",
+      "verdicts": [
+        {
+          "key": "k302c32020e78",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "NF>=3 guard counts only genuine blank third fields."
+        },
+        {
+          "key": "k35718d55e083",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Rows with fewer than three fields have empty $3 and are overcounted."
+        },
+        {
+          "key": "k7a0f3a87a4af",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "NF>=3 guard counts only genuine blank third fields."
+        },
+        {
+          "key": "kc881d8b7b507",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Explicitly counts rows with NF<3 as blank third fields."
+        },
+        {
+          "key": "ke32bda5aafa8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "NF>=3 guard counts only genuine blank third fields."
+        }
+      ]
+    },
+    {
+      "case": "cee933ac5a3ce",
+      "verdicts": [
+        {
+          "key": "k85c20b466b23",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sed -i removes text after the last slash in place."
+        }
+      ]
+    },
+    {
+      "case": "c36068d30079c",
+      "verdicts": [
+        {
+          "key": "k1420aed3a4ee",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat -f %Sa/%Sc prints access and change times."
+        },
+        {
+          "key": "k3756babce99b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat -f %Sa/%Sc prints access and change times."
+        },
+        {
+          "key": "k3a34ba035a69",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat -f %Sa/%Sc prints access and change times."
+        },
+        {
+          "key": "k4e88271d1d5b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat -f %Sa/%Sc prints access and change times."
+        },
+        {
+          "key": "k6df8f6bc8c29",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "stat -f %Sa/%Sc prints access and change times."
+        }
+      ]
+    },
+    {
+      "case": "cf9e388e95d54",
+      "verdicts": [
+        {
+          "key": "k217ca10c495b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings filtered for PRODUCT_BUNDLE_IDENTIFIER."
+        },
+        {
+          "key": "k75c9698edfd8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings filtered for PRODUCT_BUNDLE_IDENTIFIER."
+        },
+        {
+          "key": "kb42b031a9afe",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings filtered for PRODUCT_BUNDLE_IDENTIFIER."
+        },
+        {
+          "key": "kc7295a3e0f2d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings filtered for PRODUCT_BUNDLE_IDENTIFIER."
+        },
+        {
+          "key": "kf3fd9c850ef7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings filtered for PRODUCT_BUNDLE_IDENTIFIER."
+        }
+      ]
+    },
+    {
+      "case": "c4158a01b630a",
+      "verdicts": [
+        {
+          "key": "k306224de31b0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "XML depth counter counts root-level dict keys only."
+        },
+        {
+          "key": "k33b56b7fdbf6",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "plutil -p prints => not =, so the regex matches no keys."
+        },
+        {
+          "key": "kccaa98ddbdce",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Reads ~/Library/Accounts/Accounts.plist, not mac accounts.plist."
+        }
+      ]
+    },
+    {
+      "case": "c3539d8bf2b8f",
+      "verdicts": [
+        {
+          "key": "ka26763907184",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -Eo extracts signed HH:MM offsets and Z suffixes."
+        }
+      ]
+    },
+    {
+      "case": "ce6511361ef9e",
+      "verdicts": [
+        {
+          "key": "k18f75b72d93e",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "codesign verbose flags expose the runtime flag; grep detects it."
+        },
+        {
+          "key": "k4604262bbae6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "codesign verbose flags expose the runtime flag; grep detects it."
+        },
+        {
+          "key": "k464e02bac913",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "codesign verbose flags expose the runtime flag; grep detects it."
+        },
+        {
+          "key": "k56e2acaa327c",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "codesign verbose flags expose the runtime flag; grep detects it."
+        },
+        {
+          "key": "kcf03cdaa1f10",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "codesign verbose flags expose the runtime flag; grep detects it."
+        }
+      ]
+    },
+    {
+      "case": "caf3b157e6bb3",
+      "verdicts": [
+        {
+          "key": "k353e98f06c66",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ifconfig lo0 inet / grep inet lists IPv4 addresses."
+        },
+        {
+          "key": "k4a518e02f61a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ifconfig lo0 inet / grep inet lists IPv4 addresses."
+        },
+        {
+          "key": "k6710c9c22edb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ifconfig lo0 inet / grep inet lists IPv4 addresses."
+        },
+        {
+          "key": "k9f492b74c062",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ifconfig lo0 inet / grep inet lists IPv4 addresses."
+        }
+      ]
+    },
+    {
+      "case": "cf2e1bf16e778",
+      "verdicts": [
+        {
+          "key": "ked35f356872c",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "hdiutil has no formats verb; help lists supported formats."
+        }
+      ]
+    },
+    {
+      "case": "c7d5975bf54bb",
+      "verdicts": [
+        {
+          "key": "k0ad1f06e5072",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep/ps check for a running MyApp process without launching it."
+        },
+        {
+          "key": "k3a9f690388c7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep/ps check for a running MyApp process without launching it."
+        },
+        {
+          "key": "ka978d09ba99d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep/ps check for a running MyApp process without launching it."
+        },
+        {
+          "key": "kadd736d1ecb3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "pgrep/ps check for a running MyApp process without launching it."
+        }
+      ]
+    },
+    {
+      "case": "cc6351e2f09f4",
+      "verdicts": [
+        {
+          "key": "k954597b3296a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "xcodebuild -showBuildSettings grepped for MACOSX_DEPLOYMENT_TARGET."
+        }
+      ]
+    },
+    {
+      "case": "c6cb35304b205",
+      "verdicts": [
+        {
+          "key": "kbd2f7029ee74",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "screencapture -c copies the capture to the clipboard."
+        }
+      ]
+    },
+    {
+      "case": "c228969eb475d",
+      "verdicts": [
+        {
+          "key": "k0ac535c360c2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "rsync -au skips newer destination files while copying."
+        }
+      ]
+    },
+    {
+      "case": "cb7416a774b51",
+      "verdicts": [
+        {
+          "key": "k542761575dc4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil/PlistBuddy read UISupportedInterfaceOrientations from Info.plist."
+        },
+        {
+          "key": "k5cab4e34416b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil/PlistBuddy read UISupportedInterfaceOrientations from Info.plist."
+        },
+        {
+          "key": "k6444109c16f5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil/PlistBuddy read UISupportedInterfaceOrientations from Info.plist."
+        },
+        {
+          "key": "kaaf4a9e20243",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "plutil/PlistBuddy read UISupportedInterfaceOrientations from Info.plist."
+        }
+      ]
+    },
+    {
+      "case": "c3787c7920890",
+      "verdicts": [
+        {
+          "key": "k9a60107bf8d8",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "cp -n copies only when the backup does not exist."
+        }
+      ]
+    },
+    {
+      "case": "ca6169515e5db",
+      "verdicts": [
+        {
+          "key": "k4c99fd52c310",
+          "verdict": "incorrect",
+          "category": "wrong_tool",
+          "evidence": "du -r reports unreadable directories, not resource-fork sizes."
+        }
+      ]
+    },
+    {
+      "case": "cc002bf09dc54",
+      "verdicts": [
+        {
+          "key": "k331f35ac9e96",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk flag prints only lines between BEGIN and END markers."
+        },
+        {
+          "key": "k448474c2613a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk flag prints only lines between BEGIN and END markers."
+        },
+        {
+          "key": "ke37a9e4d472f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk flag prints only lines between BEGIN and END markers."
+        }
+      ]
+    },
+    {
+      "case": "c1c84085f3398",
+      "verdicts": [
+        {
+          "key": "k17da7f09cada",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "TZ=UTC stat %Sm formats mtime as a UTC timestamp."
+        },
+        {
+          "key": "k5f4ec7004a4a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "TZ=UTC stat %Sm formats mtime as a UTC timestamp."
+        },
+        {
+          "key": "k8d3f86309122",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "TZ=UTC stat %Sm formats mtime as a UTC timestamp."
+        }
+      ]
+    },
+    {
+      "case": "ce39c91184dcc",
+      "verdicts": [
+        {
+          "key": "k190b1ff415aa",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount output filtered/parsed for the read-only option."
+        },
+        {
+          "key": "k5efaab1c69d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount output filtered/parsed for the read-only option."
+        },
+        {
+          "key": "k62595beb3135",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount output filtered/parsed for the read-only option."
+        },
+        {
+          "key": "k75875ad00597",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount output filtered/parsed for the read-only option."
+        },
+        {
+          "key": "kc33b4c2ba313",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mount output filtered/parsed for the read-only option."
+        }
+      ]
+    },
+    {
+      "case": "cacfcbdc97782",
+      "verdicts": [
+        {
+          "key": "k1a872aa986f1",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find direct regular files and stat %Sp permission symbols."
+        },
+        {
+          "key": "k34025e5c3ca6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find direct regular files and stat %Sp permission symbols."
+        },
+        {
+          "key": "k59e2a59d7fec",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find direct regular files and stat %Sp permission symbols."
+        },
+        {
+          "key": "k670bccc0fcba",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find direct regular files and stat %Sp permission symbols."
+        },
+        {
+          "key": "k9dbbf4bf54c5",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find direct regular files and stat %Sp permission symbols."
+        }
+      ]
+    },
+    {
+      "case": "c5e9bcb4ff66f",
+      "verdicts": [
+        {
+          "key": "ka166d3a149d0",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tar -cJf writes an xz-compressed project archive."
+        }
+      ]
+    },
+    {
+      "case": "c6396415f4367",
+      "verdicts": [
+        {
+          "key": "k56779e34beb2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sysctl reads kern.maxprocperuid."
+        }
+      ]
+    },
+    {
+      "case": "cbd07f485cf65",
+      "verdicts": [
+        {
+          "key": "k7513f8fef953",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tr -cd comma keeps all commas; wc -c counts them."
+        }
+      ]
+    },
+    {
+      "case": "cfaa6cc6b83b4",
+      "verdicts": [
+        {
+          "key": "ke09507eea6d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "ps rss values sorted numerically; head keeps top five."
+        }
+      ]
+    },
+    {
+      "case": "c4474072a8085",
+      "verdicts": [
+        {
+          "key": "kdc1470d1ffe6",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du -x does not cross filesystem boundaries."
+        }
+      ]
+    },
+    {
+      "case": "c336924cb99a4",
+      "verdicts": [
+        {
+          "key": "kd480fd31b076",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 json.load tests each top-level status value."
+        },
+        {
+          "key": "keb3f03f9ffbb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "python3 json.load tests each top-level status value."
+        }
+      ]
+    },
+    {
+      "case": "c127bd5c1428d",
+      "verdicts": [
+        {
+          "key": "k1376c03e07a5",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "No kMDItemScreenCapture attribute exists; it is kMDItemIsScreenCapture."
+        },
+        {
+          "key": "k4d66d57411d9",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls -name kMDItemIsScreenCapture reads the indexed flag."
+        },
+        {
+          "key": "k6e001a8f1a39",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mdls -name kMDItemIsScreenCapture reads the indexed flag."
+        },
+        {
+          "key": "kc31551cc27d2",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "No kMDItemScreenCaptureFlag attribute exists; it is kMDItemIsScreenCapture."
+        }
+      ]
+    },
+    {
+      "case": "cd489c35b8eb1",
+      "verdicts": [
+        {
+          "key": "k36e0e8de1016",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -Fn emits n-lines; sed/awk strips the n prefix."
+        },
+        {
+          "key": "k70049212475d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -Fn emits n-lines; sed/awk strips the n prefix."
+        },
+        {
+          "key": "ke1592c01793f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -Fn emits n-lines; sed/awk strips the n prefix."
+        },
+        {
+          "key": "ke7b2d10c8618",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "lsof -Fn emits n-lines; sed/awk strips the n prefix."
+        },
+        {
+          "key": "ke81a7828b041",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "sed strips leading n from every line, leaving p/f/t headings in output."
+        }
+      ]
+    },
+    {
+      "case": "c3e3eaa685f48",
+      "verdicts": [
+        {
+          "key": "k596f4355969a",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tr ':' newline splits PATH one directory per line."
+        },
+        {
+          "key": "ke1c18134858d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "tr ':' newline splits PATH one directory per line."
+        }
+      ]
+    },
+    {
+      "case": "cb49859c52677",
+      "verdicts": [
+        {
+          "key": "k966ff1880091",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "dig +norecurse sends a nonrecursive DNS query."
+        }
+      ]
+    },
+    {
+      "case": "c6d26e0e62a69",
+      "verdicts": [
+        {
+          "key": "kfcdd619fd9fd",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "networksetup -getsecurewebproxy reads HTTPS proxy for Wi-Fi."
+        }
+      ]
+    },
+    {
+      "case": "cc6f03a0a51d7",
+      "verdicts": [
+        {
+          "key": "kd785fa7358f7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "grep -E matches the exact quoted subsystem value."
+        }
+      ]
+    },
+    {
+      "case": "c9fbb48279e4c",
+      "verdicts": [
+        {
+          "key": "k235b30739842",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Pattern matches discharging too, reporting time-to-empty as time-to-full."
+        },
+        {
+          "key": "k8eb76825445f",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk excludes discharging/not charging and prints remaining minutes."
+        },
+        {
+          "key": "k945140ee0874",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Matches not charging and prints 0 when no estimate exists."
+        },
+        {
+          "key": "kbdcb4fc65360",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk excludes discharging/not charging and prints remaining minutes."
+        }
+      ]
+    },
+    {
+      "case": "cf92dfe84db2c",
+      "verdicts": [
+        {
+          "key": "kd358f3f33f05",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk normalizes timeZone offsets and prints min and max."
+        }
+      ]
+    },
+    {
+      "case": "cb00f4ed6bfb3",
+      "verdicts": [
+        {
+          "key": "kaabe65ec09bb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "osascript returns the desktop folder as a POSIX path."
+        }
+      ]
+    },
+    {
+      "case": "c92ccf20b511e",
+      "verdicts": [
+        {
+          "key": "k10447ade82b3",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find ! -perm -u=r / -0400 lists files lacking owner read."
+        },
+        {
+          "key": "kf5c4b93847c4",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find ! -perm -u=r / -0400 lists files lacking owner read."
+        },
+        {
+          "key": "kf5ead73e7748",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find ! -perm -u=r / -0400 lists files lacking owner read."
+        },
+        {
+          "key": "kfc4c254744f2",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "find ! -perm -u=r / -0400 lists files lacking owner read."
+        }
+      ]
+    },
+    {
+      "case": "c6924605ef800",
+      "verdicts": [
+        {
+          "key": "k9242ffc2eb13",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "du on both files reports allocated blocks for comparison."
+        }
+      ]
+    },
+    {
+      "case": "c990c937abd9d",
+      "verdicts": [
+        {
+          "key": "k5cd8d6686513",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "vm_stat grep shows free, active, inactive page counts."
+        }
+      ]
+    },
+    {
+      "case": "c27881f75518b",
+      "verdicts": [
+        {
+          "key": "k0ed6ed484e3b",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "mkdir -p creates the nested path one/two/three."
+        },
+        {
+          "key": "k250391b61697",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Creates three sibling directories, not the nested one/two/three path."
+        }
+      ]
+    },
+    {
+      "case": "c413ac417d225",
+      "verdicts": [
+        {
+          "key": "k37afc1c6f223",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "awk keeps ExternalMedia assertion entries and drops zero summary."
+        },
+        {
+          "key": "k7f65b200e0b4",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Prints any matching line, including the zero-count summary, not active assertions."
+        },
+        {
+          "key": "kbfbbd274b651",
+          "verdict": "incorrect",
+          "category": "hallucinated_flag",
+          "evidence": "pmset -g assertionsExternalMedia is not a valid -g argument."
+        },
+        {
+          "key": "kdfeae6e6365a",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Same grep; shows summary lines rather than only active assertion entries."
+        },
+        {
+          "key": "kfe8c21e4bf40",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "Requires PID or numeric last field, so assertion detail lines are dropped."
+        }
+      ]
+    },
+    {
+      "case": "c62644f655e6b",
+      "verdicts": [
+        {
+          "key": "kc3d72170af64",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "sample 4200 2 samples the process for two seconds to stdout."
+        }
+      ]
+    },
+    {
+      "case": "c4d8ed23f09d1",
+      "verdicts": [
+        {
+          "key": "k550570232db7",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy Merge then Save; plist-b applied last wins."
+        },
+        {
+          "key": "k9b925958282f",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "PlistBuddy writes only on Save; merged.plist is never saved."
+        },
+        {
+          "key": "kc5a748bcbabb",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "PlistBuddy Merge then Save; plist-b applied last wins."
+        }
+      ]
+    }
+  ]
+}

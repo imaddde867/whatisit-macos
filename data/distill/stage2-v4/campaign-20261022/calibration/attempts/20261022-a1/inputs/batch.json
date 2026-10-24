@@ -1,0 +1,245 @@
+{
+ "batch": "cal",
+ "items": [
+  {
+   "case": "ccd4f8f564865",
+   "request": "List APFS snapshots for the startup volume.",
+   "candidates": [
+    {
+     "key": "kda8b5fbc3b33",
+     "command": "diskutil apfs listSnapshots $(diskutil info -plist / | plutil -extract DeviceIdentifier raw -)"
+    }
+   ]
+  },
+  {
+   "case": "c6e73e3996a34",
+   "request": "Which power-management features does this Mac support?",
+   "candidates": [
+    {
+     "key": "k4cbe1a3bea57",
+     "command": "pmset -g capabilities"
+    }
+   ]
+  },
+  {
+   "case": "c3f9895bd728c",
+   "request": "make my mac say build finished out loud",
+   "candidates": [
+    {
+     "key": "k49bba38d1eb1",
+     "command": "say \"Build finished\""
+    }
+   ]
+  },
+  {
+   "case": "cac7de99dcf6d",
+   "request": "Show unified-log messages emitted by the kernel over the last two minutes.",
+   "candidates": [
+    {
+     "key": "k29ed1872427f",
+     "command": "log show --predicate 'process == \"kernel\"' --last 2m"
+    }
+   ]
+  },
+  {
+   "case": "cd48fb5118599",
+   "request": "list the 5 biggets files in this folder",
+   "candidates": [
+    {
+     "key": "kfbcd3ee46682",
+     "command": "find . -maxdepth 1 -type f -exec du -k {} + | sort -nr | head -5"
+    }
+   ]
+  },
+  {
+   "case": "c9db7b7f8480f",
+   "request": "Dump my Finder preference domain as XML to stdout.",
+   "candidates": [
+    {
+     "key": "k781dd0c08345",
+     "command": "defaults export com.apple.Finder - | plutil -convert xml1 -o - -"
+    }
+   ]
+  },
+  {
+   "case": "cb7fed91db28f",
+   "request": "eject the usb drive called BACKUP",
+   "candidates": [
+    {
+     "key": "k33bb4ae5190f",
+     "command": "diskutil eject BACKUP"
+    }
+   ]
+  },
+  {
+   "case": "c35f4c1e1888c",
+   "request": "Can an arm64-native command run successfully on this Apple Silicon Mac?",
+   "candidates": [
+    {
+     "key": "k126cfdc5397a",
+     "command": "arch -arm64 /usr/bin/env bash -c '[[ $OSTYPE == darwin ]] && [[ $(uname -m) == arm64 ]] && echo yes || echo no'"
+    }
+   ]
+  },
+  {
+   "case": "c51092950dd0a",
+   "request": "list the 5 biggets files in this folder",
+   "candidates": [
+    {
+     "key": "ka976020e8398",
+     "command": "ls -S | head -n 5"
+    }
+   ]
+  },
+  {
+   "case": "cd4c0b24c7859",
+   "request": "Show entries marked ERROR or WARN in app.log.",
+   "candidates": [
+    {
+     "key": "k9122a1e6d99c",
+     "command": "grep \"ERROR|WARN\" app.log"
+    }
+   ]
+  },
+  {
+   "case": "cbb0724e17579",
+   "request": "how much cpu is Finder using",
+   "candidates": [
+    {
+     "key": "k17e7c76e57a4",
+     "command": "top -l 2 -n 0 -stats pid,command,cpu | awk 'NF == 3 && $2 ~ /Finder$/ && $3 ~ /^[0-9.]+%?$/ {last=$3} END {print last}'"
+    }
+   ]
+  },
+  {
+   "case": "ce3a95866917b",
+   "request": "Read MyApp.app's short user-facing version from its Info.plist.",
+   "candidates": [
+    {
+     "key": "k4966323839bf",
+     "command": "/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" MyApp.app/Contents/Info.plist"
+    }
+   ]
+  },
+  {
+   "case": "cf9aa747bf4a0",
+   "request": "Find running Finder PIDs and their command lines.",
+   "candidates": [
+    {
+     "key": "k4a1cb7598bf1",
+     "command": "ps -axww -o pid=,args= | grep '[F]inder[.]app/Contents/MacOS/Finder'"
+    }
+   ]
+  },
+  {
+   "case": "cc95a76496b98",
+   "request": "Ask AppleScript for current input, output, and alert volume settings.",
+   "candidates": [
+    {
+     "key": "ke26bad254cb8",
+     "command": "osascript -e 'tell application \"System Events\" to get volume settings'"
+    }
+   ]
+  },
+  {
+   "case": "cbf9908728ab5",
+   "request": "where is budget.xlsx on my mac",
+   "candidates": [
+    {
+     "key": "kbc5ff43ad949",
+     "command": "find \"$HOME\" -type f -name 'budget.xlsx' 2>/dev/null"
+    }
+   ]
+  },
+  {
+   "case": "c8e82f981c85f",
+   "request": "is Google Chrome running right now",
+   "candidates": [
+    {
+     "key": "k212c26186b78",
+     "command": "pgrep -x \"Google Chrome\" >/dev/null && echo yes || echo no"
+    }
+   ]
+  },
+  {
+   "case": "cd26b0dfdf486",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "candidates": [
+    {
+     "key": "k53a8b67315c2",
+     "command": "sysctl vm.swappiness"
+    }
+   ]
+  },
+  {
+   "case": "cc3f8dbe1590b",
+   "request": "is my battry charging right now",
+   "candidates": [
+    {
+     "key": "k2a83b5c26be1",
+     "command": "pmset -g batt | grep 'Battery State' | cut -d':' -f2"
+    }
+   ]
+  },
+  {
+   "case": "cd9fcf57d2444",
+   "request": "make git ignore all .log files",
+   "candidates": [
+    {
+     "key": "k3603c271bfdb",
+     "command": "printf '\\n*.log\\n' >> .gitignore"
+    }
+   ]
+  },
+  {
+   "case": "c907c2efb0999",
+   "request": "Show the codec, sample rate, and duration of track.m4a.",
+   "candidates": [
+    {
+     "key": "kd400a670012f",
+     "command": "afinfo track.m4a | grep -E 'Data format:|Duration:'"
+    }
+   ]
+  },
+  {
+   "case": "c2c7204345540",
+   "request": "files in this folder i changed in the last day",
+   "candidates": [
+    {
+     "key": "k85b22edfd328",
+     "command": "find . -type f -ctime 0"
+    }
+   ]
+  },
+  {
+   "case": "c6030655aedec",
+   "request": "Find running Finder PIDs and their command lines.",
+   "candidates": [
+    {
+     "key": "k43b5302d7324",
+     "command": "ps -axww -o pid=,command= | awk 'index($0, \"Finder.app/Contents/MacOS/Finder\") {print}'"
+    }
+   ]
+  },
+  {
+   "case": "c7e307f47084a",
+   "request": "What path would this zsh session use if I typed python3?",
+   "candidates": [
+    {
+     "key": "k901bf1999eca",
+     "command": "which -a python3"
+    }
+   ]
+  },
+  {
+   "case": "c36aac79e2f1e",
+   "request": "what model of mac and chip is this",
+   "candidates": [
+    {
+     "key": "k4519b74a356a",
+     "command": "sysctl -n hw.model hw.machine"
+    }
+   ]
+  }
+ ]
+}

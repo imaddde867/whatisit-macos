@@ -1,0 +1,386 @@
+{
+ "k0077c798f8a1": {
+  "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')",
+  "expected": "incorrect",
+  "origin": "ct0012",
+  "request": "show notes.txt in all caps"
+ },
+ "k02edb1568415": {
+  "command": "date +\"%Y-%m-%d\"",
+  "expected": "correct",
+  "origin": "ct0044",
+  "request": "today's date as YYYY-MM-DD"
+ },
+ "k0a2417b4bd2b": {
+  "command": "sort -u names.txt | uniq -c",
+  "expected": "incorrect",
+  "origin": "ct0001",
+  "request": "show me each unique line in names.txt and how many times it appears"
+ },
+ "k0f3caca930fe": {
+  "command": "vm_stat | awk 'NR==1{print $8}'",
+  "expected": "correct",
+  "origin": "ct0064",
+  "request": "How many bytes are in a virtual-memory page on this Mac?"
+ },
+ "k0f822c8205dc": {
+  "command": "mount | awk '$3 ~ /^\\/Volumes\\//'",
+  "expected": "correct",
+  "origin": "ct0063",
+  "request": "Show the currently mounted volumes whose mount point is under /Volumes/."
+ },
+ "k1090c5cd8629": {
+  "command": "find /Applications -type d -name '*Chrome*'",
+  "expected": "incorrect",
+  "origin": "ct0007",
+  "request": "list apps in /Applications with chrome in the name"
+ },
+ "k18774d219f74": {
+  "command": "system_profiler SPPowerDataType",
+  "expected": "correct",
+  "origin": "ct0047",
+  "request": "hey how do I see what power source I'm on and the battery percent"
+ },
+ "k1fe17e5bc58e": {
+  "command": "ps -axo rss,comm | sort -nr | head -n 5",
+  "expected": "correct",
+  "origin": "ct0051",
+  "request": "top 5 processes by memory"
+ },
+ "k23a495d26ece": {
+  "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure",
+  "expected": "correct",
+  "origin": "ct0055",
+  "request": "Test whether PID 1234 exists without sending it a real signal."
+ },
+ "k23be0fc41132": {
+  "command": "grep -E 'ERROR|WARN' ~/app.log",
+  "expected": "incorrect",
+  "origin": "ct0005",
+  "request": "Show entries marked ERROR or WARN in app.log."
+ },
+ "k416e5b3680d6": {
+  "command": "sips --rotate 90 photo.jpg --out rotated.jpg",
+  "expected": "correct",
+  "origin": "ct0065",
+  "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source."
+ },
+ "k43a2a38bd215": {
+  "command": "grep -ci 'TODO' notes.txt",
+  "expected": "correct",
+  "origin": "ct0061",
+  "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string."
+ },
+ "k458f61f18f5e": {
+  "command": "du -h -s ~/Documents/* | sort -hr | head -n 10",
+  "expected": "incorrect",
+  "origin": "ct0024",
+  "request": "find the 10 biggest files inside Documents"
+ },
+ "k4a9ff8e5a9fc": {
+  "command": "tar -xf backup.tar",
+  "expected": "incorrect",
+  "origin": "ct0031",
+  "request": "List the filenames inside backup.tar without extracting."
+ },
+ "k4b6b6063d6e1": {
+  "command": "getconf PAGESIZE",
+  "expected": "correct",
+  "origin": "ct0053",
+  "request": "How many bytes are in a virtual-memory page on this Mac?"
+ },
+ "k4c45ada2ce6b": {
+  "command": "screencapture -P -T 0 shot.png",
+  "expected": "incorrect",
+  "origin": "ct0004",
+  "request": "take a screenshot and save it as shot.png"
+ },
+ "k4e27a55a61f2": {
+  "command": "kill -9 1234",
+  "expected": "incorrect",
+  "origin": "ct0040",
+  "request": "Test whether PID 1234 exists without sending it a real signal."
+ },
+ "k522b83ecefa6": {
+  "command": "ifconfig en0 | grep -Eo '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'",
+  "expected": "correct",
+  "origin": "ct0046",
+  "request": "Print the Ethernet hardware address for interface en0."
+ },
+ "k52df3364a5d9": {
+  "command": "cat input.txt | cut -d: -f3",
+  "expected": "correct",
+  "origin": "ct0041",
+  "request": "Print only field three from colon-delimited input.txt."
+ },
+ "k563cd93bd066": {
+  "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+  "expected": "incorrect",
+  "origin": "ct0025",
+  "request": "Which processes have UDP sockets open? Give numeric addresses."
+ },
+ "k5c02a7da62f3": {
+  "command": "diskutil info /Volumes/BACKUP | grep 'Available Free Space'",
+  "expected": "incorrect",
+  "origin": "ct0023",
+  "request": "how much free space is left on my external drive named BACKUP"
+ },
+ "k5f3833788d3d": {
+  "command": "ps -axo pid= | grep python",
+  "expected": "incorrect",
+  "origin": "ct0038",
+  "request": "list my running python processes"
+ },
+ "k614e0714815e": {
+  "command": "stat -f \"%Sf\" report.pdf",
+  "expected": "correct",
+  "origin": "ct0062",
+  "request": "Show the macOS filesystem flags on report.pdf."
+ },
+ "k6421c587bc94": {
+  "command": "grep -ciE 'TODO' notes.txt",
+  "expected": "correct",
+  "origin": "ct0050",
+  "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string."
+ },
+ "k644055042d6b": {
+  "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408",
+  "expected": "incorrect",
+  "origin": "ct0020",
+  "request": "can I reach google.com? just try a few times"
+ },
+ "k6547648a1d77": {
+  "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\"",
+  "expected": "incorrect",
+  "origin": "ct0006",
+  "request": "how much free space is left on my external drive named BACKUP"
+ },
+ "k67d3184f3833": {
+  "command": "mkdir project-copy && cp -R project project-copy",
+  "expected": "incorrect",
+  "origin": "ct0033",
+  "request": "i need a copy of the whole project folder called project-copy"
+ },
+ "k67dacb75a6ae": {
+  "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'",
+  "expected": "incorrect",
+  "origin": "ct0015",
+  "request": "how much free space is left on my external drive named BACKUP"
+ },
+ "k71745adddcb3": {
+  "command": "find -name '*.DS_Store' -exec rm {} +",
+  "expected": "incorrect",
+  "origin": "ct0008",
+  "request": "delete every .DS_Store file in this folder and everything under it"
+ },
+ "k7267496d39b0": {
+  "command": "grep -cEi 'TODO' notes.txt",
+  "expected": "correct",
+  "origin": "ct0042",
+  "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string."
+ },
+ "k75fcc4ca351f": {
+  "command": "tail -n +1 app.log | head -n 20",
+  "expected": "correct",
+  "origin": "ct0049",
+  "request": "show the first 20 lines of app.log"
+ },
+ "k7c3d1b311389": {
+  "command": "echo $(tr '[:lower:]' '[:upper:]' < notes.txt)",
+  "expected": "incorrect",
+  "origin": "ct0003",
+  "request": "show notes.txt in all caps"
+ },
+ "k83bbdc3e983b": {
+  "command": "ip link show en0",
+  "expected": "incorrect",
+  "origin": "ct0021",
+  "request": "Print the Ethernet hardware address for interface en0."
+ },
+ "k8748e663e4fa": {
+  "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill",
+  "expected": "incorrect",
+  "origin": "ct0035",
+  "request": "kill whatever is running on port 8080"
+ },
+ "k8a0ef2b2cb46": {
+  "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill",
+  "expected": "incorrect",
+  "origin": "ct0017",
+  "request": "kill whatever is running on port 8080"
+ },
+ "k97caade55a48": {
+  "command": "codesign -d MyApp.app",
+  "expected": "incorrect",
+  "origin": "ct0009",
+  "request": "Inspect MyApp.app's signing identity and signature details."
+ },
+ "k9c7bd4fa9df2": {
+  "command": "zip -r MyApp.zip MyApp.app",
+  "expected": "incorrect",
+  "origin": "ct0034",
+  "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved."
+ },
+ "k9dc32ec60811": {
+  "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist",
+  "expected": "correct",
+  "origin": "ct0048",
+  "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist."
+ },
+ "ka75a0011f44f": {
+  "command": "zip -r MyApp.app.zip MyApp.app",
+  "expected": "incorrect",
+  "origin": "ct0039",
+  "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved."
+ },
+ "ka78548ef9815": {
+  "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5",
+  "expected": "correct",
+  "origin": "ct0057",
+  "request": "top 5 processes by memory"
+ },
+ "kac808c63f36c": {
+  "command": "which python3",
+  "expected": "correct",
+  "origin": "ct0056",
+  "request": "What path would this zsh session use if I typed python3?"
+ },
+ "kaf63b18aaea1": {
+  "command": "zip -r MyApp.app.zip MyApp.app/",
+  "expected": "incorrect",
+  "origin": "ct0022",
+  "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved."
+ },
+ "kb036c14135ad": {
+  "command": "command -v node > /dev/null 2>&1 || echo \"no\" || echo \"yes\"",
+  "expected": "incorrect",
+  "origin": "ct0018",
+  "request": "do i have node installed"
+ },
+ "kb0da4f2ecd86": {
+  "command": "find -type f -name '*.DS_Store' -exec rm {} +",
+  "expected": "incorrect",
+  "origin": "ct0014",
+  "request": "delete every .DS_Store file in this folder and everything under it"
+ },
+ "kb3b892eb6552": {
+  "command": "screencapture -P shot.png",
+  "expected": "incorrect",
+  "origin": "ct0010",
+  "request": "take a screenshot and save it as shot.png"
+ },
+ "kb93b44911987": {
+  "command": "lsof -i :8080 | awk '{print $2}' | xargs kill",
+  "expected": "incorrect",
+  "origin": "ct0028",
+  "request": "kill whatever is running on port 8080"
+ },
+ "kba98538c24e4": {
+  "command": "sed 's/foo/bar/g' notes.txt > notes_modified.txt && mv notes_modified.txt notes.txt",
+  "expected": "correct",
+  "origin": "ct0058",
+  "request": "replace every foo with bar in notes.txt, save the change in the file"
+ },
+ "kc37dceebedd6": {
+  "command": "lsof -nP -iUDP -sTCP:LISTEN -a -n | awk '$4 ~ /:[0-9]+$/ {print $1}'",
+  "expected": "incorrect",
+  "origin": "ct0016",
+  "request": "Which processes have UDP sockets open? Give numeric addresses."
+ },
+ "kc3f06927fb15": {
+  "command": "head -n 7 notes.txt | tail -n +3",
+  "expected": "correct",
+  "origin": "ct0054",
+  "request": "Print lines 3 through 7 of notes.txt, without changing it."
+ },
+ "kc6d4619c4623": {
+  "command": "free -h",
+  "expected": "incorrect",
+  "origin": "ct0026",
+  "request": "How much space is used and available on the startup filesystem?"
+ },
+ "kc89f73166290": {
+  "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'",
+  "expected": "incorrect",
+  "origin": "ct0032",
+  "request": "show notes.txt in all caps"
+ },
+ "kca67332e5755": {
+  "command": "ps -p 1234 >/dev/null 2>&1 && echo \"Process exists\" || echo \"Process does not exist\"",
+  "expected": "correct",
+  "origin": "ct0045",
+  "request": "Test whether PID 1234 exists without sending it a real signal."
+ },
+ "kce3a90373371": {
+  "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'http://www.google.com/' 2>/dev/null || echo 408",
+  "expected": "incorrect",
+  "origin": "ct0030",
+  "request": "can I reach google.com? just try a few times"
+ },
+ "kceb5db473911": {
+  "command": "plutil -convert json -o - Info.plist",
+  "expected": "correct",
+  "origin": "ct0060",
+  "request": "Print that Info.plist as JSON, without rewriting it."
+ },
+ "kd34cfab23714": {
+  "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill",
+  "expected": "incorrect",
+  "origin": "ct0036",
+  "request": "kill whatever is running on port 8080"
+ },
+ "kd6737123f72c": {
+  "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /[0-9]+/ {print $1}'",
+  "expected": "incorrect",
+  "origin": "ct0019",
+  "request": "Which processes have UDP sockets open? Give numeric addresses."
+ },
+ "kd9a009036472": {
+  "command": "curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'",
+  "expected": "correct",
+  "origin": "ct0059",
+  "request": "what is my public ip"
+ },
+ "kdcf6260b8ee3": {
+  "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\"",
+  "expected": "incorrect",
+  "origin": "ct0027",
+  "request": "show notes.txt in all caps"
+ },
+ "ke9e444ef962a": {
+  "command": "lsof -p $(pgrep -d ' ' python)",
+  "expected": "incorrect",
+  "origin": "ct0013",
+  "request": "list my running python processes"
+ },
+ "kede8c94b6f64": {
+  "command": "find -name \"*.DS_Store\" | xargs rm -rf",
+  "expected": "incorrect",
+  "origin": "ct0002",
+  "request": "delete every .DS_Store file in this folder and everything under it"
+ },
+ "kf47fc56740e4": {
+  "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u",
+  "expected": "incorrect",
+  "origin": "ct0029",
+  "request": "Which processes have UDP sockets open? Give numeric addresses."
+ },
+ "kf56fe10d60c6": {
+  "command": "curl -s http://checkip.dyndns.org/ | grep -Eo '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'",
+  "expected": "correct",
+  "origin": "ct0052",
+  "request": "what is my public ip"
+ },
+ "kf6fc0b7de1de": {
+  "command": "ps -eo pmem,comm | sort -rn | head -n 5",
+  "expected": "correct",
+  "origin": "ct0043",
+  "request": "top 5 processes by memory"
+ },
+ "kf88ae0747f87": {
+  "command": "curl -sSf https://www.google.com || true",
+  "expected": "incorrect",
+  "origin": "ct0037",
+  "request": "can I reach google.com? just try a few times"
+ }
+}

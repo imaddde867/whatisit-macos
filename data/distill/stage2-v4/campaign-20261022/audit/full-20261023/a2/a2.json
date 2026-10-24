@@ -1,0 +1,132 @@
+{
+  "batch": "a2",
+  "judge": "ctl-audit-20261023-a2",
+  "cases": [
+    {
+      "case": "c7c1ff11fd32c",
+      "verdicts": [
+        {"key": "kaf63b18aaea1", "verdict": "incorrect", "category": "missed_constraint", "evidence": "zip cannot store resource forks or Finder metadata; man page says unsupported."}
+      ]
+    },
+    {
+      "case": "cee128b0a5fcb",
+      "verdicts": [
+        {"key": "kce3a90373371", "verdict": "incorrect", "category": "missed_constraint", "evidence": "Single HTTP request; request asks to try a few times."}
+      ]
+    },
+    {
+      "case": "c9c4176be16b2",
+      "verdicts": [
+        {"key": "k7267496d39b0", "verdict": "correct", "category": null, "evidence": "grep -cEi counts matching lines case-insensitively; TODO has no regex metacharacters."}
+      ]
+    },
+    {
+      "case": "ce6261d243dc8",
+      "verdicts": [
+        {"key": "kdcf6260b8ee3", "verdict": "incorrect", "category": "wrong_operand", "evidence": "tr reads stdin only; notes.txt is an extra operand, so tr errors and output is empty."}
+      ]
+    },
+    {
+      "case": "c720767021c46",
+      "verdicts": [
+        {"key": "k43a2a38bd215", "verdict": "correct", "category": null, "evidence": "grep -ci counts matching lines case-insensitively; literal TODO."}
+      ]
+    },
+    {
+      "case": "c0cfc4ab9e40a",
+      "verdicts": [
+        {"key": "kc89f73166290", "verdict": "incorrect", "category": "wrong_output", "evidence": "Prints the literal text SHOW NOTES.TXT, not the file contents."}
+      ]
+    },
+    {
+      "case": "cee3ff88c034a",
+      "verdicts": [
+        {"key": "k416e5b3680d6", "verdict": "correct", "category": null, "evidence": "sips --rotate is clockwise; --out writes rotated.jpg, leaving source untouched."}
+      ]
+    },
+    {
+      "case": "cc9506194c2ba",
+      "verdicts": [
+        {"key": "k4e27a55a61f2", "verdict": "incorrect", "category": "unsafe", "evidence": "Sends SIGKILL to PID 1234; request explicitly forbids a real signal."}
+      ]
+    },
+    {
+      "case": "c80f610f0f216",
+      "verdicts": [
+        {"key": "kb3b892eb6552", "verdict": "incorrect", "category": "other", "evidence": "-P opens the capture in Preview, an unrequested side effect."}
+      ]
+    },
+    {
+      "case": "c832f71464064",
+      "verdicts": [
+        {"key": "k644055042d6b", "verdict": "incorrect", "category": "missed_constraint", "evidence": "Only one curl attempt; no retry despite 'try a few times'."}
+      ]
+    },
+    {
+      "case": "cc3ace2127b4c",
+      "verdicts": [
+        {"key": "kf88ae0747f87", "verdict": "incorrect", "category": "missed_constraint", "evidence": "Single attempt, dumps HTML, and || true masks failure."}
+      ]
+    },
+    {
+      "case": "c41b162f87272",
+      "verdicts": [
+        {"key": "k1fe17e5bc58e", "verdict": "correct", "category": null, "evidence": "ps RSS sorted numerically descending; header sorts below nonzero RSS, top 5 rows."}
+      ]
+    },
+    {
+      "case": "cf9f53230a9bf",
+      "verdicts": [
+        {"key": "k23a495d26ece", "verdict": "correct", "category": null, "evidence": "ps -p checks PID existence without sending a signal."}
+      ]
+    },
+    {
+      "case": "c3d79f77641f4",
+      "verdicts": [
+        {"key": "k1090c5cd8629", "verdict": "incorrect", "category": "wrong_output", "evidence": "find recurses into bundles and lists nested non-app directories, not just apps."}
+      ]
+    },
+    {
+      "case": "cfb927fee75b5",
+      "verdicts": [
+        {"key": "kc3f06927fb15", "verdict": "correct", "category": null, "evidence": "head -n 7 then tail from line 3 yields lines 3-7."}
+      ]
+    },
+    {
+      "case": "cbc06896c5087",
+      "verdicts": [
+        {"key": "kc6d4619c4623", "verdict": "incorrect", "category": "linux_syntax", "evidence": "free is Linux-only; not present on stock macOS."}
+      ]
+    },
+    {
+      "case": "c73e492da9421",
+      "verdicts": [
+        {"key": "k6421c587bc94", "verdict": "correct", "category": null, "evidence": "grep -ciE counts matching lines, case-insensitive and literal."}
+      ]
+    },
+    {
+      "case": "ce6cb1413b87f",
+      "verdicts": [
+        {"key": "k67dacb75a6ae", "verdict": "incorrect", "category": "wrong_output", "evidence": "diskutil info prints 'Volume Free Space', not 'Total Space Available'; grep finds nothing."}
+      ]
+    },
+    {
+      "case": "cd8b4f18265c7",
+      "verdicts": [
+        {"key": "k75fcc4ca351f", "verdict": "correct", "category": null, "evidence": "tail -n +1 then head -n 20 prints the first 20 lines."}
+      ]
+    },
+    {
+      "case": "c94b3043fceb0",
+      "verdicts": [
+        {"key": "k23be0fc41132", "verdict": "incorrect", "category": "wrong_operand", "evidence": "Reads ~/app.log instead of app.log as requested; wrong path."}
+      ]
+    },
+    {
+      "case": "c2cead2c55fb6",
+      "verdicts": [
+        {"key": "k4b6b6063d6e1", "verdict": "correct", "category": null, "evidence": "getconf PAGESIZE returns the virtual-memory page size on macOS."}
+      ]
+    }
+  ]
+}

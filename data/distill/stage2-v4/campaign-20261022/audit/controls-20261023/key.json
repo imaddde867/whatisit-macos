@@ -1,0 +1,44 @@
+{
+ "k0560fdd80518": {
+  "command": "grep -E 'ERROR|WARN' ~/app.log",
+  "expected": "incorrect",
+  "request": "Show entries marked ERROR or WARN in app.log.",
+  "source": "ct0005"
+ },
+ "k35eff7030ada": {
+  "command": "grep -c ERROR local/app.log",
+  "expected": "incorrect",
+  "request": "Count the lines containing ERROR in the local app.log.",
+  "source": "ct0011"
+ },
+ "k7fcbadae2084": {
+  "command": "du -sh project_folder",
+  "expected": "incorrect",
+  "request": "how big is the project folder in total",
+  "source": "ct0022"
+ },
+ "k9b9840a9b010": {
+  "command": "zip -r MyApp.app.zip MyApp.app",
+  "expected": "incorrect",
+  "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+  "source": "x0462"
+ },
+ "ka879785a30db": {
+  "command": "zip -r MyApp.app.zip MyApp.app/",
+  "expected": "incorrect",
+  "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+  "source": "x0257"
+ },
+ "kaaca850d558d": {
+  "command": "du -hs project_folder",
+  "expected": "incorrect",
+  "request": "how big is the project folder in total",
+  "source": "ct0039"
+ },
+ "kbc6297337301": {
+  "command": "find /Applications -type d -name '*Chrome*'",
+  "expected": "incorrect",
+  "request": "list apps in /Applications with chrome in the name",
+  "source": "ct0007"
+ }
+}

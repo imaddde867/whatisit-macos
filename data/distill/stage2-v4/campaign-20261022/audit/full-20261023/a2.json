@@ -1,0 +1,215 @@
+{
+ "batch": "a2",
+ "items": [
+  {
+   "case": "c7c1ff11fd32c",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "candidates": [
+    {
+     "key": "kaf63b18aaea1",
+     "command": "zip -r MyApp.app.zip MyApp.app/"
+    }
+   ]
+  },
+  {
+   "case": "cee128b0a5fcb",
+   "request": "can I reach google.com? just try a few times",
+   "candidates": [
+    {
+     "key": "kce3a90373371",
+     "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'http://www.google.com/' 2>/dev/null || echo 408"
+    }
+   ]
+  },
+  {
+   "case": "c9c4176be16b2",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "candidates": [
+    {
+     "key": "k7267496d39b0",
+     "command": "grep -cEi 'TODO' notes.txt"
+    }
+   ]
+  },
+  {
+   "case": "ce6261d243dc8",
+   "request": "show notes.txt in all caps",
+   "candidates": [
+    {
+     "key": "kdcf6260b8ee3",
+     "command": "printf '%s\\n' \"$(tr '[:lower:]' '[:upper:]' notes.txt)\""
+    }
+   ]
+  },
+  {
+   "case": "c720767021c46",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "candidates": [
+    {
+     "key": "k43a2a38bd215",
+     "command": "grep -ci 'TODO' notes.txt"
+    }
+   ]
+  },
+  {
+   "case": "c0cfc4ab9e40a",
+   "request": "show notes.txt in all caps",
+   "candidates": [
+    {
+     "key": "kc89f73166290",
+     "command": "printf '%s\\n' \"SHOW NOTES.TXT\" | tr '[:lower:]' '[:upper:]'"
+    }
+   ]
+  },
+  {
+   "case": "cee3ff88c034a",
+   "request": "Rotate photo.jpg clockwise 90 degrees into rotated.jpg, preserving the source.",
+   "candidates": [
+    {
+     "key": "k416e5b3680d6",
+     "command": "sips --rotate 90 photo.jpg --out rotated.jpg"
+    }
+   ]
+  },
+  {
+   "case": "cc9506194c2ba",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "candidates": [
+    {
+     "key": "k4e27a55a61f2",
+     "command": "kill -9 1234"
+    }
+   ]
+  },
+  {
+   "case": "c80f610f0f216",
+   "request": "take a screenshot and save it as shot.png",
+   "candidates": [
+    {
+     "key": "kb3b892eb6552",
+     "command": "screencapture -P shot.png"
+    }
+   ]
+  },
+  {
+   "case": "c832f71464064",
+   "request": "can I reach google.com? just try a few times",
+   "candidates": [
+    {
+     "key": "k644055042d6b",
+     "command": "curl -s -o /dev/null -w '%{http_code}\\n' 'https://www.google.com/' || echo 408"
+    }
+   ]
+  },
+  {
+   "case": "cc3ace2127b4c",
+   "request": "can I reach google.com? just try a few times",
+   "candidates": [
+    {
+     "key": "kf88ae0747f87",
+     "command": "curl -sSf https://www.google.com || true"
+    }
+   ]
+  },
+  {
+   "case": "c41b162f87272",
+   "request": "top 5 processes by memory",
+   "candidates": [
+    {
+     "key": "k1fe17e5bc58e",
+     "command": "ps -axo rss,comm | sort -nr | head -n 5"
+    }
+   ]
+  },
+  {
+   "case": "cf9f53230a9bf",
+   "request": "Test whether PID 1234 exists without sending it a real signal.",
+   "candidates": [
+    {
+     "key": "k23a495d26ece",
+     "command": "ps -p 1234 >/dev/null 2>&1 && echo success || echo failure"
+    }
+   ]
+  },
+  {
+   "case": "c3d79f77641f4",
+   "request": "list apps in /Applications with chrome in the name",
+   "candidates": [
+    {
+     "key": "k1090c5cd8629",
+     "command": "find /Applications -type d -name '*Chrome*'"
+    }
+   ]
+  },
+  {
+   "case": "cfb927fee75b5",
+   "request": "Print lines 3 through 7 of notes.txt, without changing it.",
+   "candidates": [
+    {
+     "key": "kc3f06927fb15",
+     "command": "head -n 7 notes.txt | tail -n +3"
+    }
+   ]
+  },
+  {
+   "case": "cbc06896c5087",
+   "request": "How much space is used and available on the startup filesystem?",
+   "candidates": [
+    {
+     "key": "kc6d4619c4623",
+     "command": "free -h"
+    }
+   ]
+  },
+  {
+   "case": "c73e492da9421",
+   "request": "Count lines in notes.txt containing TODO, case-insensitively, as a literal string.",
+   "candidates": [
+    {
+     "key": "k6421c587bc94",
+     "command": "grep -ciE 'TODO' notes.txt"
+    }
+   ]
+  },
+  {
+   "case": "ce6cb1413b87f",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "candidates": [
+    {
+     "key": "k67dacb75a6ae",
+     "command": "diskutil info /Volumes/BACKUP | grep 'Total Space Available'"
+    }
+   ]
+  },
+  {
+   "case": "cd8b4f18265c7",
+   "request": "show the first 20 lines of app.log",
+   "candidates": [
+    {
+     "key": "k75fcc4ca351f",
+     "command": "tail -n +1 app.log | head -n 20"
+    }
+   ]
+  },
+  {
+   "case": "c94b3043fceb0",
+   "request": "Show entries marked ERROR or WARN in app.log.",
+   "candidates": [
+    {
+     "key": "k23be0fc41132",
+     "command": "grep -E 'ERROR|WARN' ~/app.log"
+    }
+   ]
+  },
+  {
+   "case": "c2cead2c55fb6",
+   "request": "How many bytes are in a virtual-memory page on this Mac?",
+   "candidates": [
+    {
+     "key": "k4b6b6063d6e1",
+     "command": "getconf PAGESIZE"
+    }
+   ]
+  }
+ ]
+}

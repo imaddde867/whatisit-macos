@@ -1,0 +1,215 @@
+{
+ "batch": "a1",
+ "items": [
+  {
+   "case": "c795bf65c2fbd",
+   "request": "show notes.txt in all caps",
+   "candidates": [
+    {
+     "key": "k0077c798f8a1",
+     "command": "echo $(cat notes.txt | tr 'a-z' 'A-Z')"
+    }
+   ]
+  },
+  {
+   "case": "cb9325e0912d4",
+   "request": "Which processes have UDP sockets open? Give numeric addresses.",
+   "candidates": [
+    {
+     "key": "kf47fc56740e4",
+     "command": "lsof -nP -iUDP -sTCP:LISTEN | awk '$4 ~ /:[0-9]+$/ {print $2}' | sort -u"
+    }
+   ]
+  },
+  {
+   "case": "cc5cb4d6360c5",
+   "request": "today's date as YYYY-MM-DD",
+   "candidates": [
+    {
+     "key": "k02edb1568415",
+     "command": "date +\"%Y-%m-%d\""
+    }
+   ]
+  },
+  {
+   "case": "c282c78c7d253",
+   "request": "find the 10 biggest files inside Documents",
+   "candidates": [
+    {
+     "key": "k458f61f18f5e",
+     "command": "du -h -s ~/Documents/* | sort -hr | head -n 10"
+    }
+   ]
+  },
+  {
+   "case": "c0db6839f94d5",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "candidates": [
+    {
+     "key": "kede8c94b6f64",
+     "command": "find -name \"*.DS_Store\" | xargs rm -rf"
+    }
+   ]
+  },
+  {
+   "case": "c7670500e100b",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "candidates": [
+    {
+     "key": "k6547648a1d77",
+     "command": "diskutil info /Volumes/BACKUP | grep \"Available Space\""
+    }
+   ]
+  },
+  {
+   "case": "c2ccbc6784f6e",
+   "request": "top 5 processes by memory",
+   "candidates": [
+    {
+     "key": "ka78548ef9815",
+     "command": "ps -eo rss,pid,user,command | sort -nr | head -n 5"
+    }
+   ]
+  },
+  {
+   "case": "ceb99031a2877",
+   "request": "What path would this zsh session use if I typed python3?",
+   "candidates": [
+    {
+     "key": "kac808c63f36c",
+     "command": "which python3"
+    }
+   ]
+  },
+  {
+   "case": "c52511df9fdb2",
+   "request": "kill whatever is running on port 8080",
+   "candidates": [
+    {
+     "key": "kd34cfab23714",
+     "command": "lsof -nP -iTCP:8080 | awk 'NR>1 && $6 ~ /TCP/ {print $2}' | xargs kill"
+    }
+   ]
+  },
+  {
+   "case": "c3c9c46c28333",
+   "request": "i need a copy of the whole project folder called project-copy",
+   "candidates": [
+    {
+     "key": "k67d3184f3833",
+     "command": "mkdir project-copy && cp -R project project-copy"
+    }
+   ]
+  },
+  {
+   "case": "c3a37f68b5305",
+   "request": "kill whatever is running on port 8080",
+   "candidates": [
+    {
+     "key": "k8748e663e4fa",
+     "command": "lsof -nP +M -iTCP:8080 | awk '{print $2}' | xargs kill"
+    }
+   ]
+  },
+  {
+   "case": "ce8e1bb7b2021",
+   "request": "Print only field three from colon-delimited input.txt.",
+   "candidates": [
+    {
+     "key": "k52df3364a5d9",
+     "command": "cat input.txt | cut -d: -f3"
+    }
+   ]
+  },
+  {
+   "case": "c38a4b97f95fc",
+   "request": "do i have node installed",
+   "candidates": [
+    {
+     "key": "kb036c14135ad",
+     "command": "command -v node > /dev/null 2>&1 || echo \"no\" || echo \"yes\""
+    }
+   ]
+  },
+  {
+   "case": "c0d99366db547",
+   "request": "Show the currently mounted volumes whose mount point is under /Volumes/.",
+   "candidates": [
+    {
+     "key": "k0f822c8205dc",
+     "command": "mount | awk '$3 ~ /^\\/Volumes\\//'"
+    }
+   ]
+  },
+  {
+   "case": "c80a16f8568af",
+   "request": "Print that Info.plist as JSON, without rewriting it.",
+   "candidates": [
+    {
+     "key": "kceb5db473911",
+     "command": "plutil -convert json -o - Info.plist"
+    }
+   ]
+  },
+  {
+   "case": "cce63f26267a0",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "candidates": [
+    {
+     "key": "k9c7bd4fa9df2",
+     "command": "zip -r MyApp.zip MyApp.app"
+    }
+   ]
+  },
+  {
+   "case": "c0c06a744a6d0",
+   "request": "how much free space is left on my external drive named BACKUP",
+   "candidates": [
+    {
+     "key": "k5c02a7da62f3",
+     "command": "diskutil info /Volumes/BACKUP | grep 'Available Free Space'"
+    }
+   ]
+  },
+  {
+   "case": "ce9937384190c",
+   "request": "kill whatever is running on port 8080",
+   "candidates": [
+    {
+     "key": "k8a0ef2b2cb46",
+     "command": "lsof -nP -iTCP:8080 | awk '{print $2}' | xargs kill"
+    }
+   ]
+  },
+  {
+   "case": "c62f9f4675e35",
+   "request": "Zip MyApp.app with macOS resource forks and Finder metadata preserved.",
+   "candidates": [
+    {
+     "key": "ka75a0011f44f",
+     "command": "zip -r MyApp.app.zip MyApp.app"
+    }
+   ]
+  },
+  {
+   "case": "c55a3cd167ce2",
+   "request": "Read the CFBundleIdentifier string from MyApp.app's Info.plist.",
+   "candidates": [
+    {
+     "key": "k9dc32ec60811",
+     "command": "/usr/libexec/PlistBuddy -c \"Print :CFBundleIdentifier\" MyApp.app/Contents/Info.plist"
+    }
+   ]
+  },
+  {
+   "case": "cd694b02297e7",
+   "request": "delete every .DS_Store file in this folder and everything under it",
+   "candidates": [
+    {
+     "key": "k71745adddcb3",
+     "command": "find -name '*.DS_Store' -exec rm {} +"
+    }
+   ]
+  }
+ ]
+}

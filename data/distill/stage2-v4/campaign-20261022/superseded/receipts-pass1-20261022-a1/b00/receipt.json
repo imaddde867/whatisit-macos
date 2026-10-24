@@ -1,0 +1,21 @@
+{
+ "agent_session_id": "ses_e9b282110ffehiaEZSguGHM6Ny",
+ "attempt": "a1",
+ "batch": "b00",
+ "batch_sha256": "d052703617b608ed138dde257eb024240b779a0df274d380ffef4a9ca0599f13",
+ "cases": 93,
+ "control_check": "pass",
+ "controls": 3,
+ "failed_sessions": [],
+ "judge_label": "p1-20261022-b00-a1",
+ "keys": 233,
+ "note": "Fresh subagent process; read only the named rubric, batch and prompt; no candidate command executed.",
+ "prompt_sha256": "af03618361a98377f80689dac85fa664f38445df427c3539f86b8bd036b0b884",
+ "schema_check": "pass",
+ "status": "accepted",
+ "verdict_sha256": "3d85078114f0242c3095b1c720933b4306f38384b9ce0c71a12616059ca341d4",
+ "verdicts": {
+  "correct": 190,
+  "incorrect": 43
+ }
+}

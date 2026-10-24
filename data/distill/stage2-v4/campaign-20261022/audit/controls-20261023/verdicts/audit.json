@@ -1,0 +1,83 @@
+{
+  "batch": "audit",
+  "judge": "ctl-audit-20261023-a1",
+  "cases": [
+    {
+      "case": "c22730025401a",
+      "verdicts": [
+        {
+          "key": "k35eff7030ada",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD grep -c counts matching lines; local/app.log is the named local log."
+        }
+      ]
+    },
+    {
+      "case": "cb915dc59e70a",
+      "verdicts": [
+        {
+          "key": "kaaca850d558d",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD du -h -s prints one human-readable total for the folder."
+        }
+      ]
+    },
+    {
+      "case": "c5d349a6656b2",
+      "verdicts": [
+        {
+          "key": "ka879785a30db",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Stock zip cannot store resource forks or Finder metadata; ditto is required."
+        }
+      ]
+    },
+    {
+      "case": "c0183b2b54476",
+      "verdicts": [
+        {
+          "key": "k9b9840a9b010",
+          "verdict": "incorrect",
+          "category": "missed_constraint",
+          "evidence": "Stock zip cannot store resource forks or Finder metadata; ditto is required."
+        }
+      ]
+    },
+    {
+      "case": "cc7dbe8cdba42",
+      "verdicts": [
+        {
+          "key": "k0560fdd80518",
+          "verdict": "incorrect",
+          "category": "wrong_operand",
+          "evidence": "Reads ~/app.log, not the app.log in the current directory."
+        }
+      ]
+    },
+    {
+      "case": "ca22b0ef2c353",
+      "verdicts": [
+        {
+          "key": "kbc6297337301",
+          "verdict": "incorrect",
+          "category": "wrong_output",
+          "evidence": "No -maxdepth 1 or .app filter; lists nested dirs inside app bundles, not just apps."
+        }
+      ]
+    },
+    {
+      "case": "c118ae6372183",
+      "verdicts": [
+        {
+          "key": "k7fcbadae2084",
+          "verdict": "correct",
+          "category": null,
+          "evidence": "BSD du -s -h prints one human-readable total for the folder."
+        }
+      ]
+    }
+  ]
+}

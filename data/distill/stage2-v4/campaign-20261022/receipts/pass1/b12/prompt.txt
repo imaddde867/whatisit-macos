@@ -1,0 +1,20 @@
+# Pass-1 judge task
+
+Read and follow ONLY these files:
+
+- `data/distill/stage2-v4/LABEL.md` (rubric)
+- `data/distill/stage2-v4/campaign-20261022/pool/batches/b12.json` (blind batch)
+
+Do not read any other file in the repository, especially not `keymap.json`, `director-map.json`, `controls-map.json`, `controls.jsonl`, `controls-audit.json`, `config.json`, other batch files, other verdict files, or any file under `docs/eval-audit/`. Do not search the repository for labels or answers.
+
+Judge every candidate in the batch against the rubric. Static analysis only: you may inspect man pages (`man -P cat <tool> | col -b`) and check tool existence under `/usr/bin`, `/bin`, `/usr/sbin`, `/sbin`. NEVER execute a candidate command or any part of it, and never run anything that writes, deletes, moves, kills, changes settings, or touches the network.
+
+Write exactly one verdict file to `data/distill/stage2-v4/campaign-20261022/verdicts/b12.json` with this schema:
+
+```json
+{"batch": "b12", "judge": "p1-20261023-b12-a1", "cases": [{"case": "<case id>", "verdicts": [{"key": "<key>", "verdict": "correct|incorrect|unsure", "category": null, "evidence": "<short note>"}]}]}
+```
+
+Rules: cover every key exactly once, no extras; `category` is one of the rubric categories for `incorrect` and null for `correct`/`unsure`; `evidence` is a non-empty short note. Validate the file with `python3` `json.load` and check the key count equals the input. Do not write anywhere else.
+
+Reply only with: batch name, key count, counts per verdict.
