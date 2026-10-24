@@ -287,7 +287,7 @@ class Campaign:
         return out
 
     def build_verified(self, out_dir, pass1=None, confirm=None, pass2=None,
-                       sample=1.0, seed=13):
+                       sample=1.0, seed=13, controls_path=None):
         fake = types.ModuleType('score_teacher_eval')
         fake.effective_command = stub_effective
         with patch.object(build_verified_dataset, 'ROOT', self.root), \
@@ -298,4 +298,5 @@ class Campaign:
                 Path(pass1) if pass1 is not None else self.verdict_dir,
                 Path(confirm) if confirm is not None else self.confirm_dir,
                 Path(pass2) if pass2 is not None else self.confirm_verdict_dir,
-                out_dir, pool_dir=self.pool, sample=sample, seed=seed)
+                out_dir, pool_dir=self.pool, sample=sample, seed=seed,
+                controls_path=controls_path)

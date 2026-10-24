@@ -639,7 +639,7 @@ def _load_json(path, label):
 
 
 def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_dir,
-          pool_dir=None, sample=CONFIRM_SAMPLE, seed=CONFIRM_SEED):
+          pool_dir=None, sample=CONFIRM_SAMPLE, seed=CONFIRM_SEED, controls_path=None):
     pool_dir = Path(pool_dir) if pool_dir is not None else Path(verdict_dir).parent / 'pool'
     pool_manifest = _load_json(pool_dir / 'manifest.json', 'pool manifest')
     pool_keymap = _load_json(pool_dir / 'keymap.json', 'pool keymap')
@@ -663,7 +663,8 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
     raw_path = ROOT / 'data/teacher/roihu_full_raw_samples.jsonl'
     v3_train_path = ROOT / 'data/distill/stage2-v3/train.jsonl'
     v3_requests_path = ROOT / 'data/distill/stage2-v3/requests.jsonl'
-    controls_path = ROOT / 'data/distill/stage2-v4/judge/controls.jsonl'
+    controls_path = Path(controls_path) if controls_path is not None else (
+        ROOT / 'data/distill/stage2-v4/judge/controls.jsonl')
     paths = {'corpus': corpus_path, 'raw_samples': raw_path, 'v3_train': v3_train_path,
              'v3_requests': v3_requests_path, 'controls': controls_path}
     quarantine_paths = {name: ROOT / relative for name, relative in QUARANTINE_PATHS.items()}
@@ -900,10 +901,19 @@ def build(keymap, verdict_dir, confirm_batches_dir, confirm_verdicts_dir, out_di
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 6:
+    if len(sys.argv) < 6:
         raise SystemExit('usage: build_verified_dataset.py <keymap.json> <verdict dir> '
-                         '<confirm batches dir> <confirm-verdicts dir> <out dir>')
+                         '<confirm batches dir> <confirm-verdicts dir> <out dir> '
+                         '[--controls controls.jsonl]')
     keymap_path = Path(sys.argv[1])
     keymap = json.loads(keymap_path.read_text())
+    controls = None
+    args = sys.argv[6:]
+    if args:
+        if len(args) != 2 or args[0] != '--controls':
+            raise SystemExit('usage: build_verified_dataset.py <keymap.json> <verdict dir> '
+                             '<confirm batches dir> <confirm-verdicts dir> <out dir> '
+                             '[--controls controls.jsonl]')
+        controls = args[1]
     print(json.dumps(build(keymap, sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5],
-                           pool_dir=keymap_path.parent), indent=2))
+                           pool_dir=keymap_path.parent, controls_path=controls), indent=2))

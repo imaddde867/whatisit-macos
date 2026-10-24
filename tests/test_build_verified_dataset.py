@@ -165,6 +165,16 @@ class BuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'does not recompute from controls.jsonl'):
             self.build(confirm=confirm, pass2=pass2)
 
+    def test_custom_controls_path_is_bound_to_the_pool(self):
+        custom = self.campaign.judge_dir / 'controls-custom.jsonl'
+        shutil.copy(self.campaign.judge_dir / 'controls.jsonl', custom)
+        manifest = self.build(out='out-custom-controls', controls_path=custom)
+        self.assertEqual(manifest['inputs_sha256']['controls'],
+                         builder.sha256_file(custom))
+        custom.write_text(custom.read_text() + '\n')
+        with self.assertRaisesRegex(ValueError, 'pool input digests'):
+            self.build(out='out-changed-controls', controls_path=custom)
+
     def test_director_map_must_match_the_pool_sources(self):
         path = self.campaign.pool / 'director-map.json'
         director = json.loads(path.read_text())
