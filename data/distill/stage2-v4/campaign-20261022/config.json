@@ -129,7 +129,7 @@
       "path": "data/distill/stage2-v4/judge/protocol.md",
       "sha256": "3c51872a3b299b8176e63e9cbe3e979b7016c0501c3e348381e5ec606b489d4f"
     },
-    "pass1": "23 batches b00-b22; one fresh agent session per batch; judge label p1-20261022-bXX-aN; only rubric and that batch are readable.",
+    "pass1": "23 batches b00-b22; one fresh agent session per batch; judge label p1-20261023-bXX-aN (judged 2026-10-23; campaign created 2026-10-22); only rubric and that batch are readable.",
     "pass2": "deterministic 20% sample via tools/make_v4_confirm.py --sample 0.2 --seed 13; one fresh session per confirm batch; pass-2 session must differ from the pass-1 session for every overlapping case.",
     "independence": "Session ids, not labels, are the independence unit; labels are stable aliases mapped to real session ids in receipts.",
     "static_only": "Judges may inspect man pages and tool existence; they must never execute a candidate command or any part of it, and must not write/delete/move/kill/network."
@@ -155,13 +155,18 @@
     "human": "READY requires at least 30 retained examples actually reviewed by a human plus signed-off review packet; otherwise HUMAN_REVIEW_PENDING",
     "tests": "full unittest suite passes"
   },
-  "status": "IN_PROGRESS",
-  "status_note": "No READY claim is possible without genuine human review and sign-off.",
+  "status": "BLOCKED",
+  "status_note": "b00-b03 schema-valid and control-matching, but their pass-1 judge receipts are absent and the 2026-10-23 judge sessions are not in the local session store; provenance is UNVERIFIED (audit/provenance-20261113/report.json). b04-b22 remain unjudged. No READY claim is possible without genuine human review and sign-off.",
   "history": [
     {
       "round": "20261022-a1",
       "status": "superseded",
       "reason": "Blind control audit found ct0009, ct0011, ct0022 and ct0039 were not blind-gradeable; controls were corrected and the pool was rebuilt. All round-1 batch verdicts are preserved under superseded/ and are not used."
+    },
+    {
+      "round": "20261113-a1",
+      "status": "blocked",
+      "reason": "Provenance audit of the four active round-2 verdicts: validator, controls and all digests pass, but no active pass-1 receipt exists and no matching 2026-10-23 judge session is in the local session store. Provenance is unverified; status set to BLOCKED until receipts with result=true are reconstructed on the campaign host or b00-b22 are re-judged. See audit/provenance-20261113/report.json."
     }
   ]
 }

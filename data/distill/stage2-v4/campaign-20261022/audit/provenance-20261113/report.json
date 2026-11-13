@@ -1,0 +1,75 @@
+{
+ "campaign": "stage2-v4/campaign-20261022",
+ "date": "2026-11-13",
+ "scope": [
+  "b00-b03 active pass-1 verdicts",
+  "control set and per-batch control coverage",
+  "pool, input and tooling digests",
+  "judge-session provenance"
+ ],
+ "method": "Ran the campaign validator on every active verdict; recomputed the SHA-256 of every pool artifact, input and tooling file against pool/manifest.json and config.json; recomputed control counts from controls.jsonl and pool/controls-map.json; searched the local OpenCode session store for the registered judge labels with tools/make_v4_receipt.py find. No candidate command was executed.",
+ "checks": {
+  "validator": {
+   "b00": {"cases": 92, "keys": 232, "verdicts": {"correct": 194, "incorrect": 38}, "controls": 2, "controls_matched": 2, "pass": true},
+   "b01": {"cases": 93, "keys": 225, "verdicts": {"correct": 173, "incorrect": 52}, "controls": 3, "controls_matched": 3, "pass": true},
+   "b02": {"cases": 93, "keys": 233, "verdicts": {"correct": 203, "incorrect": 29, "unsure": 1}, "controls": 3, "controls_matched": 3, "pass": true},
+   "b03": {"cases": 93, "keys": 235, "verdicts": {"correct": 182, "incorrect": 51, "unsure": 2}, "controls": 3, "controls_matched": 3, "pass": true}
+  },
+  "controls": {
+   "total": 63,
+   "expected_correct": 25,
+   "expected_incorrect": 38,
+   "mapped": 63,
+   "per_batch_min_correct": 1,
+   "per_batch_min_incorrect": 1,
+   "mismatched_controls_in_active_verdicts": 0
+  },
+  "digests": {
+   "pool_batches_verified": 23,
+   "controls_map": "match",
+   "director_map": "match",
+   "keymap": "match",
+   "pool_inputs": "match",
+   "config_inputs": "match",
+   "tooling": "match",
+   "receipt_inputs_equal_current_pool_batches": ["b00", "b01", "b02", "b03"]
+  },
+  "provenance": {
+   "registered_label_pattern": "p1-20261022-bXX-aN",
+   "active_label_pattern": "p1-20261023-bXX-a1",
+   "active_receipts_present": 0,
+   "superseded_round1_receipts_present": 4,
+   "active_prompts_and_verdicts_differ_from_round1": true,
+   "session_store_searched": "local OpenCode session store (read-only)",
+   "genuine_pass1_judge_sessions_found": 0,
+   "candidate_sessions": [
+    {"session_id": "ses_e2aff6280ffeVlKWmSTINOsoc1", "created": "2026-11-13T15:02:29+02:00", "title": "Initial context exploration", "note": "repository audit session; not a blind judge"},
+    {"session_id": "ses_e2af1845fffe5HqMLqbQx2Mpwl", "created": "2026-11-13T15:17:38+02:00", "title": "Review v4 receipt tool", "note": "tool review session; not a blind judge"}
+   ]
+  }
+ },
+ "findings": [
+  {
+   "id": "P1",
+   "severity": "blocker",
+   "finding": "The four active verdicts (p1-20261023-b00..b03-a1) have no pass-1 receipt. The pre-registered provenance chain (verdict judge label -> real agent session id) is therefore unrecorded for every batch that currently has active labels."
+  },
+  {
+   "id": "P2",
+   "severity": "blocker",
+   "finding": "The local OpenCode store contains no 2026-10-23 judge session for these labels. The only sessions that mention the labels are 2026-11-13 audit sessions. Provenance cannot be reconstructed from this host; the original judge sessions live on the macOS campaign host, if they still exist."
+  },
+  {
+   "id": "P3",
+   "severity": "low",
+   "finding": "Label date drift: config registered p1-20261022-bXX-aN and the campaign was created 2026-10-22, but the active prompts and verdicts use p1-20261023-bXX-a1. The labels are internally consistent; the campaign record is now reconciled to the observed date."
+  }
+ ],
+ "conclusion": {
+  "verdicts_schema_and_controls": "PASS",
+  "digests": "PASS",
+  "provenance": "UNVERIFIED",
+  "campaign_status": "BLOCKED",
+  "action": "Do not build, train on, or cite b00-b03 as blind pass-1 judgments. Either re-run tools/make_v4_receipt.py receipt on the macOS host that holds the original judge sessions and require result=true, or re-judge b00-b22 from scratch. Nineteen of twenty-three batches (b04-b22) still have no verdict at all."
+ }
+}

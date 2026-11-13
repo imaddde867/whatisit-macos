@@ -3,16 +3,15 @@
 
 The campaign pre-registered that pass-1 judge labels are stable aliases mapped to real
 agent session ids in receipts, but the committed receipts carry only inputs and prompts.
-This tool closes that gap on the macOS host that ran the campaign: it locates the judge
-session for a batch in the OpenCode SQLite store, audits what that session read, wrote
-and ran, re-runs the campaign validator, and writes ``receipts/pass1/<batch>/receipt.json``
-in the same field convention as the calibration receipt.
+This tool closes that gap on the host that ran the campaign: it locates the judge session
+for a batch in the OpenCode SQLite store, verifies what that session read, wrote and ran,
+re-runs the campaign validator, and writes ``receipts/pass1/<batch>/receipt.json`` in the
+same field convention as the calibration receipt.
 
-The audit is fail-closed: any read, grep/glob search, or shell command touching a
-forbidden file or another batch voids the receipt; any shell command outside the
-static-analysis allowlist (man, ls, command -v, sha256sum, json.load validation) is
-flagged and also voids ``result``; network, delegation and Code-Mode tools in a judge
-session are flagged. LIKE needles are escaped.
+The audit is fail-closed. A session may read only the rubric, its own batch/inputs/prompt
+and its own verdict; it may run only the static-analysis commands the pass-1 prompt
+allows; it must not use grep/glob, the network, subagents or code execution to look for
+answers. Any deviation makes ``result`` false; it is recorded, never waived.
 
 Read-only against the database (opened with mode=ro). Writes only the one receipt file.
 
@@ -27,6 +26,7 @@ import argparse
 import hashlib
 import json
 import re
+import shlex
 import sqlite3
 import subprocess
 import sys
@@ -35,23 +35,19 @@ from pathlib import Path
 
 DEFAULT_DB = Path.home() / '.local/share/opencode/opencode.db'
 
-# Reading or searching any of these makes the blind pass void.
+# A path fragment that must never appear in a judge session's inputs.
 FORBIDDEN_READS = (
     'keymap.json', 'director-map.json', 'controls-map.json', 'controls.jsonl',
     'controls-audit.json', 'config.json', 'eval-audit', 'superseded/',
-    'calibration/key.json', 'audit/full-', 'audit/controls-',
+    'calibration/', 'audit/full-', 'audit/controls-',
 )
-# Shell commands consistent with the rubric's static-analysis allowance. Chaining or
-# substitution characters void allowlisting (the man|col pipe is the only sanctioned one).
-SAFE_SHELL = (
-    re.compile(r'man( -P cat)? [^|;&`$\n]+'),
-    re.compile(r'man -P cat [^|;&`$\n]+ \| col -b'),
-    re.compile(r'ls( -[a-zA-Z]+)*( [^|;&`$\n]+)*'),
-    re.compile(r'command -v [^\s|;&`$\n]+'),
-    re.compile(r'(sha256sum|shasum)( -[a-zA-Z]+)?( [^|;&`$\n]+)+'),
-)
-CROSS_BATCH_RE = re.compile(r'(?:pool/batches|verdicts|receipts/pass1)/b(\d\d)')
+SHELL_OPERATORS = {';', ';;', '&&', '||', '|', '&', '>', '>>', '<', '<<'}
+ALLOWED_BIN_ROOTS = re.compile(r'^/(?:usr/)?s?bin(?:/[\w.+-]+)*$')
+TOOL_NAME = re.compile(r'^[A-Za-z0-9_.+-]+$')
 LABEL_RE = re.compile(r'"judge":\s*"([^"]+)"')
+OPEN_CALL_RE = re.compile(r"open\(\s*['\"]([^'\"]+)['\"]")
+UNSAFE_PYTHON = re.compile(
+    r'\b(?:os|subprocess|pathlib|glob|importlib|socket|urllib|requests|shutil)\b')
 
 
 def sha256_file(path):
@@ -63,6 +59,7 @@ def iso(ms):
 
 
 def die(message):
+    """Input or usage error: exit 2, never a verification failure (which is exit 1)."""
     print(f'FAIL: {message}', file=sys.stderr)
     raise SystemExit(2)
 
@@ -76,18 +73,20 @@ def open_db(path):
 def campaign_paths(campaign, batch):
     c = Path(campaign)
     return {
+        'campaign': c,
         'batch': c / 'pool/batches' / f'{batch}.json',
-        'manifest': c / 'pool/manifest.json',
         'prompt': c / 'receipts/pass1' / batch / 'prompt.txt',
         'inputs': c / 'receipts/pass1' / batch / 'inputs' / f'{batch}.json',
         'verdict': c / 'verdicts' / f'{batch}.json',
         'controls': c / 'pool/controls-map.json',
+        'manifest': c / 'pool/manifest.json',
         'validator': c / 'validate_verdict.py',
         'receipt': c / 'receipts/pass1' / batch / 'receipt.json',
     }
 
 
 def judge_label(prompt_path):
+    prompt_path = Path(prompt_path)
     if not prompt_path.exists():
         die(f'missing prompt: {prompt_path}')
     match = LABEL_RE.search(prompt_path.read_text())
@@ -106,7 +105,8 @@ def session_rows(db, session_id):
 
 
 def session_tools(db, session_id):
-    reads, writes, shells, searches, other_tools, user_texts = [], [], [], [], [], []
+    reads, writes, shells, searches, network, other = [], [], [], [], [], []
+    user_texts = []
     for mtype, data in db.execute(
             'select type, data from session_message where session_id=? order by seq',
             (session_id,)):
@@ -119,19 +119,23 @@ def session_tools(db, session_id):
                 continue
             name = item.get('name') or ''
             inp = (item.get('state') or {}).get('input') or {}
-            path = str(inp.get('path') or inp.get('filePath') or '')
-            if name in ('read', 'list', 'glob', 'grep'):
+            if name in ('read', 'list'):
+                reads.append(str(inp.get('path', '')))
+            elif name in ('glob', 'grep'):
+                path = str(inp.get('path', ''))
                 reads.append(path)
-                if name in ('glob', 'grep'):
-                    searches.append({'tool': name, 'path': path,
-                                     'pattern': str(inp.get('pattern', ''))})
+                searches.append({'tool': name, 'path': path,
+                                 'pattern': str(inp.get('pattern', ''))})
             elif name in ('write', 'edit'):
-                writes.append(path)
+                writes.append(str(inp.get('path') or inp.get('filePath') or ''))
             elif name in ('shell', 'bash', 'exec', 'execute'):
-                shells.append(str(inp.get('command') or inp.get('code') or ''))
-            elif name in ('webfetch', 'websearch', 'subagent'):
-                other_tools.append(name)
-    return reads, writes, shells, searches, other_tools, user_texts
+                command = inp.get('command') or inp.get('code') or ''
+                shells.append({'tool': name, 'command': str(command)})
+            elif name in ('webfetch', 'websearch', 'subagent', 'task'):
+                network.append({'tool': name, 'input': str(inp)[:300]})
+            else:
+                other.append(name)
+    return reads, writes, shells, searches, network, other, user_texts
 
 
 def like_escape(needle):
@@ -141,67 +145,180 @@ def like_escape(needle):
 def find_sessions(db, label, batch):
     hits = {}
     for needle in (label, f'pool/batches/{batch}.json', f'verdicts/{batch}.json'):
+        pattern = f'%{like_escape(needle)}%'
         for sid, in db.execute(
                 "select distinct session_id from session_message "
-                "where data like ? escape '\\'",
-                (f'%{like_escape(needle)}%',)):
-            entry = hits.setdefault(sid, {'session_id': sid, 'matches': []})
-            entry['matches'].append(needle)
+                "where data like ? escape '\\'", (pattern,)):
+            hits.setdefault(sid, {'matches': []})['matches'].append(needle)
+        for sid, in db.execute(
+                "select id from session_v2 where title like ? escape '\\'", (pattern,)):
+            hits.setdefault(sid, {'matches': []})['matches'].append(needle)
     out = []
     for sid, entry in hits.items():
         row = session_rows(db, sid)
-        reads, writes, shells, _, _, _ = session_tools(db, sid)
+        reads, writes, shells, searches, _, _, _ = session_tools(db, sid)
         out.append({
             'session_id': sid, 'title': row[2], 'agent': row[3], 'directory': row[1],
             'created': iso(row[5]), 'updated': iso(row[6]),
             'reads': len(reads), 'writes': len(writes), 'shells': len(shells),
+            'searches': len(searches),
             'matches': sorted(set(entry['matches'])),
         })
     return sorted(out, key=lambda e: e['created'])
 
 
-def touches_other_batch(text, batch):
-    return any(f'b{digits}' != batch for digits in CROSS_BATCH_RE.findall(text))
+def _parts(path):
+    return [part for part in str(path).replace('\\', '/').split('/') if part]
 
 
-def safe_shell(command):
-    c = command.strip()
-    first = c.split()[0] if c else ''
-    if first in ('python', 'python3'):
-        return 'json.load' in c
-    return any(rx.fullmatch(c) for rx in SAFE_SHELL)
+def allowed_read(path, batch):
+    """Only the rubric, this batch's own inputs/prompt and this batch's own verdict."""
+    if any(bad in str(path).replace('\\', '/') for bad in FORBIDDEN_READS):
+        return False
+    parts = _parts(path)
+    if parts[-2:] == ['stage2-v4', 'LABEL.md']:
+        return True
+    if not parts:
+        return False
+    name = parts[-1]
+    if name == f'{batch}.json':
+        if len(parts) >= 2 and parts[-2] == 'batches' and 'pool' in parts:
+            return True
+        if len(parts) >= 2 and parts[-2] == 'verdicts':
+            return True
+        if (len(parts) >= 4 and parts[-2] == 'inputs'
+                and parts[-3] == batch and parts[-4] == 'pass1'):
+            return True
+    if name == 'prompt.txt' and len(parts) >= 4 and parts[-2] == batch and parts[-3] == 'pass1':
+        return True
+    return False
 
 
-def classify(reads, writes, shells, searches, batch, prompt_text, label):
-    flags, forbidden_reads, forbidden_shell, review = [], [], [], []
+def _pipe_split(tokens):
+    if '|' not in tokens:
+        return tokens, None
+    if tokens.count('|') != 1:
+        return None, None
+    index = tokens.index('|')
+    return tokens[:index], tokens[index + 1:]
+
+
+def _ls_ok(tokens):
+    operands = [t.rstrip('/') for t in tokens[1:] if not t.startswith('-')]
+    flags = [t for t in tokens[1:] if t.startswith('-')]
+    if not operands or not all(re.fullmatch(r'-[A-Za-z]+', f) for f in flags):
+        return False
+    return all(ALLOWED_BIN_ROOTS.match(op) for op in operands)
+
+
+def _python_ok(tokens, batch):
+    if len(tokens) != 3 or tokens[1] != '-c':
+        return False
+    script = tokens[2]
+    if 'json.load' not in script or UNSAFE_PYTHON.search(script):
+        return False
+    return all(allowed_read(match, batch) for match in OPEN_CALL_RE.findall(script))
+
+
+def _sha_ok(tokens, batch):
+    operands = [t for t in tokens[1:] if not t.startswith('-')]
+    if not operands:
+        return False
+    modes = [t for t in tokens[1:] if t.startswith('-')]
+    if not all(re.fullmatch(r'-[aA]', m) for m in modes):
+        return False
+    return all(allowed_read(op, batch) for op in operands)
+
+
+def shell_violation(command, batch):
+    """Return why a shell command is outside the static-analysis allowlist, or None."""
+    raw = (command or '').strip()
+    if not raw:
+        return 'empty shell command'
+    try:
+        tokens = shlex.split(raw)
+    except ValueError:
+        return 'unparsable shell command'
+    if not tokens:
+        return 'empty shell command'
+    head, tail = _pipe_split(tokens)
+    if head is None:
+        return 'multiple pipes'
+    if any(t in SHELL_OPERATORS for t in tokens if t != '|'):
+        return 'shell operator or redirection'
+    if any('`' in t or '$(' in t or '${' in t for t in tokens):
+        return 'shell substitution'
+    low = raw.lower()
+    for bad in FORBIDDEN_READS:
+        if bad in low:
+            return f'mentions forbidden path {bad!r}'
+    program = Path(head[0]).name
+    if program == 'man':
+        args = head[1:]
+        if args[:2] == ['-P', 'cat']:
+            args = args[2:]
+        if len(args) != 1 or not TOOL_NAME.fullmatch(args[0]):
+            return 'man must target exactly one page (optionally -P cat)'
+        if tail is not None and tail != ['col', '-b']:
+            return 'man may only be piped through col -b'
+        return None
+    if tail is not None:
+        return 'pipeline only allowed for man | col -b'
+    if program == 'ls':
+        return None if _ls_ok(head) else 'ls may only list stock tool directories'
+    if program == 'command':
+        if len(head) == 3 and head[1] == '-v' and TOOL_NAME.fullmatch(head[2]):
+            return None
+        return 'command is only allowed as command -v <tool>'
+    if program in ('python3', 'python'):
+        return None if _python_ok(head, batch) else 'python -c may only json.load allowed files'
+    if program in ('sha256sum', 'shasum'):
+        return None if _sha_ok(head, batch) else 'checksum may only hash allowed files'
+    return f'not on the static-analysis allowlist: {head[0]}'
+
+
+def _writes_verdict(path, batch):
+    parts = _parts(path)
+    return len(parts) >= 2 and parts[-1] == f'{batch}.json' and parts[-2] == 'verdicts'
+
+
+def classify(reads, writes, shells, searches, network, batch, prompt_text, label, verdict):
+    disallowed, forbidden, bad_writes = [], [], []
+    shell_violations, search_violations, flags = [], [], []
     for path in reads:
-        p = path.replace('\\', '/')
-        if any(bad in p for bad in FORBIDDEN_READS) or touches_other_batch(p, batch):
-            forbidden_reads.append(path)
-    for search in searches:
-        p = search['path'].replace('\\', '/')
-        if (any(bad in p for bad in FORBIDDEN_READS) or touches_other_batch(p, batch)
-                or not p.rsplit('/', 1)[-1].count('.')):
-            forbidden_reads.append(
-                f"{search['tool']} {search['pattern']!r} in {search['path']}")
-    bad_writes = [p for p in writes if f'verdicts/{batch}.json' not in p.replace('\\', '/')]
-    for command in shells:
-        if (any(bad in command for bad in FORBIDDEN_READS)
-                or touches_other_batch(command, batch)):
-            forbidden_shell.append(command)
-        elif not safe_shell(command):
-            review.append(command)
-    if review:
-        flags.append(f'{len(review)} shell command(s) outside the static-analysis allowlist')
+        normalized = path.replace('\\', '/')
+        if any(bad in normalized for bad in FORBIDDEN_READS):
+            forbidden.append(path)
+        if not allowed_read(path, batch):
+            disallowed.append(path)
+    for path in writes:
+        if not _writes_verdict(path, batch):
+            bad_writes.append(path)
+    for item in shells:
+        reason = shell_violation(item['command'], batch)
+        if reason:
+            shell_violations.append({**item, 'reason': reason})
+    for item in searches:
+        if not allowed_read(item['path'], batch):
+            search_violations.append({**item, 'reason': 'search outside this batch'})
     if label not in prompt_text:
         flags.append('judge label absent from session prompt')
-    return forbidden_reads, forbidden_shell, bad_writes, review, flags
+    if verdict.get('judge') != label:
+        flags.append(f"verdict judge {verdict.get('judge')!r} != prompt label {label!r}")
+    return {
+        'forbidden_reads': sorted(set(forbidden)),
+        'disallowed_reads': sorted(set(disallowed)),
+        'writes_outside_verdict': bad_writes,
+        'shell_violations': shell_violations,
+        'search_violations': search_violations,
+        'network_or_subagent': network,
+        'flags': flags,
+    }
 
 
 def build_receipt(db_path, campaign, batch, session_id, note=None):
-    campaign = Path(campaign)
     paths = campaign_paths(campaign, batch)
-    for key in ('batch', 'manifest', 'prompt', 'inputs', 'verdict', 'controls', 'validator'):
+    for key in ('batch', 'prompt', 'inputs', 'verdict', 'controls', 'manifest', 'validator'):
         if not paths[key].exists():
             die(f'missing {key}: {paths[key]}')
     label = judge_label(paths['prompt'])
@@ -209,24 +326,20 @@ def build_receipt(db_path, campaign, batch, session_id, note=None):
     db = open_db(db_path)
     try:
         row = session_rows(db, session_id)
-        reads, writes, shells, searches, other_tools, user_texts = session_tools(db, session_id)
+        reads, writes, shells, searches, network, _, user_texts = session_tools(db, session_id)
     finally:
         db.close()
 
     prompt_text = paths['prompt'].read_text()
-    forbidden_reads, forbidden_shell, bad_writes, review, flags = classify(
-        reads, writes, shells, searches, batch, prompt_text, label)
-    if not any(label in t for t in user_texts):
-        flags.append('session prompt does not contain the judge label')
-    if not any(paths['batch'].name in p or paths['inputs'].name in p for p in reads):
-        flags.append('session never read the batch file')
-    if other_tools:
-        flags.append(f'judge session used network/delegation tools: '
-                     f'{", ".join(sorted(set(other_tools)))}')
-
     verdict = json.loads(paths['verdict'].read_text())
-    if verdict.get('judge') != label:
-        flags.append(f"verdict judge {verdict.get('judge')!r} != prompt label {label!r}")
+    audit = classify(reads, writes, shells, searches, network, batch,
+                     prompt_text, label, verdict)
+    if not any(label in text for text in user_texts):
+        audit['flags'].append('session prompt does not contain the judge label')
+    batch_read = any(allowed_read(path, batch) and 'batches' in _parts(path)
+                     and _parts(path)[-1] == f'{batch}.json' for path in reads)
+    if not batch_read:
+        audit['flags'].append('session never read the batch file')
 
     check = subprocess.run(
         [sys.executable, str(paths['validator']), str(paths['batch']),
@@ -235,17 +348,25 @@ def build_receipt(db_path, campaign, batch, session_id, note=None):
     verdict_valid = check.returncode == 0
 
     used_by = []
-    for other in campaign.rglob('receipt.json'):
-        if other == paths['receipt']:
+    for other in Path(campaign).glob('**/receipt.json'):
+        if other.resolve() == paths['receipt'].resolve():
             continue
-        if json.loads(other.read_text()).get('agent_session_id') == session_id:
+        try:
+            other_session = json.loads(other.read_text()).get('agent_session_id')
+        except (OSError, json.JSONDecodeError):
+            continue
+        if other_session == session_id:
             used_by.append(str(other))
     if used_by:
-        flags.append(f'session already receipted for: {", ".join(used_by)}')
+        audit['flags'].append(f'session already receipted for: {", ".join(used_by)}')
 
-    hard = (forbidden_reads or forbidden_shell or bad_writes or used_by
-            or verdict.get('judge') != label)
-    result = verdict_valid and not hard and not flags
+    hard = (
+        audit['forbidden_reads'] or audit['disallowed_reads']
+        or audit['writes_outside_verdict'] or audit['shell_violations']
+        or audit['search_violations'] or audit['network_or_subagent']
+        or used_by or verdict.get('judge') != label or not verdict_valid
+    )
+    result = not hard and not audit['flags']
     receipt = {
         'agent_session_id': session_id,
         'attempt': attempt.group(1) if attempt else None,
@@ -258,8 +379,8 @@ def build_receipt(db_path, campaign, batch, session_id, note=None):
         'key_sha256': sha256_file(paths['controls']),
         'manifest_sha256': sha256_file(paths['manifest']),
         'note': note or ('Reconstructed from the OpenCode session store. '
-                         'Reads, writes and shell commands of the judge session were '
-                         'audited; no candidate command was executed.'),
+                         'Reads, writes, searches and shell commands of the judge session '
+                         'were audited; no candidate command was executed.'),
         'prompt_sha256': sha256_file(paths['prompt']),
         'result': result,
         'started_at': iso(row[5]),
@@ -268,11 +389,12 @@ def build_receipt(db_path, campaign, batch, session_id, note=None):
         'reconstructed': True,
         'reconstructed_at': iso(int(datetime.now().timestamp() * 1000)),
         'audit': {
-            'reads': reads, 'writes': writes, 'shells': shells, 'searches': searches,
-            'other_tools': other_tools,
-            'forbidden_reads': forbidden_reads, 'forbidden_shell': forbidden_shell,
-            'writes_outside_verdict': bad_writes, 'shell_needs_review': review,
-            'flags': flags,
+            'reads': reads,
+            'writes': writes,
+            'shell_commands': shells,
+            'searches': searches,
+            'network_or_subagent': network,
+            **audit,
         },
     }
     return receipt, paths['receipt'], result
@@ -290,6 +412,8 @@ def main(argv=None):
 
     if args.mode == 'find':
         paths = campaign_paths(args.campaign, args.batch)
+        if not paths['prompt'].exists():
+            die(f'missing prompt: {paths["prompt"]}')
         label = judge_label(paths['prompt'])
         db = open_db(args.db)
         try:
@@ -304,10 +428,11 @@ def main(argv=None):
                                           args.session, args.note)
     out_path.write_text(json.dumps(receipt, indent=1) + '\n')
     audit = receipt['audit']
-    print(f'wrote {out_path}: result={ok} '
-          f'forbidden_reads={len(audit["forbidden_reads"])} '
-          f'forbidden_shell={len(audit["forbidden_shell"])} '
-          f'shell_review={len(audit["shell_needs_review"])} '
+    violations = sum(len(audit[key]) for key in (
+        'forbidden_reads', 'disallowed_reads', 'writes_outside_verdict',
+        'shell_violations', 'search_violations', 'network_or_subagent'))
+    print(f'wrote {out_path}: result={ok} reads={len(audit["reads"])} '
+          f'shells={len(audit["shell_commands"])} violations={violations} '
           f'flags={len(audit["flags"])}')
     return 0 if ok else 1
 
